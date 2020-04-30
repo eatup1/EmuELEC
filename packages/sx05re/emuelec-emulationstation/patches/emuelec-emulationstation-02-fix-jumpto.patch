@@ -1,0 +1,228 @@
+diff --git a/es-app/src/guis/GuiGamelistOptions.cpp b/es-app/src/guis/GuiGamelistOptions.cpp
+index d8c59725..d4cccccc 100644
+--- a/es-app/src/guis/GuiGamelistOptions.cpp
++++ b/es-app/src/guis/GuiGamelistOptions.cpp
+@@ -20,6 +20,7 @@
+ #include "ThreadedHasher.h"
+ #include "guis/GuiMenu.h"
+ #include "ApiSystem.h"
++#include "utils/StringUtil.h"
+ 
+ std::vector<std::string> GuiGamelistOptions::gridSizes {
+ 	"automatic",
+@@ -99,18 +100,18 @@ GuiGamelistOptions::GuiGamelistOptions(Window* window, SystemData* system, bool
+ 		// jump to letter
+ 		row.elements.clear();
+ 
+-		std::vector<std::string> letters = getGamelist()->getEntriesLetters();
++		std::vector<std::wstring> letters = getGamelist()->getEntriesLetters();
+ 		if (!letters.empty())
+ 		{
+ 			mJumpToLetterList = std::make_shared<LetterList>(mWindow, _("JUMP TO..."), false); // batocera
+ 
+-			char curChar = (char)toupper(getGamelist()->getCursor()->getName()[0]);
++			wchar_t curChar = (wchar_t)toupper(Utils::String::UTF8_to_wchar(getGamelist()->getCursor()->getName().c_str())[0]);
+ 
+-			if (std::find(letters.begin(), letters.end(), std::string(1, curChar)) == letters.end())
++			if (std::find(letters.begin(), letters.end(), std::wstring(1, curChar)) == letters.end())
+ 				curChar = letters.at(0)[0];
+ 
+ 			for (auto letter : letters)
+-				mJumpToLetterList->add(letter, letter[0], letter[0] == curChar);
++				mJumpToLetterList->add(Utils::String::wchar_to_UTF8(letter.c_str()), letter[0], letter[0] == curChar);
+ 
+ 			row.addElement(std::make_shared<TextComponent>(mWindow, _("JUMP TO..."), theme->Text.font, theme->Text.color), true); // batocera
+ 			row.addElement(mJumpToLetterList, false);
+@@ -435,7 +436,7 @@ void GuiGamelistOptions::openMetaDataEd()
+ 
+ void GuiGamelistOptions::jumpToLetter()
+ {
+-	char letter = mJumpToLetterList->getSelected();
++	wchar_t letter = mJumpToLetterList->getSelected();
+ 	IGameListView* gamelist = getGamelist();
+ 
+ 	if (mListSort->getSelected() != 0)
+@@ -466,11 +467,11 @@ void GuiGamelistOptions::jumpToLetter()
+ 		if(files.at(mid)->getName().empty())
+ 			continue;
+ 
+-		char checkLetter = (char)toupper(files.at(mid)->getName()[0]);
++		wchar_t checkLetter = (wchar_t)toupper(Utils::String::UTF8_to_wchar(files.at(mid)->getName().c_str())[0]);
+ 
+ 		if(checkLetter < letter)
+ 			min = mid + 1;
+-		else if(checkLetter > letter || (mid > 0 && (letter == toupper(files.at(mid - 1)->getName()[0]))))
++		else if(checkLetter > letter || (mid > 0 && (letter == (wchar_t)toupper(Utils::String::UTF8_to_wchar(files.at(mid-1)->getName().c_str())[0]))))
+ 			max = mid - 1;
+ 		else
+ 			break; //exact match found
+diff --git a/es-app/src/guis/GuiGamelistOptions.h b/es-app/src/guis/GuiGamelistOptions.h
+index a14734e9..0fbcf931 100644
+--- a/es-app/src/guis/GuiGamelistOptions.h
++++ b/es-app/src/guis/GuiGamelistOptions.h
+@@ -34,7 +34,7 @@ private:
+ 
+ 	MenuComponent mMenu;
+ 
+-	typedef OptionListComponent<char> LetterList;
++	typedef OptionListComponent<wchar_t> LetterList;
+ 	std::shared_ptr<LetterList> mJumpToLetterList;
+ 
+ 	typedef OptionListComponent<unsigned int> SortList;
+diff --git a/es-app/src/views/gamelist/IGameListView.h b/es-app/src/views/gamelist/IGameListView.h
+index 1506a2d0..420743d1 100644
+--- a/es-app/src/views/gamelist/IGameListView.h
++++ b/es-app/src/views/gamelist/IGameListView.h
+@@ -43,7 +43,7 @@ public:
+ 	void render(const Transform4x4f& parentTrans) override;
+ 	virtual void setThemeName(std::string name);
+ 
+-	virtual std::vector<std::string> getEntriesLetters() = 0;
++	virtual std::vector<std::wstring> getEntriesLetters() = 0;
+ 
+ protected:
+ 	FolderData* mRoot;
+diff --git a/es-app/src/views/gamelist/ISimpleGameListView.cpp b/es-app/src/views/gamelist/ISimpleGameListView.cpp
+index 7b7db0ec..29e2b8a0 100644
+--- a/es-app/src/views/gamelist/ISimpleGameListView.cpp
++++ b/es-app/src/views/gamelist/ISimpleGameListView.cpp
+@@ -10,6 +10,7 @@
+ #include "guis/GuiMsgBox.h"
+ #include "Window.h"
+ #include "LocaleES.h"
++#include "utils/StringUtil.h"
+ #include <set>
+ 
+ ISimpleGameListView::ISimpleGameListView(Window* window, FolderData* root) : IGameListView(window, root),
+@@ -226,15 +227,15 @@ bool ISimpleGameListView::input(InputConfig* config, Input input)
+ 	return IGameListView::input(config, input);
+ }
+ 
+-std::vector<std::string> ISimpleGameListView::getEntriesLetters()
++std::vector<std::wstring> ISimpleGameListView::getEntriesLetters()
+ {	
+-	std::set<std::string> setOfLetters;
++	std::set<std::wstring> setOfLetters;
+ 
+ 	for (auto file : getFileDataEntries()) 
+ 		if (file->getType() == GAME)
+-			setOfLetters.insert(std::string(1, toupper(file->getName()[0])));
++			setOfLetters.insert(std::wstring(1, toupper(Utils::String::UTF8_to_wchar(file->getName().c_str())[0])));
+ 
+-	std::vector<std::string> letters;
++	std::vector<std::wstring> letters;
+ 
+ 	for (const auto letter : setOfLetters)
+ 		letters.push_back(letter);
+diff --git a/es-app/src/views/gamelist/ISimpleGameListView.h b/es-app/src/views/gamelist/ISimpleGameListView.h
+index fa558037..273bfcff 100644
+--- a/es-app/src/views/gamelist/ISimpleGameListView.h
++++ b/es-app/src/views/gamelist/ISimpleGameListView.h
+@@ -30,7 +30,7 @@ public:
+ 	virtual bool input(InputConfig* config, Input input) override;
+ 	virtual void launch(FileData* game) = 0;
+ 	
+-	virtual std::vector<std::string> getEntriesLetters() override;
++	virtual std::vector<std::wstring> getEntriesLetters() override;
+ 
+ protected:
+ 	virtual std::vector<FileData*> getFileDataEntries() = 0;
+diff --git a/es-core/src/utils/StringUtil.cpp b/es-core/src/utils/StringUtil.cpp
+index 47aa1e81..cc70def3 100644
+--- a/es-core/src/utils/StringUtil.cpp
++++ b/es-core/src/utils/StringUtil.cpp
+@@ -558,6 +558,80 @@ namespace Utils
+ 			return data;
+ 		}
+ 
++		std::wstring UTF8_to_wchar(const char * in)
++		{
++		    std::wstring out;
++		    unsigned int codepoint;
++		    while (*in != 0)
++		    {
++		        unsigned char ch = static_cast<unsigned char>(*in);
++		        if (ch <= 0x7f)
++		            codepoint = ch;
++		        else if (ch <= 0xbf)
++		            codepoint = (codepoint << 6) | (ch & 0x3f);
++		        else if (ch <= 0xdf)
++		            codepoint = ch & 0x1f;
++		        else if (ch <= 0xef)
++		            codepoint = ch & 0x0f;
++		        else
++		            codepoint = ch & 0x07;
++		        ++in;
++		        if (((*in & 0xc0) != 0x80) && (codepoint <= 0x10ffff))
++		        {
++		            if (sizeof(wchar_t) > 2)
++		                out.append(1, static_cast<wchar_t>(codepoint));
++		            else if (codepoint > 0xffff)
++		            {
++		                out.append(1, static_cast<wchar_t>(0xd800 + (codepoint >> 10)));
++		                out.append(1, static_cast<wchar_t>(0xdc00 + (codepoint & 0x03ff)));
++		            }
++		            else if (codepoint < 0xd800 || codepoint >= 0xe000)
++		                out.append(1, static_cast<wchar_t>(codepoint));
++		        }
++		    }
++		    return out;
++		}
++		std::string wchar_to_UTF8(const wchar_t * in)
++		{
++		    std::string out;
++		    unsigned int codepoint = 0;
++		    for (in;  *in != 0;  ++in)
++		    {
++		        if (*in >= 0xd800 && *in <= 0xdbff)
++		            codepoint = ((*in - 0xd800) << 10) + 0x10000;
++		        else
++		        {
++		            if (*in >= 0xdc00 && *in <= 0xdfff)
++		                codepoint |= *in - 0xdc00;
++		            else
++		                codepoint = *in;
++
++		            if (codepoint <= 0x7f)
++		                out.append(1, static_cast<char>(codepoint));
++		            else if (codepoint <= 0x7ff)
++		            {
++		                out.append(1, static_cast<char>(0xc0 | ((codepoint >> 6) & 0x1f)));
++		                out.append(1, static_cast<char>(0x80 | (codepoint & 0x3f)));
++		            }
++		            else if (codepoint <= 0xffff)
++		            {
++		                out.append(1, static_cast<char>(0xe0 | ((codepoint >> 12) & 0x0f)));
++		                out.append(1, static_cast<char>(0x80 | ((codepoint >> 6) & 0x3f)));
++		                out.append(1, static_cast<char>(0x80 | (codepoint & 0x3f)));
++		            }
++		            else
++		            {
++		                out.append(1, static_cast<char>(0xf0 | ((codepoint >> 18) & 0x07)));
++		                out.append(1, static_cast<char>(0x80 | ((codepoint >> 12) & 0x3f)));
++		                out.append(1, static_cast<char>(0x80 | ((codepoint >> 6) & 0x3f)));
++		                out.append(1, static_cast<char>(0x80 | (codepoint & 0x3f)));
++		            }
++		            codepoint = 0;
++		        }
++		    }
++		    return out;
++		}
++
+ #if defined(_WIN32)
+ 		const std::string convertFromWideString(const std::wstring wstring)
+ 		{
+diff --git a/es-core/src/utils/StringUtil.h b/es-core/src/utils/StringUtil.h
+index 08f105cd..2555a24b 100644
+--- a/es-core/src/utils/StringUtil.h
++++ b/es-core/src/utils/StringUtil.h
+@@ -33,6 +33,9 @@ namespace Utils
+ 
+ 		std::string join(const std::vector<std::string>& items, std::string separator);
+ 
++		std::wstring UTF8_to_wchar(const char * in);
++		std::string wchar_to_UTF8(const wchar_t * in);
++
+ #if defined(_WIN32)
+ 		const std::string convertFromWideString(const std::wstring wstring);
+ 		const std::wstring convertToWideString(const std::string string);
