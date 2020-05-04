@@ -1,5 +1,5 @@
 diff --git a/es-app/src/guis/GuiGamelistOptions.cpp b/es-app/src/guis/GuiGamelistOptions.cpp
-index d8c59725..d4cccccc 100644
+index afe61358..29545b4b 100644
 --- a/es-app/src/guis/GuiGamelistOptions.cpp
 +++ b/es-app/src/guis/GuiGamelistOptions.cpp
 @@ -20,6 +20,7 @@
@@ -10,7 +10,7 @@ index d8c59725..d4cccccc 100644
  
  std::vector<std::string> GuiGamelistOptions::gridSizes {
  	"automatic",
-@@ -99,18 +100,18 @@ GuiGamelistOptions::GuiGamelistOptions(Window* window, SystemData* system, bool
+@@ -103,18 +104,18 @@ GuiGamelistOptions::GuiGamelistOptions(Window* window, SystemData* system, bool
  		// jump to letter
  		row.elements.clear();
  
@@ -33,7 +33,7 @@ index d8c59725..d4cccccc 100644
  
  			row.addElement(std::make_shared<TextComponent>(mWindow, _("JUMP TO..."), theme->Text.font, theme->Text.color), true); // batocera
  			row.addElement(mJumpToLetterList, false);
-@@ -435,7 +436,7 @@ void GuiGamelistOptions::openMetaDataEd()
+@@ -467,7 +468,7 @@ void GuiGamelistOptions::openMetaDataEd()
  
  void GuiGamelistOptions::jumpToLetter()
  {
@@ -42,7 +42,7 @@ index d8c59725..d4cccccc 100644
  	IGameListView* gamelist = getGamelist();
  
  	if (mListSort->getSelected() != 0)
-@@ -466,11 +467,11 @@ void GuiGamelistOptions::jumpToLetter()
+@@ -498,11 +499,11 @@ void GuiGamelistOptions::jumpToLetter()
  		if(files.at(mid)->getName().empty())
  			continue;
  
@@ -57,10 +57,10 @@ index d8c59725..d4cccccc 100644
  		else
  			break; //exact match found
 diff --git a/es-app/src/guis/GuiGamelistOptions.h b/es-app/src/guis/GuiGamelistOptions.h
-index a14734e9..0fbcf931 100644
+index 3497715b..4945ca67 100644
 --- a/es-app/src/guis/GuiGamelistOptions.h
 +++ b/es-app/src/guis/GuiGamelistOptions.h
-@@ -34,7 +34,7 @@ private:
+@@ -40,7 +40,7 @@ private:
  
  	MenuComponent mMenu;
  
@@ -83,7 +83,7 @@ index 1506a2d0..420743d1 100644
  protected:
  	FolderData* mRoot;
 diff --git a/es-app/src/views/gamelist/ISimpleGameListView.cpp b/es-app/src/views/gamelist/ISimpleGameListView.cpp
-index 7b7db0ec..29e2b8a0 100644
+index 2ff3536f..8afc9ec6 100644
 --- a/es-app/src/views/gamelist/ISimpleGameListView.cpp
 +++ b/es-app/src/views/gamelist/ISimpleGameListView.cpp
 @@ -10,6 +10,7 @@
@@ -94,8 +94,8 @@ index 7b7db0ec..29e2b8a0 100644
  #include <set>
  
  ISimpleGameListView::ISimpleGameListView(Window* window, FolderData* root) : IGameListView(window, root),
-@@ -226,15 +227,15 @@ bool ISimpleGameListView::input(InputConfig* config, Input input)
- 	return IGameListView::input(config, input);
+@@ -235,15 +236,15 @@ FileData* ISimpleGameListView::getRandomGame()
+ 	return nullptr;
  }
  
 -std::vector<std::string> ISimpleGameListView::getEntriesLetters()
@@ -115,7 +115,7 @@ index 7b7db0ec..29e2b8a0 100644
  	for (const auto letter : setOfLetters)
  		letters.push_back(letter);
 diff --git a/es-app/src/views/gamelist/ISimpleGameListView.h b/es-app/src/views/gamelist/ISimpleGameListView.h
-index fa558037..273bfcff 100644
+index 1c5a1e52..97255874 100644
 --- a/es-app/src/views/gamelist/ISimpleGameListView.h
 +++ b/es-app/src/views/gamelist/ISimpleGameListView.h
 @@ -30,7 +30,7 @@ public:
@@ -126,12 +126,12 @@ index fa558037..273bfcff 100644
 +	virtual std::vector<std::wstring> getEntriesLetters() override;
  
  protected:
- 	virtual std::vector<FileData*> getFileDataEntries() = 0;
+ 	FileData* getRandomGame();
 diff --git a/es-core/src/utils/StringUtil.cpp b/es-core/src/utils/StringUtil.cpp
-index 47aa1e81..cc70def3 100644
+index d5f5ad30..9bb8efde 100644
 --- a/es-core/src/utils/StringUtil.cpp
 +++ b/es-core/src/utils/StringUtil.cpp
-@@ -558,6 +558,80 @@ namespace Utils
+@@ -557,6 +557,80 @@ namespace Utils
  			return data;
  		}
  
