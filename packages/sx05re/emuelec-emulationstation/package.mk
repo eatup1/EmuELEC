@@ -30,15 +30,18 @@ makeinstall_target() {
 	ln -sf /storage/.config/emuelec/configs/locale $INSTALL/usr/lib/locale
 	
 	mkdir -p $INSTALL/usr/config/emulationstation/resources
-    cp -rf $PKG_BUILD/resources/* $INSTALL/usr/config/emulationstation/resources/
-    
+	cp -rf $PKG_BUILD/resources/* $INSTALL/usr/config/emulationstation/resources/
+	# change korean font
+	cp -rf $PKG_DIR/fonts/* $INSTALL/usr/config/emulationstation/resources/
+	rm -rf $INSTALL/usr/config/emulationstation/resources/NanumMyeongjo.ttf
+
 	mkdir -p $INSTALL/usr/lib/python2.7
 	cp -rf $PKG_DIR/bluez/* $INSTALL/usr/lib/python2.7
 	
-    mkdir -p $INSTALL/usr/bin
-    ln -sf /storage/.config/emulationstation/resources $INSTALL/usr/bin/resources
-    cp -rf $PKG_BUILD/emulationstation $INSTALL/usr/bin
-    cp -PR "$(get_build_dir glibc)/.$TARGET_NAME/locale/localedef" $INSTALL/usr/bin
+	mkdir -p $INSTALL/usr/bin
+	ln -sf /storage/.config/emulationstation/resources $INSTALL/usr/bin/resources
+	cp -rf $PKG_BUILD/emulationstation $INSTALL/usr/bin
+	cp -PR "$(get_build_dir glibc)/.$TARGET_NAME/locale/localedef" $INSTALL/usr/bin
 
 	mkdir -p $INSTALL/etc/emulationstation/
 	ln -sf /storage/.config/emulationstation/themes $INSTALL/etc/emulationstation/
