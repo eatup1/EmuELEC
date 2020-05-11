@@ -46,7 +46,7 @@
 		<image>./downloaded_images/drastic.png</image>
 	</game>
 	<game>
-		<path>./06 - Sselph's scraper.sh</path>
+		<path>./06 - Sselphs scraper.sh</path>
 		<name>06 - Sselph의 스크래퍼</name>
 		<desc>대체용 롬 수집. 설정이 필요합니다!</desc>
 		<developer>shantigilbert </developer>
