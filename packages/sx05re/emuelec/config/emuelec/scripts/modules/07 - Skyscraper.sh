@@ -20,8 +20,8 @@ function scrape_confirm() {
  }
 
 function start_skyscraper() {
-systemd-run bash /emuelec/scripts/fbterm.sh /emuelec/scripts/modules/Skyscraper.start
 systemctl stop emustation
+systemd-run bash /emuelec/scripts/fbterm.sh /emuelec/scripts/modules/Skyscraper.start
 }
 
 scrape_confirm

@@ -16,8 +16,8 @@ function scrape_confirm() {
  }
 
 function start_scraper() {
-systemd-run bash /emuelec/scripts/fbterm.sh /emuelec/scripts/modules/scraper.start
 systemctl stop emustation
+systemd-run bash /emuelec/scripts/fbterm.sh /emuelec/scripts/modules/scraper.start
 }
 
 scrape_confirm
