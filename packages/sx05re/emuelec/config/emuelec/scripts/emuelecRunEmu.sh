@@ -189,6 +189,10 @@ case ${PLATFORM} in
 		RUNTHIS='/usr/bin/retroarch $VERBOSE -L /tmp/cores/fbneo_libretro.so --subsystem neocd --config ${RATMPCONF} "${ROMNAME}"'
 		fi
 		;;
+	"mplayer")
+		#set_kill_keys "$EMU"
+		RUNTHIS='${TBASH} /storage/.emulationstation/scripts/playvideo.sh "$EMU" "${ROMNAME}"'
+		;;
 	esac
 else
 # We are running a Libretro emulator set all the settings that we chose on ES
@@ -226,6 +230,7 @@ fi
 
 # Clear the log file
 echo "EmuELEC Run Log" > $EMUELECLOG
+cat /etc/motd >> $EMUELECLOG
 
 # Write the command to the log file.
 echo "PLATFORM: $PLATFORM" >> $EMUELECLOG
