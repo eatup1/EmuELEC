@@ -13,5 +13,5 @@ PKG_LONGDESC="corefonts is a Metapackage for installing fonts"
 if [ -n "$CUSTOM_FONTS" ]; then
   PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET $CUSTOM_FONTS"
 else
-  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET liberation-fonts-ttf"
+  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET liberation-fonts-ttf hangul-fonts-ttf"
 fi
