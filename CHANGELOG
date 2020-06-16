@@ -1,5 +1,10 @@
 EmuELEC CHANGELOG
 ==================
+3.6k
+
+    * RetroArch 한글깨짐 문제 수정
+    * X11에 한글폰트 추가
+    * EmulationStation 한글번역 적용
 
 3.6
 	
