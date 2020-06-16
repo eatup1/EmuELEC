@@ -2,12 +2,12 @@
 # Copyright (C) 2019-present Shanti Gilbert (https://github.com/shantigilbert)
 
 PKG_NAME="emuelec-emulationstation"
-PKG_VERSION="552da6171923fe49fe35b3f50d970aadac0de03a"
+PKG_VERSION="c766cbdb091dc5c6cd59eefb1278e44084b08808"
 PKG_GIT_CLONE_BRANCH="EmuELEC"
 PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
-PKG_SITE="https://github.com/EmuELEC/emuelec-emulationstation"
+PKG_SITE="https://github.com/british-choi/emuelec-emulationstation"
 PKG_URL="$PKG_SITE.git"
 PKG_DEPENDS_TARGET="toolchain SDL2-git freetype curl freeimage vlc bash rapidjson ${OPENGLES} SDL2_mixer fping pyyaml"
 PKG_SECTION="emuelec"
@@ -30,15 +30,15 @@ makeinstall_target() {
 	ln -sf /storage/.config/emuelec/configs/locale $INSTALL/usr/lib/locale
 	
 	mkdir -p $INSTALL/usr/config/emulationstation/resources
-    cp -rf $PKG_BUILD/resources/* $INSTALL/usr/config/emulationstation/resources/
-    
+	cp -rf $PKG_BUILD/resources/* $INSTALL/usr/config/emulationstation/resources/
+
 	mkdir -p $INSTALL/usr/lib/python2.7
 	cp -rf $PKG_DIR/bluez/* $INSTALL/usr/lib/python2.7
 	
-    mkdir -p $INSTALL/usr/bin
-    ln -sf /storage/.config/emulationstation/resources $INSTALL/usr/bin/resources
-    cp -rf $PKG_BUILD/emulationstation $INSTALL/usr/bin
-    cp -PR "$(get_build_dir glibc)/.$TARGET_NAME/locale/localedef" $INSTALL/usr/bin
+	mkdir -p $INSTALL/usr/bin
+	ln -sf /storage/.config/emulationstation/resources $INSTALL/usr/bin/resources
+	cp -rf $PKG_BUILD/emulationstation $INSTALL/usr/bin
+	cp -PR "$(get_build_dir glibc)/.$TARGET_NAME/locale/localedef" $INSTALL/usr/bin
 
 	mkdir -p $INSTALL/etc/emulationstation/
 	ln -sf /storage/.config/emulationstation/themes $INSTALL/etc/emulationstation/

@@ -281,7 +281,9 @@ fi
 [[ "$EE_DEVICE" == "Amlogic-ng" ]] && /storage/.config/emuelec/bin/fbfix
 
 # Show exit splash
-${TBASH} /emuelec/scripts/show_splash.sh exit
+if [[ "$(systemctl is-active emustation)" == "active" ]]; then
+	${TBASH} /emuelec/scripts/show_splash.sh exit
+fi 
 
 # Kill jslisten, we don't need to but just to make sure, dot not kill if using OdroidGoAdvance
 [[ "$EE_DEVICE" != "OdroidGoAdvance" ]] && killall jslisten

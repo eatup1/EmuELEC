@@ -1,9 +1,9 @@
 diff --git a/input/drivers/udev_input.c b/input/drivers/udev_input.c
-index bcdacb60a6..d2f00114bd 100644
+index 73f26100ab..46897fb806 100644
 --- a/input/drivers/udev_input.c
 +++ b/input/drivers/udev_input.c
-@@ -72,7 +72,7 @@
-
+@@ -74,7 +74,7 @@
+ #include "../../retroarch.h"
  #include "../../verbosity.h"
 
 -#if defined(HAVE_XKBCOMMON) && defined(HAVE_KMS)
@@ -11,7 +11,7 @@ index bcdacb60a6..d2f00114bd 100644
  #define UDEV_XKB_HANDLING
  #endif
 
-@@ -1157,7 +1157,7 @@ static void *udev_input_init(const char *joypad_driver)
+@@ -1227,7 +1227,7 @@ static void *udev_input_init(const char *joypad_driver)
        goto error;
 
     video_context_driver_get_ident(&ctx_ident);
@@ -20,3 +20,4 @@ index bcdacb60a6..d2f00114bd 100644
  #endif
 
  #if defined(HAVE_EPOLL)
+
