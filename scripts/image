@@ -75,11 +75,13 @@ ORIGIN_URL="$(git remote -v | awk '$1 == "origin" { print $2 }' | head -1 | sed 
 [ "${BUILDER_NAME,,}" = "official" ] && BUILDER_NAME=
 if [ "${OFFICIAL}" = "yes" ]; then
   LIBREELEC_BUILD=$(echo `echo VDJabWFXTnBZV3dnTFNCRmJYVkZURVZESUdseklFWlNSVVVoSUU1UFZDQkdUMUlnVTBGTVJTRT0= | base64 --decode` | base64 --decode)
+  LIBREELEC_KBUILD=$(echo `echo VDJabWFXTnBZV3dnTFNCRmJYVkZURVZEN0oyQUlPdXN0T3Vqak95ZWhldUxpT3VMcENFZzY3bUU2NmVrN1pLSUlRPT0= | base64 --decode` | base64 --decode)
 else
   if [ -n "${BUILDER_NAME}" ]; then
     LIBREELEC_BUILD="${BUILDER_NAME}"
   else
     LIBREELEC_BUILD=$(echo `echo UTI5dGJYVnVhWFI1SUMwZ1JXMTFSVXhGUXlCcGN5QkdVa1ZGSVNCT1QxUWdSazlTSUZOQlRFVWg= | base64 --decode` | base64 --decode)
+    LIBREELEC_KBUILD=$(echo `echo UTI5dGJYVnVhWFI1SUMwZ1JXMTFSVXhGUSt5ZGdDRHJyTFRybzR6c25vWHJpNGpyaTZRaElPdTVoT3VucE8yU2lDRT0= | base64 --decode` | base64 --decode)
   fi
 fi
 
@@ -179,7 +181,7 @@ ${GREETING1}
 ${GREETING2}
 ${GREETING3}
 ${GREETING4}
-${DISTRONAME} (${LIBREELEC_BUILD}): ${LIBREELEC_VERSION} (${LIBREELEC_ARCH})
+${DISTRONAME} (${LIBREELEC_KBUILD}): ${LIBREELEC_VERSION} (${LIBREELEC_ARCH})
 EOF
 
 ln -sf /etc/issue ${INSTALL}/etc/motd

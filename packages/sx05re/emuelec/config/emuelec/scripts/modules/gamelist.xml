@@ -117,4 +117,13 @@
 		<genre>script</genre>
 		<image>./downloaded_images/terminal.png</image>
 	</game>
+	<game>
+		<path>./14 - YouTube Search.sh</path>
+		<name>14 - 유튜브 검색</name>
+		<desc>유튜브를 검색합니다. 키보드가 필요합니다!</desc>
+		<developer>shantigilbert </developer>
+		<publisher>Emuelec</publisher>
+		<genre>script</genre>
+		<!--image>./downloaded_images/youtube.png</image-->
+	</game>
 </gameList>
