@@ -1,0 +1,220 @@
+diff --git a/es-app/src/guis/GuiMenu.cpp b/es-app/src/guis/GuiMenu.cpp
+index 473890bf..1e32a2ce 100644
+--- a/es-app/src/guis/GuiMenu.cpp
++++ b/es-app/src/guis/GuiMenu.cpp
+@@ -191,11 +191,11 @@ if (!isKidUI) {
+ /* < emuelec */
+ void GuiMenu::openEmuELECSettings()
+ {
+-	auto s = new GuiSettings(mWindow, "EmuELEC Settings");
++	auto s = new GuiSettings(mWindow, _("EMUELEC SETTINGS").c_str());
+ 
+ 	Window* window = mWindow;
+ 	std::string a;
+-	auto emuelec_video_mode = std::make_shared< OptionListComponent<std::string> >(mWindow, "VIDEO MODE", false);
++	auto emuelec_video_mode = std::make_shared< OptionListComponent<std::string> >(mWindow, _("VIDEO MODE"), false);
+         std::vector<std::string> videomode;
+   /* for(std::stringstream ss(getShOutput(R"(~/.config/emuelec/scripts/get_supported_resolutions.sh)")); getline(ss, a, ','); ) {
+         videomode.push_back(a);
+@@ -259,7 +259,7 @@ void GuiMenu::openEmuELECSettings()
+ 		 }
+ 		});
+ 		
+-		auto emuelec_audiodev_def = std::make_shared< OptionListComponent<std::string> >(mWindow, "AUDIO DEVICE", false);
++		auto emuelec_audiodev_def = std::make_shared< OptionListComponent<std::string> >(mWindow, _("AUDIO DEVICE"), false);
+ 		std::vector<std::string> Audiodevices;
+ 		Audiodevices.push_back("auto");
+ 		Audiodevices.push_back("0,0");
+@@ -303,7 +303,7 @@ void GuiMenu::openEmuELECSettings()
+ 			}
+ 		});
+ 			
+-		auto emuelec_boot_def = std::make_shared< OptionListComponent<std::string> >(mWindow, "START AT BOOT", false);
++		auto emuelec_boot_def = std::make_shared< OptionListComponent<std::string> >(mWindow, _("START AT BOOT"), false);
+ 		std::vector<std::string> devices;
+ 		devices.push_back("Emulationstation");
+ 		devices.push_back("Retroarch");
+@@ -1101,7 +1101,7 @@ void GuiMenu::openSystemSettings_batocera()
+ 	language_choice->add("HUNGARIAN",            "hu_HU", language == "hu_HU");
+ 	language_choice->add("ITALIANO",             "it_IT", language == "it_IT");
+ 	language_choice->add("JAPANESE", 	     "ja_JP", language == "ja_JP");
+-	language_choice->add("KOREAN",   	     "ko_KR", language == "ko_KR" || language == "ko");
++	language_choice->add("한국어",   	     "ko_KR", language == "ko_KR" || language == "ko");
+ 	language_choice->add("NORWEGIAN BOKMAL",     "nb_NO", language == "nb_NO");
+ 	language_choice->add("DUTCH",                "nl_NL", language == "nl_NL");
+ 	language_choice->add("NORWEGIAN",            "nn_NO", language == "nn_NO");
+@@ -1811,7 +1811,7 @@ void GuiMenu::openGamesSettings_batocera()
+ 		lang_choices->add("HUNGARIAN", "Hu", currentLang == "Hu");
+ 		lang_choices->add("ITALIANO", "It", currentLang == "It");
+ 		lang_choices->add("JAPANESE", "Ja", currentLang == "Ja");
+-		lang_choices->add("KOREAN", "Ko", currentLang == "Ko");
++		lang_choices->add("한국어", "Ko", currentLang == "Ko");
+ 		lang_choices->add("DUTCH", "Nl", currentLang == "Nl");
+ 		lang_choices->add("NORWEGIAN", "Nn", currentLang == "Nn");
+ 		lang_choices->add("POLISH", "Po", currentLang == "Po");
+diff --git a/es-core/src/guis/GuiInputConfig.cpp b/es-core/src/guis/GuiInputConfig.cpp
+index 3ab11e6a..946a5c72 100644
+--- a/es-core/src/guis/GuiInputConfig.cpp
++++ b/es-core/src/guis/GuiInputConfig.cpp
+@@ -106,6 +106,10 @@ static const InputConfigStructure GUI_INPUT_CONFIG_LIST[inputCount] =
+ #define fake_gettext_left_a_left _("LEFT ANALOG LEFT")
+ #define fake_gettext_right_a_up _("RIGHT ANALOG UP")
+ #define fake_gettext_right_a_left _("RIGHT ANALOG LEFT")
++#define fake_gettext_left_a_down _("LEFT ANALOG DOWN")
++#define fake_gettext_left_a_right _("LEFT ANALOG RIGHT")
++#define fake_gettext_right_a_down _("RIGHT ANALOG DOWN")
++#define fake_gettext_right_a_right _("RIGHT ANALOG RIGHT")
+ #define fake_gettext_hotkey _("HOTKEY")
+ 
+ //MasterVolUp and MasterVolDown are also hooked up, but do not appear on this screen.
+diff --git a/locale/lang/ko/LC_MESSAGES/emulationstation2.po b/locale/lang/ko/LC_MESSAGES/emulationstation2.po
+index b3456f50..6b05e975 100644
+--- a/locale/lang/ko/LC_MESSAGES/emulationstation2.po
++++ b/locale/lang/ko/LC_MESSAGES/emulationstation2.po
+@@ -221,7 +221,7 @@ msgid "Temperature"
+ msgstr "온도"
+ 
+ msgid "Available memory"
+-msgstr ""
++msgstr "가용메모리"
+ 
+ msgid "Battery"
+ msgstr "배터리"
+@@ -425,7 +425,7 @@ msgid "USE RETROARCH RGUI MENU"
+ msgstr "레트로아크 RGUI 메뉴 사용"
+ 
+ msgid "AUTOCONFIGURE EMULATORS CONTROLLERS"
+-msgstr ""
++msgstr "에뮬레이터 컨트롤러 자동구성"
+ 
+ msgid "LOG LEVEL"
+ msgstr "로그 레벨"
+@@ -515,7 +515,7 @@ msgid "NETPLAY SETTINGS"
+ msgstr "넷플레이 설정"
+ 
+ msgid "MISSING BIOS"
+-msgstr "없는 바이오스"
++msgstr "누락된 바이오스"
+ 
+ msgid "OVERCLOCK"
+ msgstr "오버클럭"
+@@ -668,10 +668,10 @@ msgid "UPDATE GAMES LISTS"
+ msgstr "게임 목록 업데이트"
+ 
+ msgid "NO MISSING BIOS"
+-msgstr "있는 바이오스 "
++msgstr "누락된 바이오가 없음"
+ 
+ msgid "MISSING"
+-msgstr "잃음"
++msgstr "없음"
+ 
+ msgid "INVALID"
+ msgstr "무효"
+@@ -810,7 +810,7 @@ msgid "START ON GAMELIST"
+ msgstr "게임리스트로 시작하기"
+ 
+ msgid "SYSTEMS DISPLAYED"
+-msgstr "시스템 진열"
++msgstr "시스템 디스플레이"
+ 
+ msgid "DISPLAY OPTIONS"
+ msgstr "옵션 표시"
+@@ -995,7 +995,6 @@ msgstr "이 드라이브를 포맷하는 것을 정말로 원합니까?"
+ msgid "COLLECTIONS TO DISPLAY"
+ msgstr "디스플레이용 컬렉션"
+ 
+-
+ msgid "GROUPED SYSTEMS"
+ msgstr "그룹화된 시스템"
+ 
+@@ -1018,7 +1017,7 @@ msgid "GROUP UNTHEMED CUSTOM COLLECTIONS"
+ msgstr "테마가 없는 커스텀 컬렉션을 그룹"
+ 
+ msgid "SORT CUSTOM COLLECTIONS AND SYSTEMS"
+-msgstr "커스텀 컬렉션과 시스템을 분류"
++msgstr "커스텀 컬렉션과 시스템 정렬"
+ 
+ msgid "SHOW SYSTEM NAME IN COLLECTIONS"
+ msgstr "컬렉션에서 시스템 이름 표시"
+@@ -1204,10 +1203,10 @@ msgid "NO GAMES FIT THAT CRITERIA."
+ msgstr "조건에 맞는 게임이 없습니다."
+ 
+ msgid "SCREENSAVER AFTER"
+-msgstr "화면 보호기 작동"
++msgstr "화면보호기 대기시간"
+ 
+ msgid "SCREENSAVER BEHAVIOR"
+-msgstr "화면 보호기 행동"
++msgstr "화면보호기 동작"
+ 
+ msgid ""
+ "THE \"RANDOM VIDEO\" SCREENSAVER SHOWS VIDEOS FROM YOUR GAMELIST.\n"
+@@ -1227,10 +1226,10 @@ msgid "SLIDESHOW SCREENSAVER SETTINGS"
+ msgstr "슬라이스쇼 화면보호기 셋팅"
+ 
+ msgid "SCREENSAVER CONTROLS"
+-msgstr "스크린세이버 컨트롤"
++msgstr "화면보호기 컨트롤"
+ 
+ msgid "SLIDESHOW SCREENSAVER"
+-msgstr "슬라이드쇼 스크린세이버"
++msgstr "슬라이드쇼 화면보호기"
+ 
+ msgid "NO DEVICE FOUND"
+ msgstr "장치 찾기 없음"
+@@ -1333,13 +1332,13 @@ msgid "Arcade system"
+ msgstr "아케이드 시스템"
+ 
+ msgid "enter game arcade system"
+-msgstr "아케이드 시스템 게임 진입"
++msgstr "아케이드 시스템 이름 입력"
+ 
+ msgid "Players"
+-msgstr "플레이어 수"
++msgstr "인원 수"
+ 
+ msgid "enter number of players"
+-msgstr "플레이어 수 입력"
++msgstr "인원 수 입력"
+ 
+ msgid "Favorite"
+ msgstr "즐겨찾기"
+@@ -1360,10 +1359,10 @@ msgid "enter kidgame"
+ msgstr "어린이용 게임 입력"
+ 
+ msgid "Play count"
+-msgstr "플레이 횟수"
++msgstr "게임 횟수"
+ 
+ msgid "enter number of times played"
+-msgstr "플레이 횟수 입력"
++msgstr "게임 횟수 입력"
+ 
+ msgid "Last played"
+ msgstr "마지막 플레이"
+@@ -1387,7 +1386,7 @@ msgid "Game time"
+ msgstr "게임 시간"
+ 
+ msgid "how long the game has been played in total (seconds)"
+-msgstr "전체 게임 즐긴 시간"
++msgstr "전체 게임 즐긴 시간(초)"
+ 
+ msgid "Languages"
+ msgstr "언어"
+@@ -1954,7 +1953,6 @@ msgstr "RA 스플래시 활성화"
+ msgid "ALWAYS SHOW BOOT VIDEO"
+ msgstr "항상 부팅 시 비디오 보기"
+ 
+-
+ msgid "BACKUP EMUELEC CONFIGS"
+ msgstr "EmuELEC 설정 백업"
+ 
+@@ -2018,3 +2016,7 @@ msgstr "에뮬레이터"
+ 
+ msgid "BEZEL"
+ msgstr "베젤"
++
++msgid "AUTO CONFIG ADVANCEMAME GAMEPAD"
++msgstr "AdvanceMAME 게임패드 자동 구성"
++
