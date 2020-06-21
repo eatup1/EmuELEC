@@ -16,7 +16,7 @@ For the Odroid N2:
 `PROJECT=Amlogic-ng ARCH=arm DISTRO=EmuELEC make image`
 
 For the Odroid Go Advance:   
-`PROJECT=Rockchip DEVICE=OdroidGoAdvance ARCH=arm make image`
+`PROJECT=Rockchip DEVICE=OdroidGoAdvance ARCH=arm DISTRO=EmuELEC make image`
 
 if you want to build the addon: 
 ```
