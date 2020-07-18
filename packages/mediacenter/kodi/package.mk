@@ -20,8 +20,8 @@ case $KODI_VENDOR in
     PKG_PATCH_DIRS="default coreelec"
     ;;
   amlogic-4.9)
-    PKG_VERSION="23e4b7e61b9424129284f4af5b156fb78fcc9aac"
-    PKG_SHA256="27540eaf9970b4f840e7568e126e5609412fd38aad7f26870b67a713ab5d051b"
+    PKG_VERSION="16836e72218c4203eabf4ba41a6b063cc1b1d7aa"
+    PKG_SHA256="fb6547f2cc1481324903863d04138dfb6a8440bf2888bc8c3537bb7a591f6302"
     PKG_URL="https://github.com/CoreELEC/xbmc/archive/$PKG_VERSION.tar.gz"
     PKG_SOURCE_NAME="kodi-$PKG_VERSION.tar.gz"
     PKG_PATCH_DIRS="default coreelec"
@@ -352,10 +352,17 @@ post_makeinstall_target() {
                                 $PROJECT_DIR/$PROJECT/devices/$DEVICE/kodi/advancedsettings.xml \
                                 > $INSTALL/usr/share/kodi/system/advancedsettings.xml
 
+  ln -sf /var/share/kodi/system/settings/appliance.xml $INSTALL/usr/share/kodi/system/settings/appliance.xml
+
   $PKG_DIR/scripts/xml_merge.py $PKG_DIR/config/appliance.xml \
-                                $PROJECT_DIR/$PROJECT/kodi/appliance.xml \
+                                $PROJECT_DIR/$PROJECT/kodi/g12x/appliance.xml \
                                 $PROJECT_DIR/$PROJECT/devices/$DEVICE/kodi/appliance.xml \
-                                > $INSTALL/usr/share/kodi/system/settings/appliance.xml
+                                > $INSTALL/usr/share/kodi/system/settings/appliance.g12x.xml
+
+  $PKG_DIR/scripts/xml_merge.py $PKG_DIR/config/appliance.xml \
+                                $PROJECT_DIR/$PROJECT/kodi/gxx/appliance.xml \
+                                $PROJECT_DIR/$PROJECT/devices/$DEVICE/kodi/appliance.xml \
+                                > $INSTALL/usr/share/kodi/system/settings/appliance.gxx.xml
 
   # update addon manifest
   ADDON_MANIFEST=$INSTALL/usr/share/kodi/system/addon-manifest.xml
