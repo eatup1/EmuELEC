@@ -19,6 +19,7 @@ PKG_BUILD_FLAGS="-lto"
 if [ $PROJECT = "Amlogic" ]; then
 PKG_VERSION="b785150465048fa88f812e23462f318e66af0be0"
 PKG_SHA256="456c433f45b0e2ba15a587978234e3e1300301d431b6823747ad0e779331c97e"
+PKG_URL="$PKG_SITE/archive/$PKG_VERSION.tar.gz"
 fi
 
 pre_configure_target() {
