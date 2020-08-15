@@ -19,8 +19,8 @@
 ################################################################################
 
 PKG_NAME="snes9x2010"
-PKG_VERSION="59eb03d08058f4a714945f792de8d5f52716c2ce"
-PKG_SHA256="f8fe35f4244cc59ea55526efe9c41ef400edec4dbda3ebfbae0701e4861f1bd4"
+PKG_VERSION="187e2b58fc09dfeb9fdb5a95bc26786219a111cf"
+PKG_SHA256="323070dc047a9e483ca67fc85823dac576491f7026a8e2260c54b3cbec2c0542"
 PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="Non-commercial"
@@ -37,7 +37,7 @@ PKG_TOOLCHAIN="make"
 PKG_AUTORECONF="no"
 
 make_target() {
-  if [ "$DEVICE" == "OdroidGoAdvance" ];then 
+  if [ "$DEVICE" == "OdroidGoAdvance" ] && [ "$ARCH" == "arm" ]; then
   make -f Makefile.libretro platform=goa_armv8_a35
   else
   make -f Makefile.libretro

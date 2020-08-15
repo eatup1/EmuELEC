@@ -13,11 +13,6 @@
 # echo "performance" > /sys/devices/system/cpu/cpu4/cpufreq/scaling_governor
 # echo 5 > /sys/class/mpgpu/cur_freq
 
-# Search for bluetooth gamepads while ES loads. 
-(
-python /emuelec/scripts/batocera/batocera-bt-pair-device 
-)&
-
 # It seems some slow SDcards have a problem creating the symlink on time :/
 CONFIG_DIR="/storage/.emulationstation"
 CONFIG_DIR2="/storage/.config/emulationstation"
@@ -80,6 +75,11 @@ esac
 # Show splash creen 
 /emuelec/scripts/show_splash.sh intro
 
+
+# run custom_start before FE scripts
+/storage/.config/custom_start.sh before
+
+
 # What to start at boot?
 DEFE=$(get_ee_setting ee_boot)
 
@@ -96,4 +96,5 @@ case "$DEFE" in
 	;;
 esac
 
-source /storage/.config/custom_start.sh
+# run custom_start ending scripts
+/storage/.config/custom_start.sh after

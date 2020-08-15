@@ -2,8 +2,8 @@
 # Copyright (C) 2019-present Shanti Gilbert (https://github.com/shantigilbert)
 
 PKG_NAME="parallel-n64"
-PKG_VERSION="54681c22f754695dea02dcf9f6974f68d25604fe"
-PKG_SHA256="183d228075ac5a48ca4d35f6bd9b249f64dbc7370dedc4487f598a17fb4d8b51"
+PKG_VERSION="cfb9789e13ccbeaabd928203566346c05709d501"
+PKG_SHA256="9f8cb2b4748a6cb11e1cbdeeb91829f34c6f567361bfdca0cb7ad00ddb8c8fc0"
 PKG_REV="2"
 PKG_LICENSE="GPLv2"
 PKG_SITE="https://github.com/libretro/parallel-n64"

@@ -19,8 +19,8 @@
 ################################################################################
 
 PKG_NAME="np2kai"
-PKG_VERSION="12c23166cc912b01c6db5905b51566ce60b80b01"
-PKG_SHA256="e4fd4b93cc417106e03eadb3a3d29e1c424be3b86cc7be3642d05e4dfaf23b83"
+PKG_VERSION="7fe978237d5af08c03ee1e4a99c04d363f6f51c4"
+PKG_SHA256="37b9de2dc8d20ca38df9c20ed458d6b9d04da372d922baf712bbe566641df30f"
 PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="MIT"
@@ -33,11 +33,11 @@ PKG_SHORTDESC="Neko Project II kai"
 PKG_TOOLCHAIN="make"
 
 make_target() {
-cd $PKG_BUILD/sdl2
+cd $PKG_BUILD/sdl
     make
 }
 
 makeinstall_target() {
   mkdir -p $INSTALL/usr/lib/libretro
-  cp $PKG_BUILD/sdl2/np2kai_libretro.so $INSTALL/usr/lib/libretro/
+  cp $PKG_BUILD/sdl/np2kai_libretro.so $INSTALL/usr/lib/libretro/
 }

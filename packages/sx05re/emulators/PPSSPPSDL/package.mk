@@ -2,7 +2,7 @@
 # Copyright (C) 2019-present Shanti Gilbert (https://github.com/shantigilbert)
 
 PKG_NAME="PPSSPPSDL"
-PKG_VERSION="31b1993a696fa03961c5a9c0ee872c3499f207fa"
+PKG_VERSION="3403e28470966c11ff37d459677c8bba2f2c25d0"
 PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="MAME"
@@ -27,6 +27,13 @@ PKG_CMAKE_OPTS_TARGET+=" -DARM64=ON"
 else
 PKG_CMAKE_OPTS_TARGET+=" -DARMV7=ON"
 fi
+
+
+pre_configure_target() {
+if [ "$DEVICE" == "OdroidGoAdvance" ]; then
+	sed -i "s|include_directories(/usr/include/drm)|include_directories(${SYSROOT_PREFIX}/usr/include/drm)|" $PKG_BUILD/CMakeLists.txt
+fi
+}
 
 pre_make_target() {
   # fix cross compiling

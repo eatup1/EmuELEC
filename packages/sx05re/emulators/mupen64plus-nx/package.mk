@@ -2,13 +2,8 @@
 # Copyright (C) 2019-present Shanti Gilbert (https://github.com/shantigilbert)
 
 PKG_NAME="mupen64plus-nx"
-if [ $PROJECT = "Amlogic" ]; then
-PKG_VERSION="f68044fe275ef49ea142a304af873aa08aca78a3"
-PKG_SHA256="2e3a1626cec472223ad5832f1447303fd1e0855ab6be5163fe082a906bac1a26"
-else
-PKG_VERSION="39b555e52bc8821c15f5aa33e366285cd9272630"
-PKG_SHA256="3c844fd77095150694f526aad158ad7183f94b848c12a26299bac94202f9fef8"
-fi
+PKG_VERSION="be9b85ad17c7bcad5de353ad22e81c7bf6d77c48"
+PKG_SHA256="8f3b82ad6fc06885f0fef084fbaf9837aed95bb7efe5e05af29e7e25537b004e"
 PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="GPLv2"
@@ -21,24 +16,34 @@ PKG_LONGDESC="mupen64plus + RSP-HLE + GLideN64 + libretro"
 PKG_TOOLCHAIN="make"
 PKG_BUILD_FLAGS="-lto"
 
+if [ $PROJECT = "Amlogic" ]; then
+PKG_VERSION="b785150465048fa88f812e23462f318e66af0be0"
+PKG_SHA256="456c433f45b0e2ba15a587978234e3e1300301d431b6823747ad0e779331c97e"
+fi
 
 pre_configure_target() {
   sed -e "s|^GIT_VERSION ?.*$|GIT_VERSION := \" ${PKG_VERSION:0:7}\"|" -i Makefile
-}
 
 if [ $ARCH == "arm" ]; then
-	if [ ${PROJECT} = "Amlogic-ng" ]; then
-		PKG_MAKE_OPTS_TARGET+=" platform=AMLG12 GLES=1 FORCE_GLES=1 HAVE_NEON=1 WITH_DYNAREC=arm"
-	elif [ "${PROJECT}" = "Amlogic" ]; then
-		PKG_MAKE_OPTS_TARGET+=" platform=AMLGX GLES=1 FORCE_GLES=1 HAVE_NEON=1 WITH_DYNAREC=arm"
+if [ ${PROJECT} = "Amlogic-ng" ]; then
+	PKG_MAKE_OPTS_TARGET+=" platform=AMLG12B"
+	sed -i "s|GLES = 1|GLES3 = 1|g" Makefile
+	sed -i "s|-lGLESv2|-lGLESv3|g" Makefile
+elif [ "${PROJECT}" = "Amlogic" ]; then
+	PKG_MAKE_OPTS_TARGET+=" platform=amlogic"
+elif [ "${DEVICE}" = "OdroidGoAdvance" ]; then
+	PKG_MAKE_OPTS_TARGET+=" platform=odroidgoa"
 	fi
 else
 	if [ ${PROJECT} = "Amlogic-ng" ]; then
 		PKG_MAKE_OPTS_TARGET+=" platform=odroid64 BOARD=N2"
-	elif [ "${PROJECT}" = "Amlogic" ]; then
+		sed -i "s|GLES = 1|GLES3 = 1|g" Makefile
+		sed -i "s|-lGLESv2|-lGLESv3|g" Makefile
+	elif [ "${PROJECT}" = "Amlogic" ] || [ "${DEVICE}" = "OdroidGoAdvance" ]; then
 		PKG_MAKE_OPTS_TARGET+=" platform=amlogic64"
 	fi
 fi
+}
 
 
 makeinstall_target() {

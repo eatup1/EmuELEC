@@ -4,7 +4,7 @@ PKG_SHA256="b1c649b4fed7252711011da235782b2c260b32e004058d62473471e5cd30634d"
 PKG_LICENSE="OSS"
 PKG_SITE="https://pypi.org/project/evdev"
 PKG_URL="https://files.pythonhosted.org/packages/89/83/5f5635fd0d91a08ac355dd9ca9bde34bfa6b29a5c59f703ad83d1ad0bf34/evdev-1.3.0.tar.gz"
-PKG_DEPENDS_TARGET="toolchain Python3:host distutilscross:host"
+PKG_DEPENDS_TARGET="toolchain Python3:host Python3 distutilscross:host Python2"
 PKG_LONGDESC="Userspace evdev events"
 PKG_TOOLCHAIN="manual"
 
@@ -26,19 +26,22 @@ makeinstall_target() {
 }
 
 post_makeinstall_target() {
+
+if [[ "$ARCH" == "arm" ]]; then
+	libname="arm-linux-gnueabihf.so"
+else
+	libname="aarch64-linux-gnu.so"
+fi
+
   # Seems like there's an issue in the build system.
   # C Modules get built using the correct target toolchain but the generated *.so
-  # files use the arch from the host system
+  # file names use the arch from the host system
   # tried to solve it but couldn't so I move them to the correct names for python
   # to grab them
   mv ${INSTALL}/usr/lib/python3.7/site-packages/evdev/_ecodes.cpython-37-* \
-    ${INSTALL}/usr/lib/python3.7/site-packages/evdev/_ecodes.cpython-37-arm-linux-gnueabihf.so
+    ${INSTALL}/usr/lib/python3.7/site-packages/evdev/_ecodes.cpython-37-${libname}
   mv ${INSTALL}/usr/lib/python3.7/site-packages/evdev/_input.cpython-37-* \
-    ${INSTALL}/usr/lib/python3.7/site-packages/evdev/_input.cpython-37-arm-linux-gnueabihf.so
+    ${INSTALL}/usr/lib/python3.7/site-packages/evdev/_input.cpython-37-${libname}
   mv ${INSTALL}/usr/lib/python3.7/site-packages/evdev/_uinput.cpython-37-* \
-    ${INSTALL}/usr/lib/python3.7/site-packages/evdev/_uinput.cpython-37-arm-linux-gnueabihf.so
+    ${INSTALL}/usr/lib/python3.7/site-packages/evdev/_uinput.cpython-37-${libname}
 }
-
-# post_makeinstall_target() {
-  # find ${INSTALL}/usr/lib/python*/site-packages/  -name "*.py" -exec rm -rf {} ";"
-# }
