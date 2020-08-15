@@ -173,7 +173,7 @@
 		<path>./SDLPoP.sh</path>
 		<name>SDLPoP</name>
 		<!--desc>SDLPoP is an open-source port of Prince of Persia that runs natively on Windows and Linux. It is based on a disassembly of the DOS version.</desc-->
-		<desc>SDLPoP는 Windows 및 Linux에서 기본적으로 실행되는 페르시아의 왕자(Prince of Persia)의 오픈 소스 포트이다.. DOS 버전의 디스어셈블리를 기반으로 한다..</desc>
+		<desc>SDLPoP는 Windows 및 Linux에서 기본적으로 실행되는 페르시아의 왕자(Prince of Persia)의 오픈 소스 포트이다.. DOS 버전의 디스어셈블리를 기반으로 한다.</desc>
 		<image>./images/system-sdlpop-thumb.png</image>
 		<video>./videos/system-sdlpop.mp4</video>
 		<thumbnail>./images/system-sdlpop.png</thumbnail>
@@ -185,7 +185,8 @@
 	<game>
 		<path>./OpenTyrian.sh</path>
 		<name>OpenTyrian</name>
-		<desc>OpenTyrian is an open-source port of the "cult" arcade-style vertical scrolling shooter called "Tyrian". Original game was developed by World Tree Games Productions and published in 1995 by Epic MegaGames.</desc>
+		<!--desc>OpenTyrian is an open-source port of the "cult" arcade-style vertical scrolling shooter called "Tyrian". Original game was developed by World Tree Games Productions and published in 1995 by Epic MegaGames.</desc-->
+		<desc>OpenTyrian은 "티리안"이라고 불리는 "컬트"아케이드 스타일의 수직 스크롤 슈팅 게임의 오픈 소스 포트입니다. 오리지널 게임은 World Tree Games Productions에서 개발했으며 Epic MegaGames에서 1995년에 발매되었다.</desc>
 		<image>./images/system-opentyrian-thumb.png</image>
 		<video>./videos/system-opentyrian.mp4</video>
 		<thumbnail>./images/system-opentyrian.png</thumbnail>
