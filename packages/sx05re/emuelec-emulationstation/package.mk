@@ -2,14 +2,14 @@
 # Copyright (C) 2019-present Shanti Gilbert (https://github.com/shantigilbert)
 
 PKG_NAME="emuelec-emulationstation"
-PKG_VERSION="e7a114d9605b684313f6472de9e8e5bba5f42ef9"
+PKG_VERSION="eebf93de99e2bce4ec83259a463e868785408b5b"
 PKG_GIT_CLONE_BRANCH="EmuELEC"
 PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="https://github.com/british-choi/emuelec-emulationstation"
 PKG_URL="$PKG_SITE.git"
-PKG_DEPENDS_TARGET="toolchain SDL2-git freetype curl freeimage vlc bash rapidjson ${OPENGLES} SDL2_mixer fping pyyaml"
+PKG_DEPENDS_TARGET="toolchain SDL2-git freetype curl freeimage vlc bash rapidjson ${OPENGLES} SDL2_mixer fping pyyaml p7zip"
 PKG_SECTION="emuelec"
 PKG_NEED_UNPACK="busybox"
 PKG_SHORTDESC="Emulationstation emulator frontend"
@@ -47,12 +47,6 @@ makeinstall_target() {
 	cp -rf $PKG_DIR/config/scripts $INSTALL/usr/config/emulationstation
 	cp -rf $PKG_DIR/config/*.cfg $INSTALL/usr/config/emulationstation
 
-# Remove systems that are not compatible with S905
-	if [[ ${PROJECT} != "Amlogic-ng" ]]; then 	
-	xmlstarlet ed -L -P -d "/systemList/system[name='3do']" $INSTALL/usr/config/emulationstation/es_systems.cfg
-	xmlstarlet ed -L -P -d "/systemList/system[name='saturn']" $INSTALL/usr/config/emulationstation/es_systems.cfg
-	fi 
-	
 	chmod +x $INSTALL/usr/config/emulationstation/scripts/*
 	chmod +x $INSTALL/usr/config/emulationstation/scripts/configscripts/*
 	find $INSTALL/usr/config/emulationstation/scripts/ -type f -exec chmod o+x {} \; 
