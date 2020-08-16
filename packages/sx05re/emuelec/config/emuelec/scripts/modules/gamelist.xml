@@ -126,4 +126,13 @@
 		<genre>script</genre>
 		<!--image>./downloaded_images/youtube.png</image-->
 	</game>
+	<game>
+		<path>./15 - Bluetooth controller management.sh</path>
+		<name>15 - 블루투스 컨트롤러 관리</name>
+		<desc>블루투스 컨트롤러를 관리합니다</desc>
+		<developer>shantigilbert </developer>
+		<publisher>Emuelec</publisher>
+		<genre>script</genre>
+		<!--image>./downloaded_images/bluetooth.png</image-->
+	</game>
 </gameList>
