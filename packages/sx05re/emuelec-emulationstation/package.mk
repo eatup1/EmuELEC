@@ -2,7 +2,7 @@
 # Copyright (C) 2019-present Shanti Gilbert (https://github.com/shantigilbert)
 
 PKG_NAME="emuelec-emulationstation"
-PKG_VERSION="d2ac6adb16a6759d1e5c23fa773787a0a386efb7"
+PKG_VERSION="bb3f0fc5b781640c436837ecce632af77986763f"
 PKG_GIT_CLONE_BRANCH="EmuELEC"
 PKG_REV="1"
 PKG_ARCH="any"
@@ -53,7 +53,7 @@ makeinstall_target() {
 	
 	# Vertical Games are only supported in the OdroidGoAdvance
     if [[ ${DEVICE} != "OdroidGoAdvance" ]]; then
-        sed "s|, vertical||g" "$INSTALL/usr/config/emulationstation/es_features.cfg"
+        sed -i "s|, vertical||g" "$INSTALL/usr/config/emulationstation/es_features.cfg"
     fi
 }
 
