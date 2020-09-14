@@ -62,10 +62,6 @@ if [[ ! -d "$LOGSDIR" ]]; then
 mkdir -p "$LOGSDIR"
 fi
 
-# Clear the log file
-echo "EmuELEC Run Log" > $EMUELECLOG
-cat /etc/motd >> $EMUELECLOG
-
 # Extract the platform name from the arguments
 PLATFORM="${arguments##*-P}"  # read from -P onwards
 PLATFORM="${PLATFORM%% *}"  # until a space is found
@@ -77,6 +73,7 @@ EMULATOR="${EMULATOR%% *}"  # until a space is found
 
 ROMNAME="$1"
 BASEROMNAME=${ROMNAME##*/}
+GAMEFOLDER="${ROMNAME//${BASEROMNAME}}"
 
 if [[ $EMULATOR = "libretro" ]]; then
 	EMU="${CORE}_libretro"
@@ -215,11 +212,11 @@ case ${PLATFORM} in
 	"pc")
 		if [ "$EMU" = "DOSBOXSDL2" ]; then
 		set_kill_keys "dosbox"
-		RUNTHIS='${TBASH} /usr/bin/dosbox.start "${ROMNAME}"'
+		RUNTHIS='${TBASH} /usr/bin/dosbox.start -conf "${GAMEFOLDER}dosbox-SDL2.conf"'
 		fi
 		if [ "$EMU" = "DOSBOX-X" ]; then
 		set_kill_keys "dosbox-x"
-		RUNTHIS='${TBASH} /usr/bin/dosbox-x.start "${ROMNAME}"'
+		RUNTHIS='${TBASH} /usr/bin/dosbox-x.start -conf "${GAMEFOLDER}dosbox-SDL2.conf"'
 		fi
 		;;		
 	"psp"|"pspminis")
@@ -274,7 +271,6 @@ NETPLAY="$(echo ${NETPLAY} | sed "s|--nick|--nick \"${NETPLAY_NICK}\"|")"
 RUNTHIS=$(echo ${RUNTHIS} | sed "s|--config|${NETPLAY} --config|")
 
 if [[ "${NETPLAY}" == *"connect"* ]]; then
-	echo "Netplay client!" >> $EMUELECLOG
 	NETPLAY_PORT="${arguments##*--port }"  # read from -netplayport  onwards
 	NETPLAY_PORT="${NETPLAY_PORT%% *}"  # until a space is found
 	NETPLAY_IP="${arguments##*--connect }"  # read from -netplayip  onwards
@@ -307,6 +303,12 @@ else
 fi
 
 fi
+
+# Clear the log file
+echo "EmuELEC Run Log" > $EMUELECLOG
+cat /etc/motd >> $EMUELECLOG
+
+[[ "${NETPLAY}" == *"connect"* ]] && echo "Netplay client!" >> $EMUELECLOG
 
 # Write the command to the log file.
 echo "PLATFORM: $PLATFORM" >> $EMUELECLOG
