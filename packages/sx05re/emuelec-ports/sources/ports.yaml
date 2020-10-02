@@ -1,0 +1,204 @@
+2048:
+  name: 2048
+  description: 2048은 이탈리아의 웹 개발자 가브리엘 시룰리가 디자인한 싱글플레이어 슬라이딩 블록 퍼즐 게임이다. 이 게임의 목적은 번호가 매겨진 타일을 그리드에 밀어 결합하여 숫자 2048의 타일을 만드는 것이다. 하지만 목표에 도달한 후에도 더 큰 숫자로 타일을 만들어 게임을 계속할 수 있다.
+  rating: 1.0
+  release_date: 20100111T000000
+  developer: Gabriele Cirulli - Higor Euripedes
+  publisher: Public Domain
+
+  commands:
+    - /emuelec/scripts/emuelecRunEmu.sh "" -Pports "${2}" -C2048 "-SC${0}"
+
+Cannonball:
+  name: 캐논볼
+  description: "이곳은 SEGA의 주요 아케이드 레이서의 아케이드 퍼펙트 포트 입니다. 특징: 픽셀-완벽한 240p 비디오. 60 FPS 게임 플레이. 연속 모드(한 번에 15개의 트랙을 모두 재생)"
+  rating: 0.8
+  release_date: 20140101T000000
+  developer: Chris White, Yu Suzuki
+  publisher: non-commercial
+
+  check_bios: Cannonball
+  commands:
+    - /emuelec/scripts/emuelecRunEmu.sh "/storage/roms/ports/cannonball/" -Pports "${2}" -Ccannonball "-SC${0}"
+
+Cave Story:
+  name: 동굴 이야기
+  description: 2004년 Windows PC용으로 출시된 플랫폼 어드벤쳐 비디오 게임. 일본의 개발자 다이스케 "픽셀" 아마야에 의해 여유시간에 5년에 걸쳐 개발되었다. 동굴 이야기는 2D 플랫폼 역학을 특징으로 한다.
+  rating: 0.9
+  release_date: 20041220T000000
+  developer: Studio Pixel
+  publisher: GPLv3
+
+  check_bios: CaveStory
+  commands:
+    - /emuelec/scripts/emuelecRunEmu.sh "/storage/roms/ports/CaveStory/Doukutsu.exe" -Pports "${2}" -Cnxengine "-SC${0}"
+
+Commander Keen:
+  name: 코맨더 킨
+  description: 커맨더 지니어스(Commander Genius)는 보티콘과 갤럭시 시리즈의 커맨더 킨 인베이션을 해석한 소프트웨어 작품이다. 팬과 개발자로서 우리는 새로운 기능을 구현하고, 게임 플레이를 개선하고, 플레이어들에게 오리지널 게임을 하는 느낌이지만 좀 더 신선한 경험을 주려고 한다.
+  rating: 1.0
+  release_date: 20170326T000000
+  developer: Commander Genius team
+  publisher: non-commercial
+
+  init_port: true
+  port_exe: "CGeniusExe"
+  audio: "alsa"
+  commands:
+    - '[[ ! -L "/storage/.CommanderGenius" ]] && ln -sf /emuelec/configs/CommanderGenius /storage/.CommanderGenius'
+    - /emuelec/bin/${PORT}
+
+Diablo:
+  name: 디아블로
+  description: 현대 운영체제를 위한 디아블로 빌드 - 디아블로(Diablo)는 블리자드 노스사가 개발하고 블리자드 엔터테인먼트가 1997년 1월 초 출시한 액션 역할극 해킹 및 슬래시 비디오 게임이다.
+  rating: 1.0
+  release_date: 19970101T000000
+  developer: DevilutionX - Blizzard
+  publisher: Public Domain
+
+  check_bios: Diablo
+  init_port: true
+  port_exe: "devilutionx"
+  audio: "pulseaudio"
+  commands:
+    - if [ ! -L /storage/.local/share/diasurgical/devilution/diabdat.mpq ]; then
+    - mkdir -p /storage/.local/share/diasurgical/devilution/
+    - ln -sf /storage/roms/ports/diablo/diabdat.mpq /storage/.local/share/diasurgical/devilution/diabdat.mpq
+    - fi
+    - cd /emuelec/bin/
+    - ./${PORT} >> $EE_LOG 2>&1
+
+Dinothawr:
+  name: 디노타우르
+  description: 디노타우르는 미끄러운 표면에서 퍼즐 게임을 밀어내는 블록이다. 우리의 영웅은 얼음 속에 친구들이 갇힌 공룡이다. 퍼즐을 통해 디노들을 얼음 감옥에서 해방시키는 것이 너의 임무다.
+  rating: 0.8
+  release_date: 20130220T000000
+  developer: Themaister, Agnes Heyer
+  publisher: non-commercial
+
+  check_bios: Dinothawr
+  commands:
+    - /emuelec/scripts/emuelecRunEmu.sh "/storage/roms/ports/dinothawr/dinothawr.game" -Pports "${2}" -Cdinothawr "-SC${0}"
+
+Doom:
+  name: 둠
+  description: 플레이어는 지옥의 9단계를 관통하는 악마의 무리를 뚫고 자신의 길을 향해 싸우는 우주 해군의 역할을 맡는다.
+  rating: 0.8
+  release_date: 19931210T000000
+  developer: id Software
+  publisher: GT Interactive
+
+  check_bios: DOOM1
+  commands:
+    - /emuelec/scripts/emuelecRunEmu.sh "/storage/roms/ports/doom2/doom1.wad" -Pports "${2}" -Cprboom "-SC${0}"
+
+Doom 2:
+  name: 둠 2
+  description: 1인칭 슈터 비디오 게임, ID Software's Doom 프랜차이즈의 두 번째 타이틀. 원래 1994년 MS-DOS 컴퓨터, 1995년 매킨토시 컴퓨터용으로 출시되었다.
+  rating: 0.9
+  release_date: 19941010T000000
+  developer: id Software
+  publisher: GT Interactive
+
+  check_bios: DOOM2
+  commands:
+    - /emuelec/scripts/emuelecRunEmu.sh "/storage/roms/ports/doom2/doom2.wad" -Pports "${2}" -Cprboom "-SC${0}"
+
+Mr. Boom:
+  name: 미스터 붐
+  description: 미스터 붐은 8인용 봄버맨(Bomberman)의 클론이다. 게임의 목표는 당신의 적들과 다른 플레이어들을 폭격하는 것이다.
+  rating: 0.8
+  release_date: 19990225T000000
+  developer: Remdy Software
+  publisher: non-commercial
+
+  commands:
+    - /emuelec/scripts/emuelecRunEmu.sh "" -Pports "${2}" -Cmrboom "-SC${0}"
+
+OpenTyrian:
+  name: 티리안
+  description: OpenTyrian은 "티리안"이라고 불리는 "컬트"아케이드 스타일의 수직 스크롤 슈팅 게임의 오픈 소스 포트입니다. 오리지널 게임은 World Tree Games Productions에서 개발했으며 Epic MegaGames에서 1995년에 발매되었다.
+  rating: 1.0
+  release_date: 1995
+  developer: World Tree Games
+  publisher: Epic MegaGames
+
+  check_bios: OpenTyrian
+  init_port: true
+  port_exe: "opentyrian"
+  audio: "alsa"
+  commands:
+    - '## on "Amlogic" project we need to remove asound.conf or else OpenTyrian will have no sound.'
+    - '[[ "$EE_DEVICE" == "Amlogic" ]] && mv /storage/.config/asound.conf /storage/.config/asound2.conf'
+    - ${PORT} -t /storage/roms/ports/opentyrian >> $EE_LOG 2>&1
+  commands_end:
+    - '[[ "$EE_DEVICE" == "Amlogic" ]] && mv /storage/.config/asound2.conf /storage/.config/asound.conf'
+
+Quake:
+  name: 퀘이크
+  description: 플레이어는 다양한 무기를 사용하여 다양한 몬스터와 싸우는 동안 다양한 미로 같은 중세 환경을 헤쳐나가야 한다.
+  rating: 0.8
+  release_date: 19960622T000000
+  developer: id Software
+  publisher: GT Interactive
+
+  check_bios: Quake
+  commands:
+    - /emuelec/scripts/emuelecRunEmu.sh "/storage/roms/ports/quake/id1/pak0.pak" -Pports "${2}" -Ctyrquake "-SC${0}"
+
+Flashback:
+  name: 플래시백(REminiscence)
+  description: 레머니선스(REminiscence)는 1992/1993년 액션 어드벤처 게임 플래쉬백(Flashback)의 게임 엔진 레크리에이션이다. Another World/Out Of This World의 정신적 계승자로, 로토스코프 그래픽, 폴리곤 컷씬으로 차별화된다.
+  rating: 0.8
+  release_date: 20180114T000000
+  developer: Gregory Montoir, Stuart Carnie
+  publisher: GPLv3
+
+  check_bios: REminiscence
+  commands:
+    - /emuelec/scripts/emuelecRunEmu.sh "/storage/roms/ports/reminiscence" -Pports "${2}" -Creminiscence "-SC${0}"
+
+Rick Dangerous:
+  name: 릭 데인저러스
+  description: 1980년대와 1990년대 초반의 라라 크로프트(Lara Croft) 훨씬 이전, 릭 데인저러스(Rick Dangerous)는 구르는 암석과 함정을 피해 남아메리카에서 이집트와 슈바르젠덤프 성을 거쳐 미래형 미사일 기지로 도망치는 컴퓨터 게임의 인디아나 존스였다. 릭(Xrick)은 Linux, Windows, BeOs, Amiga, QNX, 모든 종류의 게임 콘솔에서 실행되는 것으로 알려진 릭 데인저러스(Rick Dangerous)의 복제품이다.
+  rating: 0.8
+  release_date: 20170326T000000
+  developer: BigOrno
+  publisher: non-commercial
+
+  check_bios: RickDangerous
+  commands:
+    - /emuelec/scripts/emuelecRunEmu.sh "/storage/roms/ports/xrick/data.zip" -Pports "${2}" -Cxrick "-SC${0}"
+
+Prince of Persia:
+  name: 페르시아의 왕자(SDLPoP)
+  description: SDLPoP는 Windows 및 Linux에서 기본적으로 실행되는 페르시아의 왕자(Prince of Persia)의 오픈 소스 포트이다.. DOS 버전의 디스어셈블리를 기반으로 한다.
+  rating: 1.0
+  release_date: 20110111T000000
+  developer: Dávid Nagy
+  publisher: non-commercial
+
+  init_port: true
+  port_exe: "prince"
+  audio: "alsa"
+  commands:
+    - '[[ ! -f "/storage/.config/emuelec/configs/SDLPoP/SDLPoP.cfg" ]] && touch "/storage/.config/emuelec/configs/SDLPoP/SDLPoP.cfg"'
+    - '# SDLPop will complain about a missing data and config files by showing a nice blank screen after the intro'
+    - cd /storage/.config/emuelec/configs/SDLPoP
+    - ${PORT}
+
+VVVVVV:
+  name: VVVVVV
+  description: VVVVVV는 간단한 기계적인 아이디어를 탐구하는 플랫폼 게임이다 - 만약 당신이 점프하지 않고 중력을 꺼꾸로 바꾼다면? 이 게임은 인위적으로 진행 상황을 통제하지 않도록 설계되었다. VVVVVV에는 잠금 장치, 전원 공급 장치, 스위치가 없다. 도전 그 자체 이외에는 진행을 멈출 수 있는 어떤 것도 없다.
+  rating: 1.0
+  release_date: 20100111T000000
+  developer: Terry Cavanagh, Simon Roth, Nicalis
+  publisher: non-commercial
+
+  init_port: true
+  port_exe: "VVVVVV"
+  audio: "alsa"
+  commands:
+    - '# VVVVVV will complain about a missing gamecontrollerdb.txt unless we switch to this folder first'
+    - cd /storage/.config/SDL-GameControllerDB/
+    - ${PORT}

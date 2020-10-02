@@ -9,14 +9,7 @@
 function error() {
 	ERROR=$(cat /emuelec/logs/emuelec.log)
 
-	if [[ "$EE_DEVICE" == "OdroidGoAdvance" ]]; then
-			/emuelec/scripts/fbterm.sh error "Game" "$ERROR\n\n This message will close in 10 seconds" &
-			error_process="$!"
-			sleep 10
-			pkill -P $error_process
-	else
-			/emuelec/scripts/fbterm.sh error "Game" "$ERROR"
-	fi
+	/emuelec/scripts/fbterm.sh error "Game" "$ERROR"
 	/emuelec/scripts/show_splash.sh exit
 }
 
@@ -153,7 +146,7 @@ function resolutions() {
 	N2_SUPPORTED_RESOLUTIONS="480x320p60hz 640x480p60hz 720x480p60hz 720x576p50hz 800x480p60hz 1024x600p60hz 1024x768p60hz 1280x1024p60hz 1280x720p50hz 1280x720p60hz 1280x800p60hz 1360x768p60hz 1440x900p60hz 1600x1200p60hz 1600x900p60hz 1680x1050p60hz 1920x1080p24hz 1920x1080p30hz 1920x1080p50hz 1920x1080p60hz 1920x1200p60hz 2560x1080p60hz 2560x1440p60hz 2560x1600p60hz 3440x1440p60hz 3840x2160p24hz 3840x2160p25hz 3840x2160p30hz 3840x2160p50hz 3840x2160p60hz"
 
 	# Screen supported resolutions
-	SCREEN_SUPPORTED_RESOLUTIONS=`/usr/bin/cat /sys/class/amhdmitx/amhdmitx0/rawedid | /usr/bin/edid-decode |/usr/bin/grep "@" | /usr/bin/awk '{print $1}' | /usr/bin/sed  's/@/p/g'|/usr/bin/tr '[:upper:]' '[:lower:]'`
+	SCREEN_SUPPORTED_RESOLUTIONS=`/usr/bin/cat /sys/class/amhdmitx/amhdmitx0/rawedid | /usr/bin/edid-decode |/usr/bin/grep "@" | sed -E "s| {0,9}VIC {0,9}[0-9]{1,2}||" | /usr/bin/awk '{print $1}' | /usr/bin/sed  's/@/p/g'|/usr/bin/tr '[:upper:]' '[:lower:]'`
 
 	for N2SP in $N2_SUPPORTED_RESOLUTIONS
 	do
@@ -183,6 +176,29 @@ function showdialog() {
 			dialog --backtitle 'EmuELEC Error' --title "${1} Error" --ascii-lines --colors --no-collapse --ok-label 'Close' --msgbox "${ERROR}" 30 80
 		fi
 	fi
+}
+
+function current_timezone() {
+	readlink -f /etc/localtime | sed 's;/usr/share/zoneinfo/;;'
+}
+
+function timezones() {
+	cat /usr/share/zoneinfo/zone1970.tab | grep -v "^#" | awk '{ print $3 }' | sort -u | tr '\n' ','
+}
+
+function small-cores() {
+    if grep -q "g12b" /proc/device-tree/compatible; then
+        case "$1" in
+        "enable")
+            echo "1" > /sys/devices/system/cpu/cpu0/online
+            echo "1" > /sys/devices/system/cpu/cpu1/online
+        ;;
+        "disable")
+            echo "0" > /sys/devices/system/cpu/cpu0/online
+            echo "0" > /sys/devices/system/cpu/cpu1/online
+        ;;
+        esac
+    fi
 }
 
 cmd=${1}

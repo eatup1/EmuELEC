@@ -2,14 +2,14 @@
 # Copyright (C) 2019-present Shanti Gilbert (https://github.com/shantigilbert)
 
 PKG_NAME="emuelec-emulationstation"
-PKG_VERSION="b6e4ac78041f0e14c1d2b413a2924c79fddf3976"
+PKG_VERSION="0ed9a45bfc2e184fee69ef04718dff5460a62012"
 PKG_GIT_CLONE_BRANCH="EmuELEC"
 PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="https://github.com/british-choi/emuelec-emulationstation"
 PKG_URL="$PKG_SITE.git"
-PKG_DEPENDS_TARGET="toolchain SDL2-git freetype curl freeimage vlc bash rapidjson ${OPENGLES} SDL2_mixer fping pyyaml p7zip"
+PKG_DEPENDS_TARGET="toolchain SDL2-git freetype curl freeimage vlc bash rapidjson ${OPENGLES} SDL2_mixer fping p7zip"
 PKG_SECTION="emuelec"
 PKG_NEED_UNPACK="busybox"
 PKG_SHORTDESC="Emulationstation emulator frontend"
@@ -50,6 +50,11 @@ makeinstall_target() {
 	chmod +x $INSTALL/usr/config/emulationstation/scripts/*
 	chmod +x $INSTALL/usr/config/emulationstation/scripts/configscripts/*
 	find $INSTALL/usr/config/emulationstation/scripts/ -type f -exec chmod o+x {} \; 
+	
+	# Vertical Games are only supported in the OdroidGoAdvance
+    if [[ ${DEVICE} != "OdroidGoAdvance" ]]; then
+        sed -i "s|, vertical||g" "$INSTALL/usr/config/emulationstation/es_features.cfg"
+    fi
 }
 
 post_install() {  

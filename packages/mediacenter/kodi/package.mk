@@ -13,15 +13,15 @@ PKG_PATCH_DIRS="$KODI_VENDOR"
 
 case $KODI_VENDOR in
   amlogic-3.14)
-    PKG_VERSION="bc367f7d07a816e6b5628e868a773e9433e3a441"
-    PKG_SHA256="fb0777b1a3f55701d4330445c00184b6e3157658425e1307396d04db6e136e5c"
+    PKG_VERSION="a0da869b1142f5750f6f1c9f0dcaadf379337776"
+    PKG_SHA256="5cebd0167f6c5620fe99b150992fac9663e694e3bfdef5c789c3940cb9ea2199"
     PKG_URL="https://github.com/CoreELEC/xbmc/archive/$PKG_VERSION.tar.gz"
     PKG_SOURCE_NAME="kodi-$PKG_VERSION.tar.gz"
     PKG_PATCH_DIRS="default coreelec"
     ;;
   amlogic-4.9)
-    PKG_VERSION="0c0ae470618b84e340855188020a970aee71782e"
-    PKG_SHA256="1d3b737093bebc409fdbb8b8de3b3d9f0ae52376ea46019508771d5b726d4047"
+    PKG_VERSION="02c2dd21befe52facee9bebdd37b0d159e416369"
+    PKG_SHA256="ae2c68bb91ca1275b52eba38554bca016255392fcc871bdd46494daada1b4a48"
     PKG_URL="https://github.com/CoreELEC/xbmc/archive/$PKG_VERSION.tar.gz"
     PKG_SOURCE_NAME="kodi-$PKG_VERSION.tar.gz"
     PKG_PATCH_DIRS="default coreelec"
@@ -307,6 +307,10 @@ post_makeinstall_target() {
     cp $PKG_DIR/scripts/kodi-safe-mode $INSTALL/usr/lib/kodi
     cp $PKG_DIR/scripts/kodi.sh $INSTALL/usr/lib/kodi
 
+  if [ "$PROJECT" = "Amlogic-ng" -o "$PROJECT" = "Amlogic" ]; then
+    cp $PKG_DIR/scripts/aml-wait-for-dispcap.sh $INSTALL/usr/lib/kodi
+  fi
+
     # Configure safe mode triggers - default 5 restarts within 900 seconds/15 minutes
     sed -e "s|@KODI_MAX_RESTARTS@|${KODI_MAX_RESTARTS:-5}|g" \
         -e "s|@KODI_MAX_SECONDS@|${KODI_MAX_SECONDS:-900}|g" \
@@ -353,17 +357,24 @@ post_makeinstall_target() {
                                 $PROJECT_DIR/$PROJECT/devices/$DEVICE/kodi/advancedsettings.xml \
                                 > $INSTALL/usr/share/kodi/system/advancedsettings.xml
 
-  ln -sf /var/share/kodi/system/settings/appliance.xml $INSTALL/usr/share/kodi/system/settings/appliance.xml
+  if [ "$PROJECT" = "Amlogic-ng" ]; then
+    ln -sf /var/share/kodi/system/settings/appliance.xml $INSTALL/usr/share/kodi/system/settings/appliance.xml
 
-  $PKG_DIR/scripts/xml_merge.py $PKG_DIR/config/appliance.xml \
-                                $PROJECT_DIR/$PROJECT/kodi/g12x/appliance.xml \
-                                $PROJECT_DIR/$PROJECT/devices/$DEVICE/kodi/appliance.xml \
-                                > $INSTALL/usr/share/kodi/system/settings/appliance.g12x.xml
+    $PKG_DIR/scripts/xml_merge.py $PKG_DIR/config/appliance.xml \
+                                  $PROJECT_DIR/$PROJECT/kodi/g12x/appliance.xml \
+                                  $PROJECT_DIR/$PROJECT/devices/$DEVICE/kodi/appliance.xml \
+                                  > $INSTALL/usr/share/kodi/system/settings/appliance.g12x.xml
 
-  $PKG_DIR/scripts/xml_merge.py $PKG_DIR/config/appliance.xml \
-                                $PROJECT_DIR/$PROJECT/kodi/gxx/appliance.xml \
-                                $PROJECT_DIR/$PROJECT/devices/$DEVICE/kodi/appliance.xml \
-                                > $INSTALL/usr/share/kodi/system/settings/appliance.gxx.xml
+    $PKG_DIR/scripts/xml_merge.py $PKG_DIR/config/appliance.xml \
+                                  $PROJECT_DIR/$PROJECT/kodi/gxx/appliance.xml \
+                                  $PROJECT_DIR/$PROJECT/devices/$DEVICE/kodi/appliance.xml \
+                                  > $INSTALL/usr/share/kodi/system/settings/appliance.gxx.xml
+  else
+    $PKG_DIR/scripts/xml_merge.py $PKG_DIR/config/appliance.xml \
+                                  $PROJECT_DIR/$PROJECT/kodi/appliance.xml \
+                                  $PROJECT_DIR/$PROJECT/devices/$DEVICE/kodi/appliance.xml \
+                                  > $INSTALL/usr/share/kodi/system/settings/appliance.xml
+  fi
 
   # update addon manifest
   ADDON_MANIFEST=$INSTALL/usr/share/kodi/system/addon-manifest.xml
