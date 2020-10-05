@@ -90,7 +90,7 @@ Doom:
 
   check_bios: DOOM1
   commands:
-    - /emuelec/scripts/emuelecRunEmu.sh "/storage/roms/ports/doom2/doom1.wad" -Pports "${2}" -Cprboom "-SC${0}"
+    - /emuelec/scripts/emuelecRunEmu.sh "/storage/roms/ports/doom/doom1.wad" -Pports "${2}" -Cprboom "-SC${0}"
 
 Doom 2:
   name: 둠 2
