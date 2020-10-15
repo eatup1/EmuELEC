@@ -1,0 +1,40 @@
+diff --git a/theme.xml b/theme.xml
+index f6c17fa..e70337e 100644
+--- a/theme.xml
++++ b/theme.xml
+@@ -395,14 +395,23 @@ Année de sortie : ${system.releaseYear}</text>
+       <color>FFFF00</color>
+       <unfilledColor>808080</unfilledColor>
+     </rating>
++    <text name="md_lbl_genre">
++      <pos>0.77 0.645</pos>
++      <size>0.09 0</size>
++    </text>
++    <text name="md_genre">
++      <color>EFEFFF</color>
++      <pos>0.81 0.645</pos>
++      <size>0 0</size>
++    </text>
+     <text name="md_lbl_players">
+-      <pos>0.9 0.645</pos>
++      <pos>0.65 0.645</pos>
+       <size>0.09 0</size>
+     </text>
+     <text name="md_players">
+       <color>EFEFFF</color>
+-      <pos>0.965 0.645</pos>
+-      <size>0.02 0</size>
++      <pos>0.71 0.645</pos>
++      <size>0.1 0</size>
+     </text>
+     <text name="md_lbl_releasedate">
+       <color>969696</color>
+@@ -411,7 +420,7 @@ Année de sortie : ${system.releaseYear}</text>
+     </text>
+     <datetime name="md_releasedate">
+       <color>EFEFFF</color>
+-      <pos>0.63 0.645</pos>
++      <pos>0.585 0.645</pos>
+       <size>0 0.033</size>
+     </datetime>
+     <text name="md_description">
