@@ -7,7 +7,7 @@
 
 PLATFORM=$(cat /ee_arch)
 TEST_UPDURL="https://api.github.com/repos/EmuELEC/emuelec-tests/releases/latest"
-UPDURL="https://api.github.com/repos/EmuELEC/emuelec/releases/latest"
+UPDURL="https://api.github.com/repos/british-choi/emuelec/releases/latest"
 arguments="$@"
 UPDTYPE=$(get_ee_setting updates.type)
 
