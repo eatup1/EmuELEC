@@ -2,8 +2,8 @@
 # Copyright (C) 2020-present Shanti Gilbert (https://github.com/shantigilbert)
 
 PKG_NAME="mali-bifrost"
-PKG_VERSION="f226e982386287a4df669e2832d9ddd613d4153b"
-PKG_SHA256="cec41b7383b64fbb9fee891c9bcfaa979cb8d8b943d131a471c7fac7e16b393e"
+PKG_VERSION="239b3157148cfc34b10e664b109b4420ddf7b54c"
+PKG_SHA256="457a377108dbb2b2a3bc92d0657a11ef8e2df47c60c26834a56cad51a0baecd1"
 PKG_ARCH="arm aarch64"
 PKG_LICENSE="nonfree"
 PKG_SITE="https://github.com/rockchip-linux/libmali"
