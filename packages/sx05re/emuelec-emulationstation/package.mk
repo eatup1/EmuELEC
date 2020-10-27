@@ -2,7 +2,7 @@
 # Copyright (C) 2019-present Shanti Gilbert (https://github.com/shantigilbert)
 
 PKG_NAME="emuelec-emulationstation"
-PKG_VERSION="7e5856da9213c59deb2adc3f135240773ce1076e"
+PKG_VERSION="9c4573ddb51c55b722fd6dbf8d529a8b34c190b9"
 PKG_GIT_CLONE_BRANCH="EmuELEC"
 PKG_REV="1"
 PKG_ARCH="any"
@@ -30,15 +30,15 @@ makeinstall_target() {
 	ln -sf /storage/.config/emuelec/configs/locale $INSTALL/usr/lib/locale
 	
 	mkdir -p $INSTALL/usr/config/emulationstation/resources
-    cp -rf $PKG_BUILD/resources/* $INSTALL/usr/config/emulationstation/resources/
-    
+	cp -rf $PKG_BUILD/resources/* $INSTALL/usr/config/emulationstation/resources/
+
 	mkdir -p $INSTALL/usr/lib/python2.7
 	cp -rf $PKG_DIR/bluez/* $INSTALL/usr/lib/python2.7
 	
-    mkdir -p $INSTALL/usr/bin
-    ln -sf /storage/.config/emulationstation/resources $INSTALL/usr/bin/resources
-    cp -rf $PKG_BUILD/emulationstation $INSTALL/usr/bin
-    cp -PR "$(get_build_dir glibc)/.$TARGET_NAME/locale/localedef" $INSTALL/usr/bin
+	mkdir -p $INSTALL/usr/bin
+	ln -sf /storage/.config/emulationstation/resources $INSTALL/usr/bin/resources
+	cp -rf $PKG_BUILD/emulationstation $INSTALL/usr/bin
+	cp -PR "$(get_build_dir glibc)/.$TARGET_NAME/locale/localedef" $INSTALL/usr/bin
 
 	mkdir -p $INSTALL/etc/emulationstation/
 	ln -sf /storage/.config/emulationstation/themes $INSTALL/etc/emulationstation/

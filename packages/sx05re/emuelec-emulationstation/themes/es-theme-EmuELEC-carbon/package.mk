@@ -16,6 +16,14 @@ PKG_IS_ADDON="no"
 PKG_AUTORECONF="no"
 PKG_TOOLCHAIN="manual"
 
+if [ ${PROJECT} = "Amlogic-ng" ] || [ ${PROJECT} = "Amlogic" ]; then
+  PKG_PATCH_DIRS="Amlogic"
+fi
+
+if [ "$DEVICE" == "OdroidGoAdvance" ]; then
+  PKG_PATCH_DIRS="OdroidGoAdvance"
+fi
+
 make_target() {
   : not
 }
@@ -27,7 +35,7 @@ makeinstall_target() {
     # Change to korean font
     sed -i "s|Cabin-Bold.ttf|NanumGothicBold.ttf|" $INSTALL/usr/config/emulationstation/themes/es-theme-EmuELEC-carbon/theme.xml
     sed -i "s|Cabin-Regular.ttf|NanumGothic.ttf|" $INSTALL/usr/config/emulationstation/themes/es-theme-EmuELEC-carbon/theme.xml
-    sed -i "s|Cabin-Bold.ttf|NanumGothicBold.ttf|" $INSTALL/usr/config/emulationstation/themes/es-theme-EmuELEC-carbon/_splash.xml
+#    sed -i "s|Cabin-Bold.ttf|NanumGothicBold.ttf|" $INSTALL/usr/config/emulationstation/themes/es-theme-EmuELEC-carbon/splash.xml
     sed -i "s|Cabin-Bold.ttf|NanumGothicBold.ttf|" $INSTALL/usr/config/emulationstation/themes/es-theme-EmuELEC-carbon/art/grid/previewbar.xml
     cp -r $PKG_DIR/font/* $INSTALL/usr/config/emulationstation/themes/es-theme-EmuELEC-carbon/art
     rm -rf $INSTALL/usr/config/emulationstation/themes/es-theme-EmuELEC-carbon/art/Cabin-Bold.ttf

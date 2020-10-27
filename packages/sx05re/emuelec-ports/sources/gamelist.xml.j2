@@ -3,7 +3,7 @@
 {% for game, data in games %}
   <game>
     <path>./{{ game }}.sh</path>
-    <name>{{ game }}</name>
+    <name>{{ data.name }}</name>
     <desc>{{ data.description }}</desc>
     <image>./images/system-{{ game | lower | replace(' ', '_') | replace('.', '_') }}.png</image>
     <thumbnail>./images/system-{{ game | lower | replace(' ', '_') | replace('.', '_') }}-thumb.png</thumbnail>
