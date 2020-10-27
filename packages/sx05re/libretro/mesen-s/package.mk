@@ -19,7 +19,7 @@
 ################################################################################
 
 PKG_NAME="mesen-s"
-PKG_VERSION="9950a4d4cc360e01a72ff22c020974656a69d9fc"
+PKG_VERSION="89199f298a95345a893d814525b6668567a6d490"
 PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="GPLv3"
@@ -34,7 +34,7 @@ PKG_TOOLCHAIN="make"
 GET_HANDLER_SUPPORT="git"
 
 make_target() {
-  make -C Libretro/
+  LTO=true make -C Libretro/
 }
 
 

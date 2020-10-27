@@ -33,6 +33,7 @@ JS_EVENT_INIT = 0x80
 
 CONFIG_DIR = '/storage/.config/'
 RETROARCH_CFG = CONFIG_DIR + 'retroarch/retroarch.cfg'
+BUTTON_CFG = CONFIG_DIR + 'emuelec/configs/buttonmapping.cfg'
 
 def ini_get(key, cfg_file):
     pattern = r'[ |\t]*' + key + r'[ |\t]*=[ |\t]*'
@@ -92,8 +93,11 @@ def get_button_codes(dev_path):
     if not js_cfg:
         js_cfg = RETROARCH_CFG
 
-    # getting configs for dpad, buttons A, B, X and Y
-    btn_map = [ 'left', 'right', 'up', 'down', 'a', 'b', 'x', 'y' ]
+    # getting configs for dpad from second line of BUTTON_CFG
+    btn_map = []
+    with open(BUTTON_CFG,'r') as f:
+        for button in f.readlines()[1].rstrip().split(' '):
+            btn_map.append(button)
     btn_num = {}
     biggest_num = 0
     i = 0
@@ -236,7 +240,12 @@ axis_codes = []
 curses.setupterm()
 
 i = 0
-for arg in sys.argv[2:]:
+# Read mapped buttons from first line of BUTTON_CFG
+args = []
+with open(BUTTON_CFG,'r') as f:
+    for mapping in f.readlines()[0].rstrip().split(' '):
+        args.append(mapping)
+for arg in args:
     chars = get_hex_chars(arg)
     if i < 4:
         axis_codes.append(chars)
@@ -247,10 +256,12 @@ for arg in sys.argv[2:]:
 event_format = 'IhBB'
 event_size = struct.calcsize(event_format)
 
+tty_device = sys.argv[2] if len(sys.argv) >= 3 else '/dev/tty'
+
 try:
-    tty_fd = open('/dev/tty', 'a')
+    tty_fd = open(tty_device, 'a')
 except IOError:
-    print 'Unable to open /dev/tty'
+    print 'Unable to open {}'.format(tty_device)
     sys.exit(1)
 
 rescan_time = time.time()

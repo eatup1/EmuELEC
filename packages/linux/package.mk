@@ -18,16 +18,16 @@ PKG_PATCH_DIRS="$LINUX"
 
 case "$LINUX" in
   amlogic-3.14)
-    PKG_VERSION="bd634d5a878c51d2b40770b93344ded35780b9d7"
-    PKG_SHA256="5bb2c3f2d9ca6de2ff733e67a19107356f1ba889a1d20e3292284beb40f642be"
+    PKG_VERSION="07d26b4ce91cf934d65a64e2da7ab3bc75e59fcc"
+    PKG_SHA256="682f93c0bb8ad888a681e93882bc169007bacb880714b980af00ca34fb5b8365"
     PKG_URL="https://github.com/CoreELEC/linux-amlogic/archive/$PKG_VERSION.tar.gz"
     PKG_SOURCE_NAME="linux-$LINUX-$PKG_VERSION.tar.gz"
     PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET aml-dtbtools:host"
     PKG_BUILD_PERF="no"
     ;;
   amlogic-4.9)
-    PKG_VERSION="30bcf9037889827093981cfc72633a8865fc342e"
-    PKG_SHA256="bb58643147562abdd89cff77cf3e54340f1b39f366b1b6c7b4299ce9d1d6df40"
+    PKG_VERSION="44df2c42f827595d5bf9050f84030b3b2cbc9bda"
+    PKG_SHA256="348d263d44815e90d3cbb1866af6830f98609f470d8b8e664fdbb0eba74998f6"
     PKG_URL="https://github.com/CoreELEC/linux-amlogic/archive/$PKG_VERSION.tar.gz"
     PKG_SOURCE_NAME="linux-$LINUX-$PKG_VERSION.tar.gz"
     PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET aml-dtbtools:host"
@@ -43,8 +43,8 @@ case "$LINUX" in
     PKG_SOURCE_NAME="linux-$LINUX-$PKG_VERSION.tar.gz"
     ;;
   raspberrypi)
-    PKG_VERSION="fe2c7bf4cad4641dfb6f12712755515ab15815ca" # 4.19.118
-    PKG_SHA256="ca458e01428927cc12e13e4ef0de219902feeba5fd7f6bcb5056ce33c4688e90"
+    PKG_VERSION="abaa3760da89d6fb38e55473fffc9a31dd0b1d7a" # 4.19.127
+    PKG_SHA256="b7345333ee90949dabc8e7fa184c443dc43781bdd3703e2203ad084274b50f24"
     PKG_URL="https://github.com/raspberrypi/linux/archive/$PKG_VERSION.tar.gz"
     PKG_SOURCE_NAME="linux-$LINUX-$PKG_VERSION.tar.gz"
     ;;
@@ -236,6 +236,12 @@ make_target() {
   # Without that it'll contain only the symbols from the kernel
   kernel_make $KERNEL_TARGET $KERNEL_MAKE_EXTRACMD modules
 
+  for ce_dtb in arch/$TARGET_KERNEL_ARCH/boot/dts/amlogic/coreelec-*; do
+    if [ -d $ce_dtb ]; then
+      cp $ce_dtb/*.dtb arch/$TARGET_KERNEL_ARCH/boot/dts/amlogic 2>/dev/null
+    fi
+  done
+
   if [ "$BUILD_ANDROID_BOOTIMG" = "yes" ]; then
     find_file_path bootloader/mkbootimg && source ${FOUND_PATH}
     mv -f arch/$TARGET_KERNEL_ARCH/boot/boot.img arch/$TARGET_KERNEL_ARCH/boot/$KERNEL_TARGET
@@ -276,7 +282,12 @@ makeinstall_target() {
     mkdir -p $INSTALL/usr/share/bootloader/device_trees
     if [ -d arch/$TARGET_KERNEL_ARCH/boot/dts/amlogic ]; then
       cp arch/$TARGET_KERNEL_ARCH/boot/*dtb.img $INSTALL/usr/share/bootloader/ 2>/dev/null || :
-      [ "$PROJECT" = "Amlogic-ng" ] && cp arch/$TARGET_KERNEL_ARCH/boot/dts/amlogic/*.dtb $INSTALL/usr/share/bootloader/device_trees 2>/dev/null || :
+      # [ "$PROJECT" = "Amlogic-ng" ] && cp arch/$TARGET_KERNEL_ARCH/boot/dts/amlogic/*.dtb $INSTALL/usr/share/bootloader/device_trees 2>/dev/null || :
+      # TEMP EMUELEC CHANGE: Remnove GXL dtbs from amlogic-NG
+      	if [ "$PROJECT" = "Amlogic-ng" ]; then
+			cp arch/$TARGET_KERNEL_ARCH/boot/dts/amlogic/*.dtb $INSTALL/usr/share/bootloader/device_trees 2>/dev/null || :
+			rm $INSTALL/usr/share/bootloader/device_trees/gxl_*.dtb
+		fi
     fi
   elif [ "$BOOTLOADER" = "bcm2835-bootloader" ]; then
     mkdir -p $INSTALL/usr/share/bootloader/overlays

@@ -9,7 +9,7 @@ PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="https://github.com/british-choi/emuelec-emulationstation"
 PKG_URL="$PKG_SITE.git"
-PKG_DEPENDS_TARGET="toolchain SDL2-git freetype curl freeimage vlc bash rapidjson ${OPENGLES} SDL2_mixer fping pyyaml"
+PKG_DEPENDS_TARGET="toolchain SDL2-git freetype curl freeimage vlc bash rapidjson ${OPENGLES} SDL2_mixer fping p7zip"
 PKG_SECTION="emuelec"
 PKG_NEED_UNPACK="busybox"
 PKG_SHORTDESC="Emulationstation emulator frontend"
@@ -17,7 +17,7 @@ PKG_BUILD_FLAGS="-gold"
 GET_HANDLER_SUPPORT="git"
 
 # themes for Emulationstation
-PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET es-theme-EmuELEC-carbon"
+PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET Crystal"
 
 PKG_CMAKE_OPTS_TARGET=" -DENABLE_EMUELEC=1 -DDISABLE_KODI=1 -DENABLE_FILEMANAGER=1"
 
@@ -47,15 +47,14 @@ makeinstall_target() {
 	cp -rf $PKG_DIR/config/scripts $INSTALL/usr/config/emulationstation
 	cp -rf $PKG_DIR/config/*.cfg $INSTALL/usr/config/emulationstation
 
-# Remove systems that are not compatible with S905
-	if [[ ${PROJECT} != "Amlogic-ng" ]]; then 	
-	xmlstarlet ed -L -P -d "/systemList/system[name='3do']" $INSTALL/usr/config/emulationstation/es_systems.cfg
-	xmlstarlet ed -L -P -d "/systemList/system[name='saturn']" $INSTALL/usr/config/emulationstation/es_systems.cfg
-	fi 
-	
 	chmod +x $INSTALL/usr/config/emulationstation/scripts/*
 	chmod +x $INSTALL/usr/config/emulationstation/scripts/configscripts/*
 	find $INSTALL/usr/config/emulationstation/scripts/ -type f -exec chmod o+x {} \; 
+	
+	# Vertical Games are only supported in the OdroidGoAdvance
+    if [[ ${DEVICE} != "OdroidGoAdvance" ]]; then
+        sed -i "s|, vertical||g" "$INSTALL/usr/config/emulationstation/es_features.cfg"
+    fi
 }
 
 post_install() {  

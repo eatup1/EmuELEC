@@ -13,40 +13,38 @@ PKG_PATCH_DIRS="$KODI_VENDOR"
 
 case $KODI_VENDOR in
   amlogic-3.14)
-    PKG_VERSION="6763f2b528974c6ab3a5fcc8b75f683db13c6bda"
-    PKG_SHA256="bbb2b5cd218078e0bdf2ce4850da1fa2a3f2ca4fc35b63ef4767c743e8ade1e8"
+    PKG_VERSION="00ff7594e42e9539912c9bd12c5a6a9d1b9d8d78"
+    PKG_SHA256="ae18e1aacda201baff526882168b639cdd634951d96ab1f634eef97a99ea64cf"
     PKG_URL="https://github.com/CoreELEC/xbmc/archive/$PKG_VERSION.tar.gz"
     PKG_SOURCE_NAME="kodi-$PKG_VERSION.tar.gz"
-    PKG_PATCH_DIRS="default coreelec"
     ;;
   amlogic-4.9)
-    PKG_VERSION="ccf761beaceb2ec6d1e97227bb7d69b8ba2690b1"
-    PKG_SHA256="ae60791019e5ae5e5b3268d301fe62574cf0b0636c7aa1f3fcf9e681d004ebb9"
+    PKG_VERSION="83d50de59b0994207a583f27282617401f01f690"
+    PKG_SHA256="6193e9c6d3fc10404e5525da48410dc3eb7b59d0d0d707e8b09c22698cfe4044"
     PKG_URL="https://github.com/CoreELEC/xbmc/archive/$PKG_VERSION.tar.gz"
     PKG_SOURCE_NAME="kodi-$PKG_VERSION.tar.gz"
-    PKG_PATCH_DIRS="default coreelec"
     ;;
   raspberrypi)
-    PKG_VERSION="newclock5_18.6-Leia"
-    PKG_SHA256="c34a06981b16f85b2850e0893c9b50188d014fc8567172fa8fff113b34de1c73"
+    PKG_VERSION="newclock5_18.8-Leia"
+    PKG_SHA256="a8ee10ee98de24feb32c22ef0fb7b4ff5ba762b0bf2694a797fe2322d4cc000e"
     PKG_URL="https://github.com/popcornmix/xbmc/archive/$PKG_VERSION.tar.gz"
     PKG_SOURCE_NAME="kodi-$KODI_VENDOR-$PKG_VERSION.tar.gz"
     ;;
   raspberrypi4)
-    PKG_VERSION="leia_pi4_18.6-Leia"
-    PKG_SHA256="afdadb63ba72010001361c622403dcb5fe6f3323849223669cb0eb9f5f59db40"
+    PKG_VERSION="leia_pi4_18.8-Leia"
+    PKG_SHA256="135d1f47223d404095b88494da091cb2588c36a5ff3f337bd083a9017fbe1c71"
     PKG_URL="https://github.com/popcornmix/xbmc/archive/$PKG_VERSION.tar.gz"
     PKG_SOURCE_NAME="kodi-$KODI_VENDOR-$PKG_VERSION.tar.gz"
     ;;
   rockchip)
-    PKG_VERSION="rockchip_18.6-Leia"
-    PKG_SHA256="d09270c7a20805f67ee201911ae1d4c2abb5114b9daeeaef4ffbe6674633d894"
+    PKG_VERSION="rockchip_18.8-Leia"
+    PKG_SHA256="790ed594fa0bb37b9b117312677b8717c69ae2cc9949bfc49dd44e710f6a9a5f"
     PKG_URL="https://github.com/kwiboo/xbmc/archive/$PKG_VERSION.tar.gz"
     PKG_SOURCE_NAME="kodi-$KODI_VENDOR-$PKG_VERSION.tar.gz"
     ;;
   *)
-    PKG_VERSION="18.6-Leia"
-    PKG_SHA256="47e6d7d4e01dbda92ff83a3e141ac43003e918133e78b3a4b79faff65184711c"
+    PKG_VERSION="18.8-Leia"
+    PKG_SHA256="6deb28f725880b1ab6c5920b55ef1190a79b0684ffb30b6e13b199d23a0af296"
     PKG_URL="https://github.com/xbmc/xbmc/archive/$PKG_VERSION.tar.gz"
     PKG_SOURCE_NAME="kodi-$PKG_VERSION.tar.gz"
     ;;
@@ -261,6 +259,7 @@ configure_package() {
                          -DENABLE_DEBUGFISSION=OFF \
                          -DENABLE_APP_AUTONAME=OFF \
                          -DENABLE_INTERNAL_FLATBUFFERS=OFF \
+                         -DENABLE_LCMS2=OFF \
                          $PKG_KODI_USE_LTO \
                          $KODI_ARCH \
                          $KODI_NEON \
@@ -305,6 +304,10 @@ post_makeinstall_target() {
     cp $PKG_DIR/scripts/kodi-after $INSTALL/usr/lib/kodi
     cp $PKG_DIR/scripts/kodi-safe-mode $INSTALL/usr/lib/kodi
     cp $PKG_DIR/scripts/kodi.sh $INSTALL/usr/lib/kodi
+
+  if [ "$PROJECT" = "Amlogic-ng" -o "$PROJECT" = "Amlogic" ]; then
+    cp $PKG_DIR/scripts/aml-wait-for-dispcap.sh $INSTALL/usr/lib/kodi
+  fi
 
     # Configure safe mode triggers - default 5 restarts within 900 seconds/15 minutes
     sed -e "s|@KODI_MAX_RESTARTS@|${KODI_MAX_RESTARTS:-5}|g" \
@@ -352,10 +355,24 @@ post_makeinstall_target() {
                                 $PROJECT_DIR/$PROJECT/devices/$DEVICE/kodi/advancedsettings.xml \
                                 > $INSTALL/usr/share/kodi/system/advancedsettings.xml
 
-  $PKG_DIR/scripts/xml_merge.py $PKG_DIR/config/appliance.xml \
-                                $PROJECT_DIR/$PROJECT/kodi/appliance.xml \
-                                $PROJECT_DIR/$PROJECT/devices/$DEVICE/kodi/appliance.xml \
-                                > $INSTALL/usr/share/kodi/system/settings/appliance.xml
+  if [ "$PROJECT" = "Amlogic-ng" ]; then
+    ln -sf /var/share/kodi/system/settings/appliance.xml $INSTALL/usr/share/kodi/system/settings/appliance.xml
+
+    $PKG_DIR/scripts/xml_merge.py $PKG_DIR/config/appliance.xml \
+                                  $PROJECT_DIR/$PROJECT/kodi/g12x/appliance.xml \
+                                  $PROJECT_DIR/$PROJECT/devices/$DEVICE/kodi/appliance.xml \
+                                  > $INSTALL/usr/share/kodi/system/settings/appliance.g12x.xml
+
+    $PKG_DIR/scripts/xml_merge.py $PKG_DIR/config/appliance.xml \
+                                  $PROJECT_DIR/$PROJECT/kodi/gxx/appliance.xml \
+                                  $PROJECT_DIR/$PROJECT/devices/$DEVICE/kodi/appliance.xml \
+                                  > $INSTALL/usr/share/kodi/system/settings/appliance.gxx.xml
+  else
+    $PKG_DIR/scripts/xml_merge.py $PKG_DIR/config/appliance.xml \
+                                  $PROJECT_DIR/$PROJECT/kodi/appliance.xml \
+                                  $PROJECT_DIR/$PROJECT/devices/$DEVICE/kodi/appliance.xml \
+                                  > $INSTALL/usr/share/kodi/system/settings/appliance.xml
+  fi
 
   # update addon manifest
   ADDON_MANIFEST=$INSTALL/usr/share/kodi/system/addon-manifest.xml

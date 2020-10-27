@@ -19,11 +19,11 @@
 ################################################################################
 
 PKG_NAME="retroarch"
-PKG_VERSION="3ecde6293044ef81028e3478bbf6137b7f07cdce"
+PKG_VERSION="75abb44975da762c37a617a91baed31be8da8a76"
 PKG_SITE="https://github.com/libretro/RetroArch"
 PKG_URL="$PKG_SITE.git"
 PKG_LICENSE="GPLv3"
-PKG_DEPENDS_TARGET="toolchain SDL2-git alsa-lib openssl freetype zlib retroarch-assets retroarch-overlays core-info ffmpeg libass libvdpau libxkbfile xkeyboard-config libxkbcommon joyutils empty $OPENGLES samba avahi nss-mdns freetype openal-soft"
+PKG_DEPENDS_TARGET="toolchain SDL2-git alsa-lib openssl freetype zlib retroarch-assets retroarch-overlays core-info ffmpeg libass joyutils empty $OPENGLES samba avahi nss-mdns freetype openal-soft"
 PKG_LONGDESC="Reference frontend for the libretro API."
 GET_HANDLER_SUPPORT="git"
 
@@ -41,9 +41,11 @@ fi
 fi
 
 pre_configure_target() {
+# Retroarch does not like -O3 for CHD loading with cheevos
+export CFLAGS="`echo $CFLAGS | sed -e "s|-O.|-O2|g"`"
+
 TARGET_CONFIGURE_OPTS=""
-PKG_CONFIGURE_OPTS_TARGET="--enable-neon \
-                           --disable-qt \
+PKG_CONFIGURE_OPTS_TARGET="--disable-qt \
                            --enable-alsa \
                            --enable-udev \
                            --disable-opengl1 \
@@ -58,7 +60,6 @@ PKG_CONFIGURE_OPTS_TARGET="--enable-neon \
                            --disable-vg \
                            --disable-sdl \
                            --enable-sdl2 \
-                           --disable-neon \
                            --enable-ffmpeg"
 
 if [ "$DEVICE" == "OdroidGoAdvance" ]; then
@@ -69,6 +70,10 @@ PKG_CONFIGURE_OPTS_TARGET+=" --enable-opengles3 \
 else
 PKG_CONFIGURE_OPTS_TARGET+=" --disable-kms \
                            --enable-mali_fbdev"
+fi
+
+if [ $ARCH == "arm" ]; then
+PKG_CONFIGURE_OPTS_TARGET+=" --enable-neon"
 fi
 
 cd $PKG_BUILD
@@ -87,6 +92,12 @@ makeinstall_target() {
   mkdir -p $INSTALL/usr/bin
   mkdir -p $INSTALL/etc
     cp $PKG_BUILD/retroarch $INSTALL/usr/bin
+
+if [[ "$ARCH" == "arm" ]] && [[ "$EMUELEC_ADDON" != "Yes" ]]; then
+    patchelf --set-interpreter /emuelec/lib32/ld-linux-armhf.so.3 $INSTALL/usr/bin/retroarch
+    mv $INSTALL/usr/bin/retroarch $INSTALL/usr/bin/retroarch32
+fi
+
     cp $PKG_BUILD/retroarch.cfg $INSTALL/etc
   mkdir -p $INSTALL/usr/share/video_filters
     cp $PKG_BUILD/gfx/video_filters/*.so $INSTALL/usr/share/video_filters
@@ -151,7 +162,7 @@ fi
   sed -i -e "s/# input_max_users = 16/input_max_users = 5/" $INSTALL/etc/retroarch.cfg
   sed -i -e "s/# input_autodetect_enable = true/input_autodetect_enable = true/" $INSTALL/etc/retroarch.cfg
   sed -i -e "s/# joypad_autoconfig_dir =/joypad_autoconfig_dir = \/tmp\/joypads/" $INSTALL/etc/retroarch.cfg
-  sed -i -e "s/# input_remapping_directory =/input_remapping_directory = \/storage\/remappings/" $INSTALL/etc/retroarch.cfg
+  sed -i -e "s/# input_remapping_directory =/input_remapping_directory = \/storage\/.config\/retroarch\/config\/remappings/" $INSTALL/etc/retroarch.cfg
   sed -i -e "s/# input_menu_toggle_gamepad_combo = 0/input_menu_toggle_gamepad_combo = 2/" $INSTALL/etc/retroarch.cfg
   sed -i -e "s/# all_users_control_menu = false/all_users_control_menu = true/" $INSTALL/etc/retroarch.cfg
 
@@ -177,6 +188,7 @@ fi
   echo "playlist_entry_remove = \"false\"" >> $INSTALL/etc/retroarch.cfg
 
   #emuelec
+  sed -i -e "s/# input_hotkey_block_delay = \"5\"/input_hotkey_block_delay = \"5\"/" $INSTALL/etc/retroarch.cfg
   sed -i -e "s/# menu_show_core_updater = true/menu_show_core_updater = false/" $INSTALL/etc/retroarch.cfg
   sed -i -e "s/# menu_show_online_updater = true/menu_show_online_updater = true/" $INSTALL/etc/retroarch.cfg
   sed -i -e "s/# input_overlay_opacity = 1.0/input_overlay_opacity = 0.15/" $INSTALL/etc/retroarch.cfg
@@ -189,6 +201,8 @@ fi
   echo "input_player2_analog_dpad_mode = \"1\"" >> $INSTALL/etc/retroarch.cfg
   echo "input_player3_analog_dpad_mode = \"1\"" >> $INSTALL/etc/retroarch.cfg
   echo "input_player4_analog_dpad_mode = \"1\"" >> $INSTALL/etc/retroarch.cfg
+  echo "savefiles_in_content_dir = \"true\"" >> $INSTALL/etc/retroarch.cfg
+  echo "savestates_in_content_dir = \"true\"" >> $INSTALL/etc/retroarch.cfg
  
   mkdir -p $INSTALL/usr/config/retroarch/
   mv $INSTALL/etc/retroarch.cfg $INSTALL/usr/config/retroarch/

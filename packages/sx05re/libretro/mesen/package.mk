@@ -19,8 +19,8 @@
 ################################################################################
 
 PKG_NAME="mesen"
-PKG_VERSION="527db703169ca12cbb2d2e1053b8d00e2177a8b4"
-PKG_SHA256="3b34cfd21f04448d6c96d405e4ea95b68215391188e6462c1b943315b0a748da"
+PKG_VERSION="86326e832974d984846ae078e568c023a5f76f1f"
+PKG_SHA256="50687bfd9fb242c878a420cb44a74e9bc9503bfd43f2e47f6d345cf5d8fca249"
 PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="GPLv3"
@@ -37,7 +37,7 @@ PKG_TOOLCHAIN="make"
 PKG_AUTORECONF="no"
 
 make_target() {
-  make -C Libretro/
+  LTO=true make -C Libretro/
 }
 
 

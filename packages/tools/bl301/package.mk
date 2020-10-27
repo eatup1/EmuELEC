@@ -2,8 +2,8 @@
 # Copyright (C) 2018-present Team CoreELEC (https://coreelec.org)
 
 PKG_NAME="bl301"
-PKG_VERSION="8eed09e9fb81337fa91bf40051ffd49e962d0d6e"
-PKG_SHA256="5746c3e7b866bc69cc0702a32b060484c573a4137140e1b5272c0aa3fd288f34"
+PKG_VERSION="85f483db84c1482ee632bf34e6765c92486fc9d0"
+PKG_SHA256="526d10570add92e737782cf1b7faae8e329e565d2163fdf5d014d22096291841"
 PKG_LICENSE="GPL"
 PKG_SITE="https://coreelec.org"
 PKG_URL="https://github.com/CoreELEC/bl301/archive/$PKG_VERSION.tar.gz"
@@ -28,6 +28,7 @@ make_target() {
     DEBUG=${PKG_DEBUG} CROSS_COMPILE=aarch64-elf- ARCH=arm CFLAGS="" LDFLAGS="" make HOSTCC="${HOST_CC}" HOSTSTRIP="true" bl301.bin
     mv ${PKG_BUILD}/build/scp_task/bl301.bin ${PKG_BUILD}/build/${PKG_BL301_SUBDEVICE}_bl301.bin
     echo "moved blob to: " ${PKG_BUILD}/build/${PKG_BL301_SUBDEVICE}_bl301.bin
+    rm -rf ${PKG_BUILD}/build/scp_task
   done
 }
 
@@ -40,4 +41,7 @@ makeinstall_target() {
     PKG_BIN=${PKG_BUILD}/build/${PKG_BL301_SUBDEVICE}_bl301.bin
     cp -av ${PKG_BIN} ${INSTALL}/usr/share/bootloader/bl301/${PKG_BL301_SUBDEVICE}_bl301.bin
   done
+
+  [ -d "${PKG_BUILD}/bl30" ] && cp -av ${PKG_BUILD}/bl30 ${INSTALL}/usr/share/bootloader/bl301 || :
+  [ -d "${PKG_BUILD}/bl31" ] && cp -av ${PKG_BUILD}/bl31 ${INSTALL}/usr/share/bootloader/bl301 || :
 }

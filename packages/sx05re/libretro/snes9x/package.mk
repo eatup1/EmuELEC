@@ -19,8 +19,8 @@
 ################################################################################
 
 PKG_NAME="snes9x"
-PKG_VERSION="432fc08498b33190a41ae659c3c5fccbeb5b8b3e"
-PKG_SHA256="ddf5980d7b42473ad09d1cd1d73454162ffe3762043e19cb358a04661f0c8d86"
+PKG_VERSION="a3c0c4621ddc5319c284df1cafda8713c1dd57f1"
+PKG_SHA256="211b57e38d73c50d978ed67a4b1b82aa5cd9a653e4be3378eb4fbe4a715f9d41"
 PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="Non-commercial"
@@ -41,7 +41,7 @@ make_target() {
     CXXFLAGS="$CXXFLAGS -DARM"
   fi
   
-  if [ "$DEVICE" == "OdroidGoAdvance" ];then 
+  if [ "$DEVICE" == "OdroidGoAdvance" ] && [ "$ARCH" == "arm" ]; then
     make -C libretro platform=classic_armv8_a35
    else
    make -C libretro

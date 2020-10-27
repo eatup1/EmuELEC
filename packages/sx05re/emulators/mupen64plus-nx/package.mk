@@ -2,12 +2,11 @@
 # Copyright (C) 2019-present Shanti Gilbert (https://github.com/shantigilbert)
 
 PKG_NAME="mupen64plus-nx"
+PKG_VERSION="ea1c677c1e61ce1d95809c09cf26ffa75cd7e9dc"
+PKG_SHA256="b2b06332523aef0fb44cb3b97cfab2122b627ca4ef11708b0e40c8699a2b288e"
 if [ $PROJECT = "Amlogic" ]; then
-PKG_VERSION="f68044fe275ef49ea142a304af873aa08aca78a3"
-PKG_SHA256="2e3a1626cec472223ad5832f1447303fd1e0855ab6be5163fe082a906bac1a26"
-else
-PKG_VERSION="39b555e52bc8821c15f5aa33e366285cd9272630"
-PKG_SHA256="3c844fd77095150694f526aad158ad7183f94b848c12a26299bac94202f9fef8"
+PKG_VERSION="b785150465048fa88f812e23462f318e66af0be0"
+PKG_SHA256="456c433f45b0e2ba15a587978234e3e1300301d431b6823747ad0e779331c97e"
 fi
 PKG_REV="1"
 PKG_ARCH="any"
@@ -21,24 +20,38 @@ PKG_LONGDESC="mupen64plus + RSP-HLE + GLideN64 + libretro"
 PKG_TOOLCHAIN="make"
 PKG_BUILD_FLAGS="-lto"
 
-
 pre_configure_target() {
   sed -e "s|^GIT_VERSION ?.*$|GIT_VERSION := \" ${PKG_VERSION:0:7}\"|" -i Makefile
-}
 
 if [ $ARCH == "arm" ]; then
-	if [ ${PROJECT} = "Amlogic-ng" ]; then
-		PKG_MAKE_OPTS_TARGET+=" platform=AMLG12 GLES=1 FORCE_GLES=1 HAVE_NEON=1 WITH_DYNAREC=arm"
-	elif [ "${PROJECT}" = "Amlogic" ]; then
-		PKG_MAKE_OPTS_TARGET+=" platform=AMLGX GLES=1 FORCE_GLES=1 HAVE_NEON=1 WITH_DYNAREC=arm"
+if [ ${PROJECT} = "Amlogic-ng" ]; then
+	PKG_MAKE_OPTS_TARGET+=" platform=AMLG12B"
+	sed -i "s|GLES = 1|GLES3 = 1|g" Makefile
+	sed -i "s|-lGLESv2|-lGLESv3|g" Makefile
+elif [ "${PROJECT}" = "Amlogic" ]; then
+	PKG_MAKE_OPTS_TARGET+=" platform=amlogic"
+elif [ "${DEVICE}" = "OdroidGoAdvance" ]; then
+	sed -i "s|GLES = 1|GLES3 = 1|g" Makefile
+	sed -i "s|-lGLESv2|-lGLESv3|g" Makefile
+	sed -i "s|cortex-a53|cortex-a35|g" Makefile
+	PKG_MAKE_OPTS_TARGET+=" platform=odroidgoa"
 	fi
 else
 	if [ ${PROJECT} = "Amlogic-ng" ]; then
 		PKG_MAKE_OPTS_TARGET+=" platform=odroid64 BOARD=N2"
-	elif [ "${PROJECT}" = "Amlogic" ]; then
+		sed -i "s|GLES = 1|GLES3 = 1|g" Makefile
+		sed -i "s|-lGLESv2|-lGLESv3|g" Makefile
+	elif [ "${PROJECT}" = "Amlogic" ]; then 
+		sed -i "s|GLES = 1|GLES = 1|g" Makefile
+		sed -i "s|-lGLESv2|-lGLESv2|g" Makefile
+		PKG_MAKE_OPTS_TARGET+=" platform=amlogic64"
+	elif [ "${DEVICE}" = "OdroidGoAdvance" ]; then
+		sed -i "s|GLES = 1|GLES3 = 1|g" Makefile
+		sed -i "s|-lGLESv2|-lGLESv3|g" Makefile
 		PKG_MAKE_OPTS_TARGET+=" platform=amlogic64"
 	fi
 fi
+}
 
 
 makeinstall_target() {

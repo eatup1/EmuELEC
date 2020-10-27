@@ -2,8 +2,7 @@
 # Copyright (C) 2018-present Frank Hartung (supervisedthinking (@) gmail.com)
 
 PKG_NAME="amiberry"
-PKG_VERSION="7169d09134bb5c53d1a5bbe3c6d2b218003e1bca"
-PKG_ARCH="any"
+PKG_VERSION="52eb8cd76667eb66aa94924af1d97259ab5f43ab"
 PKG_LICENSE="GPLv3"
 PKG_SITE="https://github.com/midwan/amiberry"
 PKG_URL="https://github.com/midwan/amiberry.git"
@@ -35,7 +34,12 @@ pre_configure_target() {
   esac
  
 if [ "$DEVICE" == "OdroidGoAdvance" ]; then
+if [ $ARCH == "arm" ]; then
 AMIBERRY_PLATFORM="RK3326"
+else 
+AMIBERRY_PLATFORM="pi64"
+fi
+
 fi
 
 sed -i "s|AS     = as|AS     \?= as|" Makefile
