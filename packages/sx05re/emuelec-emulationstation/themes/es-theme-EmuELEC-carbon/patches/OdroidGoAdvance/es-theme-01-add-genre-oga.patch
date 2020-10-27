@@ -1,0 +1,88 @@
+diff --git a/theme.xml b/theme.xml
+index 0a0dfa3..0c0bcca 100644
+--- a/theme.xml
++++ b/theme.xml
+@@ -418,7 +418,8 @@ originally based on: "simple" by nils bonenberger
+       <primaryColor>C0C0C0</primaryColor>
+       <secondaryColor>808080</secondaryColor>
+       <fontPath>./art/Cabin-Regular.ttf</fontPath>
+-      <fontSize>0.030</fontSize>
++      <!-- OGA gamelist fontSize : 0.030 => 0.032 -->
++      <fontSize>0.032</fontSize>
+       <pos>0.025 0.18</pos>
+       <size>0.950 0.73</size>
+       <alignment>center</alignment>
+@@ -431,7 +432,8 @@ originally based on: "simple" by nils bonenberger
+       <scrollbarSize>0.0065</scrollbarSize>            
+       <scrollbarAlignment>outerright</scrollbarAlignment> <!-- innerleft -->
+ 
+-      <lines>17</lines>
++      <!-- OGA gamelist lines: 17 => 15 -->
++      <lines>15</lines>
+       <horizontalMargin>0.005</horizontalMargin>
+   <selectedColor>${baseColor}</selectedColor>
+     </textlist>
+@@ -528,7 +530,8 @@ originally based on: "simple" by nils bonenberger
+       <fontSize>0.03</fontSize>
+       
+       <fontPath>./art/Cabin-Regular.ttf</fontPath>
+-       <fontSize>0.028</fontSize>
++       <!-- OGA gamelist fontSize: O0.028 => 0.032 </fontSize-->
++       <fontSize>0.032</fontSize>
+        
+       <scrollSound>./art/scroll.wav</scrollSound>
+       
+@@ -537,7 +540,8 @@ originally based on: "simple" by nils bonenberger
+       <scrollbarSize>0.0065</scrollbarSize>            
+       <scrollbarAlignment>outerright</scrollbarAlignment>
+       
+-      <lines>17</lines>
++      <!-- OGA gamelist lines: 17 => 15 -->
++      <lines>15</lines>
+       <horizontalMargin>0.005</horizontalMargin>
+     </textlist>
+     
+@@ -547,7 +551,7 @@ originally based on: "simple" by nils bonenberger
+       </storyboard>
+     </text>
+       
+-    <text name="md_lbl_developer, md_lbl_publisher, md_lbl_lastplayed, md_lbl_playcount, md_lbl_players, md_lbl_releasedate">
++    <text name="md_lbl_genre, md_lbl_developer, md_lbl_publisher, md_lbl_lastplayed, md_lbl_playcount, md_lbl_players, md_lbl_releasedate">
+       <color>969696</color>
+       <forceUppercase>0</forceUppercase>
+       <fontPath>./art/Cabin-Regular.ttf</fontPath>
+@@ -588,13 +592,22 @@ originally based on: "simple" by nils bonenberger
+       <unfilledColor>808080</unfilledColor>
+     </rating>
+     <text name="md_lbl_players">
+-      <pos>0.9 0.645</pos>
++      <pos>0.67 0.645</pos>
+       <size>0.09 0</size>
+     </text>
+     <text name="md_players">
+       <color>EFEFFF</color>
+-      <pos>0.965 0.645</pos>
+-      <size>0.02 0</size>
++      <pos>0.73 0.645</pos>
++      <size>0.1 0</size>
++    </text>
++    <text name="md_lbl_genre">
++      <pos>0.79 0.645</pos>
++      <size>0.09 0</size>
++    </text>
++    <text name="md_genre">
++      <color>EFEFFF</color>
++      <pos>0.83 0.645</pos>
++      <size>0 0</size>
+     </text>
+     <text name="md_lbl_releasedate">
+       <color>969696</color>
+@@ -603,7 +616,7 @@ originally based on: "simple" by nils bonenberger
+     </text>
+     <datetime name="md_releasedate">
+       <color>EFEFFF</color>
+-      <pos>0.645 0.645</pos>
++      <pos>0.605 0.645</pos>
+       <size>0 0.033</size>
+     </datetime>
+     <text name="md_description">
