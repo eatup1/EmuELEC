@@ -22,4 +22,7 @@ makeinstall_target() {
   mkdir -p $INSTALL/usr/config/emulationstation/themes/Crystal
     cp -r * $INSTALL/usr/config/emulationstation/themes/Crystal
     rm -rf $INSTALL/usr/config/emulationstation/themes/Crystal/screens.png
+
+    # add korean lang
+    cp -r $PKG_DIR/lang/* $INSTALL/usr/config/emulationstation/themes/Crystal/lang
 }
