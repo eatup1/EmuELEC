@@ -25,4 +25,25 @@ makeinstall_target() {
 
     # add korean lang
     cp -r $PKG_DIR/lang/* $INSTALL/usr/config/emulationstation/themes/Crystal/lang
+
+    # Change to korean font
+    sed -i "s|Homizio.ttf|NanumGothic.ttf|" $INSTALL/usr/config/emulationstation/themes/Crystal/gamelists.xml
+    sed -i "s|OpenSans-Bold.ttf|NanumGothicExtraBold.ttf|" $INSTALL/usr/config/emulationstation/themes/Crystal/systemview/common.xml
+    sed -i "s|OpenSans-Bold.ttf|NanumGothicExtraBold.ttf|" $INSTALL/usr/config/emulationstation/themes/Crystal/systemview/details.xml
+    sed -i "s|OpenSans-Bold.ttf|NanumGothicExtraBold.ttf|" $INSTALL/usr/config/emulationstation/themes/Crystal/systemview/horizontal_details.xml
+    sed -i "s|OpenSans-Homizio.ttf|NanumGothic.ttf|" $INSTALL/usr/config/emulationstation/themes/Crystal/gamelists.xml
+    sed -i "s|OpenSans-Homizio.ttf|NanumGothic.ttf|" $INSTALL/usr/config/emulationstation/themes/Crystal/theme.xml
+    sed -i "s|OpenSans-Light.ttf|NanumGothic.ttf|" $INSTALL/usr/config/emulationstation/themes/Crystal/theme.xml
+    sed -i "s|OpenSans-Semibold.ttf|NanumGothicBold.ttf|" $INSTALL/usr/config/emulationstation/themes/Crystal/gamelists.xml
+    sed -i "s|OpenSans-Semibold.ttf|NanumGothicBold.ttf|" $INSTALL/usr/config/emulationstation/themes/Crystal/theme.xml
+    sed -i "s|OpenSans-Semi-Bold.ttf|NanumGothicBold.ttf|" $INSTALL/usr/config/emulationstation/themes/Crystal/systemview/details.xml
+    sed -i "s|OpenSans-Semi-Bold.ttf|NanumGothicBold.ttf|" $INSTALL/usr/config/emulationstation/themes/Crystal/systemview/horizontal_details.xml
+
+    # Copy korean nanum font & Remove unused font
+    cp -r $PKG_DIR/font/* $INSTALL/usr/config/emulationstation/themes/Crystal/fonts
+    rm -rf $INSTALL/usr/config/emulationstation/themes/Crystal/fonts/Homizio.ttf
+    rm -rf $INSTALL/usr/config/emulationstation/themes/Crystal/fonts/OpenSans-Bold.ttf
+    rm -rf $INSTALL/usr/config/emulationstation/themes/Crystal/fonts/OpenSans-Homizio.ttf
+    rm -rf $INSTALL/usr/config/emulationstation/themes/Crystal/fonts/OpenSans-Light.ttf
+    rm -rf $INSTALL/usr/config/emulationstation/themes/Crystal/fonts/OpenSans-Semibold.ttf
 }
