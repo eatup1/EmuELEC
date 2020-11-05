@@ -3,7 +3,7 @@
 
 PKG_NAME="youtube-dl"
 PKG_VERSION="latest"
-PKG_SHA256="b5660fa8441337c6b75448550bd6dcc7f97fe966b4ebb9bf47ff2b1cd4e3633a"
+PKG_SHA256="4ad7795a1308c927575b5dc4c4e00eeabb54b3312e2fa889098caee8bf849712"
 PKG_LICENSE="The Unlicense"
 PKG_SITE="https://youtube-dl.org"
 PKG_URL="${PKG_SITE}/downloads/${PKG_VERSION}/youtube-dl"
