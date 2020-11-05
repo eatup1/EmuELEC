@@ -204,7 +204,8 @@ VVVVVV:
     - ${PORT}
 
 Duke Nukem:
-  description: Duke Nukem 3D is a first-person shooter video game developed by 3D Realms. It is a sequel to the platform games Duke Nukem and Duke Nukem II, published by 3D Realms. Duke Nukem 3D features the adventures of the titular Duke Nukem, voiced by Jon St. John, who fights against an alien invasion on Earth.
+  name: 듀크 뉴켐 3D
+  description: Duke Nukem 3D는 3D Realms에서 개발 한 1 인칭 슈팅 비디오 게임이다. 3D Realms에서 발행 한 플랫폼 게임 Duke Nukem 및 Duke Nukem II의 속편이다. Duke Nukem 3D는 지구에서 외계인의 침공에 맞서 싸우는 Jon St. John이 목소리를 맡은 Duke Nukem의 모험을 특징으로 한다.
   rating: 1.0
   release_date: 19960129T000000
   developer: 3D Realms
