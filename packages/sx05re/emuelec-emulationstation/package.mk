@@ -2,7 +2,7 @@
 # Copyright (C) 2019-present Shanti Gilbert (https://github.com/shantigilbert)
 
 PKG_NAME="emuelec-emulationstation"
-PKG_VERSION="3f6b414fc35424deb17f61fe7d551def49c0c6aa"
+PKG_VERSION="a572918a0fd62382fe474d9572d2a0cf0f1fdfd6"
 PKG_GIT_CLONE_BRANCH="EmuELEC"
 PKG_REV="1"
 PKG_ARCH="any"
@@ -55,6 +55,12 @@ makeinstall_target() {
     if [[ ${DEVICE} != "OdroidGoAdvance" ]]; then
         sed -i "s|, vertical||g" "$INSTALL/usr/config/emulationstation/es_features.cfg"
     fi
+	
+	# Amlogic project has an issue with mixed audio
+    if [[ ${PROJECT} == "Amlogic" ]]; then
+        sed -i "s|</config>|	<bool name=\"StopMusicOnScreenSaver\" value=\"false\" />\n</config>|g" "$INSTALL/usr/config/emulationstation/es_settings.cfg"
+    fi
+    
 }
 
 post_install() {  
