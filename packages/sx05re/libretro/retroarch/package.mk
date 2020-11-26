@@ -125,8 +125,12 @@ fi
   sed -i -e "s/# assets_directory =/assets_directory =\/tmp\/assets/" $INSTALL/etc/retroarch.cfg
   sed -i -e "s/# overlay_directory =/overlay_directory =\/tmp\/overlays/" $INSTALL/etc/retroarch.cfg
   sed -i -e "s/# cheat_database_path =/cheat_database_path =\/tmp\/database\/cht/" $INSTALL/etc/retroarch.cfg
+if [ "$DEVICE" == "OdroidGoAdvance" ]; then
+  sed -i -e "s/# menu_driver = \"rgui\"/menu_driver = \"xmb\"/" $INSTALL/etc/retroarch.cfg
+else
   sed -i -e "s/# menu_driver = \"rgui\"/menu_driver = \"ozone\"/" $INSTALL/etc/retroarch.cfg
- 
+fi
+
   # Quick menu
   echo "core_assets_directory =/storage/roms/downloads" >> $INSTALL/etc/retroarch.cfg
   echo "quick_menu_show_undo_save_load_state = \"false\"" >> $INSTALL/etc/retroarch.cfg
