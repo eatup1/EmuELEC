@@ -5,7 +5,7 @@
 
 . /etc/profile
 
-if [[ "$EE_DEVICE" == "OdroidGoAdvance" ]]; then
+if [[ "$EE_DEVICE" == "OdroidGoAdvance" || "$EE_DEVICE" == "RG351P" ]]; then
     DinguxCommander
 else
     source /emuelec/scripts/env.sh
