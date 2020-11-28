@@ -21,8 +21,8 @@ pre_configure_target() {
                              --enable-dynrec \
                              --enable-unaligned_memory \
                              --disable-sdl \
-							 --enable-sdl2 \
-							 --enable-mt32 \
+                             --enable-sdl2 \
+                             --enable-mt32 \
                              --with-sdl2-prefix=${SYSROOT_PREFIX}/usr"
 }
 

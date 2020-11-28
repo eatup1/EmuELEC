@@ -367,29 +367,48 @@ case ${1} in
     ;;
     "vertical")
     # Vertical orientation game
-    if [ "${EES}" == "1" ]; then  
-        echo 'video_oga_vertical_enable = "true"' >> ${RACONF}
-        sed -i "/aspect_ratio_index/d" ${RACONF}
-        echo 'aspect_ratio_index = "7"' >> ${RACONF}
-        if [ -f "/tmp/joypads/odroidgo2_joypad_v11_vertical.cfg" ]; then
-            mv /tmp/joypads/odroidgo2_joypad_v11.cfg /tmp/joypads/odroidgo2_joypad_v11_horizontal.cfg
-            mv /tmp/joypads/odroidgo2_joypad_v11_vertical.cfg /tmp/joypads/odroidgo2_joypad_v11.cfg
-        fi
-        
-        if [ -f "/tmp/joypads/odroidgo2_joypad_vertical.cfg" ]; then
-            mv /tmp/joypads/odroidgo2_joypad.cfg /tmp/joypads/odroidgo2_joypad_horizontal.cfg
-            mv /tmp/joypads/odroidgo2_joypad_vertical.cfg /tmp/joypads/odroidgo2_joypad.cfg
+    EE_DEVICE=$(cat /ee_arch)
+    if [ "$EE_DEVICE" == "RG351P" ]; then
+        if [ "${EES}" == "1" ]; then  
+            echo 'video_oga_vertical_enable = "true"' >> ${RACONF}
+            sed -i "/aspect_ratio_index/d" ${RACONF}
+            echo 'aspect_ratio_index = "7"' >> ${RACONF}
+            if [ -f "/tmp/joypads/OpenSimHardware OSH PB Controller_vertical.cfg" ]; then
+                mv "/tmp/joypads/OpenSimHardware OSH PB Controller.cfg" "/tmp/joypads/OpenSimHardware OSH PB Controller_horizontal.cfg"
+                mv "/tmp/joypads/OpenSimHardware OSH PB Controller_vertical.cfg" "/tmp/joypads/OpenSimHardware OSH PB Controller.cfg"
+            fi
+        else
+            echo 'video_oga_vertical_enable = "false"' >> ${RACONF}
+            if [ -f "/tmp/joypads/OpenSimHardware OSH PB Controller_horizontal.cfg" ]; then
+                mv "/tmp/joypads/OpenSimHardware OSH PB Controller.cfg" "/tmp/joypads/OpenSimHardware OSH PB Controller_vertical.cfg"
+                mv "/tmp/joypads/OpenSimHardware OSH PB Controller_horizontal.cfg" "/tmp/joypads/OpenSimHardware OSH PB Controller.cfg"
+            fi
         fi
     else
-        echo 'video_oga_vertical_enable = "false"' >> ${RACONF}
-        if [ -f "/tmp/joypads/odroidgo2_joypad_v11_horizontal.cfg" ]; then
-            mv /tmp/joypads/odroidgo2_joypad_v11.cfg /tmp/joypads/odroidgo2_joypad_v11_vertical.cfg
-            mv /tmp/joypads/odroidgo2_joypad_v11_horizontal.cfg /tmp/joypads/odroidgo2_joypad_v11.cfg
-        fi
+        if [ "${EES}" == "1" ]; then  
+            echo 'video_oga_vertical_enable = "true"' >> ${RACONF}
+            sed -i "/aspect_ratio_index/d" ${RACONF}
+            echo 'aspect_ratio_index = "7"' >> ${RACONF}
+            if [ -f "/tmp/joypads/odroidgo2_joypad_v11_vertical.cfg" ]; then
+                mv /tmp/joypads/odroidgo2_joypad_v11.cfg /tmp/joypads/odroidgo2_joypad_v11_horizontal.cfg
+                mv /tmp/joypads/odroidgo2_joypad_v11_vertical.cfg /tmp/joypads/odroidgo2_joypad_v11.cfg
+            fi
         
-        if [ -f "/tmp/joypads/odroidgo2_joypad_horizontal.cfg" ]; then
-            mv /tmp/joypads/odroidgo2_joypad.cfg /tmp/joypads/odroidgo2_joypad_vertical.cfg
-            mv /tmp/joypads/odroidgo2_joypad_horizontal.cfg /tmp/joypads/odroidgo2_joypad.cfg
+            if [ -f "/tmp/joypads/odroidgo2_joypad_vertical.cfg" ]; then
+                mv /tmp/joypads/odroidgo2_joypad.cfg /tmp/joypads/odroidgo2_joypad_horizontal.cfg
+                mv /tmp/joypads/odroidgo2_joypad_vertical.cfg /tmp/joypads/odroidgo2_joypad.cfg
+            fi
+        else
+            echo 'video_oga_vertical_enable = "false"' >> ${RACONF}
+            if [ -f "/tmp/joypads/odroidgo2_joypad_v11_horizontal.cfg" ]; then
+                mv /tmp/joypads/odroidgo2_joypad_v11.cfg /tmp/joypads/odroidgo2_joypad_v11_vertical.cfg
+                mv /tmp/joypads/odroidgo2_joypad_v11_horizontal.cfg /tmp/joypads/odroidgo2_joypad_v11.cfg
+            fi
+        
+            if [ -f "/tmp/joypads/odroidgo2_joypad_horizontal.cfg" ]; then
+                mv /tmp/joypads/odroidgo2_joypad.cfg /tmp/joypads/odroidgo2_joypad_vertical.cfg
+                mv /tmp/joypads/odroidgo2_joypad_horizontal.cfg /tmp/joypads/odroidgo2_joypad.cfg
+            fi
         fi
     fi
     ;;
@@ -506,7 +525,7 @@ done
 EE_DEVICE=$(cat /ee_arch)
 get_setting "retroarch.menu_driver"
 
-if [ "$EE_DEVICE" == "OdroidGoAdvance" ]; then
+if [ "$EE_DEVICE" == "OdroidGoAdvance" -o "$EE_DEVICE" == "RG351P" ]; then
 [ "${EES}" == "false" ] || [ "${EES}" == "none" ] || [ "${EES}" == "0" ] && EES="xmb"
 else
 [ "${EES}" == "false" ] || [ "${EES}" == "none" ] || [ "${EES}" == "0" ] && EES="ozone"

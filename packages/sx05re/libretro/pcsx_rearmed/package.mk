@@ -26,7 +26,7 @@ VERSION=${LIBREELEC_VERSION}
 INSTALLTO="/usr/lib/libretro/"
 PROJECT_ALT=${PROJECT}
 
-if [ "$DEVICE" == "OdroidGoAdvance" ]; then
+if [ "$DEVICE" == "OdroidGoAdvance" -o "$DEVICE" == "RG351P" ]; then
 PROJECT_ALT=${DEVICE}
 fi
 
@@ -78,7 +78,7 @@ if [ "${ARCH}" = "aarch64" ]; then
 	if [ "$PROJECT" == "Amlogic" ]; then
 		LIBS+=" libMali.so"
 	fi
-	if [ "$DEVICE" == "OdroidGoAdvance" ]; then
+	if [ "$DEVICE" == "OdroidGoAdvance" -o "$DEVICE" == "RG351P" ]; then
 		LIBS+=" libdrm.so* \
 		librga.so \
 		libpng*.so.* \
@@ -91,7 +91,7 @@ if [ "${ARCH}" = "aarch64" ]; then
       find $PKG_BUILD/../../build.${DISTRO}-${PROJECT_ALT}.arm-${VERSION}/*/.install_pkg -name ${lib} -exec cp -vP \{} ${INSTALL}/usr/config/emuelec/lib32 \;
     done
     
-    if [ "$DEVICE" == "OdroidGoAdvance" ]; then
+    if [ "$DEVICE" == "OdroidGoAdvance" -o "$DEVICE" == "RG351P" ]; then
 	ln -sf libmali.so $INSTALL/usr/config/emuelec/lib32/libMali.so
     ln -sf libMali.so $INSTALL/usr/config/emuelec/lib32/libgbm.so
     fi

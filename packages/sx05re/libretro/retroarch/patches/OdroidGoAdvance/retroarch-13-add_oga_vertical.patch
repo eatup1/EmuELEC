@@ -1,0 +1,52 @@
+diff --git a/gfx/drivers/oga_gfx.c b/gfx/drivers/oga_gfx.c
+index 0a78328454..6724f7f217 100644
+--- a/gfx/drivers/oga_gfx.c
++++ b/gfx/drivers/oga_gfx.c
+@@ -619,15 +619,21 @@ static bool oga_gfx_frame(void *data, const void *frame, unsigned width,
+       oga_rect_t r;
+       oga_calc_bounds(&r, width, height, aspect_ratio);
+       oga_blit(vid->menu_surface, 0, 0, width, height,
+-            page_surface, r.y, r.x, r.h, r.w, HAL_TRANSFORM_ROT_270, vid->scale_mode, 0);
++            page_surface, r.y, r.x, r.h, r.w, config_get_ptr()->bools.video_oga_vertical_enable ? 0 : HAL_TRANSFORM_ROT_270, vid->scale_mode, 0);
+    }
+ #endif
+ 
+    if (msg)
+    {
+-      oga_blit(vid->msg_surface, 0, 0, vid->msg_width, vid->msg_height,
+-            page_surface, 0, 0, vid->msg_height, vid->msg_width,
+-            HAL_TRANSFORM_ROT_270, vid->scale_mode, 0xff0105);
++      if (config_get_ptr()->bools.video_oga_vertical_enable) {
++         oga_blit(vid->msg_surface, 0, 0, vid->msg_width, vid->msg_height,
++               page_surface, 0, 0, vid->msg_width, vid->msg_height,
++               0, vid->scale_mode, 0xff0105);
++      } else { 
++         oga_blit(vid->msg_surface, 0, 0, vid->msg_width, vid->msg_height,
++               page_surface, 0, 0, vid->msg_height, vid->msg_width,
++               HAL_TRANSFORM_ROT_270, vid->scale_mode, 0xff0105);
++      }
+    }
+ 
+    if (unlikely(drmModeSetCrtc(vid->fd, vid->crtc_id, page->fb_id, 0, 0, &vid->connector_id, 1, &vid->mode) != 0))
+@@ -724,6 +730,8 @@ void oga_set_rotation(void *data, unsigned rotation)
+    if (!vid)
+       return;
+ 
++   if (config_get_ptr()->bools.video_oga_vertical_enable)
++      rotation = 0;
+    switch (rotation)
+    {
+    case 0:
+diff --git a/gfx/drivers_context/drm_go2_ctx.c b/gfx/drivers_context/drm_go2_ctx.c
+index 7daa4c9cbb..2110ce7043 100644
+--- a/gfx/drivers_context/drm_go2_ctx.c
++++ b/gfx/drivers_context/drm_go2_ctx.c
+@@ -325,7 +325,7 @@ static void gfx_ctx_go2_drm_swap_buffers(void *data)
+          surface,
+          src_x, src_y, src_w, src_h,
+          out_y, out_x, out_h, out_w,
+-         GO2_ROTATION_DEGREES_270, 2);
++         config_get_ptr()->bools.video_oga_vertical_enable ? GO2_ROTATION_DEGREES_0 : GO2_ROTATION_DEGREES_270, 2);
+    go2_context_surface_unlock(drm->context, surface);
+ #endif
+ }

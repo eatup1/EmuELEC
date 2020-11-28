@@ -52,7 +52,7 @@ makeinstall_target() {
 	find $INSTALL/usr/config/emulationstation/scripts/ -type f -exec chmod o+x {} \; 
 	
 	# Vertical Games are only supported in the OdroidGoAdvance
-    if [[ ${DEVICE} != "OdroidGoAdvance" ]]; then
+    if [[ ${DEVICE} != "OdroidGoAdvance" && ${DEVICE} != "RG351P" ]]; then
         sed -i "s|, vertical||g" "$INSTALL/usr/config/emulationstation/es_features.cfg"
     fi
 	
@@ -67,7 +67,7 @@ post_install() {
 	enable_service emustation.service
 	mkdir -p $INSTALL/usr/share
 	ln -sf /storage/.config/emuelec/configs/locale $INSTALL/usr/share/locale
-	if [ "$DEVICE" == "OdroidgoAdvance" ]; then
+	if [ "$DEVICE" == "OdroidgoAdvance" -o "$DEVICE" == "RG351P" ]; then
 		mv $INSTALL/usr/config/emulationstation/scripts/drastic/config/drastic.cfg_oga $INSTALL/usr/config/emulationstation/scripts/drastic/config/drastic.cfg
 	else
 		rm -rf $INSTALL/usr/config/emulationstation/scripts/drastic
