@@ -67,8 +67,10 @@ post_install() {
 	enable_service emustation.service
 	mkdir -p $INSTALL/usr/share
 	ln -sf /storage/.config/emuelec/configs/locale $INSTALL/usr/share/locale
-	if [ "$DEVICE" == "OdroidgoAdvance" -o "$DEVICE" == "RG351P" ]; then
+	if [ "$DEVICE" == "OdroidgoAdvance" ]; then
 		mv $INSTALL/usr/config/emulationstation/scripts/drastic/config/drastic.cfg_oga $INSTALL/usr/config/emulationstation/scripts/drastic/config/drastic.cfg
+	elif [ "$DEVICE" == "RG351P" ]; then
+		mv $INSTALL/usr/config/emulationstation/scripts/drastic/config/drastic.cfg_rg351p $INSTALL/usr/config/emulationstation/scripts/drastic/config/drastic.cfg
 	else
 		rm -rf $INSTALL/usr/config/emulationstation/scripts/drastic
 	fi
