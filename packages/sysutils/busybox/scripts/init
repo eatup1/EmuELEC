@@ -412,6 +412,17 @@ load_modules() {
   done
 }
 
+set_pwmmodule() {
+  # RG351P : Stop rumble motor 
+  if [ -e /sys/class/pwm/pwmchip0/export ]; then
+    # Enable the PWM for rumble
+    echo 0 > /sys/class/pwm/pwmchip0/export
+    echo 1000000 > /sys/class/pwm/pwmchip0/pwm0/period
+    echo 1 > /sys/class/pwm/pwmchip0/pwm0/enable
+    echo 1000000 > /sys/class/pwm/pwmchip0/pwm0/duty_cycle
+  fi
+}
+
 set_consolefont() {
   local vres
 
@@ -427,15 +438,6 @@ set_consolefont() {
 load_splash() {
   local set_default_res=no
   local vres
-
-  # RG351P : Stop rumble motor 
-  if [ -e /sys/class/pwm/pwmchip0/export ]; then
-    # Enable the PWM for rumble
-    echo 0 > /sys/class/pwm/pwmchip0/export
-    echo 1000000 > /sys/class/pwm/pwmchip0/pwm0/period
-    echo 1 > /sys/class/pwm/pwmchip0/pwm0/enable
-    echo 1000000 > /sys/class/pwm/pwmchip0/pwm0/duty_cycle
-  fi
 
   if [ ! "$SPLASH" = "no" ]; then
     progress "Loading bootsplash"
