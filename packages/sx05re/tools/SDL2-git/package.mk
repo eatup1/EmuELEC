@@ -14,7 +14,7 @@ if [ ${PROJECT} = "Amlogic-ng" ] || [ ${PROJECT} = "Amlogic" ]; then
   PKG_PATCH_DIRS="Amlogic"
 fi
 
-if [ "$DEVICE" == "OdroidGoAdvance" ]; then
+if [ "$DEVICE" == "OdroidGoAdvance" -o "$DEVICE" == "RG351P" ]; then
 #  PKG_PATCH_DIRS="OdroidGoAdvance"
   PKG_PATCH_DIRS="$DEVICE"
   PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET libdrm mali-bifrost librga"

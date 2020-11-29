@@ -9,7 +9,7 @@ source /emuelec/scripts/env.sh
 
 joy2keyStart
 romdir="/storage/roms/"
-[[ "$EE_DEVICE" == "OdroidGoAdvance" ]] && TTY="/dev/tty1" || TTY="/dev/tty"
+[[ "$EE_DEVICE" == "OdroidGoAdvance" || "$EE_DEVICE" == "RG351P" ]] && TTY="/dev/tty1" || TTY="/dev/tty"
 
 function buscarVideo {
 local f=0
