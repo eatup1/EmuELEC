@@ -169,6 +169,11 @@ if [ "${PROJECT}" != "Amlogic-ng" ]; then
     done
 fi
 
+# RG351P : BT disable
+if [[ ${DEVICE} == "RG351P" ]]; then 
+    sed -i "s|ee_bluetooth.enabled=1|ee_bluetooth.enabled=0|g" $INSTALL/usr/config/emuelec/configs/emuelec.conf
+fi
+
   # Remove scripts from OdroidGoAdvance build
 	if [[ ${DEVICE} == "OdroidGoAdvance" || ${DEVICE} == "RG351P" ]]; then 
 	for i in "01 - Get ES Themes" "03 - wifi" "10 - Force Update" "04 - Configure Reicast" "06 - Sselphs scraper" "07 - Skyscraper" "09 - system info"; do 

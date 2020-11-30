@@ -412,17 +412,6 @@ load_modules() {
   done
 }
 
-set_pwmmodule() {
-  # RG351P : Stop rumble motor 
-  if [ -e /sys/class/pwm/pwmchip0/export ]; then
-    # Enable the PWM for rumble
-    echo 0 > /sys/class/pwm/pwmchip0/export
-    echo 1000000 > /sys/class/pwm/pwmchip0/pwm0/period
-    echo 1 > /sys/class/pwm/pwmchip0/pwm0/enable
-    echo 1000000 > /sys/class/pwm/pwmchip0/pwm0/duty_cycle
-  fi
-}
-
 set_consolefont() {
   local vres
 
@@ -1097,6 +1086,15 @@ else
   for f in $(ls /sys/devices/system/cpu/cpufreq/policy*/ondemand/up_threshold 2>/dev/null) ; do
     echo 50 > $f
   done
+fi
+
+# RG351P : Initialize rumble motor 
+if [ -e /sys/class/pwm/pwmchip0/export ]; then
+  # Enable the PWM for rumble
+  echo 0 > /sys/class/pwm/pwmchip0/export
+  echo 1000000 > /sys/class/pwm/pwmchip0/pwm0/period
+  echo 1 > /sys/class/pwm/pwmchip0/pwm0/enable
+  echo 1000000 > /sys/class/pwm/pwmchip0/pwm0/duty_cycle
 fi
 
 # run platform_init script if exists
