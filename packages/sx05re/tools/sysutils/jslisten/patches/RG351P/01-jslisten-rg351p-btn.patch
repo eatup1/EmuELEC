@@ -1,0 +1,12 @@
+diff --git a/src/jslisten.c b/src/jslisten.c
+index 0200582..d48e70f 100644
+--- a/src/jslisten.c
++++ b/src/jslisten.c
+@@ -568,6 +568,7 @@ int bindJoy(void) {
+   while (1) {
+     while (read(joyFD, &js, sizeof(struct js_event)) == sizeof(struct js_event))  {
+       if (js.type == JS_EVENT_BUTTON) {
++		js.number += 0x0f;	// RG351P
+         syslog(LOG_DEBUG, "Event: type %d, time %d, number %d, value %d\n",
+                js.type, js.time, js.number, js.value);
+         if (mode == HOLD && js.value == 0 && lastTriggeredSet > -1 && button_held(js.number, lastTriggeredSet)) {

@@ -12,6 +12,10 @@ PKG_DEPENDS_TARGET="toolchain"
 PKG_LONGDESC="listen to gamepad inputs and trigger a command, cloned from https://github.com/workinghard/jslisten"
 PKG_TOOLCHAIN="make"
 
+if [ "$DEVICE" == "RG351P" ]; then
+PKG_PATCH_DIRS="RG351P"
+fi
+
 make_target() {
 mkdir bin
 make 
