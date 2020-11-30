@@ -200,6 +200,7 @@ def process_event(event):
     hex_chars = ""
 
     if js_type == JS_EVENT_BUTTON:
+        js_number += 0xf    # RG351P
         if js_number < len(button_codes) and js_value == 1:
             hex_chars = button_codes[js_number]
 
