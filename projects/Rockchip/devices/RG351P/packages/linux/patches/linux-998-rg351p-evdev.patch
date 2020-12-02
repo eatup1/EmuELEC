@@ -1,0 +1,40 @@
+diff --git a/drivers/input/evdev.c b/drivers/input/evdev.c
+old mode 100644
+new mode 100755
+index e9ae3d500a55..c8f3887f15ca
+--- a/drivers/input/evdev.c
++++ b/drivers/input/evdev.c
+@@ -808,7 +808,7 @@ static int handle_eviocgbit(struct input_dev *dev,
+ 			    void __user *p, int compat_mode)
+ {
+ 	unsigned long *bits;
+-	int len;
++	int len, nr;
+ 
+ 	switch (type) {
+ 
+@@ -824,6 +824,24 @@ static int handle_eviocgbit(struct input_dev *dev,
+ 	default: return -EINVAL;
+ 	}
+ 
++	// RG351P
++    if (dev->id.vendor == 0x1209 && dev->id.product == 0x3100) {
++        if (type == EV_KEY) {
++            for (nr = 0; nr < BTN_GAMEPAD; nr++) {
++                clear_bit(nr, bits);
++            }
++            for (nr = BTN_MODE; nr < KEY_MAX; nr++) {
++                clear_bit(nr, bits);
++            }
++		} else if (type == EV_ABS) {
++            for (nr = ABS_THROTTLE; nr <= ABS_BRAKE; nr++) {
++                clear_bit(nr, bits);
++            }
++            for (nr = ABS_HAT1X; nr <= ABS_HAT3Y; nr++) {
++                clear_bit(nr, bits);
++            }
++		}
++    }
+ 	return bits_to_user(bits, len, size, p, compat_mode);
+ }
+ 
