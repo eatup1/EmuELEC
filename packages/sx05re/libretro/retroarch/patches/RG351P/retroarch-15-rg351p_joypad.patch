@@ -1,0 +1,123 @@
+diff --git a/input/drivers_joypad/udev_joypad.c b/input/drivers_joypad/udev_joypad.c
+index a2db95e49a..b1356a5970 100644
+--- a/input/drivers_joypad/udev_joypad.c
++++ b/input/drivers_joypad/udev_joypad.c
+@@ -190,51 +190,80 @@ static int udev_add_pad(struct udev_device *dev, unsigned p, int fd, const char
+    /* Go through all possible keycodes, check if they are used,
+     * and map them to button/axes/hat indices.
+     */
+-   for (i = KEY_UP; i <= KEY_DOWN && buttons < UDEV_NUM_BUTTONS; i++)
+-      if (test_bit(i, keybit))
+-         pad->button_bind[i] = buttons++;
+-   for (i = BTN_MISC; i < KEY_MAX && buttons < UDEV_NUM_BUTTONS; i++)
+-      if (test_bit(i, keybit))
+-         pad->button_bind[i] = buttons++;
+-   /* The following two ranges are scanned and added after the above
+-    * ranges to maintain compatibility with existing key maps.
+-    */
+-   for (i = 0; i < KEY_UP && buttons < UDEV_NUM_BUTTONS; i++)
+-      if (test_bit(i, keybit))
+-         pad->button_bind[i] = buttons++;
+-   for (i = KEY_DOWN + 1; i < BTN_MISC && buttons < UDEV_NUM_BUTTONS; i++)
+-      if (test_bit(i, keybit))
+-         pad->button_bind[i] = buttons++;
+-   for (i = 0; i < ABS_MISC && axes < NUM_AXES; i++)
+-   {
+-      /* Skip hats for now. */
+-      if (i == ABS_HAT0X)
++   if (pad->vid == 0x1209 && pad->pid == 0x3100) {	// RG351P
++      for (i = BTN_A; i <= BTN_START && buttons < UDEV_NUM_BUTTONS; i++)	// BTN_A(304) ~ BTN_START(315)
++         if (test_bit(i, keybit))
++            pad->button_bind[i] = buttons++;
++      for (i = ABS_Z; i <= ABS_RZ && axes < NUM_AXES; i++)	// ABS_Z(0x02) ~ ABS_RZ(0x05)
+       {
+-         i = ABS_HAT3Y;
+-         continue;
+-      }
++         if (test_bit(i, absbit))
++         {
++            struct input_absinfo *abs = &pad->absinfo[axes];
+ 
+-      if (test_bit(i, absbit))
++            if (ioctl(fd, EVIOCGABS(i), abs) < 0)
++               continue;
++            if (abs->maximum > abs->minimum)
++            {
++               pad->axes[axes]   = udev_compute_axis(abs, abs->value);
++               /* Deal with analog triggers that report -32767 to 32767
++                  by testing if the axis initial value is negative, allowing for
++                  for some slop (1300 =~ 4%)in an axis centred around 0.
++                  The actual work is done in udev_joypad_axis.
++                  All bets are off if you're sitting on it. Reinitailise it by unpluging
++                  and plugging back in. */
++               if (udev_compute_axis(abs, abs->value) < -1300)
++                 pad->neg_trigger[i] = true;
++               pad->axes_bind[i] = axes++;
++            }
++         }
++      }
++   } else {
++      for (i = KEY_UP; i <= KEY_DOWN && buttons < UDEV_NUM_BUTTONS; i++)	// KEY_UP(103) ~ KEY_DOWN(108)
++         if (test_bit(i, keybit))
++            pad->button_bind[i] = buttons++;
++      for (i = BTN_MISC; i < KEY_MAX && buttons < UDEV_NUM_BUTTONS; i++)	// BTN_MISC(0x100) ~ KEY_MAX(0x2FF)
++         if (test_bit(i, keybit))
++            pad->button_bind[i] = buttons++;
++      /* The following two ranges are scanned and added after the above
++       * ranges to maintain compatibility with existing key maps.
++       */
++      for (i = 0; i < KEY_UP && buttons < UDEV_NUM_BUTTONS; i++)			// 0 ~ KEY_HOME(102)
++         if (test_bit(i, keybit))
++            pad->button_bind[i] = buttons++;
++      for (i = KEY_DOWN + 1; i < BTN_MISC && buttons < UDEV_NUM_BUTTONS; i++)	// KEY_PAGEDOWN(109) ~ 255
++         if (test_bit(i, keybit))
++            pad->button_bind[i] = buttons++;
++      for (i = 0; i < ABS_MISC && axes < NUM_AXES; i++)
+       {
+-         struct input_absinfo *abs = &pad->absinfo[axes];
+-
+-         if (ioctl(fd, EVIOCGABS(i), abs) < 0)
++         /* Skip hats for now. */
++         if (i == ABS_HAT0X)
++         {
++            i = ABS_HAT3Y;
+             continue;
+-         if (abs->maximum > abs->minimum)
++         }
++
++         if (test_bit(i, absbit))
+          {
+-            pad->axes[axes]   = udev_compute_axis(abs, abs->value);
+-            /* Deal with analog triggers that report -32767 to 32767
+-               by testing if the axis initial value is negative, allowing for
+-               for some slop (1300 =~ 4%)in an axis centred around 0.
+-               The actual work is done in udev_joypad_axis.
+-               All bets are off if you're sitting on it. Reinitailise it by unpluging
+-               and plugging back in. */
+-            if (udev_compute_axis(abs, abs->value) < -1300)
+-              pad->neg_trigger[i] = true;
+-            pad->axes_bind[i] = axes++;
++            struct input_absinfo *abs = &pad->absinfo[axes];
++
++            if (ioctl(fd, EVIOCGABS(i), abs) < 0)
++               continue;
++            if (abs->maximum > abs->minimum)
++            {
++               pad->axes[axes]   = udev_compute_axis(abs, abs->value);
++               /* Deal with analog triggers that report -32767 to 32767
++                  by testing if the axis initial value is negative, allowing for
++                  for some slop (1300 =~ 4%)in an axis centred around 0.
++                  The actual work is done in udev_joypad_axis.
++                  All bets are off if you're sitting on it. Reinitailise it by unpluging
++                  and plugging back in. */
++               if (udev_compute_axis(abs, abs->value) < -1300)
++                 pad->neg_trigger[i] = true;
++               pad->axes_bind[i] = axes++;
++            }
+          }
+       }
+-   }
++   }
+ 
+    pad->device = st.st_rdev;
+    pad->fd     = fd;
