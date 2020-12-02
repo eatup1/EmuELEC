@@ -42,8 +42,10 @@ makeinstall_target() {
     cp $PKG_DIR/scripts/*.sh $INSTALL/usr/bin
     chmod +x $INSTALL/usr/bin/*
     mkdir -p $INSTALL/usr/config/openbor  
-	if [ "$DEVICE" == "OdroidGoAdvance" -o "$DEVICE" == "RG351P" ]; then
-		cp $PKG_DIR/config/master_odroidgoa.cfg $INSTALL/usr/config/openbor/master.cfg
+	if [ "$DEVICE" == "OdroidGoAdvance" ]; then
+		cp $PKG_DIR/config/master_odroidgoa_v11.cfg $INSTALL/usr/config/openbor/master.cfg
+	elif [ "$DEVICE" == "RG351P" ]; then
+		cp $PKG_DIR/config/master_rg351p.cfg $INSTALL/usr/config/openbor/master.cfg
 	else
 		cp $PKG_DIR/config/master.cfg $INSTALL/usr/config/openbor/master.cfg
 	fi
