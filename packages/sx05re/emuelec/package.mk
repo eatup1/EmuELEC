@@ -31,6 +31,9 @@ if [ "$PROJECT" == "Amlogic-ng" ]; then
 PKG_DEPENDS_TARGET+=" $LIBRETRO_S922X_CORES mame2016"
 fi
 
+if [ "$DEVICE" == "RG351P" ]; then
+    PKG_DEPENDS_TARGET+=" RG351P_input-test"
+fi
 if [ "$DEVICE" == "OdroidGoAdvance" -o "$DEVICE" == "RG351P" ]; then
     PKG_DEPENDS_TARGET+=" kmscon odroidgoa-utils rs97-commander-sdl2"
     
