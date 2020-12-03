@@ -13,7 +13,6 @@ PKG_TOOLCHAIN="make"
 
 pre_configure_target() {
     sed -i "s|sdl2-config|${SYSROOT_PREFIX}/usr/bin/sdl2-config|" Makefile
-    sed -i "s|/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf|/usr/share/fonts/hangul/NanumGothic.ttf|" sdl.c
 }
 
 makeinstall_target() {

@@ -1,0 +1,22 @@
+diff --git a/sdl.c b/sdl.c
+index 4e23688..d2b96dc 100755
+--- a/sdl.c
++++ b/sdl.c
+@@ -233,7 +233,7 @@ TTF_Font* Font = NULL;
+ 
+ /* - - - CUSTOMISATION - - - */
+ 
+-#define FONT_FILE        "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf"
++#define FONT_FILE        "/usr/share/fonts/hangul/NanumGothic.ttf"
+ #define FONT_SIZE         12
+ 
+ #define SCREEN_WIDTH     480
+@@ -577,7 +577,7 @@ static void DrawScreen()
+ 
+ 	// A dot to indicate where the analog nub is pointed to, relative to the
+ 	// inner screen, as well as its coordinates
+-	SDL_RASTER_TYPE BuiltInJSCoords = DrawJoystickDot(-BuiltInJS_X, -BuiltInJS_Y, -TEXT_ANALOG_CX, -TEXT_ANALOG_Y, TextAnalog, &ColorAnalog);
++	SDL_RASTER_TYPE BuiltInJSCoords = DrawJoystickDot(-BuiltInJS_X, -BuiltInJS_Y, TEXT_ANALOG_CX, TEXT_ANALOG_Y, TextAnalog, &ColorAnalog);
+ 	// And another for the gravity sensor
+ 	SDL_RASTER_TYPE BuiltInJSCoords2 = DrawJoystickDot(BuiltInJS_X2, BuiltInJS_Y2, TEXT_GRAVITY_CX, TEXT_GRAVITY_Y, TextAnalog2, &ColorAnalog2);
+ 
