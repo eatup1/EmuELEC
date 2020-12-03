@@ -182,4 +182,11 @@ fi
 	done
 	fi 
   
+  # Remove scripts from except RG351P build
+	if [[ ${DEVICE} != "RG351P" ]]; then 
+	for i in "00 - Input Test" ; do 
+	xmlstarlet ed -L -P -d "/gameList/game[name='${i}']" $INSTALL/usr/config/emuelec/scripts/modules/gamelist.xml
+	rm "$INSTALL/usr/config/emuelec/scripts/modules/${i}.sh"
+	done
+	fi 
 } 
