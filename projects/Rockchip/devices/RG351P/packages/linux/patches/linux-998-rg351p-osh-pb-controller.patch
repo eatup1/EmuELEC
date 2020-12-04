@@ -13,7 +13,7 @@ index e9ae3d500a55..8ae44ae359b8
  
  	switch (type) {
  
-@@ -824,6 +824,28 @@ static int handle_eviocgbit(struct input_dev *dev,
+@@ -824,6 +824,32 @@ static int handle_eviocgbit(struct input_dev *dev,
  	default: return -EINVAL;
  	}
  
@@ -33,10 +33,14 @@ index e9ae3d500a55..8ae44ae359b8
 +			for (nr = ABS_HAT1X; nr <= ABS_HAT3Y; nr++) {
 +				clear_bit(nr, bits);
 +			}
-+			dev->absinfo[ABS_RX].minimum = 0x10;
-+			dev->absinfo[ABS_RX].maximum = 0xEFF;
-+			dev->absinfo[ABS_RZ].minimum = 0x10;
-+			dev->absinfo[ABS_RZ].maximum = 0xEFF;
++			dev->absinfo[ABS_Z].minimum = 20;	// Analog1 X
++			dev->absinfo[ABS_Z].maximum = 4000;	
++			dev->absinfo[ABS_RY].minimum = 20;	// Analog2 X
++			dev->absinfo[ABS_RY].maximum = 4000;
++			dev->absinfo[ABS_RX].minimum = 30;	// Analog1 Y
++			dev->absinfo[ABS_RX].maximum = 3600;
++			dev->absinfo[ABS_RZ].minimum = 30;	// Analog2 Y
++			dev->absinfo[ABS_RZ].maximum = 3600;
 +		}
 +	}
  	return bits_to_user(bits, len, size, p, compat_mode);
