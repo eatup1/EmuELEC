@@ -85,6 +85,9 @@ makeinstall_target() {
         rm $INSTALL/usr/config/asound.conf
         mv $INSTALL/usr/config/asound.conf-amlogic-ng $INSTALL/usr/config/asound.conf
     fi 
+    if [ "$DEVICE" != "RG351P" ]; then 
+        rm $INSTALL/usr/config/rg351p_joystick.cal
+    fi 
   
   mkdir -p $INSTALL/usr/config/emuelec/logs
   ln -sf /var/log $INSTALL/usr/config/emuelec/logs/var-log
