@@ -12,17 +12,15 @@ PKG_SHORTDESC="OpenBOR is the ultimate 2D side scrolling engine for beat em' ups
 PKG_LONGDESC="OpenBOR is the ultimate 2D side scrolling engine for beat em' ups, shooters, and more! "
 PKG_TOOLCHAIN="make"
 
-if [ "$DEVICE" == "OdroidGoAdvance" -o "$DEVICE" == "RG351P" ]; then
-PKG_PATCH_DIRS="OdroidGoAdvance"
-fi
-
-
 if [[ "$ARCH" == "arm" ]]; then
 	PKG_PATCH_DIRS="${ARCH}"
 else
 	PKG_PATCH_DIRS="emuelec-aarch64"
 fi
 
+if [ "$DEVICE" == "RG351P" ]; then
+PKG_PATCH_DIRS="RG351P"
+fi
 
 pre_configure_target() {
   PKG_MAKE_OPTS_TARGET="BUILD_LINUX_${ARCH}=1 \
