@@ -1,10 +1,26 @@
 diff --git a/drivers/input/evdev.c b/drivers/input/evdev.c
 old mode 100644
 new mode 100755
-index e9ae3d500a55..8ae44ae359b8
+index e9ae3d500a55..36169e00da72
 --- a/drivers/input/evdev.c
 +++ b/drivers/input/evdev.c
-@@ -808,7 +808,7 @@ static int handle_eviocgbit(struct input_dev *dev,
+@@ -15,6 +15,15 @@
+ #define EVDEV_MIN_BUFFER_SIZE	64U
+ #define EVDEV_BUF_PACKETS	8
+ 
++#define RG351P_ABS_Z_MIN 20
++#define RG351P_ABS_Z_MAX 4050
++#define RG351P_ABS_RY_MIN 30
++#define RG351P_ABS_RY_MAX 4030
++#define RG351P_ABS_RX_MIN 30
++#define RG351P_ABS_RX_MAX 3640
++#define RG351P_ABS_RZ_MIN 70
++#define RG351P_ABS_RZ_MAX 3700
++
+ #include <linux/poll.h>
+ #include <linux/sched.h>
+ #include <linux/slab.h>
+@@ -808,7 +817,7 @@ static int handle_eviocgbit(struct input_dev *dev,
  			    void __user *p, int compat_mode)
  {
  	unsigned long *bits;
@@ -13,7 +29,7 @@ index e9ae3d500a55..8ae44ae359b8
  
  	switch (type) {
  
-@@ -824,6 +824,32 @@ static int handle_eviocgbit(struct input_dev *dev,
+@@ -824,6 +833,32 @@ static int handle_eviocgbit(struct input_dev *dev,
  	default: return -EINVAL;
  	}
  
@@ -33,19 +49,51 @@ index e9ae3d500a55..8ae44ae359b8
 +			for (nr = ABS_HAT1X; nr <= ABS_HAT3Y; nr++) {
 +				clear_bit(nr, bits);
 +			}
-+			dev->absinfo[ABS_Z].minimum = 20;	// Analog1 X
-+			dev->absinfo[ABS_Z].maximum = 4000;	
-+			dev->absinfo[ABS_RY].minimum = 20;	// Analog2 X
-+			dev->absinfo[ABS_RY].maximum = 4000;
-+			dev->absinfo[ABS_RX].minimum = 30;	// Analog1 Y
-+			dev->absinfo[ABS_RX].maximum = 3600;
-+			dev->absinfo[ABS_RZ].minimum = 30;	// Analog2 Y
-+			dev->absinfo[ABS_RZ].maximum = 3600;
++			dev->absinfo[ABS_Z].minimum = RG351P_ABS_Z_MIN;		// Analog1 X
++			dev->absinfo[ABS_Z].maximum = RG351P_ABS_Z_MAX;
++			dev->absinfo[ABS_RY].minimum = RG351P_ABS_RY_MIN;	// Analog2 X
++			dev->absinfo[ABS_RY].maximum = RG351P_ABS_RY_MAX;
++			dev->absinfo[ABS_RX].minimum = RG351P_ABS_RX_MIN;	// Analog1 Y
++			dev->absinfo[ABS_RX].maximum = RG351P_ABS_RX_MAX;
++			dev->absinfo[ABS_RZ].minimum = RG351P_ABS_RZ_MIN;	// Analog2 Y
++			dev->absinfo[ABS_RZ].maximum = RG351P_ABS_RZ_MAX;
 +		}
 +	}
  	return bits_to_user(bits, len, size, p, compat_mode);
  }
  
+@@ -1238,6 +1273,31 @@ static long evdev_do_ioctl(struct file *file, unsigned int cmd,
+ 
+ 			t = _IOC_NR(cmd) & ABS_MAX;
+ 			abs = dev->absinfo[t];
++			// [RG351P] OpenSimHardware OSH PB Controller
++			if (dev->id.vendor == 0x1209 && dev->id.product == 0x3100) {
++				switch(t) {
++				case ABS_Z:		// Analog1 X
++					dev->absinfo[t].minimum = RG351P_ABS_Z_MIN;
++					dev->absinfo[t].maximum = RG351P_ABS_Z_MAX;
++					break;
++				case ABS_RY:	// Analog2 X
++					dev->absinfo[ABS_RY].minimum = RG351P_ABS_RY_MIN;
++					dev->absinfo[ABS_RY].maximum = RG351P_ABS_RY_MAX;
++					break;
++				case ABS_RX:	// Analog1 Y
++					dev->absinfo[ABS_RX].minimum = RG351P_ABS_RX_MIN;
++					dev->absinfo[ABS_RX].maximum = RG351P_ABS_RX_MAX;
++					break;
++				case ABS_RZ:	// Analog2 Y
++					dev->absinfo[ABS_RZ].minimum = RG351P_ABS_RZ_MIN;
++					dev->absinfo[ABS_RZ].maximum = RG351P_ABS_RZ_MAX;
++					break;
++				default:
++					break;
++				}
++				if (dev->absinfo[t].value < dev->absinfo[t].minimum) dev->absinfo[t].value = dev->absinfo[t].minimum;
++				if (dev->absinfo[t].value > dev->absinfo[t].maximum) dev->absinfo[t].value = dev->absinfo[t].maximum;
++			}
+ 
+ 			if (copy_to_user(p, &abs, min_t(size_t,
+ 					size, sizeof(struct input_absinfo))))
 diff --git a/drivers/input/joydev.c b/drivers/input/joydev.c
 old mode 100644
 new mode 100755
