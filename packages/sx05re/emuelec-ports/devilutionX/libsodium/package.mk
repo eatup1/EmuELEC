@@ -2,7 +2,7 @@
 # Copyright (C) 2020 Trond Haugland (github.com/escalade)
 
 PKG_NAME="libsodium"
-PKG_VERSION="5e262eeb8f7054bdd7b5d11946f9ad7cc62c6cc6"
+PKG_VERSION="3a832c1be75bffde17dbd7ca6137d40a4e039b61"
 PKG_LICENSE="GPL"
 PKG_SITE="https://github.com/jedisct1/libsodium"
 PKG_URL="https://github.com/jedisct1/libsodium/archive/${PKG_VERSION}.tar.gz"
