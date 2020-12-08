@@ -1,5 +1,5 @@
 diff --git a/arch/arm64/boot/dts/rockchip/rk3326-rg351p-linux.dts b/arch/arm64/boot/dts/rockchip/rk3326-rg351p-linux.dts
-index c31f607e7e82..03e39377aa4b 100755
+index c31f607e7e82..f580f7ed3a4b 100755
 --- a/arch/arm64/boot/dts/rockchip/rk3326-rg351p-linux.dts
 +++ b/arch/arm64/boot/dts/rockchip/rk3326-rg351p-linux.dts
 @@ -72,9 +72,9 @@
@@ -14,6 +14,15 @@ index c31f607e7e82..03e39377aa4b 100755
  	leds: gpio_leds {
  		compatible = "gpio-leds";
  
+@@ -616,7 +616,7 @@
+ 			sample_res = <10>;
+ 
+ 			dc_det_gpio  = <&gpio0 RK_PB3 GPIO_ACTIVE_HIGH>;
+-			bat_low_gpio = <&gpio2 RK_PB5 GPIO_ACTIVE_HIGH>;
++			chg_led_gpio = <&gpio2 RK_PB5 GPIO_ACTIVE_HIGH>;
+ 
+ 			extcon = <&u2phy>;
+ 		};
 @@ -628,7 +628,7 @@
  			clock-names = "mclk";
  			pinctrl-names = "default";
