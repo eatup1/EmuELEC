@@ -50,4 +50,11 @@ makeinstall_target() {
     mkdir -p $INSTALL/usr/config/ppsspp/
     cp -r `find . -name "assets" | xargs echo` $INSTALL/usr/config/ppsspp/
     cp -rf $PKG_DIR/config/* $INSTALL/usr/config/ppsspp/
+if [ "$DEVICE" == "OdroidGoAdvance" ]; then
+    rm -f $INSTALL/usr/config/ppsspp/PSP/SYSTEM/controls_*.ini
+    cp -f $PKG_DIR/config/PSP/SYSTEM/controls_oga.ini $INSTALL/usr/config/ppsspp/PSP/SYSTEM/controls.ini
+elif [ "$DEVICE" == "RG351P" ]; then
+    rm -f $INSTALL/usr/config/ppsspp/PSP/SYSTEM/controls_*.ini
+    cp -f $PKG_DIR/config/PSP/SYSTEM/controls_rg351p.ini $INSTALL/usr/config/ppsspp/PSP/SYSTEM/controls.ini
+fi
 } 
