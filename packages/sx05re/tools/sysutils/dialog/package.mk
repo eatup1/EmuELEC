@@ -11,6 +11,6 @@ PKG_DEPENDS_TARGET="toolchain ncurses"
 PKG_LONGDESC="This version of dialog, formerly known as cdialog is based on the Debian package for dialog 0.9a"
 PKG_TOOLCHAIN="auto"
 
-PKG_CONFIGURE_OPTS_TARGET="--with-ncurses --disable-rpath-hack"
+PKG_CONFIGURE_OPTS_TARGET="--with-ncursesw --disable-rpath-hack --enable-widec"
 
 
