@@ -22,18 +22,12 @@ case "$LINUX" in
     PKG_URL="https://github.com/rockchip-linux/kernel/archive/$PKG_VERSION.tar.gz"
     PKG_SOURCE_NAME="linux-$LINUX-$PKG_VERSION.tar.gz"
     ;;
-  odroid-go-a-4.4)
-    PKG_VERSION="3e230d424b823267fec12d003d5ca36b3f694229"
-    PKG_SHA256="ec193f88820d1b3b2ff1478df790381f7efbb04cee0062fc91f8f76d52de4dcc"
+  rg351p-4.4)
+    PKG_VERSION="6cd3fd65eb26aea3e2f005c8a2d0cfe382dcf5a8"
+    PKG_SHA256="2082c1ab2a85e5e0e310d0bd0f0ffebd1b5b8f5e2813c077fd5a5e518fbf442c"
     PKG_URL="https://github.com/hardkernel/linux/archive/$PKG_VERSION.tar.gz"
     PKG_SOURCE_NAME="linux-$LINUX-$PKG_VERSION.tar.gz"
     ;;
-  rg351p-4.4)
-    PKG_VERSION="718abd7245ab07d144e03826d7b0f161ab66bed2"
-    PKG_SHA256="4874108ff9f2f13b9cbc31136075192a8976c8feca8204d8a294a4e6a9f9d61b"
-    PKG_URL="https://github.com/lualiliu/RG351P-linux/archive/$PKG_VERSION.tar.gz"
-    PKG_SOURCE_NAME="linux-$LINUX-$PKG_VERSION.tar.gz"
-    ;;    
   raspberrypi)
     PKG_VERSION="3c235dcfe80a7c7ba360219e4a3ecb256f294376" # 4.19.83
     PKG_SHA256="23a222d8864107b296b3bf580106421899964af879bb7f1c440e875e565fd6f3"
