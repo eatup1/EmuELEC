@@ -19,14 +19,14 @@ if [[ "$ARCH" == "arm" ]]; then
 	PKG_PATCH_DIRS="${ARCH}"
 	PKG_MAKE_OPTS_TARGET=" platform=${PROJECT}"
 	
-	if [ "${DEVICE}" == "OdroidGoAdvance" ]; then
+	if [ "${DEVICE}" == "OdroidGoAdvance" -o "${DEVICE}" == "RG351P" ]; then
 		PKG_MAKE_OPTS_TARGET=" platform=Odroidgoa"
 	fi
 else
 	PKG_PATCH_DIRS="emuelec-aarch64"
 	PKG_MAKE_OPTS_TARGET=" platform=emuelec64-armv8"
 	
-	if [ "${DEVICE}" == "OdroidGoAdvance" ]; then  #todo add odroidgoadvance to 64bits
+	if [ "${DEVICE}" == "OdroidGoAdvance" -o "${DEVICE}" == "RG351P" ]; then  #todo add odroidgoadvance to 64bits
 		PKG_MAKE_OPTS_TARGET=" platform=emuelec64-armv8"
 	fi
 fi

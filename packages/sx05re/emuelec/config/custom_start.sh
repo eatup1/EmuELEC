@@ -5,6 +5,7 @@
 
 # Source predefined functions and variables
 . /etc/profile
+. /usr/config/rg351p_joystick.cal
 
 # Place any scripts you need to run at boot on this file
 

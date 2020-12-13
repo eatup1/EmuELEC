@@ -13,6 +13,8 @@ PKG_DEPENDS_TARGET="toolchain zlib ncurses:host"
 PKG_LONGDESC="A library is a free software emulation of curses in System V Release 4.0, and more."
 # causes some segmentation fault's (dialog) when compiled with gcc's link time optimization.
 PKG_BUILD_FLAGS="+pic"
+PKG_CONFIGURE_OPTS_HOST="--enable-hashmap \
+                        --enable-widec"
 
 PKG_CONFIGURE_OPTS_TARGET="--without-ada \
                            --without-cxx \
@@ -51,10 +53,10 @@ PKG_CONFIGURE_OPTS_TARGET="--without-ada \
                            --without-develop \
                            --disable-hard-tabs \
                            --disable-xmc-glitch \
-                           --disable-hashmap \
+                           --enable-hashmap \
                            --disable-safe-sprintf \
                            --disable-scroll-hints \
-                           --disable-widec \
+                           --enable-widec \
                            --disable-echo \
                            --disable-warnings \
                            --disable-home-terminfo \

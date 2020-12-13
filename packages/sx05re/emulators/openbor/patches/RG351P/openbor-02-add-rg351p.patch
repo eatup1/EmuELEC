@@ -1,0 +1,1097 @@
+diff --git a/engine/Makefile b/engine/Makefile
+index 8b0f9a65..7412aa4c 100644
+--- a/engine/Makefile
++++ b/engine/Makefile
+@@ -103,6 +103,27 @@ BUILD_DEBUG     = 1
+ endif
+ endif
+ 
++ifdef BUILD_LINUX_aarch64
++TARGET 	        = $(VERSION_NAME).elf
++TARGET_FINAL    = $(VERSION_NAME)
++TARGET_PLATFORM = LINUX
++BUILD_LINUX     = 1
++BUILD_SDL       = 1
++BUILD_GFX       = 1
++BUILD_PTHREAD   = 1
++BUILD_SDL_IO    = 1
++BUILD_VORBIS    = 1
++BUILD_WEBM      = 1
++BUILD_RG351P    = 1
++BUILDING        = 1
++INCLUDES        = $(SDKPATH)/usr/include \
++                  $(SDKPATH)/usr/include/SDL2
++OBJTYPE         = elf
++LIBRARIES       = $(SDKPATH)/usr/lib
++# Workaround for GCC 9
++CFLAGS          += -Wno-error=format-overflow -Wno-error=stringop-truncation -Wno-error=implicit-function-declaration -Wno-error=unused-variable -Wno-error=unused-label
++endif
++
+ ifdef BUILD_DARWIN
+ TARGET          = $(VERSION_NAME).elf
+ TARGET_FINAL    = $(VERSION_NAME)
+@@ -195,7 +216,7 @@ ifdef BUILD_WIN
+ STRIP 	        = $(WINDEV)/$(PREFIX)strip$(EXTENSION) $(TARGET) -o $(TARGET_FINAL)
+ endif
+ ifdef BUILD_LINUX
+-STRIP 	        = $(LNXDEV)/$(PREFIX)strip $(TARGET) -o $(TARGET_FINAL)
++STRIP 	        = $(PREFIX)-strip $(TARGET) -o $(TARGET_FINAL)
+ endif
+ ifdef BUILD_DARWIN
+ STRIP           = $(PREFIX)strip $(TARGET) -o $(TARGET_FINAL)
+@@ -541,6 +562,11 @@ CFLAGS 	       += -DWEBM
+ endif
+ 
+ 
++ifdef BUILD_RG351P
++CFLAGS 	       += -DRG351P
++endif
++
++
+ CXXFLAGS        = $(CFLAGS) -fno-exceptions -fno-rtti
+ ASFLAGS         = $(CFLAGS)
+ 
+diff --git a/engine/sdl/control.c b/engine/sdl/control.c
+index 9e353bc7..1c0e99bc 100644
+--- a/engine/sdl/control.c
++++ b/engine/sdl/control.c
+@@ -6,7 +6,7 @@
+  * Copyright (c) 2004 - 2014 OpenBOR Team
+  */
+ 
+-// Generic control stuff (keyboard+joystick)
++// Generic control stuff (keyboard+joystick)
+ 
+ #include "video.h"
+ #include "globals.h"
+@@ -14,15 +14,15 @@
+ #include "stristr.h"
+ #include "sblaster.h"
+ #include "joysticks.h"
+-#include "openbor.h"
+-
++#include "openbor.h"
++
+ #define T_AXIS 7000
+ 
+ #ifdef ANDROID
+ #include "jniutils.h"
+ #endif
+ 
+-SDL_Joystick *joystick[JOY_LIST_TOTAL];         // SDL struct for joysticks
++SDL_Joystick *joystick[JOY_LIST_TOTAL];         // SDL struct for joysticks
+ SDL_Haptic *joystick_haptic[JOY_LIST_TOTAL];   // SDL haptic for joysticks
+ static int usejoy;						        // To be or Not to be used?
+ static int numjoy;						        // Number of Joy(s) found
+@@ -30,16 +30,40 @@ static int lastkey;						        // Last keyboard key Pressed
+ static int lastjoy;                             // Last joystick button/axis/hat input
+ 
+ int sdl_game_started  = 0;
+-
+-extern int default_keys[MAX_BTN_NUM];
+-extern s_playercontrols default_control;
++
++extern int default_keys[MAX_BTN_NUM];
++extern s_playercontrols default_control;
+ 
+ #ifdef ANDROID
+ extern int nativeWidth;
+-extern int nativeHeight;
++extern int nativeHeight;
+ static TouchStatus touch_info;
+ #endif
+ 
++#ifdef RG351P
++#define OSH_CONTROLLER "OpenSimHardware OSH PB Controller"
++static void rg351p_rumble_init()
++{
++    FILE *fp;
++    fp = fopen("/sys/class/pwm/pwmchip0/pwm0/period", "w");
++    fprintf(fp, "1000000");
++    fclose(fp);
++    fp = fopen("/sys/class/pwm/pwmchip0/pwm0/enable", "w");
++    fprintf(fp, "1");
++    fclose(fp);
++    fp = fopen("/sys/class/pwm/pwmchip0/pwm0/duty_cycle", "w");
++    fprintf(fp, "1000000");
++    fclose(fp);
++}
++
++static void rg351p_rumble_onoff(const bool on)
++{
++    FILE *fp;
++    fp = fopen("/sys/class/pwm/pwmchip0/pwm0/duty_cycle", "w");
++    fprintf(fp, on ? "10" : "1000000");
++    fclose(fp);
++}
++#endif
+ /*
+ Here is where we aquiring all joystick events
+ and map them to BOR's layout.  Currently support
+@@ -80,7 +104,7 @@ void getPads(Uint8* keystate, Uint8* keystate_def)
+ 					{
+ 						touch_info.pid[i] = ev.tfinger.fingerId;
+ 						touch_info.px[i] = ev.tfinger.x*nativeWidth;
+-						touch_info.py[i] = ev.tfinger.y*nativeHeight;
++						touch_info.py[i] = ev.tfinger.y*nativeHeight;
+ 						touch_info.pstatus[i] = TOUCH_STATUS_DOWN;
+ 
+             // migration for White Dragon's vibration logic from SDLActivity.java
+@@ -101,7 +125,7 @@ void getPads(Uint8* keystate, Uint8* keystate_def)
+ 				for(i=0; i<MAX_POINTERS; i++)
+ 				{
+ 					if(touch_info.pid[i] == ev.tfinger.fingerId)
+-					{
++					{
+ 						touch_info.pstatus[i] = TOUCH_STATUS_UP;
+ 						break;
+ 					}
+@@ -116,7 +140,7 @@ void getPads(Uint8* keystate, Uint8* keystate_def)
+ 					if(touch_info.pid[i] == ev.tfinger.fingerId)
+ 					{
+ 						touch_info.px[i] = ev.tfinger.x*nativeWidth;
+-						touch_info.py[i] = ev.tfinger.y*nativeHeight;
++						touch_info.py[i] = ev.tfinger.y*nativeHeight;
+ 						touch_info.pstatus[i] = TOUCH_STATUS_DOWN;
+ 						break;
+ 					}
+@@ -131,7 +155,7 @@ void getPads(Uint8* keystate, Uint8* keystate_def)
+ 			case SDL_WINDOWEVENT:
+ 				if(ev.window.event==SDL_WINDOWEVENT_MINIMIZED)
+ 				{
+-					//SDL_PauseAudio(1);
++					//SDL_PauseAudio(1);
+ 					SDL_PauseAudioDevice(audio_dev, 1);
+ 					while(true)
+ 					{
+@@ -139,7 +163,7 @@ void getPads(Uint8* keystate, Uint8* keystate_def)
+ 						{
+ 							if(ev.type==SDL_WINDOWEVENT && ev.window.event==SDL_WINDOWEVENT_RESTORED)
+ 							{
+-								//SDL_PauseAudio(0);
++								//SDL_PauseAudio(0);
+ 								SDL_PauseAudioDevice(audio_dev, 0);
+ 								extern s_videomodes videomodes;
+ 								video_set_mode(videomodes);
+@@ -170,13 +194,13 @@ void getPads(Uint8* keystate, Uint8* keystate_def)
+ 							if(ev.jbutton.button == 4 || ev.jbutton.button == 3 || ev.jbutton.button == 5) joysticks[i].Hats &= ~(JoystickBits[3]);
+ 							if(ev.jbutton.button == 2 || ev.jbutton.button == 1 || ev.jbutton.button == 3) joysticks[i].Hats &= ~(JoystickBits[4]);
+ 							if(ev.jbutton.button >= 8 && ev.jbutton.button <= 18) joysticks[i].Buttons &= ~(JoystickBits[ev.jbutton.button - 3]);
+-						}
+-						/*else
+-                        {
+-                            // add key flag from event
+-                            #ifdef ANDROID
+-                            joysticks[i].Buttons &= 0x00 << ev.jbutton.button;
+-                            #endif
++						}
++						/*else
++                        {
++                            // add key flag from event
++                            #ifdef ANDROID
++                            joysticks[i].Buttons &= 0x00 << ev.jbutton.button;
++                            #endif
+                         }*/
+ 					}
+ 				}
+@@ -188,11 +212,11 @@ void getPads(Uint8* keystate, Uint8* keystate_def)
+ 					if (SDL_JoystickInstanceID(joystick[i]) == ev.jbutton.which)
+ 					{
+ 						//printf("Button down: controller %i, button %i\n", i, ev.jbutton.button);
+-						lastjoy = 1 + i * JOY_MAX_INPUTS + ev.jbutton.button;
+-
+-						// add key flag from event
+-						/*#ifdef ANDROID
+-						joysticks[i].Buttons |= 0x01 << ev.jbutton.button;
++						lastjoy = 1 + i * JOY_MAX_INPUTS + ev.jbutton.button;
++
++						// add key flag from event
++						/*#ifdef ANDROID
++						joysticks[i].Buttons |= 0x01 << ev.jbutton.button;
+ 						#endif*/
+ 					}
+ 				}
+@@ -209,14 +233,14 @@ void getPads(Uint8* keystate, Uint8* keystate_def)
+ 						if(ev.jhat.value & SDL_HAT_RIGHT    && !(x & SDL_HAT_RIGHT))	lastjoy = hatfirst + 1;
+ 						if(ev.jhat.value & SDL_HAT_DOWN     && !(x & SDL_HAT_DOWN))	    lastjoy = hatfirst + 2;
+ 						if(ev.jhat.value & SDL_HAT_LEFT     && !(x & SDL_HAT_LEFT))	    lastjoy = hatfirst + 3;
+-						//if(lastjoy) fprintf(stderr, "SDL_JOYHATMOTION - Joystick %i Hat %i (Index %i)\n", i, ev.jhat.hat, lastjoy);
+-
+-						// add key flag from event (0x01 0x02 0x04 0x08)
+-						#ifdef ANDROID
+-						if(ev.jhat.value & SDL_HAT_UP)      joysticks[i].Hats |= SDL_HAT_UP         << (ev.jhat.hat*4);
+-						if(ev.jhat.value & SDL_HAT_RIGHT)   joysticks[i].Hats |= SDL_HAT_RIGHT      << (ev.jhat.hat*4);
+-						if(ev.jhat.value & SDL_HAT_DOWN)    joysticks[i].Hats |= SDL_HAT_DOWN       << (ev.jhat.hat*4);
+-						if(ev.jhat.value & SDL_HAT_LEFT)    joysticks[i].Hats |= SDL_HAT_LEFT       << (ev.jhat.hat*4);
++						//if(lastjoy) fprintf(stderr, "SDL_JOYHATMOTION - Joystick %i Hat %i (Index %i)\n", i, ev.jhat.hat, lastjoy);
++
++						// add key flag from event (0x01 0x02 0x04 0x08)
++						#ifdef ANDROID
++						if(ev.jhat.value & SDL_HAT_UP)      joysticks[i].Hats |= SDL_HAT_UP         << (ev.jhat.hat*4);
++						if(ev.jhat.value & SDL_HAT_RIGHT)   joysticks[i].Hats |= SDL_HAT_RIGHT      << (ev.jhat.hat*4);
++						if(ev.jhat.value & SDL_HAT_DOWN)    joysticks[i].Hats |= SDL_HAT_DOWN       << (ev.jhat.hat*4);
++						if(ev.jhat.value & SDL_HAT_LEFT)    joysticks[i].Hats |= SDL_HAT_LEFT       << (ev.jhat.hat*4);
+ 						#endif
+ 					}
+ 				}
+@@ -231,51 +255,51 @@ void getPads(Uint8* keystate, Uint8* keystate_def)
+ 						x = (joysticks[i].Axes >> (2*ev.jaxis.axis)) & 0x03; // previous state of axis
+ 						if(ev.jaxis.value <  -1*T_AXIS && !(x & 0x01))		lastjoy = axisfirst;
+ 						if(ev.jaxis.value >     T_AXIS && !(x & 0x02))		lastjoy = axisfirst + 1;
+-						//if(lastjoy) fprintf(stderr, "SDL_JOYAXISMOTION - Joystick %i Axis %i = Position %i (Index %i)\n", i, ev.jaxis.axis, ev.jaxis.value, lastjoy);
+-
+-						// add key flag from event
+-						#ifdef ANDROID
++						//if(lastjoy) fprintf(stderr, "SDL_JOYAXISMOTION - Joystick %i Axis %i = Position %i (Index %i)\n", i, ev.jaxis.axis, ev.jaxis.value, lastjoy);
++
++						// add key flag from event
++						#ifdef ANDROID
+                         if(ev.jaxis.value < -1*T_AXIS)  { joysticks[i].Axes |= 0x01 << (ev.jaxis.axis*2); }
+-                        if(ev.jaxis.value >    T_AXIS)  { joysticks[i].Axes |= 0x02 << (ev.jaxis.axis*2); }
++                        if(ev.jaxis.value >    T_AXIS)  { joysticks[i].Axes |= 0x02 << (ev.jaxis.axis*2); }
+                         #endif
+ 					}
+ 				}
+-				break;
+-
+-            // PLUG AND PLAY
+-            case SDL_JOYDEVICEADDED:
+-                if (ev.jdevice.which < JOY_LIST_TOTAL)
+-                {
+-                    int i = ev.jdevice.which;
+-                    char buffer[MAX_BUFFER_LEN];
+-                    char joy_name[MAX_BUFFER_LEN];
+-                    open_joystick(i);
+-                    //get_time_string(buffer, MAX_BUFFER_LEN, (time_t)ev.jdevice.timestamp, TIMESTAMP_PATTERN);
+-                    get_now_string(buffer, MAX_BUFFER_LEN, TIMESTAMP_PATTERN);
+-                    numjoy = SDL_NumJoysticks();
+-                    strcpy(joy_name,get_joystick_name(joysticks[i].Name));
+-                    printf("Joystick: \"%s\" connected at port: %d at %s\n",joy_name,i,buffer);
+-                }
+-                break;
+-
+-            case SDL_JOYDEVICEREMOVED:
+-                if (ev.jdevice.which < JOY_LIST_TOTAL)
+-                {
+-                    int i = ev.jdevice.which;
+-                    if(joystick[i])
+-                    {
+-                        char buffer[MAX_BUFFER_LEN];
+-                        char joy_name[MAX_BUFFER_LEN];
+-                        get_now_string(buffer, MAX_BUFFER_LEN, TIMESTAMP_PATTERN);
+-                        close_joystick(i);
+-                        numjoy = SDL_NumJoysticks();
+-                        strcpy(joy_name,get_joystick_name(joysticks[i].Name));
+-                        printf("Joystick: \"%s\" disconnected from port: %d at %s\n",joy_name,i,buffer);
+-                    }
+-                }
+-                break;
+-
+-            default:
++				break;
++
++            // PLUG AND PLAY
++            case SDL_JOYDEVICEADDED:
++                if (ev.jdevice.which < JOY_LIST_TOTAL)
++                {
++                    int i = ev.jdevice.which;
++                    char buffer[MAX_BUFFER_LEN];
++                    char joy_name[MAX_BUFFER_LEN];
++                    open_joystick(i);
++                    //get_time_string(buffer, MAX_BUFFER_LEN, (time_t)ev.jdevice.timestamp, TIMESTAMP_PATTERN);
++                    get_now_string(buffer, MAX_BUFFER_LEN, TIMESTAMP_PATTERN);
++                    numjoy = SDL_NumJoysticks();
++                    strcpy(joy_name,get_joystick_name(joysticks[i].Name));
++                    printf("Joystick: \"%s\" connected at port: %d at %s\n",joy_name,i,buffer);
++                }
++                break;
++
++            case SDL_JOYDEVICEREMOVED:
++                if (ev.jdevice.which < JOY_LIST_TOTAL)
++                {
++                    int i = ev.jdevice.which;
++                    if(joystick[i])
++                    {
++                        char buffer[MAX_BUFFER_LEN];
++                        char joy_name[MAX_BUFFER_LEN];
++                        get_now_string(buffer, MAX_BUFFER_LEN, TIMESTAMP_PATTERN);
++                        close_joystick(i);
++                        numjoy = SDL_NumJoysticks();
++                        strcpy(joy_name,get_joystick_name(joysticks[i].Name));
++                        printf("Joystick: \"%s\" disconnected from port: %d at %s\n",joy_name,i,buffer);
++                    }
++                }
++                break;
++
++            default:
+                 break;
+ 		}
+ 
+@@ -288,13 +312,13 @@ void getPads(Uint8* keystate, Uint8* keystate_def)
+ 		for(i = 0; i < JOY_LIST_TOTAL; i++)
+ 		{
+ 			// reset state
+-			joysticks[i].Axes = joysticks[i].Hats = joysticks[i].Buttons = 0;
++			joysticks[i].Axes = joysticks[i].Hats = joysticks[i].Buttons = 0;
+ 			if (joystick[i] == NULL) continue;
+ 
+ 			// check buttons
+-			for(j = 0; j < joysticks[i].NumButtons; j++)
+-            {
+-                joysticks[i].Buttons |= SDL_JoystickGetButton(joystick[i], j) << j;
++			for(j = 0; j < joysticks[i].NumButtons; j++)
++            {
++                joysticks[i].Buttons |= SDL_JoystickGetButton(joystick[i], j) << j;
+             }
+ 
+ 			// check axes
+@@ -306,15 +330,15 @@ void getPads(Uint8* keystate, Uint8* keystate_def)
+ 			}
+ 
+ 			// check hats
+-			for(j = 0; j < joysticks[i].NumHats; j++)
+-            {
+-                //joysticks[i].Hats |= SDL_JoystickGetHat(joystick[i], j) << (j*4);
+-
+-                Uint8 hat_value = SDL_JoystickGetHat(joystick[i], j);
+-                if(hat_value & SDL_HAT_UP)      joysticks[i].Hats |= SDL_HAT_UP     << (j*4);
+-                if(hat_value & SDL_HAT_RIGHT)   joysticks[i].Hats |= SDL_HAT_RIGHT  << (j*4);
+-                if(hat_value & SDL_HAT_DOWN)    joysticks[i].Hats |= SDL_HAT_DOWN   << (j*4);
+-                if(hat_value & SDL_HAT_LEFT)    joysticks[i].Hats |= SDL_HAT_LEFT   << (j*4);
++			for(j = 0; j < joysticks[i].NumHats; j++)
++            {
++                //joysticks[i].Hats |= SDL_JoystickGetHat(joystick[i], j) << (j*4);
++
++                Uint8 hat_value = SDL_JoystickGetHat(joystick[i], j);
++                if(hat_value & SDL_HAT_UP)      joysticks[i].Hats |= SDL_HAT_UP     << (j*4);
++                if(hat_value & SDL_HAT_RIGHT)   joysticks[i].Hats |= SDL_HAT_RIGHT  << (j*4);
++                if(hat_value & SDL_HAT_DOWN)    joysticks[i].Hats |= SDL_HAT_DOWN   << (j*4);
++                if(hat_value & SDL_HAT_LEFT)    joysticks[i].Hats |= SDL_HAT_LEFT   << (j*4);
+             }
+ 
+ 			// combine axis, hat, and button state into a single value
+@@ -336,19 +360,19 @@ static int flag_to_index(u64 flag)
+ 	while(!((bit<<index)&flag) && index<JOY_MAX_INPUTS-1) ++index;
+ 	return index;
+ }
+-
+-char* get_joystick_name(const char* name)
+-{
+-    char lname[strlen(name)];
+-
+-    if (strlen(name) <= 0) return JOY_UNKNOWN_NAME;
+-    strcpy(lname,name);
+-    for(int i = 0; lname[i]; i++)
+-    {
+-        lname[i] = tolower(lname[i]);
+-    }
+-    if ( strstr(lname, "null") == NULL ) return JOY_UNKNOWN_NAME;
+-    return ( (char*)name );
++
++char* get_joystick_name(const char* name)
++{
++    char lname[strlen(name)];
++
++    if (strlen(name) <= 0) return JOY_UNKNOWN_NAME;
++    strcpy(lname,name);
++    for(int i = 0; lname[i]; i++)
++    {
++        lname[i] = tolower(lname[i]);
++    }
++    if ( strstr(lname, "null") == NULL ) return JOY_UNKNOWN_NAME;
++    return ( (char*)name );
+ }
+ 
+ /*
+@@ -357,14 +381,14 @@ types, defaults and keynames.
+ */
+ void joystick_scan(int scan)
+ {
+-	int i;
++	int i;
+ 
+-	if(!scan) return;
++	if(!scan) return;
+ 
+-	numjoy = SDL_NumJoysticks();
+-
+-	if (scan != 2)
+-    {
++	numjoy = SDL_NumJoysticks();
++
++	if (scan != 2)
++    {
+         if(numjoy <= 0)
+         {
+             printf("No Joystick(s) Found!\n");
+@@ -373,22 +397,22 @@ void joystick_scan(int scan)
+         else
+         {
+             printf("\n%d joystick(s) found!\n", numjoy);
+-        }
+-    }
+-
+-	if (numjoy > JOY_LIST_TOTAL) numjoy = JOY_LIST_TOTAL; // avoid overflow bug
++        }
++    }
++
++	if (numjoy > JOY_LIST_TOTAL) numjoy = JOY_LIST_TOTAL; // avoid overflow bug
+ 
+ 	for(i = 0; i < numjoy; i++)
+ 	{
+-        open_joystick(i);
+-
++        open_joystick(i);
++
+         if(scan != 2)
+-        {
++        {
+             // print JOY_MAX_INPUTS (32) spaces for alignment
+-            if(numjoy == 1)
+-            {
++            if(numjoy == 1)
++            {
+                 printf("%s - %d axes, %d buttons, %d hat(s)\n",
+-                                    get_joystick_name(joysticks[i].Name), joysticks[i].NumAxes, joysticks[i].NumButtons, joysticks[i].NumHats);
++                                    get_joystick_name(joysticks[i].Name), joysticks[i].NumAxes, joysticks[i].NumButtons, joysticks[i].NumHats);
+             }
+             else if(numjoy > 1)
+             {
+@@ -399,56 +423,56 @@ void joystick_scan(int scan)
+         }
+ 	}
+ }
+-
+-/*
+-Open a single joystick
++
++/*
++Open a single joystick
+ */
+ void open_joystick(int i)
+-{
+-    int j;
++{
++    int j;
+ 
+-    if ( ( joystick[i] = SDL_JoystickOpen(i) ) == NULL )
+-    {
+-       printf("\nWarning: Unable to initialize joystick in port: %d! SDL Error: %s\n", i, SDL_GetError());
+-       return;
++    if ( ( joystick[i] = SDL_JoystickOpen(i) ) == NULL )
++    {
++       printf("\nWarning: Unable to initialize joystick in port: %d! SDL Error: %s\n", i, SDL_GetError());
++       return;
+     }
+     joysticks[i].NumHats = SDL_JoystickNumHats(joystick[i]);
+     joysticks[i].NumAxes = SDL_JoystickNumAxes(joystick[i]);
+     joysticks[i].NumButtons = SDL_JoystickNumButtons(joystick[i]);
+-
++
+     strcpy(joysticks[i].Name, SDL_JoystickName(i));
+-
+-    joystick_haptic[i] = SDL_HapticOpenFromJoystick(joystick[i]);
+-    if (joystick_haptic[i] != NULL)
+-    {
+-        //Get initialize rumble
+-        if( SDL_HapticRumbleInit( joystick_haptic[i] ) < 0 )
+-        {
+-            printf("\nWarning: Unable to initialize rumble for joystick: %s in port: %d! SDL Error: %s\n", joysticks[i].Name, i, SDL_GetError());
+-        }
+-    }
++
++    joystick_haptic[i] = SDL_HapticOpenFromJoystick(joystick[i]);
++    if (joystick_haptic[i] != NULL)
++    {
++        //Get initialize rumble
++        if( SDL_HapticRumbleInit( joystick_haptic[i] ) < 0 )
++        {
++            printf("\nWarning: Unable to initialize rumble for joystick: %s in port: %d! SDL Error: %s\n", joysticks[i].Name, i, SDL_GetError());
++        }
++    }
+ 
+     #if GP2X
+     joysticks[i].Type = JOY_TYPE_GAMEPARK;
+     for(j = 0; j < JOY_MAX_INPUTS + 1; j++)
+     {
+-        if(j) joysticks[i].KeyName[j] = GameparkKeyName[j + i * JOY_MAX_INPUTS];
++        if(j) joysticks[i].KeyName[j] = GameparkKeyName[j + i * JOY_MAX_INPUTS];
+         else joysticks[i].KeyName[j] = GameparkKeyName[j];
+     }
+     #else
+     //SDL_JoystickEventState(SDL_IGNORE); // disable joystick events
+     for(j = 1; j < JOY_MAX_INPUTS + 1; j++)
+-    {
++    {
+         strcpy(joysticks[i].KeyName[j], PC_GetJoystickKeyName(i, j));
+     }
+-    #endif
+-
++    #endif
++
+     return;
+-}
+-
+-void reset_joystick_map(int i)
+-{
+-	memset(joysticks[i].Name,0,sizeof(joysticks[i].Name));
++}
++
++void reset_joystick_map(int i)
++{
++	memset(joysticks[i].Name,0,sizeof(joysticks[i].Name));
+ 	memset(joysticks[i].KeyName,0,sizeof(joysticks[i].KeyName));
+ 	joysticks[i].Type = 0;
+ 	joysticks[i].NumHats = 0;
+@@ -457,8 +481,8 @@ void reset_joystick_map(int i)
+ 	joysticks[i].Hats = 0;
+ 	joysticks[i].Axes = 0;
+ 	joysticks[i].Buttons = 0;
+-	joysticks[i].Data = 0;
+-    set_default_joystick_keynames(i);
++	joysticks[i].Data = 0;
++    set_default_joystick_keynames(i);
+ }
+ 
+ /*
+@@ -468,24 +492,29 @@ destroy all SDL Joystick data.
+ void control_exit()
+ {
+ 	int i;
+-	for(i = 0; i < numjoy; i++)
++#ifdef RG351P
++    if (strcmp(joysticks[0].Name, OSH_CONTROLLER) == false) {
++        rg351p_rumble_onoff(false);
++    }
++#endif
++	for(i = 0; i < numjoy; i++)
+     {
+ 		close_joystick(i);
+-	}
++	}
+ 	usejoy = 0;
+ }
+-
+-/*
+-Reset single joystick
++
++/*
++Reset single joystick
+ */
+ void close_joystick(int i)
+ {
+-	if(joystick[i] != NULL) SDL_JoystickClose(joystick[i]);
+-	if(joystick_haptic[i] != NULL) SDL_HapticClose(joystick_haptic[i]);
+-	joystick[i] = NULL;
+-	joystick_haptic[i] = NULL;
++	if(joystick[i] != NULL) SDL_JoystickClose(joystick[i]);
++	if(joystick_haptic[i] != NULL) SDL_HapticClose(joystick_haptic[i]);
++	joystick[i] = NULL;
++	joystick_haptic[i] = NULL;
+ 	reset_joystick_map(i);
+-}
++}
+ 
+ /*
+ Create default values for joysticks if enabled.
+@@ -493,41 +522,45 @@ Then scan for joysticks and update their data.
+ */
+ void control_init(int joy_enable)
+ {
+-	int i;
++	int i;
+ 
+ #ifdef GP2X
+ 	usejoy = joy_enable ? joy_enable : 1;
+ #else
+ 	usejoy = joy_enable;
+-#endif
++#endif
+ 
+ 	//memset(joysticks, 0, sizeof(s_joysticks) * JOY_LIST_TOTAL);
+ 	for(i = 0; i < JOY_LIST_TOTAL; i++)
+-	{
+-        joystick[i] = NULL;
+-        joystick_haptic[i] = NULL;
++	{
++        joystick[i] = NULL;
++        joystick_haptic[i] = NULL;
+ 		reset_joystick_map(i);
+ 	}
+-	joystick_scan(usejoy);
+-
++	joystick_scan(usejoy);
++#ifdef RG351P
++    if (strcmp(joysticks[0].Name, OSH_CONTROLLER) == false) {
++        rg351p_rumble_init();
++    }
++#endif
+ #ifdef ANDROID
+-	for(i = 0; i < MAX_POINTERS; i++)
+-    {
+-        touch_info.pstatus[i] = TOUCH_STATUS_UP;
++	for(i = 0; i < MAX_POINTERS; i++)
++    {
++        touch_info.pstatus[i] = TOUCH_STATUS_UP;
+     }
+ #endif
+-}
+-
+-void set_default_joystick_keynames(int i)
+-{
+-    int j;
++}
++
++void set_default_joystick_keynames(int i)
++{
++    int j;
+     for(j = 0; j < JOY_MAX_INPUTS + 1; j++)
+-    {
+-        if(j) strcpy(joysticks[i].KeyName[j], JoystickKeyName[j + i * JOY_MAX_INPUTS]);
++    {
++        if(j) strcpy(joysticks[i].KeyName[j], JoystickKeyName[j + i * JOY_MAX_INPUTS]);
+         else  strcpy(joysticks[i].KeyName[j], JoystickKeyName[j]);
+-    }
++    }
+ }
+-
++
+ char *control_getkeyname(unsigned int keycode)
+ {
+ 	int i;
+@@ -535,7 +568,7 @@ char *control_getkeyname(unsigned int keycode)
+ 	{
+ 		if((keycode >= (JOY_LIST_FIRST + 1 + (i * JOY_MAX_INPUTS))) && (keycode <= JOY_LIST_FIRST + JOY_MAX_INPUTS + (i * JOY_MAX_INPUTS)))
+ 			return (char*)joysticks[i].KeyName[keycode - (JOY_LIST_FIRST + (i * JOY_MAX_INPUTS))];
+-	}
++	}
+ 
+ 	if(keycode > SDLK_FIRST && keycode < SDLK_LAST)
+ 		return JOY_GetKeyName(keycode);
+@@ -551,12 +584,12 @@ int control_usejoy(int enable)
+ {
+ 	usejoy = enable;
+ 	return 0;
+-}
+-
+-#if ANDROID
+-/*
+-Get if touchscreen vibration is active
+-*/
++}
++
++#if ANDROID
++/*
++Get if touchscreen vibration is active
++*/
+ int is_touchpad_vibration_enabled()
+ {
+ 	return savedata.is_touchpad_vibration_enabled;
+@@ -595,9 +628,9 @@ void control_update_android_touch(TouchStatus *touch_info, int maxp, Uint8* keys
+ 	int i, j;
+ 	float tx, ty, tr;
+ 	float r[MAXTOUCHB];
+-	float dirx, diry, circlea, circleb, tan;
++	float dirx, diry, circlea, circleb, tan;
+ 
+-	memset(touchstates, 0, sizeof(touchstates));
++	memset(touchstates, 0, sizeof(touchstates));
+ 
+ 	for(j=0; j<MAXTOUCHB; j++)
+ 	{
+@@ -623,60 +656,60 @@ void control_update_android_touch(TouchStatus *touch_info, int maxp, Uint8* keys
+ 			if(tx<0)
+ 			{
+ 				tan = ty/tx;
+-				if(tan>=-tana && tan<=tana)
++				if(tan>=-tana && tan<=tana)
+                 {
+ 					touchstates[SDID_MOVELEFT] = 1;
+-				}
+-				else if(tan<-tanb)
++				}
++				else if(tan<-tanb)
+                 {
+ 					touchstates[SDID_MOVEDOWN] = 1;
+-				}
+-				else if(tan>tanb)
++				}
++				else if(tan>tanb)
+ 				{
+ 					touchstates[SDID_MOVEUP] = 1;
+-				}
+-				else if(ty<0)
++				}
++				else if(ty<0)
+ 				{
+ 					touchstates[SDID_MOVEUP] = touchstates[SDID_MOVELEFT] = 1;
+-				}
+-				else
++				}
++				else
+ 				{
+-					touchstates[SDID_MOVELEFT] = touchstates[SDID_MOVEDOWN] = 1;
++					touchstates[SDID_MOVELEFT] = touchstates[SDID_MOVEDOWN] = 1;
+                 }
+ 			}
+ 			else if(tx>0)
+ 			{
+ 				tan = ty/tx;
+-				if(tan>=-tana && tan<=tana)
++				if(tan>=-tana && tan<=tana)
+                 {
+ 					touchstates[SDID_MOVERIGHT] = 1;
+-				}
+-				else if(tan<-tanb)
++				}
++				else if(tan<-tanb)
+ 				{
+ 					touchstates[SDID_MOVEUP] = 1;
+-				}
+-				else if(tan>tanb)
++				}
++				else if(tan>tanb)
+                 {
+ 					touchstates[SDID_MOVEDOWN] = 1;
+-				}
+-				else if(ty<0)
++				}
++				else if(ty<0)
+                 {
+ 					touchstates[SDID_MOVEUP] = touchstates[SDID_MOVERIGHT] = 1;
+-				}
+-				else
++				}
++				else
+                 {
+-					touchstates[SDID_MOVERIGHT] = touchstates[SDID_MOVEDOWN] = 1;
++					touchstates[SDID_MOVERIGHT] = touchstates[SDID_MOVEDOWN] = 1;
+                 }
+ 			}
+ 			else
+ 			{
+-				if(ty>0)
+-				{
++				if(ty>0)
++				{
+                     touchstates[SDID_MOVEDOWN] = 1;
+-				}
+-				else
+-				{
+-				    touchstates[SDID_MOVEUP] = 1;
++				}
++				else
++				{
++				    touchstates[SDID_MOVEUP] = 1;
+                 }
+ 			}
+ 		}
+@@ -689,35 +722,35 @@ void control_update_android_touch(TouchStatus *touch_info, int maxp, Uint8* keys
+ 			tx = touch_info->px[i]-bx[j];
+ 			ty = touch_info->py[i]-by[j];
+ 			tr = tx*tx + ty*ty;
+-			if(tr<=r[j])
+-            {
+-                touchstates[j] = 1;
++			if(tr<=r[j])
++            {
++                touchstates[j] = 1;
+             }
+ 		}
+-	}
+-	#undef tana
+-	#undef tanb
++	}
++	#undef tana
++	#undef tanb
+ 
+-	hide_t = timer_gettick() + 5000;
++	hide_t = timer_gettick() + 5000;
+ 
+ 	//map to current user settings
+ 	extern s_savedata savedata;
+ 	#define pc(x) savedata.keys[0][x]
+-	keystate[pc(SDID_MOVEUP)] = touchstates[SDID_MOVEUP];
+-	keystate[pc(SDID_MOVEDOWN)] = touchstates[SDID_MOVEDOWN];
++	keystate[pc(SDID_MOVEUP)] = touchstates[SDID_MOVEUP];
++	keystate[pc(SDID_MOVEDOWN)] = touchstates[SDID_MOVEDOWN];
+ 	keystate[pc(SDID_MOVELEFT)] = touchstates[SDID_MOVELEFT];
+ 	keystate[pc(SDID_MOVERIGHT)] = touchstates[SDID_MOVERIGHT];
+ 	keystate[pc(SDID_ATTACK)] = touchstates[SDID_ATTACK];
+-	keystate[pc(SDID_ATTACK2)] = touchstates[SDID_ATTACK2];
++	keystate[pc(SDID_ATTACK2)] = touchstates[SDID_ATTACK2];
+ 	keystate[pc(SDID_ATTACK3)] = touchstates[SDID_ATTACK3];
+-	keystate[pc(SDID_ATTACK4)] = touchstates[SDID_ATTACK4];
++	keystate[pc(SDID_ATTACK4)] = touchstates[SDID_ATTACK4];
+ 	keystate[pc(SDID_JUMP)] = touchstates[SDID_JUMP];
+ 	keystate[pc(SDID_SPECIAL)] = touchstates[SDID_SPECIAL];
+ 	keystate[pc(SDID_START)] = touchstates[SDID_START];
+-	keystate[pc(SDID_SCREENSHOT)] = touchstates[SDID_SCREENSHOT];
+-	#undef pc
+-
+-	//use default value for touch key mapping
++	keystate[pc(SDID_SCREENSHOT)] = touchstates[SDID_SCREENSHOT];
++	#undef pc
++
++	//use default value for touch key mapping
+     keystate_def[default_keys[SDID_MOVEUP]]    = touchstates[SDID_MOVEUP];
+     keystate_def[default_keys[SDID_MOVEDOWN]]  = touchstates[SDID_MOVEDOWN];
+     keystate_def[default_keys[SDID_MOVELEFT]]  = touchstates[SDID_MOVELEFT];
+@@ -729,19 +762,19 @@ void control_update_android_touch(TouchStatus *touch_info, int maxp, Uint8* keys
+     keystate_def[default_keys[SDID_JUMP]]      = touchstates[SDID_JUMP];
+     keystate_def[default_keys[SDID_SPECIAL]]   = touchstates[SDID_SPECIAL];
+     keystate_def[default_keys[SDID_START]]     = touchstates[SDID_START];
+-    keystate_def[default_keys[SDID_SCREENSHOT]] = touchstates[SDID_SCREENSHOT];
+-
+-    keystate[CONTROL_ESC] = keystate_def[CONTROL_ESC] = touchstates[SDID_ESC];
+-
++    keystate_def[default_keys[SDID_SCREENSHOT]] = touchstates[SDID_SCREENSHOT];
++
++    keystate[CONTROL_ESC] = keystate_def[CONTROL_ESC] = touchstates[SDID_ESC];
++
+     return;
+-}
+-
++}
++
+ int is_touch_area(float x, float y)
+ {
+ 	int j;
+ 	float tx, ty, tr;
+ 	float r[MAXTOUCHB];
+-	float dirx, diry, circlea, circleb, tan;
++	float dirx, diry, circlea, circleb, tan;
+ 
+ 	for(j=0; j<MAXTOUCHB; j++)
+ 	{
+@@ -764,60 +797,60 @@ int is_touch_area(float x, float y)
+         if(tx<0)
+         {
+             tan = ty/tx;
+-            if(tan>=-tana && tan<=tana)
++            if(tan>=-tana && tan<=tana)
+             {
+                 return 1;
+-            }
+-            else if(tan<-tanb)
++            }
++            else if(tan<-tanb)
+             {
+                 return 1;
+-            }
+-            else if(tan>tanb)
++            }
++            else if(tan>tanb)
+             {
+                 return 1;
+-            }
+-            else if(ty<0)
++            }
++            else if(ty<0)
+             {
+                 return 1;
+-            }
+-            else
++            }
++            else
+             {
+-                return 1;
++                return 1;
+             }
+         }
+         else if(tx>0)
+         {
+             tan = ty/tx;
+-            if(tan>=-tana && tan<=tana)
++            if(tan>=-tana && tan<=tana)
+             {
+                 return 1;
+-            }
+-            else if(tan<-tanb)
++            }
++            else if(tan<-tanb)
+             {
+                 return 1;
+-            }
+-            else if(tan>tanb)
++            }
++            else if(tan>tanb)
+             {
+                 return 1;
+-            }
+-            else if(ty<0)
++            }
++            else if(ty<0)
+             {
+                 return 1;
+-            }
+-            else
++            }
++            else
+             {
+-                return 1;
++                return 1;
+             }
+         }
+         else
+         {
+-            if(ty>0)
+-            {
++            if(ty>0)
++            {
++                return 1;
++            }
++            else
++            {
+                 return 1;
+-            }
+-            else
+-            {
+-                return 1;
+             }
+         }
+     }
+@@ -830,15 +863,15 @@ int is_touch_area(float x, float y)
+         tx = x-bx[j];
+         ty = y-by[j];
+         tr = tx*tx + ty*ty;
+-        if(tr<=r[j])
+-        {
+-            return 1;
++        if(tr<=r[j])
++        {
++            return 1;
+         }
+-    }
+-	#undef tana
+-	#undef tanb
+-
+-	return 0;
++    }
++	#undef tana
++	#undef tanb
++
++	return 0;
+ }
+ #endif
+ 
+@@ -881,7 +914,7 @@ int control_scankey()
+ 	}
+ 	ready = (!k || !j);
+ 	return 0;
+-}
++}
+ 
+ void control_update(s_playercontrols ** playercontrols, int numplayers)
+ {
+@@ -890,10 +923,10 @@ void control_update(s_playercontrols ** playercontrols, int numplayers)
+ 	int player;
+ 	int t;
+ 	s_playercontrols * pcontrols;
+-	Uint8* keystate = (Uint8*)SDL_GetKeyState(NULL); // Here retrieve keyboard state
+-	Uint8* keystate_def = (Uint8*)SDL_GetKeyState(NULL); // Here retrieve keyboard state for default
++	Uint8* keystate = (Uint8*)SDL_GetKeyState(NULL); // Here retrieve keyboard state
++	Uint8* keystate_def = (Uint8*)SDL_GetKeyState(NULL); // Here retrieve keyboard state for default
+ 
+-	getPads(keystate,keystate_def);
++	getPads(keystate,keystate_def);
+ 
+ 	for(player = 0; player < numplayers; player++){
+ 
+@@ -904,22 +937,22 @@ void control_update(s_playercontrols ** playercontrols, int numplayers)
+ 		for(i = 0; i < JOY_MAX_INPUTS; i++)
+ 		{
+ 			t = pcontrols->settings[i];
+-			if(t >= SDLK_FIRST && t < SDLK_LAST){
++			if(t >= SDLK_FIRST && t < SDLK_LAST){
+                 if(keystate[t]) k |= (1<<i);
+ 			}
+-		}
+-
+-        //White Dragon: Set input from default keys overriding previous keys
+-        //Default keys are available just if no configured keys are pressed!
+-        if (player <= 0 && !k)
+-        {
++		}
++
++        //White Dragon: Set input from default keys overriding previous keys
++        //Default keys are available just if no configured keys are pressed!
++        if (player <= 0 && !k)
++        {
+             for(i = 0; i < JOY_MAX_INPUTS; i++)
+             {
+                 t = default_control.settings[i];
+-                if(t >= SDLK_FIRST && t < SDLK_LAST){
++                if(t >= SDLK_FIRST && t < SDLK_LAST){
+                     if(keystate_def[t]) k |= (1<<i);
+                 }
+-            }
++            }
+         }
+ 
+ 		if(usejoy)
+@@ -940,21 +973,28 @@ void control_update(s_playercontrols ** playercontrols, int numplayers)
+ 		}
+ 		pcontrols->kb_break = 0;
+ 		pcontrols->newkeyflags = k & (~pcontrols->keyflags);
+-		pcontrols->keyflags = k;
+-
++		pcontrols->keyflags = k;
++
+ 		//if (player <= 0) debug_printf("hats: %d, axes: %d, data: %d",joysticks[0].Hats,joysticks[0].Axes,joysticks[0].Data);
+ 	}
+ }
+ 
+ void control_rumble(int port, int ratio, int msec)
+-{
+-    #if SDL
+-    if (joystick[port] != NULL && joystick_haptic[port] != NULL) {
+-        if(SDL_HapticRumblePlay(joystick_haptic[port], ratio, msec) != 0)
+-        {
+-            //printf( "Warning: Unable to play rumble! %s\n", SDL_GetError() );
+-        }
+-    }
++{
++    #ifdef RG351P
++    if (strcmp(joysticks[port].Name, OSH_CONTROLLER) == false) {
++        rg351p_rumble_onoff(true);
++        usleep(msec * 1200);
++        rg351p_rumble_onoff(false);
++    }
++    #endif
++    #if SDL
++    if (joystick[port] != NULL && joystick_haptic[port] != NULL) {
++        if(SDL_HapticRumblePlay(joystick_haptic[port], ratio, msec) != 0)
++        {
++            //printf( "Warning: Unable to play rumble! %s\n", SDL_GetError() );
++        }
++    }
+     #endif
+ }
+ 
+diff --git a/engine/sdl/menu.c b/engine/sdl/menu.c
+index c42e9395..7f03b7b5 100644
+--- a/engine/sdl/menu.c
++++ b/engine/sdl/menu.c
+@@ -460,6 +460,9 @@ static void initMenu(int type)
+ 	bpp = 32;
+ 	savedata.hwscale = 0.0f;
+ #endif
++#ifdef RG351P
++	isWide = 1;
++#endif
+ 
+ 	pixelformat = PIXEL_x8;
+ 
+@@ -473,6 +476,11 @@ static void initMenu(int type)
+ 	videomodes.vScale = 2.0f;
+ 	savedata.hwscale = 2.0f;
+ 	savedata.hwfilter = 1;
++#endif
++#ifdef RG351P
++	videomodes.hScale = 1.0f;
++	videomodes.vScale = 1.0f;
++	savedata.hwscale = 1.0f;
+ #endif
+ 	vscreen = allocscreen(videomodes.hRes, videomodes.vRes, PIXEL_32);
+ 

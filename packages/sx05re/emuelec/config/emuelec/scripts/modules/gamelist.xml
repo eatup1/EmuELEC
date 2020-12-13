@@ -1,6 +1,15 @@
 <?xml version="1.0"?>
 <gameList>
 	<game>
+		<path>./00 - Input Test.sh</path>
+		<name>00 - RG351P Input Test</name>
+		<desc>RG351P의 Joypad를 Test합니다.</desc>
+		<developer>Anbernic</developer>
+		<publisher>Anbernic</publisher>
+		<genre>script</genre>
+		<!--image>./downloaded_images/Input Test.png</image-->
+	</game>
+	<game>
 		<path>./01 - Get ES Themes.sh</path>
 		<name>01 - ES 테마 받기</name>
 		<desc>EmuELEC 테마를 설치하는데 사용할 스크립트. 원본 저장소에서 테마를 다운로드 받아 EmuELEC 테마 폴더에 설치됩니다.</desc>

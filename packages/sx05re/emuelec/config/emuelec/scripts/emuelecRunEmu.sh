@@ -62,7 +62,7 @@ killall jslisten
 	KILLTHIS=${1}
 	sed -i "2s|program=.*|program=\"/usr/bin/killall ${1}\"|" ${JSLISTENCONF}
 	
-	}
+}
 
 # Make sure the /emuelec/logs directory exists
 if [[ ! -d "$LOGSDIR" ]]; then
@@ -145,7 +145,7 @@ case ${PLATFORM} in
 		RUNTHIS='${TBASH} /usr/bin/openbor.sh "${ROMNAME}"'
 		;;
 	"setup")
-	[[ "$EE_DEVICE" == "OdroidGoAdvance" ]] && set_kill_keys "kmscon" || set_kill_keys "fbterm"
+	[[ "$EE_DEVICE" == "OdroidGoAdvance" || "$EE_DEVICE" == "RG351P" ]] && set_kill_keys "kmscon" || set_kill_keys "fbterm"
 		RUNTHIS='${TBASH} /emuelec/scripts/fbterm.sh "${ROMNAME}"'
 		EMUELECLOG="$LOGSDIR/ee_script.log"
 		;;
@@ -384,7 +384,7 @@ if [[ "$(systemctl is-active emustation)" == "active" ]]; then
 fi 
 
 # Kill jslisten, we don't need to but just to make sure, dot not kill if using OdroidGoAdvance
-[[ "$EE_DEVICE" != "OdroidGoAdvance" ]] && killall jslisten
+[[ "$EE_DEVICE" != "OdroidGoAdvance" && "$EE_DEVICE" != "RG351P" ]] && killall jslisten
 
 # Just for good measure lets make a symlink to Retroarch logs if it exists
 if [[ -f "/storage/.config/retroarch/retroarch.log" ]] && [[ ! -e "${LOGSDIR}/retroarch.log" ]]; then

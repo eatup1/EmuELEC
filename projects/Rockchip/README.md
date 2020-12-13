@@ -4,6 +4,10 @@ This project is for Rockchip SoC devices
 
 ## Devices
 
+**RK3326**
+* [HardKernel OdroidGoAdvance](devices/OdroidGoAdvance)
+* [Anbernic RG351P](devices/RG351P)
+
 **RK3288**
 * [ASUS Tinker Board](devices/TinkerBoard)
 * [mqmaker MiQi](devices/MiQi)

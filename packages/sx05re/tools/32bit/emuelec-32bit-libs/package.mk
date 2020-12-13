@@ -16,7 +16,7 @@ PKG_TOOLCHAIN="manual"
 
 makeinstall_target() {
   mkdir -p $INSTALL
-if [[ "$DEVICE" == "OdroidGoAdvance" ]]; then
+if [[ "$DEVICE" == "OdroidGoAdvance" || "$DEVICE" == "RG351P" ]]; then
 	cp "$(get_build_dir mali-bifrost)/lib/arm-linux-gnueabihf/libmali-bifrost-g31-rxp0-gbm.so" $PKG_BUILD/OdroidGoAdvance/usr/config/emuelec/lib32/libmali.so
 	cp -rf $PKG_BUILD/OdroidGoAdvance/* $INSTALL/
 elif [[ "$PROJECT" == "Amlogic-ng" ]]; then
