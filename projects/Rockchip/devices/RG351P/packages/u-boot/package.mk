@@ -21,10 +21,10 @@ case "$PROJECT" in
   Rockchip)
   if [ "$DEVICE" == "OdroidGoAdvance" -o "$DEVICE" == "RG351P" ]; then
     # This is specific for the Rk3326 on the Odroid-Go Advance
-    PKG_VERSION="533d602e342547a91b6b3815cdcefcd477e2b63b"
-    PKG_SHA256="9f3ba385ab1f0e764440b4fa9a12a95fc497b4d62842e4e296400abbb399e413"
+    PKG_VERSION="ac38b3f81d20b551eef5c230d7e87e7d5058e561"
+    PKG_SHA256="79214fbc55af629a874fda6df544d9643d2e805a47c7a3cdb0954b76aed3afff"
     PKG_URL="https://github.com/hardkernel/u-boot/archive/$PKG_VERSION.tar.gz"
-    PKG_PATCH_DIRS="OdroidGoAdvance"
+	PKG_PATCH_DIRS="${DEVICE}"
   else
     PKG_VERSION="8659d08d2b589693d121c1298484e861b7dafc4f"
     PKG_SHA256="3f9f2bbd0c28be6d7d6eb909823fee5728da023aca0ce37aef3c8f67d1179ec1"
@@ -51,11 +51,6 @@ post_patch() {
 }
 
 make_target() {
-  if [ "$DEVICE" == "RG351P" ]; then
-    cp $PKG_BUILD/configs/odroidgo2_defconfig $PKG_BUILD/configs/rg351p_defconfig
-#    cp $PKG_BUILD/include/configs/odroidgo2.h $PKG_BUILD/include/configs/rg351p.h
-#    cp $PKG_BUILD/arch/arm/dts/rk3326-odroidgo2-linux*.* $PKG_BUILD/arch/arm/dts/rk3326-rg351p-linux*.*
-  fi
   if [ -z "$UBOOT_SYSTEM" ]; then
     echo "UBOOT_SYSTEM must be set to build an image"
     echo "see './scripts/uboot_helper' for more information"
