@@ -120,19 +120,27 @@
 	<game>
 		<path>./14 - YouTube Search.sh</path>
 		<name>14 - 유튜브 검색</name>
-		<desc>유튜브를 검색합니다. 키보드가 필요합니다!</desc>
+		<desc>EmuELEC 설정 메뉴에 미리 정의 된 단어를 기반으로 빠른 YouTube 검색을 수행합니다.</desc>
 		<developer>shantigilbert </developer>
 		<publisher>Emuelec</publisher>
 		<genre>script</genre>
-		<!--image>./downloaded_images/youtube.png</image-->
+		<image>./downloaded_images/youtube.png</image>
 	</game>
 	<game>
 		<path>./15 - Bluetooth controller management.sh</path>
 		<name>15 - 블루투스 컨트롤러 관리</name>
-		<desc>블루투스 컨트롤러 관리합니다.</desc>
+		<desc>Bluetooth 설정 메뉴</desc>
 		<developer>shantigilbert </developer>
 		<publisher>Emuelec</publisher>
 		<genre>script</genre>
-		<!--image>./downloaded_images/bluetooth.png</image-->
+		<image>./downloaded_images/bluetooth.png</image>
+	<game>
+		<path>./16 - Scan ScummVM Games.sh</path>
+		<name>16 - ScummVM 게임 스캔</name>
+		<desc>Scummvm을 스캔하여 게임 목록에 추가합니다!</desc>
+		<developer>shantigilbert </developer>
+		<publisher>Emuelec</publisher>
+		<genre>script</genre>
+		<image>./downloaded_images/scummvm.png</image>
 	</game>
 </gameList>
