@@ -29,13 +29,13 @@ UTILLINUX_CONFIG_DEFAULT="--disable-gtk-doc \
                           --disable-use-tty-group \
                           --disable-makeinstall-chown \
                           --disable-makeinstall-setuid \
-                          --enable-widechar \
+                          --disable-widechar \
                           --with-gnu-ld \
                           --without-selinux \
                           --without-audit \
                           --without-udev \
-                          --without-ncurses \
-                          --with-ncursesw \
+                          --with-ncurses \
+                          --without-ncursesw \
                           --without-readline \
                           --without-slang \
                           --without-tinfo \
