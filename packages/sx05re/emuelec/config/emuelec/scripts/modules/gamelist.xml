@@ -143,6 +143,7 @@
 		<publisher>Emuelec</publisher>
 		<genre>script</genre>
 		<image>./downloaded_images/bluetooth.png</image>
+	</game>
 	<game>
 		<path>./16 - Scan ScummVM Games.sh</path>
 		<name>16 - ScummVM 게임 스캔</name>
