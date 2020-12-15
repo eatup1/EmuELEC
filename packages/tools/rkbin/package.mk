@@ -2,7 +2,7 @@
 # Copyright (C) 2017-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="rkbin"
-if [ "$DEVICE" == "OdroidGoAdvance" -o "$DEVICE" == "RG351P" ]; then
+if [ "$DEVICE" == "OdroidGoAdvance" -o "$DEVICE" == "RG351P" ] || [ "$DEVICE" == "GameForce" ]; then
 PKG_VERSION="0bb1c512492386a72a3a0b5a0e18e49c636577b9"
 PKG_SHA256="aa37452788219a1fb10ef3cb62b55baccf6baee2b63b9fdc1bfebc2d6fac22e0"
 else

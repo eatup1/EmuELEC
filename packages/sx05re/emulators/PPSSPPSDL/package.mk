@@ -30,7 +30,7 @@ fi
 
 
 pre_configure_target() {
-if [ "$DEVICE" == "OdroidGoAdvance" -o "$DEVICE" == "RG351P" ]; then
+if [ "$DEVICE" == "OdroidGoAdvance" -o "$DEVICE" == "RG351P" ] || [ "$DEVICE" == "GameForce" ]; then
 	sed -i "s|include_directories(/usr/include/drm)|include_directories(${SYSROOT_PREFIX}/usr/include/drm)|" $PKG_BUILD/CMakeLists.txt
 fi
 }

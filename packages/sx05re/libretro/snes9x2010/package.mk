@@ -37,7 +37,7 @@ PKG_TOOLCHAIN="make"
 PKG_AUTORECONF="no"
 
 make_target() {
-  if [ "$DEVICE" == "OdroidGoAdvance" -o "$DEVICE" == "RG351P" ] && [ "$ARCH" == "arm" ]; then
+if ([ "$DEVICE" == "OdroidGoAdvance" -o "$DEVICE" == "RG351P" ] || [ "$DEVICE" == "GameForce" ]) && [ "$ARCH" == "arm" ]; then
   make -f Makefile.libretro platform=goa_armv8_a35
   else
   make -f Makefile.libretro

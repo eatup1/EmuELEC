@@ -19,7 +19,7 @@ if [[ "$ARCH" == "arm" ]]; then
 	PKG_PATCH_DIRS="${ARCH}"
 	PKG_MAKE_OPTS_TARGET=" platform=${PROJECT}"
 	
-	if [ "${DEVICE}" == "OdroidGoAdvance" -o "${DEVICE}" == "RG351P" ]; then
+	if [ "${DEVICE}" == "OdroidGoAdvance" -o "${DEVICE}" == "RG351P" ] || [ "$DEVICE" == "GameForce" ]; then
 		PKG_MAKE_OPTS_TARGET=" platform=Odroidgoa"
 	fi
 else

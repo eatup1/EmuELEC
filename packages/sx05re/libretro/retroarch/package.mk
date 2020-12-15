@@ -35,9 +35,12 @@ if [ ${PROJECT} = "Amlogic" ]; then
   PKG_PATCH_DIRS="${PROJECT}"
 fi
 
-if [ "$DEVICE" == "OdroidGoAdvance" -o "$DEVICE" == "RG351P" ]; then
+if [ "$DEVICE" == "OdroidGoAdvance" -o "$DEVICE" == "RG351P" ] || [ "$DEVICE" == "GameForce" ]; then
 PKG_DEPENDS_TARGET+=" libdrm librga"
-  PKG_PATCH_DIRS="${DEVICE}"
+  PKG_PATCH_DIRS="OdroidGoAdvance"
+  if [ "$DEVICE" == "RG351P" ]; then
+    PKG_PATCH_DIRS="${DEVICE}"
+  fi
 fi
 
 # Pulseaudio Support
@@ -67,14 +70,17 @@ PKG_CONFIGURE_OPTS_TARGET="--disable-qt \
                            --enable-sdl2 \
                            --enable-ffmpeg"
 
-if [ "$DEVICE" == "OdroidGoAdvance" -o "$DEVICE" == "RG351P" ]; then
+if [ "$DEVICE" == "OdroidGoAdvance" -o "$DEVICE" == "RG351P" ] || [ "$DEVICE" == "GameForce" ]; then; then
 PKG_CONFIGURE_OPTS_TARGET+=" --enable-opengles3 \
                            --enable-kms \
-                           --disable-mali_fbdev \
-                           --enable-odroidgo2"
+                           --disable-mali_fbdev"
 else
 PKG_CONFIGURE_OPTS_TARGET+=" --disable-kms \
                            --enable-mali_fbdev"
+fi
+
+if [ "$DEVICE" == "OdroidGoAdvance" ]; then
+PKG_CONFIGURE_OPTS_TARGET+=" --enable-odroidgo2"
 fi
 
 if [ $ARCH == "arm" ]; then
@@ -150,7 +156,7 @@ fi
   sed -i -e "s/# video_gpu_screenshot = true/video_gpu_screenshot = false/" $INSTALL/etc/retroarch.cfg
   sed -i -e "s/# video_fullscreen = false/video_fullscreen = true/" $INSTALL/etc/retroarch.cfg
 
-if [ "$DEVICE" == "OdroidGoAdvance" -o "$DEVICE" == "RG351P" ]; then
+if [ "$DEVICE" == "OdroidGoAdvance" -o "$DEVICE" == "RG351P" ] || [ "$DEVICE" == "GameForce" ]; then
     echo "xmb_layout = 2" >> $INSTALL/etc/retroarch.cfg
     echo "menu_widget_scale_auto = false" >> $INSTALL/etc/retroarch.cfg
     echo "menu_widget_scale_factor = 2.00" >> $INSTALL/etc/retroarch.cfg

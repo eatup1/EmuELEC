@@ -11,9 +11,14 @@ PKG_TOOLCHAIN="manual"
 
 makeinstall_target() {
 
-if [ "$DEVICE" == "OdroidGoAdvance" -o "$DEVICE" == "RG351P" ]; then
 	mkdir -p $INSTALL/usr/share/bootloader
-	cp ./$DEVICE/boot.ini $INSTALL/usr/share/bootloader
+	
+if [ "$DEVICE" == "OdroidGoAdvance" ]; then
+	cp boot_oga.ini $INSTALL/usr/share/bootloader/boot.ini
+elif [ "$DEVICE" == "RG351P" ]; then
+	cp boot_rg351p.ini $INSTALL/usr/share/bootloader/boot.ini
+elif [ "$DEVICE" == "GameForce" ]; then
+	cp boot_gameforce.ini $INSTALL/usr/share/bootloader/boot.ini
 fi
 
 }

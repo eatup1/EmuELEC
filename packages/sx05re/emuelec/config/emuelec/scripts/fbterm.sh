@@ -8,7 +8,7 @@ source /emuelec/scriptmodules/helpers.sh
 
 EE_DEVICE=$(cat /ee_arch)
 
-if [ "$EE_DEVICE" == "OdroidGoAdvance" -o "$EE_DEVICE" == "RG351P" ]; then
+if [ "$EE_DEVICE" == "OdroidGoAdvance" -o "$EE_DEVICE" == "RG351P" ] || [ "$EE_DEVICE" == "GameForce" ]; then
 	#kmscon
 	if [[ "${1}" == *"13 - Launch Terminal (kb).sh"* ]]; then
 		kmscon --font-size 8 --login /usr/bin/login -- -p -f root 

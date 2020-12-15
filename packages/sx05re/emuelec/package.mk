@@ -34,7 +34,7 @@ fi
 if [ "$DEVICE" == "RG351P" ]; then
     PKG_DEPENDS_TARGET+=" RG351P_input-test"
 fi
-if [ "$DEVICE" == "OdroidGoAdvance" -o "$DEVICE" == "RG351P" ]; then
+if [ "$DEVICE" == "OdroidGoAdvance" -o "$DEVICE" == "RG351P" ] || [ "$DEVICE" == "GameForce" ]; then
     PKG_DEPENDS_TARGET+=" kmscon odroidgoa-utils rs97-commander-sdl2"
     
     #we disable some cores that are not working or work poorly on OGA
@@ -99,7 +99,7 @@ makeinstall_target() {
       echo "s905" > $INSTALL/ee_s905
   fi
   
-  if [ "$DEVICE" == "OdroidGoAdvance" -o "$DEVICE" == "RG351P" ]; then
+  if [ "$DEVICE" == "OdroidGoAdvance" -o "$DEVICE" == "RG351P" ] || [ "$DEVICE" == "GameForce" ]; then
       echo "$DEVICE" > $INSTALL/ee_arch
   else
       echo "$PROJECT" > $INSTALL/ee_arch
@@ -161,7 +161,7 @@ cp -r $PKG_DIR/gamepads/* $INSTALL/etc/retroarch-joypad-autoconfig
 CORESFILE="$INSTALL/usr/config/emulationstation/es_systems.cfg"
 
 if [ "${PROJECT}" != "Amlogic-ng" ]; then
-    if [[ ${DEVICE} == "OdroidGoAdvance" || ${DEVICE} == "RG351P" ]]; then
+    if [[ ${DEVICE} == "OdroidGoAdvance" || ${DEVICE} == "RG351P" || "$DEVICE" == "GameForce" ]]; then
         remove_cores="mesen-s quicknes REICASTSA_OLD REICASTSA mame2016 mesen"
     elif [ "${PROJECT}" == "Amlogic" ]; then
         remove_cores="mesen-s quicknes mame2016 mesen"
@@ -181,7 +181,7 @@ if [[ ${DEVICE} == "RG351P" ]]; then
 fi
 
   # Remove scripts from OdroidGoAdvance build
-	if [[ ${DEVICE} == "OdroidGoAdvance" || ${DEVICE} == "RG351P" ]]; then 
+	if [[ ${DEVICE} == "OdroidGoAdvance" || ${DEVICE} == "RG351P" || "$DEVICE" == "GameForce" ]]; then 
 	for i in "01 - Get ES Themes" "03 - wifi" "10 - Force Update" "04 - Configure Reicast" "06 - Sselphs scraper" "07 - Skyscraper" "09 - system info"; do 
 	xmlstarlet ed -L -P -d "/gameList/game[name='${i}']" $INSTALL/usr/config/emuelec/scripts/modules/gamelist.xml
 	rm "$INSTALL/usr/config/emuelec/scripts/modules/${i}.sh"

@@ -53,7 +53,7 @@ pre_configure_target() {
     ;;
   esac
  
- if [ "$DEVICE" == "OdroidGoAdvance" -o "$DEVICE" == "RG351P" ]; then 
+ if [ "$DEVICE" == "OdroidGoAdvance" -o "$DEVICE" == "RG351P" ] || [ "$DEVICE" == "GameForce" ]; then 
 	if [[ "$ARCH" == "arm" ]]; then
 		CFLAGS="$CFLAGS -DLINUX -DEGL_API_FB"
 		CPPFLAGS="$CPPFLAGS -DLINUX -DEGL_API_FB"

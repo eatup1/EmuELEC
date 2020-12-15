@@ -2,7 +2,7 @@
 # Copyright (C) 2019-present Shanti Gilbert (https://github.com/shantigilbert)
 
 PKG_NAME="emuelec-emulationstation"
-PKG_VERSION="d6ab10bc2476b5c1cf3e77f0788a2e931904e6e0"
+PKG_VERSION="f3b6e1a24601e1690e38973932017e1a92f1ff37"
 PKG_GIT_CLONE_BRANCH="EmuELEC"
 PKG_REV="1"
 PKG_ARCH="any"
@@ -20,6 +20,10 @@ GET_HANDLER_SUPPORT="git"
 PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET Crystal es-theme-EmuELEC-carbon"
 
 PKG_CMAKE_OPTS_TARGET=" -DENABLE_EMUELEC=1 -DDISABLE_KODI=1 -DENABLE_FILEMANAGER=1"
+
+if [[ ${DEVICE} == "GameForce" ]]; then
+PKG_CMAKE_OPTS_TARGET+=" -DENABLE_GAMEFORCE=1"
+fi
 
 makeinstall_target() {
 	mkdir -p $INSTALL/usr/config/emuelec/configs/locale/i18n/charmaps
@@ -67,7 +71,7 @@ post_install() {
 	enable_service emustation.service
 	mkdir -p $INSTALL/usr/share
 	ln -sf /storage/.config/emuelec/configs/locale $INSTALL/usr/share/locale
-	if [ "$DEVICE" == "OdroidgoAdvance" ]; then
+	if [ "$DEVICE" == "OdroidgoAdvance" ] || [ "$DEVICE" == "GameForce" ]; then
 		mv $INSTALL/usr/config/emulationstation/scripts/drastic/config/drastic.cfg_oga $INSTALL/usr/config/emulationstation/scripts/drastic/config/drastic.cfg
 	elif [ "$DEVICE" == "RG351P" ]; then
 		mv $INSTALL/usr/config/emulationstation/scripts/drastic/config/drastic.cfg_rg351p $INSTALL/usr/config/emulationstation/scripts/drastic/config/drastic.cfg

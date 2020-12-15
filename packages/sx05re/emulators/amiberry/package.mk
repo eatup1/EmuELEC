@@ -33,7 +33,7 @@ pre_configure_target() {
       ;;
   esac
  
-if [ "$DEVICE" == "OdroidGoAdvance" -o "$DEVICE" == "RG351P" ]; then
+if [ "$DEVICE" == "OdroidGoAdvance" -o "$DEVICE" == "RG351P" ] || [ "$DEVICE" == "GameForce" ]; then
 if [ $ARCH == "arm" ]; then
 AMIBERRY_PLATFORM="RK3326"
 else 
