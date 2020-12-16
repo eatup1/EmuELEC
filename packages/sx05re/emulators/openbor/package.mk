@@ -2,8 +2,8 @@
 # Copyright (C) 2019-present Shanti Gilbert (https://github.com/shantigilbert)
 
 PKG_NAME="openbor"
-PKG_VERSION="e7614649b4a20a8b974618c74c2ddef0198ebed3"
-PKG_SHA256="5999731ddc6af10db5df1e00d283ea70a7dde4ef1535fe72cf270489cc6e61ac"
+PKG_VERSION="d9ff4596baad6da6e1bbd1002bc9879974ff365d"
+PKG_SHA256="09f06f7f54fe0d7f3fe4f3dffbc3efa92da4662e87a9e03aab99754a6684c593"
 PKG_ARCH="any"
 PKG_SITE="https://github.com/DCurrent/openbor"
 PKG_URL="$PKG_SITE/archive/$PKG_VERSION.tar.gz"
@@ -23,8 +23,8 @@ else
 	PKG_PATCH_DIRS="emuelec-aarch64"
 fi
 
-if [ "$ARCH" == "aarch64" -a "$DEVICE" == "RG351P" ]; then
-PKG_PATCH_DIRS="RG351P"
+if [ "$DEVICE" == "RG351P" ]; then
+  PKG_PATCH_DIRS="RG351P"
 fi
 
 pre_configure_target() {
@@ -35,6 +35,9 @@ pre_configure_target() {
 }
 
 pre_make_target() {
+  #### Fix compile error in commit version e761464 ####
+  sed -i "s|O_BINARY, per) == -1)|O_BINARY, per)) == -1)|" $PKG_BUILD/engine/source/gamelib/packfile.c
+  #####################################################
 cd $PKG_BUILD/engine
 ./version.sh
 }

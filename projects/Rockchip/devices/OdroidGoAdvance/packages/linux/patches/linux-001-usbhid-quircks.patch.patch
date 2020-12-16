@@ -1,10 +1,10 @@
 diff --git a/drivers/hid/usbhid/hid-quirks.c b/drivers/hid/usbhid/hid-quirks.c
-index e6cfd32..7aa0ff0 100644
+index 5dcdfdca4fd7..fac70be411eb 100644
 --- a/drivers/hid/usbhid/hid-quirks.c
 +++ b/drivers/hid/usbhid/hid-quirks.c
-@@ -163,6 +163,53 @@ static const struct hid_blacklist {
- 	{ USB_VENDOR_ID_DRACAL_RAPHNET, USB_DEVICE_ID_RAPHNET_2NES2SNES, HID_QUIRK_MULTI_INPUT },
+@@ -155,6 +155,53 @@ static const struct hid_blacklist {
  	{ USB_VENDOR_ID_DRACAL_RAPHNET, USB_DEVICE_ID_RAPHNET_4NES4SNES, HID_QUIRK_MULTI_INPUT },
+ 	{ USB_VENDOR_ID_INNOMEDIA, USB_DEVICE_ID_INNEX_GENESIS_ATARI, HID_QUIRK_MULTI_INPUT },
  
 +// Juyao
 +	{ 0x0314,0x0326,0x040 },
@@ -56,4 +56,3 @@ index e6cfd32..7aa0ff0 100644
  	{ 0, 0 }
  };
  
-
