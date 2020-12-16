@@ -32,12 +32,12 @@ pre_configure_target() {
                         -C ${PKG_BUILD}/engine \
                         SDKPATH="${SYSROOT_PREFIX}"
                         PREFIX=${TARGET_NAME}"
-}
-
-pre_make_target() {
   #### Fix compile error in commit version e761464 ####
   sed -i "s|O_BINARY, per) == -1)|O_BINARY, per)) == -1)|" $PKG_BUILD/engine/source/gamelib/packfile.c
   #####################################################
+}
+
+pre_make_target() {
 cd $PKG_BUILD/engine
 ./version.sh
 }
