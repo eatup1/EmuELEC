@@ -35,12 +35,12 @@ if [ ${PROJECT} = "Amlogic" ]; then
   PKG_PATCH_DIRS="${PROJECT}"
 fi
 
-if [ "$DEVICE" == "OdroidGoAdvance" -o "$DEVICE" == "RG351P" ] || [ "$DEVICE" == "GameForce" ]; then
-PKG_DEPENDS_TARGET+=" libdrm librga"
+if [ "$DEVICE" == "OdroidGoAdvance" ] || [ "$DEVICE" == "GameForce" ]; then
+  PKG_DEPENDS_TARGET+=" libdrm librga"
   PKG_PATCH_DIRS="OdroidGoAdvance"
-  if [ "$DEVICE" == "RG351P" ]; then
-    PKG_PATCH_DIRS="${DEVICE}"
-  fi
+elif [ "$DEVICE" == "RG351P" ]; then
+  PKG_DEPENDS_TARGET+=" libdrm librga"
+  PKG_PATCH_DIRS="RG351P"
 fi
 
 # Pulseaudio Support
@@ -79,7 +79,7 @@ PKG_CONFIGURE_OPTS_TARGET+=" --disable-kms \
                            --enable-mali_fbdev"
 fi
 
-if [ "$DEVICE" == "OdroidGoAdvance" ]; then
+if [ "$DEVICE" == "OdroidGoAdvance" -o "$DEVICE" == "RG351P" ]; then
 PKG_CONFIGURE_OPTS_TARGET+=" --enable-odroidgo2"
 fi
 
