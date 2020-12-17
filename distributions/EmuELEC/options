@@ -11,14 +11,14 @@
   DISTRONAME="EmuELEC"
 
 # short project description
-  DESCRIPTION="Retro emulation for the RG351P"
+  DESCRIPTION="Retro emulation for Amlogic Devices."
 
 # Welcome Message for e.g. SSH Server (up to 5 Lines)
-  GREETING0="#########################################"
-  GREETING1="#                 EmuELEC               #"
-  GREETING2="#     Retro emulation for the RG351P    #"
-  GREETING3="#             Based on CoreELEC         #"
-  GREETING4="#########################################"
+  GREETING0="##############################################"
+  GREETING1="#                 EmuELEC                    #"
+  GREETING2="#     Retro emulation for Amlogic Devices    #"
+  GREETING3="#             Based on CoreELEC              #"
+  GREETING4="##############################################"
 
 # Root password to integrate in the target system
   ROOT_PASSWORD="emuelec"
