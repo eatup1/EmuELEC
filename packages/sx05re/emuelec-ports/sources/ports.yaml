@@ -211,6 +211,7 @@ Duke Nukem 3D:
   developer: 3D Realms
   publisher: FormGen
 
+  check_bios: eduke32
   init_port: true
   port_exe: "eduke32"
   audio: "alsa"
