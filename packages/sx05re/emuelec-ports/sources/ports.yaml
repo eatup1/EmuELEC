@@ -218,3 +218,14 @@ Duke Nukem 3D:
   commands:
     - cd /storage/roms/ports/eduke
     - ${PORT}
+
+MineCraft:
+  name: 마인크래프트 PSP 에디션
+  description: 비평가들의 찬사를받은 Minecraft가 PSP 시스템에 추가되었습니다. 나만의 세계를 만들고 건설하고 탐험하고 정복하세요. 세상은 당신의 상상력에 의해서만 제한됩니다!
+  rating: 0.8
+  release_date: 20201020T000000
+  developer: invisibros
+  publisher: GNU 2.0
+
+  commands:
+    - /emuelec/scripts/emuelecRunEmu.sh "/storage/roms/ports/minecraft/EBOOT.PBP" -Pports "${2}" -Cppsspp "-SC${0}"
