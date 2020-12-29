@@ -1,7 +1,5 @@
 diff --git a/drivers/input/evdev.c b/drivers/input/evdev.c
-old mode 100644
-new mode 100755
-index e9ae3d500a55..36169e00da72
+index e9ae3d500a55..39e2e4bd27be 100644
 --- a/drivers/input/evdev.c
 +++ b/drivers/input/evdev.c
 @@ -15,6 +15,15 @@
@@ -29,7 +27,7 @@ index e9ae3d500a55..36169e00da72
  
  	switch (type) {
  
-@@ -824,6 +833,32 @@ static int handle_eviocgbit(struct input_dev *dev,
+@@ -824,6 +833,34 @@ static int handle_eviocgbit(struct input_dev *dev,
  	default: return -EINVAL;
  	}
  
@@ -57,12 +55,14 @@ index e9ae3d500a55..36169e00da72
 +			dev->absinfo[ABS_RX].maximum = RG351P_ABS_RX_MAX;
 +			dev->absinfo[ABS_RZ].minimum = RG351P_ABS_RZ_MIN;	// Analog2 Y
 +			dev->absinfo[ABS_RZ].maximum = RG351P_ABS_RZ_MAX;
++		} else if (type == EV_MSC) {
++			clear_bit(MSC_SCAN, bits);
 +		}
 +	}
  	return bits_to_user(bits, len, size, p, compat_mode);
  }
  
-@@ -1238,6 +1273,31 @@ static long evdev_do_ioctl(struct file *file, unsigned int cmd,
+@@ -1238,6 +1275,31 @@ static long evdev_do_ioctl(struct file *file, unsigned int cmd,
  
  			t = _IOC_NR(cmd) & ABS_MAX;
  			abs = dev->absinfo[t];
@@ -95,9 +95,7 @@ index e9ae3d500a55..36169e00da72
  			if (copy_to_user(p, &abs, min_t(size_t,
  					size, sizeof(struct input_absinfo))))
 diff --git a/drivers/input/joydev.c b/drivers/input/joydev.c
-old mode 100644
-new mode 100755
-index 5d11fea3c8ec..e45ac874e7f1
+index 5d11fea3c8ec..e45ac874e7f1 100644
 --- a/drivers/input/joydev.c
 +++ b/drivers/input/joydev.c
 @@ -601,6 +601,12 @@ static long joydev_compat_ioctl(struct file *file,
