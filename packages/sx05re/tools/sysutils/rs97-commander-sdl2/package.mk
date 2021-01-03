@@ -25,7 +25,11 @@ sed -i "s|LINEH := 15|LINEH := 17|" Makefile
 sed -i "s|VIEWER_LINE_H := 13|VIEWER_LINE_H := 15|" Makefile
 sed -i "s|Fiery_Turk.ttf|NanumGothic.ttf|" Makefile
 
-[[ "$DEVICE" == "OdroidGoAdvance" || "$DEVICE" == "RG351P" ]] && OGA=1 || OGA=0
+OGA=0
+
+if [[ "$DEVICE" == "OdroidGoAdvance" || "$DEVICE" == "RG351P" || "$DEVICE" == "GameForce" ]]; then
+	OGA=1
+fi
 
 PKG_MAKE_OPTS_TARGET=" ODROIDGO=${OGA} CC=$CXX"
 	
