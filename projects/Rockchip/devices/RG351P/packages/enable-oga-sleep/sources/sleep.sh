@@ -1,7 +1,5 @@
 #!/bin/bash
 
-OGA=$(cat /proc/device-tree/compatible)
-
 case $1 in
    pre)
     # Store sound state. Try to avoid having max volume after resume

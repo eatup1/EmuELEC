@@ -8,7 +8,7 @@ if [ "$DEVICE" = "RK3328" -o "$DEVICE" = "RK3399" ]; then
   PKG_SOC="${DEVICE/RK/rk}"
 fi
 
-if [ "$DEVICE" == "OdroidGoAdvance" -o "$DEVICE" == "RG351P" ]; then
+if [ "$DEVICE" == "RG351P" ]; then
   PKG_SOC="px30"
 fi
 
@@ -59,7 +59,7 @@ if [ -n "$PKG_LOAD_ADDR" ]; then
 fi
 
 
-if [ $DEVICE = "OdroidGoAdvance" -o $DEVICE == "RG351P" ]; then
+if [ $DEVICE = "RG351P" ]; then
 if [ -n "$PKG_BL31" ]; then
   cat >trust.ini <<EOF
 [VERSION]
@@ -113,6 +113,11 @@ mkdir -p $INSTALL/usr/share/bootloader/extlinux
 
 LINUX_DTS_DIR=$(get_build_dir linux)/.install_pkg/usr/share/bootloader
   for dtb in $LINUX_DTS_DIR/*.dtb; do
+  
+if [ "${dtb}" == *"*.dtb" ]; then
+ continue
+fi
+  
 cat << EOF > "${LE_TMP}/extlinux/$(basename ${dtb}).conf"
 LABEL ${DISTRO}
   LINUX /${KERNEL_NAME}

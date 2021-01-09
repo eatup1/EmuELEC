@@ -23,8 +23,8 @@ case "$LINUX" in
     PKG_SOURCE_NAME="linux-$LINUX-$PKG_VERSION.tar.gz"
     ;;
   rg351p-4.4)
-    PKG_VERSION="6cd3fd65eb26aea3e2f005c8a2d0cfe382dcf5a8"
-    PKG_SHA256="2082c1ab2a85e5e0e310d0bd0f0ffebd1b5b8f5e2813c077fd5a5e518fbf442c"
+    PKG_VERSION="27829d277f8ff5c46fafa4c265d0100ac1466b02"
+    PKG_SHA256="de14a57cb2c94257c06ced71f10dd28e754adfe41867a970581a0d1e442fe57a"
     PKG_URL="https://github.com/hardkernel/linux/archive/$PKG_VERSION.tar.gz"
     PKG_SOURCE_NAME="linux-$LINUX-$PKG_VERSION.tar.gz"
     ;;
