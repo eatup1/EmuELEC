@@ -204,7 +204,7 @@ VVVVVV:
     - cd /storage/.config/SDL-GameControllerDB/
     - ${PORT}
 
-Duke Nukem 3D:
+Duke Nukem:
   name: 듀크 뉴켐 3D
   description: Duke Nukem 3D는 3D Realms에서 개발 한 1 인칭 슈팅 비디오 게임이다. 3D Realms에서 발행 한 플랫폼 게임 Duke Nukem 및 Duke Nukem II의 속편이다. Duke Nukem 3D는 지구에서 외계인의 침공에 맞서 싸우는 Jon St. John이 목소리를 맡은 Duke Nukem의 모험을 특징으로 한다.
   rating: 1.0
@@ -251,7 +251,8 @@ Bermuda Syndrome:
     - ${PORT} --datapath=/storage/roms/ports/bermuda/ --fullscreen --widescreen=4:3
 
 RigelEngine:
-  description: RigelEngine is an open-source recreation of the 2D side-scroller Duke Nukem II, originally released by Apogee in 1993.
+  name: 듀크 뉴켐 II(RigelEngine)
+  description: RigelEngine은 1993 년 Apogee에서 처음 출시 한 2D 사이드 스크롤러 Duke Nukem II를 오픈 소스로 재현 한 것입니다.
   rating: 1.0
   release_date: 1993
   developer: Apogee Software
