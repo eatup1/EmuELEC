@@ -1,8 +1,8 @@
 diff --git a/theme.xml b/theme.xml
-index 0a0dfa3..9890772 100644
+index 694d9a7..96629af 100644
 --- a/theme.xml
 +++ b/theme.xml
-@@ -547,7 +547,7 @@ originally based on: "simple" by nils bonenberger
+@@ -608,7 +608,7 @@ originally based on: "simple" by nils bonenberger
        </storyboard>
      </text>
        
@@ -11,12 +11,13 @@ index 0a0dfa3..9890772 100644
        <color>969696</color>
        <forceUppercase>0</forceUppercase>
        <fontPath>./art/Cabin-Regular.ttf</fontPath>
-@@ -588,13 +588,22 @@ originally based on: "simple" by nils bonenberger
-       <unfilledColor>808080</unfilledColor>
+@@ -653,14 +653,23 @@ originally based on: "simple" by nils bonenberger
+   <unfilledPath>:/star_filled.svg</unfilledPath>
      </rating>
      <text name="md_lbl_players">
 -      <pos>0.9 0.645</pos>
 +      <pos>0.67 0.645</pos>
+       <pos verticalScreen="true">0.85 0.645</pos>
        <size>0.09 0</size>
      </text>
      <text name="md_players">
@@ -37,12 +38,12 @@ index 0a0dfa3..9890772 100644
      </text>
      <text name="md_lbl_releasedate">
        <color>969696</color>
-@@ -603,7 +612,7 @@ originally based on: "simple" by nils bonenberger
+@@ -669,7 +678,7 @@ originally based on: "simple" by nils bonenberger
      </text>
      <datetime name="md_releasedate">
        <color>EFEFFF</color>
 -      <pos>0.645 0.645</pos>
 +      <pos>0.605 0.645</pos>
+       <pos verticalScreen="true">0.7 0.645</pos>
        <size>0 0.033</size>
      </datetime>
-     <text name="md_description">
