@@ -212,6 +212,10 @@ case ${PLATFORM} in
 		fi
 		fi
 		;;
+	"solarus")
+		set_kill_keys "solarus-run"
+		RUNTHIS='${TBASH} /usr/bin/solarus.sh "${ROMNAME}"'
+			;;
 	"daphne")
 		if [ "$EMU" = "HYPSEUS" ]; then
             set_kill_keys "hypseus"
@@ -276,7 +280,7 @@ fi
 # Check if we need retroarch 32 bits or 64 bits
 RABIN="retroarch"
 if [[ "${PLATFORM}" == "psx" ]] || [[ "${PLATFORM}" == "n64" ]]; then
-    if [[ "$CORE" == "pcsx_rearmed" ]] || [[ "$CORE" == "parallel_n64" ]]; then
+    if [[ "$CORE" == "pcsx_rearmed" ]] || [[ "$CORE" == "parallel_n64" ]] || [[ "$CORE" == "mupen64plus" ]] ; then
         RABIN="retroarch32" 
         LD_LIBRARY_PATH="/emuelec/lib32:$LD_LIBRARY_PATH"
     fi
