@@ -19,7 +19,7 @@
 ################################################################################
 
 PKG_NAME="retroarch"
-PKG_VERSION="7b90da4af72b7b6448abd86d91a98130fa2c5b1c"
+PKG_VERSION="7450f049e72dd3388dfed2439c1af73e088e4fd9"
 PKG_SITE="https://github.com/libretro/RetroArch"
 PKG_URL="$PKG_SITE.git"
 PKG_LICENSE="GPLv3"
@@ -33,10 +33,6 @@ fi
 
 if [ ${PROJECT} = "Amlogic" ]; then
   PKG_PATCH_DIRS="${PROJECT}"
-fi
-
-if [ "$DEVICE" == "OdroidGoAdvance" ]; then
-  PKG_PATCH_DIRS="OdroidGoAdvance"
 fi
 
 if [ "$DEVICE" == "OdroidGoAdvance" ] || [ "$DEVICE" == "GameForce" ]; then
@@ -54,7 +50,7 @@ fi
 
 pre_configure_target() {
 # Retroarch does not like -O3 for CHD loading with cheevos
-export CFLAGS="`echo $CFLAGS | sed -e "s|-O.|-O2|g"`"
+export CFLAGS="$CFLAGS -O3 -fno-tree-vectorize"
 
 TARGET_CONFIGURE_OPTS=""
 PKG_CONFIGURE_OPTS_TARGET="--disable-qt \
@@ -160,22 +156,6 @@ fi
   sed -i -e "s/# video_gpu_screenshot = true/video_gpu_screenshot = false/" $INSTALL/etc/retroarch.cfg
   sed -i -e "s/# video_fullscreen = false/video_fullscreen = true/" $INSTALL/etc/retroarch.cfg
 
-if [ "$DEVICE" == "OdroidGoAdvance" -o "$DEVICE" == "RG351P" ] || [ "$DEVICE" == "GameForce" ]; then
-    echo "xmb_layout = 2" >> $INSTALL/etc/retroarch.cfg
-    echo "menu_widget_scale_auto = false" >> $INSTALL/etc/retroarch.cfg
-    echo "menu_widget_scale_factor = 2.00" >> $INSTALL/etc/retroarch.cfg
-    echo "menu_scale_factor = 1.250000" >> $INSTALL/etc/retroarch.cfg
-    echo "video_font_size = 12.000000" >> $INSTALL/etc/retroarch.cfg
-    echo "menu_show_advanced_settings = true" >> $INSTALL/etc/retroarch.cfg
-    echo "menu_rgui_shadows = true" >> $INSTALL/etc/retroarch.cfg
-    echo "rgui_aspect_ratio = 6" >> $INSTALL/etc/retroarch.cfg
-    echo "rgui_inline_thumbnails = true" >> $INSTALL/etc/retroarch.cfg
-    echo "input_max_users = 1" >> $INSTALL/etc/retroarch.cfg
-    echo "menu_show_reboot = true" >> $INSTALL/etc/retroarch.cfg
-    echo "menu_show_shutdown = true" >> $INSTALL/etc/retroarch.cfg
-
-fi
-
   # Audio
   sed -i -e "s/# audio_driver =/audio_driver = \"alsathread\"/" $INSTALL/etc/retroarch.cfg
   sed -i -e "s/# audio_filter_dir =/audio_filter_dir =\/usr\/share\/audio_filters/" $INSTALL/etc/retroarch.cfg
@@ -237,7 +217,19 @@ fi
   echo "input_player4_analog_dpad_mode = \"1\"" >> $INSTALL/etc/retroarch.cfg
   echo "savefiles_in_content_dir = \"true\"" >> $INSTALL/etc/retroarch.cfg
   echo "savestates_in_content_dir = \"true\"" >> $INSTALL/etc/retroarch.cfg
- 
+
+if [ "$DEVICE" == "OdroidGoAdvance" -o "$DEVICE" == "RG351P" ] || [ "$DEVICE" == "GameForce" ]; then
+    echo "xmb_layout = 2" >> $INSTALL/etc/retroarch.cfg
+    echo "menu_widget_scale_auto = false" >> $INSTALL/etc/retroarch.cfg
+    echo "menu_widget_scale_factor = 2.00" >> $INSTALL/etc/retroarch.cfg
+    echo "menu_scale_factor = 1.250000" >> $INSTALL/etc/retroarch.cfg
+    echo "video_font_size = 12.000000" >> $INSTALL/etc/retroarch.cfg
+    echo "menu_rgui_shadows = true" >> $INSTALL/etc/retroarch.cfg
+    echo "rgui_aspect_ratio = 6" >> $INSTALL/etc/retroarch.cfg
+    echo "rgui_inline_thumbnails = true" >> $INSTALL/etc/retroarch.cfg
+    echo "input_max_users = 1" >> $INSTALL/etc/retroarch.cfg
+fi
+
   mkdir -p $INSTALL/usr/config/retroarch/
   mv $INSTALL/etc/retroarch.cfg $INSTALL/usr/config/retroarch/
   
