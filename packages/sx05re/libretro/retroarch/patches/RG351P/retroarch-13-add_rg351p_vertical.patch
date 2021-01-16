@@ -2,9 +2,9 @@ diff --git a/gfx/drivers/oga_gfx.c b/gfx/drivers/oga_gfx.c
 index 0a78328454..9e73462c37 100644
 --- a/gfx/drivers/oga_gfx.c
 +++ b/gfx/drivers/oga_gfx.c
-@@ -619,15 +619,21 @@ static bool oga_gfx_frame(void *data, const void *frame, unsigned width,
+@@ -612,15 +612,21 @@ static bool oga_gfx_frame(void *data, const void *frame, unsigned width,
        oga_rect_t r;
-       oga_calc_bounds(&r, width, height, aspect_ratio);
+       oga_calc_bounds(&r, vid->drm_width, vid->drm_height, width, height, aspect_ratio, vid->display_ar);
        oga_blit(vid->menu_surface, 0, 0, width, height,
 -            page_surface, r.y, r.x, r.h, r.w, HAL_TRANSFORM_ROT_270, vid->scale_mode, 0);
 +            page_surface, r.y, r.x, r.h, r.w, config_get_ptr()->bools.video_oga_vertical_enable ? HAL_TRANSFORM_ROT_180 : HAL_TRANSFORM_ROT_270, vid->scale_mode, 0);
@@ -28,7 +28,7 @@ index 0a78328454..9e73462c37 100644
     }
  
     if (unlikely(drmModeSetCrtc(vid->fd, vid->crtc_id, page->fb_id, 0, 0, &vid->connector_id, 1, &vid->mode) != 0))
-@@ -724,6 +730,8 @@ void oga_set_rotation(void *data, unsigned rotation)
+@@ -717,6 +723,8 @@ static void oga_set_rotation(void *data, unsigned rotation)
     if (!vid)
        return;
  
@@ -38,7 +38,7 @@ index 0a78328454..9e73462c37 100644
     {
     case 0:
 diff --git a/gfx/drivers_context/drm_go2_ctx.c b/gfx/drivers_context/drm_go2_ctx.c
-index 7daa4c9cbb..ab62980f3a 100644
+index d21cb44d8d..08c040bb65 100644
 --- a/gfx/drivers_context/drm_go2_ctx.c
 +++ b/gfx/drivers_context/drm_go2_ctx.c
 @@ -325,7 +325,7 @@ static void gfx_ctx_go2_drm_swap_buffers(void *data)
