@@ -2,7 +2,7 @@
 # Copyright (C) 2019-present Shanti Gilbert (https://github.com/shantigilbert)
 
 PKG_NAME="emuelec-emulationstation"
-PKG_VERSION="99b23428e4575313ef1bdce19eb8e3127ade0970"
+PKG_VERSION="4df6d89b1fb32a84183006c7e322725b79d7e934"
 PKG_GIT_CLONE_BRANCH="EmuELEC"
 PKG_REV="1"
 PKG_ARCH="any"
@@ -65,8 +65,8 @@ makeinstall_target() {
         sed -i "s|</config>|	<bool name=\"StopMusicOnScreenSaver\" value=\"false\" />\n</config>|g" "$INSTALL/usr/config/emulationstation/es_settings.cfg"
     fi
 
-    if [[ "${DEVICE}" == "OdroidGoAdvance" ]] || [[ "${DEVICE}" == "GameForce" ]]; then
-        sed -i "s|<\/config>|	<string name=\"GamelistViewStyle\" value=\"Small Screen\" />\n<string name=\"ThemeSystemView\" value=\"classic\" />\n<\/config>|g" "$INSTALL/usr/config/emulationstation/es_settings.cfg"
+    if [[ "${DEVICE}" == "OdroidGoAdvance" ]] || [[ "${DEVICE}" == "RG351P" ]] || [[ "${DEVICE}" == "GameForce" ]]; then
+        sed -i "s|<\/config>|	<string name=\"GamelistViewStyle\" value=\"Small Screen\" />\n<string name=\"ThemeSystemView\" value=\"panel\" />\n<\/config>|g" "$INSTALL/usr/config/emulationstation/es_settings.cfg"
     fi
     
     
@@ -76,7 +76,7 @@ post_install() {
 	enable_service emustation.service
 	mkdir -p $INSTALL/usr/share
 	ln -sf /storage/.config/emuelec/configs/locale $INSTALL/usr/share/locale
-	if [ "$DEVICE" == "OdroidgoAdvance" ] || [ "$DEVICE" == "GameForce" ]; then
+	if [ "$DEVICE" == "OdroidGoAdvance" ] || [ "$DEVICE" == "GameForce" ]; then
 		mv $INSTALL/usr/config/emulationstation/scripts/drastic/config/drastic.cfg_oga $INSTALL/usr/config/emulationstation/scripts/drastic/config/drastic.cfg
 	elif [ "$DEVICE" == "RG351P" ]; then
 		mv $INSTALL/usr/config/emulationstation/scripts/drastic/config/drastic.cfg_rg351p $INSTALL/usr/config/emulationstation/scripts/drastic/config/drastic.cfg
