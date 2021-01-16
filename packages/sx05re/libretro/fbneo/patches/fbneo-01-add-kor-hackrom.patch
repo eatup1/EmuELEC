@@ -1,8 +1,871 @@
+diff --git a/gamelist.txt b/gamelist.txt
+index 434ba6f46..c6e95b08e 100644
+--- a/gamelist.txt
++++ b/gamelist.txt
+@@ -1,6 +1,6 @@
+ This list contains all games supported by FinalBurn Neo.
+ 
+-15905 games supported in total; X = excluded from build; D = included in debug build only; NW = not working
++16032 games supported in total; X = excluded from build; D = included in debug build only; NW = not working
+ 
+   name		  status  full name						  parent	  year	  company	  hardware	  remarks
+ +---------------+-------+-------------------------------------------------------+---------------+-------+---------------+---------------+---------------------------------------+
+@@ -482,6 +482,7 @@ This list contains all games supported by FinalBurn Neo.
+ | spec_aliensuk	|  	| Aliens UK						| 		| 1986	| Electric Dream| ZX Spectrum	| 					|
+ | spec_aliensus	|  	| Aliens US						| 		| 1987	| Electric Dream| ZX Spectrum	| 					|
+ | md_alisiad	|  	| Alisia Dragoon (Euro)					| 		| 1992	| Sega		| Sega Megadrive| 					|
++| md_alisiadk	|  	| Alisia Dragoon (Hack, Korean)				| md_alisiad	| 2013	| Game Arts	| Sega Megadrive| 					|
+ | md_alisiads	|  	| Alisia Dragoon (Hack, Spanish)			| md_alisiad	| 2018	| Sega		| Sega Megadrive| 					|
+ | md_alisiadj	|  	| Alisia Dragoon (Jpn)					| md_alisiad	| 1992	| Game Arts	| Sega Megadrive| 					|
+ | md_alisiadu	|  	| Alisia Dragoon (USA)					| md_alisiad	| 1992	| Sega		| Sega Megadrive| 					|
+@@ -715,15 +716,19 @@ This list contains all games supported by FinalBurn Neo.
+ | md_arrowp	|  	| Arrow Flash (USA, Prototype)				| md_arrow	| 1990	| Renovation	| Sega Megadrive| 					|
+ | md_arrow	|  	| Arrow Flash (World)					| 		| 1990	| Sega		| Sega Megadrive| 					|
+ | md_artalive	|  	| Art Alive (World)					| 		| 1991	| Sega		| Sega Megadrive| 					|
++| aofb		|  	| Art of Fighting (Boss Hack)				| aof		| 1992	| SNK		| Neo Geo MVS	| 					|
+ | md_aof	|  	| Art of Fighting (Euro)				| 		| 1994	| Sega		| Sega Megadrive| 					|
+ | md_aofec	|  	| Art of Fighting (Hack, Enhanced Colors)		| md_aof	| 2015	| Sega - Pyron	| Sega Megadrive| 					|
+ | md_aofs	|  	| Art Of Fighting (Hack, Spanish)			| md_aof	| 2019	| SNK		| Sega Megadrive| 					|
++| aofk		|  	| Art of Fighting (Korean Patch, Boss Hack)		| aof		| 2016	| SNK		| Neo Geo MVS	| 					|
+ | md_aofp	|  	| Art of Fighting (Prototype, 19940711)			| md_aof	| 1994	| Sega		| Sega Megadrive| 					|
+ | md_aofu	|  	| Art of Fighting (USA)					| md_aof	| 1994	| Sega		| Sega Megadrive| 					|
+ | aof		|  	| Art of Fighting / Ryuuko no Ken (NGM-044)(NGH-044)	| 		| 1992	| SNK		| Neo Geo MVS	| 					|
++| aof2b		|  	| Art of Fighting 2 (Boss Hack)				| aof2		| 1994	| SNK		| Neo Geo MVS	| 					|
+ | aof2bh	|  	| Art of Fighting 2 / Ryuuko no Ken 2 (Enable hidden cha| aof2		| 1994	| Yumeji	| Neo Geo MVS	| 					|
+ | aof2a		|  	| Art of Fighting 2 / Ryuuko no Ken 2 (NGH-056)		| aof2		| 1994	| SNK		| Neo Geo MVS	| 					|
+ | aof2		|  	| Art of Fighting 2 / Ryuuko no Ken 2 (NGM-056)		| 		| 1994	| SNK		| Neo Geo MVS	| 					|
++| aof3b		|  	| Art of Fighting 3 - The Path of the Warrior (Boss Hack| aof3		| 1996	| SNK		| Neo Geo MVS	| 					|
+ | aof3k		|  	| Art of Fighting 3 - The Path of the Warrior (Korean re| aof3		| 1996	| SNK		| Neo Geo MVS	| 					|
+ | aof3bh	|  	| Art of Fighting 3 - The Path of the Warrior / Art of F| aof3		| 1996	| Yumeji	| Neo Geo MVS	| 					|
+ | aof3		|  	| Art of Fighting 3 - The Path of the Warrior / Art of F| 		| 1996	| SNK		| Neo Geo MVS	| 					|
+@@ -1006,6 +1011,7 @@ This list contains all games supported by FinalBurn Neo.
+ | spec_bandito	|  	| Bandito (HB)						| 		| 2020	| Andy McDermott| ZX Spectrum	| 					|
+ | bangball	|  	| Bang Bang Ball (v1.05)				| 		| 1996	| Banpresto / Ku| Miscellaneous	| 					|
+ | b2b		|  	| Bang Bang Busters (2010 NCI release)			| 		| 2000	| Visco		| Neo Geo MVS	| 					|
++| bangbnd	|  	| Bang Bead (Fully Decrypted)				| bangbead	| 2000	| Visco		| Neo Geo MVS	| 					|
+ | bangbedp	|  	| Bang Bead (Prototype?)				| bangbead	| 2000	| Visco		| Neo Geo MVS	| 					|
+ | bangbead	|  	| Bang Bead						| 		| 2000	| Visco		| Neo Geo MVS	| 					|
+ | bang		|  	| Bang!							| 		| 1998	| Gaelco	| Miscellaneous	| 					|
+@@ -1130,6 +1136,7 @@ This list contains all games supported by FinalBurn Neo.
+ | bcruzm12	|  	| Battle Cruiser M-12					| 		| 1983	| Sigma Enterpri| Miscellaneous	| 					|
+ | btlfieldb	|  	| Battle Field (bootleg)				| timesold	| 1987	| bootleg	| Alpha 68k	| no-rotation joystick ver		|
+ | btlfield	|  	| Battle Field (Japan)					| timesold	| 1987	| Alpha Denshi C| Alpha 68k	| 					|
++| flipshtk	|  	| Battle Flip Shot (Korean)				| flipshot	| 2005	| Visco		| Neo Geo MVS	| 					|
+ | flipshot	|  	| Battle Flip Shot					| 		| 1998	| Visco		| Neo Geo MVS	| 					|
+ | nes_battleformula|  	| Battle Formula (Japan)				| 		| 1991	| Sunsoft	| Miscellaneous	| 					|
+ | bgareggahk	|  	| Battle Garegga (Austria / Hong Kong) (Sat Feb 3 1996)	| bgaregga	| 1996	| Raizing / 8ing| Toaplan GP9001| 					|
+@@ -1371,6 +1378,7 @@ This list contains all games supported by FinalBurn Neo.
+ | nes_blackboxcha|  	| Black Box Challenge (HB)				| 		| 2017	| Sly Dog Studio| Miscellaneous	| 					|
+ | blkdrgonb	|  	| Black Dragon (bootleg)				| blktiger	| 1987	| bootleg	| Miscellaneous	| 					|
+ | blkdrgon	|  	| Black Dragon (Japan)					| blktiger	| 1987	| Capcom	| Miscellaneous	| 					|
++| blkdrgnk	|  	| Black Dragon (Korean)					| blktiger	| 1987	| Capcom	| Miscellaneous	| 					|
+ | blkheartj	|  	| Black Heart (Japan)					| blkheart	| 1991	| UPL		| NMK16		| 					|
+ | blkheart	|  	| Black Heart						| 		| 1991	| UPL		| NMK16		| 					|
+ | blkhole	|  	| Black Hole						| 		| 1981	| TDS		| Galaxian	| 					|
+@@ -1675,6 +1683,8 @@ This list contains all games supported by FinalBurn Neo.
+ | msx_breakoutt	|  	| Break Out!						| 		| 1985	| Toshiba-EMI	| MSX		| 					|
+ | brkthru	|  	| Break Thru (US)					| 		| 1986	| Data East USA	| Miscellaneous	| 					|
+ | msx_breaker	|  	| Breaker Breaker (Euro)				| 		| 1988	| Eurosoft	| MSX		| 					|
++| breakerb	|  	| Breakers (Boss Hack)					| breakers	| 1996	| Visco		| Neo Geo MVS	| 					|
++| breakreb	|  	| Breakers Revenge (Boss Hack)				| breakrev	| 1998	| Visco		| Neo Geo MVS	| 					|
+ | breakrevbh	|  	| Breakers Revenge - Boss Hack (Bai-Hu)			| breakrev	| 1998	| hack		| Neo Geo MVS	| 					|
+ | brkrevext	|  	| Breakers Revenge - Extra Mode (Hack)			| breakrev	| 2018	| Visco		| Neo Geo MVS	| 					|
+ | breakrev	|  	| Breakers Revenge					| 		| 1998	| Visco		| Neo Geo MVS	| 					|
+@@ -1994,6 +2004,7 @@ This list contains all games supported by FinalBurn Neo.
+ | captcommr1	|  	| Captain Commando (911014 World)			| captcomm	| 1991	| Capcom	| CPS1		| 					|
+ | captcommj	|  	| Captain Commando (911202 Japan)			| captcomm	| 1991	| Capcom	| CPS1		| 					|
+ | captcomm	|  	| Captain Commando (911202 World)			| 		| 1991	| Capcom	| CPS1		| 					|
++| captcommv4	|  	| Captain Commando (911202 World, 1 vs 4 Hack)		| captcomm	| 1991	| Capcom	| CPS1		| 					|
+ | captcommb	|  	| Captain Commando (bootleg set 1, 911014 other country)| captcomm	| 1991	| bootleg	| CPS1		| 					|
+ | captcommb2	|   NW	| Captain Commando (bootleg set 2 (with 2xMSM5205), 9110| captcomm	| 1991	| bootleg	| CPS1		| unemulated graphics			|
+ | captcommb3	|  	| Captain Commando (bootleg set 3 (with YM2151 + 2xMSM52| captcomm	| 1991	| bootleg	| CPS1		| 					|
+@@ -2615,6 +2626,7 @@ This list contains all games supported by FinalBurn Neo.
+ | md_contra	|  	| Contra - Hard Corps (USA, Kor)			| 		| 1994	| Konami	| Sega Megadrive| 					|
+ | nes_contrredfalwar|  	| Contra - Red Falcon War (USA)				| nes_contra	| 1989?	| Nintendo	| Miscellaneous	| 					|
+ | nes_contrrevredfal|  	| Contra - Revenge of the Red Falcon (USA)		| nes_contra	| 1989?	| Nintendo	| Miscellaneous	| 					|
++| md_contrak	|  	| Contra - The Hard Corps (Hack, Korean)		| md_contra	| 2013	| Konami	| Sega Megadrive| 					|
+ | md_contraj	|  	| Contra - The Hard Corps (Jpn)				| md_contra	| 1994	| Konami	| Sega Megadrive| 					|
+ | nes_contra168in1|  	| Contra 168-in-1 (Unl)					| 		| 1989?	| Nintendo	| Miscellaneous	| 					|
+ | nes_contraforcec|  	| Contra Force (2nd option, T-Chi)			| nes_contraforce| 2018	| Konami	| Miscellaneous	| 					|
+@@ -2679,9 +2691,9 @@ This list contains all games supported by FinalBurn Neo.
+ | msx_cosmoexpa	|  	| Cosmo-Explorer (Jpn, Alt)				| msx_cosmoexp	| 1985	| Sony		| MSX		| 					|
+ | cottong	|  	| Cotocoto Cottong					| locomotn	| 1982	| bootleg	| Miscellaneous	| 					|
+ | cottonjad	|  	| Cotton (set 1, Japan, Rev A, FD1094 317-0179a decrypte| cotton	| 1991	| Success / Sega| System 16B	| 					|
+-| cottonja	|  	| Cotton (set 1, Japan, Rev A, FD1094 317-0179a))	| cotton	| 1991	| Success / Sega| System 16B	| 					|
++| cottonja	|  	| Cotton (set 1, Japan, Rev A, FD1094 317-0179a)	| cotton	| 1991	| Success / Sega| System 16B	| 					|
+ | cottonjd	|  	| Cotton (set 2, Japan, Rev B, FD1094 317-0179b decrypte| cotton	| 1991	| Success / Sega| System 16B	| 					|
+-| cottonj	|  	| Cotton (set 2, Japan, Rev B, FD1094 317-0179b))	| cotton	| 1991	| Success / Sega| System 16B	| 					|
++| cottonj	|  	| Cotton (set 2, Japan, Rev B, FD1094 317-0179b)	| cotton	| 1991	| Success / Sega| System 16B	| 					|
+ | cottonud	|  	| Cotton (set 2, US, FD1094 317-0180 decrypted)		| cotton	| 1991	| Success / Sega| System 16B	| 					|
+ | cottonu	|  	| Cotton (set 2, US, FD1094 317-0180)			| cotton	| 1991	| Success / Sega| System 16B	| 					|
+ | cottond	|  	| Cotton (set 3, World, FD1094 317-0181a decrypted)	| cotton	| 1991	| Success / Sega| System 16B	| 					|
+@@ -3514,7 +3526,7 @@ This list contains all games supported by FinalBurn Neo.
+ | msx_ddragon	|  	| Double Dragon (Kor)					| 		| 1989	| Zemina	| MSX		| 					|
+ | sms_ddragonk	|  	| Double Dragon (Kor)					| sms_ddragon	| 198?	| Samsung	| Sega Master Sy| 					|
+ | doubledr	|  	| Double Dragon (Neo-Geo)				| 		| 1995	| Technos	| Neo Geo MVS	| 					|
+-| doubledrsp	| D	| Double Dragon (Special 2017, hack)			| doubledr	| 2017	| hack		| Neo Geo MVS	| 					|
++| doubledrsp	|  	| Double Dragon (Special 2017, hack)			| doubledr	| 2017	| hack		| Neo Geo MVS	| 					|
+ | ddragonu	|  	| Double Dragon (US set 1)				| ddragon	| 1987	| [Technos] (Tai| Miscellaneous	| 					|
+ | ddragonua	|  	| Double Dragon (US set 2)				| ddragon	| 1987	| [Technos] (Tai| Miscellaneous	| 					|
+ | ddragonub	|  	| Double Dragon (US set 3)				| ddragon	| 1987	| [Technos] (Tai| Miscellaneous	| 					|
+@@ -3786,6 +3798,7 @@ This list contains all games supported by FinalBurn Neo.
+ | ddsomh	|  	| Dungeons & Dragons - shadow over mystara (960223 Hispa| ddsom		| 1996	| Capcom	| CPS2		| 					|
+ | ddsomjr2	|  	| Dungeons & Dragons - shadow over mystara (960223 Japan| ddsom		| 1996	| Capcom	| CPS2		| 					|
+ | ddsoma	|  	| Dungeons & Dragons - shadow over mystara (960619 Asia)| ddsom		| 1996	| Capcom	| CPS2		| 					|
++| ddsomav4	|  	| Dungeons & Dragons - shadow over mystara (960619 Asia,| ddsom		| 1996	| Capcom	| CPS2		| 					|
+ | ddsom		|  	| Dungeons & Dragons - shadow over mystara (960619 Euro)| 		| 1996	| Capcom	| CPS2		| 					|
+ | ddsomj	|  	| Dungeons & Dragons - shadow over mystara (960619 Japan| ddsom		| 1996	| Capcom	| CPS2		| 					|
+ | ddsomud	|  	| Dungeons & Dragons - shadow over mystara (960619 USA P| ddsom		| 1996	| bootleg	| CPS2		| 					|
+@@ -3958,11 +3971,13 @@ This list contains all games supported by FinalBurn Neo.
+ | efdt		|  	| El Fin Del Tiempo					| 		| 1981	| Niemer	| Miscellaneous	| 					|
+ | msx_sideral	|  	| El Motorista Sideral (Spa)				| 		| 1986	| Anaya Multimed| MSX		| 					|
+ | msx_mundoper	|  	| El Mundo Perdido (Spa)				| 		| 1988	| Topo Soft	| MSX		| 					|
++| md_elvientok	|  	| El Viento (Hack, Korean)				| md_elviento	| 2009	| Wolf Team	| Sega Megadrive| 					|
+ | md_elvientos	|  	| El Viento (Hack, Spanish)				| md_elviento	| 2018	| Wolf Team	| Sega Megadrive| 					|
+ | md_elvientoj	|  	| El Viento (Jpn)					| md_elviento	| 1991	| Wolf Team	| Sega Megadrive| 					|
+ | md_elviento	|  	| El Viento (USA)					| 		| 1991	| Renovation	| Sega Megadrive| 					|
+ | fds_electrician1|  	| Electrician (Japan)					| fds_electrician| 1989?	| Nintendo	| Miscellaneous	| 					|
+ | fds_electrician|  	| Electrician (T-eng)					| 		| 1989?	| Nintendo	| Miscellaneous	| 					|
++| md_elemastk	|  	| Elemental Master (Hack, Korean)			| md_elemast	| 2013	| Technosoft	| Sega Megadrive| 					|
+ | md_elemastj	|  	| Elemental Master (Jpn)				| md_elemast	| 1990	| Technosoft	| Sega Megadrive| 					|
+ | md_elemast	|  	| Elemental Master (USA)				| 		| 1993	| Renovation	| Sega Megadrive| 					|
+ | elevator	|  	| Elevator Action (BA3, 4 pcb version, 1.1)		| 		| 1983	| Taito Corporat| Taito SJ Syste| 					|
+@@ -4108,6 +4123,7 @@ This list contains all games supported by FinalBurn Neo.
+ | exerizerb	|  	| Exerizer (Japan) (bootleg)				| skyfox	| 1987	| Jaleco	| Miscellaneous	| 					|
+ | exerizer	|  	| Exerizer (Japan)					| skyfox	| 1987	| Jaleco	| Miscellaneous	| 					|
+ | md_exile	|  	| Exile (USA)						| 		| 1991	| Renovation	| Sega Megadrive| 					|
++| md_exilek	|  	| Exile - Toki no Hazama e (Hack, Korean)		| md_exile	| 2018	| Riot		| Sega Megadrive| 					|
+ | md_exilej	|  	| Exile - Toki no Hazama e (Jpn)			| md_exile	| 1991	| Riot		| Sega Megadrive| 					|
+ | md_exosquad	|  	| Exo Squad (Euro)					| 		| 1995	| Virgin Interac| Sega Megadrive| 					|
+ | md_exosquadu	|  	| Exo Squad (USA)					| md_exosquad	| 1995	| Playmates Inte| Sega Megadrive| 					|
+@@ -4296,6 +4312,7 @@ This list contains all games supported by FinalBurn Neo.
+ | tg_fantzone	|  	| Fantasy Zone						| 		| 1989	| NEC		| TurboGrafx 16	| 					|
+ | fantazia	|  	| Fantazia (bootleg?)					| mooncrst	| 1980	| bootleg (Subel| Galaxian	| 					|
+ | kabukiklb	|  	| Far East of Eden - Kabuki Klash / Tengai Makyou - Shin| kabukikl	| 1995	| Ydmis / Creamy| Neo Geo MVS	| 					|
++| kabukikb	|  	| Far East of Eden - Kabuki Klash / Tengai Makyou - Shin| kabukikl	| 1995	| Hudson	| Neo Geo MVS	| 					|
+ | kabukikl	|  	| Far East of Eden - Kabuki Klash / Tengai Makyou - Shin| 		| 1995	| Hudson	| Neo Geo MVS	| 					|
+ | farwest	| D NW	| Far West						| ironhors	| 1986	| bootleg?	| GX560		| 					|
+ | nes_faria	|  	| Faria - A World of Mystery & Danger! (USA)		| 		| 1991	| Nexoft	| Miscellaneous	| 					|
+@@ -4312,16 +4329,20 @@ This list contains all games supported by FinalBurn Neo.
+ | md_fastest1	|  	| Fastest 1 (Jpn)					| 		| 1991	| Human Entertai| Sega Megadrive| 					|
+ | md_fatfury	|  	| Fatal Fury (Euro, Kor)				| 		| 1993	| Sega		| Sega Megadrive| 					|
+ | md_fatfuryu	|  	| Fatal Fury (USA)					| md_fatfury	| 1993	| Takara	| Sega Megadrive| 					|
++| fatfur1h	|  	| Fatal Fury - King of Fighters (Hidden Hack)		| fatfury1	| 1992	| SNK		| Neo Geo MVS	| 					|
+ | fatfury1bh	|  	| Fatal Fury - King of Fighters / Garou Densetsu - shuku| fatfury1	| 1992	| SNK		| Neo Geo MVS	| 					|
+ | fatfury1	|  	| Fatal Fury - King of Fighters / Garou Densetsu - shuku| 		| 1992	| SNK		| Neo Geo MVS	| 					|
+ | md_fatfury2ec	|  	| Fatal Fury 2 (Hack, Enhanced Colors v4.0)		| md_fatfury2	| 2015	| Takara - Pyron| Sega Megadrive| 					|
++| fatfur2h	|  	| Fatal Fury 2 (Hidden Hack)				| fatfury2	| 1992	| SNK		| Neo Geo MVS	| 					|
+ | md_fatfury2	|  	| Fatal Fury 2 (USA, Kor)				| 		| 1994	| Takara	| Sega Megadrive| 					|
+ | fatfury2	|  	| Fatal Fury 2 / Garou Densetsu 2 - arata-naru tatakai (| 		| 1992	| SNK		| Neo Geo MVS	| 					|
+ | fatfury2a	|  	| Fatal Fury 2 / Garou Densetsu 2 - arata-naru tatakai (| fatfury2	| 1992	| SNK		| Neo Geo MVS	| 					|
++| fatfur3b	|  	| Fatal Fury 3 - Road to the Final Victory (Boss Hack)	| fatfury3	| 1995	| SNK		| Neo Geo MVS	| 					|
+ | fatfury3bh	|  	| Fatal Fury 3 - Road to the Final Victory / Garou Dense| fatfury3	| 1995	| Yumeji	| Neo Geo MVS	| 					|
+ | fatfury3a	|  	| Fatal Fury 3 - Road to the Final Victory / Garou Dense| fatfury3	| 1995	| SNK		| Neo Geo MVS	| 					|
+ | fatfury3	|  	| Fatal Fury 3 - Road to the Final Victory / Garou Dense| 		| 1995	| SNK		| Neo Geo MVS	| 					|
+ | gg_fatfursp	|  	| Fatal Fury Special (Euro)				| 		| 1994	| Takara	| Sega Game Gear| 					|
++| fatfursh	|  	| Fatal Fury Special (Hidden Hack)			| fatfursp	| 1993	| SNK		| Neo Geo MVS	| 					|
+ | gg_fatfurspu	|  	| Fatal Fury Special (USA)				| gg_fatfursp	| 1994	| Takara	| Sega Game Gear| 					|
+ | fatfurspbs	|  	| Fatal Fury Special / Garou Densetsu Special (Optional | fatfursp	| 1993	| Yumeji	| Neo Geo MVS	| 					|
+ | fatfursp	|  	| Fatal Fury Special / Garou Densetsu Special (set 1)(NG| 		| 1993	| SNK		| Neo Geo MVS	| 					|
+@@ -4379,6 +4400,7 @@ This list contains all games supported by FinalBurn Neo.
+ | md_fifa99	|  	| FIFA Soccer 99 (Pirate)				| md_fifa96	| 199?	| <unlicensed>	| Sega Megadrive| 					|
+ | md_fifa2k10	|  	| FIFA World Cup - South Africa 2010 (Rus)		| md_fifa	| 199?	| <unknown>	| Sega Megadrive| 					|
+ | md_fifa2k2	|  	| FIFA World Cup 2002 (Rus)				| md_wcs2	| 199?	| Glorysun	| Sega Megadrive| 					|
++| fightfeb	|  	| Fight Fever (Boss Hack)				| fightfev	| 1994	| Viccom	| Neo Geo MVS	| 					|
+ | fightfev	|  	| Fight Fever (set 1)					| 		| 1994	| Viccom	| Neo Geo MVS	| 					|
+ | fightfeva	|  	| Fight Fever (set 2)					| fightfev	| 1994	| Viccom	| Neo Geo MVS	| 					|
+ | fghthistjb	|  	| Fighter's History (Japan ver 41-04, DE-0380-1 PCB)	| fghthist	| 1993	| Data East Corp| DECO 32	| 					|
+@@ -4436,10 +4458,12 @@ This list contains all games supported by FinalBurn Neo.
+ | ffightj3	|  	| Final Fight (900405 Japan)				| ffight	| 1989	| Capcom	| CPS1		| 					|
+ | ffightub	|  	| Final Fight (900424 USA)				| ffight	| 1989	| Capcom	| CPS1		| 					|
+ | ffightj4	|  	| Final Fight (900613 Japan)				| ffight	| 1989	| Capcom	| CPS1		| 					|
++| ffgtj4v2	|  	| Final Fight (900613 Japan, 1 vs 2 Hack)		| ffight	| 1989	| Capcom	| CPS1		| 					|
+ | ffightuc	|  	| Final Fight (900613 USA)				| ffight	| 1989	| Capcom	| CPS1		| 					|
+ | ffightbl	|  	| Final Fight (bootleg set 1 (with 2xYM2203 + 2xMSM5205)| ffight	| 1990	| bootleg	| CPS1		| 					|
+ | ffightbla	|  	| Final Fight (bootleg set 2 (with 2xYM2203 + 2xMSM5205)| ffight	| 1990	| bootleg	| CPS1		| 					|
+ | ffightj	|  	| Final Fight (Japan)					| ffight	| 1989	| Capcom	| CPS1		| 					|
++| ffgtj2sp	|  	| Final Fight (Super Plus Hack, 900305 Japan)		| ffight	| 1989	| Capcom	| CPS1		| 					|
+ | ffightu	|  	| Final Fight (USA, set 1)				| ffight	| 1989	| Capcom	| CPS1		| 					|
+ | ffightu1	|  	| Final Fight (USA, set 2)				| ffight	| 1989	| Capcom	| CPS1		| 					|
+ | ffightu2	|  	| Final Fight (USA, set 3)				| ffight	| 1989	| Capcom	| CPS1		| 					|
+@@ -4581,7 +4605,7 @@ This list contains all games supported by FinalBurn Neo.
+ | nes_flea	|  	| FLEA! (HB)						| 		| 2020	| Lowtek	| Miscellaneous	| 					|
+ | nes_fleademo	|  	| FLEA! demo (HB)					| nes_flea	| 2019	| Lowtek	| Miscellaneous	| 					|
+ | flicky	|  	| Flicky (128k Version, 315-5051)			| 		| 1984	| Sega		| System 1	| 					|
+-| flickya	|  	| Flicky (128k Version, 315-5051, larger roms))		| flicky	| 1984	| Sega		| System 1	| 					|
++| flickya	|  	| Flicky (128k Version, 315-5051, larger roms)		| flicky	| 1984	| Sega		| System 1	| 					|
+ | flickys2	|  	| Flicky (128k Version, not encrypted)			| flicky	| 1984	| Sega		| System 1	| 					|
+ | flickyg	|  	| Flicky (128k Version, System 2, 315-5051, alt graphics| flicky	| 1984	| Sega		| System 1	| 					|
+ | flickys2g	|  	| Flicky (128k Version, System 2, not encrypted, alt gra| flicky	| 1984	| Sega		| System 1	| 					|
+@@ -4883,6 +4907,7 @@ This list contains all games supported by FinalBurn Neo.
+ | cv_galaxian	|  	| Galaxian						| 		| 1983	| Atarisoft	| ColecoVision	| 					|
+ | nes_galaxy5000|  	| Galaxy 5000 (USA)					| 		| 1991	| Activision	| Miscellaneous	| 					|
+ | galemp	|  	| Galaxy Empire (bootleg?)				| uniwars	| 1980	| bootleg (Taito| Galaxian	| 					|
++| galaxyfh	|  	| Galaxy Fight - Universal Warriors (Hidden Hack)	| galaxyfg	| 1995	| Sunsoft	| Neo Geo MVS	| 					|
+ | galaxyfg	|  	| Galaxy Fight - Universal Warriors			| 		| 1995	| Sunsoft	| Neo Geo MVS	| 					|
+ | sms_gforce	|  	| Galaxy Force (Euro, Bra)				| 		| 1989	| Sega		| Sega Master Sy| 					|
+ | sms_gforceu	|  	| Galaxy Force (USA)					| sms_gforce	| 1989	| Activision	| Sega Master Sy| 					|
+@@ -4972,6 +4997,7 @@ This list contains all games supported by FinalBurn Neo.
+ | gangwars	|  	| Gang Wars						| 		| 1989	| Alpha Denshi C| Alpha 68k	| 					|
+ | sms_robocop	|  	| Gangcheol RoboCop (Kor)				| 		| 1992	| Sieco		| Sega Master Sy| 					|
+ | sms_gangster	|  	| Gangster Town (Euro, USA, Bra)			| 		| 1987	| Sega		| Sega Master Sy| Light Phaser game			|
++| ganryund	|  	| Ganryu (Fully Decrypted)				| ganryu	| 1999	| Visco		| Neo Geo MVS	| 					|
+ | ganryu	|  	| Ganryu / Musashi Ganryuki				| 		| 1999	| Visco		| Neo Geo MVS	| 					|
+ | nes_gansosaij	|  	| Ganso Saiyuuki - Super Monkey Daibouken (Japan)	| nes_gansosai	| 1986	| Vap		| Miscellaneous	| 					|
+ | nes_gansosai	|  	| Ganso Saiyuuki - Super Monkey Daibouken (T-Eng)	| 		| 1986	| Vap		| Miscellaneous	| 					|
+@@ -4993,6 +5019,7 @@ This list contains all games supported by FinalBurn Neo.
+ | garogun	|  	| Garogun Seroyang (Korea)				| 		| 2000	| Yun Sung	| Miscellaneous	| 					|
+ | garoubl	|  	| Garou - Mark of the Wolves (bootleg)			| garou		| 1999	| bootleg	| Neo Geo MVS	| 					|
+ | garoub	|  	| Garou - Mark of the Wolves (Enable hidden characters)	| garou		| 1999	| Ydmis		| Neo Geo MVS	| 					|
++| garound	|  	| Garou - Mark of the Wolves (Fully Decrypted)		| garou		| 1999	| SNK		| Neo Geo MVS	| 					|
+ | garouha	|  	| Garou - Mark of the Wolves (NGH-2530)			| garou		| 1999	| SNK		| Neo Geo MVS	| 					|
+ | garouh	|  	| Garou - Mark of the Wolves (NGM-2530) (NGH-2530)	| garou		| 1999	| SNK		| Neo Geo MVS	| 					|
+ | garou		|  	| Garou - Mark of the Wolves (NGM-2530)			| 		| 1999	| SNK		| Neo Geo MVS	| 					|
+@@ -5169,6 +5196,7 @@ This list contains all games supported by FinalBurn Neo.
+ | gigasm2b	|  	| Gigas Mark II						| gigasm2	| 1986	| bootleg	| Miscellaneous	| 					|
+ | nes_gimmick	|  	| Gimmick! (Japan)					| 		| 1992	| Sunsoft	| Miscellaneous	| 					|
+ | fds_gingaden	|  	| Ginga Denshou - Galaxy Odyssey (Japan)		| 		| 1989?	| Nintendo	| Miscellaneous	| 					|
++| ginganink	|  	| Ginga NinkyouDen (Korean)				| ginganin	| 1987	| Jaleco	| Miscellaneous	| 					|
+ | ginganin	|  	| Ginga NinkyouDen (set 1)				| 		| 1987	| Jaleco	| Miscellaneous	| 					|
+ | ginganina	|  	| Ginga NinkyouDen (set 2)				| ginganin	| 1987	| Jaleco	| Miscellaneous	| 					|
+ | gteikokub	|  	| Gingateikoku No Gyakushu (bootleg set 1)		| uniwars	| 1980	| bootleg	| Galaxian	| 					|
+@@ -5185,6 +5213,7 @@ This list contains all games supported by FinalBurn Neo.
+ | glasskr	|  	| Glass (Ver 1.1, Break Edition, Version 1994) (censored| glass		| 1994	| OMK / Gaelco (| Miscellaneous	| 					|
+ | glass		|  	| Glass (Ver 1.1, Break Edition, Version 1994)		| 		| 1994	| OMK / Gaelco	| Miscellaneous	| 					|
+ | md_gleylance	|  	| GleyLancer (Hack, English)				| md_gleylanc	| 2007	| NCS		| Sega Megadrive| 					|
++| md_gleylanck	|  	| GleyLancer (Hack, Korean)				| md_gleylanc	| 2013	| NCS		| Sega Megadrive| 					|
+ | md_gleylanc	|  	| GleyLancer (Jpn)					| 		| 1992	| NCS		| Sega Megadrive| 					|
+ | msx_glider	|  	| Glider (Jpn)						| 		| 1985	| ZAP		| MSX		| 					|
+ | msx_glidera	|  	| Glider (Jpn, Alt)					| msx_glider	| 1985	| ZAP		| MSX		| 					|
+@@ -5557,6 +5586,7 @@ This list contains all games supported by FinalBurn Neo.
+ | md_gunship	|  	| Gunship (Euro)					| 		| 1993	| U.S. Gold	| Sega Megadrive| 					|
+ | spec_gunship	|  	| Gunship						| 		| 1987	| MicroProse Sof| ZX Spectrum	| 					|
+ | md_gunstar	|  	| Gunstar Heroes (Euro)					| 		| 1993	| Sega		| Sega Megadrive| 					|
++| md_gunstark	|  	| Gunstar Heroes (Hack, Korean)				| md_gunstar	| 2017	| Sega		| Sega Megadrive| 					|
+ | md_gunstars	|  	| Gunstar Heroes (Hack, Spanish)			| md_gunstar	| 2017	| Treasure	| Sega Megadrive| 					|
+ | gg_gunstar	|  	| Gunstar Heroes (Jpn)					| 		| 1995	| Sega		| Sega Game Gear| 					|
+ | md_gunstarj	|  	| Gunstar Heroes (Jpn)					| md_gunstar	| 1993	| Sega		| Sega Megadrive| 					|
+@@ -5619,7 +5649,7 @@ This list contains all games supported by FinalBurn Neo.
+ | spec_hammerboy2|  	| Hammer Boy (Part 2 of 2) (128K)			| 		| 1991	| Dinamic Softwa| ZX Spectrum	| 					|
+ | msx_hammboy	|  	| Hammer Boy (Spa)					| 		| 1991	| Dinamic Softwa| MSX		| Keyboard control only.		|
+ | hharryu	|  	| Hammerin' Harry (US, M84 hardware)			| hharry	| 1990	| Irem America	| Irem M82	| 					|
+-| hharry	|  	| Hammerin' Harry (World, M81 hardware))		| 		| 1990	| Irem		| Irem M82	| 					|
++| hharry	|  	| Hammerin' Harry (World, M81 hardware)			| 		| 1990	| Irem		| Irem M82	| 					|
+ | hharryb	|  	| Hammerin' Harry (World, M84 hardware bootleg)		| hharry	| 1990	| bootleg	| Irem M82	| 					|
+ | pce_hanataka	|  	| Hana Taaka Daka!?					| 		| 1991	| Taito		| PC Engine	| 					|
+ | sms_hangon	|  	| Hang-On (Euro, Bra, Aus)				| 		| 1985	| Sega		| Sega Master Sy| 					|
+@@ -5862,6 +5892,7 @@ This list contains all games supported by FinalBurn Neo.
+ | redfoxwp2	|  	| Hong Hu Zhanji II (China, set 1)			| grdnstrm	| 1998	| Afega		| NMK16		| 					|
+ | redfoxwp2a	|  	| Hong Hu Zhanji II (China, set 2)			| grdnstrm	| 1998	| Afega		| NMK16		| 					|
+ | sms_hongkildong|  	| Hong Kil Dong (Kor)					| 		| 1991	| Clover	| Sega Master Sy| 					|
++| md_ddanpeik	|  	| Honoo no Toukyuuji - Dodge Danpei (Hack, Korean)	| md_ddanpei	| 1992	| Sega		| Sega Megadrive| 					|
+ | gg_ddanpei	|  	| Honoo no Toukyuuji - Dodge Danpei (Jpn)		| 		| 1992	| Sega		| Sega Game Gear| 					|
+ | md_ddanpei	|  	| Honoo no Toukyuuji - Dodge Danpei (Jpn)		| 		| 1992	| Sega		| Sega Megadrive| 					|
+ | pce_ddanpei	|  	| Honoo no Toukyuuji - Dodge Danpei			| 		| 1992	| Hudson	| PC Engine	| 					|
+@@ -5991,6 +6022,7 @@ This list contains all games supported by FinalBurn Neo.
+ | hyperspt	|  	| Hyper Sports						| 		| 1984	| Konami (Centur| GX330		| 					|
+ | spec_hypersports|  	| Hyper Sports						| 		| 1985	| Imagine	| ZX Spectrum	| 					|
+ | hsf2j1	|  	| Hyper Street Fighter II: The Anniversary Edition (0312| hsf2		| 2004	| Capcom	| CPS2		| 					|
++| hsf2jh	|  	| Hyper Street Fighter II: The Anniversary Edition (0312| hsf2		| 2004	| Capcom	| CPS2		| 					|
+ | hsf2d		|  	| Hyper Street Fighter II: The Anniversary Edition (0402| hsf2		| 2004	| bootleg	| CPS2		| 					|
+ | hsf2da	|  	| Hyper Street Fighter II: The Anniversary Edition (0402| hsf2		| 2004	| bootleg	| CPS2		| 					|
+ | hsf2a		|  	| Hyper Street Fighter II: The Anniversary Edition (0402| hsf2		| 2004	| Capcom	| CPS2		| 					|
+@@ -6568,6 +6600,7 @@ This list contains all games supported by FinalBurn Neo.
+ | karnova	|  	| Karnov (US, rev 5)					| karnov	| 1987	| Data East USA	| Miscellaneous	| 					|
+ | karnov	|  	| Karnov (US, rev 6)					| 		| 1987	| Data East USA	| Miscellaneous	| 					|
+ | nes_karnov	|  	| Karnov (USA)						| 		| 1988	| Data East	| Miscellaneous	| 					|
++| karnovrb	|  	| Karnov's Revenge / Fighter's History Dynamite (Hidden | karnovr	| 1994	| Data East Corp| Neo Geo MVS	| 					|
+ | karnovr	|  	| Karnov's Revenge / Fighter's History Dynamite		| 		| 1994	| Data East Corp| Neo Geo MVS	| 					|
+ | spec_karnov	|  	| Karnov						| 		| 1988	| Electric Dream| ZX Spectrum	| 					|
+ | nes_kartfighter|  	| Kart Fighter (Unl)					| 		| 1989?	| Nintendo	| Miscellaneous	| 					|
+@@ -6734,6 +6767,7 @@ This list contains all games supported by FinalBurn Neo.
+ | kittenk	|  	| Kitten Kaboodle					| 		| 1988	| Konami	| GX712		| 					|
+ | nes_kittyscatch|  	| Kitty's Catch (USA)					| 		| 1989?	| Nintendo	| Miscellaneous	| 					|
+ | nes_kiwikra	|  	| Kiwi Kraze - A Bird-Brained Adventure! (USA)		| 		| 1991	| Taito		| Miscellaneous	| 					|
++| kizunab	|  	| Kizuna Encounter - Super Tag Battle / Fu'un Super Tag | kizuna	| 1996	| SNK		| Neo Geo MVS	| 					|
+ | kizuna	|  	| Kizuna Encounter - Super Tag Battle / Fu'un Super Tag | 		| 1996	| SNK		| Neo Geo MVS	| 					|
+ | nes_klashball	|  	| KlashBall (USA)					| 		| 1991	| Sofel		| Miscellaneous	| 					|
+ | msx_klax	|  	| Klax (Euro)						| 		| 1990	| Domark	| MSX		| 					|
+@@ -6774,6 +6808,7 @@ This list contains all games supported by FinalBurn Neo.
+ | msx_knightm3	|  	| Knightmare III - Shalom (Jpn)				| 		| 1987	| Konami	| MSX		| 					|
+ | sg1k_moyuchua	|  	| Knightmare, Moyu Chuanqi (Tw)				| 		| 1986?	| Jumbo		| Sega SG-1000	| 					|
+ | knights	|  	| Knights of the Round (911127 etc)			| 		| 1991	| Capcom	| CPS1		| 					|
++| knightj3	|  	| Knights of the Round (911127 Japan, 1 vs 3 Hack)	| knights	| 1991	| Capcom	| CPS1		| 					|
+ | knightsja	|  	| Knights of the Round (911127 Japan, B-Board 89625B-1)	| knights	| 1991	| Capcom	| CPS1		| 					|
+ | knightsj	|  	| Knights of the Round (911127 Japan, B-Board 91634B-2)	| knights	| 1991	| Capcom	| CPS1		| 					|
+ | knightsu	|  	| Knights of the Round (911127 USA)			| knights	| 1991	| Capcom	| CPS1		| 					|
+@@ -7015,6 +7050,7 @@ This list contains all games supported by FinalBurn Neo.
+ | gg_landill	|  	| Land of Illusion Starring Mickey Mouse (Euro, USA)	| 		| 1993	| Sega		| Sega Game Gear| 					|
+ | lsasquad	|  	| Land Sea Air Squad / Riku Kai Kuu Saizensen		| 		| 1986	| Taito		| Miscellaneous	| 					|
+ | md_landstlkg	|  	| Landstalker - Die Schatze von Konig Nolo (Ger)	| md_landstlk	| 1993	| Sega		| Sega Megadrive| 					|
++| md_landstlkk	|  	| Landstalker - Koutei no Zaihou (Hack, Korean)		| md_landstlk	| 2013	| Sega		| Sega Megadrive| 					|
+ | md_landstlkj	|  	| Landstalker - Koutei no Zaihou (Jpn)			| md_landstlk	| 1992	| Sega		| Sega Megadrive| 					|
+ | md_landstlkc	|  	| Landstalker - Koutei no Zaihou (T-Chi)		| md_landstlk	| 2007	| Sega		| Sega Megadrive| 					|
+ | md_landstlkf	|  	| Landstalker - Le Tresor du Roi Nole (Fra)		| md_landstlk	| 1993	| Sega		| Sega Megadrive| 					|
+@@ -7629,6 +7665,7 @@ This list contains all games supported by FinalBurn Neo.
+ | mshb		|  	| Marvel Super Heroes (951117 Brazil)			| msh		| 1995	| Capcom	| CPS2		| 					|
+ | mshh		|  	| Marvel Super Heroes (951117 Hispanic)			| msh		| 1995	| Capcom	| CPS2		| 					|
+ | mshj		|  	| Marvel Super Heroes (951117 Japan)			| msh		| 1995	| Capcom	| CPS2		| 					|
++| mshjh		|  	| Marvel Super Heroes (951117 Japan, Hidden Hack)	| msh		| 1995	| Capcom	| CPS2		| 					|
+ | mshvsfa1	|  	| Marvel Super Heroes vs Street Fighter (970620 Asia)	| mshvsf	| 1997	| Capcom	| CPS2		| 					|
+ | mshvsfa	|  	| Marvel Super Heroes vs Street Fighter (970625 Asia)	| mshvsf	| 1997	| Capcom	| CPS2		| 					|
+ | mshvsfb1	|  	| Marvel Super Heroes vs Street Fighter (970625 Brazil)	| mshvsf	| 1997	| Capcom	| CPS2		| 					|
+@@ -7639,6 +7676,7 @@ This list contains all games supported by FinalBurn Neo.
+ | mshvsfu1	|  	| Marvel Super Heroes vs Street Fighter (970625 USA)	| mshvsf	| 1997	| Capcom	| CPS2		| 					|
+ | mshvsfj1	|  	| Marvel Super Heroes vs Street Fighter (970702 Japan)	| mshvsf	| 1997	| Capcom	| CPS2		| 					|
+ | mshvsfj	|  	| Marvel Super Heroes vs Street Fighter (970707 Japan)	| mshvsf	| 1997	| Capcom	| CPS2		| 					|
++| mshvsfjh	|  	| Marvel Super Heroes vs Street Fighter (970707 Japan, H| mshvsf	| 1997	| Capcom	| CPS2		| 					|
+ | mshvsfb	|  	| Marvel Super Heroes vs Street Fighter (970827 Brazil)	| mshvsf	| 1997	| Capcom	| CPS2		| 					|
+ | mshvsfu	|  	| Marvel Super Heroes vs Street Fighter (970827 USA)	| mshvsf	| 1997	| Capcom	| CPS2		| 					|
+ | mvscur1	|  	| Marvel vs Capcom - clash of super heroes (971222 USA)	| mvsc		| 1998	| Capcom	| CPS2		| 					|
+@@ -7692,6 +7730,8 @@ This list contains all games supported by FinalBurn Neo.
+ | nes_matendouji|  	| Matendouji (Japan)					| 		| 1990	| Bothtec (Quest| Miscellaneous	| 					|
+ | md_mathblst	|  	| Math Blaster - Episode 1 (USA)			| 		| 1994	| Davidson & Ass| Sega Megadrive| 					|
+ | fds_matounohou|  	| Matou no Houkai - The Hero of Babel (Japan)		| 		| 1989?	| Nintendo	| Miscellaneous	| 					|
++| matrimdh	|  	| Matrimelee (Boss Hack)				| matrim	| 2002	| Noise Factory | Neo Geo MVS	| 					|
++| matrimnd	|  	| Matrimelee (Fully Decrypted)				| matrim	| 2002	| Noise Factory | Neo Geo MVS	| 					|
+ | matrimbl	|  	| Matrimelee / Shin Gouketsuji Ichizoku Toukon (bootleg)| matrim	| 2002	| bootleg	| Neo Geo MVS	| 					|
+ | matrimbh	|  	| Matrimelee / Shin Gouketsuji Ichizoku Toukon (Enable H| matrim	| 2002	| Creamymami[EGC| Neo Geo MVS	| 					|
+ | matrim	|  	| Matrimelee / Shin Gouketsuji Ichizoku Toukon (NGM-2660| 		| 2002	| Noise Factory | Neo Geo MVS	| 					|
+@@ -7863,17 +7903,20 @@ This list contains all games supported by FinalBurn Neo.
+ | mslug2dg	|  	| Metal Slug 2 - Super Vehicle-001/II (Multifunction Hac| mslug2	| 2017	| hack		| Neo Geo MVS	| 					|
+ | mslug2	|  	| Metal Slug 2 - Super Vehicle-001/II (NGM-2410) (NGH-24| 		| 1998	| SNK		| Neo Geo MVS	| 					|
+ | mslug2t	|  	| Metal Slug 2 Turbo (NGM-9410)				| mslug2	| 2015	| Hack		| Neo Geo MVS	| 					|
++| mslug3nd	|  	| Metal Slug 3 (Fully Decrypted)			| mslug3	| 2000	| SNK		| Neo Geo MVS	| 					|
+ | mslug3g	|  	| Metal Slug 3 (Multifunction Hack, 20190119)		| mslug3	| 2019	| hack		| Neo Geo MVS	| 					|
+ | mslug3v	|  	| Metal Slug 3 (NGH-2560) (Enhanced Violence Version, ha| mslug3	| 2012	| hack		| Neo Geo MVS	| 					|
+ | mslug3h	|  	| Metal Slug 3 (NGH-2560)				| mslug3	| 2000	| SNK		| Neo Geo MVS	| 					|
+ | mslug3	|  	| Metal Slug 3 (NGM-2560)				| 		| 2000	| SNK		| Neo Geo MVS	| 					|
+ | mslug3a	|  	| Metal Slug 3 (NGM-2560, earlier)			| mslug3	| 2000	| SNK		| Neo Geo MVS	| 					|
++| mslug4nd	|  	| Metal Slug 4 (Fully Decrypted)			| mslug4	| 2002	| Mega		| Neo Geo MVS	| 					|
+ | mslug4dg	|  	| Metal Slug 4 (Multifunction Hack, 20171225)		| mslug4	| 2017	| hack		| Neo Geo	| 					|
+ | mslug4h	|  	| Metal Slug 4 (NGH-2630)				| mslug4	| 2002	| Mega		| Neo Geo MVS	| 					|
+ | mslug4	|  	| Metal Slug 4 (NGM-2630)				| 		| 2002	| Mega		| Neo Geo MVS	| 					|
+ | ms4plus	|  	| Metal Slug 4 Plus (bootleg)				| mslug4	| 2002	| bootleg	| Neo Geo MVS	| 					|
+ | mslug5b	|  	| Metal Slug 5 (bootleg, set 1)				| mslug5	| 2003	| bootleg	| Neo Geo MVS	| 					|
+ | mslug5b2	|  	| Metal Slug 5 (bootleg, set 2)				| mslug5	| 2003	| bootleg	| Neo Geo MVS	| 					|
++| mslug5nd	|  	| Metal Slug 5 (Fully Decrypted)			| mslug5	| 2003	| SNK Playmore	| Neo Geo MVS	| 					|
+ | ms5pcb	|  	| Metal Slug 5 (JAMMA PCB)				| 		| 2003	| SNK Playmore	| Neo Geo MVS	| 					|
+ | mslug5g	|  	| Metal Slug 5 (Multifunction Hack, 20170523)		| mslug5	| 2017	| hack		| Neo Geo MVS	| 					|
+ | mslug5w	|  	| Metal Slug 5 (New Campaign, 2016-03-10)		| mslug5	| 2003	| hack, C.B	| Miscellaneous	| 					|
+@@ -8425,6 +8468,7 @@ This list contains all games supported by FinalBurn Neo.
+ | msx_msx	|   NW	| MSX1 System BIOS					| 		| 1982	| MSX		| MSX		| BIOS only				|
+ | rocktrv2	|  	| MTV Rock-N-Roll Trivia (Part 2)			| 		| 1986	| Triumph Softwa| Pac-man	| 					|
+ | mugsmash	|  	| Mug Smashers						| 		| 1990?	| Electronic Dev| Miscellaneous	| 					|
++| md_valisk	|  	| Mugen Senshi Valis (Hack, Korean)			| md_valis	| 2009	| Riot		| Sega Megadrive| 					|
+ | md_valisj	|  	| Mugen Senshi Valis (Jpn)				| md_valis	| 1991	| Riot		| Sega Megadrive| 					|
+ | msx_valis	|  	| Mugen Senshi Valis (Jpn)				| 		| 1986	| Nihon Telenet	| MSX		| 					|
+ | msx_valisk	|  	| Mugen Senshi Valis (Kor)				| msx_valis	| 1987	| Zemina	| MSX		| 					|
+@@ -8459,6 +8503,7 @@ This list contains all games supported by FinalBurn Neo.
+ | mbombrd	|  	| Muscle Bomber Duo - ultimate team battle (931206 World| 		| 1993	| Capcom	| CPS1		| 					|
+ | md_mushas	|  	| Musha - Metallic Uniframe Super Hybrid Armor (Hack, Sp| md_musha	| 2017	| Seismic	| Sega Megadrive| 					|
+ | md_musha	|  	| MUSHA - Metallic Uniframe Super Hybrid Armor (USA)	| 		| 1990	| Seismic	| Sega Megadrive| 					|
++| md_mushak	|  	| Musha Aleste - Full Metal Fighter Ellinor (Hack, Korea| md_musha	| 2017	| Toaplan	| Sega Megadrive| 					|
+ | md_mushaj	|  	| Musha Aleste - Full Metal Fighter Ellinor (Jpn)	| md_musha	| 1990	| Toaplan	| Sega Megadrive| 					|
+ | sg1k_musicj	|  	| Music (Jpn)						| sg1k_music	| 1983	| Sega		| Sega SG-1000	| 					|
+ | musicbal	|  	| Music Ball						| 		| 1988	| Tecfri / Desys| Miscellaneous	| 					|
+@@ -8725,6 +8770,7 @@ This list contains all games supported by FinalBurn Neo.
+ | syscheck	|  	| Neo System Check (ver 1.0b)				| 		| ????	| blastar@gmx.ne| Neo Geo MVS	| 					|
+ | neothndr	|  	| Neo Thunder						| 		| 2012	| Sebastian Miha| Neo Geo	| sebastianmihai.com			|
+ | turfmast	|  	| Neo Turf Masters / Big Tournament Golf		| 		| 1996	| Nazca		| Neo Geo MVS	| 					|
++| neocu98k	|  	| Neo-Geo Cup '98 - The Road to the Victory (Korean)	| neocup98	| 2006	| SNK		| Neo Geo MVS	| 					|
+ | neocup98	|  	| Neo-Geo Cup '98 - The Road to the Victory		| 		| 1998	| SNK		| Neo Geo MVS	| 					|
+ | neotet	|  	| NeoGeo 2-Player Tetris				| 		| 2013	| Crim/Stephen	| Neo Geo	| 					|
+ | neo3ddmo	|  	| NeoGeo 3D! Demo					| 		| 2012	| Oxygene	| Neo Geo	| 					|
+@@ -8903,6 +8949,7 @@ This list contains all games supported by FinalBurn Neo.
+ | md_ncirc1	|  	| Nightmare Circus (Bra, Alt)				| md_ncirc	| 1995	| Tec Toy	| Sega Megadrive| 					|
+ | md_ncircp	|  	| Nightmare Circus (Prototype)				| md_ncirc	| 199?	| Sega		| Sega Megadrive| 					|
+ | nitdbl	|  	| Nightmare in the Dark (bootleg)			| nitd		| 2001	| bootleg	| Neo Geo MVS	| 					|
++| nitdnd	|  	| Nightmare in the Dark (Fully Decrypted)		| nitd		| 2000	| Eleven / Gavak| Neo Geo MVS	| 					|
+ | nitd		|  	| Nightmare in the Dark					| 		| 2000	| Eleven / Gavak| Neo Geo MVS	| 					|
+ | nes_nightonelmstra|  	| Nightmare on Elm Street, A (USA)			| 		| 1990	| LJN		| Miscellaneous	| 					|
+ | nes_nightshade|  	| Nightshade (USA)					| 		| 1992	| Ultra Games	| Miscellaneous	| 					|
+@@ -8943,6 +8990,7 @@ This list contains all games supported by FinalBurn Neo.
+ | kazan		|  	| Ninja Kazan (World)					| 		| 1988	| Jaleco	| Mega System 1	| 					|
+ | nes_ninjakid	|  	| Ninja Kid (USA)					| 		| 1986	| Bandai	| Miscellaneous	| 					|
+ | spec_ninjamassacre|  	| Ninja Massacre					| 		| 1989	| Codemasters	| ZX Spectrum	| 					|
++| ninjamab	|  	| Ninja Master's - haoh-ninpo-cho (Boss Hack)		| ninjamas	| 1996	| ADK / SNK	| Neo Geo MVS	| 					|
+ | ninjamasha	|  	| Ninja Master's - haoh-ninpo-cho (Plus)		| ninjamas	| 1996	| 007325	| Neo Geo MVS	| 					|
+ | ninjamas	|  	| Ninja Master's - haoh-ninpo-cho			| 		| 1996	| ADK / SNK	| Neo Geo MVS	| 					|
+ | nprinces	|  	| Ninja Princess (315-5051, 64k Ver. bootleg?)		| seganinj	| 1985	| bootleg?	| System 1	| 					|
+@@ -9528,6 +9576,7 @@ This list contains all games supported by FinalBurn Neo.
+ | sms_pstarjmd	|  	| Phantasy Star (Jpn, MD)				| sms_pstar	| 1994	| Sega		| Sega Master Sy| 					|
+ | sms_pstarje	|  	| Phantasy Star (Jpn, T-Eng v2.00)			| sms_pstar	| 2020	| Sega - SMS Pow| Sega Master Sy| YM2413 FM sound chip supported	|
+ | sms_pstark	|  	| Phantasy Star (Kor)					| sms_pstar	| 1987	| Sega		| Sega Master Sy| 					|
++| md_pstar4k	|  	| Phantasy Star - Sennenki no Owari ni (Hack, Korean)	| md_pstar4	| 2014	| Sega		| Sega Megadrive| 					|
+ | md_pstar4j	|  	| Phantasy Star - Sennenki no Owari ni (Jpn)		| md_pstar4	| 1993	| Sega		| Sega Megadrive| 					|
+ | md_pstar4	|  	| Phantasy Star - The End of the Millennium (Euro)	| 		| 1994	| Sega		| Sega Megadrive| 					|
+ | md_pstar4p5	|  	| Phantasy Star - The End of the Millennium (Prototype, | md_pstar4	| 1994	| Sega		| Sega Megadrive| 					|
+@@ -9548,6 +9597,7 @@ This list contains all games supported by FinalBurn Neo.
+ | md_ps2ab	|  	| Phantasy Star II - Anne's Adventure (Jpn, SegaNet)	| 		| 1991	| Sega		| Sega Megadrive| 					|
+ | md_ps2ace	|  	| Phantasy Star II - Huey's Adventure (Hack, English)	| md_ps2ac	| 2010	| Sega		| Sega Megadrive| 					|
+ | md_ps2ac	|  	| Phantasy Star II - Huey's Adventure (Jpn, SegaNet)	| 		| 1991	| Sega		| Sega Megadrive| 					|
++| md_pstar2k	|  	| Phantasy Star II - Kaerazaru Toki no Owari ni (Hack, K| md_pstar2	| 2013	| Sega		| Sega Megadrive| 					|
+ | md_pstar2j	|  	| Phantasy Star II - Kaerazaru Toki no Owari ni (Jpn)	| md_pstar2	| 1989	| Sega		| Sega Megadrive| 					|
+ | md_ps2ade	|  	| Phantasy Star II - Kinds's Adventure (Hack, English)	| md_ps2ad	| 2010	| Sega		| Sega Megadrive| 					|
+ | md_ps2ad	|  	| Phantasy Star II - Kinds's Adventure (Jpn, SegaNet)	| 		| 1991	| Sega		| Sega Megadrive| 					|
+@@ -9728,6 +9778,7 @@ This list contains all games supported by FinalBurn Neo.
+ | nes_popoteam	|  	| Po Po Team (Taiwan)					| 		| 1989?	| Nintendo	| Miscellaneous	| 					|
+ | md_pocahont	|  	| Pocahontas (Euro)					| 		| 1996	| Sega		| Sega Megadrive| 					|
+ | md_pocahontu	|  	| Pocahontas (USA)					| md_pocahont	| 1996	| Disney Interac| Sega Megadrive| 					|
++| pnyaand	|  	| Pochi and Nyaa (Fully Decrypted)			| pnyaa		| 2003	| Aiky / Taito	| Neo Geo MVS	| 					|
+ | pnyaaa	|  	| Pochi and Nyaa (Ver 2.00)				| pnyaa		| 2003	| Aiky / Taito	| Neo Geo MVS	| 					|
+ | pnyaa		|  	| Pochi and Nyaa (Ver 2.02)				| 		| 2003	| Aiky / Taito	| Neo Geo MVS	| 					|
+ | ngp_neo21	|  	| Pocket Casino Series - Neo 21 (Euro, USA)		| 		| 2000	| SNK		| NeoGeo Pocket | 					|
+@@ -9872,7 +9923,7 @@ This list contains all games supported by FinalBurn Neo.
+ | powerinsb	|  	| Power Instinct (USA, bootleg set 2)			| powerins	| 1993	| Atlus		| Miscellaneous	| 					|
+ | powerinsc	|   NW	| Power Instinct (USA, bootleg set 3)			| powerins	| 1993	| bootleg	| Miscellaneous	| 					|
+ | powerinspu	|  	| Power Instinct (USA, prototype)			| powerins	| 1993	| Atlus		| Miscellaneous	| 					|
+-| pwrinst2k	|  	| Power instinct 2 (Korea, ver. 94/04/08)		| pwrinst2	| 1994	| Atlus		| Cave		| 					|
++| pwrinst2k	|  	| Power Instinct 2 (Korea, ver. 94/04/08)		| pwrinst2	| 1994	| Atlus		| Cave		| 					|
+ | pwrinst2	|  	| Power Instinct 2 (USA, ver. 94/04/08)			| 		| 1994	| Atlus		| Cave		| 					|
+ | pce_pleag93	|  	| Power League '93					| 		| 1993	| Hudson	| PC Engine	| 					|
+ | pce_pleagas	|  	| Power League (All Star Version)			| 		| 19??	| Hudson	| PC Engine	| 					|
+@@ -9910,6 +9961,7 @@ This list contains all games supported by FinalBurn Neo.
+ | md_predatr2s	|  	| Predator 2 (Hack, Spanish)				| md_predatr2	| 2019	| Arena		| Sega Megadrive| 					|
+ | spec_predator2|  	| Predator 2						| 		| 1991	| Image Works	| ZX Spectrum	| 					|
+ | spec_predator	|  	| Predator						| 		| 1987	| Activision	| ZX Spectrum	| 					|
++| pisle2nd	|  	| Prehistoric Isle 2 (Fully Decrypted)			| preisle2	| 1999	| Yumekobo	| Neo Geo MVS	| 					|
+ | preisle2	|  	| Prehistoric Isle 2					| 		| 1999	| Yumekobo	| Neo Geo MVS	| 					|
+ | prehislek	|  	| Prehistoric Isle in 1930 (Korea)			| prehisle	| 1989	| SNK (Victor li| Prehistoric Is| 					|
+ | prehisleu	|  	| Prehistoric Isle in 1930 (US)				| prehisle	| 1989	| SNK of America| Prehistoric Is| 					|
+@@ -10136,6 +10188,8 @@ This list contains all games supported by FinalBurn Neo.
+ | pclubys	|  	| Puzzle Club (Yun Sung, set 1)				| 		| 2000	| Yun Sung	| Miscellaneous	| 					|
+ | pclubysa	|  	| Puzzle Club (Yun Sung, set 2)				| pclubys	| 2000	| Yun Sung	| Miscellaneous	| 					|
+ | pzlbowl	|  	| Puzzle De Bowling (Japan)				| 		| 1999	| Nihon System /| Newer Seta	| 					|
++| puzzldpk	|  	| Puzzle De Pon! (Korean)				| puzzledp	| 2006	| Taito (Visco l| Neo Geo MVS	| 					|
++| puzzldrk	|  	| Puzzle De Pon! R! (Korean)				| puzzledp	| 2006	| Taito (Visco l| Neo Geo MVS	| 					|
+ | puzzldpr	|  	| Puzzle De Pon! R!					| puzzledp	| 1997	| Visco		| Neo Geo MVS	| 					|
+ | puzzledp	|  	| Puzzle De Pon!					| 		| 1995	| Visco		| Neo Geo MVS	| 					|
+ | puzzlekg	|  	| Puzzle King (Dance & Puzzle)				| 		| 1998	| Eolith	| Miscellaneous	| 					|
+@@ -10349,6 +10403,8 @@ This list contains all games supported by FinalBurn Neo.
+ | md_radrexu	|  	| Radical Rex (USA)					| md_radrex	| 1994	| Activision	| Sega Megadrive| 					|
+ | nes_rafworld	|  	| Raf World (Japan)					| nes_journsil	| 1990	| Sunsoft	| Miscellaneous	| 					|
+ | raflesia	|  	| Rafflesia (315-5162)					| 		| 1986	| Coreland / Seg| System 1	| 					|
++| rotdbh	|  	| Rage of the Dragons (Boss Hack)			| rotd		| 2002	| Evoga / Playmo| Neo Geo MVS	| 					|
++| rotdnd	|  	| Rage of the Dragons (Fully Decrypted)			| rotd		| 2002	| Evoga / Playmo| Neo Geo MVS	| 					|
+ | rotdh		|  	| Rage of the Dragons (NGH-2640)			| rotd		| 2002	| Evoga / Playmo| Neo Geo MVS	| 					|
+ | rotd		|  	| Rage of the Dragons (NGM-264?)			| 		| 2002	| Evoga / Playmo| Neo Geo MVS	| 					|
+ | md_ragnacenk	|  	| Ragnacenty (Kor)					| md_soleil	| 1994	| Sega		| Sega Megadrive| 					|
+@@ -10502,10 +10558,12 @@ This list contains all games supported by FinalBurn Neo.
+ | rbff1k	|  	| Real Bout Fatal Fury / Real Bout Garou Densetsu (Korea| rbff1		| 1995	| SNK		| Neo Geo MVS	| 					|
+ | rbff1ka	|  	| Real Bout Fatal Fury / Real Bout Garou Densetsu (Korea| rbff1		| 1995	| SNK		| Neo Geo MVS	| 					|
+ | rbff1		|  	| Real Bout Fatal Fury / Real Bout Garou Densetsu (NGM-0| 		| 1995	| SNK		| Neo Geo MVS	| 					|
++| rbff2hb	|  	| Real Bout Fatal Fury 2 - The Newcomers (Hidden Hack)	| rbff2		| 1998	| SNK		| Neo Geo MVS	| 					|
+ | rbff2k	|  	| Real Bout Fatal Fury 2 - The Newcomers (Korean release| rbff2		| 1998	| SNK		| Neo Geo MVS	| 					|
+ | rbff2h	|  	| Real Bout Fatal Fury 2 - The Newcomers / Real Bout Gar| rbff2		| 1998	| SNK		| Neo Geo MVS	| 					|
+ | rbff2		|  	| Real Bout Fatal Fury 2 - The Newcomers / Real Bout Gar| 		| 1998	| SNK		| Neo Geo MVS	| 					|
+ | rbff2bh	|  	| Real Bout Fatal Fury 2 - The Newcomers / Real Bout Gar| rbff2		| 1998	| hack		| Neo Geo MVS	| 					|
++| rbffspeh	|  	| Real Bout Fatal Fury Special (Hidden Hack)		| rbffspec	| 1996	| SNK		| Neo Geo MVS	| 					|
+ | rbffspbh	|  	| Real Bout Fatal Fury Special / Real Bout Garou Densets| rbffspec	| 1996	| hack		| Neo Geo MVS	| Select Geese Howard with portrait, pre|
+ | rbffspeck	|  	| Real Bout Fatal Fury Special / Real Bout Garou Densets| rbffspec	| 1996	| SNK		| Neo Geo MVS	| 					|
+ | rbffspec	|  	| Real Bout Fatal Fury Special / Real Bout Garou Densets| 		| 1996	| SNK		| Neo Geo MVS	| 					|
+@@ -10980,6 +11038,7 @@ This list contains all games supported by FinalBurn Neo.
+ | tsamuraih	|  	| Samurai Nihon-Ichi (bootleg, harder)			| tsamurai	| 1985	| bootleg	| Miscellaneous	| 					|
+ | tsamurai	|  	| Samurai Nihon-Ichi (set 1)				| 		| 1985	| Kaneko / Taito| Miscellaneous	| 					|
+ | tsamurai2	|  	| Samurai Nihon-Ichi (set 2)				| tsamurai	| 1985	| Kaneko / Taito| Miscellaneous	| 					|
++| samshob	|  	| Samurai Shodown (Boss Hack)				| samsho	| 1993	| SNK		| Neo Geo MVS	| 					|
+ | md_samsho	|  	| Samurai Shodown (Euro)				| 		| 1994	| Takara	| Sega Megadrive| 					|
+ | md_samshoec	|  	| Samurai Shodown (Hack, Enhanced Colors v2.0)		| md_samsho	| 2015	| Takara - Pyron| Sega Megadrive| 					|
+ | md_samshos	|  	| Samurai Shodown (Hack, Spanish)			| md_samsho	| 2018	| Takara	| Sega Megadrive| 					|
+@@ -10988,17 +11047,23 @@ This list contains all games supported by FinalBurn Neo.
+ | samshoh	|  	| Samurai Shodown / Samurai Spirits (NGH-045)		| samsho	| 1993	| SNK		| Neo Geo MVS	| 					|
+ | samsho	|  	| Samurai Shodown / Samurai Spirits (NGM-045)		| 		| 1993	| SNK		| Neo Geo MVS	| 					|
+ | samshoa	|  	| Samurai Shodown / Samurai Spirits (NGM-045, alternate | samsho	| 1993	| SNK		| Neo Geo MVS	| 					|
++| samsho2b	|  	| Samurai Shodown II (Boss Hack)			| samsho2	| 1994	| SNK		| Neo Geo MVS	| 					|
+ | samsho2	|  	| Samurai Shodown II / Shin Samurai Spirits - Haohmaru j| 		| 1994	| SNK		| Neo Geo MVS	| 					|
+ | samsho2sp	|  	| Samurai Shodown II / Shin Samurai Spirits - Haohmaru j| samsho2	| 2017	| hack		| Neo Geo MVS	| 					|
++| samsho3b	|  	| Samurai Shodown III (Boss Hack)			| samsho3	| 1995	| SNK		| Neo Geo MVS	| 					|
+ | samsho3h	|  	| Samurai Shodown III / Samurai Spirits - Zankurou Musou| samsho3	| 1995	| SNK		| Neo Geo MVS	| 					|
+ | samsho3	|  	| Samurai Shodown III / Samurai Spirits - Zankurou Musou| 		| 1995	| SNK		| Neo Geo MVS	| 					|
++| samsho4b	|  	| Samurai Shodown IV - Amakusa's Revenge (Boss Hack)	| samsho4	| 1996	| SNK		| Neo Geo MVS	| 					|
+ | samsho4	|  	| Samurai Shodown IV - Amakusa's Revenge / Samurai Spiri| 		| 1996	| SNK		| Neo Geo MVS	| 					|
+ | samsho4sp	|  	| Samurai Shodown IV - Amakusa's Revenge / Samurai Spiri| samsho4	| 1996	| hack		| Neo Geo MVS	| 					|
++| samsh5ndb	|  	| Samurai Shodown V (Boss Hack)				| samsho5	| 2003	| Yuki Enterpris| Neo Geo MVS	| 					|
++| samsho5nd	|  	| Samurai Shodown V (Fully Decrypted)			| samsho5	| 2003	| Yuki Enterpris| Neo Geo MVS	| 					|
+ | samsho5b	|  	| Samurai Shodown V / Samurai Spirits Zero (bootleg)	| samsho5	| 2003	| bootleg	| Neo Geo MVS	| 					|
+ | samsho5x	|  	| Samurai Shodown V / Samurai Spirits Zero (hack of XBOX| samsho5	| 2003	| hack		| Neo Geo MVS	| 					|
+ | samsho5h	|  	| Samurai Shodown V / Samurai Spirits Zero (NGH-2700)	| samsho5	| 2003	| Yuki Enterpris| Neo Geo MVS	| 					|
+ | samsho5	|  	| Samurai Shodown V / Samurai Spirits Zero (NGM-2700, se| 		| 2003	| Yuki Enterpris| Neo Geo MVS	| 					|
+ | samsho5a	|  	| Samurai Shodown V / Samurai Spirits Zero (NGM-2700, se| samsho5	| 2003	| Yuki Enterpris| Neo Geo MVS	| 					|
++| ssh5spnd	|  	| Samurai Shodown V Special (Fully Decrypted)		| samsh5sp	| 2004	| Yuki Enterpris| Neo Geo MVS	| 					|
+ | samsh5spho	|  	| Samurai Shodown V Special / Samurai Spirits Zero Speci| samsh5sp	| 2004	| Yuki Enterpris| Neo Geo MVS	| 					|
+ | samsh5sph	|  	| Samurai Shodown V Special / Samurai Spirits Zero Speci| samsh5sp	| 2004	| Yuki Enterpris| Neo Geo MVS	| 					|
+ | samsh5fe	|  	| Samurai Shodown V Special / Samurai Spirits Zero Speci| samsh5sp	| 2004	| Yuki Enterpris| Neo Geo MVS	| 					|
+@@ -11086,6 +11151,7 @@ This list contains all games supported by FinalBurn Neo.
+ | spec_savage2	|  	| Savage (Part 2 of 3) (48K)				| 		| 1988	| Firebird Softw| ZX Spectrum	| 					|
+ | spec_savage3	|  	| Savage (Part 3 of 3) (48K)				| 		| 1988	| Firebird Softw| ZX Spectrum	| 					|
+ | savgbees	|  	| Savage Bees						| exedexes	| 1985	| Capcom (Memetr| Miscellaneous	| 					|
++| savagerb	|  	| Savage Reign (Boss Hack)				| savagere	| 1995	| SNK		| Neo Geo MVS	| 					|
+ | savagereb	|  	| Savage Reign / Fu'un Mokushiroku - kakutou sousei (Bos| savagere	| 1995	| Yumeji, Dodowa| Neo Geo MVS	| 					|
+ | savagere	|  	| Savage Reign / Fu'un Mokushiroku - kakutou sousei	| 		| 1995	| SNK		| Neo Geo MVS	| 					|
+ | spec_savingkong|  	| Saving Kong (HB)					| 		| 2018	| Gabriel Amore	| ZX Spectrum	| 					|
+@@ -11144,6 +11210,7 @@ This list contains all games supported by FinalBurn Neo.
+ | grainbow	|  	| SD Gundam Sangokushi Rainbow Tairiku Senki (Japan)	| 		| 1993	| Banpresto	| Miscellaneous	| 					|
+ | grainbowk	|  	| SD Gundam Sangokushi Rainbow Tairiku Senki (Korea)	| grainbow	| 1993	| Banpresto	| Miscellaneous	| 					|
+ | fds_sdgunworgacsescwa|  	| SD Gundam World - Gachapon Senshi - Scramble Wars (Jap| 		| 1989?	| Nintendo	| Miscellaneous	| 					|
++| md_sdvalisk	|  	| SD Valis (Hack, Korean)				| md_sydvalis	| 2009	| Laser Soft	| Sega Megadrive| 					|
+ | md_sdvalis	|  	| SD Valis (Jpn)					| md_sydvalis	| 1992	| Laser Soft	| Sega Megadrive| 					|
+ | sms_sdi	|  	| SDI (Jpn)						| sms_globald	| 1987	| Sega		| Sega Master Sy| 					|
+ | sdibl		|  	| SDI - Strategic Defense Initiative (bootleg, original | sdi		| 1987	| Sega		| System 16B	| 					|
+@@ -11220,6 +11287,8 @@ This list contains all games supported by FinalBurn Neo.
+ | sengokuh	|  	| Sengoku / Sengoku Denshou (NGH-017)(US)		| sengoku	| 1991	| SNK		| Neo Geo MVS	| 					|
+ | sengoku	|  	| Sengoku / Sengoku Denshou (NGM-017)(NGH-017)		| 		| 1991	| SNK		| Neo Geo MVS	| 					|
+ | sengoku2	|  	| Sengoku 2 / Sengoku Denshou 2				| 		| 1993	| SNK		| Neo Geo MVS	| 					|
++| sengo3nd	|  	| Sengoku 3 (Fully Decrypted)				| sengoku3	| 2001	| SNK / Noise Fa| Neo Geo MVS	| 					|
++| sengo3nh	|  	| Sengoku 3 (Hidden Hack)				| sengoku3	| 2001	| SNK / Noise Fa| Neo Geo MVS	| 					|
+ | sengoku3s	|  	| Sengoku 3 / Sengoku Densho 2001 (Evolution 1.0, FCHT h| sengoku3	| 2001	| hack		| Neo Geo MVS	| 					|
+ | sengoku3fs	|  	| Sengoku 3 / Sengoku Densho 2001 (Feng Shen Edition, Ha| sengoku3	| 2020-04-10| Hack		| Neo Geo MVS	| 					|
+ | sengoku3	|  	| Sengoku 3 / Sengoku Densho 2001 (set 1)		| 		| 2001	| SNK / Noise Fa| Neo Geo MVS	| 					|
+@@ -11334,10 +11403,12 @@ This list contains all games supported by FinalBurn Neo.
+ | md_ragnacenp	|  	| Shin Souseiki Ragnacenty (Jpn, Prototype)		| md_soleil	| 1994	| Sega		| Sega Megadrive| 					|
+ | md_ragnacenc	|  	| Shin Souseiki Ragnacenty (T-Chi)			| md_soleil	| 1994	| Sega		| Sega Megadrive| 					|
+ | tshingen	|   NW	| Shingen Samurai-Fighter (Japan, English)		| 		| 1988	| Jaleco	| Mega System 1	| Game crashes in level 2, play tshingen|
++| md_shindarkk	|  	| Shining and the Darkness (Hack, Korean)		| md_shindark	| 2013	| Sega		| Sega Megadrive| 					|
+ | md_shindarkj	|  	| Shining and the Darkness (Jpn)			| md_shindark	| 1991	| Sega		| Sega Megadrive| 					|
+ | md_shinfrces	|  	| Shining Force (Hack, Spanish)				| md_shinfrce	| 2020	| Sega		| Sega Megadrive| 					|
+ | md_shinfrce	|  	| Shining Force (USA)					| 		| 1992	| Sega		| Sega Megadrive| 					|
+ | md_shinfrcep	|  	| Shining Force (USA, Prototype)			| md_shinfrce	| 1992	| Sega		| Sega Megadrive| 					|
++| md_shinfrcek	|  	| Shining Force - Kamigami no Isan (Hack, Korean)	| md_shinfrce	| 2013	| Sega		| Sega Megadrive| 					|
+ | md_shinfrcej	|  	| Shining Force - Kamigami no Isan (Jpn)		| md_shinfrce	| 1992	| Sega		| Sega Megadrive| 					|
+ | gg_shinfrcg	|  	| Shining Force Gaiden - Ensei, Jashin no Kuni e (Jpn)	| 		| 1992	| Sega		| Sega Game Gear| 					|
+ | gg_shinfrgfe	|  	| Shining Force Gaiden - Final Conflict (Hack, English)	| gg_shinfrgf	| 2006	| Sega		| Sega Game Gear| 					|
+@@ -11347,6 +11418,7 @@ This list contains all games supported by FinalBurn Neo.
+ | md_shinfrc2u	|  	| Shining Force II (USA)				| md_shinfrc2	| 1994	| Sega		| Sega Megadrive| 					|
+ | md_shinfrc2p2	|  	| Shining Force II (USA, Prototype, 19940404)		| md_shinfrc2	| 1994	| Sega		| Sega Megadrive| 					|
+ | md_shinfrc2p1	|  	| Shining Force II (USA, Prototype, 19940607)		| md_shinfrc2	| 1994	| Sega		| Sega Megadrive| 					|
++| md_shinfrc2k	|  	| Shining Force II - Koe no Fuuin (Hack, Korean)	| md_shinfrc2	| 2013	| Sega		| Sega Megadrive| 					|
+ | md_shinfrc2j	|  	| Shining Force II - Koe no Fuuin (Jpn)			| md_shinfrc2	| 1993	| Sega		| Sega Megadrive| 					|
+ | md_shinfrc2c	|  	| Shining Force II - Koe no Fuuin (T-Chi, v2)		| md_shinfrc2	| 2007-01| Sega		| Sega Megadrive| 					|
+ | gg_shinfrc2	|  	| Shining Force II - The Sword of Hajya (Euro, USA)	| 		| 1994	| Sega		| Sega Game Gear| 					|
+@@ -11642,9 +11714,11 @@ This list contains all games supported by FinalBurn Neo.
+ | ngp_svccardsja|  	| SNK vs. Capcom - Gekitotsu Card Fighters - SNK Support| ngp_svccards	| 1999	| SNK		| NeoGeo Pocket | 					|
+ | ngp_svccardsj	|  	| SNK vs. Capcom - Gekitotsu Card Fighters - SNK Support| ngp_svccards	| 1999	| SNK		| NeoGeo Pocket | 					|
+ | svcboot	|  	| SNK vs. Capcom - SVC Chaos (bootleg)			| svc		| 2003	| bootleg	| Neo Geo MVS	| 					|
++| svcnd		|  	| SNK vs. Capcom - SVC Chaos (Fully Decrypted)		| svc		| 2003	| SNK Playmore	| Neo Geo MVS	| 					|
+ | svcpcb	|  	| SNK vs. Capcom - SVC Chaos (JAMMA PCB, set 1)		| 		| 2003	| SNK Playmore	| Neo Geo MVS	| 					|
+ | svcpcba	|  	| SNK vs. Capcom - SVC Chaos (JAMMA PCB, set 2)		| svcpcb	| 2003	| SNK Playmore	| Neo Geo MVS	| 					|
+ | svc		|  	| SNK vs. Capcom - SVC Chaos (NGM-2690)(NGH-2690)	| 		| 2003	| SNK Playmore	| Neo Geo MVS	| 					|
++| svcndps2	|  	| SNK vs. Capcom - SVC Chaos (PlayStation 2 Hack)	| svc		| 2003	| SNK Playmore	| Neo Geo MVS	| 					|
+ | svcplus	|  	| SNK vs. Capcom - SVC Chaos Plus (bootleg set 1)	| svc		| 2003	| bootleg	| Neo Geo MVS	| 					|
+ | svcplusa	|  	| SNK vs. Capcom - SVC Chaos Plus (bootleg set 2)	| svc		| 2003	| bootleg	| Neo Geo MVS	| 					|
+ | svcsplus	|  	| SNK vs. Capcom - SVC Chaos Super Plus (bootleg)	| svc		| 2003	| bootleg	| Neo Geo MVS	| 					|
+@@ -12388,6 +12462,7 @@ This list contains all games supported by FinalBurn Neo.
+ | sf2uf		|  	| Street Fighter II - The World Warrior (910411 USA)	| sf2		| 1991	| Capcom	| CPS1		| 					|
+ | sf2ef		|  	| Street Fighter II - The World Warrior (910411 World)	| sf2		| 1991	| Capcom	| CPS1		| 					|
+ | sf2jh		|  	| Street Fighter II - The World Warrior (910522 Japan)	| sf2		| 1991	| Capcom	| CPS1		| 					|
++| sf2jhpp	|  	| Street Fighter II - The World Warrior (910522 Japan, P| sf2		| 1991	| Capcom	| CPS1		| 					|
+ | sf2ug		|  	| Street Fighter II - The World Warrior (910522 USA, rev| sf2		| 1991	| Capcom	| CPS1		| 					|
+ | sf2uh		|  	| Street Fighter II - The World Warrior (910522 USA, rev| sf2		| 1991	| Capcom	| CPS1		| 					|
+ | sf2ui		|  	| Street Fighter II - The World Warrior (910522 USA, rev| sf2		| 1991	| Capcom	| CPS1		| 					|
+@@ -12532,6 +12607,7 @@ This list contains all games supported by FinalBurn Neo.
+ | sfzh		|  	| Street Fighter Zero (950718 Hispanic)			| sfa		| 1995	| Capcom	| CPS2		| 					|
+ | sfzbr1	|  	| Street Fighter Zero (950727 Brazil)			| sfa		| 1995	| Capcom	| CPS2		| 					|
+ | sfzj		|  	| Street Fighter Zero (950727 Japan)			| sfa		| 1995	| Capcom	| CPS2		| 					|
++| sfzjh		|  	| Street Fighter Zero (950727 Japan, Hidden Hack)	| sfa		| 1995	| Capcom	| CPS2		| 					|
+ | sfzb		|  	| Street Fighter Zero (951109 Brazil)			| sfa		| 1995	| Capcom	| CPS2		| 					|
+ | sfzcha	|  	| Street Fighter Zero (CPS Changer, 040820 Japan)	| sfzch		| 2005	| Capcom	| CPS Changer	| 					|
+ | sfzbch	| X	| Street Fighter Zero (CPS Changer, 950727 Brazil)	| sfzch		| 1995	| Capcom	| CPS Changer	| 					|
+@@ -12543,12 +12619,14 @@ This list contains all games supported by FinalBurn Neo.
+ | sfz2a		|  	| Street Fighter Zero 2 (960227 Asia)			| sfa2		| 1996	| Capcom	| CPS2		| 					|
+ | sfz2jd	|  	| Street Fighter Zero 2 (960227 Japan Phoenix Edition)	| sfa2		| 1996	| bootleg	| CPS2		| 					|
+ | sfz2jr1	|  	| Street Fighter Zero 2 (960227 Japan)			| sfa2		| 1996	| Capcom	| CPS2		| 					|
++| sfz2jr1h	|  	| Street Fighter Zero 2 (960227 Japan, Hidden Hack)	| sfa2		| 1996	| Capcom	| CPS2		| 					|
+ | sfz2n		|  	| Street Fighter Zero 2 (960229 Oceania)		| sfa2		| 1996	| Capcom	| CPS2		| 					|
+ | sfz2br1	|  	| Street Fighter Zero 2 (960304 Brazil)			| sfa2		| 1996	| Capcom	| CPS2		| 					|
+ | sfz2h		|  	| Street Fighter Zero 2 (960304 Hispanic)		| sfa2		| 1996	| Capcom	| CPS2		| 					|
+ | sfz2j		|  	| Street Fighter Zero 2 (960430 Japan)			| sfa2		| 1996	| Capcom	| CPS2		| 					|
+ | sfz2b		|  	| Street Fighter Zero 2 (960531 Brazil)			| sfa2		| 1996	| Capcom	| CPS2		| 					|
+ | sfz2alj	|  	| Street Fighter Zero 2 Alpha (960805 Japan)		| sfz2al	| 1996	| Capcom	| CPS2		| 					|
++| sfz2aljh	|  	| Street Fighter Zero 2 Alpha (960805 Japan, Hidden Hack| sfz2al	| 1996	| Capcom	| CPS2		| 					|
+ | sfz2alb	|  	| Street Fighter Zero 2 Alpha (960813 Brazil)		| sfz2al	| 1996	| Capcom	| CPS2		| 					|
+ | sfz2alh	|  	| Street Fighter Zero 2 Alpha (960813 Hispanic)		| sfz2al	| 1996	| Capcom	| CPS2		| 					|
+ | sfz2ald	|  	| Street Fighter Zero 2 Alpha (960826 Asia Phoenix Editi| sfz2al	| 1996	| bootleg	| CPS2		| 					|
+@@ -12560,6 +12638,7 @@ This list contains all games supported by FinalBurn Neo.
+ | sfz3jr1	|  	| Street Fighter Zero 3 (980727 Japan)			| sfa3		| 1998	| Capcom	| CPS2		| 					|
+ | sfz3a		|  	| Street Fighter Zero 3 (980904 Asia)			| sfa3		| 1998	| Capcom	| CPS2		| 					|
+ | sfz3j		|  	| Street Fighter Zero 3 (980904 Japan)			| sfa3		| 1998	| Capcom	| CPS2		| 					|
++| sfz3jh	|  	| Street Fighter Zero 3 (980904 Japan, Hidden Hack)	| sfa3		| 1998	| Capcom	| CPS2		| 					|
+ | sftm110	|  	| Street Fighter: The Movie (v1.10)			| sftm		| 1995	| Capcom / Incre| Miscellaneous	| 					|
+ | sftm111	|  	| Street Fighter: The Movie (v1.11)			| sftm		| 1995	| Capcom / Incre| Miscellaneous	| 					|
+ | sftm		|  	| Street Fighter: The Movie (v1.12)			| 		| 1995	| Capcom / Incre| Miscellaneous	| 					|
+@@ -12656,6 +12735,7 @@ This list contains all games supported by FinalBurn Neo.
+ | s1945n	|  	| Strikers 1945 (World, unprotected)			| s1945		| 1995	| Psikyo	| Psikyo 68EC020| 					|
+ | s1945iii	|  	| Strikers 1945 III (World) / Strikers 1999 (Japan)	| 		| 1999	| Psikyo	| PS5		| 					|
+ | s1945ii	|  	| Strikers 1945 II					| 		| 1997	| Psikyo	| PS3-V1	| 					|
++| s1945pnd	|  	| Strikers 1945 Plus (Fully Decrypted)			| s1945p	| 1999	| Psikyo	| Neo Geo MVS	| 					|
+ | s1945p	|  	| Strikers 1945 Plus					| 		| 1999	| Psikyo	| Neo Geo MVS	| 					|
+ | pce_stripf2	|  	| Strip Fighter II					| 		| 19??	| Game Express	| PC Engine	| 					|
+ | strongx	|  	| Strong X						| stratgyx	| 1982	| bootleg	| Galaxian	| 					|
+@@ -12843,6 +12923,7 @@ This list contains all games supported by FinalBurn Neo.
+ | supduck	|  	| Super Duck						| 		| 1992	| Comad		| Miscellaneous	| 					|
+ | usg32		|  	| Super Duper Casino (California V3.2)			| 		| 1987	| U.S. Games	| Miscellaneous	| 					|
+ | md_sfzone	|  	| Super Fantasy Zone (Euro)				| 		| 1993	| Sunsoft	| Sega Megadrive| 					|
++| md_sfzonek	|  	| Super Fantasy Zone (Hack, Korean)			| md_sfzone	| 2013	| Sunsoft	| Sega Megadrive| 					|
+ | md_sfzones	|  	| Super Fantasy Zone (Hack, Spanish)			| md_sfzone	| 2019	| Sega		| Sega Megadrive| 					|
+ | md_sfzonej	|  	| Super Fantasy Zone (Jpn)				| md_sfzone	| 1992	| Sunsoft	| Sega Megadrive| 					|
+ | sformula	|  	| Super Formula (Japan)					| tail2nos	| 1989	| V-System Co.	| Miscellaneous	| 					|
+@@ -13088,6 +13169,8 @@ This list contains all games supported by FinalBurn Neo.
+ | ssf2tur1	|  	| Super Street Fighter II Turbo (super street fighter 2 | ssf2t		| 1994	| Capcom	| CPS2		| 					|
+ | ssf2tu	|  	| Super Street Fighter II Turbo (super street fighter 2 | ssf2t		| 1994	| Capcom	| CPS2		| 					|
+ | ssf2tnl	|  	| Super Street Fighter II Turbo New Legacy v0.4 (Beta) (| ssf2t		| 2020	| hack		| CPS2		| 					|
++| ssf2xjh	|  	| Super Street Fighter II X - grand master challenge (94| ssf2t		| 1994	| Capcom	| CPS2		| 					|
++| ssf2xjr1dt	|  	| Super Street Fighter II X - grand master challenge (Ph| ssf2t		| 1994	| bootleg	| CPS2		| 					|
+ | ssf2xjr1d	|  	| Super Street Fighter II X - grand master challenge (su| ssf2t		| 1994	| bootleg	| CPS2		| 					|
+ | ssf2xjr1r	|  	| Super Street Fighter II X - grand master challenge (su| ssf2t		| 1994	| Capcom	| CPS2		| 					|
+ | ssf2xjr1	|  	| Super Street Fighter II X - grand master challenge (su| ssf2t		| 1994	| Capcom	| CPS2		| 					|
+@@ -13498,7 +13581,9 @@ This list contains all games supported by FinalBurn Neo.
+ | dynwarjr	|  	| Tenchi wo Kurau (Japan Resale Ver.)			| dynwar	| 1989	| Capcom	| CPS1		| 					|
+ | dynwarj	|  	| Tenchi wo Kurau (Japan)				| dynwar	| 1989	| Capcom	| CPS1		| 					|
+ | nes_tenchiwokurau|  	| Tenchi wo Kurau (Japan)				| nes_destianemp| 1989	| Capcom	| Miscellaneous	| 					|
++| wofj103	|  	| Tenchi wo Kurau II - Counter Attack of Mei Sisters (92| wof		| 1992	| Capcom	| CPS1 / QSound	| 					|
+ | wofj		|  	| Tenchi wo Kurau II - Sekiheki no Tatakai (921031 Japan| wof		| 1992	| Capcom	| CPS1 / QSound	| 					|
++| wofch3p	|  	| Tenchi wo Kurau II - Sekiheki no Tatakai (CPS Changer | wofch		| 1992	| Capcom	| CPS Changer 3P| 					|
+ | wofch		|  	| Tenchi wo Kurau II - Sekiheki no Tatakai (CPS Changer,| 		| 1992	| Capcom	| CPS Changer	| 					|
+ | wofjh		|  	| Tenchi wo Kurau II - Sekiheki no Tatakai (hack, 921031| wof		| 1992	| hack		| CPS1 / QSound	| 					|
+ | wofjdr	|  	| Tenchi wo Kurau II - Sekiheki no Tatakai (Master Editi| wof		| 2020-12-27| Hack		| CPS1 / QSound	| 					|
+@@ -13788,6 +13873,7 @@ This list contains all games supported by FinalBurn Neo.
+ | md_hybridfc	|  	| The Hybrid Front (T-Chi)				| md_hybridf	| 1994	| Sega		| Sega Megadrive| 					|
+ | msx_iceking	|  	| The Ice King (Euro)					| 		| 1986	| CDS Micro Syst| MSX		| 					|
+ | md_immortal	|  	| The Immortal (Euro, USA)				| 		| 1993	| Electronic Art| Sega Megadrive| 					|
++| md_immortalk	|  	| The Immortal (Hack, Korean)				| md_immortal	| 2011	| Electronic Art| Sega Megadrive| 					|
+ | md_immortals	|  	| The Immortal (Hack, Spanish)				| md_immortal	| 2020	| Electronic Art| Sega Megadrive| 					|
+ | sms_crashdum	|  	| The Incredible Crash Dummies (Euro, Bra)		| 		| 1993	| Flying Edge	| Sega Master Sy| 					|
+ | md_crashdum	|  	| The Incredible Crash Dummies (Euro, USA)		| 		| 1993	| Flying Edge	| Sega Megadrive| 					|
+@@ -13823,8 +13909,10 @@ This list contains all games supported by FinalBurn Neo.
+ | kodr1		|  	| The King of Dragons (World 910711)			| kod		| 1991	| Capcom	| CPS1		| 					|
+ | kod		|  	| The King of Dragons (World 910805)			| 		| 1991	| Capcom	| CPS1		| 					|
+ | kof94rz	|  	| The King of Fighters '94 (Hack Boss Remixed)		| kof94		| 1994	| ZKW		| Neo Geo MVS	| 					|
++| kof94kr	|  	| The King of Fighters '94 (Korean, Boss Hack)		| kof94		| 2006	| SNK		| Neo Geo MVS	| 					|
+ | kof94		|  	| The King of Fighters '94 (NGM-055)(NGH-055)		| 		| 1994	| SNK		| Neo Geo MVS	| 					|
+ | kof95b	|  	| The King of Fighters '95 (Enable Hidden Characters V.[| kof95		| 1995	| Ydmis & Creamy| Neo Geo MVS	| 					|
++| kof95kr	|  	| The King of Fighters '95 (Korean, NeoGeo CD Hack)	| kof95		| 2005	| SNK		| Neo Geo MVS	| 					|
+ | kof95h	|  	| The King of Fighters '95 (NGH-084)			| kof95		| 1995	| SNK		| Neo Geo MVS	| 					|
+ | kof95a	|  	| The King of Fighters '95 (NGH-084, alternate board)	| kof95		| 1995	| SNK		| Neo Geo MVS	| 					|
+ | kof95		|  	| The King of Fighters '95 (NGM-084)			| 		| 1995	| SNK		| Neo Geo MVS	| 					|
+@@ -13832,6 +13920,7 @@ This list contains all games supported by FinalBurn Neo.
+ | kof96ae	|  	| The King of Fighters '96 (Anniversary Edition, EGHT ha| kof96		| 2007	| hack		| Neo Geo MVS	| 					|
+ | kof96ep	|  	| The King of Fighters '96 (bootleg / hack)		| kof96		| 1996	| bootleg	| Neo Geo MVS	| 					|
+ | kof96cn	|  	| The King of Fighters '96 (Chinese Edition ver 1.0, hac| kof96		| 200?	| hack		| Neo Geo MVS	| 					|
++| kof96kr	|  	| The King of Fighters '96 (Korean, Add Practice Mode)	| kof96		| 2006	| SNK		| Neo Geo AES	| 					|
+ | kof96h	|  	| The King of Fighters '96 (NGH-214)			| kof96		| 1996	| SNK		| Neo Geo AES	| 					|
+ | kof96		|  	| The King of Fighters '96 (NGM-214)			| 		| 1996	| SNK		| Neo Geo MVS	| 					|
+ | kof96a	|  	| The King of Fighters '96 (NGM-214, alternate board)	| kof96		| 1996	| SNK		| Neo Geo MVS	| 					|
+@@ -13840,6 +13929,8 @@ This list contains all games supported by FinalBurn Neo.
+ | kof97ps	|  	| The King of Fighters '97 (Imitation Playstation final | kof97		| 1997	| Eddids	| Neo Geo MVS	| 					|
+ | kof97inv	|  	| The King of Fighters '97 (Invincible Plus)		| kof97		| 2019	| Hack		| Neo Geo MVS	| 					|
+ | kof97k	|  	| The King of Fighters '97 (Korean release)		| kof97		| 1997	| SNK		| Neo Geo MVS	| 					|
++| kof97psk	|  	| The King of Fighters '97 (Korean, PlayStation Hack)	| kof97		| 2005	| SNK		| Neo Geo MVS	| 					|
++| kof97kr	|  	| The King of Fighters '97 (Korean, Practice Mode, Boss | kof97		| 2005	| SNK		| Neo Geo MVS	| 					|
+ | kof97h	|  	| The King of Fighters '97 (NGH-2320)			| kof97		| 1997	| SNK		| Neo Geo MVS	| 					|
+ | kof97		|  	| The King of Fighters '97 (NGM-2320)			| 		| 1997	| SNK		| Neo Geo MVS	| 					|
+ | kof97t2020	|  	| The King of Fighters '97 (Optimised Edition 2020)	| kof97		| 2020	| Hack		| Neo Geo MVS	| 					|
+@@ -13853,11 +13944,15 @@ This list contains all games supported by FinalBurn Neo.
+ | kof97oro	|  	| The King of Fighters '97 oroshi plus 2003		| kof97		| 1997	| bootleg	| Neo Geo MVS	| 					|
+ | kof97pls	|  	| The King of Fighters '97 Plus (bootleg)		| kof97		| 1997	| bootleg	| Neo Geo MVS	| 					|
+ | kof97pla	|  	| The King of Fighters '97 Plus 2003 (bootleg / hack)	| kof97		| 2003	| bootleg	| Neo Geo MVS	| 					|
++| kof97ts	|  	| The King of Fighters '97 Tu She Edition (v1.2, Hack)	| kof97		| 2019	| SNK		| Neo Geo MVS	| 					|
+ | kof98ae2016	|  	| The King of Fighters '98 (Anniversary Edition build 1.| kof98		| 2016	| hack		| Neo Geo MVS	| 					|
+ | kof98ae	|  	| The King of Fighters '98 (Anniversary Edition, EGHT ha| kof98		| 2007	| hack		| Neo Geo MVS	| 					|
+ | kof98cps	|  	| The King of Fighters '98 (Combo Plus)			| kof98		| 2020	| Hack		| Neo Geo MVS	| 					|
+ | kof98cb	|  	| The King of Fighters '98 (Combo, hack)		| kof98		| 2018	| hack		| Neo Geo MVS	| 					|
++| kof98kr	|  	| The King of Fighters '98 (Korean, NeoGeo CD Hack, Syst| kof98		| 2006	| SNK		| Neo Geo MVS	| 					|
++| kof98cd	|  	| The King of Fighters '98 (NeoGeo CD Hack, System Bugs | kof98		| 1998	| SNK		| Neo Geo MVS	| 					|
+ | kof98pfe	|  	| The King of Fighters '98 (Plus Final Edition 2017-07-2| kof98		| 2017	| GSC2007	| Miscellaneous	| 					|
++| kof98bf	|  	| The King of Fighters '98 (System Bugs Fix)		| kof98		| 1998	| SNK		| Neo Geo MVS	| 					|
+ | kof98ult	|  	| The King of Fighters '98 (Ultimate Match)		| kof98		| 2020	| hack		| Neo Geo MVS	| 					|
+ | kof98k	|  	| The King of Fighters '98 - The Slugfest / King of Figh| kof98		| 1998	| SNK		| Neo Geo MVS	| 					|
+ | kof98ka	|  	| The King of Fighters '98 - The Slugfest / King of Figh| kof98		| 1998	| SNK		| Neo Geo MVS	| 					|
+@@ -13867,10 +13962,13 @@ This list contains all games supported by FinalBurn Neo.
+ | kof98eck20	|  	| The King of Fighters '98 Easy Combo King (YZKOF Versio| kof98		| 2020-04-09| hack		| Neo Geo MVS	| 					|
+ | kof98eckvs	|  	| The King of Fighters '98 Easy Combo King 2014 (Versus | kof98		| 2019-02-17| hack		| Neo Geo MVS	| 					|
+ | kof98mix	|  	| The King of Fighters '98 Mix (2015-12-29)		| kof98		| 2015	| hack		| Miscellaneous	| 					|
++| kof99ae2016	|  	| The King of Fighters '99 (15th Anniversary Edition 201| kof99		| 2015	| SNK		| Neo Geo MVS	| 					|
+ | md_kof99a	|  	| The King of Fighters '99 (Alt)			| md_kof99	| 199?	| <unlicensed>	| Sega Megadrive| 					|
+ | kof99e	|  	| The King of Fighters '99 - Millennium Battle (earlier)| kof99		| 1999	| SNK		| Neo Geo MVS	| 					|
++| kof99nd	|  	| The King of Fighters '99 - Millennium Battle (Fully De| kof99		| 1999	| SNK		| Neo Geo MVS	| 					|
+ | kof99k	|  	| The King of Fighters '99 - Millennium Battle (Korean r| kof99		| 1999	| SNK		| Neo Geo MVS	| 					|
+ | kof99ka	|  	| The King of Fighters '99 - Millennium Battle (Korean r| kof99		| 1999	| SNK		| Neo Geo MVS	| 					|
++| kof99kr	|  	| The King of Fighters '99 - Millennium Battle (Korean, | kof99		| 2006	| SNK		| Neo Geo MVS	| 					|
+ | kof99h	|  	| The King of Fighters '99 - Millennium Battle (NGH-2510| kof99		| 1999	| SNK		| Neo Geo MVS	| 					|
+ | kof99		|  	| The King of Fighters '99 - Millennium Battle (NGM-2510| 		| 1999	| SNK		| Neo Geo MVS	| 					|
+ | kof99p	|  	| The King of Fighters '99 - Millennium Battle (prototyp| kof99		| 1999	| SNK		| Neo Geo MVS	| 					|
+@@ -13885,16 +13983,22 @@ This list contains all games supported by FinalBurn Neo.
+ | kf2k5uni	|  	| The King of Fighters 10th Anniversary 2005 Unique (boo| kof2002	| 2004	| bootleg	| Neo Geo MVS	| 					|
+ | kof10thuo	|  	| The King of Fighters 10th Anniversary 2019 (Optimized | kof2002	| 2020-11-11| Hack		| Miscellaneous	| 					|
+ | kf10thep	|  	| The King of Fighters 10th Anniversary Extra Plus (boot| kof2002	| 2005	| bootleg	| Neo Geo MVS	| 					|
++| kof2knd	|  	| The King of Fighters 2000 (Fully Decrypted)		| kof2000	| 2000	| SNK		| Neo Geo MVS	| 					|
++| kof2kkr	|  	| The King of Fighters 2000 (Korean, PlayStation 2 Hack)| kof2000	| 2010	| SNK		| Neo Geo MVS	| 					|
+ | kof2000	|  	| The King of Fighters 2000 (NGM-2570) (NGH-2570)	| 		| 2000	| SNK		| Neo Geo MVS	| 					|
+ | kof2000n	|  	| The King of Fighters 2000 (not encrypted)		| kof2000	| 2000	| SNK		| Neo Geo MVS	| 					|
+ | kof2000otc	|  	| The King of Fighters 2000 (OTC, hack)			| kof2000	| 2020-06-15| hack		| Neo Geo MVS	| ZERO only enabled in AES mode		|
+ | kof2000ps2	|  	| The King of Fighters 2000 (Playstation 2 ver. , EGHT h| kof2000	| 2000	| hack		| Neo Geo MVS	| hack only enable in AES mode		|
++| kof2k1nd	|  	| The King of Fighters 2001 (Fully Decrypted)		| kof2001	| 2001	| SNK / Eolith	| Neo Geo AES	| 					|
+ | kof2001h	|  	| The King of Fighters 2001 (NGH-2621)			| kof2001	| 2001	| SNK / Eolith	| Neo Geo AES	| 					|
+ | kof2001	|  	| The King of Fighters 2001 (NGM-262?)			| 		| 2001	| SNK / Eolith	| Neo Geo MVS	| 					|
++| kof2k1ps2	|  	| The King of Fighters 2001 (PlayStation 2 Hack)	| kof2001	| 2001	| SNK / Eolith	| Neo Geo AES	| 					|
+ | kf2k1pkz	|  	| The King of Fighters 2001 (PS2 Krizalid Edition)	| kof2001	| 2019-12-12| Hack		| Neo Geo MVS	| hack only enable in AES mode		|
+ | kf2k1pls	|  	| The King of Fighters 2001 Plus (set 1, bootleg / hack)| kof2001	| 2002	| bootleg	| Neo Geo MVS	| 					|
+ | kf2k1pa	|  	| The King of Fighters 2001 Plus (set 2, bootleg / hack)| kof2001	| 2002	| bootleg	| Neo Geo MVS	| 					|
+ | kof2002b	|  	| The King of Fighters 2002 (bootleg)			| kof2002	| 2002	| bootleg	| Neo Geo MVS	| 					|
++| kof2k2nd	|  	| The King of Fighters 2002 (Fully Decrypted)		| kof2002	| 2002	| Eolith / Playm| Neo Geo MVS	| 					|
++| kof2k2kh	|  	| The King of Fighters 2002 (Korean Font Fix, Nests, Bos| kof2002	| 2002	| Eolith / Playm| Neo Geo MVS	| 					|
+ | kof2002	|  	| The King of Fighters 2002 (NGM-2650)(NGH-2650)	| 		| 2002	| Eolith / Playm| Neo Geo MVS	| 					|
+ | kof2k2omg	|  	| The King of Fighters 2002 (Omega v.0?)		| kof2002	| 2002	| hack		| KOF-ON Team	| 					|
+ | kof2k2omg8	|  	| The King of Fighters 2002 (Omega v0.8)		| kof2002	| 2010	| hack		| KOF-ON Team	| 					|
+@@ -13905,15 +14009,18 @@ This list contains all games supported by FinalBurn Neo.
+ | kf2k2ps2b	|  	| The King of Fighters 2002 (PlayStation 2, Hack)	| kof2002	| 2018	| Hack		| Neo Geo MVS	| hack only enabled in AES mode		|
+ | kof2k2plus	|  	| The King of Fighters 2002 (Plus 2017, Hack)		| kof2002	| 2020-10-22| Hack		| Neo Geo MVS	| 					|
+ | kf2k23rd	|  	| The King of Fighters 2002 - 3rd Strike of Orochi (Hack| kof2002	| 2020-06-14| hack		| Miscellaneous	| 					|
++| kof2k2cm	|  	| The King of Fighters 2002 CLIMAX (Hack)		| kof2002	| 2002	| Eolith / Playm| Neo Geo MVS	| 					|
+ | kf2k2mp	|  	| The King of Fighters 2002 Magic Plus (bootleg)	| kof2002	| 2002	| bootleg	| Neo Geo MVS	| 					|
+ | kf2k2mp2	|  	| The King of Fighters 2002 Magic Plus II (bootleg)	| kof2002	| 2002	| bootleg	| Neo Geo MVS	| 					|
+ | kf2k2pls	|  	| The King of Fighters 2002 Plus (bootleg set 1)	| kof2002	| 2002	| bootleg	| Neo Geo MVS	| 					|
+ | kf2k2pla	|  	| The King of Fighters 2002 Plus (bootleg set 2)	| kof2002	| 2002	| bootleg	| Neo Geo MVS	| 					|
+ | kf2k2plb	|  	| The King of Fighters 2002 Plus (bootleg set 3)	| kof2002	| 2002	| bootleg	| Neo Geo MVS	| 					|
++| kf2k2pls2017	|  	| The King of Fighters 2002 Plus 2017 (2017-12-26, Hack)| kof2002	| 2002	| Eolith / Playm| Neo Geo MVS	| 					|
+ | kf2k2ru35	|  	| The King of Fighters 2002 Remix Ultra 3.5 (Hack By FCH| kof2002	| 2006	| hack		| Neo Geo MVS	| 					|
+ | kf2k2plc	|  	| The King of Fighters 2002 Super (bootleg)		| kof2002	| 2002	| bootleg	| Neo Geo MVS	| 					|
+ | kf2k3bl	|  	| The King of Fighters 2003 (bootleg set 1)		| kof2003	| 2003	| bootleg	| Neo Geo MVS	| 					|
+ | kf2k3bla	|  	| The King of Fighters 2003 (bootleg set 2)		| kof2003	| 2003	| bootleg	| Neo Geo MVS	| 					|
++| kof2k3nd	|  	| The King of Fighters 2003 (Fully Decrypted)		| kof2003	| 2003	| SNK Playmore	| Neo Geo MVS	| 					|
+ | kf2k3pcb	|  	| The King of Fighters 2003 (Japan, JAMMA PCB)		| 		| 2003	| Playmore / Cap| dedicated Neo | 					|
+ | kof2003h	|  	| The King of Fighters 2003 (NGH-2710)			| kof2003	| 2003	| SNK Playmore	| Neo Geo MVS	| 					|
+ | kof2003	|  	| The King of Fighters 2003 (NGM-2710)			| 		| 2003	| SNK Playmore	| Neo Geo MVS	| 					|
+@@ -13924,10 +14031,13 @@ This list contains all games supported by FinalBurn Neo.
+ | kf2k4pls	|  	| The King of Fighters Special Edition 2004 Plus (bootle| kof2002	| 2004	| bootleg	| Neo Geo MVS	| 					|
+ | pce_kungfu	|  	| The Kung Fu						| 		| 1987	| Hudson	| PC Engine	| 					|
+ | ngp_lastblad	|  	| The Last Blade - Beyond the Destiny (Euro)		| 		| 2000	| SNK		| NeoGeo Pocket | 					|
++| lastbladb	|  	| The Last Blade / Bakumatsu Roman - Gekka no Kenshi (Hi| lastblad	| 1997	| SNK		| Neo Geo AES	| 					|
+ | lastbladh	|  	| The Last Blade / Bakumatsu Roman - Gekka no Kenshi (NG| lastblad	| 1997	| SNK		| Neo Geo AES	| 					|
+ | lastblad	|  	| The Last Blade / Bakumatsu Roman - Gekka no Kenshi (NG| 		| 1997	| SNK		| Neo Geo MVS	| 					|
+ | lastblada	|  	| The Last Blade / Bakumatsu Roman - Gekka no Kenshi (NG| lastblad	| 1997	| SNK		| Neo Geo MVS	| 					|
+ | lastbladsp	|  	| The Last Blade / Bakumatsu Roman - Gekka no Kenshi (Sp| lastblad	| 2017	| hack		| Neo Geo MVS	| 					|
++| lastbl2h	|  	| The Last Blade 2 (Hidden Hack)			| lastbld2	| 1998	| SNK		| Neo Geo MVS	| 					|
++| lastbl2f	|  	| The Last Blade 2 (System Bugs Fix)			| lastbld2	| 1998	| SNK		| Neo Geo MVS	| 					|
+ | lb2b		|  	| The Last Blade 2 / Bakumatsu Roman - Dai Ni Maku Gekka| lastbld2	| 1998	| Dodowang[EGCG]| Neo Geo MVS	| 					|
+ | lastbld2eh	|  	| The Last Blade 2 / Bakumatsu Roman - Dai Ni Maku Gekka| lastbld2	| 1998	| hack		| Neo Geo MVS	| 					|
+ | lastbld2	|  	| The Last Blade 2 / Bakumatsu Roman - Dai Ni Maku Gekka| 		| 1998	| SNK		| Neo Geo MVS	| 					|
+@@ -14104,9 +14214,11 @@ This list contains all games supported by FinalBurn Neo.
+ | md_thorp2	|  	| The Story of Thor (USA, Prototype, 19941004)		| md_thor	| 1994	| Sega		| Sega Megadrive| 					|
+ | md_thorp1	|  	| The Story of Thor (USA, Prototype, 19941017)		| md_thor	| 1994	| Sega		| Sega Megadrive| 					|
+ | md_thorf	|  	| The Story of Thor - A Successor of The Light (Fra)	| md_thor	| 1995	| Sega		| Sega Megadrive| 					|
++| md_thork2	|  	| The Story of Thor - Hikari o Tsugumono (Hack, Korean)	| md_thor	| 2015	| Sega		| Sega Megadrive| 					|
+ | md_thorj	|  	| The Story of Thor - Hikari o Tsugumono (Jpn)		| md_thor	| 1995	| Sega		| Sega Megadrive| 					|
+ | md_thorc	|  	| The Story of Thor - Hikari o Tsugumono (T-Chi)	| md_thor	| 2004	| YUZO		| Sega Megadrive| 					|
+ | md_supshin	|  	| The Super Shinobi (Jpn)				| md_revshin	| 1989	| Sega		| Sega Megadrive| 					|
++| md_supshin2k	|  	| The Super Shinobi II (Hack, Korean)			| md_shinobi3	| 2013	| Sega		| Sega Megadrive| 					|
+ | md_supshin2	|  	| The Super Shinobi II (Jpn, Kor)			| md_shinobi3	| 1993	| Sega		| Sega Megadrive| 					|
+ | md_supshin2p1	|  	| The Super Shinobi II (Jpn, Prototype)			| md_shinobi3	| 1993	| Sega		| Sega Megadrive| 					|
+ | md_supshin2p2	|  	| The Super Shinobi II (Jpn, Prototype, Earlier)	| md_shinobi3	| 1993	| Sega		| Sega Megadrive| 					|
+@@ -14659,8 +14771,10 @@ This list contains all games supported by FinalBurn Neo.
+ | nes_twinb3	|  	| TwinBee 3 - Poko Poko Daimaou (Japan)			| 		| 1989	| Konami	| Miscellaneous	| 					|
+ | twinkle	|  	| Twinkle (set 1)					| 		| 1997	| SemiCom	| Kaneko Pandora| 					|
+ | twinklea	|  	| Twinkle (set 2)					| twinkle	| 1997	| SemiCom	| Kaneko Pandora| 					|
++| twinsprh	|  	| Twinkle Star Sprites (Hidden Hack)			| twinspri	| 1996	| ADK		| Neo Geo MVS	| 					|
+ | twinspri	|  	| Twinkle Star Sprites					| 		| 1996	| ADK		| Neo Geo MVS	| 					|
+ | md_twinklete	|  	| Twinkle Tale (Hack, English)				| md_twinklet	| 2007	| Toyo Records	| Sega Megadrive| 					|
++| md_twinkletk	|  	| Twinkle Tale (Hack, Korean)				| md_twinklet	| 2013	| Toyo Records	| Sega Megadrive| 					|
+ | md_twinklet	|  	| Twinkle Tale (Jpn)					| 		| 1992	| Toyo Records	| Sega Megadrive| 					|
+ | msx_twinlight	|  	| Twinlight (HB)					| 		| 2019	| RetroSouls	| MSX		| 					|
+ | mtwinsb	|  	| Twins (bootleg of Mega Twins)				| mtwins	| 1993	| David Inc. (bo| CPS1		| 					|
+@@ -14803,6 +14917,7 @@ This list contains all games supported by FinalBurn Neo.
+ | vliner7e	|  	| V-Liner (v0.7e)					| vliner	| 2001	| Dyna / BreezaS| Neo Geo MVS	| 					|
+ | md_valis	|  	| Valis (USA)						| 		| 1991	| Renovation	| Sega Megadrive| 					|
+ | nes_valis	|  	| Valis - The Fantastic Soldier (Japan)			| 		| 1987	| Tokuma Shoten	| Miscellaneous	| 					|
++| md_valis3k	|  	| Valis III (Hack, Korean)				| md_valis3	| 2008	| Reno		| Sega Megadrive| 					|
+ | md_valis3j	|  	| Valis III (Jpn, Rev. A)				| md_valis3	| 1991	| Reno		| Sega Megadrive| 					|
+ | md_valis3	|  	| Valis III (USA)					| 		| 1991	| Renovation	| Sega Megadrive| 					|
+ | msx_valkyr	|  	| Valkyr (Euro)						| 		| 1985	| Gremlin Graphi| MSX		| 					|
+@@ -14821,6 +14936,7 @@ This list contains all games supported by FinalBurn Neo.
+ | vampjr1	|  	| Vampire - the night warriors (940630 Japan)		| dstlk		| 1994	| Capcom	| CPS2		| 					|
+ | vampj		|  	| Vampire - the night warriors (940705 Japan)		| dstlk		| 1994	| Capcom	| CPS2		| 					|
+ | vampja	|  	| Vampire - the night warriors (940705 Japan, alt)	| dstlk		| 1994	| Capcom	| CPS2		| 					|
++| vampjh	|  	| Vampire - the night warriors (940705 Japan, Hidden Hac| dstlk		| 1994	| Capcom	| CPS2		| 					|
+ | vhuntjr2	|  	| Vampire Hunter - darkstalkers' revenge (950302 Japan)	| nwarr		| 1995	| Capcom	| CPS2		| 					|
+ | vhuntjr1s	|  	| Vampire Hunter - darkstalkers' revenge (950307 Japan s| nwarr		| 1995	| Capcom	| CPS2		| 					|
+ | vhuntjr1	|  	| Vampire Hunter - darkstalkers' revenge (950307 Japan)	| nwarr		| 1995	| Capcom	| CPS2		| 					|
+@@ -14835,6 +14951,7 @@ This list contains all games supported by FinalBurn Neo.
+ | vsavh		|  	| Vampire Savior - the lord of vampire (970519 Hispanic)| vsav		| 1997	| Capcom	| CPS2		| 					|
+ | vsavj		|  	| Vampire Savior - the lord of vampire (970519 Japan)	| vsav		| 1997	| Capcom	| CPS2		| 					|
+ | vsavu		|  	| Vampire Savior - the lord of vampire (970519 USA)	| vsav		| 1997	| Capcom	| CPS2		| 					|
++| vsavdt	|  	| Vampire Savior - the lord of vampire (Phoenix Edition,| vsav		| 1997	| bootleg	| CPS2		| 					|
+ | vsav2d	|  	| Vampire Savior 2 - the lord of vampire (970913 Japan P| vsav2		| 1997	| bootleg	| CPS2		| 					|
+ | vsav2		|  	| Vampire Savior 2 - the lord of vampire (970913 Japan)	| 		| 1997	| Capcom	| CPS2		| 					|
+ | spec_vampveng	|  	| Vampire Vengeance (HB, v1.1)				| 		| 2020	| Poe Games	| ZX Spectrum	| 					|
+@@ -15004,6 +15121,7 @@ This list contains all games supported by FinalBurn Neo.
+ | nes_volguardii|  	| Volguard II (Japan)					| 		| 1985	| dB-SOFT	| Miscellaneous	| 					|
+ | fds_volleyball|  	| Volleyball (Japan)					| 		| 1989?	| Nintendo	| Miscellaneous	| 					|
+ | nes_volleyball|  	| Volleyball (USA)					| 		| 1987	| Nintendo	| Miscellaneous	| 					|
++| gowcaizb	|  	| Voltage Fighter - Gowcaizer (Boss Hack)		| gowcaizr	| 1995	| Technos	| Neo Geo MVS	| 					|
+ | gowcaizr	|  	| Voltage Fighter - Gowcaizer / Choujin Gakuen Gowcaizer| 		| 1995	| Technos	| Neo Geo MVS	| 					|
+ | msx_vortraid	|  	| Vortex Raider (Euro)					| 		| 1988	| Eurosoft	| MSX		| 					|
+ | sms_voyage	|  	| Voyage - A Sorceress Vacation (HB, v1.03)		| 		| 2020	| SNAGS		| Sega Master Sy| 					|
+@@ -15052,6 +15170,7 @@ This list contains all games supported by FinalBurn Neo.
+ | sms_WaimanuSMS|  	| Waimanu: Scary Monsters Saga (HB)			| 		| 2015	| Disjointed Stu| Sega Master Sy| 					|
+ | mj4simai	|  	| Wakakusamonogatari Mahjong Yonshimai (Japan)		| 		| 1996	| Maboroshi Ware| Newer Seta	| 					|
+ | wakuwak7bh	|  	| Waku Waku 7 (Boss Hack)				| wakuwak7	| 1996	| hack		| Neo Geo MVS	| 					|
++| wakuwa7h	|  	| Waku Waku 7 (Hidden Hack)				| wakuwak7	| 1996	| Sunsoft	| Neo Geo MVS	| 					|
+ | wakuwak7	|  	| Waku Waku 7						| 		| 1996	| Sunsoft	| Neo Geo MVS	| 					|
+ | ultracin	|  	| Waku Waku Ultraman Racing				| 		| 1996	| Sega		| System 16B	| Emulation not complete		|
+ | fds_wakusatogai|  	| Wakusei Aton Gaiden (Japan)				| 		| 1989?	| Nintendo	| Miscellaneous	| 					|
+@@ -15204,6 +15323,7 @@ This list contains all games supported by FinalBurn Neo.
+ | md_wimbledup	|  	| Wimbledon Championship Tennis (USA, Prototype)	| md_wimbled	| 1993	| Sega		| Sega Megadrive| 					|
+ | sms_wimbled2	|  	| Wimbledon II (Euro, Bra)				| 		| 1993	| Sega		| Sega Master Sy| 					|
+ | nes_winlosordra|  	| Win, Lose or Draw (USA)				| 		| 1990	| Hi Tech Expres| Miscellaneous	| 					|
++| wjammerk	|  	| Windjammers / Flying Power Disc (Korean)		| wjammers	| 2005	| Data East Corp| Neo Geo MVS	| 					|
+ | wjammers	|  	| Windjammers / Flying Power Disc			| 		| 1994	| Data East Corp| Neo Geo MVS	| 					|
+ | wingforc	|  	| Wing Force (Japan, prototype)				| 		| 1993	| A.I (Atlus lic| Kaneko16	| 					|
+ | msx_wingman2	|  	| Wing Man 2 - Kitakura no Fukkatsu (Jpn)		| 		| 1987	| Enix		| MSX		| 					|
+@@ -15408,6 +15528,7 @@ This list contains all games supported by FinalBurn Neo.
+ | sms_worldgpp	|  	| World Grand Prix (USA, Prototype)			| sms_worldgp	| 1986	| Sega		| Sega Master Sy| 					|
+ | wh1h		|  	| World Heroes (ALH-005)				| wh1		| 1992	| Alpha Denshi C| Neo Geo MVS	| 					|
+ | wh1		|  	| World Heroes (ALM-005)				| 		| 1992	| Alpha Denshi C| Neo Geo MVS	| 					|
++| wh1b		|  	| World Heroes (Boss Hack)				| wh1		| 1992	| Alpha Denshi C| Neo Geo MVS	| 					|
+ | md_whj	|  	| World Heroes (Jpn)					| md_wh		| 199?	| <unknown>	| Sega Megadrive| 					|
+ | md_whjp5	|  	| World Heroes (Jpn, Prototype, 19940330)		| md_wh		| 1994	| Sega		| Sega Megadrive| 					|
+ | md_whjp4	|  	| World Heroes (Jpn, Prototype, 19940408)		| md_wh		| 1994	| Sega		| Sega Megadrive| 					|
+@@ -15431,8 +15552,11 @@ This list contains all games supported by FinalBurn Neo.
+ | md_whp02	|  	| World Heroes (USA, Prototype, 19940331-B)		| md_wh		| 1994	| Sega		| Sega Megadrive| 					|
+ | wh2h		|  	| World Heroes 2 (ALH-006)				| wh2		| 1993	| ADK		| Neo Geo MVS	| 					|
+ | wh2		|  	| World Heroes 2 (ALM-006)(ALH-006)			| 		| 1993	| ADK		| Neo Geo MVS	| 					|
++| wh2b		|  	| World Heroes 2 (Boss Hack)				| wh2		| 1993	| ADK		| Neo Geo MVS	| 					|
+ | wh2j		|  	| World Heroes 2 Jet (ADM-007)(ADH-007)			| 		| 1994	| ADK / SNK	| Neo Geo MVS	| 					|
+ | wh2ja		|  	| World Heroes 2 Jet (ADM-007)				| wh2j		| 1994	| ADK / SNK	| Neo Geo MVS	| 					|
++| wh2jb		|  	| World Heroes 2 Jet (Boss Hack)			| wh2j		| 1994	| ADK / SNK	| Neo Geo MVS	| 					|
++| whpb		|  	| World Heroes Perfect (Boss Hack)			| whp		| 1995	| ADK / SNK	| Neo Geo MVS	| 					|
+ | whp		|  	| World Heroes Perfect					| 		| 1995	| ADK / SNK	| Neo Geo MVS	| 					|
+ | pce_wjockey	|  	| World Jockey						| 		| 1991	| Namcot	| PC Engine	| 					|
+ | md_worldillj	|  	| World of Illusion - Fushigi na Magic Box (Jpn)	| md_worldill	| 1992	| Sega		| Sega Megadrive| 					|
+@@ -15567,6 +15691,7 @@ This list contains all games supported by FinalBurn Neo.
+ | xmcotaj3	|  	| X-Men - children of the atom (941217 Japan)		| xmcota	| 1994	| Capcom	| CPS2		| 					|
+ | xmcotaar1	|  	| X-Men - children of the atom (941219 Asia)		| xmcota	| 1995	| Capcom	| CPS2		| 					|
+ | xmcotaj2	|  	| X-Men - children of the atom (941219 Japan)		| xmcota	| 1994	| Capcom	| CPS2		| 					|
++| xmcotaj2h	|  	| X-Men - children of the atom (941219 Japan, Hidden Hac| xmcota	| 1994	| Capcom	| CPS2		| 					|
+ | xmcotaj1	|  	| X-Men - children of the atom (941222 Japan)		| xmcota	| 1994	| Capcom	| CPS2		| 					|
+ | xmcotaa	|  	| X-Men - children of the atom (950105 Asia)		| xmcota	| 1995	| Capcom	| CPS2		| 					|
+ | xmcotar1d	|  	| X-Men - children of the atom (950105 Euro Phoenix Edit| xmcota	| 1995	| bootleg	| CPS2		| 					|
+@@ -15746,6 +15871,7 @@ This list contains all games supported by FinalBurn Neo.
+ | sms_ysd	|  	| Ys (USA, Demo)					| sms_ys	| 1988	| Sega		| Sega Master Sy| 					|
+ | sms_ys	|  	| Ys - The Vanished Omens (Euro, USA, Bra)		| 		| 1988	| Sega		| Sega Master Sy| 					|
+ | sms_ysfm	|  	| Ys - The Vanished Omens (FM Mod, v1.2)		| sms_ys	| 2009	| Sega - SSTrans| Sega Master Sy| YM2413 FM sound chip supported	|
++| md_ys3k	|  	| Ys - Wanderers from Ys (Hack, Korean)			| md_ys3	| 2013	| Reno		| Sega Megadrive| 					|
+ | md_ys3j	|  	| Ys - Wanderers from Ys (Jpn)				| md_ys3	| 1991	| Reno		| Sega Megadrive| 					|
+ | nes_ysiij	|  	| Ys II - Ancient Ys Vanished - The Final Chapter (Japan| nes_ysii	| 1990	| Victor	| Miscellaneous	| 					|
+ | nes_ysii	|  	| Ys II - Ancient Ys Vanished - The Final Chapter (T-eng| 		| 1990	| Victor	| Miscellaneous	| 					|
+@@ -15901,6 +16027,7 @@ This list contains all games supported by FinalBurn Neo.
+ | md_zouzou	|  	| Zou! Zou! Zou! Rescue Daisakusen (Jpn)		| md_rolo	| 1993	| Electronic Art| Sega Megadrive| 					|
+ | spec_zub	|  	| Zub							| 		| 1986	| Mastertronic A| ZX Spectrum	| 					|
+ | nes_zunousengal|  	| Zunou Senkan Galg (Japan)				| 		| 1985	| dB-SOFT	| Miscellaneous	| 					|
++| zupapand	|  	| Zupapa! (Fully Decrypted)				| zupapa	| 2001	| SNK		| Neo Geo MVS	| 					|
+ | zupapa	|  	| Zupapa!						| 		| 2001	| SNK		| Neo Geo MVS	| 					|
+ | spec_spec128	|   NW	| ZX Spectrum 128					| 		| 1984	| Sinclair Resea| ZX Spectrum	| BIOS Only				|
+ | spec_spec128k	|  	| ZX Spectrum 128					| 		| 1984	| Sinclair Resea| ZX Spectrum	| 					|
 diff --git a/src/burn/drv/capcom/d_cps1.cpp b/src/burn/drv/capcom/d_cps1.cpp
-index 5dc80a1fd..146dc44bc 100644
+index 7ddce526b..fdb10f0a3 100644
 --- a/src/burn/drv/capcom/d_cps1.cpp
 +++ b/src/burn/drv/capcom/d_cps1.cpp
-@@ -15389,6 +15389,15 @@ static const struct GameConfig ConfigTable[] =
+@@ -15517,6 +15517,15 @@ static const struct GameConfig ConfigTable[] =
  	{ "sfzech"        , CPS_B_21_DEF, mapper_sfzch , 0, NULL                },
  	{ "sfzhch"        , CPS_B_21_DEF, mapper_sfzch , 0, NULL                },
  
@@ -18,9 +881,9 @@ index 5dc80a1fd..146dc44bc 100644
  	{ 0               , 0           , 0            , 0, 0                   }
  };
  
-@@ -23962,6 +23971,341 @@ struct BurnDriver BurnDrvCpsWofjdr = {
- 	&CpsRecalcPal, 0x1000, 384, 224, 4, 3
- };
+@@ -24162,6 +24171,341 @@ struct BurnDriver BurnDrvCpssf2mix = {
+ 
+ #include "d_kenseim.h"
  
 +//============================================================
 +//  Add Hack Roms
@@ -357,14 +1220,14 @@ index 5dc80a1fd..146dc44bc 100644
 +	&CpsRecalcPal, 0x1000, 384, 224, 4, 3
 +};
 +
- #include "d_kenseim.h"
- 
  #undef CPS1_68K_PROGRAM_BYTESWAP
+ #undef CPS1_68K_PROGRAM_NO_BYTESWAP
+ #undef CPS1_Z80_PROGRAM
 diff --git a/src/burn/drv/capcom/d_cps2.cpp b/src/burn/drv/capcom/d_cps2.cpp
-index 7566b6e07..dee6d889e 100644
+index 05b4d7557..a1ed22e01 100644
 --- a/src/burn/drv/capcom/d_cps2.cpp
 +++ b/src/burn/drv/capcom/d_cps2.cpp
-@@ -13722,3 +13722,529 @@ struct BurnDriver BurnDrvCpsGigaman2 = {
+@@ -13796,3 +13796,529 @@ struct BurnDriver BurnDrvCpsGigaman2 = {
  	Gigaman2Init, Gigaman2Exit, Cps2Frame, CpsRedraw, Gigaman2Scan,
  	&CpsRecalcPal, 0x1000, 384, 224, 4, 3
  };
@@ -921,16 +1784,16 @@ index 6bc8c984b..c95cf95ae 100644
  	BDF_GAME_WORKING | BDF_HISCORE_SUPPORTED, 2, HARDWARE_IREM_M72, GBF_SCRFIGHT | GBF_PLATFORM, 0,
  	NULL, hharryRomInfo, hharryRomName, NULL, NULL, NULL, NULL, CommonInputInfo, HharryDIPInfo,
 diff --git a/src/burn/drv/megadrive/d_megadrive.cpp b/src/burn/drv/megadrive/d_megadrive.cpp
-index cd4752198..d96b5e405 100644
+index 9297a5707..80be54187 100644
 --- a/src/burn/drv/megadrive/d_megadrive.cpp
 +++ b/src/burn/drv/megadrive/d_megadrive.cpp
-@@ -46297,3 +46297,462 @@ struct BurnDriver BurnDrvmd_cutthrs = {
+@@ -51309,3 +51309,462 @@ struct BurnDriver BurnDrvmd_tinheads = {
  	MegadriveInit, MegadriveExit, MegadriveFrame, MegadriveDraw, MegadriveScan,
  	&bMegadriveRecalcPalette, 0x100, 320, 224, 4, 3
  };
 +
 +//============================================================
-+//  Add Hack Roms
++//  Add Korean Translation
 +//============================================================
 +
 +// GleyLancer (Hack, Korean)
@@ -1388,10 +2251,109 @@ index cd4752198..d96b5e405 100644
 +	&bMegadriveRecalcPalette, 0x100, 320, 224, 4, 3
 +};
 diff --git a/src/burn/drv/neogeo/d_neogeo.cpp b/src/burn/drv/neogeo/d_neogeo.cpp
-index b1eb8ca80..dad302f63 100644
+index b83ba063d..ebbdd77ca 100644
 --- a/src/burn/drv/neogeo/d_neogeo.cpp
 +++ b/src/burn/drv/neogeo/d_neogeo.cpp
-@@ -10335,7 +10335,7 @@ static INT32 samsh5spInit()
+@@ -110,7 +110,7 @@ static struct BurnDIPInfo ms5pcbDIPList[] = {
+ 	{0x00,	0xFF, 0xFF,	0x00, NULL},
+ 	{0x01,	0xFF, 0x7F,	0x00, NULL},
+ 	// Fake DIPs
+-	{0x02,	0xFF, 0xFF,	0x86, NULL},
++	{0x02,	0xFF, 0xFF,	0x8f, NULL},
+ 
+ 	// DIP 1
+ 	{0,		0xFE, 0,	2,	  "Setting mode"},
+@@ -164,7 +164,7 @@ static struct BurnDIPInfo svcpcbDIPList[] = {
+ 	{0x00,	0xFF, 0xFF,	0x00, NULL},
+ 	{0x01,	0xFF, 0x7F,	0x00, NULL},
+ 	// Fake DIPs
+-	{0x02,	0xFF, 0xFF,	0x86, NULL},
++	{0x02,	0xFF, 0xFF,	0x8f, NULL},
+ 
+ 	// DIP 1
+ 	{0,		0xFE, 0,	2,	  "Setting mode"},
+@@ -218,7 +218,7 @@ static struct BurnDIPInfo kf2k3pcbDIPList[] = {
+ 	{0x00,	0xFF, 0xFF,	0x00, NULL},
+ 	{0x01,	0xFF, 0x7F,	0x00, NULL},
+ 	// Fake DIPs
+-	{0x02,	0xFF, 0xFF,	0x86, NULL},
++	{0x02,	0xFF, 0xFF,	0x8f, NULL},
+ 
+ 	// DIP 1
+ 	{0,		0xFE, 0,	2,	  "Setting mode"},
+@@ -554,7 +554,7 @@ static struct BurnDIPInfo neodefaultDIPList[] = {
+ 	{0x00,	0xFF, 0xFF,	0x00, NULL},
+ 	{0x01,	0xFF, 0x7F,	0x00, NULL},
+ 	// Fake DIPs
+-	{0x02,	0xFF, 0xFF,	0x80, NULL},
++	{0x02,	0xFF, 0xFF,	0x8f, NULL},
+ 	{0x03,	0xFF, 0xFF,	0x01, NULL},
+ 
+ 	{0,		0xFE, 0,	2,	  "Autofire"},
+@@ -586,7 +586,7 @@ static struct BurnDIPInfo neounidefaultDIPList[] = {
+ 	{0x00,	0xFF, 0xFF,	0x00, NULL},
+ 	{0x01,	0xFF, 0x7F,	0x00, NULL},
+ 	// Fake DIPs
+-	{0x02,	0xFF, 0xFF,	0x8f, NULL},
++	{0x02,	0xFF, 0xFF,	0x93, NULL},
+ 	{0x03,	0xFF, 0xFF,	0x02, NULL},
+ 
+ 	{0,		0xFE, 0,	2,	  "Autofire"},
+@@ -602,7 +602,7 @@ static struct BurnDIPInfo neopaddleDIPList[] = {
+ 	{0x00,	0xFF, 0xFF,	0x00, NULL},
+ 	{0x01,	0xFF, 0x7F,	0x00, NULL},
+ 	// Fake DIPs
+-	{0x02,	0xFF, 0xFF,	0x80, NULL},
++	{0x02,	0xFF, 0xFF,	0x88, NULL},
+ 	{0x03,	0xFF, 0xFF,	0x01, NULL},
+ };
+ 
+@@ -614,7 +614,7 @@ static struct BurnDIPInfo neodualDIPList[] = {
+ 	{0x00,	0xFF, 0xFF,	0x00, NULL},
+ 	{0x01,	0xFF, 0x7F,	0x00, NULL},
+ 	// Fake DIPs
+-	{0x02,	0xFF, 0xFF,	0x80, NULL},
++	{0x02,	0xFF, 0xFF,	0x88, NULL},
+ 	{0x03,	0xFF, 0xFF,	0x01, NULL},
+ 
+ 	{0,		0xFE, 0,	2,	  "Autofire"},
+@@ -630,7 +630,7 @@ static struct BurnDIPInfo neomahjongDIPList[] = {
+ 	{0x00,	0xFF, 0xFF,	0x00, NULL},
+ 	{0x01,	0xFF, 0x7F,	0x00, NULL},
+ 	// Fake DIPs
+-	{0x02,	0xFF, 0xFF,	0x80, NULL},
++	{0x02,	0xFF, 0xFF,	0x88, NULL},
+ 	{0x03,	0xFF, 0xFF,	0x01, NULL},
+ 
+ 	{0,		0xFE, 0,	2,	  "Mahjong control panel"},
+@@ -777,7 +777,7 @@ static struct BurnDIPInfo neoKOFDIPList[] = {
+ 
+ static struct BurnDIPInfo neoFakeDIPList[] = {
+ 	// default
+-	{0x02,	0xFF, 0xFF,	0x80, NULL},
++	{0x02,	0xFF, 0xFF,	0x8f, NULL},
+ 
+ 	// Fake DIPs
+ 	// BIOS
+@@ -834,7 +834,7 @@ static struct BurnDIPInfo neoCDDIPList[] = {
+ 	{0x16,	0xF0, 0x00,	0x00, NULL},
+ 
+ 	// Defaults
+-	{0x00,	0xFF, 0xFF,	0x02, NULL},
++	{0x00,	0xFF, 0xFF,	0x00, NULL},
+ 
+ 	// Region
+ 	{0,		0xFE, 0,	4,	  "Region"},
+@@ -864,7 +864,7 @@ static struct BurnDIPInfo neotrackballDIPList[] = {
+ 	{0x0D,	0xFF, 0xFF,	0x00, NULL},
+ 	{0x0E,	0xFF, 0x7F,	0x00, NULL},
+ 	// Fake DIPs
+-	{0x0F,	0xFF, 0xFF,	0x86, NULL},
++	{0x0F,	0xFF, 0xFF,	0x8d, NULL},
+ 
+ 	// DIP 1
+ 	{0,		0xFE, 0,	2,	  "Setting mode"},
+@@ -10291,7 +10291,7 @@ static INT32 samsh5spInit()
  struct BurnDriver BurnDrvsamsh5sp = {
  	"samsh5sp", NULL, "neogeo", NULL, "2004",
  	"Samurai Shodown V Special / Samurai Spirits Zero Special (NGM-2720)\0", NULL, "Yuki Enterprise / SNK Playmore", "Neo Geo MVS",
@@ -1400,7 +2362,7 @@ index b1eb8ca80..dad302f63 100644
  	BDF_GAME_WORKING | BDF_HISCORE_SUPPORTED, 2, HARDWARE_PREFIX_CARTRIDGE | HARDWARE_SNK_NEOGEO | HARDWARE_SNK_CMC50 | HARDWARE_SNK_ENCRYPTED_M1, GBF_VSFIGHT, FBF_SAMSHO,
  	NULL, samsh5spRomInfo, samsh5spRomName, NULL, NULL, NULL, NULL, neogeoInputInfo, neogeoDIPInfo,
  	samsh5spInit, NeoExit, NeoFrame, NeoRender, NeoScan, &NeoRecalcPalette,
-@@ -14757,7 +14757,7 @@ static INT32 DoubledrspExit()
+@@ -14748,7 +14748,7 @@ static INT32 DoubledrspExit()
      return NeoExit();
  }
  
@@ -1409,7 +2371,7 @@ index b1eb8ca80..dad302f63 100644
  	"doubledrsp", "doubledr", "neogeo", NULL, "2017",
  	"Double Dragon (Special 2017, hack)\0", NULL, "hack", "Neo Geo MVS",
  	NULL, NULL, NULL, NULL,
-@@ -15315,13 +15315,23 @@ static struct BurnRomInfo mslug5wRomDesc[] = {
+@@ -15306,13 +15306,23 @@ static struct BurnRomInfo mslug5wRomDesc[] = {
  STDROMPICKEXT(mslug5w, mslug5w, neogeo)
  STD_ROM_FN(mslug5w)
  
@@ -1434,11 +2396,14 @@ index b1eb8ca80..dad302f63 100644
  	0x1000,	304, 224, 4, 3
  };
  
-@@ -20285,3 +20295,2887 @@ struct BurnDriver BurnDrvNsmb = {
+@@ -20444,4 +20454,2887 @@ struct BurnDriver BurnDrvTeot = {
+ 	NULL, teotRomInfo, teotRomName, NULL, NULL, NULL, NULL, neogeoInputInfo, neoaesjapanDIPInfo,
  	NeoInit, NeoExit, NeoFrame, NeoRender, NeoScan, &NeoRecalcPalette,
  	0x1000, 304, 224, 4, 3
- };
-+
+-};
+\ No newline at end of file
++};
++	
 +//============================================================
 +// Add Hack Roms
 +//============================================================
@@ -3751,24 +4716,23 @@ index b1eb8ca80..dad302f63 100644
 +// Rage of the Dragons (Boss Hack)
 +
 +static struct BurnRomInfo rotdbhRomDesc[] = {
-+	{ "264-p1b.p1",   0x100000, 0xd15e6d61, 1 | BRF_ESS | BRF_PRG }, //  0 68K code
-+	{ "264-pk2.sp2",  0x200000, 0x0df2e112, 1 | BRF_ESS | BRF_PRG }, //  1 
++	{ "264-p1b.p1",   0x800000, 0x44889313, 1 | BRF_ESS | BRF_PRG }, //  0 68K code
 +
-+	{ "264-c1d.c1",   0x800000, 0xec9d18c0, 3 | BRF_GRA },           //  2 Sprite data
-+	{ "264-c2d.c2",   0x800000, 0xb1069066, 3 | BRF_GRA },           //  3 
-+	{ "264-c3d.c3",   0x800000, 0x7e636d49, 3 | BRF_GRA },           //  4 
-+	{ "264-c4d.c4",   0x800000, 0x76892fda, 3 | BRF_GRA },           //  5 
-+	{ "264-c5d.c5",   0x800000, 0x469061bc, 3 | BRF_GRA },           //  6 
-+	{ "264-c6d.c6",   0x800000, 0x2200220a, 3 | BRF_GRA },           //  7 
-+	{ "264-c7b.c7",   0x800000, 0x2b5c1044, 3 | BRF_GRA },           //  8 
-+	{ "264-c8b.c8",   0x800000, 0xf697f287, 3 | BRF_GRA },           //  9 
++	{ "264-c1d.c1",   0x800000, 0xec9d18c0, 3 | BRF_GRA },           //  1 Sprite data
++	{ "264-c2d.c2",   0x800000, 0xb1069066, 3 | BRF_GRA },           //  2 
++	{ "264-c3d.c3",   0x800000, 0x7e636d49, 3 | BRF_GRA },           //  3 
++	{ "264-c4d.c4",   0x800000, 0x76892fda, 3 | BRF_GRA },           //  4 
++	{ "264-c5d.c5",   0x800000, 0x469061bc, 3 | BRF_GRA },           //  5 
++	{ "264-c6d.c6",   0x800000, 0x2200220a, 3 | BRF_GRA },           //  6 
++	{ "264-c7b.c7",   0x800000, 0x2b5c1044, 3 | BRF_GRA },           //  7 
++	{ "264-c8b.c8",   0x800000, 0xf697f287, 3 | BRF_GRA },           //  8 
 +
-+	{ "264-m1d.m1",   0x010000, 0x7e06206d, 4 | BRF_ESS | BRF_PRG }, // 10 Z80 code
++	{ "264-m1d.m1",   0x010000, 0x7e06206d, 4 | BRF_ESS | BRF_PRG }, //  9 Z80 code
 +
-+	{ "264-v1d.v1",   0x400000, 0x5c77a3fe, 5 | BRF_SND },           // 11 Sound data
-+	{ "264-v2d.v2",   0x400000, 0xa9b7af14, 5 | BRF_SND },           // 12 
-+	{ "264-v3d.v3",   0x400000, 0x17aff92a, 5 | BRF_SND },           // 13 
-+	{ "264-v4d.v4",   0x400000, 0xbc6a091e, 5 | BRF_SND },           // 14 
++	{ "264-v1d.v1",   0x400000, 0x5c77a3fe, 5 | BRF_SND },           // 10 Sound data
++	{ "264-v2d.v2",   0x400000, 0xa9b7af14, 5 | BRF_SND },           // 11 
++	{ "264-v3d.v3",   0x400000, 0x17aff92a, 5 | BRF_SND },           // 12 
++	{ "264-v4d.v4",   0x400000, 0xbc6a091e, 5 | BRF_SND },           // 13 
 +};
 +
 +STDROMPICKEXT(rotdbh, rotdbh, neogeo)
@@ -4440,10 +5404,10 @@ index a21520a8f..f02795717 100644
  	BDF_GAME_WORKING | BDF_CLONE, 2, HARDWARE_SEGA_SYSTEM1, GBF_PLATFORM, 0,
  	NULL, FlickyaRomInfo, FlickyaRomName, NULL, NULL, NULL, NULL, FlickyInputInfo, FlickyDIPInfo,
 diff --git a/src/burn/drv/sega/d_sys16b.cpp b/src/burn/drv/sega/d_sys16b.cpp
-index c8f7bec94..04fbd9be8 100644
+index f4b762eab..5aa8f173e 100644
 --- a/src/burn/drv/sega/d_sys16b.cpp
 +++ b/src/burn/drv/sega/d_sys16b.cpp
-@@ -9506,7 +9506,7 @@ struct BurnDriver BurnDrvCottonud = {
+@@ -9513,7 +9513,7 @@ struct BurnDriver BurnDrvCottonud = {
  
  struct BurnDriver BurnDrvCottonj = {
  	"cottonj", "cotton", NULL, NULL, "1991",
@@ -4452,7 +5416,7 @@ index c8f7bec94..04fbd9be8 100644
  	NULL, NULL, NULL, NULL,
  	BDF_GAME_WORKING | BDF_CLONE, 2, HARDWARE_SEGA_SYSTEM16B | HARDWARE_SEGA_5704 | HARDWARE_SEGA_FD1094_ENC, GBF_HORSHOOT, 0,
  	NULL, CottonjRomInfo, CottonjRomName, NULL, NULL, NULL, NULL, System16bInputInfo, CottonDIPInfo,
-@@ -9516,7 +9516,7 @@ struct BurnDriver BurnDrvCottonj = {
+@@ -9523,7 +9523,7 @@ struct BurnDriver BurnDrvCottonj = {
  
  struct BurnDriver BurnDrvCottonjd = {
  	"cottonjd", "cotton", NULL, NULL, "1991",
@@ -4461,7 +5425,7 @@ index c8f7bec94..04fbd9be8 100644
  	NULL, NULL, NULL, NULL,
  	BDF_GAME_WORKING | BDF_CLONE | BDF_BOOTLEG, 2, HARDWARE_SEGA_SYSTEM16B | HARDWARE_SEGA_5704, GBF_HORSHOOT, 0,
  	NULL, CottonjdRomInfo, CottonjdRomName, NULL, NULL, NULL, NULL, System16bInputInfo, CottonDIPInfo,
-@@ -9526,7 +9526,7 @@ struct BurnDriver BurnDrvCottonjd = {
+@@ -9533,7 +9533,7 @@ struct BurnDriver BurnDrvCottonjd = {
  
  struct BurnDriver BurnDrvCottonja = {
  	"cottonja", "cotton", NULL, NULL, "1991",
@@ -4470,7 +5434,7 @@ index c8f7bec94..04fbd9be8 100644
  	NULL, NULL, NULL, NULL,
  	BDF_GAME_WORKING | BDF_CLONE, 2, HARDWARE_SEGA_SYSTEM16B | HARDWARE_SEGA_5704 | HARDWARE_SEGA_FD1094_ENC, GBF_HORSHOOT, 0,
  	NULL, CottonjaRomInfo, CottonjaRomName, NULL, NULL, NULL, NULL, System16bInputInfo, CottonDIPInfo,
-@@ -9536,7 +9536,7 @@ struct BurnDriver BurnDrvCottonja = {
+@@ -9543,7 +9543,7 @@ struct BurnDriver BurnDrvCottonja = {
  
  struct BurnDriver BurnDrvCottonjad = {
  	"cottonjad", "cotton", NULL, NULL, "1991",
@@ -4928,19 +5892,6 @@ index 6a8cd762f..6e4a43a80 100644
  		strcpy(sgName, BurnDrvGetTextA(DRV_NAME));
  
  #ifdef DAT_DEBUG
-diff --git a/src/burner/libretro/retro_common.cpp b/src/burner/libretro/retro_common.cpp
-index fba171c41..48971c5b0 100644
---- a/src/burner/libretro/retro_common.cpp
-+++ b/src/burner/libretro/retro_common.cpp
-@@ -29,7 +29,7 @@ struct RomBiosInfo aes_bioses[] = {
- };
- 
- struct RomBiosInfo uni_bioses[] = {
--	{"uni-bios_4_0.rom",  0xa7aab458, 0x13, "Universe BIOS ver. 3.3 (free)"  ,  1 },
-+	{"uni-bios_4_0.rom",  0xa7aab458, 0x13, "Universe BIOS ver. 4.0 (free)"  ,  1 },
- 	{"uni-bios_3_3.rom",  0x24858466, 0x14, "Universe BIOS ver. 3.3 (free)"  ,  2 },
- 	{"uni-bios_3_2.rom",  0xa4e8b9b3, 0x15, "Universe BIOS ver. 3.2 (free)"  ,  3 },
- 	{"uni-bios_3_1.rom",  0x0c58093f, 0x16, "Universe BIOS ver. 3.1 (free)"  ,  4 },
 diff --git a/src/burner/win32/app.rc b/src/burner/win32/app.rc
 index b8476d6af..920adb1f9 100644
 --- a/src/burner/win32/app.rc
@@ -5169,7 +6120,7 @@ index 7ef8758c9..d2b39c5b8 100644
  #define MENU_BASIC_SCAN                	    11002
  #define MENU_SCAN50                     	11003
 diff --git a/src/burner/win32/scrn.cpp b/src/burner/win32/scrn.cpp
-index b7c00b0e7..8d653b9e8 100644
+index 552fd48d8..ec9697ea3 100644
 --- a/src/burner/win32/scrn.cpp
 +++ b/src/burner/win32/scrn.cpp
 @@ -334,6 +334,30 @@ int CreateDatfileWindows(int bType)
@@ -5420,16 +6371,16 @@ index b7c00b0e7..8d653b9e8 100644
  			if (UseDialogs()) {
  				CreateAllDatfilesWindows();
 diff --git a/src/dep/generated/driverlist.h b/src/dep/generated/driverlist.h
-index 52f67bdcb..902ee5394 100644
+index 9f49c8b80..cd2eddf74 100644
 --- a/src/dep/generated/driverlist.h
 +++ b/src/dep/generated/driverlist.h
 @@ -1,4 +1,4 @@
 -// This file was generated by ../../dep/scripts/gamelist.pl (perl 5.030003)
-+// This file was generated by gamelist.pl (perl 5.026001)
++// This file was generated by gamelist.pl (perl 5.032000)
  
  // Declaration of all drivers
  #define DRV extern struct BurnDriver
-@@ -454,6 +454,7 @@ DRV		BurnSpecAliensneo;
+@@ -486,6 +486,7 @@ DRV		BurnSpecAliensneo;
  DRV		BurnSpecAliensuk;
  DRV		BurnSpecAliensus;
  DRV		BurnDrvmd_alisiad;
@@ -5437,7 +6388,7 @@ index 52f67bdcb..902ee5394 100644
  DRV		BurnDrvmd_alisiads;
  DRV		BurnDrvmd_alisiadj;
  DRV		BurnDrvmd_alisiadu;
-@@ -688,15 +689,19 @@ DRV		BurnDrvmd_arrows;
+@@ -723,15 +724,19 @@ DRV		BurnDrvmd_arrows;
  DRV		BurnDrvmd_arrowp;
  DRV		BurnDrvmd_arrow;
  DRV		BurnDrvmd_artalive;
@@ -5457,15 +6408,15 @@ index 52f67bdcb..902ee5394 100644
  DRV		BurnDrvAof3k;
  DRV		BurnDrvAof3bh;
  DRV		BurnDrvAof3;
-@@ -976,6 +981,7 @@ DRV		BurnDrvBanbam;
- DRV		BurnDrvnes_bandikinancchi;
+@@ -1018,6 +1023,7 @@ DRV		BurnDrvnes_bandikinancchi;
+ DRV		BurnSpecBandito;
  DRV		BurnDrvBangball;
  DRV		BurnDrvb2b;
 +DRV		BurnDrvbangbnd;
  DRV		BurnDrvbangbedp;
  DRV		BurnDrvbangbead;
  DRV		BurnDrvBang;
-@@ -1097,6 +1103,7 @@ DRV		BurnDrvBattlex;
+@@ -1142,6 +1148,7 @@ DRV		BurnDrvBattlex;
  DRV		BurnDrvBcruzm12;
  DRV		BurnDrvBtlfieldb;
  DRV		BurnDrvBtlfield;
@@ -5473,7 +6424,7 @@ index 52f67bdcb..902ee5394 100644
  DRV		BurnDrvflipshot;
  DRV		BurnDrvnes_battleformula;
  DRV		BurnDrvBgareghk;
-@@ -1334,6 +1341,7 @@ DRV		BurnDrvsms_blackblt;
+@@ -1387,6 +1394,7 @@ DRV		BurnDrvsms_blackblt;
  DRV		BurnDrvnes_blackboxcha;
  DRV		BurnDrvBlkdrgonb;
  DRV		BurnDrvBlkdrgon;
@@ -5481,16 +6432,16 @@ index 52f67bdcb..902ee5394 100644
  DRV		BurnDrvBlkheartj;
  DRV		BurnDrvBlkheart;
  DRV		BurnDrvBlkhole;
-@@ -1632,6 +1640,8 @@ DRV		BurnDrvMSX_breakout;
+@@ -1695,6 +1703,8 @@ DRV		BurnDrvMSX_breakout;
  DRV		BurnDrvMSX_breakoutt;
  DRV		BurnDrvBrkthru;
  DRV		BurnDrvMSX_breaker;
 +DRV		BurnDrvbreakerb;
 +DRV		BurnDrvbreakreb;
+ DRV		BurnDrvbreakrevbh;
  DRV		BurnDrvbrkrevext;
  DRV		BurnDrvbreakrev;
- DRV		BurnDrvbreakers;
-@@ -1943,6 +1953,7 @@ DRV		BurnDrvCpsCaptcommu;
+@@ -2016,6 +2026,7 @@ DRV		BurnDrvCpsCaptcommu;
  DRV		BurnDrvCpsCaptcommr1;
  DRV		BurnDrvCpsCaptcommj;
  DRV		BurnDrvCpsCaptcomm;
@@ -5498,7 +6449,7 @@ index 52f67bdcb..902ee5394 100644
  DRV		BurnDrvCpsCaptcommb;
  DRV		BurnDrvCpsCaptcommb2;
  DRV		BurnDrvCpsCaptcommb3;
-@@ -2561,6 +2572,7 @@ DRV		BurnDrvmd_contras;
+@@ -2651,6 +2662,7 @@ DRV		BurnDrvmd_contras;
  DRV		BurnDrvmd_contra;
  DRV		BurnDrvnes_contrredfalwar;
  DRV		BurnDrvnes_contrrevredfal;
@@ -5506,7 +6457,18 @@ index 52f67bdcb..902ee5394 100644
  DRV		BurnDrvmd_contraj;
  DRV		BurnDrvnes_contra168in1;
  DRV		BurnDrvnes_contraforcec;
-@@ -3702,6 +3714,7 @@ DRV		BurnDrvCpsDdsomr1;
+@@ -3568,9 +3580,7 @@ DRV		BurnDrvDdragon;
+ DRV		BurnDrvMSX_ddragon;
+ DRV		BurnDrvsms_ddragonk;
+ DRV		BurnDrvdoubledr;
+-#if defined FBNEO_DEBUG
+-DRV		BurnDrvdoubledrsp;		// no comment
+-#endif
++DRV		BurnDrvdoubledrsp;
+ DRV		BurnDrvDdragonu;
+ DRV		BurnDrvDdragoua;
+ DRV		BurnDrvDdragoub;
+@@ -3848,6 +3858,7 @@ DRV		BurnDrvCpsDdsomr1;
  DRV		BurnDrvCpsDdsomh;
  DRV		BurnDrvCpsDdsomjr2;
  DRV		BurnDrvCpsDdsoma;
@@ -5514,11 +6476,12 @@ index 52f67bdcb..902ee5394 100644
  DRV		BurnDrvCpsDdsom;
  DRV		BurnDrvCpsDdsomj;
  DRV		BurnDrvCpsDdsomud;
-@@ -3866,10 +3879,12 @@ DRV		BurnDrvEightman;
+@@ -4020,11 +4031,13 @@ DRV		BurnDrvEightman;
  DRV		BurnDrvEfdt;
  DRV		BurnDrvMSX_sideral;
  DRV		BurnDrvMSX_mundoper;
 +DRV		BurnDrvmd_elvientok;
+ DRV		BurnDrvmd_elvientos;
  DRV		BurnDrvmd_elvientoj;
  DRV		BurnDrvmd_elviento;
  DRV		BurnDrvfds_electrician1;
@@ -5527,7 +6490,7 @@ index 52f67bdcb..902ee5394 100644
  DRV		BurnDrvmd_elemastj;
  DRV		BurnDrvmd_elemast;
  DRV		BurnDrvElevator;
-@@ -4008,6 +4023,7 @@ DRV		BurnDrvMSX_exerion2a;
+@@ -4170,6 +4183,7 @@ DRV		BurnDrvMSX_exerion2a;
  DRV		BurnDrvExerizrb;
  DRV		BurnDrvExerizer;
  DRV		BurnDrvmd_exile;
@@ -5535,7 +6498,7 @@ index 52f67bdcb..902ee5394 100644
  DRV		BurnDrvmd_exilej;
  DRV		BurnDrvmd_exosquad;
  DRV		BurnDrvmd_exosquadu;
-@@ -4194,6 +4210,7 @@ DRV		BurnDrvpce_fantzone;
+@@ -4360,6 +4374,7 @@ DRV		BurnDrvpce_fantzone;
  DRV		BurnDrvtg_fantzone;
  DRV		BurnDrvFantazia;
  DRV		BurnDrvkabukiklb;
@@ -5543,11 +6506,12 @@ index 52f67bdcb..902ee5394 100644
  DRV		BurnDrvkabukikl;
  #if defined FBNEO_DEBUG
  DRV		BurnDrvFarwest;			// no comment [NOT WORKING]
-@@ -4210,15 +4227,19 @@ DRV		BurnDrvSqbert;
+@@ -4378,16 +4393,20 @@ DRV		BurnDrvSqbert;
  DRV		BurnDrvmd_fastest1;
  DRV		BurnDrvmd_fatfury;
  DRV		BurnDrvmd_fatfuryu;
 +DRV		BurnDrvFatFur1h;
+ DRV		BurnDrvFatfury1bh;
  DRV		BurnDrvFatFury1;
  DRV		BurnDrvmd_fatfury2ec;
 +DRV		BurnDrvFatfur2h;
@@ -5563,7 +6527,7 @@ index 52f67bdcb..902ee5394 100644
  DRV		BurnDrvgg_fatfurspu;
  DRV		BurnDrvFatfurspbs;
  DRV		BurnDrvFatfursp;
-@@ -4274,6 +4295,7 @@ DRV		BurnDrvmd_fifa96;
+@@ -4445,6 +4464,7 @@ DRV		BurnDrvmd_fifa96;
  DRV		BurnDrvmd_fifa99;
  DRV		BurnDrvmd_fifa2k10;
  DRV		BurnDrvmd_fifa2k2;
@@ -5571,7 +6535,7 @@ index 52f67bdcb..902ee5394 100644
  DRV		BurnDrvfightfev;
  DRV		BurnDrvfightfeva;
  DRV		BurnDrvFghthistjb;
-@@ -4329,10 +4351,12 @@ DRV		BurnDrvCpsFfightj2;
+@@ -4502,10 +4522,12 @@ DRV		BurnDrvCpsFfightj2;
  DRV		BurnDrvCpsFfightj3;
  DRV		BurnDrvCpsFfightub;
  DRV		BurnDrvCpsFfightj4;
@@ -5584,7 +6548,7 @@ index 52f67bdcb..902ee5394 100644
  DRV		BurnDrvCpsFfightu;
  DRV		BurnDrvCpsFfightu1;
  DRV		BurnDrvCpsFfightu2;
-@@ -4765,6 +4789,7 @@ DRV		BurnDrvGalturbo;
+@@ -4957,6 +4979,7 @@ DRV		BurnDrvGalturbo;
  DRV		BurnDrvcv_galaxian;
  DRV		BurnDrvnes_galaxy5000;
  DRV		BurnDrvGalemp;
@@ -5592,15 +6556,15 @@ index 52f67bdcb..902ee5394 100644
  DRV		BurnDrvgalaxyfg;
  DRV		BurnDrvsms_gforce;
  DRV		BurnDrvsms_gforceu;
-@@ -4855,6 +4880,7 @@ DRV		BurnDrvGangwarsu;
+@@ -5048,6 +5071,7 @@ DRV		BurnDrvGangwarsu;
  DRV		BurnDrvGangwars;
  DRV		BurnDrvsms_robocop;
  DRV		BurnDrvsms_gangster;
 +DRV		BurnDrvganryund;
  DRV		BurnDrvganryu;
- DRV		BurnDrvGaplusd;
- DRV		BurnDrvGaplus;
-@@ -4875,6 +4901,7 @@ DRV		BurnDrvmd_gargoyle;
+ DRV		BurnDrvnes_gansosaij;
+ DRV		BurnDrvnes_gansosai;
+@@ -5071,6 +5095,7 @@ DRV		BurnDrvmd_gargoyle;
  DRV		BurnDrvGarogun;
  DRV		BurnDrvgaroubl;
  DRV		BurnDrvGaroub;
@@ -5608,7 +6572,7 @@ index 52f67bdcb..902ee5394 100644
  DRV		BurnDrvgarouha;
  DRV		BurnDrvgarouh;
  DRV		BurnDrvGarou;
-@@ -5040,6 +5067,7 @@ DRV		BurnDrvGigasm2;
+@@ -5247,6 +5272,7 @@ DRV		BurnDrvGigasm2;
  DRV		BurnDrvGigasm2b;
  DRV		BurnDrvnes_gimmick;
  DRV		BurnDrvfds_gingaden;
@@ -5616,7 +6580,7 @@ index 52f67bdcb..902ee5394 100644
  DRV		BurnDrvGinganin;
  DRV		BurnDrvGinganina;
  DRV		BurnDrvGteikokub;
-@@ -5055,6 +5083,7 @@ DRV		BurnDrvGlass10a;
+@@ -5263,6 +5289,7 @@ DRV		BurnDrvGlass10a;
  DRV		BurnDrvGlasskr;
  DRV		BurnDrvGlass;
  DRV		BurnDrvmd_gleylance;
@@ -5624,15 +6588,15 @@ index 52f67bdcb..902ee5394 100644
  DRV		BurnDrvmd_gleylanc;
  DRV		BurnDrvMSX_glider;
  DRV		BurnDrvMSX_glidera;
-@@ -5408,6 +5437,7 @@ DRV		BurnDrvGunnailp;
+@@ -5637,6 +5664,7 @@ DRV		BurnDrvGunnailp;
  DRV		BurnDrvmd_gunship;
  DRV		BurnSpecgunship;
  DRV		BurnDrvmd_gunstar;
 +DRV		BurnDrvmd_gunstark;
+ DRV		BurnDrvmd_gunstars;
  DRV		BurnDrvgg_gunstar;
  DRV		BurnDrvmd_gunstarj;
- DRV		BurnDrvmd_gunstarjs;
-@@ -5708,6 +5738,7 @@ DRV		BurnDrvHoneydol;
+@@ -5948,6 +5976,7 @@ DRV		BurnDrvHoneydol;
  DRV		BurnDrvRedfoxwp2;
  DRV		BurnDrvRedfoxwp2a;
  DRV		BurnDrvsms_hongkildong;
@@ -5640,7 +6604,7 @@ index 52f67bdcb..902ee5394 100644
  DRV		BurnDrvgg_ddanpei;
  DRV		BurnDrvmd_ddanpei;
  DRV		BurnDrvpce_ddanpei;
-@@ -5833,6 +5864,7 @@ DRV		BurnDrvHypsptsp;
+@@ -6079,6 +6108,7 @@ DRV		BurnDrvHypsptsp;
  DRV		BurnDrvHyperspt;
  DRV		BurnSpecHypersports;
  DRV		BurnDrvCpsHsf2j1;
@@ -5648,15 +6612,15 @@ index 52f67bdcb..902ee5394 100644
  DRV		BurnDrvCpsHsf2d;
  DRV		BurnDrvCpsHsf2da;
  DRV		BurnDrvCpsHsf2a;
-@@ -6388,6 +6420,7 @@ DRV		BurnDrvKarnovj;
+@@ -6666,6 +6696,7 @@ DRV		BurnDrvKarnovj;
  DRV		BurnDrvKarnova;
  DRV		BurnDrvKarnov;
  DRV		BurnDrvnes_karnov;
 +DRV		BurnDrvkarnovrb;
  DRV		BurnDrvkarnovr;
  DRV		BurnSpecKarnov;
- DRV		BurnDrvpce_katochan;
-@@ -6556,6 +6589,7 @@ DRV		BurnDrvnes_kiterdai;
+ DRV		BurnDrvnes_kartfighter;
+@@ -6838,6 +6869,7 @@ DRV		BurnDrvnes_kiterdai;
  DRV		BurnDrvKittenk;
  DRV		BurnDrvnes_kittyscatch;
  DRV		BurnDrvnes_kiwikra;
@@ -5664,7 +6628,7 @@ index 52f67bdcb..902ee5394 100644
  DRV		BurnDrvKizuna;
  DRV		BurnDrvnes_klashball;
  DRV		BurnDrvMSX_klax;
-@@ -6596,6 +6630,7 @@ DRV		BurnDrvsms_knightm2;
+@@ -6880,6 +6912,7 @@ DRV		BurnDrvsms_knightm2;
  DRV		BurnDrvMSX_knightm3;
  DRV		BurnDrvsg1k_moyuchua;
  DRV		BurnDrvCpsKnights;
@@ -5672,15 +6636,15 @@ index 52f67bdcb..902ee5394 100644
  DRV		BurnDrvCpsKnightsja;
  DRV		BurnDrvCpsKnightsj;
  DRV		BurnDrvCpsKnightsu;
-@@ -6837,6 +6872,7 @@ DRV		BurnDrvLandmakr;
- DRV		BurnDrvsms_landill;
+@@ -7123,6 +7156,7 @@ DRV		BurnDrvsms_landill;
  DRV		BurnDrvgg_landill;
+ DRV		BurnDrvLsasquad;
  DRV		BurnDrvmd_landstlkg;
 +DRV		BurnDrvmd_landstlkk;
  DRV		BurnDrvmd_landstlkj;
  DRV		BurnDrvmd_landstlkc;
  DRV		BurnDrvmd_landstlkf;
-@@ -7441,6 +7477,7 @@ DRV		BurnDrvCpsMshu;
+@@ -7743,6 +7777,7 @@ DRV		BurnDrvCpsMshu;
  DRV		BurnDrvCpsMshb;
  DRV		BurnDrvCpsMshh;
  DRV		BurnDrvCpsMshj;
@@ -5688,7 +6652,7 @@ index 52f67bdcb..902ee5394 100644
  DRV		BurnDrvCpsMshvsfa1;
  DRV		BurnDrvCpsMshvsfa;
  DRV		BurnDrvCpsMshvsfb1;
-@@ -7451,6 +7488,7 @@ DRV		BurnDrvCpsMshvsfu1d;
+@@ -7753,6 +7788,7 @@ DRV		BurnDrvCpsMshvsfu1d;
  DRV		BurnDrvCpsMshvsfu1;
  DRV		BurnDrvCpsMshvsfj1;
  DRV		BurnDrvCpsMshvsfj;
@@ -5696,7 +6660,7 @@ index 52f67bdcb..902ee5394 100644
  DRV		BurnDrvCpsMshvsfb;
  DRV		BurnDrvCpsMshvsfu;
  DRV		BurnDrvCpsMvscur1;
-@@ -7501,6 +7539,8 @@ DRV		BurnDrvmd_maten;
+@@ -7806,6 +7842,8 @@ DRV		BurnDrvmd_maten;
  DRV		BurnDrvnes_matendouji;
  DRV		BurnDrvmd_mathblst;
  DRV		BurnDrvfds_matounohou;
@@ -5705,7 +6669,7 @@ index 52f67bdcb..902ee5394 100644
  DRV		BurnDrvmatrimbl;
  DRV		BurnDrvMatrimbh;
  DRV		BurnDrvmatrim;
-@@ -7662,17 +7702,20 @@ DRV		BurnDrvmslug;
+@@ -7977,17 +8015,20 @@ DRV		BurnDrvmslug;
  DRV		BurnDrvmslug2dg;
  DRV		BurnDrvMSlug2;
  DRV		BurnDrvMSlug2t;
@@ -5726,7 +6690,7 @@ index 52f67bdcb..902ee5394 100644
  DRV		BurnDrvms5pcb;
  DRV		BurnDrvmslug5g;
  DRV		BurnDrvMslug5w;
-@@ -8195,6 +8238,7 @@ DRV		BurnDrvMSX_unleashed;
+@@ -8545,6 +8586,7 @@ DRV		BurnDrvMSX_unleashed;
  DRV		BurnDrvmsx_msx;
  DRV		BurnDrvrocktrv2;
  DRV		BurnDrvMugsmash;
@@ -5734,15 +6698,15 @@ index 52f67bdcb..902ee5394 100644
  DRV		BurnDrvmd_valisj;
  DRV		BurnDrvMSX_valis;
  DRV		BurnDrvMSX_valisk;
-@@ -8226,6 +8270,7 @@ DRV		BurnDrvCpsMbombrdj;
- //		BurnDrvCpsMbombrdu;		// no comment
+@@ -8579,6 +8621,7 @@ DRV		BurnDrvCpsMbombrdj;
  DRV		BurnDrvCpsMbombrd;
+ DRV		BurnDrvmd_mushas;
  DRV		BurnDrvmd_musha;
 +DRV		BurnDrvmd_mushak;
  DRV		BurnDrvmd_mushaj;
  DRV		BurnDrvsg1k_musicj;
  DRV		BurnDrvMusicbal;
-@@ -8498,6 +8543,7 @@ DRV		BurnDrvNsmb;
+@@ -8851,6 +8894,7 @@ DRV		BurnDrvNsmb;
  DRV		BurnDrvsyscheck;
  DRV		BurnDrvneothndr;
  DRV		BurnDrvturfmast;
@@ -5750,7 +6714,7 @@ index 52f67bdcb..902ee5394 100644
  DRV		BurnDrvNeocup98;
  DRV		BurnDrvneotet;
  DRV		BurnDrvneo3ddmo;
-@@ -8678,6 +8724,7 @@ DRV		BurnDrvmd_ncirc;
+@@ -9031,6 +9075,7 @@ DRV		BurnDrvmd_ncirc;
  DRV		BurnDrvmd_ncirc1;
  DRV		BurnDrvmd_ncircp;
  DRV		BurnDrvnitdbl;
@@ -5758,15 +6722,15 @@ index 52f67bdcb..902ee5394 100644
  DRV		BurnDrvnitd;
  DRV		BurnDrvnes_nightonelmstra;
  DRV		BurnDrvnes_nightshade;
-@@ -8720,6 +8767,7 @@ DRV		BurnDrvMSX_ninjajaj;
- DRV		BurnDrvMSX_ninjajajk;
+@@ -9073,6 +9118,7 @@ DRV		BurnDrvMSX_ninjajajk;
  DRV		BurnDrvKazan;
  DRV		BurnDrvnes_ninjakid;
+ DRV		BurnSpecNinjamassacre;
 +DRV		BurnDrvninjamab;
  DRV		BurnDrvNinjamasha;
  DRV		BurnDrvninjamas;
  DRV		BurnDrvNprinces;
-@@ -9294,6 +9342,7 @@ DRV		BurnDrvsms_pstarj;
+@@ -9668,6 +9714,7 @@ DRV		BurnDrvsms_pstarj;
  DRV		BurnDrvsms_pstarjmd;
  DRV		BurnDrvsms_pstarje;
  DRV		BurnDrvsms_pstark;
@@ -5774,7 +6738,7 @@ index 52f67bdcb..902ee5394 100644
  DRV		BurnDrvmd_pstar4j;
  DRV		BurnDrvmd_pstar4;
  DRV		BurnDrvmd_pstar4p5;
-@@ -9314,6 +9363,7 @@ DRV		BurnDrvmd_ps2abe;
+@@ -9688,6 +9735,7 @@ DRV		BurnDrvmd_ps2abe;
  DRV		BurnDrvmd_ps2ab;
  DRV		BurnDrvmd_ps2ace;
  DRV		BurnDrvmd_ps2ac;
@@ -5782,7 +6746,7 @@ index 52f67bdcb..902ee5394 100644
  DRV		BurnDrvmd_pstar2j;
  DRV		BurnDrvmd_ps2ade;
  DRV		BurnDrvmd_ps2ad;
-@@ -9489,6 +9539,7 @@ DRV		BurnDrvCpsPnickj;
+@@ -9868,6 +9916,7 @@ DRV		BurnDrvCpsPnickj;
  DRV		BurnDrvnes_popoteam;
  DRV		BurnDrvmd_pocahont;
  DRV		BurnDrvmd_pocahontu;
@@ -5790,15 +6754,15 @@ index 52f67bdcb..902ee5394 100644
  DRV		BurnDrvpnyaaa;
  DRV		BurnDrvpnyaa;
  DRV		BurnDrvngpc_neo21;
-@@ -9673,6 +9724,7 @@ DRV		BurnDrvmd_predatr2;
- DRV		BurnDrvgg_predatr2;
+@@ -10054,6 +10103,7 @@ DRV		BurnDrvgg_predatr2;
+ DRV		BurnDrvmd_predatr2s;
  DRV		BurnSpecPredator2;
  DRV		BurnSpecPredator;
 +DRV		BurnDrvpisle2nd;
  DRV		BurnDrvpreisle2;
  DRV		BurnDrvPrehislk;
  DRV		BurnDrvPrehislu;
-@@ -9885,6 +9937,8 @@ DRV		BurnDrvPuzlclub;
+@@ -10284,6 +10334,8 @@ DRV		BurnDrvPuzlclub;
  DRV		BurnDrvPclubys;
  DRV		BurnDrvPclubysa;
  DRV		BurnDrvPzlbowl;
@@ -5807,7 +6771,7 @@ index 52f67bdcb..902ee5394 100644
  DRV		BurnDrvpuzzldpr;
  DRV		BurnDrvpuzzledp;
  DRV		BurnDrvPuzzlekg;
-@@ -10094,6 +10148,8 @@ DRV		BurnDrvmd_radrex;
+@@ -10499,6 +10551,8 @@ DRV		BurnDrvmd_radrexp;
  DRV		BurnDrvmd_radrexu;
  DRV		BurnDrvnes_rafworld;
  DRV		BurnDrvRaflesia;
@@ -5816,7 +6780,7 @@ index 52f67bdcb..902ee5394 100644
  DRV		BurnDrvrotdh;
  DRV		BurnDrvrotd;
  DRV		BurnDrvmd_ragnacenk;
-@@ -10244,10 +10300,12 @@ DRV		BurnDrvrbff1a;
+@@ -10656,10 +10710,12 @@ DRV		BurnDrvrbff1a;
  DRV		BurnDrvrbff1k;
  DRV		BurnDrvrbff1ka;
  DRV		BurnDrvrbff1;
@@ -5829,15 +6793,15 @@ index 52f67bdcb..902ee5394 100644
  DRV		BurnDrvrbffspbh;
  DRV		BurnDrvrbffspeck;
  DRV		BurnDrvrbffspec;
-@@ -10700,6 +10758,7 @@ DRV		BurnDrvSamuraiA;
+@@ -11144,6 +11200,7 @@ DRV		BurnDrvSamuraiA;
  DRV		BurnDrvTsamuraih;
  DRV		BurnDrvTsamurai;
  DRV		BurnDrvTsamurai2;
 +DRV		BurnDrvSamShob;
  DRV		BurnDrvmd_samsho;
  DRV		BurnDrvmd_samshoec;
- DRV		BurnDrvgg_samsho;
-@@ -10707,17 +10766,23 @@ DRV		BurnDrvmd_samshou;
+ DRV		BurnDrvmd_samshos;
+@@ -11152,17 +11209,23 @@ DRV		BurnDrvmd_samshou;
  DRV		BurnDrvSamShoh;
  DRV		BurnDrvSamsho;
  DRV		BurnDrvSamShoa;
@@ -5861,7 +6825,7 @@ index 52f67bdcb..902ee5394 100644
  DRV		BurnDrvsamsh5spho;
  DRV		BurnDrvsamsh5sph;
  DRV		BurnDrvsamsh5fe;
-@@ -10800,6 +10865,7 @@ DRV		BurnSpecsavage1;
+@@ -11250,6 +11313,7 @@ DRV		BurnSpecsavage1;
  DRV		BurnSpecsavage2;
  DRV		BurnSpecsavage3;
  DRV		BurnDrvSavgbees;
@@ -5869,7 +6833,7 @@ index 52f67bdcb..902ee5394 100644
  DRV		BurnDrvSavagereb;
  DRV		BurnDrvSavagere;
  DRV		BurnSpecSavingkong;
-@@ -10856,6 +10922,7 @@ DRV		BurnDrvSdgndmps;
+@@ -11308,6 +11372,7 @@ DRV		BurnDrvSdgndmps;
  DRV		BurnDrvGrainbow;
  DRV		BurnDrvGrainbowk;
  DRV		BurnDrvfds_sdgunworgacsescwa;
@@ -5877,7 +6841,7 @@ index 52f67bdcb..902ee5394 100644
  DRV		BurnDrvmd_sdvalis;
  DRV		BurnDrvsms_sdi;
  DRV		BurnDrvSdibl;
-@@ -10931,6 +10998,8 @@ DRV		BurnDrvSengekisj;
+@@ -11384,6 +11449,8 @@ DRV		BurnDrvSengekisj;
  DRV		BurnDrvSengokuh;
  DRV		BurnDrvSengoku;
  DRV		BurnDrvSengoku2;
@@ -5886,27 +6850,28 @@ index 52f67bdcb..902ee5394 100644
  DRV		BurnDrvSengoku3s;
  DRV		BurnDrvsengoku3fs;
  DRV		BurnDrvSengoku3;
-@@ -11038,9 +11107,11 @@ DRV		BurnDrvmd_ragnacen;
+@@ -11500,10 +11567,12 @@ DRV		BurnDrvmd_ragnacen;
  DRV		BurnDrvmd_ragnacenp;
  DRV		BurnDrvmd_ragnacenc;
  DRV		BurnDrvTshingen;
 +DRV		BurnDrvmd_shindarkk;
  DRV		BurnDrvmd_shindarkj;
+ DRV		BurnDrvmd_shinfrces;
  DRV		BurnDrvmd_shinfrce;
  DRV		BurnDrvmd_shinfrcep;
 +DRV		BurnDrvmd_shinfrcek;
  DRV		BurnDrvmd_shinfrcej;
  DRV		BurnDrvgg_shinfrcg;
  DRV		BurnDrvgg_shinfrgfe;
-@@ -11050,6 +11121,7 @@ DRV		BurnDrvmd_shinfrc2;
+@@ -11513,6 +11582,7 @@ DRV		BurnDrvmd_shinfrc2;
  DRV		BurnDrvmd_shinfrc2u;
  DRV		BurnDrvmd_shinfrc2p2;
  DRV		BurnDrvmd_shinfrc2p1;
 +DRV		BurnDrvmd_shinfrc2k;
  DRV		BurnDrvmd_shinfrc2j;
- #if defined FBNEO_DEBUG
- DRV		BurnDrvmd_shinfrc2c;	// no comment
-@@ -11340,9 +11412,11 @@ DRV		BurnDrvngpc_svccardcj;
+ DRV		BurnDrvmd_shinfrc2c;
+ DRV		BurnDrvgg_shinfrc2;
+@@ -11814,9 +11884,11 @@ DRV		BurnDrvngpc_svccardcj;
  DRV		BurnDrvngpc_svccardsja;
  DRV		BurnDrvngpc_svccardsj;
  DRV		BurnDrvsvcboot;
@@ -5918,7 +6883,7 @@ index 52f67bdcb..902ee5394 100644
  DRV		BurnDrvsvcplus;
  DRV		BurnDrvsvcplusa;
  DRV		BurnDrvsvcsplus;
-@@ -12063,6 +12137,7 @@ DRV		BurnDrvCpsSf2jf;
+@@ -12566,6 +12638,7 @@ DRV		BurnDrvCpsSf2jf;
  DRV		BurnDrvCpsSf2uf;
  DRV		BurnDrvCpsSf2ef;
  DRV		BurnDrvCpsSf2jh;
@@ -5926,15 +6891,15 @@ index 52f67bdcb..902ee5394 100644
  DRV		BurnDrvCpsSf2ug;
  DRV		BurnDrvCpsSf2uh;
  DRV		BurnDrvCpsSf2ui;
-@@ -12204,6 +12279,7 @@ DRV		BurnDrvCpsSfzjr1;
+@@ -12712,6 +12785,7 @@ DRV		BurnDrvCpsSfzjr1;
  DRV		BurnDrvCpsSfzh;
  DRV		BurnDrvCpsSfzbr1;
  DRV		BurnDrvCpsSfzj;
 +DRV		BurnDrvCpsSfzjh;
  DRV		BurnDrvCpsSfzb;
+ DRV		BurnDrvCpsSfzcha;
  //		BurnDrvCpsSfzbch;		// no comment
- //		BurnDrvCpsSfzech;		// no comment
-@@ -12214,12 +12290,14 @@ DRV		BurnDrvCpsSfz2ad;
+@@ -12723,12 +12797,14 @@ DRV		BurnDrvCpsSfz2ad;
  DRV		BurnDrvCpsSfz2a;
  DRV		BurnDrvCpsSfz2jd;
  DRV		BurnDrvCpsSfz2jr1;
@@ -5949,7 +6914,7 @@ index 52f67bdcb..902ee5394 100644
  DRV		BurnDrvCpsSfz2alb;
  DRV		BurnDrvCpsSfz2alh;
  DRV		BurnDrvCpsSfz2ald;
-@@ -12231,6 +12309,7 @@ DRV		BurnDrvCpsSfz3ar1;
+@@ -12740,6 +12816,7 @@ DRV		BurnDrvCpsSfz3ar1;
  DRV		BurnDrvCpsSfz3jr1;
  DRV		BurnDrvCpsSfz3a;
  DRV		BurnDrvCpsSfz3j;
@@ -5957,7 +6922,7 @@ index 52f67bdcb..902ee5394 100644
  DRV		BurnDrvSftm110;
  DRV		BurnDrvSftm111;
  DRV		BurnDrvSftm;
-@@ -12319,6 +12398,7 @@ DRV		BurnDrvS1945;
+@@ -12836,6 +12913,7 @@ DRV		BurnDrvS1945;
  DRV		BurnDrvS1945n;
  DRV		BurnDrvS1945iii;
  DRV		BurnDrvS1945ii;
@@ -5965,15 +6930,15 @@ index 52f67bdcb..902ee5394 100644
  DRV		BurnDrvs1945p;
  DRV		BurnDrvpce_stripf2;
  DRV		BurnDrvStrongx;
-@@ -12507,6 +12587,7 @@ DRV		BurnDrvMSX_supdrink;
+@@ -13031,6 +13109,7 @@ DRV		BurnDrvMSX_supdrink;
  DRV		BurnDrvSupduck;
  DRV		BurnDrvUsg32;
  DRV		BurnDrvmd_sfzone;
 +DRV		BurnDrvmd_sfzonek;
+ DRV		BurnDrvmd_sfzones;
  DRV		BurnDrvmd_sfzonej;
  DRV		BurnDrvSformula;
- DRV		BurnDrvSuperg;
-@@ -12735,6 +12816,8 @@ DRV		BurnDrvCpsSsf2th;
+@@ -13280,6 +13359,8 @@ DRV		BurnDrvCpsSsf2th;
  DRV		BurnDrvCpsSsf2tur1;
  DRV		BurnDrvCpsSsf2tu;
  DRV		BurnDrvCpsSsf2tnl;
@@ -5982,25 +6947,25 @@ index 52f67bdcb..902ee5394 100644
  DRV		BurnDrvCpsSsf2xjr1d;
  DRV		BurnDrvCpsSsf2xjr1r;
  DRV		BurnDrvCpsSsf2xjr1;
-@@ -13121,7 +13204,9 @@ DRV		BurnDrvgg_tempojr;
- DRV		BurnDrvMSX_temptations;
+@@ -13694,7 +13775,9 @@ DRV		BurnDrvMSX_temptations;
  DRV		BurnDrvCpsDynwarjr;
  DRV		BurnDrvCpsDynwarj;
+ DRV		BurnDrvnes_tenchiwokurau;
 +DRV		BurnDrvCpsWofj103;
  DRV		BurnDrvCpsWofj;
 +DRV		BurnDrvCpsWofch3p;
  DRV		BurnDrvCpsWofch;
  DRV		BurnDrvCpsWofjh;
  DRV		BurnDrvCpsWofjdr;
-@@ -13400,6 +13485,7 @@ DRV		BurnDrvmd_hybridfp;
+@@ -13986,6 +14069,7 @@ DRV		BurnDrvmd_hybridfp;
  DRV		BurnDrvmd_hybridfc;
  DRV		BurnDrvMSX_iceking;
  DRV		BurnDrvmd_immortal;
 +DRV		BurnDrvmd_immortalk;
+ DRV		BurnDrvmd_immortals;
  DRV		BurnDrvsms_crashdum;
  DRV		BurnDrvmd_crashdum;
- DRV		BurnDrvmd_crashdump;
-@@ -13435,8 +13521,10 @@ DRV		BurnDrvCpsKodu;
+@@ -14021,8 +14105,10 @@ DRV		BurnDrvCpsKodu;
  DRV		BurnDrvCpsKodr1;
  DRV		BurnDrvCpsKod;
  DRV		BurnDrvKof94rz;
@@ -6011,7 +6976,7 @@ index 52f67bdcb..902ee5394 100644
  DRV		BurnDrvKof95h;
  DRV		BurnDrvKof95a;
  DRV		BurnDrvKof95;
-@@ -13444,6 +13532,7 @@ DRV		BurnDrvKof95sp;
+@@ -14030,6 +14116,7 @@ DRV		BurnDrvKof95sp;
  DRV		BurnDrvkof96ae;
  DRV		BurnDrvkof96ep;
  DRV		BurnDrvkof96cn;
@@ -6019,7 +6984,7 @@ index 52f67bdcb..902ee5394 100644
  DRV		BurnDrvKof96h;
  DRV		BurnDrvKof96;
  DRV		BurnDrvKof96a;
-@@ -13452,6 +13541,8 @@ DRV		BurnDrvkof97cn;
+@@ -14038,6 +14125,8 @@ DRV		BurnDrvkof97cn;
  DRV		BurnDrvKof97ps;
  DRV		BurnDrvkof97invplus;
  DRV		BurnDrvKof97k;
@@ -6028,7 +6993,7 @@ index 52f67bdcb..902ee5394 100644
  DRV		BurnDrvKof97h;
  DRV		BurnDrvKof97;
  DRV		BurnDrvkof97t2020;
-@@ -13465,11 +13556,15 @@ DRV		BurnDrvkof97rc;
+@@ -14051,11 +14140,15 @@ DRV		BurnDrvkof97rc;
  DRV		BurnDrvKof97oro;
  DRV		BurnDrvKof97pls;
  DRV		BurnDrvkof97pla;
@@ -6041,10 +7006,10 @@ index 52f67bdcb..902ee5394 100644
 +DRV		BurnDrvKof98cd;
  DRV		BurnDrvkof98pfe;
 +DRV		BurnDrvKof98bf;
+ DRV		BurnDrvkof98ult;
  DRV		BurnDrvKof98k;
  DRV		BurnDrvKof98ka;
- DRV		BurnDrvKof98h;
-@@ -13478,10 +13573,13 @@ DRV		BurnDrvKof98a;
+@@ -14065,10 +14158,13 @@ DRV		BurnDrvKof98a;
  DRV		BurnDrvkof98eck20;
  DRV		BurnDrvkof98eckvs;
  DRV		BurnDrvKof98mix;
@@ -6058,7 +7023,7 @@ index 52f67bdcb..902ee5394 100644
  DRV		BurnDrvkof99h;
  DRV		BurnDrvkof99;
  DRV		BurnDrvkof99p;
-@@ -13496,16 +13594,22 @@ DRV		BurnDrvkof10thd;
+@@ -14083,16 +14179,22 @@ DRV		BurnDrvkof10thd;
  DRV		BurnDrvkf2k5uni;
  DRV		BurnDrvkof10thuo;
  DRV		BurnDrvkf10thep;
@@ -6081,7 +7046,7 @@ index 52f67bdcb..902ee5394 100644
  DRV		BurnDrvkof2002;
  DRV		BurnDrvkof2k2omg;
  DRV		BurnDrvkof2k2omg8;
-@@ -13516,15 +13620,18 @@ DRV		BurnDrvkf2k2ps2;
+@@ -14103,15 +14205,18 @@ DRV		BurnDrvkf2k2ps2;
  DRV		BurnDrvkf2k2ps2b;
  DRV		BurnDrvkof2k2plus;
  DRV		BurnDrvkf2k23rd;
@@ -6100,7 +7065,7 @@ index 52f67bdcb..902ee5394 100644
  DRV		BurnDrvkf2k3pcb;
  DRV		BurnDrvkof2003h;
  DRV		BurnDrvkof2003;
-@@ -13535,10 +13642,13 @@ DRV		BurnDrvkof2k4se;
+@@ -14122,10 +14227,13 @@ DRV		BurnDrvkof2k4se;
  DRV		BurnDrvkf2k4pls;
  DRV		BurnDrvpce_kungfu;
  DRV		BurnDrvngpc_lastblad;
@@ -6114,7 +7079,7 @@ index 52f67bdcb..902ee5394 100644
  DRV		BurnDrvLb2b;
  DRV		BurnDrvDlastbld2eh;
  DRV		BurnDrvlastbld2;
-@@ -13703,9 +13813,11 @@ DRV		BurnDrvmd_thors;
+@@ -14304,9 +14412,11 @@ DRV		BurnDrvmd_thors;
  DRV		BurnDrvmd_thorp2;
  DRV		BurnDrvmd_thorp1;
  DRV		BurnDrvmd_thorf;
@@ -6126,18 +7091,18 @@ index 52f67bdcb..902ee5394 100644
  DRV		BurnDrvmd_supshin2;
  DRV		BurnDrvmd_supshin2p1;
  DRV		BurnDrvmd_supshin2p2;
-@@ -14251,8 +14363,10 @@ DRV		BurnDrvnes_twinbee;
- DRV		BurnDrvTwinbee;
- DRV		BurnDrvsg1k_sxpao;
+@@ -14871,8 +14981,10 @@ DRV		BurnDrvsg1k_sxpao;
  DRV		BurnDrvnes_twinb3;
+ DRV		BurnDrvTwinkle;
+ DRV		BurnDrvTwinklea;
 +DRV		BurnDrvtwinsprh;
  DRV		BurnDrvtwinspri;
  DRV		BurnDrvmd_twinklete;
 +DRV		BurnDrvmd_twinkletk;
  DRV		BurnDrvmd_twinklet;
- DRV		BurnDrvTwinkle;
  DRV		BurnDrvMSX_twinlight;
-@@ -14395,6 +14509,7 @@ DRV		BurnDrvvliner;
+ DRV		BurnDrvCpsMtwinsb;
+@@ -15017,6 +15129,7 @@ DRV		BurnDrvvliner;
  DRV		BurnDrvvliner7e;
  DRV		BurnDrvmd_valis;
  DRV		BurnDrvnes_valis;
@@ -6145,7 +7110,7 @@ index 52f67bdcb..902ee5394 100644
  DRV		BurnDrvmd_valis3j;
  DRV		BurnDrvmd_valis3;
  DRV		BurnDrvMSX_valkyr;
-@@ -14412,6 +14527,7 @@ DRV		BurnDrvgg_vampire;
+@@ -15035,6 +15148,7 @@ DRV		BurnDrvgg_vampire;
  DRV		BurnDrvCpsVampjr1;
  DRV		BurnDrvCpsVampj;
  DRV		BurnDrvCpsVampja;
@@ -6153,7 +7118,7 @@ index 52f67bdcb..902ee5394 100644
  DRV		BurnDrvCpsVhuntjr2;
  DRV		BurnDrvCpsVhuntjr1s;
  DRV		BurnDrvCpsVhuntjr1;
-@@ -14426,6 +14542,7 @@ DRV		BurnDrvCpsVsav;
+@@ -15049,6 +15163,7 @@ DRV		BurnDrvCpsVsav;
  DRV		BurnDrvCpsVsavh;
  DRV		BurnDrvCpsVsavj;
  DRV		BurnDrvCpsVsavu;
@@ -6161,7 +7126,7 @@ index 52f67bdcb..902ee5394 100644
  DRV		BurnDrvCpsVsav2d;
  DRV		BurnDrvCpsVsav2;
  DRV		BurnSpecvampveng;
-@@ -14597,6 +14714,7 @@ DRV		BurnDrvMSX_volguard;
+@@ -15224,6 +15339,7 @@ DRV		BurnDrvMSX_volguard;
  DRV		BurnDrvnes_volguardii;
  DRV		BurnDrvfds_volleyball;
  DRV		BurnDrvnes_volleyball;
@@ -6169,7 +7134,7 @@ index 52f67bdcb..902ee5394 100644
  DRV		BurnDrvgowcaizr;
  DRV		BurnDrvMSX_vortraid;
  DRV		BurnDrvsms_voyage;
-@@ -14641,6 +14759,7 @@ DRV		BurnDrvnes_waiwaiwor2;
+@@ -15272,6 +15388,7 @@ DRV		BurnDrvnes_waiwaiwor2;
  DRV		BurnDrvsms_waimanu;
  DRV		BurnDrvMj4simai;
  DRV		BurnDrvwakuwak7bh;
@@ -6177,15 +7142,15 @@ index 52f67bdcb..902ee5394 100644
  DRV		BurnDrvwakuwak7;
  DRV		BurnDrvUltracin;
  DRV		BurnDrvfds_wakusatogai;
-@@ -14791,6 +14910,7 @@ DRV		BurnDrvmd_wimbledj;
- DRV		BurnDrvmd_wimbledu;
+@@ -15432,6 +15549,7 @@ DRV		BurnDrvmd_wimbledu;
  DRV		BurnDrvmd_wimbledup;
  DRV		BurnDrvsms_wimbled2;
+ DRV		BurnDrvnes_winlosordra;
 +DRV		BurnDrvwjammerk;
  DRV		BurnDrvwjammers;
  DRV		BurnDrvWingforc;
  DRV		BurnDrvMSX_wingman2;
-@@ -14993,6 +15113,7 @@ DRV		BurnDrvsms_worldgpu;
+@@ -15638,6 +15756,7 @@ DRV		BurnDrvsms_worldgpu;
  DRV		BurnDrvsms_worldgpp;
  DRV		BurnDrvwh1h;
  DRV		BurnDrvwh1;
@@ -6193,7 +7158,7 @@ index 52f67bdcb..902ee5394 100644
  DRV		BurnDrvmd_whj;
  DRV		BurnDrvmd_whjp5;
  DRV		BurnDrvmd_whjp4;
-@@ -15016,8 +15137,11 @@ DRV		BurnDrvmd_whp01;
+@@ -15661,8 +15780,11 @@ DRV		BurnDrvmd_whp01;
  DRV		BurnDrvmd_whp02;
  DRV		BurnDrvwh2h;
  DRV		BurnDrvwh2;
@@ -6205,7 +7170,7 @@ index 52f67bdcb..902ee5394 100644
  DRV		BurnDrvwhp;
  DRV		BurnDrvpce_wjockey;
  DRV		BurnDrvmd_worldillj;
-@@ -15153,6 +15277,7 @@ DRV		BurnDrvCpsXmcotaar2;
+@@ -15801,6 +15923,7 @@ DRV		BurnDrvCpsXmcotaar2;
  DRV		BurnDrvCpsXmcotaj3;
  DRV		BurnDrvCpsXmcotaar1;
  DRV		BurnDrvCpsXmcotaj2;
@@ -6213,7 +7178,7 @@ index 52f67bdcb..902ee5394 100644
  DRV		BurnDrvCpsXmcotaj1;
  DRV		BurnDrvCpsXmcotaa;
  DRV		BurnDrvCpsXmcotar1d;
-@@ -15335,6 +15460,7 @@ DRV		BurnDrvnes_ys;
+@@ -15986,6 +16109,7 @@ DRV		BurnDrvnes_ys;
  DRV		BurnDrvsms_ysd;
  DRV		BurnDrvsms_ys;
  DRV		BurnDrvsms_ysfm;
@@ -6221,15 +7186,15 @@ index 52f67bdcb..902ee5394 100644
  DRV		BurnDrvmd_ys3j;
  DRV		BurnDrvnes_ysiij;
  DRV		BurnDrvnes_ysii;
-@@ -15491,6 +15617,7 @@ DRV		BurnDrvmd_zoopu;
- DRV		BurnDrvgg_zoopp;
+@@ -16145,6 +16269,7 @@ DRV		BurnDrvgg_zoopp;
  DRV		BurnDrvmd_zouzou;
+ DRV		BurnSpecZub;
  DRV		BurnDrvnes_zunousengal;
 +DRV		BurnDrvZupapand;
  DRV		BurnDrvZupapa;
  DRV		BurnSpecSpec128BIOS;
  DRV		BurnSpecSpec128;
-@@ -15956,6 +16083,7 @@ static struct BurnDriver* pDriver[] = {
+@@ -16642,6 +16767,7 @@ static struct BurnDriver* pDriver[] = {
  	&BurnSpecAliensuk,			// Aliens UK
  	&BurnSpecAliensus,			// Aliens US
  	&BurnDrvmd_alisiad,			// Alisia Dragoon (Euro)
@@ -6237,7 +7202,7 @@ index 52f67bdcb..902ee5394 100644
  	&BurnDrvmd_alisiads,		// Alisia Dragoon (Hack, Spanish)
  	&BurnDrvmd_alisiadj,		// Alisia Dragoon (Jpn)
  	&BurnDrvmd_alisiadu,		// Alisia Dragoon (USA)
-@@ -16190,15 +16318,19 @@ static struct BurnDriver* pDriver[] = {
+@@ -16879,15 +17005,19 @@ static struct BurnDriver* pDriver[] = {
  	&BurnDrvmd_arrowp,			// Arrow Flash (USA, Prototype)
  	&BurnDrvmd_arrow,			// Arrow Flash (World)
  	&BurnDrvmd_artalive,		// Art Alive (World)
@@ -6257,15 +7222,15 @@ index 52f67bdcb..902ee5394 100644
  	&BurnDrvAof3k,				// Art of Fighting 3 - The Path of the Warrior (Korean release)
  	&BurnDrvAof3bh,				// Art of Fighting 3 - The Path of the Warrior / Art of Fighting - Ryuuko no Ken Gaiden (Enable Hidden Characters V2)
  	&BurnDrvAof3,				// Art of Fighting 3 - The Path of the Warrior / Art of Fighting - Ryuuko no Ken Gaiden
-@@ -16478,6 +16610,7 @@ static struct BurnDriver* pDriver[] = {
- 	&BurnDrvnes_bandikinancchi,	// Bandit Kings of Ancient China (USA)
+@@ -17174,6 +17304,7 @@ static struct BurnDriver* pDriver[] = {
+ 	&BurnSpecBandito,			// Bandito (HB)
  	&BurnDrvBangball,			// Bang Bang Ball (v1.05)
  	&BurnDrvb2b,				// Bang Bang Busters (2010 NCI release)
 +	&BurnDrvbangbnd,			// Bang Bead (Fully Decrypted)
  	&BurnDrvbangbedp,			// Bang Bead (Prototype?)
  	&BurnDrvbangbead,			// Bang Bead
  	&BurnDrvBang,				// Bang!
-@@ -16599,6 +16732,7 @@ static struct BurnDriver* pDriver[] = {
+@@ -17298,6 +17429,7 @@ static struct BurnDriver* pDriver[] = {
  	&BurnDrvBcruzm12,			// Battle Cruiser M-12
  	&BurnDrvBtlfieldb,			// Battle Field (bootleg)
  	&BurnDrvBtlfield,			// Battle Field (Japan)
@@ -6273,7 +7238,7 @@ index 52f67bdcb..902ee5394 100644
  	&BurnDrvflipshot,			// Battle Flip Shot
  	&BurnDrvnes_battleformula,	// Battle Formula (Japan)
  	&BurnDrvBgareghk,			// Battle Garegga (Austria / Hong Kong) (Sat Feb 3 1996)
-@@ -16836,6 +16970,7 @@ static struct BurnDriver* pDriver[] = {
+@@ -17543,6 +17675,7 @@ static struct BurnDriver* pDriver[] = {
  	&BurnDrvnes_blackboxcha,	// Black Box Challenge (HB)
  	&BurnDrvBlkdrgonb,			// Black Dragon (bootleg)
  	&BurnDrvBlkdrgon,			// Black Dragon (Japan)
@@ -6281,16 +7246,16 @@ index 52f67bdcb..902ee5394 100644
  	&BurnDrvBlkheartj,			// Black Heart (Japan)
  	&BurnDrvBlkheart,			// Black Heart
  	&BurnDrvBlkhole,			// Black Hole
-@@ -17134,6 +17269,8 @@ static struct BurnDriver* pDriver[] = {
+@@ -17851,6 +17984,8 @@ static struct BurnDriver* pDriver[] = {
  	&BurnDrvMSX_breakoutt,		// Break Out!
  	&BurnDrvBrkthru,			// Break Thru (US)
  	&BurnDrvMSX_breaker,		// Breaker Breaker (Euro)
 +	&BurnDrvbreakerb,			// Breakers (Boss Hack)
 +	&BurnDrvbreakreb,			// Breakers Revenge (Boss Hack)
+ 	&BurnDrvbreakrevbh,			// Breakers Revenge - Boss Hack (Bai-Hu)
  	&BurnDrvbrkrevext,			// Breakers Revenge - Extra Mode (Hack)
  	&BurnDrvbreakrev,			// Breakers Revenge
- 	&BurnDrvbreakers,			// Breakers
-@@ -17445,6 +17582,7 @@ static struct BurnDriver* pDriver[] = {
+@@ -18172,6 +18307,7 @@ static struct BurnDriver* pDriver[] = {
  	&BurnDrvCpsCaptcommr1,		// Captain Commando (911014 World)
  	&BurnDrvCpsCaptcommj,		// Captain Commando (911202 Japan)
  	&BurnDrvCpsCaptcomm,		// Captain Commando (911202 World)
@@ -6298,7 +7263,7 @@ index 52f67bdcb..902ee5394 100644
  	&BurnDrvCpsCaptcommb,		// Captain Commando (bootleg set 1, 911014 other country)
  	&BurnDrvCpsCaptcommb2,		// Captain Commando (bootleg set 2 (with 2xMSM5205), 911014 other country) [unemulated graphics, NOT WORKING]
  	&BurnDrvCpsCaptcommb3,		// Captain Commando (bootleg set 3 (with YM2151 + 2xMSM5205), 911014 other country)
-@@ -18063,6 +18201,7 @@ static struct BurnDriver* pDriver[] = {
+@@ -18807,6 +18943,7 @@ static struct BurnDriver* pDriver[] = {
  	&BurnDrvmd_contra,			// Contra - Hard Corps (USA, Kor)
  	&BurnDrvnes_contrredfalwar,	// Contra - Red Falcon War (USA)
  	&BurnDrvnes_contrrevredfal,	// Contra - Revenge of the Red Falcon (USA)
@@ -6306,7 +7271,7 @@ index 52f67bdcb..902ee5394 100644
  	&BurnDrvmd_contraj,			// Contra - The Hard Corps (Jpn)
  	&BurnDrvnes_contra168in1,	// Contra 168-in-1 (Unl)
  	&BurnDrvnes_contraforcec,	// Contra Force (2nd option, T-Chi)
-@@ -18125,10 +18264,10 @@ static struct BurnDriver* pDriver[] = {
+@@ -18872,10 +19009,10 @@ static struct BurnDriver* pDriver[] = {
  	&BurnDrvMSX_cosmoexp,		// Cosmo-Explorer (Jpn)
  	&BurnDrvMSX_cosmoexpa,		// Cosmo-Explorer (Jpn, Alt)
  	&BurnDrvCottong,			// Cotocoto Cottong
@@ -6321,7 +7286,18 @@ index 52f67bdcb..902ee5394 100644
  	&BurnDrvCottonud,			// Cotton (set 2, US, FD1094 317-0180 decrypted)
  	&BurnDrvCottonu,			// Cotton (set 2, US, FD1094 317-0180)
  	&BurnDrvCottond,			// Cotton (set 3, World, FD1094 317-0181a decrypted)
-@@ -19204,6 +19343,7 @@ static struct BurnDriver* pDriver[] = {
+@@ -19724,9 +19861,7 @@ static struct BurnDriver* pDriver[] = {
+ 	&BurnDrvMSX_ddragon,		// Double Dragon (Kor)
+ 	&BurnDrvsms_ddragonk,		// Double Dragon (Kor)
+ 	&BurnDrvdoubledr,			// Double Dragon (Neo-Geo)
+-#if defined FBNEO_DEBUG
+-	&BurnDrvdoubledrsp,			// Double Dragon (Special 2017, hack) [no comment]
+-#endif
++	&BurnDrvdoubledrsp,			// Double Dragon (Special 2017, hack)
+ 	&BurnDrvDdragonu,			// Double Dragon (US set 1)
+ 	&BurnDrvDdragoua,			// Double Dragon (US set 2)
+ 	&BurnDrvDdragoub,			// Double Dragon (US set 3)
+@@ -20004,6 +20139,7 @@ static struct BurnDriver* pDriver[] = {
  	&BurnDrvCpsDdsomh,			// Dungeons & Dragons - shadow over mystara (960223 Hispanic)
  	&BurnDrvCpsDdsomjr2,		// Dungeons & Dragons - shadow over mystara (960223 Japan)
  	&BurnDrvCpsDdsoma,			// Dungeons & Dragons - shadow over mystara (960619 Asia)
@@ -6329,11 +7305,12 @@ index 52f67bdcb..902ee5394 100644
  	&BurnDrvCpsDdsom,			// Dungeons & Dragons - shadow over mystara (960619 Euro)
  	&BurnDrvCpsDdsomj,			// Dungeons & Dragons - shadow over mystara (960619 Japan)
  	&BurnDrvCpsDdsomud,			// Dungeons & Dragons - shadow over mystara (960619 USA Phoenix Edition)
-@@ -19368,10 +19508,12 @@ static struct BurnDriver* pDriver[] = {
+@@ -20176,11 +20312,13 @@ static struct BurnDriver* pDriver[] = {
  	&BurnDrvEfdt,				// El Fin Del Tiempo
  	&BurnDrvMSX_sideral,		// El Motorista Sideral (Spa)
  	&BurnDrvMSX_mundoper,		// El Mundo Perdido (Spa)
 +	&BurnDrvmd_elvientok,		// El Viento (Hack, Korean)
+ 	&BurnDrvmd_elvientos,		// El Viento (Hack, Spanish)
  	&BurnDrvmd_elvientoj,		// El Viento (Jpn)
  	&BurnDrvmd_elviento,		// El Viento (USA)
  	&BurnDrvfds_electrician1,	// Electrician (Japan)
@@ -6342,7 +7319,7 @@ index 52f67bdcb..902ee5394 100644
  	&BurnDrvmd_elemastj,		// Elemental Master (Jpn)
  	&BurnDrvmd_elemast,			// Elemental Master (USA)
  	&BurnDrvElevator,			// Elevator Action (BA3, 4 pcb version, 1.1)
-@@ -19510,6 +19652,7 @@ static struct BurnDriver* pDriver[] = {
+@@ -20326,6 +20464,7 @@ static struct BurnDriver* pDriver[] = {
  	&BurnDrvExerizrb,			// Exerizer (Japan) (bootleg)
  	&BurnDrvExerizer,			// Exerizer (Japan)
  	&BurnDrvmd_exile,			// Exile (USA)
@@ -6350,7 +7327,7 @@ index 52f67bdcb..902ee5394 100644
  	&BurnDrvmd_exilej,			// Exile - Toki no Hazama e (Jpn)
  	&BurnDrvmd_exosquad,		// Exo Squad (Euro)
  	&BurnDrvmd_exosquadu,		// Exo Squad (USA)
-@@ -19696,6 +19839,7 @@ static struct BurnDriver* pDriver[] = {
+@@ -20516,6 +20655,7 @@ static struct BurnDriver* pDriver[] = {
  	&BurnDrvtg_fantzone,		// Fantasy Zone
  	&BurnDrvFantazia,			// Fantazia (bootleg?)
  	&BurnDrvkabukiklb,			// Far East of Eden - Kabuki Klash / Tengai Makyou - Shin Den (Add hidden characters)
@@ -6358,11 +7335,12 @@ index 52f67bdcb..902ee5394 100644
  	&BurnDrvkabukikl,			// Far East of Eden - Kabuki Klash / Tengai Makyou - Shin Den
  #if defined FBNEO_DEBUG
  	&BurnDrvFarwest,			// Far West [no comment, NOT WORKING]
-@@ -19712,15 +19856,19 @@ static struct BurnDriver* pDriver[] = {
+@@ -20534,16 +20674,20 @@ static struct BurnDriver* pDriver[] = {
  	&BurnDrvmd_fastest1,		// Fastest 1 (Jpn)
  	&BurnDrvmd_fatfury,			// Fatal Fury (Euro, Kor)
  	&BurnDrvmd_fatfuryu,		// Fatal Fury (USA)
 +	&BurnDrvFatFur1h,			// Fatal Fury - King of Fighters (Hidden Hack)
+ 	&BurnDrvFatfury1bh,			// Fatal Fury - King of Fighters / Garou Densetsu - shukumei no tatakai (Boss Hack by Yumeji)
  	&BurnDrvFatFury1,			// Fatal Fury - King of Fighters / Garou Densetsu - shukumei no tatakai (NGM-033)(NGH-033)
  	&BurnDrvmd_fatfury2ec,		// Fatal Fury 2 (Hack, Enhanced Colors v4.0)
 +	&BurnDrvFatfur2h,			// Fatal Fury 2 (Hidden Hack)
@@ -6378,7 +7356,7 @@ index 52f67bdcb..902ee5394 100644
  	&BurnDrvgg_fatfurspu,		// Fatal Fury Special (USA)
  	&BurnDrvFatfurspbs,			// Fatal Fury Special / Garou Densetsu Special (Optional Hidden Character Third Edition)
  	&BurnDrvFatfursp,			// Fatal Fury Special / Garou Densetsu Special (set 1)(NGM-058)(NGH-058)
-@@ -19776,6 +19924,7 @@ static struct BurnDriver* pDriver[] = {
+@@ -20601,6 +20745,7 @@ static struct BurnDriver* pDriver[] = {
  	&BurnDrvmd_fifa99,			// FIFA Soccer 99 (Pirate)
  	&BurnDrvmd_fifa2k10,		// FIFA World Cup - South Africa 2010 (Rus)
  	&BurnDrvmd_fifa2k2,			// FIFA World Cup 2002 (Rus)
@@ -6386,7 +7364,7 @@ index 52f67bdcb..902ee5394 100644
  	&BurnDrvfightfev,			// Fight Fever (set 1)
  	&BurnDrvfightfeva,			// Fight Fever (set 2)
  	&BurnDrvFghthistjb,			// Fighter's History (Japan ver 41-04, DE-0380-1 PCB)
-@@ -19831,10 +19980,12 @@ static struct BurnDriver* pDriver[] = {
+@@ -20658,10 +20803,12 @@ static struct BurnDriver* pDriver[] = {
  	&BurnDrvCpsFfightj3,		// Final Fight (900405 Japan)
  	&BurnDrvCpsFfightub,		// Final Fight (900424 USA)
  	&BurnDrvCpsFfightj4,		// Final Fight (900613 Japan)
@@ -6399,8 +7377,8 @@ index 52f67bdcb..902ee5394 100644
  	&BurnDrvCpsFfightu,			// Final Fight (USA, set 1)
  	&BurnDrvCpsFfightu1,		// Final Fight (USA, set 2)
  	&BurnDrvCpsFfightu2,		// Final Fight (USA, set 3)
-@@ -19971,7 +20122,7 @@ static struct BurnDriver* pDriver[] = {
- 	&BurnDrvMSX_fpointa,		// Flashpoint (Kor, Alt)
+@@ -20805,7 +20952,7 @@ static struct BurnDriver* pDriver[] = {
+ 	&BurnDrvnes_flea,			// FLEA! (HB)
  	&BurnDrvnes_fleademo,		// FLEA! demo (HB)
  	&BurnDrvFlicky,				// Flicky (128k Version, 315-5051)
 -	&BurnDrvFlickya,			// Flicky (128k Version, 315-5051, larger roms))
@@ -6408,7 +7386,7 @@ index 52f67bdcb..902ee5394 100644
  	&BurnDrvFlickys2,			// Flicky (128k Version, not encrypted)
  	&BurnDrvFlickyg,			// Flicky (128k Version, System 2, 315-5051, alt graphics)
  	&BurnDrvFlickys2g,			// Flicky (128k Version, System 2, not encrypted, alt graphics)
-@@ -20267,6 +20418,7 @@ static struct BurnDriver* pDriver[] = {
+@@ -21113,6 +21260,7 @@ static struct BurnDriver* pDriver[] = {
  	&BurnDrvcv_galaxian,		// Galaxian
  	&BurnDrvnes_galaxy5000,		// Galaxy 5000 (USA)
  	&BurnDrvGalemp,				// Galaxy Empire (bootleg?)
@@ -6416,15 +7394,15 @@ index 52f67bdcb..902ee5394 100644
  	&BurnDrvgalaxyfg,			// Galaxy Fight - Universal Warriors
  	&BurnDrvsms_gforce,			// Galaxy Force (Euro, Bra)
  	&BurnDrvsms_gforceu,		// Galaxy Force (USA)
-@@ -20357,6 +20509,7 @@ static struct BurnDriver* pDriver[] = {
+@@ -21204,6 +21352,7 @@ static struct BurnDriver* pDriver[] = {
  	&BurnDrvGangwars,			// Gang Wars
  	&BurnDrvsms_robocop,		// Gangcheol RoboCop (Kor)
  	&BurnDrvsms_gangster,		// Gangster Town (Euro, USA, Bra)
 +	&BurnDrvganryund,			// Ganryu (Fully Decrypted)
  	&BurnDrvganryu,				// Ganryu / Musashi Ganryuki
- 	&BurnDrvGaplusd,			// Gaplus (GP2 rev D, alternate hardware)
- 	&BurnDrvGaplus,				// Gaplus (GP2 rev. B)
-@@ -20377,6 +20530,7 @@ static struct BurnDriver* pDriver[] = {
+ 	&BurnDrvnes_gansosaij,		// Ganso Saiyuuki - Super Monkey Daibouken (Japan)
+ 	&BurnDrvnes_gansosai,		// Ganso Saiyuuki - Super Monkey Daibouken (T-Eng)
+@@ -21227,6 +21376,7 @@ static struct BurnDriver* pDriver[] = {
  	&BurnDrvGarogun,			// Garogun Seroyang (Korea)
  	&BurnDrvgaroubl,			// Garou - Mark of the Wolves (bootleg)
  	&BurnDrvGaroub,				// Garou - Mark of the Wolves (Enable hidden characters)
@@ -6432,7 +7410,7 @@ index 52f67bdcb..902ee5394 100644
  	&BurnDrvgarouha,			// Garou - Mark of the Wolves (NGH-2530)
  	&BurnDrvgarouh,				// Garou - Mark of the Wolves (NGM-2530) (NGH-2530)
  	&BurnDrvGarou,				// Garou - Mark of the Wolves (NGM-2530)
-@@ -20542,6 +20696,7 @@ static struct BurnDriver* pDriver[] = {
+@@ -21403,6 +21553,7 @@ static struct BurnDriver* pDriver[] = {
  	&BurnDrvGigasm2b,			// Gigas Mark II
  	&BurnDrvnes_gimmick,		// Gimmick! (Japan)
  	&BurnDrvfds_gingaden,		// Ginga Denshou - Galaxy Odyssey (Japan)
@@ -6440,7 +7418,7 @@ index 52f67bdcb..902ee5394 100644
  	&BurnDrvGinganin,			// Ginga NinkyouDen (set 1)
  	&BurnDrvGinganina,			// Ginga NinkyouDen (set 2)
  	&BurnDrvGteikokub,			// Gingateikoku No Gyakushu (bootleg set 1)
-@@ -20557,6 +20712,7 @@ static struct BurnDriver* pDriver[] = {
+@@ -21419,6 +21570,7 @@ static struct BurnDriver* pDriver[] = {
  	&BurnDrvGlasskr,			// Glass (Ver 1.1, Break Edition, Version 1994) (censored, unprotected)
  	&BurnDrvGlass,				// Glass (Ver 1.1, Break Edition, Version 1994)
  	&BurnDrvmd_gleylance,		// GleyLancer (Hack, English)
@@ -6448,15 +7426,15 @@ index 52f67bdcb..902ee5394 100644
  	&BurnDrvmd_gleylanc,		// GleyLancer (Jpn)
  	&BurnDrvMSX_glider,			// Glider (Jpn)
  	&BurnDrvMSX_glidera,		// Glider (Jpn, Alt)
-@@ -20910,6 +21066,7 @@ static struct BurnDriver* pDriver[] = {
+@@ -21793,6 +21945,7 @@ static struct BurnDriver* pDriver[] = {
  	&BurnDrvmd_gunship,			// Gunship (Euro)
  	&BurnSpecgunship,			// Gunship
  	&BurnDrvmd_gunstar,			// Gunstar Heroes (Euro)
 +	&BurnDrvmd_gunstark,		// Gunstar Heroes (Hack, Korean)
+ 	&BurnDrvmd_gunstars,		// Gunstar Heroes (Hack, Spanish)
  	&BurnDrvgg_gunstar,			// Gunstar Heroes (Jpn)
  	&BurnDrvmd_gunstarj,		// Gunstar Heroes (Jpn)
- 	&BurnDrvmd_gunstarjs,		// Gunstar Heroes (Jpn, Sample)
-@@ -20971,7 +21128,7 @@ static struct BurnDriver* pDriver[] = {
+@@ -21855,7 +22008,7 @@ static struct BurnDriver* pDriver[] = {
  	&BurnSpechammerboy2,		// Hammer Boy (Part 2 of 2) (128K)
  	&BurnDrvMSX_hammboy,		// Hammer Boy (Spa)
  	&BurnDrvHharryu,			// Hammerin' Harry (US, M84 hardware)
@@ -6465,7 +7443,7 @@ index 52f67bdcb..902ee5394 100644
  	&BurnDrvHharryb,			// Hammerin' Harry (World, M84 hardware bootleg)
  	&BurnDrvpce_hanataka,		// Hana Taaka Daka!?
  	&BurnDrvsms_hangon,			// Hang-On (Euro, Bra, Aus)
-@@ -21210,6 +21367,7 @@ static struct BurnDriver* pDriver[] = {
+@@ -22104,6 +22257,7 @@ static struct BurnDriver* pDriver[] = {
  	&BurnDrvRedfoxwp2,			// Hong Hu Zhanji II (China, set 1)
  	&BurnDrvRedfoxwp2a,			// Hong Hu Zhanji II (China, set 2)
  	&BurnDrvsms_hongkildong,	// Hong Kil Dong (Kor)
@@ -6473,7 +7451,7 @@ index 52f67bdcb..902ee5394 100644
  	&BurnDrvgg_ddanpei,			// Honoo no Toukyuuji - Dodge Danpei (Jpn)
  	&BurnDrvmd_ddanpei,			// Honoo no Toukyuuji - Dodge Danpei (Jpn)
  	&BurnDrvpce_ddanpei,		// Honoo no Toukyuuji - Dodge Danpei
-@@ -21335,6 +21493,7 @@ static struct BurnDriver* pDriver[] = {
+@@ -22235,6 +22389,7 @@ static struct BurnDriver* pDriver[] = {
  	&BurnDrvHyperspt,			// Hyper Sports
  	&BurnSpecHypersports,		// Hyper Sports
  	&BurnDrvCpsHsf2j1,			// Hyper Street Fighter II: The Anniversary Edition (031222 Japan)
@@ -6481,15 +7459,15 @@ index 52f67bdcb..902ee5394 100644
  	&BurnDrvCpsHsf2d,			// Hyper Street Fighter II: The Anniversary Edition (040202 Asia Phoenix Edition)
  	&BurnDrvCpsHsf2da,			// Hyper Street Fighter II: The Anniversary Edition (040202 Asia Phoenix Edition, alt)
  	&BurnDrvCpsHsf2a,			// Hyper Street Fighter II: The Anniversary Edition (040202 Asia)
-@@ -21890,6 +22049,7 @@ static struct BurnDriver* pDriver[] = {
+@@ -22822,6 +22977,7 @@ static struct BurnDriver* pDriver[] = {
  	&BurnDrvKarnova,			// Karnov (US, rev 5)
  	&BurnDrvKarnov,				// Karnov (US, rev 6)
  	&BurnDrvnes_karnov,			// Karnov (USA)
 +	&BurnDrvkarnovrb,			// Karnov's Revenge / Fighter's History Dynamite (Hidden Hack)
  	&BurnDrvkarnovr,			// Karnov's Revenge / Fighter's History Dynamite
  	&BurnSpecKarnov,			// Karnov
- 	&BurnDrvpce_katochan,		// Kato Chan & Ken Chan
-@@ -22058,6 +22218,7 @@ static struct BurnDriver* pDriver[] = {
+ 	&BurnDrvnes_kartfighter,	// Kart Fighter (Unl)
+@@ -22994,6 +23150,7 @@ static struct BurnDriver* pDriver[] = {
  	&BurnDrvKittenk,			// Kitten Kaboodle
  	&BurnDrvnes_kittyscatch,	// Kitty's Catch (USA)
  	&BurnDrvnes_kiwikra,		// Kiwi Kraze - A Bird-Brained Adventure! (USA)
@@ -6497,7 +7475,7 @@ index 52f67bdcb..902ee5394 100644
  	&BurnDrvKizuna,				// Kizuna Encounter - Super Tag Battle / Fu'un Super Tag Battle
  	&BurnDrvnes_klashball,		// KlashBall (USA)
  	&BurnDrvMSX_klax,			// Klax (Euro)
-@@ -22098,6 +22259,7 @@ static struct BurnDriver* pDriver[] = {
+@@ -23036,6 +23193,7 @@ static struct BurnDriver* pDriver[] = {
  	&BurnDrvMSX_knightm3,		// Knightmare III - Shalom (Jpn)
  	&BurnDrvsg1k_moyuchua,		// Knightmare, Moyu Chuanqi (Tw)
  	&BurnDrvCpsKnights,			// Knights of the Round (911127 etc)
@@ -6505,15 +7483,15 @@ index 52f67bdcb..902ee5394 100644
  	&BurnDrvCpsKnightsja,		// Knights of the Round (911127 Japan, B-Board 89625B-1)
  	&BurnDrvCpsKnightsj,		// Knights of the Round (911127 Japan, B-Board 91634B-2)
  	&BurnDrvCpsKnightsu,		// Knights of the Round (911127 USA)
-@@ -22339,6 +22501,7 @@ static struct BurnDriver* pDriver[] = {
- 	&BurnDrvsms_landill,		// Land of Illusion Starring Mickey Mouse (Euro, Bra)
+@@ -23279,6 +23437,7 @@ static struct BurnDriver* pDriver[] = {
  	&BurnDrvgg_landill,			// Land of Illusion Starring Mickey Mouse (Euro, USA)
+ 	&BurnDrvLsasquad,			// Land Sea Air Squad / Riku Kai Kuu Saizensen
  	&BurnDrvmd_landstlkg,		// Landstalker - Die Schatze von Konig Nolo (Ger)
 +	&BurnDrvmd_landstlkk,		// Landstalker - Koutei no Zaihou (Hack, Korean)
  	&BurnDrvmd_landstlkj,		// Landstalker - Koutei no Zaihou (Jpn)
  	&BurnDrvmd_landstlkc,		// Landstalker - Koutei no Zaihou (T-Chi)
  	&BurnDrvmd_landstlkf,		// Landstalker - Le Tresor du Roi Nole (Fra)
-@@ -22943,6 +23106,7 @@ static struct BurnDriver* pDriver[] = {
+@@ -23899,6 +24058,7 @@ static struct BurnDriver* pDriver[] = {
  	&BurnDrvCpsMshb,			// Marvel Super Heroes (951117 Brazil)
  	&BurnDrvCpsMshh,			// Marvel Super Heroes (951117 Hispanic)
  	&BurnDrvCpsMshj,			// Marvel Super Heroes (951117 Japan)
@@ -6521,7 +7499,7 @@ index 52f67bdcb..902ee5394 100644
  	&BurnDrvCpsMshvsfa1,		// Marvel Super Heroes vs Street Fighter (970620 Asia)
  	&BurnDrvCpsMshvsfa,			// Marvel Super Heroes vs Street Fighter (970625 Asia)
  	&BurnDrvCpsMshvsfb1,		// Marvel Super Heroes vs Street Fighter (970625 Brazil)
-@@ -22953,6 +23117,7 @@ static struct BurnDriver* pDriver[] = {
+@@ -23909,6 +24069,7 @@ static struct BurnDriver* pDriver[] = {
  	&BurnDrvCpsMshvsfu1,		// Marvel Super Heroes vs Street Fighter (970625 USA)
  	&BurnDrvCpsMshvsfj1,		// Marvel Super Heroes vs Street Fighter (970702 Japan)
  	&BurnDrvCpsMshvsfj,			// Marvel Super Heroes vs Street Fighter (970707 Japan)
@@ -6529,7 +7507,7 @@ index 52f67bdcb..902ee5394 100644
  	&BurnDrvCpsMshvsfb,			// Marvel Super Heroes vs Street Fighter (970827 Brazil)
  	&BurnDrvCpsMshvsfu,			// Marvel Super Heroes vs Street Fighter (970827 USA)
  	&BurnDrvCpsMvscur1,			// Marvel vs Capcom - clash of super heroes (971222 USA)
-@@ -23003,6 +23168,8 @@ static struct BurnDriver* pDriver[] = {
+@@ -23962,6 +24123,8 @@ static struct BurnDriver* pDriver[] = {
  	&BurnDrvnes_matendouji,		// Matendouji (Japan)
  	&BurnDrvmd_mathblst,		// Math Blaster - Episode 1 (USA)
  	&BurnDrvfds_matounohou,		// Matou no Houkai - The Hero of Babel (Japan)
@@ -6538,7 +7516,7 @@ index 52f67bdcb..902ee5394 100644
  	&BurnDrvmatrimbl,			// Matrimelee / Shin Gouketsuji Ichizoku Toukon (bootleg)
  	&BurnDrvMatrimbh,			// Matrimelee / Shin Gouketsuji Ichizoku Toukon (Enable Hidden Characters V2)
  	&BurnDrvmatrim,				// Matrimelee / Shin Gouketsuji Ichizoku Toukon (NGM-2660) (NGH-2660)
-@@ -23164,17 +23331,20 @@ static struct BurnDriver* pDriver[] = {
+@@ -24133,17 +24296,20 @@ static struct BurnDriver* pDriver[] = {
  	&BurnDrvmslug2dg,			// Metal Slug 2 - Super Vehicle-001/II (Multifunction Hack, 20170509)
  	&BurnDrvMSlug2,				// Metal Slug 2 - Super Vehicle-001/II (NGM-2410) (NGH-2410)
  	&BurnDrvMSlug2t,			// Metal Slug 2 Turbo (NGM-9410)
@@ -6559,7 +7537,7 @@ index 52f67bdcb..902ee5394 100644
  	&BurnDrvms5pcb,				// Metal Slug 5 (JAMMA PCB)
  	&BurnDrvmslug5g,			// Metal Slug 5 (Multifunction Hack, 20170523)
  	&BurnDrvMslug5w,			// Metal Slug 5 (New Campaign, 2016-03-10)
-@@ -23697,6 +23867,7 @@ static struct BurnDriver* pDriver[] = {
+@@ -24701,6 +24867,7 @@ static struct BurnDriver* pDriver[] = {
  	&BurnDrvmsx_msx,			// MSX1 System BIOS [BIOS only, NOT WORKING]
  	&BurnDrvrocktrv2,			// MTV Rock-N-Roll Trivia (Part 2)
  	&BurnDrvMugsmash,			// Mug Smashers
@@ -6567,15 +7545,15 @@ index 52f67bdcb..902ee5394 100644
  	&BurnDrvmd_valisj,			// Mugen Senshi Valis (Jpn)
  	&BurnDrvMSX_valis,			// Mugen Senshi Valis (Jpn)
  	&BurnDrvMSX_valisk,			// Mugen Senshi Valis (Kor)
-@@ -23728,6 +23899,7 @@ static struct BurnDriver* pDriver[] = {
- //	&BurnDrvCpsMbombrdu,		// Muscle Bomber Duo - ultimate team battle (931206 USA) [no comment]
+@@ -24735,6 +24902,7 @@ static struct BurnDriver* pDriver[] = {
  	&BurnDrvCpsMbombrd,			// Muscle Bomber Duo - ultimate team battle (931206 World)
+ 	&BurnDrvmd_mushas,			// Musha - Metallic Uniframe Super Hybrid Armor (Hack, Spanish)
  	&BurnDrvmd_musha,			// MUSHA - Metallic Uniframe Super Hybrid Armor (USA)
 +	&BurnDrvmd_mushak,			// Musha Aleste - Full Metal Fighter Ellinor (Hack, Korean)
  	&BurnDrvmd_mushaj,			// Musha Aleste - Full Metal Fighter Ellinor (Jpn)
  	&BurnDrvsg1k_musicj,		// Music (Jpn)
  	&BurnDrvMusicbal,			// Music Ball
-@@ -24000,6 +24172,7 @@ static struct BurnDriver* pDriver[] = {
+@@ -25007,6 +25175,7 @@ static struct BurnDriver* pDriver[] = {
  	&BurnDrvsyscheck,			// Neo System Check (ver 1.0b)
  	&BurnDrvneothndr,			// Neo Thunder
  	&BurnDrvturfmast,			// Neo Turf Masters / Big Tournament Golf
@@ -6583,7 +7561,7 @@ index 52f67bdcb..902ee5394 100644
  	&BurnDrvNeocup98,			// Neo-Geo Cup '98 - The Road to the Victory
  	&BurnDrvneotet,				// NeoGeo 2-Player Tetris
  	&BurnDrvneo3ddmo,			// NeoGeo 3D! Demo
-@@ -24180,6 +24353,7 @@ static struct BurnDriver* pDriver[] = {
+@@ -25187,6 +25356,7 @@ static struct BurnDriver* pDriver[] = {
  	&BurnDrvmd_ncirc1,			// Nightmare Circus (Bra, Alt)
  	&BurnDrvmd_ncircp,			// Nightmare Circus (Prototype)
  	&BurnDrvnitdbl,				// Nightmare in the Dark (bootleg)
@@ -6591,15 +7569,15 @@ index 52f67bdcb..902ee5394 100644
  	&BurnDrvnitd,				// Nightmare in the Dark
  	&BurnDrvnes_nightonelmstra,	// Nightmare on Elm Street, A (USA)
  	&BurnDrvnes_nightshade,		// Nightshade (USA)
-@@ -24222,6 +24396,7 @@ static struct BurnDriver* pDriver[] = {
- 	&BurnDrvMSX_ninjajajk,		// Ninja Jajamaru-kun (Kor)
+@@ -25229,6 +25399,7 @@ static struct BurnDriver* pDriver[] = {
  	&BurnDrvKazan,				// Ninja Kazan (World)
  	&BurnDrvnes_ninjakid,		// Ninja Kid (USA)
+ 	&BurnSpecNinjamassacre,		// Ninja Massacre
 +	&BurnDrvninjamab,			// Ninja Master's - haoh-ninpo-cho (Boss Hack)
  	&BurnDrvNinjamasha,			// Ninja Master's - haoh-ninpo-cho (Plus)
  	&BurnDrvninjamas,			// Ninja Master's - haoh-ninpo-cho
  	&BurnDrvNprinces,			// Ninja Princess (315-5051, 64k Ver. bootleg?)
-@@ -24796,6 +24971,7 @@ static struct BurnDriver* pDriver[] = {
+@@ -25824,6 +25995,7 @@ static struct BurnDriver* pDriver[] = {
  	&BurnDrvsms_pstarjmd,		// Phantasy Star (Jpn, MD)
  	&BurnDrvsms_pstarje,		// Phantasy Star (Jpn, T-Eng v2.00)
  	&BurnDrvsms_pstark,			// Phantasy Star (Kor)
@@ -6607,7 +7585,7 @@ index 52f67bdcb..902ee5394 100644
  	&BurnDrvmd_pstar4j,			// Phantasy Star - Sennenki no Owari ni (Jpn)
  	&BurnDrvmd_pstar4,			// Phantasy Star - The End of the Millennium (Euro)
  	&BurnDrvmd_pstar4p5,		// Phantasy Star - The End of the Millennium (Prototype, 19940530)
-@@ -24816,6 +24992,7 @@ static struct BurnDriver* pDriver[] = {
+@@ -25844,6 +26016,7 @@ static struct BurnDriver* pDriver[] = {
  	&BurnDrvmd_ps2ab,			// Phantasy Star II - Anne's Adventure (Jpn, SegaNet)
  	&BurnDrvmd_ps2ace,			// Phantasy Star II - Huey's Adventure (Hack, English)
  	&BurnDrvmd_ps2ac,			// Phantasy Star II - Huey's Adventure (Jpn, SegaNet)
@@ -6615,7 +7593,7 @@ index 52f67bdcb..902ee5394 100644
  	&BurnDrvmd_pstar2j,			// Phantasy Star II - Kaerazaru Toki no Owari ni (Jpn)
  	&BurnDrvmd_ps2ade,			// Phantasy Star II - Kinds's Adventure (Hack, English)
  	&BurnDrvmd_ps2ad,			// Phantasy Star II - Kinds's Adventure (Jpn, SegaNet)
-@@ -24991,6 +25168,7 @@ static struct BurnDriver* pDriver[] = {
+@@ -26024,6 +26197,7 @@ static struct BurnDriver* pDriver[] = {
  	&BurnDrvnes_popoteam,		// Po Po Team (Taiwan)
  	&BurnDrvmd_pocahont,		// Pocahontas (Euro)
  	&BurnDrvmd_pocahontu,		// Pocahontas (USA)
@@ -6623,7 +7601,7 @@ index 52f67bdcb..902ee5394 100644
  	&BurnDrvpnyaaa,				// Pochi and Nyaa (Ver 2.00)
  	&BurnDrvpnyaa,				// Pochi and Nyaa (Ver 2.02)
  	&BurnDrvngpc_neo21,			// Pocket Casino Series - Neo 21 (Euro, USA)
-@@ -25136,7 +25314,7 @@ static struct BurnDriver* pDriver[] = {
+@@ -26170,7 +26344,7 @@ static struct BurnDriver* pDriver[] = {
  	&BurnDrvPowerinb,			// Power Instinct (USA, bootleg set 2)
  	&BurnDrvPowerinsc,			// Power Instinct (USA, bootleg set 3) [no comment, NOT WORKING]
  	&BurnDrvPowerinspu,			// Power Instinct (USA, prototype)
@@ -6632,15 +7610,15 @@ index 52f67bdcb..902ee5394 100644
  	&BurnDrvPwrinst2,			// Power Instinct 2 (USA, ver. 94/04/08)
  	&BurnDrvpce_pleag93,		// Power League '93
  	&BurnDrvpce_pleagas,		// Power League (All Star Version)
-@@ -25175,6 +25353,7 @@ static struct BurnDriver* pDriver[] = {
- 	&BurnDrvgg_predatr2,		// Predator 2 (Euro, USA, SMS Mode)
+@@ -26210,6 +26384,7 @@ static struct BurnDriver* pDriver[] = {
+ 	&BurnDrvmd_predatr2s,		// Predator 2 (Hack, Spanish)
  	&BurnSpecPredator2,			// Predator 2
  	&BurnSpecPredator,			// Predator
 +	&BurnDrvpisle2nd,			// Prehistoric Isle 2 (Fully Decrypted)
  	&BurnDrvpreisle2,			// Prehistoric Isle 2
  	&BurnDrvPrehislk,			// Prehistoric Isle in 1930 (Korea)
  	&BurnDrvPrehislu,			// Prehistoric Isle in 1930 (US)
-@@ -25387,6 +25566,8 @@ static struct BurnDriver* pDriver[] = {
+@@ -26440,6 +26615,8 @@ static struct BurnDriver* pDriver[] = {
  	&BurnDrvPclubys,			// Puzzle Club (Yun Sung, set 1)
  	&BurnDrvPclubysa,			// Puzzle Club (Yun Sung, set 2)
  	&BurnDrvPzlbowl,			// Puzzle De Bowling (Japan)
@@ -6649,7 +7627,7 @@ index 52f67bdcb..902ee5394 100644
  	&BurnDrvpuzzldpr,			// Puzzle De Pon! R!
  	&BurnDrvpuzzledp,			// Puzzle De Pon!
  	&BurnDrvPuzzlekg,			// Puzzle King (Dance & Puzzle)
-@@ -25596,6 +25777,8 @@ static struct BurnDriver* pDriver[] = {
+@@ -26655,6 +26832,8 @@ static struct BurnDriver* pDriver[] = {
  	&BurnDrvmd_radrexu,			// Radical Rex (USA)
  	&BurnDrvnes_rafworld,		// Raf World (Japan)
  	&BurnDrvRaflesia,			// Rafflesia (315-5162)
@@ -6658,7 +7636,7 @@ index 52f67bdcb..902ee5394 100644
  	&BurnDrvrotdh,				// Rage of the Dragons (NGH-2640)
  	&BurnDrvrotd,				// Rage of the Dragons (NGM-264?)
  	&BurnDrvmd_ragnacenk,		// Ragnacenty (Kor)
-@@ -25746,10 +25929,12 @@ static struct BurnDriver* pDriver[] = {
+@@ -26812,10 +26991,12 @@ static struct BurnDriver* pDriver[] = {
  	&BurnDrvrbff1k,				// Real Bout Fatal Fury / Real Bout Garou Densetsu (Korean release)
  	&BurnDrvrbff1ka,			// Real Bout Fatal Fury / Real Bout Garou Densetsu (Korean release, bug fix revision)
  	&BurnDrvrbff1,				// Real Bout Fatal Fury / Real Bout Garou Densetsu (NGM-095)(NGH-095)
@@ -6671,15 +7649,15 @@ index 52f67bdcb..902ee5394 100644
  	&BurnDrvrbffspbh,			// Real Bout Fatal Fury Special / Real Bout Garou Densetsu Special (Boss Hack)
  	&BurnDrvrbffspeck,			// Real Bout Fatal Fury Special / Real Bout Garou Densetsu Special (Korean release)
  	&BurnDrvrbffspec,			// Real Bout Fatal Fury Special / Real Bout Garou Densetsu Special
-@@ -26202,6 +26387,7 @@ static struct BurnDriver* pDriver[] = {
+@@ -27300,6 +27481,7 @@ static struct BurnDriver* pDriver[] = {
  	&BurnDrvTsamuraih,			// Samurai Nihon-Ichi (bootleg, harder)
  	&BurnDrvTsamurai,			// Samurai Nihon-Ichi (set 1)
  	&BurnDrvTsamurai2,			// Samurai Nihon-Ichi (set 2)
 +	&BurnDrvSamShob,			// Samurai Shodown (Boss Hack)
  	&BurnDrvmd_samsho,			// Samurai Shodown (Euro)
  	&BurnDrvmd_samshoec,		// Samurai Shodown (Hack, Enhanced Colors v2.0)
- 	&BurnDrvgg_samsho,			// Samurai Shodown (USA)
-@@ -26209,17 +26395,23 @@ static struct BurnDriver* pDriver[] = {
+ 	&BurnDrvmd_samshos,			// Samurai Shodown (Hack, Spanish)
+@@ -27308,17 +27490,23 @@ static struct BurnDriver* pDriver[] = {
  	&BurnDrvSamShoh,			// Samurai Shodown / Samurai Spirits (NGH-045)
  	&BurnDrvSamsho,				// Samurai Shodown / Samurai Spirits (NGM-045)
  	&BurnDrvSamShoa,			// Samurai Shodown / Samurai Spirits (NGM-045, alternate board)
@@ -6703,7 +7681,7 @@ index 52f67bdcb..902ee5394 100644
  	&BurnDrvsamsh5spho,			// Samurai Shodown V Special / Samurai Spirits Zero Special (NGH-2720) (1st release, censored)
  	&BurnDrvsamsh5sph,			// Samurai Shodown V Special / Samurai Spirits Zero Special (NGH-2720) (2nd release, less censored)
  	&BurnDrvsamsh5fe,			// Samurai Shodown V Special / Samurai Spirits Zero Special (NGM-272) (NGH-272) (Final Edition, location test version)
-@@ -26302,6 +26494,7 @@ static struct BurnDriver* pDriver[] = {
+@@ -27406,6 +27594,7 @@ static struct BurnDriver* pDriver[] = {
  	&BurnSpecsavage2,			// Savage (Part 2 of 3) (48K)
  	&BurnSpecsavage3,			// Savage (Part 3 of 3) (48K)
  	&BurnDrvSavgbees,			// Savage Bees
@@ -6711,7 +7689,7 @@ index 52f67bdcb..902ee5394 100644
  	&BurnDrvSavagereb,			// Savage Reign / Fu'un Mokushiroku - kakutou sousei (Boss Hack)
  	&BurnDrvSavagere,			// Savage Reign / Fu'un Mokushiroku - kakutou sousei
  	&BurnSpecSavingkong,		// Saving Kong (HB)
-@@ -26358,6 +26551,7 @@ static struct BurnDriver* pDriver[] = {
+@@ -27464,6 +27653,7 @@ static struct BurnDriver* pDriver[] = {
  	&BurnDrvGrainbow,			// SD Gundam Sangokushi Rainbow Tairiku Senki (Japan)
  	&BurnDrvGrainbowk,			// SD Gundam Sangokushi Rainbow Tairiku Senki (Korea)
  	&BurnDrvfds_sdgunworgacsescwa,// SD Gundam World - Gachapon Senshi - Scramble Wars (Japan)
@@ -6719,7 +7697,7 @@ index 52f67bdcb..902ee5394 100644
  	&BurnDrvmd_sdvalis,			// SD Valis (Jpn)
  	&BurnDrvsms_sdi,			// SDI (Jpn)
  	&BurnDrvSdibl,				// SDI - Strategic Defense Initiative (bootleg, original hardware)
-@@ -26433,6 +26627,8 @@ static struct BurnDriver* pDriver[] = {
+@@ -27540,6 +27730,8 @@ static struct BurnDriver* pDriver[] = {
  	&BurnDrvSengokuh,			// Sengoku / Sengoku Denshou (NGH-017)(US)
  	&BurnDrvSengoku,			// Sengoku / Sengoku Denshou (NGM-017)(NGH-017)
  	&BurnDrvSengoku2,			// Sengoku 2 / Sengoku Denshou 2
@@ -6728,27 +7706,28 @@ index 52f67bdcb..902ee5394 100644
  	&BurnDrvSengoku3s,			// Sengoku 3 / Sengoku Densho 2001 (Evolution 1.0, FCHT hack)
  	&BurnDrvsengoku3fs,			// Sengoku 3 / Sengoku Densho 2001 (Feng Shen Edition, Hack)
  	&BurnDrvSengoku3,			// Sengoku 3 / Sengoku Densho 2001 (set 1)
-@@ -26540,9 +26736,11 @@ static struct BurnDriver* pDriver[] = {
+@@ -27656,10 +27848,12 @@ static struct BurnDriver* pDriver[] = {
  	&BurnDrvmd_ragnacenp,		// Shin Souseiki Ragnacenty (Jpn, Prototype)
  	&BurnDrvmd_ragnacenc,		// Shin Souseiki Ragnacenty (T-Chi)
  	&BurnDrvTshingen,			// Shingen Samurai-Fighter (Japan, English) [Game crashes in level 2, play tshingena instead!, NOT WORKING]
 +	&BurnDrvmd_shindarkk,		// Shining and the Darkness (Hack, Korean)
  	&BurnDrvmd_shindarkj,		// Shining and the Darkness (Jpn)
+ 	&BurnDrvmd_shinfrces,		// Shining Force (Hack, Spanish)
  	&BurnDrvmd_shinfrce,		// Shining Force (USA)
  	&BurnDrvmd_shinfrcep,		// Shining Force (USA, Prototype)
 +	&BurnDrvmd_shinfrcek,		// Shining Force - Kamigami no Isan (Hack, Korean)
  	&BurnDrvmd_shinfrcej,		// Shining Force - Kamigami no Isan (Jpn)
  	&BurnDrvgg_shinfrcg,		// Shining Force Gaiden - Ensei, Jashin no Kuni e (Jpn)
  	&BurnDrvgg_shinfrgfe,		// Shining Force Gaiden - Final Conflict (Hack, English)
-@@ -26552,6 +26750,7 @@ static struct BurnDriver* pDriver[] = {
+@@ -27669,6 +27863,7 @@ static struct BurnDriver* pDriver[] = {
  	&BurnDrvmd_shinfrc2u,		// Shining Force II (USA)
  	&BurnDrvmd_shinfrc2p2,		// Shining Force II (USA, Prototype, 19940404)
  	&BurnDrvmd_shinfrc2p1,		// Shining Force II (USA, Prototype, 19940607)
 +	&BurnDrvmd_shinfrc2k,		// Shining Force II - Koe no Fuuin (Hack, Korean)
  	&BurnDrvmd_shinfrc2j,		// Shining Force II - Koe no Fuuin (Jpn)
- #if defined FBNEO_DEBUG
- 	&BurnDrvmd_shinfrc2c,		// Shining Force II - Koe no Fuuin (T-Chi, v2) [no comment]
-@@ -26842,9 +27041,11 @@ static struct BurnDriver* pDriver[] = {
+ 	&BurnDrvmd_shinfrc2c,		// Shining Force II - Koe no Fuuin (T-Chi, v2)
+ 	&BurnDrvgg_shinfrc2,		// Shining Force II - The Sword of Hajya (Euro, USA)
+@@ -27970,9 +28165,11 @@ static struct BurnDriver* pDriver[] = {
  	&BurnDrvngpc_svccardsja,	// SNK vs. Capcom - Gekitotsu Card Fighters - SNK Supporters Version (Jpn, v6)
  	&BurnDrvngpc_svccardsj,		// SNK vs. Capcom - Gekitotsu Card Fighters - SNK Supporters Version (Jpn, v7)
  	&BurnDrvsvcboot,			// SNK vs. Capcom - SVC Chaos (bootleg)
@@ -6760,7 +7739,7 @@ index 52f67bdcb..902ee5394 100644
  	&BurnDrvsvcplus,			// SNK vs. Capcom - SVC Chaos Plus (bootleg set 1)
  	&BurnDrvsvcplusa,			// SNK vs. Capcom - SVC Chaos Plus (bootleg set 2)
  	&BurnDrvsvcsplus,			// SNK vs. Capcom - SVC Chaos Super Plus (bootleg)
-@@ -27565,6 +27766,7 @@ static struct BurnDriver* pDriver[] = {
+@@ -28722,6 +28919,7 @@ static struct BurnDriver* pDriver[] = {
  	&BurnDrvCpsSf2uf,			// Street Fighter II - The World Warrior (910411 USA)
  	&BurnDrvCpsSf2ef,			// Street Fighter II - The World Warrior (910411 World)
  	&BurnDrvCpsSf2jh,			// Street Fighter II - The World Warrior (910522 Japan)
@@ -6768,15 +7747,15 @@ index 52f67bdcb..902ee5394 100644
  	&BurnDrvCpsSf2ug,			// Street Fighter II - The World Warrior (910522 USA, rev G)
  	&BurnDrvCpsSf2uh,			// Street Fighter II - The World Warrior (910522 USA, rev H)
  	&BurnDrvCpsSf2ui,			// Street Fighter II - The World Warrior (910522 USA, rev I)
-@@ -27706,6 +27908,7 @@ static struct BurnDriver* pDriver[] = {
+@@ -28868,6 +29066,7 @@ static struct BurnDriver* pDriver[] = {
  	&BurnDrvCpsSfzh,			// Street Fighter Zero (950718 Hispanic)
  	&BurnDrvCpsSfzbr1,			// Street Fighter Zero (950727 Brazil)
  	&BurnDrvCpsSfzj,			// Street Fighter Zero (950727 Japan)
 +	&BurnDrvCpsSfzjh,			// Street Fighter Zero (950727 Japan, Hidden Hack)
  	&BurnDrvCpsSfzb,			// Street Fighter Zero (951109 Brazil)
+ 	&BurnDrvCpsSfzcha,			// Street Fighter Zero (CPS Changer, 040820 Japan)
  //	&BurnDrvCpsSfzbch,			// Street Fighter Zero (CPS Changer, 950727 Brazil) [no comment]
- //	&BurnDrvCpsSfzech,			// Street Fighter Zero (CPS Changer, 950727 Euro) [no comment]
-@@ -27716,12 +27919,14 @@ static struct BurnDriver* pDriver[] = {
+@@ -28879,12 +29078,14 @@ static struct BurnDriver* pDriver[] = {
  	&BurnDrvCpsSfz2a,			// Street Fighter Zero 2 (960227 Asia)
  	&BurnDrvCpsSfz2jd,			// Street Fighter Zero 2 (960227 Japan Phoenix Edition)
  	&BurnDrvCpsSfz2jr1,			// Street Fighter Zero 2 (960227 Japan)
@@ -6791,7 +7770,7 @@ index 52f67bdcb..902ee5394 100644
  	&BurnDrvCpsSfz2alb,			// Street Fighter Zero 2 Alpha (960813 Brazil)
  	&BurnDrvCpsSfz2alh,			// Street Fighter Zero 2 Alpha (960813 Hispanic)
  	&BurnDrvCpsSfz2ald,			// Street Fighter Zero 2 Alpha (960826 Asia Phoenix Edition)
-@@ -27733,6 +27938,7 @@ static struct BurnDriver* pDriver[] = {
+@@ -28896,6 +29097,7 @@ static struct BurnDriver* pDriver[] = {
  	&BurnDrvCpsSfz3jr1,			// Street Fighter Zero 3 (980727 Japan)
  	&BurnDrvCpsSfz3a,			// Street Fighter Zero 3 (980904 Asia)
  	&BurnDrvCpsSfz3j,			// Street Fighter Zero 3 (980904 Japan)
@@ -6799,7 +7778,7 @@ index 52f67bdcb..902ee5394 100644
  	&BurnDrvSftm110,			// Street Fighter: The Movie (v1.10)
  	&BurnDrvSftm111,			// Street Fighter: The Movie (v1.11)
  	&BurnDrvSftm,				// Street Fighter: The Movie (v1.12)
-@@ -27821,6 +28027,7 @@ static struct BurnDriver* pDriver[] = {
+@@ -28992,6 +29194,7 @@ static struct BurnDriver* pDriver[] = {
  	&BurnDrvS1945n,				// Strikers 1945 (World, unprotected)
  	&BurnDrvS1945iii,			// Strikers 1945 III (World) / Strikers 1999 (Japan)
  	&BurnDrvS1945ii,			// Strikers 1945 II
@@ -6807,42 +7786,42 @@ index 52f67bdcb..902ee5394 100644
  	&BurnDrvs1945p,				// Strikers 1945 Plus
  	&BurnDrvpce_stripf2,		// Strip Fighter II
  	&BurnDrvStrongx,			// Strong X
-@@ -28009,6 +28216,7 @@ static struct BurnDriver* pDriver[] = {
+@@ -29187,6 +29390,7 @@ static struct BurnDriver* pDriver[] = {
  	&BurnDrvSupduck,			// Super Duck
  	&BurnDrvUsg32,				// Super Duper Casino (California V3.2)
  	&BurnDrvmd_sfzone,			// Super Fantasy Zone (Euro)
 +	&BurnDrvmd_sfzonek,			// Super Fantasy Zone (Hack, Korean)
+ 	&BurnDrvmd_sfzones,			// Super Fantasy Zone (Hack, Spanish)
  	&BurnDrvmd_sfzonej,			// Super Fantasy Zone (Jpn)
  	&BurnDrvSformula,			// Super Formula (Japan)
- 	&BurnDrvSuperg,				// Super Galaxians (galaxiaj hack)
-@@ -28237,6 +28445,8 @@ static struct BurnDriver* pDriver[] = {
+@@ -29436,6 +29640,8 @@ static struct BurnDriver* pDriver[] = {
  	&BurnDrvCpsSsf2tur1,		// Super Street Fighter II Turbo (super street fighter 2 X 940223 USA)
  	&BurnDrvCpsSsf2tu,			// Super Street Fighter II Turbo (super street fighter 2 X 940323 USA)
- 	&BurnDrvCpsSsf2tnl,			// Super Street Fighter II Turbo New Legacy v0.3 Beta (Hack by Born2SPD)
+ 	&BurnDrvCpsSsf2tnl,			// Super Street Fighter II Turbo New Legacy v0.4 (Beta) (Hack by Born2SPD)
 +	&BurnDrvCpsSsf2xjh,			// Super Street Fighter II X - grand master challenge (940223 Japan, Hidden Hack)
 +	&BurnDrvCpsSsf2xjr1dt,		// Super Street Fighter II X - grand master challenge (Phoenix Edition, Training Hack)
  	&BurnDrvCpsSsf2xjr1d,		// Super Street Fighter II X - grand master challenge (super street fighter 2 X 940223 Japan Phoenix Edition)
  	&BurnDrvCpsSsf2xjr1r,		// Super Street Fighter II X - grand master challenge (super street fighter 2 X 940223 Japan rent version)
  	&BurnDrvCpsSsf2xjr1,		// Super Street Fighter II X - grand master challenge (super street fighter 2 X 940223 Japan)
-@@ -28623,7 +28833,9 @@ static struct BurnDriver* pDriver[] = {
- 	&BurnDrvMSX_temptations,	// Temptations
+@@ -29850,7 +30056,9 @@ static struct BurnDriver* pDriver[] = {
  	&BurnDrvCpsDynwarjr,		// Tenchi wo Kurau (Japan Resale Ver.)
  	&BurnDrvCpsDynwarj,			// Tenchi wo Kurau (Japan)
+ 	&BurnDrvnes_tenchiwokurau,	// Tenchi wo Kurau (Japan)
 +	&BurnDrvCpsWofj103,			// Tenchi wo Kurau II - Counter Attack of Mei Sisters (921031 Japan, Hack)
  	&BurnDrvCpsWofj,			// Tenchi wo Kurau II - Sekiheki no Tatakai (921031 Japan)
 +	&BurnDrvCpsWofch3p,			// Tenchi wo Kurau II - Sekiheki no Tatakai (CPS Changer 3P Ura Mode Hack, 921031 Japan)
  	&BurnDrvCpsWofch,			// Tenchi wo Kurau II - Sekiheki no Tatakai (CPS Changer, 921031 Japan)
  	&BurnDrvCpsWofjh,			// Tenchi wo Kurau II - Sekiheki no Tatakai (hack, 921031 Japan)
  	&BurnDrvCpsWofjdr,			// Tenchi wo Kurau II - Sekiheki no Tatakai (Master Edition, Hack)
-@@ -28902,6 +29114,7 @@ static struct BurnDriver* pDriver[] = {
+@@ -30142,6 +30350,7 @@ static struct BurnDriver* pDriver[] = {
  	&BurnDrvmd_hybridfc,		// The Hybrid Front (T-Chi)
  	&BurnDrvMSX_iceking,		// The Ice King (Euro)
  	&BurnDrvmd_immortal,		// The Immortal (Euro, USA)
 +	&BurnDrvmd_immortalk,		// The Immortal (Hack, Korean)
+ 	&BurnDrvmd_immortals,		// The Immortal (Hack, Spanish)
  	&BurnDrvsms_crashdum,		// The Incredible Crash Dummies (Euro, Bra)
  	&BurnDrvmd_crashdum,		// The Incredible Crash Dummies (Euro, USA)
- 	&BurnDrvmd_crashdump,		// The Incredible Crash Dummies (USA, Prototype)
-@@ -28937,8 +29150,10 @@ static struct BurnDriver* pDriver[] = {
+@@ -30177,8 +30386,10 @@ static struct BurnDriver* pDriver[] = {
  	&BurnDrvCpsKodr1,			// The King of Dragons (World 910711)
  	&BurnDrvCpsKod,				// The King of Dragons (World 910805)
  	&BurnDrvKof94rz,			// The King of Fighters '94 (Hack Boss Remixed)
@@ -6853,7 +7832,7 @@ index 52f67bdcb..902ee5394 100644
  	&BurnDrvKof95h,				// The King of Fighters '95 (NGH-084)
  	&BurnDrvKof95a,				// The King of Fighters '95 (NGH-084, alternate board)
  	&BurnDrvKof95,				// The King of Fighters '95 (NGM-084)
-@@ -28946,6 +29161,7 @@ static struct BurnDriver* pDriver[] = {
+@@ -30186,6 +30397,7 @@ static struct BurnDriver* pDriver[] = {
  	&BurnDrvkof96ae,			// The King of Fighters '96 (Anniversary Edition, EGHT hack)
  	&BurnDrvkof96ep,			// The King of Fighters '96 (bootleg / hack)
  	&BurnDrvkof96cn,			// The King of Fighters '96 (Chinese Edition ver 1.0, hack)
@@ -6861,7 +7840,7 @@ index 52f67bdcb..902ee5394 100644
  	&BurnDrvKof96h,				// The King of Fighters '96 (NGH-214)
  	&BurnDrvKof96,				// The King of Fighters '96 (NGM-214)
  	&BurnDrvKof96a,				// The King of Fighters '96 (NGM-214, alternate board)
-@@ -28954,6 +29170,8 @@ static struct BurnDriver* pDriver[] = {
+@@ -30194,6 +30406,8 @@ static struct BurnDriver* pDriver[] = {
  	&BurnDrvKof97ps,			// The King of Fighters '97 (Imitation Playstation final improved version 2016-10-29)
  	&BurnDrvkof97invplus,		// The King of Fighters '97 (Invincible Plus)
  	&BurnDrvKof97k,				// The King of Fighters '97 (Korean release)
@@ -6870,7 +7849,7 @@ index 52f67bdcb..902ee5394 100644
  	&BurnDrvKof97h,				// The King of Fighters '97 (NGH-2320)
  	&BurnDrvKof97,				// The King of Fighters '97 (NGM-2320)
  	&BurnDrvkof97t2020,			// The King of Fighters '97 (Optimised Edition 2020)
-@@ -28967,11 +29185,15 @@ static struct BurnDriver* pDriver[] = {
+@@ -30207,11 +30421,15 @@ static struct BurnDriver* pDriver[] = {
  	&BurnDrvKof97oro,			// The King of Fighters '97 oroshi plus 2003
  	&BurnDrvKof97pls,			// The King of Fighters '97 Plus (bootleg)
  	&BurnDrvkof97pla,			// The King of Fighters '97 Plus 2003 (bootleg / hack)
@@ -6883,10 +7862,10 @@ index 52f67bdcb..902ee5394 100644
 +	&BurnDrvKof98cd,			// The King of Fighters '98 (NeoGeo CD Hack, System Bugs Fix)
  	&BurnDrvkof98pfe,			// The King of Fighters '98 (Plus Final Edition 2017-07-23)
 +	&BurnDrvKof98bf,			// The King of Fighters '98 (System Bugs Fix)
+ 	&BurnDrvkof98ult,			// The King of Fighters '98 (Ultimate Match)
  	&BurnDrvKof98k,				// The King of Fighters '98 - The Slugfest / King of Fighters '98 - dream match never ends (Korean board, set 1)
  	&BurnDrvKof98ka,			// The King of Fighters '98 - The Slugfest / King of Fighters '98 - dream match never ends (Korean board, set 2)
- 	&BurnDrvKof98h,				// The King of Fighters '98 - The Slugfest / King of Fighters '98 - dream match never ends (NGH-2420)
-@@ -28980,10 +29202,13 @@ static struct BurnDriver* pDriver[] = {
+@@ -30221,10 +30439,13 @@ static struct BurnDriver* pDriver[] = {
  	&BurnDrvkof98eck20,			// The King of Fighters '98 Easy Combo King (YZKOF Version, Hack)
  	&BurnDrvkof98eckvs,			// The King of Fighters '98 Easy Combo King 2014 (Versus Version, Hack)
  	&BurnDrvKof98mix,			// The King of Fighters '98 Mix (2015-12-29)
@@ -6900,7 +7879,7 @@ index 52f67bdcb..902ee5394 100644
  	&BurnDrvkof99h,				// The King of Fighters '99 - Millennium Battle (NGH-2510)
  	&BurnDrvkof99,				// The King of Fighters '99 - Millennium Battle (NGM-2510)
  	&BurnDrvkof99p,				// The King of Fighters '99 - Millennium Battle (prototype)
-@@ -28998,16 +29223,22 @@ static struct BurnDriver* pDriver[] = {
+@@ -30239,16 +30460,22 @@ static struct BurnDriver* pDriver[] = {
  	&BurnDrvkf2k5uni,			// The King of Fighters 10th Anniversary 2005 Unique (bootleg)
  	&BurnDrvkof10thuo,			// The King of Fighters 10th Anniversary 2019 (Optimized version 2019, hack)
  	&BurnDrvkf10thep,			// The King of Fighters 10th Anniversary Extra Plus (bootleg)
@@ -6923,7 +7902,7 @@ index 52f67bdcb..902ee5394 100644
  	&BurnDrvkof2002,			// The King of Fighters 2002 (NGM-2650)(NGH-2650)
  	&BurnDrvkof2k2omg,			// The King of Fighters 2002 (Omega v.0?)
  	&BurnDrvkof2k2omg8,			// The King of Fighters 2002 (Omega v0.8)
-@@ -29018,15 +29249,18 @@ static struct BurnDriver* pDriver[] = {
+@@ -30259,15 +30486,18 @@ static struct BurnDriver* pDriver[] = {
  	&BurnDrvkf2k2ps2b,			// The King of Fighters 2002 (PlayStation 2, Hack)
  	&BurnDrvkof2k2plus,			// The King of Fighters 2002 (Plus 2017, Hack)
  	&BurnDrvkf2k23rd,			// The King of Fighters 2002 - 3rd Strike of Orochi (Hack by EGCG/EGHT)
@@ -6942,7 +7921,7 @@ index 52f67bdcb..902ee5394 100644
  	&BurnDrvkf2k3pcb,			// The King of Fighters 2003 (Japan, JAMMA PCB)
  	&BurnDrvkof2003h,			// The King of Fighters 2003 (NGH-2710)
  	&BurnDrvkof2003,			// The King of Fighters 2003 (NGM-2710)
-@@ -29037,10 +29271,13 @@ static struct BurnDriver* pDriver[] = {
+@@ -30278,10 +30508,13 @@ static struct BurnDriver* pDriver[] = {
  	&BurnDrvkf2k4pls,			// The King of Fighters Special Edition 2004 Plus (bootleg)
  	&BurnDrvpce_kungfu,			// The Kung Fu
  	&BurnDrvngpc_lastblad,		// The Last Blade - Beyond the Destiny (Euro)
@@ -6956,7 +7935,7 @@ index 52f67bdcb..902ee5394 100644
  	&BurnDrvLb2b,				// The Last Blade 2 / Bakumatsu Roman - Dai Ni Maku Gekka no Kenshi (Enable Hidden Characters V4)
  	&BurnDrvDlastbld2eh,		// The Last Blade 2 / Bakumatsu Roman - Dai Ni Maku Gekka no Kenshi (Enhanced Hack)
  	&BurnDrvlastbld2,			// The Last Blade 2 / Bakumatsu Roman - Dai Ni Maku Gekka no Kenshi (NGM-2430)(NGH-2430)
-@@ -29205,9 +29442,11 @@ static struct BurnDriver* pDriver[] = {
+@@ -30460,9 +30693,11 @@ static struct BurnDriver* pDriver[] = {
  	&BurnDrvmd_thorp2,			// The Story of Thor (USA, Prototype, 19941004)
  	&BurnDrvmd_thorp1,			// The Story of Thor (USA, Prototype, 19941017)
  	&BurnDrvmd_thorf,			// The Story of Thor - A Successor of The Light (Fra)
@@ -6968,18 +7947,18 @@ index 52f67bdcb..902ee5394 100644
  	&BurnDrvmd_supshin2,		// The Super Shinobi II (Jpn, Kor)
  	&BurnDrvmd_supshin2p1,		// The Super Shinobi II (Jpn, Prototype)
  	&BurnDrvmd_supshin2p2,		// The Super Shinobi II (Jpn, Prototype, Earlier)
-@@ -29753,8 +29992,10 @@ static struct BurnDriver* pDriver[] = {
- 	&BurnDrvTwinbee,			// TwinBee (ROM version)
- 	&BurnDrvsg1k_sxpao,			// Twinbee (Tw)
+@@ -31027,8 +31262,10 @@ static struct BurnDriver* pDriver[] = {
  	&BurnDrvnes_twinb3,			// TwinBee 3 - Poko Poko Daimaou (Japan)
+ 	&BurnDrvTwinkle,			// Twinkle (set 1)
+ 	&BurnDrvTwinklea,			// Twinkle (set 2)
 +	&BurnDrvtwinsprh,			// Twinkle Star Sprites (Hidden Hack)
  	&BurnDrvtwinspri,			// Twinkle Star Sprites
  	&BurnDrvmd_twinklete,		// Twinkle Tale (Hack, English)
 +	&BurnDrvmd_twinkletk,		// Twinkle Tale (Hack, Korean)
  	&BurnDrvmd_twinklet,		// Twinkle Tale (Jpn)
- 	&BurnDrvTwinkle,			// Twinkle
  	&BurnDrvMSX_twinlight,		// Twinlight (HB)
-@@ -29897,6 +30138,7 @@ static struct BurnDriver* pDriver[] = {
+ 	&BurnDrvCpsMtwinsb,			// Twins (bootleg of Mega Twins)
+@@ -31173,6 +31410,7 @@ static struct BurnDriver* pDriver[] = {
  	&BurnDrvvliner7e,			// V-Liner (v0.7e)
  	&BurnDrvmd_valis,			// Valis (USA)
  	&BurnDrvnes_valis,			// Valis - The Fantastic Soldier (Japan)
@@ -6987,7 +7966,7 @@ index 52f67bdcb..902ee5394 100644
  	&BurnDrvmd_valis3j,			// Valis III (Jpn, Rev. A)
  	&BurnDrvmd_valis3,			// Valis III (USA)
  	&BurnDrvMSX_valkyr,			// Valkyr (Euro)
-@@ -29914,6 +30156,7 @@ static struct BurnDriver* pDriver[] = {
+@@ -31191,6 +31429,7 @@ static struct BurnDriver* pDriver[] = {
  	&BurnDrvCpsVampjr1,			// Vampire - the night warriors (940630 Japan)
  	&BurnDrvCpsVampj,			// Vampire - the night warriors (940705 Japan)
  	&BurnDrvCpsVampja,			// Vampire - the night warriors (940705 Japan, alt)
@@ -6995,7 +7974,7 @@ index 52f67bdcb..902ee5394 100644
  	&BurnDrvCpsVhuntjr2,		// Vampire Hunter - darkstalkers' revenge (950302 Japan)
  	&BurnDrvCpsVhuntjr1s,		// Vampire Hunter - darkstalkers' revenge (950307 Japan stop version)
  	&BurnDrvCpsVhuntjr1,		// Vampire Hunter - darkstalkers' revenge (950307 Japan)
-@@ -29928,6 +30171,7 @@ static struct BurnDriver* pDriver[] = {
+@@ -31205,6 +31444,7 @@ static struct BurnDriver* pDriver[] = {
  	&BurnDrvCpsVsavh,			// Vampire Savior - the lord of vampire (970519 Hispanic)
  	&BurnDrvCpsVsavj,			// Vampire Savior - the lord of vampire (970519 Japan)
  	&BurnDrvCpsVsavu,			// Vampire Savior - the lord of vampire (970519 USA)
@@ -7003,7 +7982,7 @@ index 52f67bdcb..902ee5394 100644
  	&BurnDrvCpsVsav2d,			// Vampire Savior 2 - the lord of vampire (970913 Japan Phoenix Edition)
  	&BurnDrvCpsVsav2,			// Vampire Savior 2 - the lord of vampire (970913 Japan)
  	&BurnSpecvampveng,			// Vampire Vengeance (HB, v1.1)
-@@ -30099,6 +30343,7 @@ static struct BurnDriver* pDriver[] = {
+@@ -31380,6 +31620,7 @@ static struct BurnDriver* pDriver[] = {
  	&BurnDrvnes_volguardii,		// Volguard II (Japan)
  	&BurnDrvfds_volleyball,		// Volleyball (Japan)
  	&BurnDrvnes_volleyball,		// Volleyball (USA)
@@ -7011,7 +7990,7 @@ index 52f67bdcb..902ee5394 100644
  	&BurnDrvgowcaizr,			// Voltage Fighter - Gowcaizer / Choujin Gakuen Gowcaizer
  	&BurnDrvMSX_vortraid,		// Vortex Raider (Euro)
  	&BurnDrvsms_voyage,			// Voyage - A Sorceress Vacation (HB, v1.03)
-@@ -30143,6 +30388,7 @@ static struct BurnDriver* pDriver[] = {
+@@ -31428,6 +31669,7 @@ static struct BurnDriver* pDriver[] = {
  	&BurnDrvsms_waimanu,		// Waimanu: Scary Monsters Saga (HB)
  	&BurnDrvMj4simai,			// Wakakusamonogatari Mahjong Yonshimai (Japan)
  	&BurnDrvwakuwak7bh,			// Waku Waku 7 (Boss Hack)
@@ -7019,15 +7998,15 @@ index 52f67bdcb..902ee5394 100644
  	&BurnDrvwakuwak7,			// Waku Waku 7
  	&BurnDrvUltracin,			// Waku Waku Ultraman Racing
  	&BurnDrvfds_wakusatogai,	// Wakusei Aton Gaiden (Japan)
-@@ -30293,6 +30539,7 @@ static struct BurnDriver* pDriver[] = {
- 	&BurnDrvmd_wimbledu,		// Wimbledon Championship Tennis (USA)
+@@ -31588,6 +31830,7 @@ static struct BurnDriver* pDriver[] = {
  	&BurnDrvmd_wimbledup,		// Wimbledon Championship Tennis (USA, Prototype)
  	&BurnDrvsms_wimbled2,		// Wimbledon II (Euro, Bra)
+ 	&BurnDrvnes_winlosordra,	// Win, Lose or Draw (USA)
 +	&BurnDrvwjammerk,			// Windjammers / Flying Power Disc (Korean)
  	&BurnDrvwjammers,			// Windjammers / Flying Power Disc
  	&BurnDrvWingforc,			// Wing Force (Japan, prototype)
  	&BurnDrvMSX_wingman2,		// Wing Man 2 - Kitakura no Fukkatsu (Jpn)
-@@ -30495,6 +30742,7 @@ static struct BurnDriver* pDriver[] = {
+@@ -31794,6 +32037,7 @@ static struct BurnDriver* pDriver[] = {
  	&BurnDrvsms_worldgpp,		// World Grand Prix (USA, Prototype)
  	&BurnDrvwh1h,				// World Heroes (ALH-005)
  	&BurnDrvwh1,				// World Heroes (ALM-005)
@@ -7035,7 +8014,7 @@ index 52f67bdcb..902ee5394 100644
  	&BurnDrvmd_whj,				// World Heroes (Jpn)
  	&BurnDrvmd_whjp5,			// World Heroes (Jpn, Prototype, 19940330)
  	&BurnDrvmd_whjp4,			// World Heroes (Jpn, Prototype, 19940408)
-@@ -30518,8 +30766,11 @@ static struct BurnDriver* pDriver[] = {
+@@ -31817,8 +32061,11 @@ static struct BurnDriver* pDriver[] = {
  	&BurnDrvmd_whp02,			// World Heroes (USA, Prototype, 19940331-B)
  	&BurnDrvwh2h,				// World Heroes 2 (ALH-006)
  	&BurnDrvwh2,				// World Heroes 2 (ALM-006)(ALH-006)
@@ -7047,7 +8026,7 @@ index 52f67bdcb..902ee5394 100644
  	&BurnDrvwhp,				// World Heroes Perfect
  	&BurnDrvpce_wjockey,		// World Jockey
  	&BurnDrvmd_worldillj,		// World of Illusion - Fushigi na Magic Box (Jpn)
-@@ -30655,6 +30906,7 @@ static struct BurnDriver* pDriver[] = {
+@@ -31957,6 +32204,7 @@ static struct BurnDriver* pDriver[] = {
  	&BurnDrvCpsXmcotaj3,		// X-Men - children of the atom (941217 Japan)
  	&BurnDrvCpsXmcotaar1,		// X-Men - children of the atom (941219 Asia)
  	&BurnDrvCpsXmcotaj2,		// X-Men - children of the atom (941219 Japan)
@@ -7055,7 +8034,7 @@ index 52f67bdcb..902ee5394 100644
  	&BurnDrvCpsXmcotaj1,		// X-Men - children of the atom (941222 Japan)
  	&BurnDrvCpsXmcotaa,			// X-Men - children of the atom (950105 Asia)
  	&BurnDrvCpsXmcotar1d,		// X-Men - children of the atom (950105 Euro Phoenix Edition)
-@@ -30837,6 +31089,7 @@ static struct BurnDriver* pDriver[] = {
+@@ -32142,6 +32390,7 @@ static struct BurnDriver* pDriver[] = {
  	&BurnDrvsms_ysd,			// Ys (USA, Demo)
  	&BurnDrvsms_ys,				// Ys - The Vanished Omens (Euro, USA, Bra)
  	&BurnDrvsms_ysfm,			// Ys - The Vanished Omens (FM Mod, v1.2)
@@ -7063,9 +8042,9 @@ index 52f67bdcb..902ee5394 100644
  	&BurnDrvmd_ys3j,			// Ys - Wanderers from Ys (Jpn)
  	&BurnDrvnes_ysiij,			// Ys II - Ancient Ys Vanished - The Final Chapter (Japan)
  	&BurnDrvnes_ysii,			// Ys II - Ancient Ys Vanished - The Final Chapter (T-eng)
-@@ -30993,6 +31246,7 @@ static struct BurnDriver* pDriver[] = {
- 	&BurnDrvgg_zoopp,			// Zoop (USA, Prototype)
+@@ -32301,6 +32550,7 @@ static struct BurnDriver* pDriver[] = {
  	&BurnDrvmd_zouzou,			// Zou! Zou! Zou! Rescue Daisakusen (Jpn)
+ 	&BurnSpecZub,				// Zub
  	&BurnDrvnes_zunousengal,	// Zunou Senkan Galg (Japan)
 +	&BurnDrvZupapand,			// Zupapa! (Fully Decrypted)
  	&BurnDrvZupapa,				// Zupapa!
