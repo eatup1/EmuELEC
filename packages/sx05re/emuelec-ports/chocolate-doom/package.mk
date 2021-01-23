@@ -2,7 +2,7 @@
 # Copyright (C) 2020-present Shanti Gilbert (https://github.com/shantigilbert)
 
 PKG_NAME="chocolate-doom"
-PKG_VERSION="ca81c110bc8c5821b448830cf848a5acb74979bf"
+PKG_VERSION="b26157aca5b12049b35d8dfcf969c51967a369f6"
 PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="GPLv2"
@@ -12,6 +12,10 @@ PKG_DEPENDS_TARGET="toolchain"
 PKG_LONGDESC="Chocolate Doom is a Doom source port that is minimalist and historically accurate."
 GET_HANDLER_SUPPORT="git"
 PKG_TOOLCHAIN="auto"
+
+pre_configure_target() {
+sed -i "s|./convert-font|$PKG_BUILD/textscreen/fonts/convert-font|g" $PKG_BUILD/textscreen/fonts/Makefile.am
+}
 
 makeinstall_target() {
   mkdir -p $INSTALL/usr/config/emuelec/bin

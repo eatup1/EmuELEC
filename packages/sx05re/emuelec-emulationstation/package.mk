@@ -2,7 +2,7 @@
 # Copyright (C) 2019-present Shanti Gilbert (https://github.com/shantigilbert)
 
 PKG_NAME="emuelec-emulationstation"
-PKG_VERSION="4df6d89b1fb32a84183006c7e322725b79d7e934"
+PKG_VERSION="6c2950a3f8f096ca84f0fdb745da62b3c709ac54"
 PKG_GIT_CLONE_BRANCH="EmuELEC"
 PKG_REV="1"
 PKG_ARCH="any"
@@ -19,10 +19,14 @@ GET_HANDLER_SUPPORT="git"
 # themes for Emulationstation
 PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET Crystal es-theme-EmuELEC-carbon"
 
-PKG_CMAKE_OPTS_TARGET=" -DENABLE_EMUELEC=1 -DDISABLE_KODI=1 -DENABLE_FILEMANAGER=1"
+PKG_CMAKE_OPTS_TARGET=" -DENABLE_EMUELEC=1 -DDISABLE_KODI=1 -DENABLE_FILEMANAGER=1 -DGLES2=1"
 
 if [[ ${DEVICE} == "GameForce" ]]; then
 PKG_CMAKE_OPTS_TARGET+=" -DENABLE_GAMEFORCE=1"
+fi
+
+if [[ ${DEVICE} == "OdroidGoAdvance"  ]]; then
+PKG_CMAKE_OPTS_TARGET+=" -DODROIDGOA=1"
 fi
 
 makeinstall_target() {

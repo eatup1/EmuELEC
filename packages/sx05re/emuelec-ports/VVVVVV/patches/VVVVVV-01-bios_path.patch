@@ -2,7 +2,7 @@ diff --git a/desktop_version/src/FileSystemUtils.cpp b/desktop_version/src/FileS
 index d40e7e9..d19895d 100644
 --- a/desktop_version/src/FileSystemUtils.cpp
 +++ b/desktop_version/src/FileSystemUtils.cpp
-@@ -102,7 +102,7 @@ int FILESYSTEM_init(char *argvZero, char* baseDir, char *assetsPath)
+@@ -102,7 +102,7 @@
  	else
  	{
  		SDL_snprintf(output, sizeof(output), "%s%s",
@@ -11,7 +11,7 @@ index d40e7e9..d19895d 100644
  			"data.zip"
  		);
  	}
-@@ -124,7 +124,7 @@ int FILESYSTEM_init(char *argvZero, char* baseDir, char *assetsPath)
+@@ -124,7 +124,7 @@
  		return 0;
  	}
  

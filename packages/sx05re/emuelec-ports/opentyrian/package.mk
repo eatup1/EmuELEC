@@ -12,7 +12,6 @@ PKG_URL="$PKG_SITE/archive/$PKG_VERSION.tar.gz"
 PKG_DEPENDS_TARGET="toolchain SDL2-git"
 PKG_LONGDESC="An open-source port of the DOS shoot-em-up Tyrian."
 PKG_TOOLCHAIN="make"
-PKG_GIT_BRANCH="sdl2"
 
 makeinstall_target() {
   mkdir -p $INSTALL/usr/config/emuelec/bin

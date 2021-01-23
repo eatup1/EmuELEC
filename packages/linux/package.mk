@@ -26,15 +26,15 @@ case "$LINUX" in
     PKG_BUILD_PERF="no"
     ;;
   amlogic-4.9)
-    PKG_VERSION="8df9dccba40d9773c39365427ba52d2f45773672"
-    PKG_SHA256="8b7025c5f7e510b9a81cf031e57f90ad010778d816fadae388ec5bf9173ea068"
+    PKG_VERSION="f03f4edee973c1c7bf5bd0de4af5ae8ed3a595a3"
+    PKG_SHA256="54814409c4fb956710ffbdfe92cfdecbc06916ad4092ff84dcfe103af7fd9992"
     PKG_URL="https://github.com/CoreELEC/linux-amlogic/archive/$PKG_VERSION.tar.gz"
     PKG_SOURCE_NAME="linux-$LINUX-$PKG_VERSION.tar.gz"
     PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET aml-dtbtools:host"
     PKG_DEPENDS_UNPACK="media_modules-aml"
     PKG_NEED_UNPACK="$PKG_NEED_UNPACK $(get_pkg_directory media_modules-aml)"
     PKG_BUILD_PERF="no"
-    PKG_GIT_BRANCH="amlogic-4.9"
+    PKG_GIT_BRANCH="amlogic-4.9-9.2"
     ;;
   rockchip-4.4)
     PKG_VERSION="aa8bacf821e5c8ae6dd8cae8d64011c741659945"

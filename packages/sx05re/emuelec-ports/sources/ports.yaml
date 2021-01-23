@@ -199,6 +199,7 @@ VVVVVV:
   init_port: true
   port_exe: "VVVVVV"
   audio: "alsa"
+  check_bios: VVVVVV
   commands:
     - '# VVVVVV will complain about a missing gamecontrollerdb.txt unless we switch to this folder first'
     - cd /storage/.config/SDL-GameControllerDB/
@@ -216,6 +217,7 @@ Duke Nukem:
   init_port: true
   port_exe: "eduke32"
   audio: "alsa"
+  check_bios: eduke32
   commands:
     - cd /storage/roms/ports/eduke
     - ${PORT}
@@ -261,8 +263,10 @@ RigelEngine:
   init_port: true
   port_exe: "RigelEngine"
   audio: "alsa"
+  check_bios: RigelEngine
   commands:
     - ${PORT} /storage/roms/ports/rigelengine
+
 
 MineCraft:
   name: 마인크래프트 PSP 에디션
@@ -274,3 +278,55 @@ MineCraft:
 
   commands:
     - /emuelec/scripts/emuelecRunEmu.sh "/storage/roms/ports/minecraft/EBOOT.PBP" -Pports "${2}" -Cppsspp "-SC${0}"
+
+Sonic 1:
+  name: 수퍼 소닉
+  description: 수퍼 소닉은 Sonic Team에서 개발하고 Sega Genesis 가정용 비디오 게임 콘솔 용으로 Sega에서 출시한 플랫폼 게임입니다. 1991년 6월 북미와 다음달 PAL지역과 일본에서 출시되었습니다.
+  rating: 1.0
+  release_date: 1991
+  developer: SEGA
+  publisher: SEGA
+
+  init_port: true
+  port_exe: "sonic2013"
+  audio: "alsa"
+  check_bios: sonic1
+  commands:
+    - '[ ! -e "/storage/roms/ports/sonic1/settings.ini" ] && cp "/emuelec/configs/sonic/settings.ini" "/storage/roms/ports/sonic1/settings.ini"'
+    - cd /storage/roms/ports/sonic1/
+    - ${PORT}
+
+Sonic 2:
+  name: 수퍼 소닉 2
+  description: 수퍼 소닉 2는 Sega Genesis를 위해 Sega가 개발하고 출시한 1992년 플랫폼 게임입니다. 수퍼 소닉 시리즈의 두번째 주요 항목으로, 두번째 플레이어가 제어할 수 있는 Sonic의 조수 Miles "Tails"Prower를 소개했습니다.
+  rating: 1.0
+  release_date: 1992
+  developer: SEGA
+  publisher: SEGA
+
+  init_port: true
+  port_exe: "sonic2013"
+  audio: "alsa"
+  check_bios: sonic2
+  commands:
+    - '[ ! -e "/storage/roms/ports/sonic2/settings.ini" ] && cp "/emuelec/configs/sonic/settings.ini" "/storage/roms/ports/sonic2/settings.ini"'
+    - cd /storage/roms/ports/sonic2/
+    - ${PORT}
+
+Sonic CD:
+  name: 수퍼 소닉 CD
+  description: 수퍼 소닉 CD는 1993년 Sega CD용 플랫폼 게임입니다. 이야기는 수퍼 소닉이 Robotnik 박사의 외계 신체인 Little Planet을 구하려는 시도를 따릅니다.
+  rating: 1.0
+  release_date: 1993
+  developer: SEGA
+  publisher: SEGA
+
+  init_port: true
+  port_exe: "soniccd"
+  audio: "alsa"
+  check_bios: soniccd
+  commands:
+    - '[ ! -e "/storage/roms/ports/soniccd/settings.ini" ] && cp "/emuelec/configs/sonic/settings.ini" "/storage/roms/ports/soniccd/settings.ini"'
+    - cd /storage/roms/ports/soniccd/
+    - ${PORT}
+
