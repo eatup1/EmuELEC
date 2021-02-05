@@ -25,7 +25,7 @@ if [[ ${DEVICE} == "GameForce" ]]; then
 PKG_CMAKE_OPTS_TARGET+=" -DENABLE_GAMEFORCE=1"
 fi
 
-if [[ ${DEVICE} == "OdroidGoAdvance"  ]]; then
+if [[ ${DEVICE} == "OdroidGoAdvance" || ${DEVICE} == "RG351P" ]]; then
 PKG_CMAKE_OPTS_TARGET+=" -DODROIDGOA=1"
 fi
 

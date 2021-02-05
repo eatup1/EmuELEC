@@ -21,7 +21,7 @@ makeinstall_target() {
 mkdir -p $INSTALL/usr/config/emuelec/bin
 cp -rf eduke32 $INSTALL/usr/config/emuelec/bin
 
-if [[ "$DEVICE" == "OdroidGoAdvance" ]]; then 
+if [[ "$DEVICE" == "OdroidGoAdvance" || "$DEVICE" == "RG351P" ]]; then 
 	mkdir -p $INSTALL/usr/config/eduke32/
 	touch $INSTALL/usr/config/eduke32/eduke32.cfg
 	echo "ScreenDisplay = 0" > $INSTALL/usr/config/eduke32/eduke32.cfg
