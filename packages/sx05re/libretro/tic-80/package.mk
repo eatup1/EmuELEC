@@ -2,7 +2,7 @@
 # Copyright (C) 2020-present Shanti Gilbert (https://github.com/shantigilbert)
 
 PKG_NAME="tic-80"
-PKG_VERSION="e9b9b40fa4847a6ca0e0505b6de143dd890da249"
+PKG_VERSION="acddaaad3ae5f5f403db9f1a69872697fb49efb5"
 PKG_LICENSE="MIT"
 PKG_SITE="https://github.com/nesbox/TIC-80"
 PKG_URL="$PKG_SITE.git"
