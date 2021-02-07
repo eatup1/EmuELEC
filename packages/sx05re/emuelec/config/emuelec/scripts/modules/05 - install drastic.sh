@@ -79,7 +79,7 @@ EOF
 echo "$content" > $ES_FOLDER/scripts/drastic.sh
 chmod +x $ES_FOLDER/scripts/drastic.sh
 
-if [ "$EE_DEVICE" == "OdroidGoAdvance" ] || [ "$EE_DEVICE" == "GameForce" ]; then
+if [ "$EE_DEVICE" == "OdroidGoAdvance" -o "$EE_DEVICE" == "RG351P" ] || [ "$EE_DEVICE" == "GameForce" ]; then
 # copy the correct config file depending on what OGA
 
 DEVICE=$(oga_ver)

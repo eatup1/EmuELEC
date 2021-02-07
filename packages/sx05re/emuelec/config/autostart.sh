@@ -34,7 +34,7 @@ LED=$(get_ee_setting gf_statusled)
 rk_wifi_init /dev/ttyS1
 fi
 
-if [[ "$EE_DEVICE" == "GameForce" ]] || [[ "$EE_DEVICE" == "OdroidGoAdvance" ]]; then
+if [[ "$EE_DEVICE" == "GameForce" ]] || [[ "$EE_DEVICE" == "OdroidGoAdvance" ]] || [[ "$EE_DEVICE" == "RG351P" ]]; then
     if [ -e "/flash/no_oc.oga" ]; then 
         set_ee_setting ee_oga_oc disable
         OGAOC=""
