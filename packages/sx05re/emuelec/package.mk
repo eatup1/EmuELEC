@@ -194,4 +194,8 @@ fi
 	rm "$INSTALL/usr/config/emuelec/scripts/modules/${i}.sh"
 	done
 	fi 
+
+#For automatic updates we use the buildate
+	date +"%m%d%Y" > $INSTALL/usr/buildate
+
 } 
