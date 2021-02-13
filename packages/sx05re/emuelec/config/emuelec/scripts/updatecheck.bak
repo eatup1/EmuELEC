@@ -5,9 +5,9 @@
 
 . /etc/profile
 
-UPDINFO="https://raw.githubusercontent.com/british-choi/emuelec.github.io/master/settings/EE_update"
+UPDINFO="https://raw.githubusercontent.com/EmuELEC/emuelec.github.io/master/settings/EE_update"
 UPDURL="https://github.com/british-choi/EmuELEC/releases/download/v"
-TEST_UPDURL="https://github.com/british-choi/EmuELEC-tests/releases/download/v"
+TEST_UPDURL="https://github.com/EmuELEC/EmuELEC-tests/releases/download/v"
 BUILDATE=$(cat /usr/buildate)
 arguments="$@"
 
