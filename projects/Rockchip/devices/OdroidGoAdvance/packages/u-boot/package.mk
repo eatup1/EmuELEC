@@ -21,8 +21,8 @@ case "$PROJECT" in
   Rockchip)
   if [ "$DEVICE" == "OdroidGoAdvance" ]; then
   	# This is specific for the Rk3326 on the Odroid-Go Advance
-    PKG_VERSION="533d602e342547a91b6b3815cdcefcd477e2b63b"
-    PKG_SHA256="9f3ba385ab1f0e764440b4fa9a12a95fc497b4d62842e4e296400abbb399e413"
+    PKG_VERSION="e9d7bedabe68cec4d5924ee11de510399577ece2"
+    PKG_SHA256="e6a4acb5991b63b66fbca067a165397cc6baf23fc0b8d84d7c2bafb6839f90fd"
     PKG_URL="https://github.com/hardkernel/u-boot/archive/$PKG_VERSION.tar.gz"
     PKG_PATCH_DIRS="OdroidGoAdvance"
   else

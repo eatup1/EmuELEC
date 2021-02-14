@@ -3,25 +3,25 @@
 # SPDX-License-Identifier: GPL-2.0-or-later
 # Copyright (C) 2019-present Shanti Gilbert (https://github.com/shantigilbert)
 
+# Source predefined functions and variables
+. /etc/profile
+
 if [ ! -L "/storage/.skyscraper" ]; then
 ln -sTf /storage/.config/skyscraper /storage/.skyscraper
 fi
 
-source /emuelec/scripts/env.sh
-source "$scriptdir/scriptmodules/supplementary/skyscraper.sh"
-rp_registerAllModules
-
-joy2keyStart
-
 function scrape_confirm() {
-     if dialog --ascii-lines --yesno "This will Kill Emulationstation and will Skyscraper, do you want to continue?"  22 76 >/dev/tty; then
-		start_skyscraper
-      fi
+    text_viewer -y -t "Skyscraper Launcher" -f 24 -m "This will Kill Emulationstation and will start Skyscraper, do you want to continue?\n\nYou will need a keyboard to be able to use the scraping menu"
+    [[ $? == 21 ]] && start_skyscraper || exit 0;
  }
 
 function start_skyscraper() {
+ee_console enable
+systemd-run bash /emuelec/scripts/modules/Skyscraper.start
 systemctl stop emustation
 systemd-run bash /emuelec/scripts/fbterm.sh /emuelec/scripts/modules/Skyscraper.start
 }
 
+ee_console disable
 scrape_confirm
+

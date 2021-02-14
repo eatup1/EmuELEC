@@ -46,6 +46,7 @@ Commander Keen:
   audio: "alsa"
   commands:
     - '[[ ! -L "/storage/.CommanderGenius" ]] && ln -sf /emuelec/configs/CommanderGenius /storage/.CommanderGenius'
+    - cd /storage/roms/ports/cgenius
     - /emuelec/bin/${PORT}
 
 Diablo:
@@ -198,7 +199,134 @@ VVVVVV:
   init_port: true
   port_exe: "VVVVVV"
   audio: "alsa"
+  check_bios: VVVVVV
   commands:
     - '# VVVVVV will complain about a missing gamecontrollerdb.txt unless we switch to this folder first'
     - cd /storage/.config/SDL-GameControllerDB/
     - ${PORT}
+
+Duke Nukem:
+  name: 듀크 뉴켐 3D
+  description: Duke Nukem 3D는 3D Realms에서 개발 한 1 인칭 슈팅 비디오 게임이다. 3D Realms에서 발행 한 플랫폼 게임 Duke Nukem 및 Duke Nukem II의 속편이다. Duke Nukem 3D는 지구에서 외계인의 침공에 맞서 싸우는 Jon St. John이 목소리를 맡은 Duke Nukem의 모험을 특징으로 한다.
+  rating: 1.0
+  release_date: 19960129T000000
+  developer: 3D Realms
+  publisher: FormGen
+
+  check_bios: eduke32
+  init_port: true
+  port_exe: "eduke32"
+  audio: "alsa"
+  check_bios: eduke32
+  commands:
+    - cd /storage/roms/ports/eduke
+    - ${PORT}
+
+Hydra Castle Labyrinth:
+  name: 히드라 성 미로
+  description: Hydra Castle Labyrinth ("메트로베니아" 종류의 게임).
+  rating: 1.0
+  release_date: 20110129T000000
+  developer: ptitSeb
+  publisher: Nicalis, Inc.
+
+  init_port: true
+  port_exe: "hcl"
+  audio: "alsa"
+  commands:
+    - cd /emuelec/configs/hcl/
+    - ${PORT} -d
+
+Bermuda Syndrome:
+  name: 버뮤다 신드롬
+  description: 버뮤다 신드롬은 Century Interactive에서 개발하여 1995 년 BMG Interactive에서 출시 한 PC 게임입니다.이 게임은 게임 플레이와 외형면에서 1992년의 고전적인 플레쉬백(Flashback)과 유사합니다. 플레이어는 3인칭 횡스크롤 관점에서 주인공을 제어합니다.
+  rating: 1.0
+  release_date: 19950129T000000
+  developer: Century Interactive
+  publisher: BMG Interactive
+
+  init_port: true
+  port_exe: "bs"
+  audio: "alsa"
+  commands:
+    - cd /storage/roms/ports/bermuda/
+    - ${PORT} --datapath=/storage/roms/ports/bermuda/ --fullscreen --widescreen=4:3
+
+RigelEngine:
+  name: 듀크 뉴켐 II(RigelEngine)
+  description: RigelEngine은 1993 년 Apogee에서 처음 출시 한 2D 사이드 스크롤러 Duke Nukem II를 오픈 소스로 재현 한 것입니다.
+  rating: 1.0
+  release_date: 1993
+  developer: Apogee Software
+  publisher: Apogee Software
+
+  init_port: true
+  port_exe: "RigelEngine"
+  audio: "alsa"
+  check_bios: RigelEngine
+  commands:
+    - ${PORT} /storage/roms/ports/rigelengine
+
+
+MineCraft:
+  name: 마인크래프트 PSP 에디션
+  description: 비평가들의 찬사를받은 Minecraft가 PSP 시스템에 추가되었습니다. 나만의 세계를 만들고 건설하고 탐험하고 정복하세요. 세상은 당신의 상상력에 의해서만 제한됩니다!
+  rating: 0.8
+  release_date: 20201020T000000
+  developer: invisibros
+  publisher: GNU 2.0
+
+  commands:
+    - /emuelec/scripts/emuelecRunEmu.sh "/storage/roms/ports/minecraft/EBOOT.PBP" -Pports "${2}" -Cppsspp "-SC${0}"
+
+Sonic 1:
+  name: 수퍼 소닉
+  description: 수퍼 소닉은 Sonic Team에서 개발하고 Sega Genesis 가정용 비디오 게임 콘솔 용으로 Sega에서 출시한 플랫폼 게임입니다. 1991년 6월 북미와 다음달 PAL지역과 일본에서 출시되었습니다.
+  rating: 1.0
+  release_date: 1991
+  developer: SEGA
+  publisher: SEGA
+
+  init_port: true
+  port_exe: "sonic2013"
+  audio: "alsa"
+  check_bios: sonic1
+  commands:
+    - '[ ! -e "/storage/roms/ports/sonic1/settings.ini" ] && cp "/emuelec/configs/sonic/settings.ini" "/storage/roms/ports/sonic1/settings.ini"'
+    - cd /storage/roms/ports/sonic1/
+    - ${PORT}
+
+Sonic 2:
+  name: 수퍼 소닉 2
+  description: 수퍼 소닉 2는 Sega Genesis를 위해 Sega가 개발하고 출시한 1992년 플랫폼 게임입니다. 수퍼 소닉 시리즈의 두번째 주요 항목으로, 두번째 플레이어가 제어할 수 있는 Sonic의 조수 Miles "Tails"Prower를 소개했습니다.
+  rating: 1.0
+  release_date: 1992
+  developer: SEGA
+  publisher: SEGA
+
+  init_port: true
+  port_exe: "sonic2013"
+  audio: "alsa"
+  check_bios: sonic2
+  commands:
+    - '[ ! -e "/storage/roms/ports/sonic2/settings.ini" ] && cp "/emuelec/configs/sonic/settings.ini" "/storage/roms/ports/sonic2/settings.ini"'
+    - cd /storage/roms/ports/sonic2/
+    - ${PORT}
+
+Sonic CD:
+  name: 수퍼 소닉 CD
+  description: 수퍼 소닉 CD는 1993년 Sega CD용 플랫폼 게임입니다. 이야기는 수퍼 소닉이 Robotnik 박사의 외계 신체인 Little Planet을 구하려는 시도를 따릅니다.
+  rating: 1.0
+  release_date: 1993
+  developer: SEGA
+  publisher: SEGA
+
+  init_port: true
+  port_exe: "soniccd"
+  audio: "alsa"
+  check_bios: soniccd
+  commands:
+    - '[ ! -e "/storage/roms/ports/soniccd/settings.ini" ] && cp "/emuelec/configs/sonic/settings.ini" "/storage/roms/ports/soniccd/settings.ini"'
+    - cd /storage/roms/ports/soniccd/
+    - ${PORT}
+

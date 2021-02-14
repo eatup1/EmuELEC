@@ -16,7 +16,7 @@ function restart_confirm() {
         systemctl restart emustation
     fi
 
-    if [ "$EE_DEVICE" == "OdroidGoAdvance" ]; then
+    if [ "$EE_DEVICE" == "OdroidGoAdvance" -o "$EE_DEVICE" == "RG351P" ]; then
         killall kmscon
     fi
 }

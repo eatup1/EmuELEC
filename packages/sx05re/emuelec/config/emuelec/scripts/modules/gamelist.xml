@@ -1,6 +1,15 @@
 <?xml version="1.0"?>
 <gameList>
 	<game>
+		<path>./00 - Input Test.sh</path>
+		<name>00 - RG351P Input Test</name>
+		<desc>RG351P의 Joypad를 Test합니다.</desc>
+		<developer>Anbernic</developer>
+		<publisher>Anbernic</publisher>
+		<genre>script</genre>
+		<!--image>./downloaded_images/Input Test.png</image-->
+	</game>
+	<game>
 		<path>./01 - Get ES Themes.sh</path>
 		<name>01 - ES 테마 받기</name>
 		<desc>EmuELEC 테마를 설치하는데 사용할 스크립트. 원본 저장소에서 테마를 다운로드 받아 EmuELEC 테마 폴더에 설치됩니다.</desc>
@@ -44,6 +53,15 @@
 		<publisher>Emuelec</publisher>
 		<genre>script</genre>
 		<image>./downloaded_images/drastic.png</image>
+	</game>
+	<game>
+		<path>./06 - Sselph's scraper.sh</path>
+		<name>06 - Sselph의 스크래퍼</name>
+		<desc>대체용 롬 수집. 설정이 필요합니다!</desc>
+		<developer>shantigilbert </developer>
+		<publisher>Emuelec</publisher>
+		<genre>script</genre>
+		<image>./downloaded_images/help.png</image>
 	</game>
 	<game>
 		<path>./07 - Skyscraper.sh</path>
@@ -111,19 +129,28 @@
 	<game>
 		<path>./14 - YouTube Search.sh</path>
 		<name>14 - 유튜브 검색</name>
-		<desc>유튜브를 검색합니다. 키보드가 필요합니다!</desc>
+		<desc>EmuELEC 설정 메뉴에 미리 정의 된 단어를 기반으로 빠른 YouTube 검색을 수행합니다.</desc>
 		<developer>shantigilbert </developer>
 		<publisher>Emuelec</publisher>
 		<genre>script</genre>
-		<!--image>./downloaded_images/youtube.png</image-->
+		<image>./downloaded_images/youtube.png</image>
 	</game>
 	<game>
 		<path>./15 - Bluetooth controller management.sh</path>
 		<name>15 - 블루투스 컨트롤러 관리</name>
-		<desc>블루투스 컨트롤러 관리합니다.</desc>
+		<desc>Bluetooth 설정 메뉴</desc>
 		<developer>shantigilbert </developer>
 		<publisher>Emuelec</publisher>
 		<genre>script</genre>
-		<!--image>./downloaded_images/bluetooth.png</image-->
+		<image>./downloaded_images/bluetooth.png</image>
+	</game>
+	<game>
+		<path>./16 - Scan ScummVM Games.sh</path>
+		<name>16 - ScummVM 게임 스캔</name>
+		<desc>Scummvm을 스캔하여 게임 목록에 추가합니다!</desc>
+		<developer>shantigilbert </developer>
+		<publisher>Emuelec</publisher>
+		<genre>script</genre>
+		<image>./downloaded_images/scummvm.png</image>
 	</game>
 </gameList>

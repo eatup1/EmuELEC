@@ -2,8 +2,8 @@
 # Copyright (C) 2019-present Shanti Gilbert (https://github.com/shantigilbert)
 
 PKG_NAME="openbor"
-PKG_VERSION="e7614649b4a20a8b974618c74c2ddef0198ebed3"
-PKG_SHA256="5999731ddc6af10db5df1e00d283ea70a7dde4ef1535fe72cf270489cc6e61ac"
+PKG_VERSION="2b7f9ac6cf244e9e68da5e85459e2ba9c5bcb0b9"
+PKG_SHA256="8bde7d821fc85c84200b3c61331311d5e7789e96f6ae5ce53ab05b7a5feb6031"
 PKG_ARCH="any"
 PKG_SITE="https://github.com/DCurrent/openbor"
 PKG_URL="$PKG_SITE/archive/$PKG_VERSION.tar.gz"
@@ -12,8 +12,19 @@ PKG_SHORTDESC="OpenBOR is the ultimate 2D side scrolling engine for beat em' ups
 PKG_LONGDESC="OpenBOR is the ultimate 2D side scrolling engine for beat em' ups, shooters, and more! "
 PKG_TOOLCHAIN="make"
 
-if [ "$DEVICE" == "OdroidGoAdvance" ]; then
+if [ "$DEVICE" == "OdroidGoAdvance" ] || [ "$DEVICE" == "GameForce" ]; then
 PKG_PATCH_DIRS="OdroidGoAdvance"
+fi
+
+
+if [[ "$ARCH" == "arm" ]]; then
+	PKG_PATCH_DIRS="${ARCH}"
+else
+	PKG_PATCH_DIRS="emuelec-aarch64"
+fi
+
+if [ "$DEVICE" == "RG351P" ]; then
+  PKG_PATCH_DIRS="RG351P"
 fi
 
 pre_configure_target() {
@@ -21,6 +32,9 @@ pre_configure_target() {
                         -C ${PKG_BUILD}/engine \
                         SDKPATH="${SYSROOT_PREFIX}"
                         PREFIX=${TARGET_NAME}"
+  #### Fix compile error in commit version e761464 ####
+  sed -i "s|O_BINARY, per) == -1)|O_BINARY, per)) == -1)|" $PKG_BUILD/engine/source/gamelib/packfile.c
+  #####################################################
 }
 
 pre_make_target() {
@@ -34,8 +48,10 @@ makeinstall_target() {
     cp $PKG_DIR/scripts/*.sh $INSTALL/usr/bin
     chmod +x $INSTALL/usr/bin/*
     mkdir -p $INSTALL/usr/config/openbor  
-	if [ "$DEVICE" == "OdroidGoAdvance" ]; then
-		cp $PKG_DIR/config/master_odroidgoa.cfg $INSTALL/usr/config/openbor/master.cfg
+	if [ "$DEVICE" == "OdroidGoAdvance" ] || [ "$DEVICE" == "GameForce" ]; then
+		cp $PKG_DIR/config/master_odroidgoa_v11.cfg $INSTALL/usr/config/openbor/master.cfg
+	elif [ "$DEVICE" == "RG351P" ]; then
+		cp $PKG_DIR/config/master_rg351p.cfg $INSTALL/usr/config/openbor/master.cfg
 	else
 		cp $PKG_DIR/config/master.cfg $INSTALL/usr/config/openbor/master.cfg
 	fi

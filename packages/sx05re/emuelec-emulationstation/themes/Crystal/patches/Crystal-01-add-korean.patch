@@ -1,0 +1,12 @@
+diff --git a/config.xml b/config.xml
+index a4cf71d..8811425 100644
+--- a/config.xml
++++ b/config.xml
+@@ -6,6 +6,7 @@
+ 	<include lang="es_MX">./lang/espanol.xml</include>
+ 	<include lang="eu">./lang/english.xml</include>
+ 	<include lang="fr">./lang/francais.xml</include> 
++	<include lang="ko">./lang/korean.xml</include> 
+ 	<include lang="pt">./lang/portugues.xml</include>
+ 
+     <include subset="colortheme" name="4c" displayName="${ctblack}">./options/colorschemes/black.xml</include>

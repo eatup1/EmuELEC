@@ -1,8 +1,8 @@
 diff --git a/theme.xml b/theme.xml
-index 0a0dfa3..0c0bcca 100644
+index 694d9a7..c956990 100644
 --- a/theme.xml
 +++ b/theme.xml
-@@ -418,7 +418,8 @@ originally based on: "simple" by nils bonenberger
+@@ -478,7 +478,8 @@ originally based on: "simple" by nils bonenberger
        <primaryColor>C0C0C0</primaryColor>
        <secondaryColor>808080</secondaryColor>
        <fontPath>./art/Cabin-Regular.ttf</fontPath>
@@ -12,37 +12,35 @@ index 0a0dfa3..0c0bcca 100644
        <pos>0.025 0.18</pos>
        <size>0.950 0.73</size>
        <alignment>center</alignment>
-@@ -431,7 +432,8 @@ originally based on: "simple" by nils bonenberger
+@@ -494,7 +495,8 @@ originally based on: "simple" by nils bonenberger
        <scrollbarSize>0.0065</scrollbarSize>            
        <scrollbarAlignment>outerright</scrollbarAlignment> <!-- innerleft -->
  
 -      <lines>17</lines>
 +      <!-- OGA gamelist lines: 17 => 15 -->
 +      <lines>15</lines>
-       <horizontalMargin>0.005</horizontalMargin>
-   <selectedColor>${baseColor}</selectedColor>
+       <horizontalMargin>0.005</horizontalMargin>  
      </textlist>
-@@ -528,7 +530,8 @@ originally based on: "simple" by nils bonenberger
-       <fontSize>0.03</fontSize>
-       
+   </view>
+@@ -592,13 +594,15 @@ originally based on: "simple" by nils bonenberger
+       <alignment>left</alignment>
+       <horizontalMargin>0.00</horizontalMargin> 
        <fontPath>./art/Cabin-Regular.ttf</fontPath>
--       <fontSize>0.028</fontSize>
-+       <!-- OGA gamelist fontSize: O0.028 => 0.032 </fontSize-->
-+       <fontSize>0.032</fontSize>
-        
-       <scrollSound>./art/scroll.wav</scrollSound>
-       
-@@ -537,7 +540,8 @@ originally based on: "simple" by nils bonenberger
+-      <fontSize>0.028</fontSize>       
++      <!-- OGA gamelist fontSize: O0.028 => 0.032 </fontSize-->
++      <fontSize>0.032</fontSize>
+       <scrollSound>./art/scroll.wav</scrollSound>      
+       <scrollbarColor>96969620</scrollbarColor>
+       <scrollbarCorner>0.49</scrollbarCorner>
        <scrollbarSize>0.0065</scrollbarSize>            
-       <scrollbarAlignment>outerright</scrollbarAlignment>
-       
+       <scrollbarAlignment>outerright</scrollbarAlignment>      
 -      <lines>17</lines>
 +      <!-- OGA gamelist lines: 17 => 15 -->
 +      <lines>15</lines>
        <horizontalMargin>0.005</horizontalMargin>
      </textlist>
      
-@@ -547,7 +551,7 @@ originally based on: "simple" by nils bonenberger
+@@ -608,7 +612,7 @@ originally based on: "simple" by nils bonenberger
        </storyboard>
      </text>
        
@@ -51,12 +49,13 @@ index 0a0dfa3..0c0bcca 100644
        <color>969696</color>
        <forceUppercase>0</forceUppercase>
        <fontPath>./art/Cabin-Regular.ttf</fontPath>
-@@ -588,13 +592,22 @@ originally based on: "simple" by nils bonenberger
-       <unfilledColor>808080</unfilledColor>
+@@ -653,14 +657,23 @@ originally based on: "simple" by nils bonenberger
+   <unfilledPath>:/star_filled.svg</unfilledPath>
      </rating>
      <text name="md_lbl_players">
 -      <pos>0.9 0.645</pos>
 +      <pos>0.67 0.645</pos>
+       <pos verticalScreen="true">0.85 0.645</pos>
        <size>0.09 0</size>
      </text>
      <text name="md_players">
@@ -77,12 +76,12 @@ index 0a0dfa3..0c0bcca 100644
      </text>
      <text name="md_lbl_releasedate">
        <color>969696</color>
-@@ -603,7 +616,7 @@ originally based on: "simple" by nils bonenberger
+@@ -669,7 +682,7 @@ originally based on: "simple" by nils bonenberger
      </text>
      <datetime name="md_releasedate">
        <color>EFEFFF</color>
 -      <pos>0.645 0.645</pos>
 +      <pos>0.605 0.645</pos>
+       <pos verticalScreen="true">0.7 0.645</pos>
        <size>0 0.033</size>
      </datetime>
-     <text name="md_description">
