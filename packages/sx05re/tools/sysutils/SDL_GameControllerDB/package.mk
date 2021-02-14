@@ -15,7 +15,7 @@ pre_configure_target() {
 # These maps are old, we use our own
 sed -i "s/19000000010000000100000001010000,odroid/# 19000000010000000100000001010000,odroid/g" gamecontrollerdb.txt
 sed -i "s/19000000010000000200000011000000,odroid/# 19000000010000000200000011000000,odroid/g" gamecontrollerdb.txt
-sed -i "s/03000000790000001c18000011010000,PC Game Controller/# 03000000790000001c18000011010000,PC Game Controller/g" gamecontrollerdb.txt
+sed -i "s/03000000790000001c18000011010000,PC Game Controller,a:b2/# 03000000790000001c18000011010000,PC Game Controller,a:b2/g" gamecontrollerdb.txt
 }
 
 makeinstall_target() {
