@@ -1,5 +1,3 @@
-diff --git a/src/engine/CGameLauncher.cpp b/src/engine/CGameLauncher.cpp
-index 835cafb50..5fac74fb2 100644
 --- a/src/engine/CGameLauncher.cpp
 +++ b/src/engine/CGameLauncher.cpp
 @@ -217,9 +217,7 @@ bool CGameLauncher::setupMenu()

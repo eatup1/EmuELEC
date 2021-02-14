@@ -95,8 +95,7 @@ if [ "${1}" == "oga_oc" ]; then
         ;;
     esac
 
-# Disabled due to many issues
-#    echo ${gov} > /sys/devices/system/cpu/cpufreq/policy0/scaling_governor
-#    echo ${freq} > /sys/devices/system/cpu/cpufreq/policy0/scaling_setspeed
-#    echo ${freq} > /sys/devices/system/cpu/cpufreq/policy0/scaling_max_freq
+    echo ${gov} > /sys/devices/system/cpu/cpufreq/policy0/scaling_governor
+    echo ${freq} > /sys/devices/system/cpu/cpufreq/policy0/scaling_setspeed
+    echo ${freq} > /sys/devices/system/cpu/cpufreq/policy0/scaling_max_freq
 fi
