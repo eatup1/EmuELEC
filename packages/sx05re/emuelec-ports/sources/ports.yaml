@@ -330,3 +330,28 @@ Sonic CD:
     - cd /storage/roms/ports/soniccd/
     - ${PORT}
 
+SuperTux:
+  name: 수퍼 턱스
+  description: 수퍼 턱스(SuperTux)는 GNU General Public License에 따라 게시된 무료 오픈 소스 2차원 플랫폼 비디오 게임입니다. 이 게임은 Nintendo의 Super Mario Bros. 시리즈에서 영감을 받았습니다. Mario 대신 게임의 주인공은 Linux 커널의 공식 마스코트인 Tux입니다.
+  rating: 1.0
+  release_date: 2004
+  developer: SuperTux Development Team
+  publisher: Pelya, SuperTux Development Team
+
+  audio: "alsa"
+  commands:
+    - /emuelec/scripts/show_splash.sh "ports" "supertuxkart"
+    - run_supertux.sh
+
+SuperTuxKart:
+  name: 수퍼 턱스 카트
+  description: 수퍼 턱스 카트(SuperTuxKart)는 GNU General Public License 버전 3에 따라 배포되는 무료 오픈 소스 카트 레이싱 게임입니다. 다양한 오픈 소스 프로젝트의 마스코트가 있습니다.
+  rating: 1.0
+  release_date: 2007
+  developer: SuperTuxKart Team
+  publisher: SuperTuxKart Team
+
+  audio: "alsa"
+  commands:
+    - /emuelec/scripts/show_splash.sh "ports" "supertuxkart"
+    - run_supertuxkart.sh

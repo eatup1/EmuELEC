@@ -9,7 +9,7 @@ EE_DEVICE=$(cat /ee_arch)
 
 ee_console enable
 
-if [[ "${1}" == *"13 - Launch Terminal (kb).sh"* ]]; then
+if [[ "${1}" == *"launch_terminal_(kb).sh"* ]]; then
         ee_console disable
     if [ "$EE_DEVICE" == "OdroidGoAdvance" -o "$EE_DEVICE" == "RG351P" ] || [ "$EE_DEVICE" == "GameForce" ]; then
         #kmscon
@@ -21,6 +21,12 @@ if [[ "${1}" == *"13 - Launch Terminal (kb).sh"* ]]; then
 		fbterm "${tmpsh}" -s 24 < /dev/tty1
 		rm ${tmpsh}
     fi
+elif [[ "${1}" == *"file_manager_(kb).sh"* ]]; then
+        if [ "$EE_DEVICE" == "OdroidGoAdvance" ] || [ "$EE_DEVICE" == "GameForce" ]; then
+            bash "${1}"
+        else
+            fbterm "${1}" -s 24 < /dev/tty1
+        fi
 else
 		case ${1} in
 		"mplayer_video")

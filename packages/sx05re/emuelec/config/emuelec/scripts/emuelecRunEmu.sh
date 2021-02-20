@@ -144,10 +144,10 @@ case ${PLATFORM} in
 		RUNTHIS='${TBASH} /usr/bin/openbor.sh "${ROMNAME}"'
 		;;
 	"setup")
-		if [[ "$EE_DEVICE" == "OdroidGoAdvance" || "$EE_DEVICE" == "RG351P" || "$EE_DEVICE" == "GameForce" ]]; then 
-			set_kill_keys "kmscon" 
+		if [ "$EE_DEVICE" == "OdroidGoAdvance" -o "$EE_DEVICE" == "RG351P" ] || [ "$EE_DEVICE" == "GameForce" ]; then 
+		    set_kill_keys "kmscon" 
 		else
-			set_kill_keys "fbterm"
+		    set_kill_keys "fbterm"
 		fi
 		RUNTHIS='${TBASH} /emuelec/scripts/fbterm.sh "${ROMNAME}"'
 		EMUELECLOG="$LOGSDIR/ee_script.log"
@@ -260,6 +260,13 @@ case ${PLATFORM} in
 		set_kill_keys "pico8_dyn"
 		RUNTHIS='${TBASH} /emuelec/scripts/pico8.sh "${ROMNAME}"'
 			;;
+	"prboom")
+    if [ "$EMU" = "Chocolate-Doom" ]; then
+		set_kill_keys "chocolate-doom"
+        CONTROLLERCONFIG="${arguments#*--controllers=*}"
+		RUNTHIS='${TBASH} /emuelec/scripts/chocodoom.sh "${ROMNAME}" --controllers="${CONTROLLERCONFIG}"'
+    fi
+		;;
 	esac
 else
 # We are running a Libretro emulator set all the settings that we chose on ES
@@ -343,7 +350,6 @@ if [[ "${OGAOC}" == "Off" ]]; then
         maxperf
     fi
 fi
-
 fi
 
 if [ "$(get_es_setting string LogLevel)" != "minimal" ]; then # No need to do all this if log is disabled
@@ -429,6 +435,40 @@ if [[ "$BTENABLED" == "1" ]]; then
 	(systemd-run batocera-bluetooth-agent) || :
 	fi
 fi
+
+if [ "$EE_DEVICE" == "OdroidGoAdvance" -o "$EE_DEVICE" == "RG351P" ] || [ "$EE_DEVICE" == "GameForce" ]; then
+# To avoid screwing up the gamepad configuration after setting vertical mode we return the config to horizontal
+
+        case "$(oga_ver)" in
+            "OGA")
+                if [ -f "/tmp/joypads/GO-Advance Gamepad_horizontal.cfg" ]; then
+                    mv "/tmp/joypads/GO-Advance Gamepad.cfg" "/tmp/joypads/GO-Advance Gamepad_vertical.cfg"
+                    mv "/tmp/joypads/GO-Advance Gamepad_horizontal.cfg" "/tmp/joypads/GO-Advance Gamepad.cfg"
+                fi
+            ;;
+            "OGABE")
+                if [ -f "/tmp/joypads/GO-Advance Gamepad (rev 1.1)_horizontal.cfg" ]; then
+                    mv "/tmp/joypads/GO-Advance Gamepad (rev 1.1).cfg" "/tmp/joypads/GO-Advance Gamepad (rev 1.1)_vertical.cfg"
+                    mv "/tmp/joypads/GO-Advance Gamepad (rev 1.1)_horizontal.cfg" "/tmp/joypads/GO-Advance Gamepad (rev 1.1).cfg"
+                fi
+            ;;
+            "OGS")
+                if [ -f "/tmp/joypads/GO-Super Gamepad_horizontal.cfg" ]; then
+                    mv "/tmp/joypads/GO-Super Gamepad.cfg" "/tmp/joypads/GO-Super Gamepad_vertical.cfg"
+                    mv "/tmp/joypads/GO-Super Gamepad_horizontal.cfg" "/tmp/joypads/GO-Super Gamepad.cfg"
+                fi
+            ;;
+            "RG351P")
+                if [ -f "/tmp/joypads/OpenSimHardware OSH PB Controller_horizontal.cfg" ]; then
+                    mv "/tmp/joypads/OpenSimHardware OSH PB Controller.cfg" "/tmp/joypads/OpenSimHardware OSH PB Controller_vertical.cfg"
+                    mv "/tmp/joypads/OpenSimHardware OSH PB Controller_horizontal.cfg" "/tmp/joypads/OpenSimHardware OSH PB Controller.cfg"
+                fi
+            ;;
+        esac
+fi
+
+# Chocolate Doom does not like to be killed?
+[[ "$EMU" = "Chocolate-Doom" ]] && ret_error="0"
 
 if [[ "$ret_error" != "0" ]]; then
 echo "exit $ret_error" >> $EMUELECLOG

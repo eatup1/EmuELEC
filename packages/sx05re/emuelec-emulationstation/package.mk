@@ -2,7 +2,7 @@
 # Copyright (C) 2019-present Shanti Gilbert (https://github.com/shantigilbert)
 
 PKG_NAME="emuelec-emulationstation"
-PKG_VERSION="3116951b9180fda5955f9c64eeacb64ebf2ef957"
+PKG_VERSION="fb6cd7f6ab3d139fed25b7e8861c333e72ac9797"
 PKG_GIT_CLONE_BRANCH="EmuELEC"
 PKG_REV="1"
 PKG_ARCH="any"
@@ -80,11 +80,4 @@ post_install() {
 	enable_service emustation.service
 	mkdir -p $INSTALL/usr/share
 	ln -sf /storage/.config/emuelec/configs/locale $INSTALL/usr/share/locale
-	if [ "$DEVICE" == "OdroidGoAdvance" ] || [ "$DEVICE" == "GameForce" ]; then
-		mv $INSTALL/usr/config/emulationstation/scripts/drastic/config/drastic.cfg_oga $INSTALL/usr/config/emulationstation/scripts/drastic/config/drastic.cfg
-	elif [ "$DEVICE" == "RG351P" ]; then
-		mv $INSTALL/usr/config/emulationstation/scripts/drastic/config/drastic.cfg_rg351p $INSTALL/usr/config/emulationstation/scripts/drastic/config/drastic.cfg
-	else
-		rm -rf $INSTALL/usr/config/emulationstation/scripts/drastic
-	fi
 }
