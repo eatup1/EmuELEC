@@ -181,7 +181,7 @@ fi
 
   # Remove scripts from OdroidGoAdvance build
 	if [[ ${DEVICE} == "OdroidGoAdvance" || ${DEVICE} == "RG351P" || "$DEVICE" == "GameForce" ]]; then 
-	for i in "01 - Get ES Themes" "03 - wifi" "10 - Force Update" "04 - Configure Reicast" "06 - Sselphs scraper" "07 - Skyscraper" "09 - system info"; do 
+	for i in "wifi" "sselphs_scraper" "skyscraper" "system_info"; do 
 	xmlstarlet ed -L -P -d "/gameList/game[name='${i}']" $INSTALL/usr/config/emuelec/scripts/modules/gamelist.xml
 	rm "$INSTALL/usr/config/emuelec/scripts/modules/${i}.sh"
 	done
@@ -189,7 +189,7 @@ fi
   
   # Remove scripts from except RG351P build
 	if [[ ${DEVICE} != "RG351P" ]]; then 
-	for i in "00 - Input Test" ; do 
+	for i in "RG351_input_Test" ; do 
 	xmlstarlet ed -L -P -d "/gameList/game[name='${i}']" $INSTALL/usr/config/emuelec/scripts/modules/gamelist.xml
 	rm "$INSTALL/usr/config/emuelec/scripts/modules/${i}.sh"
 	done
