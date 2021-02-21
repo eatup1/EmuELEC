@@ -33,7 +33,7 @@ if [ "$DEVICE" == "RG351P" ]; then
     PKG_DEPENDS_TARGET+=" RG351P_input-test"
 fi
 if [ "$DEVICE" == "OdroidGoAdvance" -o "$DEVICE" == "RG351P" ] || [ "$DEVICE" == "GameForce" ]; then
-    PKG_DEPENDS_TARGET+=" kmscon odroidgoa-utils rs97-commander-sdl2"
+    PKG_DEPENDS_TARGET+=" kmscon odroidgoa-utils rs97-commander-sdl2 rs97-commander-sdl2-ogs"
     
     #we disable some cores that are not working or work poorly on OGA
     for discore in mesen-s virtualjaguar quicknes reicastsa_old reicastsa MC; do

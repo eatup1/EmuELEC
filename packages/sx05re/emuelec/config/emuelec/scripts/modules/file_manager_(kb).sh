@@ -7,7 +7,14 @@
 
 if [[ "$EE_DEVICE" == "OdroidGoAdvance" || "$EE_DEVICE" == "RG351P" ]] || [[ "$EE_DEVICE" == "GameForce" ]]; then
     cd /usr/bin
-    DinguxCommander
+    case "$(oga_ver)" in
+        "OGS")
+            DinguxCommander.ogs
+        ;;
+        *)
+            DinguxCommander
+        ;;
+    esac
 else
     source /emuelec/scripts/env.sh
     joy2keyStart
