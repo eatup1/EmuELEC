@@ -196,6 +196,6 @@ fi
 	fi 
 
 #For automatic updates we use the buildate
-	date +"%m%d%Y" > $INSTALL/usr/buildate
+	date +"%Y%m%d" > $INSTALL/usr/buildate
 
 } 
