@@ -24,6 +24,8 @@
         <fanartViewName>Fanart (Default)</fanartViewName>
         <fanartvlViewName>Fanart (Full Screen Video)</fanartvlViewName>
         <carouselvideoName>Carousel / Video</carouselvideoName>
+	<smallscreengamelist>Small Screen</smallscreengamelist>
+	<smallscreengamelistnh>Small Screen (No Help)</smallscreengamelistnh>
 <!-- color schemes -->
         <ctblue>Sapphire</ctblue>
         <ctred>Ruby</ctred>
@@ -42,27 +44,26 @@
         <conlog>Controllers</conlog>
         <textlog>Text Logo's</textlog>
 <!-- Help Icons -->
-        <iarcade>Arcade</iarcade>
-        <isnes>Super Nintendo</isnes>
-        <ipsx>Playstation</ipsx>
-        <ixbox>X-Box</ixbox>
-        <ixbox2>X-Box Reverse</ixbox2>
-        <idefault>Standard icons</idefault>
+        <idefault>Crystal</idefault>
+        <idefaultrev>Crystal (Reverse)</idefaultrev>
 <!-- System layouts -->		
-        <horizontal>Horizontal Menu</horizontal>
-        <hordetail>Detailed II</hordetail>
+        <horizontal>Basic Horizontal Menu</horizontal>
+        <hordetail>Detailed (Horizonta)</hordetail>
         <rhc>Right Side Carousel</rhc>
         <lhc>Left Side Carousel</lhc>
-        <systemdetails>Detailed</systemdetails>
+        <systemdetails>Detailed (Vertical)</systemdetails>
 <!-- Video delay -->
         <delay1>1 second</delay1>
         <delay2>2 seconds</delay2>
         <delay3>3 seconds</delay3>
+        <delay5>5 seconds</delay5>
+        <delay10>10 seconds</delay10>
+        <delay20>20 seconds</delay20>
         <delay0>no delay</delay0>
         <novideo>disable videos</novideo>	
 <!-- Submenus -->
         <subset.systemview>Homepage Layout</subset.systemview>
-        <subset.colorset>Background Images</subset.colorset>
+        <subset.bgset>Background Images</subset.bgset>
         <subset.iconset>Help Icons</subset.iconset>
         <subset.shader>Theme Shaders</subset.shader>
         <subset.music>System Music</subset.music>
@@ -70,8 +71,9 @@
         <subset.thememusic>Theme Background Music</subset.thememusic>
         <subset.vdelay>Video delay on gamelist</subset.vdelay>
         <subset.slog>System Logo on Gamelists</subset.slog>
-        <subset.colortheme>Theme Colour Scheme</subset.colortheme>
-        <subset.videoview>Video's on detailed gamelists</subset.videoview>
+        <subset.colorset>Theme Colour Scheme</subset.colorset>
+        <subset.videoview>Gamelist Video Delay</subset.videoview>
+        <subset.sysvdelay>System view Video Delay</subset.sysvdelay>
 <!-- System descriptions -->
         <psx>PlayStation (비공식적으로 PSX로 약칭)은 Sony Computer Entertainment에서 개발 및 판매하는 가정용 비디오 게임 콘솔입니다. 시리즈의 원래 콘솔은 10년 만에 1 억 대 이상을 출하 한 최초의 콘솔이었습니다.</psx>
         <threedo>3DO는 기업가이자 Electronic Arts 창립자 인 Trip Hawkins가 고안 한 홈 비디오 게임 콘솔로, 3DO는 회사 자체에서 제조 한 것이 아닙니다. Panasonic은 첫 번째 모델을 생산했으며 GoldStar와 Sanyo는 하드웨어의 추가 버전을 출시했습니다.</threedo>
@@ -170,6 +172,7 @@
         <doubledragon>Double Dragon은 Technōs Japan에서 개발하고 Taito가 북미와 유럽에 배포한 1987년 진행형 격투 게임 비디오 게임입니다. 이 게임은 Technos의 초기 진행형 격투 게임인 Nekketsu Kōha Kunio-kun의 정신적, 기술적 후계자입니다.</doubledragon>
         <fatalfury>Fatal Fury는 SNK에서 Neo Geo 시스템을 위해 개발한 격투 게임 시리즈입니다. Fatal Fury와 자매 시리즈 인 Art of Fighting은 동일한 가상의 세계를 배경으로합니다. Art of Fighting은 첫번째 Fatal Fury가 있기 몇 년 전에 열렸습니다.</fatalfury>
         <finalfantasy>Final Fantasy는 일본 만화 판타지 시리즈입니다. 프랜차이즈는 일련의 판타지 및 과학 판타지 롤플레잉 비디오 게임을 중심으로합니다. 시리즈의 첫번째 게임은 1987년에 출시되었으며 이후 15개의 다른 메인 넘버 엔트리가 출시되었습니다.</finalfantasy>
+	<tekken>Tekken은 Bandai Namco Entertainment에서 개발하고 게시한 일련의 격투 비디오 및 아케이드 게임을 중심으로한 일본 미디어 프랜차이즈입니다. 시리즈의 주요 게임은 플레이어가 토너먼트에서 승리하고 회사를 제어하기 위해 수많은 캐릭터를 제어하는 King of Iron Fist Tournament의 이벤트를 따릅니다.</tekken>
         <finalfight>Final Fight는 1989년 Final Fight의 아케이드 출시로 시작된 Capcom의 가상의 Metro City를 배경으로한 진행형 격투 비디오 게임 시리즈입니다.</finalfight>
         <gta>Grand Theft Auto는 1997년 플레이 스테이션에서 처음 출시된 액션 어드벤처 시리즈입니다. 시리즈 대부분의 게임은 일반적으로 리버티 시티 (뉴욕시), 바이스 시티 (마이애미) 또는 산 안드레아스 주 캘리포니아와 네바다 주 같은 도시를 모델로한 가상의 로케일로 설정됩니다. </gta>
         <kof>The King of Fighters는 1994년 The King of Fighters '94의 출시로 시작된 SNK의 격투 게임 시리즈입니다. 이 시리즈는 원래 SNK의 Neo Geo MVS 아케이드 하드웨어용으로 개발되었습니다.</kof>
@@ -190,8 +193,8 @@
         <irem>Irem Software Engineering은 일본의 비디오 게임 콘솔 개발사이자 유통사이며 이전에는 아케이드 게임의 개발사이자 제조업체이기도 합니다. 본사는 도쿄 치요다에 있습니다.</irem>
         <metalgear>Metal Gear는 Hideo Kojima가 제작하고 Konami가 개발 및 유통한 스텔스 액션 어드벤처 비디오 게임 시리즈입니다. 첫 번째 게임인 Metal Gear는 1987년 MSX 가정용 컴퓨터용으로 출시되었습니다. 여러 콘솔에 대한 여러 속편이 출시되어 원래 게임의 줄거리가 확장되었습니다.</metalgear>
         <atari>Nolan Bushnell과 Ted Dabney가 1972년 California Sunnyvale에서 설립한 Atari, Inc.는 아케이드 게임, 가정용 비디오 게임 콘솔 및 가정용 컴퓨터 분야의 선구자였습니다. Pong 및 Atari 2600과 같은 회사의 제품은 1970년대부터 1980년대 중반까지 전자 엔터테인먼트 산업을 정의하는데 도움이되었습니다.</atari>
-        <dataeast>DECO라고도하는 Data East Corporation (デ ー タ イ ー ス ト 株式会社, Dēta Īsuto kabushiki gaisha)은 일본의 비디오 게임 및 전자 엔지니어링 회사였습니다. 회사는 1976년부터 2003년까지 운영되었으며 150개의 비디오 게임 타이틀을 출시했습니다.</dataeast>
-        <kaneko>Kaneko Co. Ltd. (カ ネ コ 株式会社)는 Hiroshi Kaneko가 일본 도쿄 스기 나미에서 설립한 일본 비디오 게임 유통사입니다. Air Buster, Nexzr, Shogun Warriors, DJ Boy, Guts'n 및 Gals Panic 시리즈와 같은 브랜드 및 다른 회사로 많은 게임을 출시했습니다.</kaneko>
+        <dataeast>DECO라고도하는 Data East Corporation (データイースト株式会社, Dēta Īsuto kabushiki gaisha)은 일본의 비디오 게임 및 전자 엔지니어링 회사였습니다. 회사는 1976년부터 2003년까지 운영되었으며 150개의 비디오 게임 타이틀을 출시했습니다.</dataeast>
+        <kaneko>Kaneko Co. Ltd. (カネコ株式会社)는 Hiroshi Kaneko가 일본 도쿄 스기 나미에서 설립한 일본 비디오 게임 유통사입니다. Air Buster, Nexzr, Shogun Warriors, DJ Boy, Guts'n 및 Gals Panic 시리즈와 같은 브랜드 및 다른 회사로 많은 게임을 출시했습니다.</kaneko>
         <nintendo>Nintendo는 Game Boy, Super Nintendo Entertainment System, Nintendo DS, Wii 및 Nintendo Switch와 같은 비디오 게임 업계에서 가장 성공적인 콘솔을 생산했습니다.</nintendo>
         <sega>Sega는 도쿄 시나가와에 본사를 두고 있는 일본의 다국적 비디오 게임 개발 및 유통사입니다. Sega는 Sonic the Hedgehog, Total War 및 Yakuza를 포함하여 수백만부 판매된 게임 프랜차이즈를 제작했으며 세계에서 가장 많은 아케이드 게임 제작사입니다.</sega>
         <snk>SNK Corporation (株式会社 SNK, Kabushiki-gaisha Esu Enu Kē)은 일본의 비디오 게임 하드웨어 및 소프트웨어 회사입니다. SNK는 1990년에 아케이드, 홈 및 휴대용 게임 콘솔의 Neo Geo 제품군을 만든 것으로 유명합니다.</snk>
@@ -204,5 +207,29 @@
         <notplayed>“지연된 게임은 결국 좋은 것이고 나쁜 게임은 영원히 나쁜 것입니다.” ― 미야모토 시게루</notplayed>
         <lastplayed>“아이가 숙제에 대해 말할 수 있는 최악의 것은 숙제가 너무 어렵다는 것입니다. 아이가 게임에 대해 말할 수 있는 최악의 것은 너무 쉽다는 것입니다.” ― 헨리 젠킨스</lastplayed>
         <allgames>“우리는 늙어서 노는 것을 멈추는 것이 아니고, 노는 것을 그만두기 때문에 늙어가는 것입니다!” - 벤자민 프랭클린</allgames>
+	<quake>Quake is a series of first-person shooter video games, developed by id Software and, as of 2010, published by Bethesda Softworks. The series is composed of the eponymous game from 1996 and its nonlinear, standalone sequels which vary in setting and plot.</quake>	
+	<cheevos>Retroachievements.org is a service that provides a trophy/achievement unlocking mechanism similar to modern consoles, for retro games. Supported systems include Sega Megadrive, Super Nintendo, Nintendo 64, Playstation and Neo-Geo.</cheevos>
+	<atlus>Atlus는 도쿄에 본사를 둔 일본의 비디오 게임 개발, 유통 및 배포 회사입니다. Sega의 자회사인 이 회사는 Megami Tensei, Persona, Etrian Odyssey 및 Trauma Center 시리즈 등으로 유명합니다. 회사 마스코트는 Shin Megami Tensei 시리즈의 눈사람 같은 캐릭터인 Jack Frost입니다.</atlus>
+	<activision>Activision은 1979년 10월 캘리포니아 Sunnyvale에서 Atari 게임 개발자가 Atari에서 대우받은 방식에 화가 나서 인기있는 Atari 2600 가정용 비디오 게임 콘솔용 게임을 개발하기 위해 설립되었습니다. Activision은 최초의 독립적인 타사 콘솔 비디오 게임 개발사였습니다.</activision>
+	<codemasters>Codemasters Software Company는 영국의 Southam에 본사를 둔 영국의 비디오 게임 개발 및 유통사입니다. 1986년 10월 Richard와 David Darling 형제가 설립한 Codemasters는 영국에서 가장 오래된 게임 스튜디오 중 하나이며 2005년에는 잡지 Develop에서 최고의 독립 비디오 게임 개발사로 선정되었습니다.</codemasters>
+ 	<acclaim>Acclaim Entertainment, Inc.는 뉴욕 글렌 코브에 본사를 둔 미국 비디오 게임 유통사 입니다. Acclaim이라는 이름의 전 Activision 직원에 의해 구성되어 알파벳순 목록에서 Activision 및 Accolade(이전 Activision 직원에 의해 구성됨)보다 위에 있습니다.</acclaim>
+	<ocean>Ocean Software Ltd는 영국 소프트웨어 개발회사로 1980년대와 1990년대에 유럽에서 가장 큰 비디오 게임 개발 및 유통사 중 하나가 되었습니다. Ocean은 Rambo, Short Circuit 및 Cobra를 포함한 영화 라이센스를 확보 한 최초의 게임 회사입니다.</ocean>
+	<rockstar>Rockstar Games, Inc.는 뉴욕에 본사를 둔 미국 비디오 게임 유통사입니다. 이 회사는 1998년 12월에 Take-Two Interactive의 자회사로 설립되었으며, 이전에 Grand Theft Auto의 제작사인 DMA Design을 포함하여 BMG Interactive에서 인수한 자산을 사용합니다.</rockstar>
+	<ultimate>Ashby Computers and Graphics Limited는 전 아케이드 게임 개발자인 Tim과 Chris Stamper가 1982년에 설립한 영국의 비디오 게임 개발 및 유통사였습니다. Ultimate는 1983년 부터 1988년 폐업할 때까지 ZX Spectrum, Amstrad CPC, BBC Micro, MSX 및 Commodore 64 컴퓨터를 위한 일련의 성공적인 게임을 출시했습니다.</ultimate>
+	<ea>Electronic Arts Inc. (EA)는 캘리포니아 주 레드 우드 시티에 본사를 둔 미국 비디오 게임 회사입니다. Activision Blizzard에 이어 2020년 5월 기준 Take-Two Interactive, CD Projekt 및 Ubisoft보다 앞서 매출 및 시가 총액 기준으로 미주 및 유럽에서 두 번째로 큰 게임 회사입니다.</ea>
+	<easports>EA Sports는 스포츠 비디오 게임을 개발 및 유통하는 Electronic Arts의 한 부서입니다. 이전에는 EA의 마케팅 기믹으로, 스스로를 "EA Sports Network"라고 부르며 실제 스포츠 네트워크를 모방하려고 시도했습니다. 곧 자체적으로 하위 레이블로 성장하여 FIFA 및 Madden NFL과 같은 게임 시리즈를 출시했습니다.</easports>
+	<eidos>Eidos Interactive는 1995년 부터 2005년까지 챔피언십 매니저 시리즈와 함께 Tomb Raider 시리즈 게임으로 가장 유명한 영국 소프트웨어 유통사였습니다. 일련의 Takeoever에 이어 이제는 Japanese Square Enix 그룹이 소유하고 있습니다.</eidos>
+	<gt>GT Interactive Software Corporation (GTI)은 1993년 2월에 Cayre 가족 소유의 비디오 테이프 유통 업체인 GoodTimes Home Video의 사업부로 설립되었으며 Ron Chaimowitz가 공동 창업자 겸 사장입니다. 여러 번의 합병 및 인수후 회사는 현재 Atari.inc의 일부입니다.</gt>
+	<infogrames>Infogrames는 1983년부터 2009년까지 Alone In The Dark 시리즈로 가장 유명한 소프트웨어 개발 및 유통사였습니다. 이 회사는 이제 Atari.inc의 일부로 알려져 있습니다.</infogrames>
+	<lucasarts>Lucasfilm Games로 사업을 하는 LucasArts Entertainment Company는 미국의 라이센스 계약사입니다. 2013년까지는 비디오 게임 개발 및 유통사이기도 했습니다. LucasArts는 그래픽 어드벤처 게임과 Star Wars 및 Indiana Jones 프랜차이즈를 기반으로한 게임으로 가장 잘 알려져 있습니다.</lucasarts>
+	<simpsons>The Simpsons는 Homer, Marge, Bart, Lisa 및 Maggie로 구성된 Simpson 가족이 대표하는 미국 생활의 풍자적 묘사입니다. 오리지널 TV 쇼는 가상의 마을인 스프링 필드를 배경으로 하며 미국 문화와 사회, 텔레비전, 인간의 조건을 패러디합니다.</simpsons>
+	<tmnt>십대 돌연변이 닌자 거북이는 네 마리의 슈퍼 히어로 거북이입니다. 이탈리아 르네상스 예술가들의 이름을 딴 그들은 일본의 닌술 (ninjutsu) 무술 훈련을 받았습니다. 뉴욕시 하수구에 있는 집에서 그들은 사회로 부터 숨어 있기 위해 노력하면서 다양한 적들과 싸웁니다.</tmnt>
+	<battletoads>Battletoads는 Rare의 비디오 게임 미디어 프랜차이즈로 Rare의 오리지널 비트업 게임인 Battletoads(1991년)로 시작했습니다. 피부 상태의 이름을 딴 3개의 의인화 된 두꺼비, Rash, Zitz 및 Pimple이 출연한 이 시리즈는 Teen Mutant Ninja Turtles 게임 시리즈와 경쟁하기 위해 제작되었습니다.</battletoads>
+	<pokemon>Pokémon은 Nintendo와 The Pokémon Company에서 발행한 비디오 게임 시리즈입니다. 1996년 일본에서 Game Boy용으로 출시된 최초의 게임인 Pocket Monsters Red and Green인 Satoshi Tajiri와 개발사가 "코어 시리즈"라고 하는 롤플레잉 비디오 게임(RPG)의 주요 시리즈로 제작되었습니다. Nintendo 휴대용 게임기의 각 세대에서 계속되었습니다.</pokemon>
+	<lego>1995년 부터 The Lego Group이 제작한 건설 시스템인 Lego를 기반으로한 85개의 상용 비디오 게임이 출시되었습니다. 장르에는 어드벤처 게임, 보드 게임 및 레이싱 게임이 포함됩니다.</lego>
+<!-- pending translation -->
+	<tic80>TIC-80은 작은 게임을 만들고, 즐기고, 공유할 수 있는 판타지 컴퓨터입니다. 게임은 240x136픽셀 디스플레이, 16색 팔레트, 256개의 8x8색상 스프라이트, 4채널 사운드 등으로 제한됩니다.</tic80>
+	<samsho>일본에서 Samurai Spirits로 알려진 Samurai Shodown은 SNK의 격투 게임 시리즈입니다. 18세기 일본을 배경으로한 게임에는 외국 태생의 캐릭터와 가상의 괴물도 포함됩니다.</samsho>
+	<solarus>Solarus는 Action-RPG를 위한 경량의 무료 오픈 소스 게임 엔진입니다. C++로 빌드되었으며 Lua로 만든 게임을 실행합니다.</solarus>
     </variables>
 </theme>
