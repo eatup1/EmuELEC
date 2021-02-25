@@ -7,7 +7,7 @@
   publisher: Public Domain
 
   commands:
-    - /emuelec/scripts/emuelecRunEmu.sh "" -Pports "${2}" -C2048 "-SC${0}"
+    - /usr/bin/emuelecRunEmu.sh "" -Pports "${2}" -C2048 "-SC${0}"
 
 Cannonball:
   name: 캐논볼
@@ -19,7 +19,7 @@ Cannonball:
 
   check_bios: Cannonball
   commands:
-    - /emuelec/scripts/emuelecRunEmu.sh "/storage/roms/ports/cannonball/" -Pports "${2}" -Ccannonball "-SC${0}"
+    - /usr/bin/emuelecRunEmu.sh "/storage/roms/ports/cannonball/" -Pports "${2}" -Ccannonball "-SC${0}"
 
 Cave Story:
   name: 동굴 이야기
@@ -31,7 +31,7 @@ Cave Story:
 
   check_bios: CaveStory
   commands:
-    - /emuelec/scripts/emuelecRunEmu.sh "/storage/roms/ports/CaveStory/Doukutsu.exe" -Pports "${2}" -Cnxengine "-SC${0}"
+    - /usr/bin/emuelecRunEmu.sh "/storage/roms/ports/CaveStory/Doukutsu.exe" -Pports "${2}" -Cnxengine "-SC${0}"
 
 Commander Keen:
   name: 코맨더 킨
@@ -47,7 +47,7 @@ Commander Keen:
   commands:
     - '[[ ! -L "/storage/.CommanderGenius" ]] && ln -sf /emuelec/configs/CommanderGenius /storage/.CommanderGenius'
     - cd /storage/roms/ports/cgenius
-    - /emuelec/bin/${PORT}
+    - /usr/bin/${PORT}
 
 Diablo:
   name: 디아블로
@@ -66,7 +66,7 @@ Diablo:
     - mkdir -p /storage/.local/share/diasurgical/devilution/
     - ln -sf /storage/roms/ports/diablo/diabdat.mpq /storage/.local/share/diasurgical/devilution/diabdat.mpq
     - fi
-    - cd /emuelec/bin/
+    - cd /usr/bin/
     - ./${PORT} >> $EE_LOG 2>&1
 
 Dinothawr:
@@ -79,7 +79,7 @@ Dinothawr:
 
   check_bios: Dinothawr
   commands:
-    - /emuelec/scripts/emuelecRunEmu.sh "/storage/roms/ports/dinothawr/dinothawr.game" -Pports "${2}" -Cdinothawr "-SC${0}"
+    - /usr/bin/emuelecRunEmu.sh "/storage/roms/ports/dinothawr/dinothawr.game" -Pports "${2}" -Cdinothawr "-SC${0}"
 
 Doom:
   name: 둠
@@ -91,7 +91,7 @@ Doom:
 
   check_bios: DOOM1
   commands:
-    - /emuelec/scripts/emuelecRunEmu.sh "/storage/roms/ports/doom/doom1.wad" -Pports "${2}" -Cprboom "-SC${0}"
+    - /usr/bin/emuelecRunEmu.sh "/storage/roms/ports/doom/doom1.wad" -Pports "${2}" -Cprboom "-SC${0}"
 
 Doom 2:
   name: 둠 2
@@ -103,7 +103,7 @@ Doom 2:
 
   check_bios: DOOM2
   commands:
-    - /emuelec/scripts/emuelecRunEmu.sh "/storage/roms/ports/doom2/doom2.wad" -Pports "${2}" -Cprboom "-SC${0}"
+    - /usr/bin/emuelecRunEmu.sh "/storage/roms/ports/doom2/doom2.wad" -Pports "${2}" -Cprboom "-SC${0}"
 
 Mr. Boom:
   name: 미스터 붐
@@ -114,7 +114,7 @@ Mr. Boom:
   publisher: non-commercial
 
   commands:
-    - /emuelec/scripts/emuelecRunEmu.sh "" -Pports "${2}" -Cmrboom "-SC${0}"
+    - /usr/bin/emuelecRunEmu.sh "" -Pports "${2}" -Cmrboom "-SC${0}"
 
 OpenTyrian:
   name: 티리안
@@ -145,7 +145,7 @@ Quake:
 
   check_bios: Quake
   commands:
-    - /emuelec/scripts/emuelecRunEmu.sh "/storage/roms/ports/quake/id1/pak0.pak" -Pports "${2}" -Ctyrquake "-SC${0}"
+    - /usr/bin/emuelecRunEmu.sh "/storage/roms/ports/quake/id1/pak0.pak" -Pports "${2}" -Ctyrquake "-SC${0}"
 
 Flashback:
   name: 플래시백(REminiscence)
@@ -157,7 +157,7 @@ Flashback:
 
   check_bios: REminiscence
   commands:
-    - /emuelec/scripts/emuelecRunEmu.sh "/storage/roms/ports/reminiscence" -Pports "${2}" -Creminiscence "-SC${0}"
+    - /usr/bin/emuelecRunEmu.sh "/storage/roms/ports/reminiscence" -Pports "${2}" -Creminiscence "-SC${0}"
 
 Rick Dangerous:
   name: 릭 데인저러스
@@ -169,7 +169,7 @@ Rick Dangerous:
 
   check_bios: RickDangerous
   commands:
-    - /emuelec/scripts/emuelecRunEmu.sh "/storage/roms/ports/xrick/data.zip" -Pports "${2}" -Cxrick "-SC${0}"
+    - /usr/bin/emuelecRunEmu.sh "/storage/roms/ports/xrick/data.zip" -Pports "${2}" -Cxrick "-SC${0}"
 
 Prince of Persia:
   name: 페르시아의 왕자(SDLPoP)
@@ -220,7 +220,7 @@ Duke Nukem:
   check_bios: eduke32
   commands:
     - cd /storage/roms/ports/eduke
-    - ${PORT}
+    - eduke.sh
 
 Hydra Castle Labyrinth:
   name: 히드라 성 미로
@@ -340,7 +340,7 @@ SuperTux:
 
   audio: "alsa"
   commands:
-    - /emuelec/scripts/show_splash.sh "ports" "supertuxkart"
+    - /usr/bin/show_splash.sh "ports" "supertuxkart"
     - run_supertux.sh
 
 SuperTuxKart:
@@ -353,5 +353,5 @@ SuperTuxKart:
 
   audio: "alsa"
   commands:
-    - /emuelec/scripts/show_splash.sh "ports" "supertuxkart"
+    - /usr/bin/show_splash.sh "ports" "supertuxkart"
     - run_supertuxkart.sh

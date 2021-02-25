@@ -24,11 +24,11 @@ fi
 if [[ "$EE_DEVICE" == "GameForce" ]]; then
 LED=$(get_ee_setting bl_rgb)
 [ -z "${LED}" ] && LED="Off"
-/emuelec/scripts/odroidgoa_utils.sh bl "${LED}"
+/usr/bin/odroidgoa_utils.sh bl "${LED}"
 
 LED=$(get_ee_setting gf_statusled)
 [ -z "${LED}" ] && LED="heartbeat"
-/emuelec/scripts/odroidgoa_utils.sh pl "${LED}"
+/usr/bin/odroidgoa_utils.sh pl "${LED}"
 
 
 rk_wifi_init /dev/ttyS1
@@ -42,7 +42,7 @@ if [[ "$EE_DEVICE" == "GameForce" ]] || [[ "$EE_DEVICE" == "OdroidGoAdvance" ]] 
         OGAOC=$(get_ee_setting ee_oga_oc)
     fi
 [ -z "${OGAOC}" ] && OGAOC="Off"
-    /emuelec/scripts/odroidgoa_utils.sh oga_oc "${OGAOC}"
+    /usr/bin/odroidgoa_utils.sh oga_oc "${OGAOC}"
 fi
 
 BTENABLED=$(get_ee_setting ee_bluetooth.enabled)
@@ -59,7 +59,15 @@ cp -rf /usr/share/retroarch-overlays/bezels/* /storage/roms/bezels/
 fi
 
 # Restore config if backup exists
-BACKUPFILE="/storage/roms/backup/ee_backup_config.tar.gz"
+BACKUPFILE="ee_backup_config.tar.gz"
+
+if mountpoint -q /var/media/EEROMS; then 
+    mkdir -p "/var/media/EEROMS/backup" 
+    BACKUPFILE="/var/media/EEROMS/backup/${BACKUPFILE}" 
+elif mountpoint -q /storage/roms; then 
+    mkdir -p "/storage/roms/backup" 
+    BACKUPFILE="/storage/roms/backup/${BACKUPFILE}"
+fi
 
 if [ -f ${BACKUPFILE} ]; then 
 	emuelec-utils ee_backup restore no
@@ -80,7 +88,7 @@ elif [ -s "/flash/EE_VIDEO_MODE" ]; then
 fi
 
 # finally we correct the FB according to video mode
-/emuelec/scripts/setres.sh
+/usr/bin/setres.sh
 
 # Clean cache garbage when boot up.
 rm -rf /storage/.cache/cores/*
@@ -101,7 +109,7 @@ case "$DEFE" in
 esac
 
 # Show splash creen 
-/emuelec/scripts/show_splash.sh intro
+/usr/bin/show_splash.sh intro
 
 
 # run custom_start before FE scripts

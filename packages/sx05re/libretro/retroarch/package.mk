@@ -19,7 +19,7 @@
 ################################################################################
 
 PKG_NAME="retroarch"
-PKG_VERSION="7450f049e72dd3388dfed2439c1af73e088e4fd9"
+PKG_VERSION="6bba672d602404a814608a861ba42c018a23bce5"
 PKG_SITE="https://github.com/libretro/RetroArch"
 PKG_URL="$PKG_SITE.git"
 PKG_LICENSE="GPLv3"
@@ -127,6 +127,7 @@ fi
   sed -i -e "s/# savestate_directory =/savestate_directory =\/storage\/roms\/savestates/" $INSTALL/etc/retroarch.cfg
   sed -i -e "s/# system_directory =/system_directory =\/storage\/roms\/bios/" $INSTALL/etc/retroarch.cfg
   sed -i -e "s/# screenshot_directory =/screenshot_directory =\/storage\/roms\/screenshots/" $INSTALL/etc/retroarch.cfg
+  sed -i -e "s/# recording_output_directory =/recording_output_directory =\/storage\/roms\/mplayer\/retroarch/" $INSTALL/etc/retroarch.cfg
   sed -i -e "s/# video_shader_dir =/video_shader_dir =\/tmp\/shaders/" $INSTALL/etc/retroarch.cfg
   sed -i -e "s/# rgui_show_start_screen = true/rgui_show_start_screen = false/" $INSTALL/etc/retroarch.cfg
   sed -i -e "s/# assets_directory =/assets_directory =\/tmp\/assets/" $INSTALL/etc/retroarch.cfg

@@ -18,24 +18,7 @@ PKG_MAKE_OPTS_TARGET=" duke3d LTO=0 SDL_TARGET=2 NOASM=1 HAVE_GTK2=0 POLYMER=1 U
 }
 
 makeinstall_target() {
-mkdir -p $INSTALL/usr/config/emuelec/bin
-cp -rf eduke32 $INSTALL/usr/config/emuelec/bin
-
-if [[ "$DEVICE" == "OdroidGoAdvance" || "$DEVICE" == "RG351P" ]]; then 
-	mkdir -p $INSTALL/usr/config/eduke32/
-	touch $INSTALL/usr/config/eduke32/eduke32.cfg
-	echo "ScreenDisplay = 0" > $INSTALL/usr/config/eduke32/eduke32.cfg
-	echo "ScreenHeight = 320" >> $INSTALL/usr/config/eduke32/eduke32.cfg
-	echo "ScreenMode = 0" >> $INSTALL/usr/config/eduke32/eduke32.cfg
-	echo "ScreenWidth = 480" >> $INSTALL/usr/config/eduke32/eduke32.cfg
-	echo "MaxRefreshFreq = 0" >> $INSTALL/usr/config/eduke32/eduke32.cfg
-elif [[ "$DEVICE" == "GameForce" ]]; then
-	mkdir -p $INSTALL/usr/config/eduke32/
-	touch $INSTALL/usr/config/eduke32/eduke32.cfg
-	echo "ScreenDisplay = 0" > $INSTALL/usr/config/eduke32/eduke32.cfg
-	echo "ScreenHeight = 480" >> $INSTALL/usr/config/eduke32/eduke32.cfg
-	echo "ScreenMode = 0" >> $INSTALL/usr/config/eduke32/eduke32.cfg
-	echo "ScreenWidth = 640" >> $INSTALL/usr/config/eduke32/eduke32.cfg
-	echo "MaxRefreshFreq = 0" >> $INSTALL/usr/config/eduke32/eduke32.cfg
-fi
+mkdir -p $INSTALL/usr/bin
+cp -rf eduke32 $INSTALL/usr/bin
+cp $PKG_DIR/scripts/eduke.sh $INSTALL/usr/bin
 }
