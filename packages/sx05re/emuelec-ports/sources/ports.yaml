@@ -277,7 +277,7 @@ MineCraft:
   publisher: GNU 2.0
 
   commands:
-    - /emuelec/scripts/emuelecRunEmu.sh "/storage/roms/ports/minecraft/EBOOT.PBP" -Pports "${2}" -Cppsspp "-SC${0}"
+    - /usr/bin/emuelecRunEmu.sh "/storage/roms/ports/minecraft/EBOOT.PBP" -Pports "${2}" -Cppsspp "-SC${0}"
 
 Sonic 1:
   name: 수퍼 소닉
