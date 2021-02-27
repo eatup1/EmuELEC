@@ -43,7 +43,7 @@ if [ ! -f "${DUKECFG}" ]; then
     fi
 fi
 
-if [ "$EE_DEVICE" == "OdroidGoAdvance" ] || [ "$EE_DEVICE" == "GameForce" ]; then
+if [ "$EE_DEVICE" == "OdroidGoAdvance" -o "$EE_DEVICE" == "RG351P" ] || [ "$EE_DEVICE" == "GameForce" ]; then
     # Eduke does not run if there is less that x ammount of memory so we need to enable swap on devices with 1GB of RAM
     SWAP_FILE="/storage/.config/swap.conf"
     if [ ! -f "${SWAP_FILE}" ]; then
@@ -61,7 +61,7 @@ fi
 cd /storage/roms/ports/eduke
 eduke32 -j /storage/roms/ports/eduke > /emuelec/logs/emuelec.log 2>&1
 
-if [ "$EE_DEVICE" == "OdroidGoAdvance" ] || [ "$EE_DEVICE" == "GameForce" ]; then
+if [ "$EE_DEVICE" == "OdroidGoAdvance" -o "$EE_DEVICE" == "RG351P" ] || [ "$EE_DEVICE" == "GameForce" ]; then
     /usr/lib/coreelec/mount-swap unmount
     rm -rf $HOME/.cache/swapfile
     sed -i 's/SWAP_ENABLED=.*/SWAP_ENABLED="no"/' "${SWAP_FILE}"
