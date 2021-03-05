@@ -185,6 +185,14 @@ fi
 	done
 	fi 
 
+  # Remove scripts from except RG351P build
+	if [[ ${DEVICE} != "RG351P" ]]; then 
+	for i in "RG351_input_Test" ; do 
+	xmlstarlet ed -L -P -d "/gameList/game[name='${i}']" $INSTALL/usr/bin/scripts/setup/gamelist.xml
+	rm "$INSTALL/usr/bin/scripts/setup/${i}.sh"
+	done
+	fi 
+
 #For automatic updates we use the buildate
 	date +"%Y%m%d" > $INSTALL/usr/buildate
 } 
