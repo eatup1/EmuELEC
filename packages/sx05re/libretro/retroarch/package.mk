@@ -224,7 +224,7 @@ if [ "$DEVICE" == "OdroidGoAdvance" -o "$DEVICE" == "RG351P" ] || [ "$DEVICE" ==
     echo "xmb_layout = 2" >> $INSTALL/etc/retroarch.cfg
     echo "menu_widget_scale_auto = false" >> $INSTALL/etc/retroarch.cfg
     echo "menu_widget_scale_factor = 2.00" >> $INSTALL/etc/retroarch.cfg
-    echo "menu_scale_factor = 1.250000" >> $INSTALL/etc/retroarch.cfg
+    echo "menu_scale_factor = 1.000000" >> $INSTALL/etc/retroarch.cfg
     echo "video_font_size = 12.000000" >> $INSTALL/etc/retroarch.cfg
     echo "menu_rgui_shadows = true" >> $INSTALL/etc/retroarch.cfg
     echo "rgui_aspect_ratio = 6" >> $INSTALL/etc/retroarch.cfg
