@@ -9,27 +9,18 @@ EE_DEV="$(cat $EE_CFG | grep ee_evdev | awk -F= '{print $2}' | tr -d \")"
 [ $EE_DEV == "auto" ] && EE_DEV=$(basename /dev/input/js0)
 
 for file in /tmp/joypads/*.cfg; do
-	file2=$(basename "$file")
-	EE_GAMEPAD="${file2%.*}"
+        file2=$(cat "$file" | grep input_device|  cut -d'"' -f 2)
+        EE_GAMEPAD=$(printf %q "$file2")
 
-if cat /proc/bus/input/devices | grep -Ew -A 4 "Name=\"$EE_GAMEPAD" | grep $EE_DEV > /dev/null; then
-	FOUND=1
-	break
+if cat /proc/bus/input/devices | grep -Ew -A 4 -B 1 "Name=\"$EE_GAMEPAD" | grep $EE_DEV > /dev/null; then
+        FOUND=1
+        break
 fi
 done
 
 if [ $FOUND = 1 ]; then
 	# Update jslisten.cfg with the corresponding keys
-	EE_GAMEPAD="/tmp/joypads/$file2"
-	# OGABE is not working, so add workaround code
-	case "$(cat /proc/device-tree/compatible)" in
-	    *"odroidgo2-linux-v11"*)
-	        EE_GAMEPAD="/tmp/joypads/GO-Advance Gamepad (rev 1.1).cfg"
-	    ;;
-	    *"odroidgo2-linuxrockchip"*)
-	        EE_GAMEPAD="/tmp/joypads/GO-Advance Gamepad.cfg"
-	    ;;
-	esac
+    EE_GAMEPAD="/tmp/joypads/$file2.cfg"
 	KEY1=$(cat "$EE_GAMEPAD" | grep -E 'hotkey_btn' | cut -d '"' -f2)
 	KEY2=$(cat "$EE_GAMEPAD" | grep -E 'input_exit_emulator_btn' | cut -d '"' -f2)
 	sed -i "3s|button1=.*|button1=${KEY1}|" ${EE_CFG}	

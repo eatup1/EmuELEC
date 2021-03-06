@@ -16,7 +16,6 @@ pre_configure_target() {
 }
 
 makeinstall_target() {
-    mkdir -p $INSTALL/usr/config/emuelec/bin
-    cp -rf input-test-sdl-2 $INSTALL/usr/config/emuelec/bin
+    cp -rf input-test-sdl-2 $INSTALL/usr/bin
 }
 
