@@ -16,6 +16,7 @@ pre_configure_target() {
 }
 
 makeinstall_target() {
+    mkdir -p $INSTALL/usr/bin
     cp -rf input-test-sdl-2 $INSTALL/usr/bin
 }
 
