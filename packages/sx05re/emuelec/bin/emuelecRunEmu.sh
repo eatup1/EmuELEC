@@ -41,10 +41,9 @@ LOGEMU="No"
 VERBOSE=""
 LOGSDIR="/emuelec/logs"
 TBASH="/usr/bin/bash"
-JSLISTENCONF="/emuelec/configs/jslisten.cfg"
 RACONF="/storage/.config/retroarch/retroarch.cfg"
 NETPLAY="No"
-RABIN="/usr/bin/retroarch"
+RABIN="retroarch"
 
 # Make sure the /emuelec/logs directory exists
 if [[ ! -d "$LOGSDIR" ]]; then
@@ -60,10 +59,9 @@ else
 fi
 
 set_kill_keys() {
-    # If jslisten is running we kill it first so that it can reload the config file. 
-    killall jslisten
+    # If gptokeyb is running we kill it first. 
+    kill_video_controls
     KILLTHIS=${1}
-    sed -i "2s|program=.*|program=\"/usr/bin/killall ${1}\"|" ${JSLISTENCONF}
 }
 
 # Extract the platform name from the arguments
@@ -105,11 +103,6 @@ fi
 # Ports that use this file are all Libretro, so lets set it
 [[ ${PLATFORM} = "ports" ]] && LIBRETRO="yes"
 
-# JSLISTEN setup so that we can kill running ALL emulators using hotkey+start
-/storage/.emulationstation/scripts/configscripts/z_getkillkeys.sh
-. ${JSLISTENCONF}
-
-KILLDEV=${ee_evdev}
 KILLTHIS="none"
 
 # if there wasn't a --NOLOG included in the arguments, enable the emulator log output. TODO: this should be handled in ES menu
@@ -288,7 +281,7 @@ fi
 # Check if we need retroarch 32 bits or 64 bits
 if [[ "${PLATFORM}" == "psx" ]] || [[ "${PLATFORM}" == "n64" ]]; then
     if [[ "$CORE" == "pcsx_rearmed" ]] || [[ "$CORE" == "parallel_n64" ]] || [[ "$CORE" == "mupen64plus" ]] ; then
-        RABIN="/usr/bin/retroarch32" 
+        RABIN="retroarch32" 
         LD_LIBRARY_PATH="/emuelec/lib32:$LD_LIBRARY_PATH"
     fi
 fi
@@ -373,18 +366,8 @@ echo "Run Command is:" >> $EMUELECLOG
 eval echo ${RUNTHIS} >> $EMUELECLOG
 fi
 
-if [[ "$KILLTHIS" != "none" ]]; then
-
-# We need to make sure there are at least 2 buttons setup (hotkey plus another) if not then do not load jslisten
-	KKBUTTON1=$(sed -n "3s|^button1=\(.*\)|\1|p" "${JSLISTENCONF}")
-	KKBUTTON2=$(sed -n "4s|^button2=\(.*\)|\1|p" "${JSLISTENCONF}")
-	if [ ! -z $KKBUTTON1 ] && [ ! -z $KKBUTTON2 ]; then
-		if [ ${KILLDEV} == "auto" ]; then
-			/usr/bin/jslisten --mode hold &>> ${EMUELECLOG} &
-		else
-			/usr/bin/jslisten --mode hold --device /dev/input/${KILLDEV} &>> ${EMUELECLOG} &
-		fi
-	fi
+if [[ "${KILLTHIS}" != "none" ]]; then
+gptokeyb 1 ${KILLTHIS} &
 fi
 
 # Only run fbfix on Amlogic-ng (Mali g31 and g52 in Amlogic SOC)
@@ -407,8 +390,8 @@ fi
 # Show exit splash
 ${TBASH} /usr/bin/show_splash.sh exit
 
-# Kill jslisten, we don't need to but just to make sure, dot not kill if using OdroidGoAdvance
-[[ "$EE_DEVICE" != "OdroidGoAdvance" && "$EE_DEVICE" != "RG351P" ]] && killall jslisten
+# Just in case
+kill_video_controls
 
 # Just for good measure lets make a symlink to Retroarch logs if it exists
 if [[ -f "/storage/.config/retroarch/retroarch.log" ]] && [[ ! -e "${LOGSDIR}/retroarch.log" ]]; then
@@ -489,7 +472,7 @@ echo "exit bios $ret_bios" >> $EMUELECLOG
 fi #require bios ends
 
 # Since the error was not because of missing BIOS but we did get an error, display the log to find out
-[[ "$ret_bios" == "0" ]] && text_viewer -e -t "Error! ${PLATFORM}-${EMULATOR}-${CORE}-${ROMNAME}" -f 24 ${EMUELECLOG}
+[[ "$ret_bios" == "0" ]] && text_viewer -e -w -t "Error! ${PLATFORM}-${EMULATOR}-${CORE}-${ROMNAME}" -f 24 ${EMUELECLOG}
 	exit 1
 else
 echo "exit 0" >> $EMUELECLOG

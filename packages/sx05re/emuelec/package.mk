@@ -33,7 +33,7 @@ if [ "$DEVICE" == "RG351P" ]; then
     PKG_DEPENDS_TARGET+=" RG351P_input-test"
 fi
 if [ "$DEVICE" == "OdroidGoAdvance" -o "$DEVICE" == "RG351P" ] || [ "$DEVICE" == "GameForce" ]; then
-    PKG_DEPENDS_TARGET+=" kmscon odroidgoa-utils rs97-commander-sdl2 rs97-commander-sdl2-ogs"
+    PKG_DEPENDS_TARGET+=" kmscon odroidgoa-utils"
     
     #we disable some cores that are not working or work poorly on OGA
     for discore in mesen-s virtualjaguar quicknes reicastsa_old reicastsa MC; do
@@ -67,7 +67,8 @@ fi
 cp -r $PKG_DIR/gptokeyb* $PKG_BUILD/
 cd $PKG_BUILD/gptokeyb
 # $CC $CFLAGS $LDFLAGS -I$SYSROOT_PREFIX/usr/include/libevdev-1.0 -I$SYSROOT_PREFIX/usr/include/libxml2 -W -Wall gptokeyb.c -o gptokeyb -levdev -lxml2 -L$SYSROOT_PREFIX/usr/lib
-$CC $CFLAGS $LDFLAGS -I$SYSROOT_PREFIX/usr/include/libevdev-1.0 -W -Wall gptokeyb.c -o gptokeyb -levdev -L$SYSROOT_PREFIX/usr/lib
+# $CC $CFLAGS $LDFLAGS -I$SYSROOT_PREFIX/usr/include/libevdev-1.0 -W -Wall gptokeyb.c -o gptokeyb -levdev -L$SYSROOT_PREFIX/usr/lib
+$CXX $CFLAGS $LDFLAGS -I$SYSROOT_PREFIX/usr/include/libevdev-1.0 gptokeyb.cpp -o gptokeyb `$SYSROOT_PREFIX/usr/bin/sdl2-config --cflags --libs` -levdev
 }
 
 
@@ -119,6 +120,9 @@ makeinstall_target() {
     
   mkdir -p $INSTALL/usr/share/libretro-database
      touch $INSTALL/usr/share/libretro-database/dummy
+   
+   # Make sure all scripts and binaries are executable  
+   find $INSTALL/usr/bin -type f -exec chmod +x {} \;
 }
 
 post_install() {
