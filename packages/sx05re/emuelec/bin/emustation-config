@@ -216,13 +216,15 @@ if [ ! -e "${CONFILE}" ]; then
     touch "${CONFILE}"
     sed -i '/<string name="ThemeSystemView"/d' "${ESSETTINGS}"
     sed -i '/<\/config>/d' "${ESSETTINGS}"
+
+    echo '<string name="ThemeSystemView" value="small panel" />' >> "${ESSETTINGS}"
     
     if [ -e "/dev/input/by-path/platform-odroidgo2-joypad-joystick" ]; then
-        echo "systemview=panel32" > "${CONFILE}"
-        echo '<string name="ThemeSystemView" value="panel32" />' >> "${ESSETTINGS}"
+        echo "subset.ratio=43" > "${CONFILE}"
+        echo '<string name="subset.ratio" value="43" />' >> "${ESSETTINGS}"
     else
-        echo "systemview=panel169" > "${CONFILE}"
-        echo '<string name="ThemeSystemView" value="panel169" />' >> "${ESSETTINGS}"
+        echo "subset.ratio=169" > "${CONFILE}"
+        echo '<string name="subset.ratio" value="169" />' >> "${ESSETTINGS}"
     fi
     echo '</config>' >> "${ESSETTINGS}" 
 fi
@@ -263,5 +265,34 @@ if [[ ! -e "/emuelec/bin/pico-8/pico8_dyn" ]]; then
 else
     touch /storage/roms/pico-8/splore.p8 > /dev/null 2>&1 
 fi
+
+#check if we have ecwolf data installed
+ecwolfdir="/storage/roms/ports/ecwolf"
+
+mkdir -p ${ecwolfdir}/games
+
+for ecwolf in SOD sod WL6 wl6 N3D n3d SD2 sd2 SD3 sd3; do
+    if find ${ecwolfdir} -name *.${ecwolf} -maxdepth 1 | read; then
+    case ${ecwolf} in
+        "SOD"|"sod")
+            touch "${ecwolfdir}/games/Spear of Destiny.${ecwolf}" > /dev/null 2>&1 
+        ;;
+        "SD2"|"sd2")
+            touch "${ecwolfdir}/games/Spear of Destiny SD2.${ecwolf}" > /dev/null 2>&1 
+        ;;
+        "SD3"|"sd3")
+            touch "${ecwolfdir}/games/Spear of Destiny SD3.${ecwolf}" > /dev/null 2>&1 
+        ;;
+        "WL6"|"wl6")
+            touch "${ecwolfdir}/games/Wolfenstein 3D.${ecwolf}" > /dev/null 2>&1 
+        ;;
+        "N3D"|"n3d")
+            touch "${ecwolfdir}/games/Super 3D Noah's Ark.${ecwolf}" > /dev/null 2>&1 
+        ;;
+    esac
+    else
+        rm ${ecwolfdir}/games/*.${ecwolf} > /dev/null 2>&1 
+    fi
+done
 
 exit 0
