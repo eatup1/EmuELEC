@@ -477,7 +477,11 @@ if [[ "$ret_error" != "0" ]]; then
         fi #require bios ends
 
     # Since the error was not because of missing BIOS but we did get an error, display the log to find out
+    if [ $(get_ee_setting system.language) == "ko_KR" ]; then
+    [[ "$ret_bios" == "0" ]] && text_viewer -e -w -t "에러! ${PLATFORM}-${EMULATOR}-${CORE}-${ROMNAME}" -f 24 ${EMUELECLOG}
+    else
     [[ "$ret_bios" == "0" ]] && text_viewer -e -w -t "Error! ${PLATFORM}-${EMULATOR}-${CORE}-${ROMNAME}" -f 24 ${EMUELECLOG}
+    fi
         exit 1
 else
     echo "exit 0" >> $EMUELECLOG

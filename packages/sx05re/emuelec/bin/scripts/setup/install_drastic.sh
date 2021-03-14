@@ -7,6 +7,17 @@
 . /etc/profile
 
 function drastic_confirm() {
+if [ $(get_ee_setting system.language) == "ko_KR" ]; then
+    text_viewer -y -w -t "Drastic 설치" -f 24 -m "이렇게 하면 Drastic이 설치되고 에뮬레이션스태이션에서 사용할 수 있게 됩니다.\n\n 참고: 인터넷 연결이 활성화되어 있어야 하며 스크립트가 종료된 후 ES를 다시 시작해야 합니다. 계속하시겠습니까?"
+        if [[ $? == 21 ]]; then
+            if drastic_install; then
+                text_viewer -w -t "Drastic 설치 완료!" -f 24 -m "Drastic 설치 완료! /storage/roms/nds에 롬을 설치하고 에뮬레이션스태이션을 다시 시작하는 것을 잊지 마십시오!"
+            else
+                text_viewer -e -w -t "Drastic 설치 실패!" -f 24 -m "Drastic 설치가 완료되지 않았습니다! 인터넷에 연결되어 있습니까?"
+            fi
+      fi
+    ee_console disable
+else
     text_viewer -y -w -t "Install Drastic" -f 24 -m "This will install Drastic and enable it on Emulationstation\n\nNOTE: You need to have an active internet connection and you will need to restart ES after this script ends, continue?"
         if [[ $? == 21 ]]; then
             if drastic_install; then
@@ -16,6 +27,7 @@ function drastic_confirm() {
             fi
       fi
     ee_console disable
+fi
  }
 
 function drastic_install() {
@@ -95,6 +107,9 @@ case "${DEVICE}" in
     ;;
     "GF")
         cp -rf drastic_ogs.cfg drastic.cfg
+    ;;
+    "RG351P")
+        cp -rf drastic_ogabe.cfg drastic.cfg
     ;;
 esac
 

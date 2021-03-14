@@ -7,7 +7,11 @@
 . /etc/profile
 
 function error() {
+    if [ $(get_ee_setting system.language) == "ko_KR" ]; then
+    text_viewer /emuelec/logs/emuelec.log -w -t "에러! ${2}" -f 24
+    else
     text_viewer /emuelec/logs/emuelec.log -w -t "Error! ${2}" -f 24
+    fi
 	/usr/bin/show_splash.sh exit
 }
 

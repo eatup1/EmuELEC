@@ -51,7 +51,11 @@ fbfix
 fi
 
 if [ ! -e "${DATAFOLDER}/credits.stxt" ]; then
+    if [ $(get_ee_setting system.language) == "ko_KR" ]; then
+    text_viewer -y -w -f 24 -t "데이터가 없습니다!" -m "수퍼 턱스를 처음 실행하거나 데이터 폴더가 없습니다.\n\n데이터는 약200MB이며 인터넷에 연결되어 있어야 합니다.\n\n다운로드하고 계속하시겠습니까?"
+    else
     text_viewer -y -w -f 24 -t "Data does not exists!" -m "It seems this is the first time you are launching Super Tux or the data folder does not exists\n\nData is about 200 MB total, and you need to be connected to the internet\n\nDownload and continue?"
+    fi
         if [[ $? == 21 ]]; then
             ee_console enable
             wget "${DATA}" -q --show-progress > /dev/tty0 2>&1
