@@ -11,6 +11,7 @@ PKG_SHORTDESC="Full-screen text viewer tool with gamepad controls"
 PKG_TOOLCHAIN="make"
 
 pre_configure_target() {
+cp -f $PKG_DIR/imgui/imgui_draw.cpp ./3rd_party/imgui/imgui_draw.cpp
 sed -i "s|sdl2-config|$SYSROOT_PREFIX/usr/bin/sdl2-config|g" Makefile
 }
 
