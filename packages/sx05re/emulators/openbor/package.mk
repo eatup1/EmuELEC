@@ -47,6 +47,6 @@ makeinstall_target() {
     cp `find . -name "OpenBOR.elf" | xargs echo` $INSTALL/usr/bin/OpenBOR
     cp $PKG_DIR/scripts/*.sh $INSTALL/usr/bin
     chmod +x $INSTALL/usr/bin/*
-    mkdir -p $INSTALL/usr/config/emuelec/configs/  
+    mkdir -p $INSTALL/usr/config/emuelec/configs/openbor
 	cp $PKG_DIR/config/master.cfg $INSTALL/usr/config/emuelec/configs/openbor/master.cfg
    } 
