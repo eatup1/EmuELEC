@@ -47,12 +47,6 @@ makeinstall_target() {
     cp `find . -name "OpenBOR.elf" | xargs echo` $INSTALL/usr/bin/OpenBOR
     cp $PKG_DIR/scripts/*.sh $INSTALL/usr/bin
     chmod +x $INSTALL/usr/bin/*
-    mkdir -p $INSTALL/usr/config/openbor  
-	if [ "$DEVICE" == "OdroidGoAdvance" ] || [ "$DEVICE" == "GameForce" ]; then
-		cp $PKG_DIR/config/master_odroidgoa_v11.cfg $INSTALL/usr/config/openbor/master.cfg
-	elif [ "$DEVICE" == "RG351P" ]; then
-		cp $PKG_DIR/config/master_rg351p.cfg $INSTALL/usr/config/openbor/master.cfg
-	else
-		cp $PKG_DIR/config/master.cfg $INSTALL/usr/config/openbor/master.cfg
-	fi
+    mkdir -p $INSTALL/usr/config/emuelec/configs/  
+	cp $PKG_DIR/config/master.cfg $INSTALL/usr/config/emuelec/configs/openbor/master.cfg
    } 
