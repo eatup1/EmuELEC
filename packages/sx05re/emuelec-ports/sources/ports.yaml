@@ -361,7 +361,8 @@ SuperTuxKart:
     - run_supertuxkart.sh
 
 Supermariowar:
-  description: A fan-made multiplayer Super Mario Bros. style deathmatch game
+  name: 수퍼 마리오 워
+  description: 팬이 만든 멀티 플레이어 Super Mario Bros. 스타일 데스매치 게임
   rating: 0.8
   release_date: 2006
   developer: Michael Schaffer, Florian Hufsky, Supermariowar Team
