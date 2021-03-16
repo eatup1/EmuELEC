@@ -20,10 +20,18 @@
 * AnberPorts-Keyboard-Mouse
 * 
 * Part of the code is from from https://github.com/krishenriksen/AnberPorts/blob/master/AnberPorts-Keyboard-Mouse/main.c (mostly the fake keyboard)
-*
+* Fake Xbox code from: https://github.com/Emanem/js2xbox
+* 
 * Modified (badly) by: Shanti Gilbert for EmuELEC
 * Modified further by: Nikolai Wuttke for EmuELEC (Added support for SDL and the SDLGameControllerdb.txt)
-* Fake Xbox code from: https://gSDL_JOYHATMOTIONithub.com/Emanem/js2xbox 
+* 
+* Any help improving this code would be greatly appreciated! 
+* 
+* TODO: Xbox360 mode: Fix triggers so that they report from 0 to 255 like real Xbox triggers
+*       Xbox360 mode: Figure out why the axis are not correctly labeled?  SDL_CONTROLLER_AXIS_RIGHTX / SDL_CONTROLLER_AXIS_RIGHTY / SDL_CONTROLLER_AXIS_TRIGGERLEFT / SDL_CONTROLLER_AXIS_TRIGGERRIGHT
+*       Keyboard mode: Add a config file option to load mappings from.
+* 
+* 
 * Spaghetti code incoming, beware :)
 */
 
@@ -244,7 +252,7 @@ if (kill_mode == false && xbox360_mode == true) {
         }
           /*printf("event.caxis.axis: %u\n", event.caxis.axis);
             printf("event.caxis.value: %u\n", event.caxis.value); 
-            */
+          */
         switch (event.type) {
             case SDL_CONTROLLERBUTTONDOWN:
             case SDL_CONTROLLERBUTTONUP:
@@ -468,7 +476,8 @@ if (kill_mode == false && xbox360_mode == true) {
                      //printf("Down!\n\n"); 
                     emitKey(ABS_Y, 0, EV_ABS, event.jaxis.value);
                 } 
-// right analog // i use int numbers because the cons was not working?  SDL_CONTROLLER_AXIS_RIGHTX / SDL_CONTROLLER_AXIS_RIGHTY
+// right analog 
+// I use INT numbers because the CONS had incorrect axis?  SDL_CONTROLLER_AXIS_RIGHTX / SDL_CONTROLLER_AXIS_RIGHTY
                 if (event.caxis.axis == 3 && event.jaxis.value < -deadzone) {
                    // printf("Left !\n\n"); 
                     emitKey(ABS_RX, 0, EV_ABS, event.jaxis.value);
@@ -483,7 +492,8 @@ if (kill_mode == false && xbox360_mode == true) {
                     emitKey(ABS_RY, 0, EV_ABS, event.jaxis.value);
                 } 
 
-// triggers // same for SDL_CONTROLLER_AXIS_TRIGGERLEFT / SDL_CONTROLLER_AXIS_TRIGGERRIGHT // triggers return MORE than 0 and they do return a negative, so something is wrong
+// triggers // Same for SDL_CONTROLLER_AXIS_TRIGGERLEFT / SDL_CONTROLLER_AXIS_TRIGGERRIGHT, I use INT because of incorrect axis? 
+// triggers return MORE than 255 and they do return a negative, so something is wrong
                 if (event.caxis.axis == 2) {
                     emitKey(ABS_Z, 0, EV_ABS, event.caxis.value);
                 } else if (event.caxis.axis == 5) {
