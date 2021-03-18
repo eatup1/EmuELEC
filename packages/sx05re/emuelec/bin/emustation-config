@@ -204,7 +204,7 @@ systemctl import-environment LANGUAGE
 
 if [ "$EE_DEVICE" == "OdroidGoAdvance" -o "$EE_DEVICE" == "RG351P" ] || [ "$EE_DEVICE" == "GameForce" ]; then
 # For some reason the audio is being reseted to 100 at boot, so we reaply the saved settings here
-/emuelec/scripts/odroidgoa_utils.sh vol $(get_ee_setting "audio.volume")
+/usr/bin/odroidgoa_utils.sh vol $(get_ee_setting "audio.volume")
 
 # Workaround for theme not displaying correctly 
 CONDIR="/storage/.config/emulationstation/themesettings"
