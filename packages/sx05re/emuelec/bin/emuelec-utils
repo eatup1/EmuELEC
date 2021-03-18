@@ -102,7 +102,7 @@ function ee_backup() {
 }
 
 function filemanager() {
-	fbterm.sh "/emuelec/scripts/modules/file_manager_(kb).sh"
+	fbterm.sh "/usr/bin/scripts/setup/file_manager_(kb).sh"
 }
 
 function getshaders() {

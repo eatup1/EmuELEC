@@ -23,7 +23,6 @@ function start_skyscraper() {
 ee_console enable
 systemd-run bash /usr/bin/modules/Skyscraper.start
 systemctl stop emustation
-systemd-run bash /emuelec/scripts/fbterm.sh /emuelec/scripts/modules/Skyscraper.start
 }
 
 ee_console disable

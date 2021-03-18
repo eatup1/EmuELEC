@@ -109,7 +109,7 @@ case "${DEVICE}" in
         cp -rf drastic_ogs.cfg drastic.cfg
     ;;
     "RG351P")
-        cp -rf drastic_ogabe.cfg drastic.cfg
+        cp -rf drastic_rg351p.cfg drastic.cfg
     ;;
 esac
 
