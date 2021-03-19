@@ -2,8 +2,9 @@
 # Copyright (C) 2019-present Shanti Gilbert (https://github.com/shantigilbert)
 
 PKG_NAME="mpv"
-PKG_VERSION="4dcaf70b9653cd04c2159fac6545f25f8e1cbcf9"
-PKG_SHA256="41dd8ea95d835a01aa4bc23f4aa5f82c5781ea99cf474872f0b7257ab0446742"
+# mpv v0.33.0
+PKG_VERSION="0728b514980cccd13543eea53a8e23332e233a6c"
+PKG_SHA256="6e20e997c9bc983c48ccae1b0ce7c31a0df43be8a285705f578bc720fe909338"
 PKG_LICENSE="GPLv2+"
 PKG_SITE="https://github.com/mpv-player/mpv"
 PKG_URL="$PKG_SITE/archive/$PKG_VERSION.tar.gz"
@@ -17,14 +18,14 @@ configure_target() {
   cp $PKG_DIR/waf/* $PKG_BUILD  
   
  if [[ "$DEVICE" == "OdroidGoAdvance" || "$DEVICE" == "RG351P" || "$DEVICE" == "GameForce" ]]; then
-  ./waf configure --enable-sdl2 --enable-sdl2-gamepad --disable-pulse --enable-egl --disable-libbluray --enable-drm --enable-gl --enable-uchardet
+  python3 ./waf configure --enable-sdl2 --enable-sdl2-gamepad --disable-pulse --enable-egl --disable-libbluray --enable-drm --enable-gl --enable-uchardet
   else
-  ./waf configure --enable-sdl2 --enable-sdl2-gamepad --disable-pulse --enable-egl --disable-libbluray --disable-drm --disable-gl --enable-uchardet
+  python3 ./waf configure --enable-sdl2 --enable-sdl2-gamepad --disable-pulse --enable-egl --disable-libbluray --disable-drm --disable-gl --enable-uchardet
  fi
 }
 
 make_target() {
-  ./waf build
+  python3 ./waf build
 }
 
 makeinstall_target() {
