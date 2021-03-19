@@ -33,5 +33,8 @@ gptokeyb openbor &
     cd "${CONFIGDIR}"
 	SDL_AUDIODRIVER=alsa OpenBOR
 
+# Delete symlink from Paks folder
+	rm -rf ${PAKS}/*
+
 /usr/bin/setres.sh
 killall gptokeyb &
