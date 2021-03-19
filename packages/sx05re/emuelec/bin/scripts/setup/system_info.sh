@@ -33,7 +33,7 @@
     sed h /tmp/line1 /tmp/free /tmp/temp-disk /tmp/free /tmp/free /tmp/temph /tmp/free /tmp/tempC /tmp/tempF /tmp/free /tmp/free /tmp/net /tmp/free /tmp/IP /tmp/WAN /tmp/LOOP /tmp/WIRED /tmp/WLAN > /tmp/display
     rm /tmp/free /tmp/tt /tmp/line1 /tmp/temp* /tmp/ip /tmp/loop /tmp/wan /tmp/wired /tmp/wlan /tmp/net /tmp/IP /tmp/WAN /tmp/LOOP /tmp/WIRED /tmp/WLAN
     if [ $(get_ee_setting system.language) == "ko_KR" ]; then
-    text_viewer -w -t "EmuELEC ½Ã½ºÅÛ Á¤º¸" -f 24 /tmp/display
+    text_viewer -w -t "EmuELEC ì‹œìŠ¤í…œ ì •ë³´" -f 24 /tmp/display
     else
     text_viewer -w -t "EmuELEC System Information" -f 24 /tmp/display
     fi

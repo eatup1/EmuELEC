@@ -61,7 +61,7 @@ if test -e "/storage/.update/${UFILE}.sha256"; then
         echo "Valid checksum...continuing" > /dev/tty0
     else
         if [ $(get_ee_setting system.language) == "ko_KR" ]; then
-        text_viewer -e -w -t "Invalid Checksum!" -f 24 -m "체크섬 오류. +${DISTMD5}+를 받았습니다. +${CURRMD5}+를 시도했습니다.\n\n 강제 업데이트가 중단되었습니다!"
+        text_viewer -e -w -t "체크섬 오류!" -f 24 -m "체크섬 오류. +${DISTMD5}+를 받았습니다. +${CURRMD5}+를 시도했습니다.\n\n 강제 업데이트가 중단되었습니다!"
         else
         text_viewer -e -w -t "Invalid Checksum!" -f 24 -m "invalid checksum. Got +${DISTMD5}+. Attempted +${CURRMD5}+.\n\n FORCE UPDATE ABORTED!"
         fi
