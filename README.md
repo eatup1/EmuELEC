@@ -13,16 +13,16 @@ sudo apt update && sudo apt upgrade
 sudo apt-get install gcc make git unzip wget xz-utils libsdl2-dev libsdl2-mixer-dev libfreeimage-dev libfreetype6-dev libcurl4-openssl-dev rapidjson-dev libasound2-dev libgl1-mesa-dev build-essential libboost-all-dev cmake fonts-droid-fallback libvlc-dev libvlccore-dev vlc-bin texinfo premake4 golang libssl-dev curl patchelf xmlstarlet default-jre lzop bc libncurses5-dev libc6-i386 lib32stdc++6 zlib1g:i386
 git clone https://github.com/british-choi/EmuELEC.git EmuELEC    
 cd EmuELEC  
-git checkout master
+git checkout master  
 PROJECT=Amlogic ARCH=aarch64 DISTRO=EmuELEC make image   
 ```
-For the Odroid N2/s905x2/s905x3/a311d:
+For the Odroid N2/s905x2/s905x3/a311d:  
 `PROJECT=Amlogic-ng ARCH=aarch64 DISTRO=EmuELEC make image`
 
-For the Odroid Go Advance/Super:
+For the Odroid Go Advance/Super:  
 `PROJECT=Rockchip DEVICE=OdroidGoAdvance ARCH=aarch64 DISTRO=EmuELEC make image`
 
-For the RG351P:
+For the RG351P:  
 `PROJECT=Rockchip DEVICE=RG351P ARCH=aarch64 DISTRO=EmuELEC make image`
 
 **Remember to use the proper DTB for your device!**
