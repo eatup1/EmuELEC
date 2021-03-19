@@ -219,7 +219,7 @@ if [ ! -e "${CONFILE}" ]; then
 
     echo '<string name="ThemeSystemView" value="small panel" />' >> "${ESSETTINGS}"
     
-    if [ -e "/dev/input/by-path/platform-odroidgo2-joypad-joystick" ]; then
+    if [ -e "/dev/input/by-path/platform-odroidgo2-joypad-joystick" ] || [ -e "/dev/input/by-path/platform-ff300000.usb-usb-0:1.2:1.0-joystick" ]; then
         echo "subset.ratio=43" > "${CONFILE}"
         echo '<string name="subset.ratio" value="43" />' >> "${ESSETTINGS}"
     else
