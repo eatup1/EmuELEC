@@ -136,7 +136,8 @@ OpenTyrian:
     - '[[ "$EE_DEVICE" == "Amlogic" ]] && mv /storage/.config/asound2.conf /storage/.config/asound.conf'
 
 OpenJazz:
-  description: "Port Of Jazz Jackrabbit."
+  name: 재즈 잭래빗
+  description: "재즈 잭래빗이 포트 게임"
   rating: 1.0
   release_date: 20210516T000000
   developer: sana2dang, AlisterT
