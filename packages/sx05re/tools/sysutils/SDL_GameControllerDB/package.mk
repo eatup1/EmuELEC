@@ -16,6 +16,8 @@ pre_configure_target() {
 sed -i "s/19000000010000000100000001010000,odroid/# 19000000010000000100000001010000,odroid/g" gamecontrollerdb.txt
 sed -i "s/19000000010000000200000011000000,odroid/# 19000000010000000200000011000000,odroid/g" gamecontrollerdb.txt
 sed -i "s/03000000790000001c18000011010000,PC Game Controller,a:b2/# 03000000790000001c18000011010000,PC Game Controller,a:b2/g" gamecontrollerdb.txt
+sed -i "s/03000000790000000600000010010000,DragonRise Inc. Generic USB Joystick,a:b2/# 03000000790000000600000010010000,DragonRise Inc. Generic USB Joystick,a:b2/g" gamecontrollerdb.txt
+sed -i "s/03000000bc2000000055000010010000,ShanWan PS3/PC Wired GamePad/# 03000000bc2000000055000010010000,ShanWan PS3/PC Wired GamePad" gamecontrollerdb.txt
 }
 
 makeinstall_target() {
