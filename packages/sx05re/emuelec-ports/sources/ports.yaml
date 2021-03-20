@@ -135,6 +135,17 @@ OpenTyrian:
   commands_end:
     - '[[ "$EE_DEVICE" == "Amlogic" ]] && mv /storage/.config/asound2.conf /storage/.config/asound.conf'
 
+OpenJazz:
+  description: "Port Of Jazz Jackrabbit."
+  rating: 1.0
+  release_date: 20210516T000000
+  developer: sana2dang, AlisterT
+  publisher: non-commercial
+
+  port_exe: "OpenJazz"
+  commands:
+    - ${PORT} --Datadir /storage/roms/ports/openjazz >> $EE_LOG 2>&1
+    
 Quake:
   name: 퀘이크
   description: 플레이어는 다양한 무기를 사용하여 다양한 몬스터와 싸우는 동안 다양한 미로 같은 중세 환경을 헤쳐나가야 한다.
