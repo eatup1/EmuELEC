@@ -1,14 +1,14 @@
 --- a/tasks/task_content.c	2019-01-15 12:55:14.000000000 -0600
 +++ b/tasks/task_content.c	2019-01-28 22:00:41.340468631 -0600
-@@ -527,6 +527,7 @@
+@@ -500,6 +500,7 @@
     {
-       RARCH_LOG("Using content: %s.\n", args->content_path);
+       RARCH_LOG("[CORE]: Using content: %s.\n", args->content_path);
        argv[(*argc)++] = strdup(args->content_path);
-+    system("/usr/bin/fbfix"); // emuelec
++      system("/usr/bin/fbfix"); // emuelec
     }
  #ifdef HAVE_MENU
     else
-@@ -718,6 +719,8 @@
+@@ -726,6 +727,8 @@
     }
  
     *buf = ret_buf;
@@ -17,22 +17,22 @@
  
     return true;
  }
-@@ -1089,7 +1092,7 @@
-          rcheevos_load(info);
-    }
+@@ -1064,7 +1067,7 @@
+    else
+       rcheevos_pause_hardcore();
  #endif
 -
-+	system("/usr/bin/fbfix"); // emuelec
++   system("/usr/bin/fbfix"); // emuelec
     return true;
  }
 
 --- a/retroarch.c	2019-01-15 12:55:14.000000000 -0600
 +++ b/retroarch.c	2019-01-28 22:00:41.340468631 -0600 
-@@ -5609,6 +5609,7 @@
+@@ -12409,6 +12409,7 @@
        )
        input_remapping_set_defaults(true);
  #endif
 +system("/usr/bin/fbfix"); // emuelec
  }
  
- static void command_event_init_cheats(void)
+ #ifdef HAVE_CHEATS

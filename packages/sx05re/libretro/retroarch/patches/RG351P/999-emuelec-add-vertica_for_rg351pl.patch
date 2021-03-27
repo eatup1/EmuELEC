@@ -2,7 +2,7 @@ diff --git a/gfx/drivers/oga_gfx.c b/gfx/drivers/oga_gfx.c
 index 0a78328454..9e73462c37 100644
 --- a/gfx/drivers/oga_gfx.c
 +++ b/gfx/drivers/oga_gfx.c
-@@ -612,15 +612,21 @@ static bool oga_gfx_frame(void *data, const void *frame, unsigned width,
+@@ -615,15 +615,21 @@ static bool oga_gfx_frame(void *data, const void *frame, unsigned width,
        oga_rect_t r;
        oga_calc_bounds(&r, vid->drm_width, vid->drm_height, width, height, aspect_ratio, vid->display_ar);
        oga_blit(vid->menu_surface, 0, 0, width, height,
@@ -28,7 +28,7 @@ index 0a78328454..9e73462c37 100644
     }
  
     if (unlikely(drmModeSetCrtc(vid->fd, vid->crtc_id, page->fb_id, 0, 0, &vid->connector_id, 1, &vid->mode) != 0))
-@@ -717,6 +723,8 @@ static void oga_set_rotation(void *data, unsigned rotation)
+@@ -720,6 +726,8 @@ static void oga_set_rotation(void *data, unsigned rotation)
     if (!vid)
        return;
  
@@ -41,7 +41,7 @@ diff --git a/gfx/drivers_context/drm_go2_ctx.c b/gfx/drivers_context/drm_go2_ctx
 index d21cb44d8d..08c040bb65 100644
 --- a/gfx/drivers_context/drm_go2_ctx.c
 +++ b/gfx/drivers_context/drm_go2_ctx.c
-@@ -325,7 +325,7 @@ static void gfx_ctx_go2_drm_swap_buffers(void *data)
+@@ -335,7 +335,7 @@ static void gfx_ctx_go2_drm_swap_buffers(void *data)
           surface,
           src_x, src_y, src_w, src_h,
           out_y, out_x, out_h, out_w,
