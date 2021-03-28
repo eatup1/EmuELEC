@@ -19,8 +19,9 @@
 ################################################################################
 
 PKG_NAME="easyrpg"
-PKG_VERSION="5569b5c1cf2b47ea425e0033a0f09cf1f7481b05"
-PKG_SHA256="a1364f144b68dec404bd5b487aecbf2bdfbc1008a08481bf045572b07b385f8a"
+#Release 0.6.2.3
+PKG_VERSION="4dd00a6e1ec4b12174019f39624d268619bb3776"
+PKG_SHA256=""
 PKG_ARCH="any"
 PKG_LICENSE="GPLv3"
 PKG_SITE="https://github.com/EasyRPG/Player"
