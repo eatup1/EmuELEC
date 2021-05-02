@@ -28,5 +28,5 @@
 +
 +# AS := nasm
  
- # LuaJIT standalone interpreter executable:
- LUAJIT := luajit$(HOSTEXESUFFIX)
+ PKG_CONFIG := pkg-config
+ 
