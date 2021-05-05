@@ -694,14 +694,14 @@ if /usr/bin/busybox mountpoint -q /storage ; then
     /usr/bin/busybox mkdir -p /storage/roms > /dev/null 2>&1
 
 # Get EEROMS filetype
-EE_FS_TYPE="vfat"
+EE_FS_TYPE="ntfs"
 
 if [ -e "/flash/ee_fstype" ]; then
     EE_FS_TYPE=$( cat "/flash/ee_fstype")
     
 # Failsafe
-    if [ ${EE_FS_TYPE} != "ntfs" ] && [ ${EE_FS_TYPE} != "ext4" ]; then
-        EE_FS_TYPE="vfat"
+    if [ ${EE_FS_TYPE} != "vfat" ] && [ ${EE_FS_TYPE} != "ext4" ]; then
+        EE_FS_TYPE="ntfs"
     fi
 fi 
 
