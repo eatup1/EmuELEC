@@ -1,6 +1,6 @@
 --- a/CMakeLists.txt
 +++ b/CMakeLists.txt
-@@ -516,7 +516,7 @@
+@@ -502,7 +502,7 @@
      check_c_compiler_flag("" HAVE_NO_UNDEFINED)
      set(CMAKE_REQUIRED_FLAGS ${ORIG_CMAKE_REQUIRED_FLAGS})
      if(HAVE_NO_UNDEFINED)
@@ -101,8 +101,8 @@ diff -r 0f7577d28c6c src/video/kmsdrm/SDL_kmsdrmvideo.c
  
  static int
  check_modestting(int devindex)
-@@ -252,6 +256,38 @@
-     free(fb_info);
+@@ -259,6 +263,38 @@
+     SDL_free(fb_info);
  }
  
 +static void
@@ -151,7 +151,7 @@ diff -r 0f7577d28c6c src/video/kmsdrm/SDL_kmsdrmvideo.c
      current_mode.refresh_rate = data->cur_mode.vrefresh;
  
      /* FIXME ?
-@@ -553,6 +589,7 @@
+@@ -597,6 +633,7 @@
  {
      SDL_WindowData *wdata;
      SDL_VideoDisplay *display;
@@ -159,7 +159,7 @@ diff -r 0f7577d28c6c src/video/kmsdrm/SDL_kmsdrmvideo.c
      SDL_VideoData *vdata = ((SDL_VideoData *)_this->driverdata);
      Uint32 surface_fmt, surface_flags;
  
-@@ -615,6 +652,10 @@
+@@ -660,6 +697,10 @@
      SDL_SetKeyboardFocus(window);
  
      /* Window has been successfully created */
@@ -170,7 +170,7 @@ diff -r 0f7577d28c6c src/video/kmsdrm/SDL_kmsdrmvideo.c
      return 0;
  
  error:
-@@ -661,6 +702,7 @@
+@@ -706,6 +747,7 @@
          }
          SDL_free(data);
          window->driverdata = NULL;
