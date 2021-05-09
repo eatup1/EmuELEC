@@ -1,29 +1,14 @@
 EmuELEC CHANGELOG
 ==================
 
-# 4.x
-
 A new forum has been open for emuelec: https://emuelec.org
 
-General: 
-
-* Add ee_fstype to set the EEROMS partitions to the desired file system, between FAT32 (default), NTFS, EXT4 and EXFAT. Instructions coming soon to Wiki/forum
-* Fix OGG background music
-* Update setres.sh and advmame.sh for resolution 1280x1024p60hz (PR #600)
-* Fix drastic game saves & save states erased when resetting scripts & binaries to default (PR #595) 
-* Add Potator a Watara Supervision emulator core
-* Add beetle-supafaust (SNES emulator core)
-* gptokeyb bump and fix missing trigger actions
-* Crystal bump to latest
-* emuelec-emulationstation bump to latest
-
-# 4.1
+# 4.1k
 
 General:
  
 * Emulationstation: While in a game list, pressing X/Y will move to a random game/open game options, holding X/Y will mark it as favorite/open search (thanks to @lethal-guitar)
-* Bump PPSSPPSDL to v1.11
-* Bump Duckstation to abb7631
+* Bump Duckstation to e414aeb
 * Pico-8: Allow saving favorite carts, include binary in backup
 * Update Sonic 1 and 2 so that they work with multiple gamepads
 * Bump most emulators and cores to newest git hash (check commits for specifics)
@@ -33,9 +18,22 @@ General:
 * Use DinguxFileManager as default on all platforms
 * Use gptokeyb as a fake keyboard for OpenBOR
 * Support Korean language for TvTextView
-* Bump mpv to v0.33.0
+* Bump mpv to v0.33.1
 * Bump Retroarch to 1.9.1
+* Bump amiberry to v4.1.2
+* Bump PPSSPPSDL to v1.11.3
+* Bump dosbox-pure to v0.13
+* Bump eduke to 7225643
 * API keys for Emulationstation have been changed, please refer to the emuelec-emulationstation/package.mk
+* Add ee_fstype to set the EEROMS partitions to the desired file system, between FAT32, NTFS(default), EXT4 and EXFAT. Instructions coming soon to Wiki/forum
+* Fix OGG background music
+* Update setres.sh and advmame.sh for resolution 1280x1024p60hz (PR #600)
+* Fix drastic game saves & save states erased when resetting scripts & binaries to default (PR #595) 
+* Add Potator a Watara Supervision emulator core
+* Add beetle-supafaust (SNES emulator core)
+* gptokeyb bump and fix missing trigger actions
+* Crystal bump to latest
+* emuelec-emulationstation bump to latest
 
 Additions: 
 
@@ -74,6 +72,7 @@ Fixes:
 * ARM32 interpreter is now symlinked so no need for patchelf
 * Fix some TimeZones not displaying/working correctly (#546)
 * Fix hand-held bezels for 720p and 1080p
+* Fix NDS controller for RG351P
 
 
 This version includes a big change on how binaries and scripts are stored, basically to deal with the issue of people not reading how to properly update 
@@ -86,7 +85,7 @@ All configurations regarding emuelec will still be handled in /emuelec/config
 
 Note that this is probably not final, I still need to do a lot of testing, but keep that in mind if you want to update
 
-# 4.0    
+# 4.0k    
 
 Yes its finally here :) 
 
