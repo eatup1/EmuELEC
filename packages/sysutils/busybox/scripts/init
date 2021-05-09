@@ -700,6 +700,9 @@ if [ -e "/flash/ee_fstype" ]; then
     EE_FS_TYPE=$(cat "/flash/ee_fstype")
     
     case $EE_FS_TYPE in
+    "vfat")
+        ROM_FS_TYPE="vfat"
+    ;;
     "ntfs")
         ROM_FS_TYPE="ntfs"
     ;;
