@@ -1,10 +1,5 @@
 EmuELEC CHANGELOG
 ==================
-3.6k
-
-    * RetroArch 한글깨짐 문제 수정
-    * X11에 한글폰트 추가
-    * EmulationStation 한글번역 적용
 
 A new forum has been open for emuelec: https://emuelec.org
 
@@ -273,6 +268,11 @@ Now for the update notes!
 * emuelec-emulationstation: Bump to 5e9dc64
 
 
+# 3.6k
+
+    * RetroArch 한글깨짐 문제 수정
+    * X11에 한글폰트 추가
+    * EmulationStation 한글번역 적용
 
 # 3.6
 	
