@@ -2,7 +2,7 @@
 # Copyright (C) 2020-present Shanti Gilbert (https://github.com/shantigilbert)
 
 PKG_NAME="devilutionX"
-PKG_VERSION="ed825ba102cc901e1210ea48ccb2b09219fe2a3d"
+PKG_VERSION="2302ee27aa0ecf13752ba596f9ec221f89f0b8a4"
 PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="unlicense"
@@ -19,9 +19,9 @@ sed -i "s|;-static-libstdc++>|;-lstdc++>|" $PKG_BUILD/CMakeLists.txt
 }
 
 makeinstall_target() { 
-mkdir -p $INSTALL/usr/config/emuelec/bin
-cp -rf $PKG_BUILD/.$TARGET_NAME/devilutionx $INSTALL/usr/config/emuelec/bin
-cp -rf $PKG_BUILD/Packaging/resources/CharisSILB.ttf $PKG_BUILD/.$TARGET_NAME/devilutionx $INSTALL/usr/config/emuelec/bin
+mkdir -p $INSTALL/usr/bin
+cp -rf $PKG_BUILD/.$TARGET_NAME/devilutionx $INSTALL/usr/bin
+cp -rf $PKG_BUILD/Packaging/resources/CharisSILB.ttf $PKG_BUILD/.$TARGET_NAME/devilutionx $INSTALL/usr/bin
 
 mkdir -p ${INSTALL}/usr/share/fonts/truetype
 cp ../Packaging/resources/*.ttf ${INSTALL}/usr/share/fonts/truetype/
@@ -32,7 +32,7 @@ ninja -t clean
   cmake ${CMAKE_GENERATOR_NINJA} ${TARGET_CMAKE_OPTS} ${PKG_CMAKE_OPTS_TARGET} -DHELLFIRE=1 $(dirname ${PKG_CMAKE_SCRIPT})
   ninja ${NINJA_OPTS}
 
-  cp devilutionx $INSTALL/usr/config/emuelec/bin/devilutionx.hf
+  cp devilutionx $INSTALL/usr/bin/devilutionx.hf
 
  
 }

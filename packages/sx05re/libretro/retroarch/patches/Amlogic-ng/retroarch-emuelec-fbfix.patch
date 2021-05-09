@@ -1,38 +1,38 @@
---- a/tasks/task_content.c
-+++ b/tasks/task_content.c
-@@ -521,6 +521,7 @@ static void content_load_init_wrap(
+--- a/tasks/task_content.c	2019-01-15 12:55:14.000000000 -0600
++++ b/tasks/task_content.c	2019-01-28 22:00:41.340468631 -0600
+@@ -500,6 +500,7 @@
     {
-       RARCH_LOG("Using content: %s.\n", args->content_path);
+       RARCH_LOG("[CORE]: Using content: %s.\n", args->content_path);
        argv[(*argc)++] = strdup(args->content_path);
-+      system("/storage/.config/emuelec/bin/fbfix"); // emuelec
++      system("/usr/bin/fbfix"); // emuelec
     }
  #ifdef HAVE_MENU
     else
-@@ -713,6 +714,8 @@ static bool load_content_into_memory(
-
+@@ -726,6 +727,8 @@
+    }
+ 
     *buf = ret_buf;
-
-+   system("/storage/.config/emuelec/bin/fbfix"); // emuelec
-+
++    
++    system("/usr/bin/fbfix"); // emuelec
+ 
     return true;
  }
-
-@@ -1087,6 +1090,7 @@ static bool content_file_load(
-       rcheevos_hardcore_paused = true;
+@@ -1064,7 +1067,7 @@
+    else
+       rcheevos_pause_hardcore();
  #endif
-
-+   system("/storage/.config/emuelec/bin/fbfix"); // emuelec
+-
++   system("/usr/bin/fbfix"); // emuelec
     return true;
  }
 
-
---- a/retroarch.c
-+++ b/retroarch.c
-@@ -6508,6 +6508,7 @@ static void command_event_deinit_core(bool reinit)
+--- a/retroarch.c	2019-01-15 12:55:14.000000000 -0600
++++ b/retroarch.c	2019-01-28 22:00:41.340468631 -0600 
+@@ -12409,6 +12409,7 @@
        )
        input_remapping_set_defaults(true);
  #endif
-+   system("/storage/.config/emuelec/bin/fbfix"); // emuelec
++system("/usr/bin/fbfix"); // emuelec
  }
-
- static void command_event_init_cheats(void)
+ 
+ #ifdef HAVE_CHEATS

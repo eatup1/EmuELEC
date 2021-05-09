@@ -1,0 +1,129 @@
+<?xml version="1.0"?>
+<gameList>
+	<game>
+		<path>./RG351_input_Test.sh</path>
+		<name>RG351P Input Test</name>
+		<desc>RG351P의 Joypad를 Test합니다.</desc>
+		<developer>Anbernic</developer>
+		<publisher>Anbernic</publisher>
+		<genre>script</genre>
+		<!--image>./downloaded_images/Input Test.png</image-->
+	</game>
+	<game>
+		<path>./file_manager_(kb).sh</path>
+		<name>파일 매니저</name>
+		<desc>MC 파일 매니저. 키보드가 필요합니다!</desc>
+		<developer>shantigilbert </developer>
+		<publisher>Emuelec</publisher>
+		<genre>script</genre>
+		<image>./downloaded_images/File Manager.png</image>
+	</game>
+	<game>
+		<path>./wifi.sh</path>
+		<name>대체 와이파이 접속</name>
+		<desc>/storage/.config/wifi.txt 를 이용하여 와이파이에 접속합니다.</desc>
+		<developer>shantigilbert </developer>
+		<publisher>Emuelec</publisher>
+		<genre>script</genre>
+		<image>./downloaded_images/wifi.png</image>
+	</game>
+	<game>
+		<path>./install_drastic.sh</path>
+		<name>Drastic 설치</name>
+		<desc>Drastic을 다운로드하여 설치합니다. 인터넷 연결이 필요합니다!</desc>
+		<developer>shantigilbert </developer>
+		<publisher>Emuelec</publisher>
+		<genre>script</genre>
+		<image>./downloaded_images/drastic.png</image>
+	</game>
+	<game>
+		<path>./sselphs_scraper.sh</path>
+		<name>Sselph의 스크래퍼</name>
+		<desc>대체용 롬 스크래퍼. 설정이 필요합니다!</desc>
+		<developer>shantigilbert </developer>
+		<publisher>Emuelec</publisher>
+		<genre>script</genre>
+		<image>./downloaded_images/help.png</image>
+	</game>
+	<game>
+		<path>./skyscraper.sh</path>
+		<name>Skyscraper</name>
+		<desc>대체용 롬 스크래퍼. 설정이 필요합니다!</desc>
+		<developer>shantigilbert </developer>
+		<publisher>Emuelec</publisher>
+		<genre>script</genre>
+		<image>./downloaded_images/sh.png</image>
+	</game>
+	<game>
+		<path>./send_logs.sh</path>
+		<name>로그 보내기</name>
+		<desc>URL을 사용하여 도움이 필요할 때 저장된 로그를 전송합니다.</desc>
+		<developer>shantigilbert </developer>
+		<publisher>Emuelec</publisher>
+		<genre>script</genre>
+		<image>./downloaded_images/logs.png</image>
+	</game>
+	<game>
+		<path>./system_info.sh</path>
+		<name>시스템 정보</name>
+		<desc>시스템 정보를 보여줍니다</desc>
+		<developer>shantigilbert </developer>
+		<publisher>Emuelec</publisher>
+		<genre>script</genre>
+		<image>./downloaded_images/info.png</image>
+	</game>
+	<game>
+		<path>./copy_usb_roms_to_device.sh</path>
+		<name>USB의 롬을 내부 저장소로 복사</name>
+		<desc>쉽게 외부 장치의 롬을 EmuELEC이 설치된 SD/MMC로 복사합니다.</desc>
+		<developer>shantigilbert </developer>
+		<publisher>Emuelec</publisher>
+		<genre>script</genre>
+		<image>./downloaded_images/usb.png</image>
+	</game>
+	<game>
+		<path>./show_last_emuelec.log.sh</path>
+		<name>마지막 EmuELEC 로그 보기</name>
+		<desc>게임 실행 문제를 수정하기 위해 마지막 emuelec.log 를 보여줍니다.</desc>
+		<developer>shantigilbert </developer>
+		<publisher>Emuelec</publisher>
+		<genre>script</genre>
+		<image>./downloaded_images/last.png</image>
+	</game>
+	<game>
+		<path>./launch_terminal_(kb).sh</path>
+		<name>터미널 실행</name>
+		<desc>터미널을 시작합니다. 키보드가 필요합니다!</desc>
+		<developer>shantigilbert </developer>
+		<publisher>Emuelec</publisher>
+		<genre>script</genre>
+		<image>./downloaded_images/terminal.png</image>
+	</game>
+	<game>
+		<path>./youtube_search.sh</path>
+		<name>유튜브 검색</name>
+		<desc>EmuELEC 설정 메뉴에 미리 정의 된 단어를 기반으로 빠른 YouTube 검색을 수행합니다.</desc>
+		<developer>shantigilbert </developer>
+		<publisher>Emuelec</publisher>
+		<genre>script</genre>
+		<image>./downloaded_images/youtube.png</image>
+	</game>
+	<game>
+		<path>./bt_controller_management.sh</path>
+		<name>블루투스 컨트롤러 관리</name>
+		<desc>대체 블루투스 설정 메뉴</desc>
+		<developer>shantigilbert </developer>
+		<publisher>Emuelec</publisher>
+		<genre>script</genre>
+		<image>./downloaded_images/bluetooth.png</image>
+	</game>
+	<game>
+		<path>./scan_scummVM_games.sh</path>
+		<name>ScummVM 게임 스캔</name>
+		<desc>Scummvm을 스캔하여 게임 목록에 추가합니다!</desc>
+		<developer>shantigilbert </developer>
+		<publisher>Emuelec</publisher>
+		<genre>script</genre>
+		<image>./downloaded_images/scummvm.png</image>
+	</game>
+</gameList>

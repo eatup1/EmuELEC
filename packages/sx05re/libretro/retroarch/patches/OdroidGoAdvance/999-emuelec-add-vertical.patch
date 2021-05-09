@@ -1,6 +1,6 @@
 --- a/gfx/drivers/oga_gfx.c
 +++ b/gfx/drivers/oga_gfx.c
-@@ -553,6 +553,7 @@
+@@ -556,6 +556,7 @@
        unsigned height, uint64_t frame_count,
        unsigned pitch, const char *msg, video_frame_info_t *video_info)
  {
@@ -8,7 +8,7 @@
     oga_video_t *vid  = (oga_video_t*)data;
     oga_framebuf_t* page = vid->pages[vid->cur_page];
     oga_surface_t *page_surface = page->surface;
-@@ -595,6 +596,14 @@
+@@ -598,6 +599,14 @@
           }
        }
  
@@ -23,7 +23,7 @@
        oga_calc_bounds(&r, vid->drm_width, vid->drm_height, width, height, aspect_ratio, vid->display_ar);
        oga_blit(vid->frame_surface, 0, 0, width, height,
              page_surface, r.y, r.x, r.h, r.w, vid->rotation, vid->scale_mode, blend);
-@@ -608,19 +617,38 @@
+@@ -611,19 +620,38 @@
        height = vid->menu_surface->height;
  
        aspect_ratio = (float)width / height;
@@ -64,7 +64,7 @@
     }
  
     if (unlikely(drmModeSetCrtc(vid->fd, vid->crtc_id, page->fb_id, 0, 0, &vid->connector_id, 1, &vid->mode) != 0))
-@@ -716,6 +744,14 @@
+@@ -719,6 +747,14 @@
     oga_video_t *vid = (oga_video_t*)data;
     if (!vid)
        return;
@@ -82,7 +82,7 @@
 
 --- a/gfx/drivers_context/drm_go2_ctx.c
 +++ b/gfx/drivers_context/drm_go2_ctx.c
-@@ -295,6 +295,7 @@
+@@ -305,6 +305,7 @@
  
  static void gfx_ctx_go2_drm_swap_buffers(void *data)
  {
@@ -90,7 +90,7 @@
     gfx_ctx_go2_drm_data_t 
        *drm   = (gfx_ctx_go2_drm_data_t*)data;
  
-@@ -321,11 +322,26 @@
+@@ -331,11 +332,26 @@
     go2_context_swap_buffers(drm->context);
  
     go2_surface_t* surface = go2_context_surface_lock(drm->context);

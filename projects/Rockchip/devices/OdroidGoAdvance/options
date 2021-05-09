@@ -64,12 +64,12 @@
     DEBUG_TTY="/dev/ttyFIQ0"
     
   # short project description
-  DESCRIPTION="Retro emulation for the OGA."
+  DESCRIPTION="Retro emulation for the OGA/OGS."
 
   # Welcome Message for e.g. SSH Server (up to 5 Lines)
   GREETING0="#########################################"
   GREETING1="#                 EmuELEC               #"
-  GREETING2="#       Retro emulation for the OGA     #"
+  GREETING2="#    Retro emulation for the OGA/OGS    #"
   GREETING3="#             Based on CoreELEC         #"
   GREETING4="#########################################"
     
@@ -187,10 +187,10 @@
   SWAP_SUPPORT="yes"
 
   # swap support enabled per default (yes / no)
-  SWAP_ENABLED_DEFAULT="yes"
+  SWAP_ENABLED_DEFAULT="no"
 
   # swapfile size if SWAP_SUPPORT=yes in MB
-  SWAPFILESIZE="128"
+  SWAPFILESIZE="300"
 
   # cron support (yes / no)
   CRON_SUPPORT="no"

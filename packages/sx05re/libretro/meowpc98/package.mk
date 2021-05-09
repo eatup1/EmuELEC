@@ -19,8 +19,8 @@
 ################################################################################
 
 PKG_NAME="meowpc98"
-PKG_VERSION="3a8cf48306b300b07c0919bcb901d6499cdcaf21"
-PKG_SHA256="cee28383bec5c613edbdb01c6c7bc0fd9cf245d134e30939cec689c88f7b8b93"
+PKG_VERSION="cd389b3490d5048873c40edd949a1b0631e0606d"
+PKG_SHA256="6689487085533e6db9f95151ad202a7a04f0b6ddfcc9db87b32cbb34ed4ef4c0"
 PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="Unknown"

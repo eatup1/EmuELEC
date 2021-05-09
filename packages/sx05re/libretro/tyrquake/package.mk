@@ -19,8 +19,8 @@
 ################################################################################
 
 PKG_NAME="tyrquake"
-PKG_VERSION="371305cde12ca97ee2161f968121d406a0f65406"
-PKG_SHA256="0eb52518b125b453dbb651553b1a8f0d1606edef5f9fa9e27365aacea3a427ce"
+PKG_VERSION="8dc6d35c1ff0ccc5a0b5c56afee57ef8a094f2d3"
+PKG_SHA256="a5460d5f9d5cf082f3524d2bbbfa0b46509d251a811e16b702fb6bc561252547"
 PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="GPLv2"

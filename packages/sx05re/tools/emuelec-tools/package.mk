@@ -15,10 +15,11 @@ PKG_DEPENDS_TARGET+=" ffmpeg \
                       common-shaders \
                       scraper \
                       Skyscraper \
+                      rs97-commander-sdl2 \
                       MC \
                       libretro-bash-launcher \
                       SDL_GameControllerDB \
-                      linux-utils \
+                      util-linux \
                       xmlstarlet \
                       CoreELEC-Debug-Scripts \
                       sixaxis \
@@ -39,4 +40,9 @@ PKG_DEPENDS_TARGET+=" ffmpeg \
                       pygobject \
                       coreutils \
                       wget \
-                      TvTextViewer"
+                      TvTextViewer \
+                      imagemagick \
+                      htop \
+                      libevdev \
+                      gptokeyb \
+                      exfat"

@@ -19,12 +19,12 @@
 ################################################################################
 
 PKG_NAME="nxengine"
-PKG_VERSION="5831e4876ab92b1771e34b66589c33895d3d3cb8"
-PKG_SHA256="f896b6f5167c864f81604b42fae69c3d8234778f6552205c7c84d1d6a990a1fe"
+PKG_VERSION="38c8f0a1e8c23450140270e0bd1a9a4764d40c08"
+PKG_SHA256="f7754b632ebce97cb911b53f388e23939a31f9df7cd55568b752e92bfdf1467f"
 PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="GPLv3"
-PKG_SITE="https://github.com/libretro/nxengine-libretro"
+PKG_SITE="https://github.com/british-choi/nxengine-libretro"
 PKG_URL="$PKG_SITE/archive/$PKG_VERSION.tar.gz"
 PKG_DEPENDS_TARGET="toolchain"
 PKG_PRIORITY="optional"

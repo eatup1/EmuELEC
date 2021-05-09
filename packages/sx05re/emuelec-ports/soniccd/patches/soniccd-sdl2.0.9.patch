@@ -3,8 +3,8 @@ Taken from https://gist.github.com/dilworks/89273c5976b1a91ba19fbd75db204293
 
 diff --git a/SonicCDDecomp/RetroEngine.hpp b/SonicCDDecomp/RetroEngine.hpp
 index 7cd77c3..76c1161 100644
---- a/SonicCDDecomp/RetroEngine.hpp
-+++ b/SonicCDDecomp/RetroEngine.hpp
+--- a/RSDKv3/RetroEngine.hpp
++++ b/RSDKv3/RetroEngine.hpp
 @@ -104,6 +104,27 @@ typedef unsigned int uint;
  
  #endif

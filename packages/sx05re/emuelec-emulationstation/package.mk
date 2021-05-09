@@ -2,7 +2,7 @@
 # Copyright (C) 2019-present Shanti Gilbert (https://github.com/shantigilbert)
 
 PKG_NAME="emuelec-emulationstation"
-PKG_VERSION="3116951b9180fda5955f9c64eeacb64ebf2ef957"
+PKG_VERSION="19f8628297eee4938f7291a9ab2d0002a3675152"
 PKG_GIT_CLONE_BRANCH="EmuELEC"
 PKG_REV="1"
 PKG_ARCH="any"
@@ -19,7 +19,22 @@ GET_HANDLER_SUPPORT="git"
 # themes for Emulationstation
 PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET Crystal es-theme-EmuELEC-carbon"
 
-PKG_CMAKE_OPTS_TARGET=" -DENABLE_EMUELEC=1 -DDISABLE_KODI=1 -DENABLE_FILEMANAGER=1"
+pre_configure_target() {
+PKG_CMAKE_OPTS_TARGET=" -DENABLE_EMUELEC=1 -DDISABLE_KODI=1 -DENABLE_FILEMANAGER=1 "
+
+# Read api_keys.txt if it exist to add the required keys for cheevos, thegamesdb and screenscrapper. You need to get your own API keys. 
+# File should be in this format
+# -DSCREENSCRAPER_DEV_LOGIN=devid=<devusername>&devpassword=<devpassword> 
+# -DGAMESDB_APIKEY=<gamesdbapikey>
+# -DCHEEVOS_DEV_LOGIN=z=<yourusername>&y=<yourapikey>
+# and it should be placed next to this file
+
+if [ -f $PKG_DIR/api_keys.txt ]; then
+while IFS="" read -r p || [ -n "$p" ]
+do
+  PKG_CMAKE_OPTS_TARGET+=" $p"
+done < $PKG_DIR/api_keys.txt
+fi
 
 if [[ ${DEVICE} == "GameForce" ]]; then
 PKG_CMAKE_OPTS_TARGET+=" -DENABLE_GAMEFORCE=1"
@@ -28,6 +43,8 @@ fi
 if [[ ${DEVICE} == "OdroidGoAdvance" || ${DEVICE} == "RG351P" ]]; then
 PKG_CMAKE_OPTS_TARGET+=" -DODROIDGOA=1"
 fi
+
+}
 
 makeinstall_target() {
 	mkdir -p $INSTALL/usr/config/emuelec/configs/locale/i18n/charmaps
@@ -80,11 +97,4 @@ post_install() {
 	enable_service emustation.service
 	mkdir -p $INSTALL/usr/share
 	ln -sf /storage/.config/emuelec/configs/locale $INSTALL/usr/share/locale
-	if [ "$DEVICE" == "OdroidGoAdvance" ] || [ "$DEVICE" == "GameForce" ]; then
-		mv $INSTALL/usr/config/emulationstation/scripts/drastic/config/drastic.cfg_oga $INSTALL/usr/config/emulationstation/scripts/drastic/config/drastic.cfg
-	elif [ "$DEVICE" == "RG351P" ]; then
-		mv $INSTALL/usr/config/emulationstation/scripts/drastic/config/drastic.cfg_rg351p $INSTALL/usr/config/emulationstation/scripts/drastic/config/drastic.cfg
-	else
-		rm -rf $INSTALL/usr/config/emulationstation/scripts/drastic
-	fi
 }

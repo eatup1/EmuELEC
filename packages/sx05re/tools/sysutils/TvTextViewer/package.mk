@@ -2,7 +2,7 @@
 # Copyright (C) 2021-present Shanti Gilbert (https://github.com/shantigilbert)
 
 PKG_NAME="TvTextViewer"
-PKG_VERSION="41e5e8d87f0faa5f45ed82196c9bd76d12b0cc0d"
+PKG_VERSION="fee8c65e83d39a03c245bb205c577345d63b47d7"
 PKG_LICENSE="MIT"
 PKG_SITE="https://github.com/lethal-guitar/TvTextViewer"
 PKG_URL="$PKG_SITE.git"
@@ -11,6 +11,7 @@ PKG_SHORTDESC="Full-screen text viewer tool with gamepad controls"
 PKG_TOOLCHAIN="make"
 
 pre_configure_target() {
+cp -f $PKG_DIR/imgui/imgui_draw.cpp ./3rd_party/imgui/imgui_draw.cpp
 sed -i "s|sdl2-config|$SYSROOT_PREFIX/usr/bin/sdl2-config|g" Makefile
 }
 

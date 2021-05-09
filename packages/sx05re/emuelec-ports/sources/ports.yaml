@@ -7,7 +7,7 @@
   publisher: Public Domain
 
   commands:
-    - /emuelec/scripts/emuelecRunEmu.sh "" -Pports "${2}" -C2048 "-SC${0}"
+    - /usr/bin/emuelecRunEmu.sh "" -Pports "${2}" -C2048 "-SC${0}"
 
 Cannonball:
   name: 캐논볼
@@ -19,7 +19,7 @@ Cannonball:
 
   check_bios: Cannonball
   commands:
-    - /emuelec/scripts/emuelecRunEmu.sh "/storage/roms/ports/cannonball/" -Pports "${2}" -Ccannonball "-SC${0}"
+    - /usr/bin/emuelecRunEmu.sh "/storage/roms/ports/cannonball/" -Pports "${2}" -Ccannonball "-SC${0}"
 
 Cave Story:
   name: 동굴 이야기
@@ -31,7 +31,7 @@ Cave Story:
 
   check_bios: CaveStory
   commands:
-    - /emuelec/scripts/emuelecRunEmu.sh "/storage/roms/ports/CaveStory/Doukutsu.exe" -Pports "${2}" -Cnxengine "-SC${0}"
+    - /usr/bin/emuelecRunEmu.sh "/storage/roms/ports/CaveStory/Doukutsu.exe" -Pports "${2}" -Cnxengine "-SC${0}"
 
 Commander Keen:
   name: 코맨더 킨
@@ -47,7 +47,7 @@ Commander Keen:
   commands:
     - '[[ ! -L "/storage/.CommanderGenius" ]] && ln -sf /emuelec/configs/CommanderGenius /storage/.CommanderGenius'
     - cd /storage/roms/ports/cgenius
-    - /emuelec/bin/${PORT}
+    - /usr/bin/${PORT}
 
 Diablo:
   name: 디아블로
@@ -66,7 +66,7 @@ Diablo:
     - mkdir -p /storage/.local/share/diasurgical/devilution/
     - ln -sf /storage/roms/ports/diablo/diabdat.mpq /storage/.local/share/diasurgical/devilution/diabdat.mpq
     - fi
-    - cd /emuelec/bin/
+    - cd /usr/bin/
     - ./${PORT} >> $EE_LOG 2>&1
 
 Dinothawr:
@@ -79,7 +79,7 @@ Dinothawr:
 
   check_bios: Dinothawr
   commands:
-    - /emuelec/scripts/emuelecRunEmu.sh "/storage/roms/ports/dinothawr/dinothawr.game" -Pports "${2}" -Cdinothawr "-SC${0}"
+    - /usr/bin/emuelecRunEmu.sh "/storage/roms/ports/dinothawr/dinothawr.game" -Pports "${2}" -Cdinothawr "-SC${0}"
 
 Doom:
   name: 둠
@@ -91,7 +91,7 @@ Doom:
 
   check_bios: DOOM1
   commands:
-    - /emuelec/scripts/emuelecRunEmu.sh "/storage/roms/ports/doom/doom1.wad" -Pports "${2}" -Cprboom "-SC${0}"
+    - /usr/bin/emuelecRunEmu.sh "/storage/roms/ports/doom/doom1.wad" -Pports "${2}" -Cprboom "-SC${0}"
 
 Doom 2:
   name: 둠 2
@@ -103,7 +103,7 @@ Doom 2:
 
   check_bios: DOOM2
   commands:
-    - /emuelec/scripts/emuelecRunEmu.sh "/storage/roms/ports/doom2/doom2.wad" -Pports "${2}" -Cprboom "-SC${0}"
+    - /usr/bin/emuelecRunEmu.sh "/storage/roms/ports/doom2/doom2.wad" -Pports "${2}" -Cprboom "-SC${0}"
 
 Mr. Boom:
   name: 미스터 붐
@@ -114,7 +114,7 @@ Mr. Boom:
   publisher: non-commercial
 
   commands:
-    - /emuelec/scripts/emuelecRunEmu.sh "" -Pports "${2}" -Cmrboom "-SC${0}"
+    - /usr/bin/emuelecRunEmu.sh "" -Pports "${2}" -Cmrboom "-SC${0}"
 
 OpenTyrian:
   name: 티리안
@@ -135,6 +135,18 @@ OpenTyrian:
   commands_end:
     - '[[ "$EE_DEVICE" == "Amlogic" ]] && mv /storage/.config/asound2.conf /storage/.config/asound.conf'
 
+OpenJazz:
+  name: 재즈 잭래빗
+  description: "재즈 잭래빗이 포트 게임"
+  rating: 1.0
+  release_date: 20210516T000000
+  developer: sana2dang, AlisterT
+  publisher: non-commercial
+
+  port_exe: "OpenJazz"
+  commands:
+    - ${PORT} --Datadir /storage/roms/ports/openjazz >> $EE_LOG 2>&1
+    
 Quake:
   name: 퀘이크
   description: 플레이어는 다양한 무기를 사용하여 다양한 몬스터와 싸우는 동안 다양한 미로 같은 중세 환경을 헤쳐나가야 한다.
@@ -145,7 +157,7 @@ Quake:
 
   check_bios: Quake
   commands:
-    - /emuelec/scripts/emuelecRunEmu.sh "/storage/roms/ports/quake/id1/pak0.pak" -Pports "${2}" -Ctyrquake "-SC${0}"
+    - /usr/bin/emuelecRunEmu.sh "/storage/roms/ports/quake/id1/pak0.pak" -Pports "${2}" -Ctyrquake "-SC${0}"
 
 Flashback:
   name: 플래시백(REminiscence)
@@ -157,7 +169,7 @@ Flashback:
 
   check_bios: REminiscence
   commands:
-    - /emuelec/scripts/emuelecRunEmu.sh "/storage/roms/ports/reminiscence" -Pports "${2}" -Creminiscence "-SC${0}"
+    - /usr/bin/emuelecRunEmu.sh "/storage/roms/ports/reminiscence" -Pports "${2}" -Creminiscence "-SC${0}"
 
 Rick Dangerous:
   name: 릭 데인저러스
@@ -169,7 +181,7 @@ Rick Dangerous:
 
   check_bios: RickDangerous
   commands:
-    - /emuelec/scripts/emuelecRunEmu.sh "/storage/roms/ports/xrick/data.zip" -Pports "${2}" -Cxrick "-SC${0}"
+    - /usr/bin/emuelecRunEmu.sh "/storage/roms/ports/xrick/data.zip" -Pports "${2}" -Cxrick "-SC${0}"
 
 Prince of Persia:
   name: 페르시아의 왕자(SDLPoP)
@@ -220,7 +232,7 @@ Duke Nukem:
   check_bios: eduke32
   commands:
     - cd /storage/roms/ports/eduke
-    - ${PORT}
+    - eduke.sh
 
 Hydra Castle Labyrinth:
   name: 히드라 성 미로
@@ -277,7 +289,7 @@ MineCraft:
   publisher: GNU 2.0
 
   commands:
-    - /emuelec/scripts/emuelecRunEmu.sh "/storage/roms/ports/minecraft/EBOOT.PBP" -Pports "${2}" -Cppsspp "-SC${0}"
+    - /usr/bin/emuelecRunEmu.sh "/storage/roms/ports/minecraft/EBOOT.PBP" -Pports "${2}" -Cppsspp "-SC${0}"
 
 Sonic 1:
   name: 수퍼 소닉
@@ -330,3 +342,47 @@ Sonic CD:
     - cd /storage/roms/ports/soniccd/
     - ${PORT}
 
+SuperTux:
+  name: 수퍼 턱스
+  description: 수퍼 턱스(SuperTux)는 GNU General Public License에 따라 게시된 무료 오픈 소스 2차원 플랫폼 비디오 게임입니다. 이 게임은 Nintendo의 Super Mario Bros. 시리즈에서 영감을 받았습니다. Mario 대신 게임의 주인공은 Linux 커널의 공식 마스코트인 Tux입니다.
+  rating: 1.0
+  release_date: 2004
+  developer: SuperTux Development Team
+  publisher: Pelya, SuperTux Development Team
+  
+  init_port: true
+  port_exe: "supertux2"
+  audio: "alsa"
+  commands:
+    - /usr/bin/show_splash.sh "ports" "supertux"
+    - run_supertux.sh
+
+SuperTuxKart:
+  name: 수퍼 턱스 카트
+  description: 수퍼 턱스 카트(SuperTuxKart)는 GNU General Public License 버전 3에 따라 배포되는 무료 오픈 소스 카트 레이싱 게임입니다. 다양한 오픈 소스 프로젝트의 마스코트가 있습니다.
+  rating: 1.0
+  release_date: 2007
+  developer: SuperTuxKart Team
+  publisher: SuperTuxKart Team
+
+  init_port: true
+  port_exe: "supertuxkart"
+  audio: "alsa"
+  commands:
+    - /usr/bin/show_splash.sh "ports" "supertuxkart"
+    - run_supertuxkart.sh
+
+Supermariowar:
+  name: 수퍼 마리오 워
+  description: 팬이 만든 멀티 플레이어 Super Mario Bros. 스타일 데스매치 게임
+  rating: 0.8
+  release_date: 2006
+  developer: Michael Schaffer, Florian Hufsky, Supermariowar Team
+  publisher: Supermariowar Team
+
+  init_port: true
+  port_exe: "smw"
+  audio: "alsa"
+  commands:
+    - /usr/bin/show_splash.sh "ports" "supermariowar"
+    - run_smw.sh

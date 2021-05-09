@@ -25,6 +25,10 @@ For the Odroid Go Advance/Super:
 For the RG351P:  
 `PROJECT=Rockchip DEVICE=RG351P ARCH=aarch64 DISTRO=EmuELEC make image`
 
+Note: In some cases you may also need to install tzdata, xfonts-utils and/or lzop
+`sudo apt-get install tzdata xfonts-utils lzop`
+
+
 **Remember to use the proper DTB for your device!**
 
 If you want to open a PR please do so on the dev branch :) 

@@ -4,35 +4,37 @@
 # Copyright (C) 2019-present Shanti Gilbert (https://github.com/shantigilbert)
 
 # OpenBOR only works with Pak files, if you have an extracted game you will need to create a pak first.
-# If master.cfg does not work, sound is weird or controller not working, you will need to use a keyboard to set your gamepad
-# after you set up your gamne, copy the /storage/.config/openbor/Saves/{gamename}.cfg file to /storage/.config/openbor/master.cfg
-# master.cfg will only be copied the first time you run that particular game.
 
-/emuelec/scripts/setres.sh 16
+/usr/bin/setres.sh 16
 
 pakname=$(basename "$1")
 pakname="${pakname%.*}"
 
-echo $pakname
+CONFIGDIR="/emuelec/configs/openbor"
+PAKS="${CONFIGDIR}/Paks"
+SAVES="${CONFIGDIR}/Saves"
+
 # Make sure the folders exists
-	mkdir -p /storage/.config/openbor/Paks
-	mkdir -p /storage/.config/openbor/Saves
+	mkdir -p "${PAKS}"
+	mkdir -p "${SAVES}"
 
-# copy pak to Paks folder
-	#cp "$1" /storage/.config/openbor/Paks
-# better make a symlink
-    ln -sf "$1" /storage/.config/openbor/Paks
+# make a symlink to the pak
+    ln -sf "$1" "${PAKS}"
 
-# only copy master.cfg if its the first time running the pak
-	if [ ! -f "/storage/.config/openbor/Saves/${pakname}.cfg" ]; then
-		cp "/storage/.config/openbor/master.cfg" "/storage/.config/openbor/Saves/${pakname}.cfg"
+# only create symlink to master.cfg if its the first time running the pak
+	if [ ! -f "${SAVES}/${pakname}.cfg" ]; then
+		ln -sf "${CONFIGDIR}/master.cfg" "${SAVES}/${pakname}.cfg"
 	fi
 
+# We start the fake keyboard
+gptokeyb openbor &
+
 # Run OpenBOR in the config folder
-    cd /storage/.config/openbor/
+    cd "${CONFIGDIR}"
 	SDL_AUDIODRIVER=alsa OpenBOR
 
-# Delete Pak from temp folder
-	rm -rf /storage/.config/openbor/Paks/*
+# Clear PAKS folder to avoid getting the launcher on nex run
+rm -rf ${PAKS}/*
 
-/emuelec/scripts/setres.sh
+/usr/bin/setres.sh
+killall gptokeyb &

@@ -2,8 +2,8 @@
 # Copyright (C) 2020-present Shanti Gilbert (https://github.com/shantigilbert)
 
 PKG_NAME="sdlpop"
-PKG_VERSION="a7dbbe15c7d3291c80be09c2d4542e6e63681d3c"
-PKG_SHA256="0e575b21a870abae5479277d807e1902970fb08813e68493de0ac9395a245775"
+PKG_VERSION="42e006818d82467e76cc928d32b19f43ae96c7fa"
+PKG_SHA256="750a32fc1200dab8a737acce5ff912df6d630a3d0388071b7bf5950866f49245"
 PKG_ARCH="any"
 PKG_LICENSE="GPL3"
 PKG_SITE="https://github.com/NagyD/SDLPoP"
@@ -28,9 +28,9 @@ make_target() {
 
 makeinstall_target() {
 	mkdir -p $INSTALL/usr/config/emuelec/configs/SDLPoP
-	mkdir -p $INSTALL/usr/config/emuelec/bin
+	mkdir -p $INSTALL/usr/bin
 	cp -r $PKG_BUILD/* $INSTALL/usr/config/emuelec/configs/SDLPoP/
-	mv "$INSTALL/usr/config/emuelec/configs/SDLPoP/prince" "$INSTALL/usr/config/emuelec/bin/"
+	mv "$INSTALL/usr/config/emuelec/configs/SDLPoP/prince" "$INSTALL/usr/bin/"
 	rm -rf $INSTALL/usr/config/emuelec/configs/SDLPoP/src
 	rm -rf $INSTALL/usr/config/emuelec/configs/SDLPoP/.gitignore
 	rm -rf $INSTALL/usr/config/emuelec/configs/SDLPoP/.editorconfig

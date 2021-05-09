@@ -19,8 +19,8 @@
 ################################################################################
 
 PKG_NAME="bluemsx"
-PKG_VERSION="5b8718c8bba44ff4adda1bcc575895d342c1ba6a"
-PKG_SHA256="6304ea92a694af3cf86afc082a7f1ad99f380b4f2a637f5410837874a45f8c44"
+PKG_VERSION="2dd0d7944aa82cf738759a8e1427f8dff6b5a4bc"
+PKG_SHA256="7554a9ca24419a08c43dfc1fa62e5e4da1c63c68a13ce396c5f8ad9617c84bbf"
 PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="GPLv2"

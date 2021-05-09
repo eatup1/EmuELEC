@@ -1,23 +1,22 @@
 diff --git a/input/drivers/udev_input.c b/input/drivers/udev_input.c
-index 73f26100ab..46897fb806 100644
+index 8ebd13ade4..066de9a6d2 100644
 --- a/input/drivers/udev_input.c
 +++ b/input/drivers/udev_input.c
 @@ -74,7 +74,7 @@
  #include "../../retroarch.h"
  #include "../../verbosity.h"
-
+ 
 -#if defined(HAVE_XKBCOMMON) && defined(HAVE_KMS)
 +#if defined(HAVE_XKBCOMMON)
  #define UDEV_XKB_HANDLING
  #endif
-
-@@ -1326,7 +1326,7 @@ static void *udev_input_init(const char *joypad_driver)
+ 
+@@ -1330,7 +1330,7 @@ static void *udev_input_init(const char *joypad_driver)
        goto error;
-
+ 
     video_context_driver_get_ident(&ctx_ident);
 -   udev->xkb_handling = string_is_equal(ctx_ident.ident, "kms");
 +   udev->xkb_handling = true; //string_is_equal(ctx_ident.ident, "kms");
  #endif
-
+ 
  #if defined(HAVE_EPOLL)
-

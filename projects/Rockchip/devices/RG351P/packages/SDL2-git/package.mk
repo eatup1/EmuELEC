@@ -11,7 +11,7 @@ PKG_DEPENDS_TARGET="toolchain alsa-lib systemd dbus $OPENGLES pulseaudio"
 PKG_LONGDESC="Simple DirectMedia Layer is a cross-platform development library designed to provide low level access to audio, keyboard, mouse, joystick, and graphics hardware."
 
 if [ "$DEVICE" == "RG351P" ]; then
-  PKG_PATCH_DIRS="OdroidGoAdvance"
+  PKG_PATCH_DIRS="RG351P"
   PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET libdrm mali-bifrost librga"
 fi
 
