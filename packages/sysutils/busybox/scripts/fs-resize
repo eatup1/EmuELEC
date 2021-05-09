@@ -51,13 +51,17 @@ if [ -e /storage/.please_resize_me ] ; then
     fi
     
 # Get EEROMS filetype
-ROM_FS_TYPE="vfat"
-PARTED_FS_TYPE="fat32"
+ROM_FS_TYPE="ntfs"
+PARTED_FS_TYPE="NTFS"
 
 if [ -e "/flash/ee_fstype" ]; then
     EE_FS_TYPE=$(cat "/flash/ee_fstype")
     
     case $EE_FS_TYPE in
+    "vfat")
+        ROM_FS_TYPE="vfat"
+        PARTED_FS_TYPE="fat32"
+    ;;
     "ntfs")
         ROM_FS_TYPE="ntfs"
         PARTED_FS_TYPE="NTFS"
@@ -72,8 +76,8 @@ if [ -e "/flash/ee_fstype" ]; then
     ;;
     *)
         # Failsafe
-        ROM_FS_TYPE="vfat"
-        PARTED_FS_TYPE="fat32"
+        ROM_FS_TYPE="ntfs"
+        PARTED_FS_TYPE="NTFS"
     ;;
     esac    
    
@@ -85,6 +89,9 @@ fi
     partprobe &>/dev/null
     
 case $ROM_FS_TYPE in 
+    "vfat")
+    StartProgress spinner "Formatting EEROMS partition as FAT32..." "mkfs.vfat -n EEROMS ${DISK}p3 &>/dev/null"
+    ;;
     "ntfs")
     StartProgress spinner "Formatting EEROMS partition as NTFS..." "mkfs.ntfs -L EEROMS -f ${DISK}p3 &>/dev/null"
     ;;
@@ -95,7 +102,7 @@ case $ROM_FS_TYPE in
     StartProgress spinner "Formatting EEROMS partition as EXFAT..." "mkfs.exfat -n EEROMS ${DISK}p3 &>/dev/null"
     ;;
     *)
-    StartProgress spinner "Formatting EEROMS partition as FAT32..." "mkfs.vfat -n EEROMS ${DISK}p3 &>/dev/null"
+    StartProgress spinner "Formatting EEROMS partition as NTFS..." "mkfs.ntfs -L EEROMS -f ${DISK}p3 &>/dev/null"
     ;;
 esac    
 
