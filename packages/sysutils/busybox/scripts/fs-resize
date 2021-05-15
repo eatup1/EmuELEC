@@ -52,7 +52,7 @@ if [ -e /storage/.please_resize_me ] ; then
     
 # Get EEROMS filetype
 ROM_FS_TYPE="ntfs"
-PARTED_FS_TYPE="NTFS"
+PARTED_FS_TYPE="ntfs"
 
 if [ -e "/flash/ee_fstype" ]; then
     EE_FS_TYPE=$(cat "/flash/ee_fstype")
@@ -64,20 +64,20 @@ if [ -e "/flash/ee_fstype" ]; then
     ;;
     "ntfs")
         ROM_FS_TYPE="ntfs"
-        PARTED_FS_TYPE="NTFS"
+        PARTED_FS_TYPE="ntfs"
     ;;
     "ext4")
         ROM_FS_TYPE="ext4"
-        PARTED_FS_TYPE="EXT2"
+        PARTED_FS_TYPE="ext4"
     ;;
     "exfat")
         ROM_FS_TYPE="exfat"
-        PARTED_FS_TYPE="NTFS"
+        PARTED_FS_TYPE="ntfs"
     ;;
     *)
         # Failsafe
         ROM_FS_TYPE="ntfs"
-        PARTED_FS_TYPE="NTFS"
+        PARTED_FS_TYPE="ntfs"
     ;;
     esac    
    
