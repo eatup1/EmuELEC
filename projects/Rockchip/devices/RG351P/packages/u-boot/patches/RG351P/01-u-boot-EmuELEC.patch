@@ -43,7 +43,7 @@ diff --git a/cmd/odroidtest.c b/cmd/odroidtest.c
 index 10dc550b0c..5e800ccf02 100644
 --- a/cmd/odroidtest.c
 +++ b/cmd/odroidtest.c
-@@ -801,7 +801,7 @@ static int do_odroidtest_btn(cmd_tbl_t * cmdtp, int flag,
+@@ -795,7 +795,7 @@ static int do_odroidtest_btn(cmd_tbl_t * cmdtp, int flag,
  
  #define PWR_LED_GPIO	18	/* GPIO0_C2 */
  #define DC_DET_GPIO	11	/* GPIO0_B3 */
