@@ -19,7 +19,7 @@
 ################################################################################
 
 PKG_NAME="retroarch"
-PKG_VERSION="6b021f8d1477a43a1df87ceacbf356d1a3d4d1ed"
+PKG_VERSION="bc23d070de3db3b5c20746e245461a1fc37d7ad7"
 PKG_SITE="https://github.com/libretro/RetroArch"
 PKG_URL="$PKG_SITE.git"
 PKG_LICENSE="GPLv3"

@@ -19,7 +19,7 @@ General:
 * Use gptokeyb as a fake keyboard for OpenBOR
 * Support Korean language for TvTextView
 * Bump mpv to v0.33.1
-* Bump Retroarch to 1.9.1
+* Bump Retroarch to 1.9.2
 * Bump amiberry to v4.1.2
 * Bump PPSSPPSDL to v1.11.3
 * Bump dosbox-pure to v0.13
