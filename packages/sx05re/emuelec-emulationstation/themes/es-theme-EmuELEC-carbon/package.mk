@@ -20,7 +20,7 @@ if [ ${PROJECT} = "Amlogic-ng" ] || [ ${PROJECT} = "Amlogic" ]; then
   PKG_PATCH_DIRS="Amlogic"
 fi
 
-if [ "$DEVICE" == "OdroidGoAdvance" -o "$DEVICE" == "RG351P" ]; then
+if [ "$DEVICE" == "OdroidGoAdvance" -o "$DEVICE" == "RG351P" -o "$DEVICE" == "RG351V" ]; then
   PKG_PATCH_DIRS="OdroidGoAdvance"
 fi
 

@@ -1,0 +1,1109 @@
+diff --git a/drivers/gpu/drm/panel/Kconfig b/drivers/gpu/drm/panel/Kconfig
+index bcfc2bbeaeb6..83ac3acfc60e 100644
+--- a/drivers/gpu/drm/panel/Kconfig
++++ b/drivers/gpu/drm/panel/Kconfig
+@@ -65,4 +65,14 @@ config DRM_PANEL_ODROID_ST7701S
+ 	  To compile this driver as a module, choose M here: the module
+ 	  will be called panel-odroid-st7701s.
+ 
++config DRM_PANEL_SITRONIX_ST7701
++	tristate "Sitronix ST7701 panel driver"
++	depends on OF
++	depends on DRM_MIPI_DSI
++	depends on BACKLIGHT_CLASS_DEVICE
++	help
++	  Say Y here if you want to enable support for the Sitronix
++	  ST7701 controller for 480X864 LCD panels with MIPI/RGB/SPI
++	  system interfaces.
++
+ endmenu
+diff --git a/drivers/gpu/drm/panel/Makefile b/drivers/gpu/drm/panel/Makefile
+index d1cbb7fc077d..a63bfd556371 100644
+--- a/drivers/gpu/drm/panel/Makefile
++++ b/drivers/gpu/drm/panel/Makefile
+@@ -4,3 +4,4 @@ obj-$(CONFIG_DRM_PANEL_SAMSUNG_LD9040) += panel-samsung-ld9040.o
+ obj-$(CONFIG_DRM_PANEL_SAMSUNG_S6E8AA0) += panel-samsung-s6e8aa0.o
+ obj-$(CONFIG_DRM_PANEL_SHARP_LQ101R1SX01) += panel-sharp-lq101r1sx01.o
+ obj-$(CONFIG_DRM_PANEL_ODROID_ST7701S) += panel-odroid-st7701s.o
++obj-$(CONFIG_DRM_PANEL_SITRONIX_ST7701) += panel-sitronix-st7701.o 
+diff --git a/drivers/gpu/drm/panel/panel-sitronix-st7701.c b/drivers/gpu/drm/panel/panel-sitronix-st7701.c
+new file mode 100644
+index 000000000000..f6ce7de7402b
+--- /dev/null
++++ b/drivers/gpu/drm/panel/panel-sitronix-st7701.c
+@@ -0,0 +1,443 @@
++#include <drm/drm_mipi_dsi.h>
++//#include <drm/drm_modes.h>
++#include <drm/drm_panel.h>
++//#include <drm/drm_print.h>
++
++#include <linux/backlight.h>
++#include <linux/gpio/consumer.h>
++#include <linux/delay.h>
++#include <linux/module.h>
++#include <linux/of_device.h>
++#include <linux/regulator/consumer.h>
++#include <video/mipi_display.h>
++#include <drm/drmP.h>
++#include <linux/spi/spi.h>
++#include <video/mipi_display.h>
++#include <video/of_videomode.h>
++#include <video/videomode.h>
++
++/* Command2 BKx selection command */
++#define DSI_CMD2BKX_SEL			0xFF
++
++/* Command2, BK0 commands */
++#define DSI_CMD2_BK0_PVGAMCTRL		0xB0 /* Positive Voltage Gamma Control */
++#define DSI_CMD2_BK0_NVGAMCTRL		0xB1 /* Negative Voltage Gamma Control */
++#define DSI_CMD2_BK0_LNESET		0xC0 /* Display Line setting */
++#define DSI_CMD2_BK0_PORCTRL		0xC1 /* Porch control */
++#define DSI_CMD2_BK0_INVSEL		0xC2 /* Inversion selection, Frame Rate Control */
++
++/* Command2, BK1 commands */
++#define DSI_CMD2_BK1_VRHS		0xB0 /* Vop amplitude setting */
++#define DSI_CMD2_BK1_VCOM		0xB1 /* VCOM amplitude setting */
++#define DSI_CMD2_BK1_VGHSS		0xB2 /* VGH Voltage setting */
++#define DSI_CMD2_BK1_TESTCMD		0xB3 /* TEST Command Setting */
++#define DSI_CMD2_BK1_VGLS		0xB5 /* VGL Voltage setting */
++#define DSI_CMD2_BK1_PWCTLR1		0xB7 /* Power Control 1 */
++#define DSI_CMD2_BK1_PWCTLR2		0xB8 /* Power Control 2 */
++#define DSI_CMD2_BK1_SPD1		0xC1 /* Source pre_drive timing set1 */
++#define DSI_CMD2_BK1_SPD2		0xC2 /* Source EQ2 Setting */
++#define DSI_CMD2_BK1_MIPISET1		0xD0 /* MIPI Setting 1 */
++
++/**
++ * Command2 with BK function selection.
++ *
++ * BIT[4, 0]: [CN2, BKXSEL]
++ * 10 = CMD2BK0, Command2 BK0
++ * 11 = CMD2BK1, Command2 BK1
++ * 00 = Command2 disable
++ */
++#define DSI_CMD2BK1_SEL			0x11
++#define DSI_CMD2BK0_SEL			0x10
++#define DSI_CMD2BKX_SEL_NONE		0x00
++
++/* Command2, BK0 bytes */
++#define DSI_LINESET_LINE		0x69
++#define DSI_LINESET_LDE_EN		BIT(7)
++#define DSI_LINESET_LINEDELTA		GENMASK(1, 0)
++#define DSI_CMD2_BK0_LNESET_B1		DSI_LINESET_LINEDELTA
++#define DSI_CMD2_BK0_LNESET_B0		(DSI_LINESET_LDE_EN | DSI_LINESET_LINE)
++#define DSI_INVSEL_DEFAULT		GENMASK(5, 4)
++#define DSI_INVSEL_NLINV		GENMASK(2, 0)
++#define DSI_INVSEL_RTNI			GENMASK(2, 1)
++#define DSI_CMD2_BK0_INVSEL_B1		DSI_INVSEL_RTNI
++#define DSI_CMD2_BK0_INVSEL_B0		(DSI_INVSEL_DEFAULT | DSI_INVSEL_NLINV)
++#define DSI_CMD2_BK0_PORCTRL_B0(m)	((m)->vtotal - (m)->vsync_end)
++#define DSI_CMD2_BK0_PORCTRL_B1(m)	((m)->vsync_start - (m)->vdisplay)
++
++/* Command2, BK1 bytes */
++#define DSI_CMD2_BK1_VRHA_SET		0x45
++#define DSI_CMD2_BK1_VCOM_SET		0x13
++#define DSI_CMD2_BK1_VGHSS_SET		GENMASK(2, 0)
++#define DSI_CMD2_BK1_TESTCMD_VAL	BIT(7)
++#define DSI_VGLS_DEFAULT		BIT(6)
++#define DSI_VGLS_SEL			GENMASK(2, 0)
++#define DSI_CMD2_BK1_VGLS_SET		(DSI_VGLS_DEFAULT | DSI_VGLS_SEL)
++#define DSI_PWCTLR1_AP			BIT(7) /* Gamma OP bias, max */
++#define DSI_PWCTLR1_APIS		BIT(2) /* Source OP input bias, min */
++#define DSI_PWCTLR1_APOS		BIT(0) /* Source OP output bias, min */
++#define DSI_CMD2_BK1_PWCTLR1_SET	(DSI_PWCTLR1_AP | DSI_PWCTLR1_APIS | \
++					DSI_PWCTLR1_APOS)
++#define DSI_PWCTLR2_AVDD		BIT(5) /* AVDD 6.6v */
++#define DSI_PWCTLR2_AVCL		0x0    /* AVCL -4.4v */
++#define DSI_CMD2_BK1_PWCTLR2_SET	(DSI_PWCTLR2_AVDD | DSI_PWCTLR2_AVCL)
++#define DSI_SPD1_T2D			BIT(3)
++#define DSI_CMD2_BK1_SPD1_SET		(GENMASK(6, 4) | DSI_SPD1_T2D)
++#define DSI_CMD2_BK1_SPD2_SET		DSI_CMD2_BK1_SPD1_SET
++#define DSI_MIPISET1_EOT_EN		BIT(3)
++#define DSI_CMD2_BK1_MIPISET1_SET	(BIT(7) | DSI_MIPISET1_EOT_EN)
++
++struct st7701_panel_desc {
++	const struct drm_display_mode *mode;
++	unsigned int lanes;
++	unsigned long flags;
++	enum mipi_dsi_pixel_format format;
++	const char *const *supply_names;
++	unsigned int num_supplies;
++	unsigned int panel_sleep_delay;
++};
++
++struct st7701 {
++	struct drm_panel panel;
++	struct mipi_dsi_device *dsi;
++	const struct st7701_panel_desc *desc;
++
++	struct backlight_device *backlight;
++	struct regulator_bulk_data *supplies;
++	struct gpio_desc *reset;
++	unsigned int sleep_delay;
++};
++
++static inline struct st7701 *panel_to_st7701(struct drm_panel *panel)
++{
++	return container_of(panel, struct st7701, panel);
++}
++
++static inline int st7701_dsi_write(struct st7701 *st7701, const void *seq,
++				   size_t len)
++{
++	return mipi_dsi_dcs_write_buffer(st7701->dsi, seq, len);
++}
++
++#define ST7701_DSI(st7701, seq...)				\
++	{							\
++		const u8 d[] = { seq };				\
++		st7701_dsi_write(st7701, d, ARRAY_SIZE(d));	\
++	}
++
++static void st7701_init_sequence(struct st7701 *st7701)
++{
++//	const struct drm_display_mode *mode = st7701->desc->mode;
++
++	ST7701_DSI(st7701, MIPI_DCS_SOFT_RESET, 0x00);
++
++	/* We need to wait 5ms before sending new commands */
++	msleep(5);
++
++	ST7701_DSI(st7701, MIPI_DCS_EXIT_SLEEP_MODE, 0x00);
++
++	msleep(st7701->sleep_delay);
++
++	/* Command2, BK0 */
++
++	ST7701_DSI(st7701, DSI_CMD2BKX_SEL,
++		   0x77, 0x01, 0x00, 0x00, DSI_CMD2BK0_SEL);
++ST7701_DSI(st7701, 0xC0, 0x4F,0x00);
++ST7701_DSI(st7701, 0xC1, 0x12,0x02);
++ST7701_DSI(st7701, 0xC2, 0x37,0x08);
++ST7701_DSI(st7701, 0xCC, 0x10);
++ST7701_DSI(st7701, 0xCD, 0x0F);
++
++/*
++	ST7701_DSI(st7701, DSI_CMD2BKX_SEL,
++		   0x77, 0x01, 0x00, 0x00, DSI_CMD2BK0_SEL);
++	ST7701_DSI(st7701, DSI_CMD2_BK0_PVGAMCTRL, 0x00, 0x0E, 0x15, 0x0F,
++		   0x11, 0x08, 0x08, 0x08, 0x08, 0x23, 0x04, 0x13, 0x12,
++		   0x2B, 0x34, 0x1F);
++	ST7701_DSI(st7701, DSI_CMD2_BK0_NVGAMCTRL, 0x00, 0x0E, 0x95, 0x0F,
++		   0x13, 0x07, 0x09, 0x08, 0x08, 0x22, 0x04, 0x10, 0x0E,
++		   0x2C, 0x34, 0x1F);
++	ST7701_DSI(st7701, DSI_CMD2_BK0_LNESET,
++		   DSI_CMD2_BK0_LNESET_B0, DSI_CMD2_BK0_LNESET_B1);
++	ST7701_DSI(st7701, DSI_CMD2_BK0_PORCTRL,
++		   DSI_CMD2_BK0_PORCTRL_B0(mode),
++		   DSI_CMD2_BK0_PORCTRL_B1(mode));
++	ST7701_DSI(st7701, DSI_CMD2_BK0_INVSEL,
++		   DSI_CMD2_BK0_INVSEL_B0, DSI_CMD2_BK0_INVSEL_B1);
++*/
++	/* Command2, BK1 */
++/*
++	ST7701_DSI(st7701, DSI_CMD2BKX_SEL,
++			0x77, 0x01, 0x00, 0x00, DSI_CMD2BK1_SEL);
++	ST7701_DSI(st7701, DSI_CMD2_BK1_VRHS, DSI_CMD2_BK1_VRHA_SET);
++	ST7701_DSI(st7701, DSI_CMD2_BK1_VCOM, DSI_CMD2_BK1_VCOM_SET);
++	ST7701_DSI(st7701, DSI_CMD2_BK1_VGHSS, DSI_CMD2_BK1_VGHSS_SET);
++	ST7701_DSI(st7701, DSI_CMD2_BK1_TESTCMD, DSI_CMD2_BK1_TESTCMD_VAL);
++	ST7701_DSI(st7701, DSI_CMD2_BK1_VGLS, DSI_CMD2_BK1_VGLS_SET);
++	ST7701_DSI(st7701, DSI_CMD2_BK1_PWCTLR1, DSI_CMD2_BK1_PWCTLR1_SET);
++	ST7701_DSI(st7701, DSI_CMD2_BK1_PWCTLR2, DSI_CMD2_BK1_PWCTLR2_SET);
++	ST7701_DSI(st7701, DSI_CMD2_BK1_SPD1, DSI_CMD2_BK1_SPD1_SET);
++	ST7701_DSI(st7701, DSI_CMD2_BK1_SPD2, DSI_CMD2_BK1_SPD2_SET);
++	ST7701_DSI(st7701, DSI_CMD2_BK1_MIPISET1, DSI_CMD2_BK1_MIPISET1_SET);
++*/
++	/**
++	 * ST7701_SPEC_V1.2 is unable to provide enough information above this
++	 * specific command sequence, so grab the same from vendor BSP driver.
++	 */
++	ST7701_DSI(st7701, 0xE0, 0x00, 0x00, 0x02);
++	ST7701_DSI(st7701, 0xE1, 0x0B, 0x00, 0x0D, 0x00, 0x0C, 0x00, 0x0E,
++		   0x00, 0x00, 0x44, 0x44);
++	ST7701_DSI(st7701, 0xE2, 0x33, 0x33, 0x44, 0x44, 0x64, 0x00, 0x66,
++		   0x00, 0x65, 0x00, 0x67, 0x00, 0x00);
++	ST7701_DSI(st7701, 0xE3, 0x00, 0x00, 0x33, 0x33);
++	ST7701_DSI(st7701, 0xE4, 0x44, 0x44);
++	ST7701_DSI(st7701, 0xE5, 0x0C, 0x78, 0x3C, 0xA0, 0x0E, 0x78, 0x3C,
++		   0xA0, 0x10, 0x78, 0x3C, 0xA0, 0x12, 0x78, 0x3C, 0xA0);
++	ST7701_DSI(st7701, 0xE6, 0x00, 0x00, 0x33, 0x33);
++	ST7701_DSI(st7701, 0xE7, 0x44, 0x44);
++	ST7701_DSI(st7701, 0xE8, 0x0D, 0x78, 0x3C, 0xA0, 0x0F, 0x78, 0x3C,
++		   0xA0, 0x11, 0x78, 0x3C, 0xA0, 0x13, 0x78, 0x3C, 0xA0);
++	ST7701_DSI(st7701, 0xEB, 0x02, 0x02, 0x39, 0x39, 0xEE, 0x44, 0x00);
++	ST7701_DSI(st7701, 0xEC, 0x00, 0x00);
++	ST7701_DSI(st7701, 0xED, 0xFF, 0xF1, 0x04, 0x56, 0x72, 0x3F, 0xFF,
++		   0xFF, 0xFF, 0xFF, 0xF3, 0x27, 0x65, 0x40, 0x1F, 0xFF);
++
++	/* disable Command2 */
++	ST7701_DSI(st7701, DSI_CMD2BKX_SEL,
++		   0x77, 0x01, 0x00, 0x00, DSI_CMD2BKX_SEL_NONE);
++}
++
++static int st7701_prepare(struct drm_panel *panel)
++{
++	struct st7701 *st7701 = panel_to_st7701(panel);
++	int ret;
++
++	gpiod_set_value(st7701->reset, 0);
++
++	ret = regulator_bulk_enable(st7701->desc->num_supplies,
++				    st7701->supplies);
++	if (ret < 0)
++		return ret;
++	msleep(20);
++
++	gpiod_set_value(st7701->reset, 1);
++	msleep(150);
++
++	st7701_init_sequence(st7701);
++
++	return 0;
++}
++
++static int st7701_enable(struct drm_panel *panel)
++{
++	struct st7701 *st7701 = panel_to_st7701(panel);
++
++	ST7701_DSI(st7701, MIPI_DCS_SET_DISPLAY_ON, 0x00);
++	backlight_enable(st7701->backlight);
++
++	return 0;
++}
++
++static int st7701_disable(struct drm_panel *panel)
++{
++	struct st7701 *st7701 = panel_to_st7701(panel);
++
++	backlight_disable(st7701->backlight);
++	ST7701_DSI(st7701, MIPI_DCS_SET_DISPLAY_OFF, 0x00);
++
++	return 0;
++}
++
++static int st7701_unprepare(struct drm_panel *panel)
++{
++	struct st7701 *st7701 = panel_to_st7701(panel);
++
++	ST7701_DSI(st7701, MIPI_DCS_ENTER_SLEEP_MODE, 0x00);
++
++	msleep(st7701->sleep_delay);
++
++	gpiod_set_value(st7701->reset, 0);
++
++	/**
++	 * During the Resetting period, the display will be blanked
++	 * (The display is entering blanking sequence, which maximum
++	 * time is 120 ms, when Reset Starts in Sleep Out –mode. The
++	 * display remains the blank state in Sleep In –mode.) and
++	 * then return to Default condition for Hardware Reset.
++	 *
++	 * So we need wait sleep_delay time to make sure reset completed.
++	 */
++	msleep(st7701->sleep_delay);
++
++	regulator_bulk_disable(st7701->desc->num_supplies, st7701->supplies);
++
++	return 0;
++}
++
++static int st7701_get_modes(struct drm_panel *panel)
++{
++	struct st7701 *st7701 = panel_to_st7701(panel);
++	const struct drm_display_mode *desc_mode = st7701->desc->mode;
++	struct drm_display_mode *mode;
++
++	mode = drm_mode_duplicate(panel->drm, desc_mode);
++	if (!mode) {
++		DRM_DEV_ERROR(&st7701->dsi->dev,
++			      "failed to add mode %ux%ux@%u\n",
++			      desc_mode->hdisplay, desc_mode->vdisplay,
++			      desc_mode->vrefresh);
++		return -ENOMEM;
++	}
++
++	drm_mode_set_name(mode);
++	drm_mode_probed_add(panel->connector, mode);
++
++	panel->connector->display_info.width_mm = desc_mode->width_mm;
++	panel->connector->display_info.height_mm = desc_mode->height_mm;
++
++	return 1;
++}
++
++static const struct drm_panel_funcs st7701_funcs = {
++	.disable	= st7701_disable,
++	.unprepare	= st7701_unprepare,
++	.prepare	= st7701_prepare,
++	.enable		= st7701_enable,
++	.get_modes	= st7701_get_modes,
++};
++
++static const struct drm_display_mode ts8550b_mode = {
++	.clock		= 27500,
++
++	.hdisplay	= 480,
++	.hsync_start	= 480 + 38,
++	.hsync_end	= 480 + 38 + 12,
++	.htotal		= 480 + 38 + 12 + 12,
++
++	.vdisplay	= 640,
++	.vsync_start	= 640 + 4,
++	.vsync_end	= 640 + 4 + 8,
++	.vtotal		= 640 + 4 + 8 + 18,
++
++	.width_mm	= 60,
++	.height_mm	= 80,
++
++	.type = DRM_MODE_TYPE_DRIVER | DRM_MODE_TYPE_PREFERRED,
++};
++
++static const char * const ts8550b_supply_names[] = {
++	"VCC",
++	"IOVCC",
++};
++
++static const struct st7701_panel_desc ts8550b_desc = {
++	.mode = &ts8550b_mode,
++	.lanes = 2,
++	.flags = DRM_MODE_FLAG_NHSYNC | DRM_MODE_FLAG_NVSYNC,
++	.format = MIPI_DSI_FMT_RGB666,
++	.supply_names = ts8550b_supply_names,
++	.num_supplies = ARRAY_SIZE(ts8550b_supply_names),
++	.panel_sleep_delay = 80, /* panel need extra 80ms for sleep out cmd */
++};
++
++static int st7701_dsi_probe(struct mipi_dsi_device *dsi)
++{
++	const struct st7701_panel_desc *desc;
++	struct st7701 *st7701;
++	int ret, i;
++
++	struct device_node *backlight;
++
++	st7701 = devm_kzalloc(&dsi->dev, sizeof(*st7701), GFP_KERNEL);
++	if (!st7701)
++		return -ENOMEM;
++
++	desc = of_device_get_match_data(&dsi->dev);
++	dsi->mode_flags = desc->flags;
++	dsi->format = desc->format;
++	dsi->lanes = desc->lanes;
++
++	st7701->supplies = devm_kcalloc(&dsi->dev, desc->num_supplies,
++					sizeof(*st7701->supplies),
++					GFP_KERNEL);
++	if (!st7701->supplies)
++		return -ENOMEM;
++
++	for (i = 0; i < desc->num_supplies; i++)
++		st7701->supplies[i].supply = desc->supply_names[i];
++
++	ret = devm_regulator_bulk_get(&dsi->dev, desc->num_supplies,
++				      st7701->supplies);
++	if (ret < 0)
++		return ret;
++
++	st7701->reset = devm_gpiod_get(&dsi->dev, "reset", GPIOD_OUT_LOW);
++	if (IS_ERR(st7701->reset)) {
++		DRM_DEV_ERROR(&dsi->dev, "Couldn't get our reset GPIO\n");
++		return PTR_ERR(st7701->reset);
++	}
++//
++	backlight = of_parse_phandle(dsi->dev.of_node, "backlight", 0);
++	if (backlight) {
++		st7701->backlight = of_find_backlight_by_node(backlight);
++		of_node_put(backlight);
++
++		if (!st7701->backlight)
++			return -EPROBE_DEFER;
++	}
++//
++
++	drm_panel_init(&st7701->panel);
++
++	/**
++	 * Once sleep out has been issued, ST7701 IC required to wait 120ms
++	 * before initiating new commands.
++	 *
++	 * On top of that some panels might need an extra delay to wait, so
++	 * add panel specific delay for those cases. As now this panel specific
++	 * delay information is referenced from those panel BSP driver, example
++	 * ts8550b and there is no valid documentation for that.
++	 */
++	st7701->sleep_delay = 120 + desc->panel_sleep_delay;
++	st7701->panel.funcs = &st7701_funcs;
++	st7701->panel.dev = &dsi->dev;
++
++	ret = drm_panel_add(&st7701->panel);
++	if (ret < 0)
++		return ret;
++
++	mipi_dsi_set_drvdata(dsi, st7701);
++	st7701->dsi = dsi;
++	st7701->desc = desc;
++
++	return mipi_dsi_attach(dsi);
++}
++
++static int st7701_dsi_remove(struct mipi_dsi_device *dsi)
++{
++	struct st7701 *st7701 = mipi_dsi_get_drvdata(dsi);
++
++	mipi_dsi_detach(dsi);
++	drm_panel_remove(&st7701->panel);
++
++	return 0;
++}
++
++static const struct of_device_id st7701_of_match[] = {
++	{ .compatible = "techstar,ts8550b", .data = &ts8550b_desc },
++	{ }
++};
++MODULE_DEVICE_TABLE(of, st7701_of_match);
++
++static struct mipi_dsi_driver st7701_dsi_driver = {
++	.probe		= st7701_dsi_probe,
++	.remove		= st7701_dsi_remove,
++	.driver = {
++		.name		= "st7701",
++		.of_match_table	= st7701_of_match,
++	},
++};
++module_mipi_dsi_driver(st7701_dsi_driver);
++
++MODULE_AUTHOR("Jagan Teki <jagan@amarulasolutions.com>");
++MODULE_DESCRIPTION("Sitronix ST7701 LCD Panel Driver");
++MODULE_LICENSE("GPL"); 
+diff --git a/drivers/power/rk817_battery.c b/drivers/power/rk817_battery.c
+index 8b21c1b0fccc..ad399c87b003 100644
+--- a/drivers/power/rk817_battery.c
++++ b/drivers/power/rk817_battery.c
+@@ -132,7 +132,7 @@ module_param_named(dbg_level, dbg_enable, int, 0644);
+ #define DEFAULT_FB_TEMP			TEMP_115C
+ #define DEFAULT_ENERGY_MODE		0
+ #define DEFAULT_ZERO_RESERVE_DSOC	10
+-#define DEFAULT_SAMPLE_RES		20
++#define DEFAULT_SAMPLE_RES		10
+ 
+ /* sample resistor and division */
+ #define SAMPLE_RES_10MR			10
+@@ -172,6 +172,8 @@ module_param_named(dbg_level, dbg_enable, int, 0644);
+ #define SIMULATE_CHRG_CURR		400
+ #define SIMULATE_CHRG_K			1500
+ #define FULL_CHRG_K			400
++//#define __BATTERY_DEBUG__
++int low_battery_percent=0;
+ 
+ enum work_mode {
+ 	MODE_ZERO = 0,
+@@ -2018,13 +2020,202 @@ static int rk817_bat_get_charge_state(struct rk817_battery_device *battery)
+ 
+ 	return (battery->usb_in || battery->ac_in);
+ }
+-
++int get_battery_percent(int tempVoltageNow)
++{
++	int mBatteryLevel=0;
++	if(tempVoltageNow<3165000)
++	{
++		mBatteryLevel=0;
++	}
++	else if(tempVoltageNow>=3165000 && tempVoltageNow<3220000)
++	{
++		mBatteryLevel=5;
++	}
++	else if(tempVoltageNow>=3220000 && tempVoltageNow<3280000)
++	{
++		mBatteryLevel=10;
++	}
++	else if(tempVoltageNow>=3280000 && tempVoltageNow<3330000)
++	{
++		mBatteryLevel=15;
++	}
++	else if(tempVoltageNow>=3330000 && tempVoltageNow<3380000)
++	{
++		mBatteryLevel=20;
++	}
++	else if(tempVoltageNow>=3380000 && tempVoltageNow<3430000)
++	{
++		mBatteryLevel=25;
++	}
++	else if(tempVoltageNow>=3430000 && tempVoltageNow<3480000)
++	{
++		mBatteryLevel=30;
++	}
++	else if(tempVoltageNow>=3480000 && tempVoltageNow<3530000)
++	{
++		mBatteryLevel=35;
++	}
++	else if(tempVoltageNow>=3530000 && tempVoltageNow<3580000)
++	{
++		mBatteryLevel=40;
++	}
++	else if(tempVoltageNow>=3580000 && tempVoltageNow<3630000)
++	{
++		mBatteryLevel=45;
++	}
++	else if(tempVoltageNow>=3630000 && tempVoltageNow<3670000)
++	{
++		mBatteryLevel=50;
++	}
++	else if(tempVoltageNow>=3670000 && tempVoltageNow<3710000)
++	{
++		mBatteryLevel=55;
++	}
++	else if(tempVoltageNow>=3710000 && tempVoltageNow<3750000)
++	{
++		mBatteryLevel=60;
++	}
++	else if(tempVoltageNow>=3750000 && tempVoltageNow<3790000)
++	{
++		mBatteryLevel=65;
++	}
++	else if(tempVoltageNow>=3790000 && tempVoltageNow<3830000)
++	{
++		mBatteryLevel=70;
++	}
++	else if(tempVoltageNow>=3830000 && tempVoltageNow<3870000)
++	{
++		mBatteryLevel=75;
++	}
++	else if(tempVoltageNow>=3870000 && tempVoltageNow<3910000)
++	{
++		mBatteryLevel=80;
++	}
++	else if(tempVoltageNow>=3910000 && tempVoltageNow<3950000)
++	{
++		mBatteryLevel=85;
++	}
++	else if(tempVoltageNow>=3950000 && tempVoltageNow<3990000)
++	{
++		mBatteryLevel=90;
++	}
++	else if(tempVoltageNow>=3990000 && tempVoltageNow<4030000)
++	{
++		mBatteryLevel=95;
++	}
++	else
++	{
++		mBatteryLevel=100;
++	}
++	return mBatteryLevel;
++}
++int get_charge_battery_percent(int tempVoltageNow)
++{
++	int mBatteryLevel=0;
++	int chargeVoltageIncrease=200000;
++	if(tempVoltageNow<(3165000+chargeVoltageIncrease))
++	{
++		mBatteryLevel=0;
++	}
++	else if(tempVoltageNow>=(3165000+chargeVoltageIncrease) && tempVoltageNow<(3220000+chargeVoltageIncrease))
++	{
++		mBatteryLevel=5;
++	}
++	else if(tempVoltageNow>=(3220000+chargeVoltageIncrease) && tempVoltageNow<(3280000+chargeVoltageIncrease))
++	{
++		mBatteryLevel=10;
++	}
++	else if(tempVoltageNow>=(3280000+chargeVoltageIncrease) && tempVoltageNow<(3330000+chargeVoltageIncrease))
++	{
++		mBatteryLevel=15;
++	}
++	else if(tempVoltageNow>=(3330000+chargeVoltageIncrease) && tempVoltageNow<(3380000+chargeVoltageIncrease))
++	{
++		mBatteryLevel=20;
++	}
++	else if(tempVoltageNow>=(3380000+chargeVoltageIncrease) && tempVoltageNow<(3430000+chargeVoltageIncrease))
++	{
++		mBatteryLevel=25;
++	}
++	else if(tempVoltageNow>=(3430000+chargeVoltageIncrease) && tempVoltageNow<(3480000+chargeVoltageIncrease))
++	{
++		mBatteryLevel=30;
++	}
++	else if(tempVoltageNow>=(3480000+chargeVoltageIncrease) && tempVoltageNow<(3530000+chargeVoltageIncrease))
++	{
++		mBatteryLevel=35;
++	}
++	else if(tempVoltageNow>=(3530000+chargeVoltageIncrease) && tempVoltageNow<(3580000+chargeVoltageIncrease))
++	{
++		mBatteryLevel=40;
++	}
++	else if(tempVoltageNow>=(3580000+chargeVoltageIncrease) && tempVoltageNow<(3630000+chargeVoltageIncrease))
++	{
++		mBatteryLevel=45;
++	}
++	else if(tempVoltageNow>=(3630000+chargeVoltageIncrease) && tempVoltageNow<(3670000+chargeVoltageIncrease))
++	{
++		mBatteryLevel=50;
++	}
++	else if(tempVoltageNow>=(3670000+chargeVoltageIncrease) && tempVoltageNow<(3710000+chargeVoltageIncrease))
++	{
++		mBatteryLevel=55;
++	}
++	else if(tempVoltageNow>=(3710000+chargeVoltageIncrease) && tempVoltageNow<(3750000+chargeVoltageIncrease))
++	{
++		mBatteryLevel=60;
++	}
++	else if(tempVoltageNow>=(3750000+chargeVoltageIncrease) && tempVoltageNow<(3790000+chargeVoltageIncrease))
++	{
++		mBatteryLevel=65;
++	}
++	else if(tempVoltageNow>=(3790000+chargeVoltageIncrease) && tempVoltageNow<(3830000+chargeVoltageIncrease))
++	{
++		mBatteryLevel=70;
++	}
++	else if(tempVoltageNow>=(3830000+chargeVoltageIncrease) && tempVoltageNow<(3870000+chargeVoltageIncrease))
++	{
++		mBatteryLevel=75;
++	}
++	else if(tempVoltageNow>=(3870000+chargeVoltageIncrease) && tempVoltageNow<(3910000+chargeVoltageIncrease))
++	{
++		mBatteryLevel=80;
++	}
++	else if(tempVoltageNow>=(3910000+chargeVoltageIncrease) && tempVoltageNow<(3950000+chargeVoltageIncrease))
++	{
++		mBatteryLevel=85;
++	}
++	else if(tempVoltageNow>=(3950000+chargeVoltageIncrease) && tempVoltageNow<(3990000+chargeVoltageIncrease))
++	{
++		mBatteryLevel=90;
++	}
++	else if(tempVoltageNow>=(3990000+chargeVoltageIncrease) && tempVoltageNow<(4030000+chargeVoltageIncrease))
++	{
++		mBatteryLevel=95;
++	}
++	else
++	{
++		mBatteryLevel=100;
++	}
++	return mBatteryLevel;
++}
++//#define AVG_AGAIN
++#ifdef AVG_AGAIN
++int sample_count=0;
++int sample_total=0;
++#endif
++#define VOLTAGE_ALGORITHM
++#ifdef VOLTAGE_ALGORITHM
++int sample_count=0;
++int sample_total=0;
++int old_percent=0;
++#endif
+ static int rk817_battery_get_property(struct power_supply *psy,
+ 				      enum power_supply_property psp,
+ 				      union power_supply_propval *val)
+ {
+ 	struct rk817_battery_device *battery = power_supply_get_drvdata(psy);
+-
++	int tempVoltage=0,batteryLevel=0;
+ 	switch (psp) {
+ 	case POWER_SUPPLY_PROP_CURRENT_NOW:
+ 		val->intval = battery->current_avg * 1000;/*uA*/
+@@ -2038,8 +2229,203 @@ static int rk817_battery_get_property(struct power_supply *psy,
+ 		break;
+ 	case POWER_SUPPLY_PROP_CAPACITY:
+ 		val->intval = (battery->dsoc  + 500) / 1000;
++		tempVoltage = battery->voltage_avg * 1000;
++		#if 0
++			if(tempVoltage>=4050000)
++			{
++				val->intval=100;
++				#ifdef __BATTERY_DEBUG__
++				printk("%s-------%s %d %d\n",__FILE__,__func__,__LINE__,tempVoltage);
++				#endif
++			}
++			else
++			{
++				#ifdef AVG_AGAIN
++				sample_count++;
++				#ifdef __BATTERY_DEBUG__
++				printk("%s-------%s %d %d\n",__FILE__,__func__,__LINE__,sample_count);
++				#endif
++				sample_total=sample_total+tempVoltage;
++				#ifdef __BATTERY_DEBUG__
++				printk("%s-------%s %d %d\n",__FILE__,__func__,__LINE__,sample_total);
++				#endif
++				if(sample_count==10)
++				{
++					tempVoltage=sample_total/10;
++					#ifdef __BATTERY_DEBUG__
++					printk("%s-------%s %d %d %d\n",__FILE__,__func__,__LINE__,sample_count,sample_total);
++					#endif
++					if (((battery->chip_id != RK809_ID) && rk817_bat_get_charge_state(battery))||((battery->chip_id == RK809_ID && battery->plugin_trigger)))
++					{
++						batteryLevel=get_charge_battery_percent(tempVoltage);
++						if((batteryLevel-val->intval)>=20||(val->intval-batteryLevel)>=20)
++						{
++							val->intval=batteryLevel;
++							#ifdef __BATTERY_DEBUG__
++							printk("%s-------%s %d %d\n",__FILE__,__func__,__LINE__,tempVoltage);
++							#endif
++						}
++					}
++					else
++					{
++						batteryLevel=get_battery_percent(tempVoltage);
++						if((batteryLevel-val->intval)>=20||(val->intval-batteryLevel)>=20)
++						{
++							val->intval=batteryLevel;
++							#ifdef __BATTERY_DEBUG__
++							printk("%s-------%s %d %d\n",__FILE__,__func__,__LINE__,tempVoltage);
++							#endif
++						}
++					}
++					sample_count=0;	
++					sample_total=0;			
++				}
++				#else
++				if (((battery->chip_id != RK809_ID) && rk817_bat_get_charge_state(battery))||((battery->chip_id == RK809_ID && battery->plugin_trigger)))
++				{
++					batteryLevel=get_charge_battery_percent(tempVoltage);
++					if((batteryLevel-val->intval)>=20||(val->intval-batteryLevel)>=20)
++					{
++						val->intval=batteryLevel;
++						#ifdef __BATTERY_DEBUG__
++						printk("%s-------%s %d %d\n",__FILE__,__func__,__LINE__,tempVoltage);
++						#endif
++					}
++				}
++				else
++				{
++					batteryLevel=get_battery_percent(tempVoltage);
++					if((batteryLevel-val->intval)>=20||(val->intval-batteryLevel)>=20)
++					{
++						val->intval=batteryLevel;
++						#ifdef __BATTERY_DEBUG__
++						printk("%s-------%s %d %d\n",__FILE__,__func__,__LINE__,tempVoltage);
++						#endif
++					}
++				}
++				#endif			
++			}
++			//if(val->intval<=10)
++			if(tempVoltage<=3330000)
++			{
++				low_battery_percent=1;
++			}
++			else
++			{
++				low_battery_percent=0;
++			}
++		#elif defined(VOLTAGE_ALGORITHM)
++			if(tempVoltage>=4050000)
++			{
++				val->intval=100;
++				#ifdef __BATTERY_DEBUG__
++				printk("%s-------%s %d %d\n",__FILE__,__func__,__LINE__,tempVoltage);
++				#endif
++			}
++			else if(tempVoltage<=3330000)
++			{
++				val->intval=0;
++				#ifdef __BATTERY_DEBUG__
++				printk("%s-------%s %d %d\n",__FILE__,__func__,__LINE__,tempVoltage);
++				#endif
++			}
++			else
++			{
++				if(old_percent!=0)
++				{
++					val->intval=old_percent;
++					#ifdef __BATTERY_DEBUG__
++					printk("%s-------%s %d %d\n",__FILE__,__func__,__LINE__,old_percent);
++					#endif
++				}
++				sample_count++;
++				#ifdef __BATTERY_DEBUG__
++				printk("%s-------%s %d %d\n",__FILE__,__func__,__LINE__,sample_count);
++				#endif
++				sample_total=sample_total+tempVoltage;
++				#ifdef __BATTERY_DEBUG__
++				printk("%s-------%s %d %d\n",__FILE__,__func__,__LINE__,sample_total);
++				#endif
++				if(sample_count==10)
++				{
++					tempVoltage=sample_total/10;
++					#ifdef __BATTERY_DEBUG__
++					printk("%s-------%s %d %d %d\n",__FILE__,__func__,__LINE__,sample_count,sample_total);
++					#endif
++					if (((battery->chip_id != RK809_ID) && rk817_bat_get_charge_state(battery))||((battery->chip_id == RK809_ID && battery->plugin_trigger)))
++					{
++						batteryLevel=get_charge_battery_percent(tempVoltage);
++						val->intval=batteryLevel;
++						old_percent=batteryLevel;
++						#ifdef __BATTERY_DEBUG__
++						printk("%s-------%s %d %d\n",__FILE__,__func__,__LINE__,tempVoltage);
++						#endif
++					}
++					else
++					{
++						batteryLevel=get_battery_percent(tempVoltage);
++						val->intval=batteryLevel;
++						old_percent=batteryLevel;
++						#ifdef __BATTERY_DEBUG__
++						printk("%s-------%s %d %d\n",__FILE__,__func__,__LINE__,tempVoltage);
++						#endif
++					}
++					sample_count=0;	
++					sample_total=0;			
++				}				
++			}
++			if(tempVoltage<=3330000)
++			{
++				low_battery_percent=1;
++			}
++			else
++			{
++				low_battery_percent=0;
++			}
++		#else
++			#ifdef __BATTERY_DEBUG__
++			printk("%s-------%s %d %d\n",__FILE__,__func__,__LINE__,val->intval);
++			#endif
++			tempVoltage = battery->voltage_avg * 1000;
++			#ifdef __BATTERY_DEBUG__
++			printk("%s-------%s %d %d\n",__FILE__,__func__,__LINE__,tempVoltage);
++			#endif
++			if (((battery->chip_id != RK809_ID) && rk817_bat_get_charge_state(battery))||((battery->chip_id == RK809_ID && battery->plugin_trigger)))
++			{
++				tempVoltage=tempVoltage-200000;
++				#ifdef __BATTERY_DEBUG__
++				printk("%s-------%s %d %d\n",__FILE__,__func__,__LINE__,tempVoltage);
++				#endif
++			}
++			if(tempVoltage<=3300000)
++			{
++				val->intval=0;
++				#ifdef __BATTERY_DEBUG__
++				printk("%s-------%s %d %d\n",__FILE__,__func__,__LINE__,val->intval);
++				#endif
++			}
++			else if(tempVoltage>=4100000)
++			{
++				val->intval=100;
++				#ifdef __BATTERY_DEBUG__
++				printk("%s-------%s %d %d\n",__FILE__,__func__,__LINE__,val->intval);
++				#endif	
++			}
++			else
++			{
++				val->intval = (int)(((tempVoltage-3300000)*10)/(4100000-3300000)) * 10;
++				#ifdef __BATTERY_DEBUG__
++				printk("%s-------%s %d %d\n",__FILE__,__func__,__LINE__,val->intval);
++				#endif
++			}
++		#endif
+ 		if (battery->pdata->bat_mode == MODE_VIRTUAL)
++		{
++			#ifdef __BATTERY_DEBUG__
++			printk("%s-------%s %d %d\n",__FILE__,__func__,__LINE__,val->intval);
++			#endif
+ 			val->intval = VIRTUAL_SOC;
++		}
+ 		break;
+ 	case POWER_SUPPLY_PROP_HEALTH:
+ 		val->intval = POWER_SUPPLY_HEALTH_GOOD;
+diff --git a/drivers/power/rk817_charger.c b/drivers/power/rk817_charger.c
+index ec2748fa6b1c..9c12533b6e50 100644
+--- a/drivers/power/rk817_charger.c
++++ b/drivers/power/rk817_charger.c
+@@ -34,6 +34,7 @@
+ #include <linux/timer.h>
+ #include <linux/workqueue.h>
+ 
++extern int low_battery_percent;
+ static int dbg_enable;
+ module_param_named(dbg_level, dbg_enable, int, 0644);
+ 
+@@ -67,7 +68,14 @@ module_param_named(dbg_level, dbg_enable, int, 0644);
+ #define SAMPLE_RES_DIV1		1
+ #define SAMPLE_RES_DIV2		2
+ 
++//#define CHARGE_CUR
++#define __CLOSE_CHARGE_LED__//Turn off the charging light
++#define __BATTERY_LOW__//Low battery prompt
++#if defined(CHARGE_CUR)
++#define INPUT_450MA		3000
++#else
+ #define INPUT_450MA		450
++#endif
+ #define INPUT_1500MA	1500
+ 
+ #define CURRENT_TO_ADC(current, samp_res)	\
+@@ -273,9 +281,13 @@ struct charger_platform_data {
+ 	u32 dc_det_level;
+ 	int dc_det_pin;
+ 	bool support_dc_det;
+-#if defined(CONFIG_ARCH_ROCKCHIP_ODROIDGOA)
++#if defined(CONFIG_ARCH_ROCKCHIP_ODROIDGOA)&&!defined(__CLOSE_CHARGE_LED__)
+ 	int chg_led_pin;
+ 	bool chg_led_on;
++#endif
++#ifdef __BATTERY_LOW__
++	int bat_low_pin;
++	bool bat_low_on;
+ #endif
+ 	int virtual_power;
+ 	int sample_res;
+@@ -650,8 +662,11 @@ static void rk817_charge_set_input_voltage(struct rk817_charger *charge,
+ 
+ 	if (input_voltage < 4000)
+ 		dev_err(charge->dev, "the input voltage is error.\n");
+-
++#if defined(CHARGE_CUR)
++	voltage = INPUT_VOL_4700MV + (input_voltage - 4000) / 100;
++#else
+ 	voltage = INPUT_VOL_4000MV + (input_voltage - 4000) / 100;
++#endif
+ 
+ 	rk817_charge_field_write(charge, USB_VLIM_SEL, voltage);
+ 	rk817_charge_vlimit_enable(charge);
+@@ -917,6 +932,7 @@ static void rk817_charge_led_worker(struct work_struct *work)
+ 			struct rk817_charger, led_work.work);
+ 
+ 	/* battery status check */
++	#ifndef __CLOSE_CHARGE_LED__
+ 	if (rk817_charge_online(charge)) {
+ 		if ((rk817_charge_get_dsoc(charge) == 100) &&
+ 		    (charge->prop_status != POWER_SUPPLY_STATUS_FULL))
+@@ -933,9 +949,36 @@ static void rk817_charge_led_worker(struct work_struct *work)
+ 	else
+ 		gpio_set_value(charge->pdata->chg_led_pin,
+ 				!charge->pdata->chg_led_on);
++	#else
++	#ifdef __BATTERY_LOW__
++	if (rk817_charge_online(charge)) {
++		if ((rk817_charge_get_dsoc(charge) == 100) &&
++		    (charge->prop_status != POWER_SUPPLY_STATUS_FULL))
++			queue_delayed_work(charge->dc_charger_wq, &charge->dc_work,
++					msecs_to_jiffies(2000));
++	}
++	//if (rk817_charge_get_dsoc(charge) >= 10)
++	if (low_battery_percent == 0)
++	{
++		if(gpio_get_value(charge->pdata->bat_low_pin)==1)
++		{
++			gpio_set_value(charge->pdata->bat_low_pin,
++					!gpio_get_value(charge->pdata->bat_low_pin));
++		}
++	}
++	else
++	{
++		if(gpio_get_value(charge->pdata->bat_low_pin)==0)
++		{
++			gpio_set_value(charge->pdata->bat_low_pin,
++					charge->pdata->bat_low_on);
++		}
++	}
++	#endif
++	#endif
+ 
+ 	queue_delayed_work(charge->led_wq, &charge->led_work,
+-		msecs_to_jiffies(1000));
++		msecs_to_jiffies(1000*60));
+ }
+ #endif
+ 
+@@ -990,6 +1033,7 @@ static int rk817_charge_init_dc(struct rk817_charger *charge)
+ 	}
+ 
+ #if defined(CONFIG_ARCH_ROCKCHIP_ODROIDGOA)
++	#ifndef __CLOSE_CHARGE_LED__
+ 	if (charge->pdata->chg_led_pin) {
+ 		ret = devm_gpio_request(charge->dev,
+ 					charge->pdata->chg_led_pin,
+@@ -1001,6 +1045,21 @@ static int rk817_charge_init_dc(struct rk817_charger *charge)
+ 			gpio_direction_output(charge->pdata->chg_led_pin,
+ 					     !charge->pdata->chg_led_on);
+ 	}
++	#else
++	#ifdef __BATTERY_LOW__
++	if (charge->pdata->bat_low_pin) {
++		ret = devm_gpio_request(charge->dev,
++					charge->pdata->bat_low_pin,
++					"rk817_bat_low");
++		if (ret < 0)
++			dev_err(charge->dev, "failed to request gpio %d\n",
++				charge->pdata->bat_low_pin);
++		else
++			gpio_direction_output(charge->pdata->bat_low_pin,
++					     !charge->pdata->bat_low_on);
++	}
++	#endif
++	#endif
+ 
+ 	charge->led_wq = alloc_ordered_workqueue("%s",
+ 				WQ_MEM_RECLAIM | WQ_FREEZABLE,
+@@ -1453,6 +1512,7 @@ static int rk817_charge_parse_dt(struct rk817_charger *charge)
+ 			return -EINVAL;
+ 		}
+ #if defined(CONFIG_ARCH_ROCKCHIP_ODROIDGOA)
++		#ifndef __CLOSE_CHARGE_LED__
+ 		if (!of_find_property(np, "chg_led_gpio", &ret)) {
+ 			DBG("not support charge led\n");
+ 			pdata->chg_led_pin = 0;
+@@ -1466,6 +1526,23 @@ static int rk817_charge_parse_dt(struct rk817_charger *charge)
+ 					(flags & OF_GPIO_ACTIVE_LOW) ? 0 : 1;
+ 			}
+ 		}
++		#else
++		#ifdef __BATTERY_LOW__
++		if (!of_find_property(np, "bat_low_gpio", &ret)) {
++			DBG("not support battery low\n");
++			pdata->bat_low_pin = 0;
++		} else {
++			pdata->bat_low_pin = of_get_named_gpio_flags(np,
++							"bat_low_gpio",
++							0, &flags);
++			if (gpio_is_valid(pdata->bat_low_pin)) {
++				DBG("support charge led\n");
++				pdata->bat_low_on =
++					(flags & OF_GPIO_ACTIVE_LOW) ? 0 : 1;
++			}
++		}
++		#endif		
++		#endif
+ #endif
+ 	}
+ 
+diff --git a/drivers/video/console/fbcon.c b/drivers/video/console/fbcon.c
+index c03c5b9602bb..ccd60d3531ca 100644
+--- a/drivers/video/console/fbcon.c
++++ b/drivers/video/console/fbcon.c
+@@ -79,7 +79,10 @@
+ #include <asm/irq.h>
+ 
+ #include "fbcon.h"
+-
++#ifdef __VIB__
++#include <linux/gpio.h>
++#define VIB_EN_GPIO 15
++#endif
+ #ifdef FBCONDEBUG
+ #  define DPRINTK(fmt, args...) printk(KERN_DEBUG "%s: " fmt, __func__ , ## args)
+ #else
+@@ -1158,6 +1161,9 @@ static void fbcon_init(struct vc_data *vc, int init)
+ 	}
+ 
+ 	ops->p = &fb_display[fg_console];
++#ifdef __VIB__
++	gpio_direction_output(VIB_EN_GPIO, 0);
++#endif
+ }
+ 
+ static void fbcon_free_font(struct display *p, bool freefont)
+diff --git a/include/linux/kernel.h b/include/linux/kernel.h
+index 05b63a1e9f84..82ef2ea0dba2 100644
+--- a/include/linux/kernel.h
++++ b/include/linux/kernel.h
+@@ -15,6 +15,7 @@
+ #include <asm/byteorder.h>
+ #include <uapi/linux/kernel.h>
+ 
++#define __VIB__//Vibration function
+ #define USHRT_MAX	((u16)(~0U))
+ #define SHRT_MAX	((s16)(USHRT_MAX>>1))
+ #define SHRT_MIN	((s16)(-SHRT_MAX - 1))

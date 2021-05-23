@@ -1,0 +1,209 @@
+diff --git a/sdl.c b/sdl.c
+index 4e23688..c51ea58 100755
+--- a/sdl.c
++++ b/sdl.c
+@@ -233,45 +233,42 @@ TTF_Font* Font = NULL;
+ 
+ /* - - - CUSTOMISATION - - - */
+ 
+-#define FONT_FILE        "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf"
+-#define FONT_SIZE         12
++#define FONT_FILE        "/usr/share/fonts/hangul/NanumGothic.ttf"
++#define FONT_SIZE         24
+ 
+-#define SCREEN_WIDTH     480
+-#define SCREEN_HEIGHT    320
++#define SCREEN_WIDTH     640
++#define SCREEN_HEIGHT    480
+ 
+-#define RG351_OFFSET_X     (480-320)/2
+-#define RG351_OFFSET_Y   (320-240)/2
++#define INNER_SCREEN_X    84*2
++#define INNER_SCREEN_Y    18*2
++#define INNER_SCREEN_W   154*2
++#define INNER_SCREEN_H   117*2
+ 
+-#define INNER_SCREEN_X    84
+-#define INNER_SCREEN_Y    18
+-#define INNER_SCREEN_W   154
+-#define INNER_SCREEN_H   117
++#define GCW_ZERO_PIC_Y    43*2
+ 
+-#define GCW_ZERO_PIC_Y    43
++#define TEXT_CROSS_LX      4*2
++#define TEXT_CROSS_Y      4*2
+ 
+-#define TEXT_CROSS_LX      4+RG351_OFFSET_X
+-#define TEXT_CROSS_Y      4+RG351_OFFSET_Y
++#define TEXT_ANALOG_CX   160*2
++#define TEXT_ANALOG_Y      4*2
+ 
+-#define TEXT_ANALOG_CX   160+RG351_OFFSET_X
+-#define TEXT_ANALOG_Y      4+RG351_OFFSET_Y
++#define TEXT_GRAVITY_CX  160*2
++#define TEXT_GRAVITY_Y    20*2
+ 
+-#define TEXT_GRAVITY_CX  160+RG351_OFFSET_X
+-#define TEXT_GRAVITY_Y    20+RG351_OFFSET_Y
++#define TEXT_OTHERS_RX   316*2
++#define TEXT_OTHERS_Y      4*2
+ 
+-#define TEXT_OTHERS_RX   316+RG351_OFFSET_X
+-#define TEXT_OTHERS_Y      4+RG351_OFFSET_Y
++#define TEXT_FACE_RX     316*2
++#define TEXT_FACE_Y       4*2
+ 
+-#define TEXT_FACE_RX     316+RG351_OFFSET_X
+-#define TEXT_FACE_Y       4+RG351_OFFSET_Y
++#define TEXT_CROSS_ERR_LX  4*2
++#define TEXT_CROSS_ERR_Y 188*2
+ 
+-#define TEXT_CROSS_ERR_LX  4+RG351_OFFSET_X
+-#define TEXT_CROSS_ERR_Y 188+RG351_OFFSET_Y
++#define TEXT_EXIT_RX     316*2
++#define TEXT_EXIT_Y      220*2
+ 
+-#define TEXT_EXIT_RX     316+RG351_OFFSET_X
+-#define TEXT_EXIT_Y      220+RG351_OFFSET_Y
+-
+-#define TEXT_RUMBLE_RX   316+RG351_OFFSET_X
+-#define TEXT_RUMBLE_Y    204+RG351_OFFSET_Y
++#define TEXT_RUMBLE_RX   316*2
++#define TEXT_RUMBLE_Y    204*2
+ 
+                                    //  R    G    B    A
+ const SDL_Color ColorBackground   = {   0,   0,   0, 255 };
+@@ -292,35 +289,35 @@ const SDL_Color ColorEverAnalog   = {  32,  64,  32, 255 };
+ const SDL_Color ColorEverAnalog2  = {  64,  48,  32, 255 };
+ const SDL_Color ColorEverFace     = {  32,  32,  64, 255 };
+ const SDL_Color ColorEverOthers   = {  64,  32,  64, 255 };
+-#define RG350_SHIFT 60
++
+ struct DrawnElement DrawnElements[] = {
+-	{ .Rect = { .x = 31+RG351_OFFSET_X, .y = 33 + GCW_ZERO_PIC_Y+RG351_OFFSET_Y, .w = 15, .h = 15 }, .ColorPressed = &ColorCross, .ColorEverPressed = &ColorEverCross },
+-	{ .Rect = { .x = 31+RG351_OFFSET_X, .y = 71 + GCW_ZERO_PIC_Y+RG351_OFFSET_Y, .w = 15, .h = 15 }, .ColorPressed = &ColorCross, .ColorEverPressed = &ColorEverCross },
+-	{ .Rect = { .x = 12+RG351_OFFSET_X, .y = 52 + GCW_ZERO_PIC_Y+RG351_OFFSET_Y, .w = 15, .h = 15 }, .ColorPressed = &ColorCross, .ColorEverPressed = &ColorEverCross },
+-	{ .Rect = { .x = 49+RG351_OFFSET_X, .y = 52 + GCW_ZERO_PIC_Y+RG351_OFFSET_Y, .w = 15, .h = 15 }, .ColorPressed = &ColorCross, .ColorEverPressed = &ColorEverCross },
+-
+-	{ .Rect = { .x = 272+RG351_OFFSET_X, .y = 33 + GCW_ZERO_PIC_Y+RG351_OFFSET_Y, .w = 15, .h = 15 }, .ColorPressed = &ColorFace, .ColorEverPressed = &ColorEverFace },	//RG351:X
+-	{ .Rect = { .x = 272+RG351_OFFSET_X, .y = 71 + GCW_ZERO_PIC_Y+RG351_OFFSET_Y, .w = 15, .h = 15 }, .ColorPressed = &ColorFace, .ColorEverPressed = &ColorEverFace },	//RG351:B
+-	{ .Rect = { .x = 253+RG351_OFFSET_X, .y = 52 + GCW_ZERO_PIC_Y+RG351_OFFSET_Y, .w = 15, .h = 15 }, .ColorPressed = &ColorFace, .ColorEverPressed = &ColorEverFace },	//RG351:Y
+-	{ .Rect = { .x = 291+RG351_OFFSET_X, .y = 52 + GCW_ZERO_PIC_Y+RG351_OFFSET_Y, .w = 15, .h = 15 }, .ColorPressed = &ColorFace, .ColorEverPressed = &ColorEverFace },	//RG351:A
++	{ .Rect = { .x = 31*2, .y = 33*2 + GCW_ZERO_PIC_Y, .w = 15*2, .h = 15*2 }, .ColorPressed = &ColorCross, .ColorEverPressed = &ColorEverCross },
++	{ .Rect = { .x = 31*2, .y = 71*2 + GCW_ZERO_PIC_Y, .w = 15*2, .h = 15*2 }, .ColorPressed = &ColorCross, .ColorEverPressed = &ColorEverCross },
++	{ .Rect = { .x = 12*2, .y = 52*2 + GCW_ZERO_PIC_Y, .w = 15*2, .h = 15*2 }, .ColorPressed = &ColorCross, .ColorEverPressed = &ColorEverCross },
++	{ .Rect = { .x = 49*2, .y = 52*2 + GCW_ZERO_PIC_Y, .w = 15*2, .h = 15*2 }, .ColorPressed = &ColorCross, .ColorEverPressed = &ColorEverCross },
++
++	{ .Rect = { .x = 272*2, .y = 33*2 + GCW_ZERO_PIC_Y, .w = 15*2, .h = 15*2 }, .ColorPressed = &ColorFace, .ColorEverPressed = &ColorEverFace },	//RG351:X
++	{ .Rect = { .x = 272*2, .y = 71*2 + GCW_ZERO_PIC_Y, .w = 15*2, .h = 15*2 }, .ColorPressed = &ColorFace, .ColorEverPressed = &ColorEverFace },	//RG351:B
++	{ .Rect = { .x = 253*2, .y = 52*2 + GCW_ZERO_PIC_Y, .w = 15*2, .h = 15*2 }, .ColorPressed = &ColorFace, .ColorEverPressed = &ColorEverFace },	//RG351:Y
++	{ .Rect = { .x = 291*2, .y = 52*2 + GCW_ZERO_PIC_Y, .w = 15*2, .h = 15*2 }, .ColorPressed = &ColorFace, .ColorEverPressed = &ColorEverFace },	//RG351:A
+ 	
+-	{ .Rect = { .x = 32+30+RG351_OFFSET_X, .y = 54+RG351_OFFSET_Y, .w = 14, .h = 14 }, .ColorPressed = &ColorOthers, .ColorEverPressed = &ColorEverOthers },
+-	{ .Rect = { .x = 260-15+RG351_OFFSET_X, .y = 54+RG351_OFFSET_Y, .w = 14, .h = 14 }, .ColorPressed = &ColorOthers, .ColorEverPressed = &ColorEverOthers },
++	{ .Rect = { .x = (32+30)*2, .y = 54*2, .w = 14*2, .h = 14*2 }, .ColorPressed = &ColorOthers, .ColorEverPressed = &ColorEverOthers },
++	{ .Rect = { .x = (260-15)*2, .y = 54*2, .w = 14*2, .h = 14*2 }, .ColorPressed = &ColorOthers, .ColorEverPressed = &ColorEverOthers },
+ 
+-	{ .Rect = { .x = 9+RG351_OFFSET_X, .y = 23+RG351_OFFSET_Y, .w = 25, .h = 19 }, .ColorPressed = &ColorOthers, .ColorEverPressed = &ColorEverOthers },
+-	{ .Rect = { .x = 290+RG351_OFFSET_X, .y = 23+RG351_OFFSET_Y, .w = 25, .h = 19 }, .ColorPressed = &ColorOthers, .ColorEverPressed = &ColorEverOthers },
+-	{ .Rect = { .x = 39+RG351_OFFSET_X, .y = 23+RG351_OFFSET_Y , .w = 25, .h = 19 }, .ColorPressed = &ColorOthers, .ColorEverPressed = &ColorEverOthers },
+-	{ .Rect = { .x = 260+RG351_OFFSET_X, .y = 23+RG351_OFFSET_Y , .w = 25, .h = 19 }, .ColorPressed = &ColorOthers, .ColorEverPressed = &ColorEverOthers },
++	{ .Rect = { .x = 9*2, .y = 23*2, .w = 25*2, .h = 19*2 }, .ColorPressed = &ColorOthers, .ColorEverPressed = &ColorEverOthers },
++	{ .Rect = { .x = 290*2, .y = 23*2, .w = 25*2, .h = 19*2 }, .ColorPressed = &ColorOthers, .ColorEverPressed = &ColorEverOthers },
++	{ .Rect = { .x = 39*2, .y = 23*2 , .w = 25*2, .h = 19*2 }, .ColorPressed = &ColorOthers, .ColorEverPressed = &ColorEverOthers },
++	{ .Rect = { .x = 260*2, .y = 23*2 , .w = 25*2, .h = 19*2 }, .ColorPressed = &ColorOthers, .ColorEverPressed = &ColorEverOthers },
+ 
+-	{ .Rect = { .x = 32+RG351_OFFSET_X, .y = 180+RG351_OFFSET_Y, .w = 14, .h = 14 }, .ColorPressed = &ColorOthers, .ColorEverPressed = &ColorEverOthers },
+-	{ .Rect = { .x = 276+RG351_OFFSET_X, .y = 180+RG351_OFFSET_Y, .w = 14, .h = 14 }, .ColorPressed = &ColorOthers, .ColorEverPressed = &ColorEverOthers },
++	{ .Rect = { .x = 32*2, .y = 180*2, .w = 14*2, .h = 14*2 }, .ColorPressed = &ColorOthers, .ColorEverPressed = &ColorEverOthers },
++	{ .Rect = { .x = 276*2, .y = 180*2, .w = 14*2, .h = 14*2 }, .ColorPressed = &ColorOthers, .ColorEverPressed = &ColorEverOthers },
+ 
+ /*
+-	{ .Rect = { .x = 312+RG351_OFFSET_X, .y = 52 + GCW_ZERO_PIC_Y+RG351_OFFSET_Y, .w = 6, .h = 21 }, .ColorPressed = &ColorOthers, .ColorEverPressed = &ColorEverOthers },
++	{ .Rect = { .x = 312*2, .y = 52*2 + GCW_ZERO_PIC_Y, .w = 6*2, .h = 21*2 }, .ColorPressed = &ColorOthers, .ColorEverPressed = &ColorEverOthers },
+ #ifndef SDL_1
+ 	
+-	{ .Rect = { .x = 135+RG351_OFFSET_X, .y = 214+RG351_OFFSET_Y, .w = 20, .h = 5 }, .ColorPressed = &ColorOthers, .ColorEverPressed = &ColorEverOthers },
+-	{ .Rect = { .x = 160+RG351_OFFSET_X, .y = 214+RG351_OFFSET_Y, .w = 20, .h = 5 }, .ColorPressed = &ColorOthers, .ColorEverPressed = &ColorEverOthers },
++	{ .Rect = { .x = 135*2, .y = 214*2, .w = 20*2, .h = 5*2 }, .ColorPressed = &ColorOthers, .ColorEverPressed = &ColorEverOthers },
++	{ .Rect = { .x = 160*2, .y = 214*2, .w = 20*2, .h = 5*2 }, .ColorPressed = &ColorOthers, .ColorEverPressed = &ColorEverOthers },
+ #endif
+ */
+ };
+@@ -341,7 +338,7 @@ void UpdateHaptic(void)
+ 	{
+ 		printf("Starting force feedback as requested by the user\n");
+ #ifndef SDL_1
+-		if (SDL_HapticRumblePlay(HapticDevice, 0.33f /* Strength */, 15000 /* Time */) < 0)
++		if (SDL_HapticRumblePlay(HapticDevice, 0.75f /* Strength */, 15000 /* Time */) < 0)
+ 		{
+ 			printf("SDL_HapticRumblePlay failed: %s\n", SDL_GetError());
+ 		}
+@@ -423,15 +420,15 @@ static void RENDER_HOLLOW_RECT(SDL_Rect* DestRect, const SDL_Color* Color)
+ #ifdef SDL_1
+ 	Uint32 MappedColor = SDL_COLOR(*Color);
+ 	{
+-		SDL_Rect LineRect = { .x = DestRect->x, .y = DestRect->y, .w = DestRect->w, .h = 1 };
++		SDL_Rect LineRect = { .x = DestRect->x, .y = DestRect->y, .w = DestRect->w, .h = 1*2 };
+ 		SDL_FillRect(Screen, &LineRect, MappedColor);
+-		LineRect.y = DestRect->y + DestRect->h - 1;
++		LineRect.y = DestRect->y + DestRect->h - 1*2;
+ 		SDL_FillRect(Screen, &LineRect, MappedColor);
+ 	}
+ 	{
+-		SDL_Rect LineRect = { .x = DestRect->x, .y = DestRect->y, .w = 1, .h = DestRect->h };
++		SDL_Rect LineRect = { .x = DestRect->x, .y = DestRect->y, .w = 1*2, .h = DestRect->h };
+ 		SDL_FillRect(Screen, &LineRect, MappedColor);
+-		LineRect.x = DestRect->x + DestRect->w - 1;
++		LineRect.x = DestRect->x + DestRect->w - 1*2;
+ 		SDL_FillRect(Screen, &LineRect, MappedColor);
+ 	}
+ #else
+@@ -472,10 +469,10 @@ static SDL_RASTER_TYPE DrawJoystickDot(const Sint32 JoystickX, const Sint32 Joys
+ 		RENDER_RASTER(Text, &TextRect);
+ 
+ 		SDL_Rect DotRect = {
+-			.x = INNER_SCREEN_X + RG351_OFFSET_X + (Uint32) ((Sint32) JoystickX + 32768) * (INNER_SCREEN_W - 4) / 65536,
+-			.y = GCW_ZERO_PIC_Y + RG351_OFFSET_Y + INNER_SCREEN_Y + (Uint32) ((Sint32) JoystickY + 32768) * (INNER_SCREEN_H - 4) / 65536,
+-			.w = 4,
+-			.h = 4
++			.x = INNER_SCREEN_X + (Uint32) ((Sint32) JoystickX + 32768) * (INNER_SCREEN_W - 4*2) / 65536,
++			.y = GCW_ZERO_PIC_Y + INNER_SCREEN_Y + (Uint32) ((Sint32) JoystickY + 32768) * (INNER_SCREEN_H - 4*2) / 65536,
++			.w = 4*2,
++			.h = 4*2
+ 		};
+ 		RENDER_FILLED_RECT(&DotRect, Color);
+ 
+@@ -487,13 +484,13 @@ static SDL_RASTER_TYPE DrawJoystickDot(const Sint32 JoystickX, const Sint32 Joys
+ 		SDL_Rect CoordsRect = { .x = DotRect.x, .y = DotRect.y, .w = WIDTH(TextCoords), .h = HEIGHT(TextCoords) };
+ 		
+ 		if (JoystickX < 0)
+-			CoordsRect.x += 8;
++			CoordsRect.x += 8*2;
+ 		else
+-			CoordsRect.x -= WIDTH(TextCoords) + 4;
++			CoordsRect.x -= WIDTH(TextCoords) + 4*2;
+ 		if (JoystickY < 0)
+-			CoordsRect.y += 4;
++			CoordsRect.y += 4*2;
+ 		else
+-			CoordsRect.y -= HEIGHT(TextCoords) + 2;
++			CoordsRect.y -= HEIGHT(TextCoords) + 2*2;
+ 		RENDER_RASTER(TextCoords, &CoordsRect);
+ 		return TextCoords;
+ 	}
+@@ -572,12 +569,12 @@ static void DrawScreen()
+ 
+ 	// Inner border (there to provide a reference frame for the joystick axes'
+ 	// dots)
+-	SDL_Rect InnerRect = { .x = INNER_SCREEN_X + RG351_OFFSET_X, .y = GCW_ZERO_PIC_Y + INNER_SCREEN_Y + RG351_OFFSET_Y, .w = INNER_SCREEN_W, .h = INNER_SCREEN_H };
++	SDL_Rect InnerRect = { .x = INNER_SCREEN_X, .y = GCW_ZERO_PIC_Y + INNER_SCREEN_Y, .w = INNER_SCREEN_W, .h = INNER_SCREEN_H };
+ 	RENDER_HOLLOW_RECT(&InnerRect, &ColorInnerBorder);
+ 
+ 	// A dot to indicate where the analog nub is pointed to, relative to the
+ 	// inner screen, as well as its coordinates
+-	SDL_RASTER_TYPE BuiltInJSCoords = DrawJoystickDot(-BuiltInJS_X, -BuiltInJS_Y, -TEXT_ANALOG_CX, -TEXT_ANALOG_Y, TextAnalog, &ColorAnalog);
++	SDL_RASTER_TYPE BuiltInJSCoords = DrawJoystickDot(-BuiltInJS_X, -BuiltInJS_Y, TEXT_ANALOG_CX, TEXT_ANALOG_Y, TextAnalog, &ColorAnalog);
+ 	// And another for the gravity sensor
+ 	SDL_RASTER_TYPE BuiltInJSCoords2 = DrawJoystickDot(BuiltInJS_X2, BuiltInJS_Y2, TEXT_GRAVITY_CX, TEXT_GRAVITY_Y, TextAnalog2, &ColorAnalog2);
+ 

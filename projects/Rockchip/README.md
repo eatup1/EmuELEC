@@ -7,6 +7,7 @@ This project is for Rockchip SoC devices
 **RK3326**
 * [HardKernel OdroidGoAdvance](devices/OdroidGoAdvance)
 * [Anbernic RG351P](devices/RG351P)
+* [Anbernic RG351V](devices/RG351V)
 
 **RK3288**
 * [ASUS Tinker Board](devices/TinkerBoard)

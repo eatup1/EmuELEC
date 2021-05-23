@@ -14,7 +14,7 @@ if [ ! -f "${DUKECFG}" ]; then
 # We only do these changes if the cfg file does not already exists, if it exists we asume the user has created it outside this script
 # Only for handheld devices, SBCs already handle this gratefully
                
-    if [ "$EE_DEVICE" == "OdroidGoAdvance" -o "$EE_DEVICE" == "RG351P" ] || [ "$EE_DEVICE" == "GameForce" ]; then
+    if [ "$EE_DEVICE" == "OdroidGoAdvance" -o "$EE_DEVICE" == "RG351P" -o "$EE_DEVICE" == "RG351V" ] || [ "$EE_DEVICE" == "GameForce" ]; then
         touch "${DUKECFG}"
     
         case "$(oga_ver)" in
@@ -25,7 +25,7 @@ if [ ! -f "${DUKECFG}" ]; then
                 echo "ScreenWidth = 480" >> "${DUKECFG}"
                 echo "MaxRefreshFreq = 0" >> "${DUKECFG}"
             ;;
-            "GF")
+            "GF" | "RG351V")
                 echo "ScreenDisplay = 0" > "${DUKECFG}"
                 echo "ScreenHeight = 480" >> "${DUKECFG}"
                 echo "ScreenMode = 0" >> "${DUKECFG}"
@@ -43,7 +43,7 @@ if [ ! -f "${DUKECFG}" ]; then
     fi
 fi
 
-if [ "$EE_DEVICE" == "OdroidGoAdvance" -o "$EE_DEVICE" == "RG351P" ] || [ "$EE_DEVICE" == "GameForce" ]; then
+if [ "$EE_DEVICE" == "OdroidGoAdvance" -o "$EE_DEVICE" == "RG351P" -o "$EE_DEVICE" == "RG351V" ] || [ "$EE_DEVICE" == "GameForce" ]; then
     # Eduke does not run if there is less that x ammount of memory so we need to enable swap on devices with 1GB of RAM
     SWAP_FILE="/storage/.config/swap.conf"
     if [ ! -f "${SWAP_FILE}" ]; then
@@ -61,7 +61,7 @@ fi
 cd /storage/roms/ports/eduke
 eduke32 -j /storage/roms/ports/eduke > /emuelec/logs/emuelec.log 2>&1
 
-if [ "$EE_DEVICE" == "OdroidGoAdvance" -o "$EE_DEVICE" == "RG351P" ] || [ "$EE_DEVICE" == "GameForce" ]; then
+if [ "$EE_DEVICE" == "OdroidGoAdvance" -o "$EE_DEVICE" == "RG351P" -o "$EE_DEVICE" == "RG351V" ] || [ "$EE_DEVICE" == "GameForce" ]; then
     /usr/lib/coreelec/mount-swap unmount
     rm -rf $HOME/.cache/swapfile
     sed -i 's/SWAP_ENABLED=.*/SWAP_ENABLED="no"/' "${SWAP_FILE}"

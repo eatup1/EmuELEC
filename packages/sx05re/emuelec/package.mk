@@ -31,8 +31,10 @@ fi
 
 if [ "$DEVICE" == "RG351P" ]; then
     PKG_DEPENDS_TARGET+=" RG351P_input-test"
+elif [ "$DEVICE" == "RG351V" ]; then
+    PKG_DEPENDS_TARGET+=" RG351V_input-test"
 fi
-if [ "$DEVICE" == "OdroidGoAdvance" -o "$DEVICE" == "RG351P" ] || [ "$DEVICE" == "GameForce" ]; then
+if [ "$DEVICE" == "OdroidGoAdvance" -o "$DEVICE" == "RG351P" -o "$DEVICE" == "RG351V" ] || [ "$DEVICE" == "GameForce" ]; then
     PKG_DEPENDS_TARGET+=" kmscon odroidgoa-utils"
     
     #we disable some cores that are not working or work poorly on OGA
@@ -98,7 +100,7 @@ makeinstall_target() {
       echo "s905" > $INSTALL/ee_s905
   fi
   
-  if [ "$DEVICE" == "OdroidGoAdvance" -o "$DEVICE" == "RG351P" ] || [ "$DEVICE" == "GameForce" ]; then
+  if [ "$DEVICE" == "OdroidGoAdvance" -o "$DEVICE" == "RG351P" -o "$DEVICE" == "RG351V" ] || [ "$DEVICE" == "GameForce" ]; then
       echo "$DEVICE" > $INSTALL/ee_arch
   else
       echo "$PROJECT" > $INSTALL/ee_arch
@@ -154,7 +156,7 @@ cp -r $PKG_DIR/gamepads/* $INSTALL/etc/retroarch-joypad-autoconfig
 CORESFILE="$INSTALL/usr/config/emulationstation/es_systems.cfg"
 
 if [ "${PROJECT}" != "Amlogic-ng" ]; then
-    if [[ ${DEVICE} == "OdroidGoAdvance" || ${DEVICE} == "RG351P" || "$DEVICE" == "GameForce" ]]; then
+    if [[ ${DEVICE} == "OdroidGoAdvance" || ${DEVICE} == "RG351P" || ${DEVICE} == "RG351V" || "$DEVICE" == "GameForce" ]]; then
         remove_cores="mesen-s quicknes REICASTSA_OLD REICASTSA mame2016 mesen"
     elif [ "${PROJECT}" == "Amlogic" ]; then
         remove_cores="mesen-s quicknes mame2016 mesen"
@@ -174,7 +176,7 @@ if [[ ${DEVICE} == "RG351P" ]]; then
 fi
 
   # Remove scripts from OdroidGoAdvance build
-	if [[ ${DEVICE} == "OdroidGoAdvance" || ${DEVICE} == "RG351P" || "$DEVICE" == "GameForce" ]]; then 
+	if [[ ${DEVICE} == "OdroidGoAdvance" || ${DEVICE} == "RG351P" || ${DEVICE} == "RG351V" || "$DEVICE" == "GameForce" ]]; then 
 	for i in "wifi" "sselphs_scraper" "skyscraper" "system_info"; do 
 	xmlstarlet ed -L -P -d "/gameList/game[name='${i}']" $INSTALL/usr/bin/scripts/setup/gamelist.xml
 	rm "$INSTALL/usr/bin/scripts/setup/${i}.sh"
@@ -182,7 +184,7 @@ fi
 	fi 
 
   # Remove scripts from except RG351P build
-	if [[ ${DEVICE} != "RG351P" ]]; then 
+	if [[ ${DEVICE} != "RG351P" && ${DEVICE} != "RG351V" ]]; then 
 	for i in "RG351_input_Test" ; do 
 	xmlstarlet ed -L -P -d "/gameList/game[name='${i}']" $INSTALL/usr/bin/scripts/setup/gamelist.xml
 	rm "$INSTALL/usr/bin/scripts/setup/${i}.sh"

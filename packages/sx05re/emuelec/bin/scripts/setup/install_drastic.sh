@@ -89,7 +89,7 @@ EOF
 echo "$content" > $ES_FOLDER/scripts/drastic.sh
 chmod +x $ES_FOLDER/scripts/drastic.sh
 
-if [ "$EE_DEVICE" == "OdroidGoAdvance" -o "$EE_DEVICE" == "RG351P" ] || [ "$EE_DEVICE" == "GameForce" ]; then
+if [ "$EE_DEVICE" == "OdroidGoAdvance" -o "$EE_DEVICE" == "RG351P" -o "$EE_DEVICE" == "RG351V" ] || [ "$EE_DEVICE" == "GameForce" ]; then
 # copy the correct config file depending on what OGA
 
 DEVICE=$(oga_ver)
@@ -108,7 +108,7 @@ case "${DEVICE}" in
     "GF")
         cp -rf drastic_ogs.cfg drastic.cfg
     ;;
-    "RG351P")
+    "RG351P"|"RG351V")
         cp -rf drastic_rg351p.cfg drastic.cfg
     ;;
 esac

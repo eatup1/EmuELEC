@@ -16,6 +16,12 @@ DEFAULTSPLASH="/storage/.config/splash/splash-1080.png"
 VIDEOSPLASH="/usr/config/splash/emuelec_intro_1080p.mp4"
 DURATION="5"
 
+# Change splash image for RG351V
+if [ "$EE_DEVICE" == "RG351V" ]; then
+GAMELOADINGSPLASH="/storage/.config/splash/loading-game-rg351v.png"
+DEFAULTSPLASH="/storage/.config/splash/splash-rg351v.png"
+fi
+
 # we make sure the platform is all lowercase
 PLATFORM=${PLATFORM,,}
 PLAYER="ffplay"
@@ -79,7 +85,7 @@ SPLASHVID5="$SPLASHDIR/launching.mp4"
 fi
 
 # Odroid Go Advance still does not support splash screens
-if [ "$EE_DEVICE" == "OdroidGoAdvance" -o "$EE_DEVICE" == "RG351P" ] || [ "$EE_DEVICE" == "GameForce" ]; then
+if [ "$EE_DEVICE" == "OdroidGoAdvance" -o "$EE_DEVICE" == "RG351P" -o "$EE_DEVICE" == "RG351V" ] || [ "$EE_DEVICE" == "GameForce" ]; then
 clear > /dev/console
 echo "Loading ..." > /dev/console
 PLAYER="mpv"
@@ -114,7 +120,7 @@ esac
 
 if [[ -f "/storage/.config/emuelec/configs/novideo" ]] && [[ ${VIDEO} != "1" ]]; then
 	if [ "$PLATFORM" != "intro" ]; then
-	if [ "$EE_DEVICE" == "OdroidGoAdvance" -o "$EE_DEVICE" == "RG351P" ] || [ "$EE_DEVICE" == "GameForce" ]; then
+	if [ "$EE_DEVICE" == "OdroidGoAdvance" -o "$EE_DEVICE" == "RG351P" -o "$EE_DEVICE" == "RG351V" ] || [ "$EE_DEVICE" == "GameForce" ]; then
         $PLAYER "$SPLASH" > /dev/null 2>&1
     else
         $PLAYER -fs -autoexit ${SIZE} "$SPLASH" > /dev/null 2>&1
@@ -126,7 +132,7 @@ else
 	SPLASH=${VIDEOSPLASH}
 	set_audio alsa
 	#[ -e /storage/.config/asound.conf ] && mv /storage/.config/asound.conf /storage/.config/asound.confs
-    if [ "$EE_DEVICE" == "OdroidGoAdvance" -o "$EE_DEVICE" == "RG351P" ] || [ "$EE_DEVICE" == "GameForce" ]; then
+    if [ "$EE_DEVICE" == "OdroidGoAdvance" -o "$EE_DEVICE" == "RG351P" -o "$EE_DEVICE" == "RG351V" ] || [ "$EE_DEVICE" == "GameForce" ]; then
         $PLAYER "$SPLASH" > /dev/null 2>&1
     else
         $PLAYER -fs -autoexit ${SIZE} "$SPLASH" > /dev/null 2>&1

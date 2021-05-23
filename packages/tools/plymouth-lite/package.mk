@@ -28,6 +28,8 @@ makeinstall_init() {
     find_file_path splash/splash.conf && cp ${FOUND_PATH} $INSTALL/splash
     if [ "$DEVICE" == "OdroidGoAdvance" -o "$DEVICE" == "RG351P" ]; then
 		find_file_path "splash/splash-odroidgoa.png" && cp ${FOUND_PATH} $INSTALL/splash/splash-1080.png
+    elif [ "$DEVICE" == "RG351V" ]; then
+		find_file_path "splash/splash-rg351v.png" && cp ${FOUND_PATH} $INSTALL/splash/splash-1080.png
     else
 		find_file_path "splash/splash-*.png" && cp ${FOUND_PATH} $INSTALL/splash
     fi

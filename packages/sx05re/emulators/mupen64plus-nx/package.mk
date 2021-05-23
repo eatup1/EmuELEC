@@ -25,7 +25,7 @@ if [ $ARCH == "arm" ]; then
 		PKG_MAKE_OPTS_TARGET+=" platform=AMLG12B"
 	elif [ "${PROJECT}" = "Amlogic" ]; then
 		PKG_MAKE_OPTS_TARGET+=" platform=amlogic"
-	elif [ "${DEVICE}" = "OdroidGoAdvance" -o "${DEVICE}" = "RG351P" ] || [ "${DEVICE}" == "GameForce" ]; then
+	elif [ "${DEVICE}" = "OdroidGoAdvance" -o "${DEVICE}" = "RG351P" -o "${DEVICE}" = "RG351V" ] || [ "${DEVICE}" == "GameForce" ]; then
 		sed -i "s|cortex-a53|cortex-a35|g" Makefile
 		PKG_MAKE_OPTS_TARGET+=" platform=odroidgoa"
 	fi
@@ -34,7 +34,7 @@ else
 		PKG_MAKE_OPTS_TARGET+=" platform=odroid64 BOARD=N2"
 	elif [ "${PROJECT}" = "Amlogic" ]; then 
 		PKG_MAKE_OPTS_TARGET+=" platform=amlogic64"
-	elif [ "${DEVICE}" = "OdroidGoAdvance" -o "${DEVICE}" = "RG351P" ] || [ "${DEVICE}" == "GameForce" ]; then
+	elif [ "${DEVICE}" = "OdroidGoAdvance" -o "${DEVICE}" = "RG351P" -o "${DEVICE}" = "RG351V" ] || [ "${DEVICE}" == "GameForce" ]; then
 		PKG_MAKE_OPTS_TARGET+=" platform=amlogic64"
 	fi
 fi

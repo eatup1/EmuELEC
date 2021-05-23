@@ -27,7 +27,7 @@ sed -i "s|Fiery_Turk.ttf|NanumGothic.ttf|" Makefile
 
 OGA=0
 
-if [[ "$DEVICE" == "OdroidGoAdvance" || "$DEVICE" == "RG351P" || "$DEVICE" == "GameForce" ]]; then
+if [[ "$DEVICE" == "OdroidGoAdvance" || "$DEVICE" == "RG351P" || "$DEVICE" == "RG351V" || "$DEVICE" == "GameForce" ]]; then
 	OGA=1
 fi
 

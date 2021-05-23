@@ -1,0 +1,283 @@
+diff --git a/board/rockchip/odroidgoa/odroidgoa.c b/board/rockchip/odroidgoa/odroidgoa.c
+index 387125fc93..f9c4d1da4b 100644
+--- a/board/rockchip/odroidgoa/odroidgoa.c
++++ b/board/rockchip/odroidgoa/odroidgoa.c
+@@ -22,7 +22,10 @@
+ DECLARE_GLOBAL_DATA_PTR;
+ 
+ #define ALIVE_LED_GPIO	17 /* GPIO0_C1 */
+-#define WIFI_EN_GPIO	110 /* GPIO3_B6 */
++#define WIFI_EN_GPIO	5 /* GPIO0_A5 */
++#ifdef __VIB__
++#define VIB_EN_GPIO 15
++#endif
+ 
+ unsigned char disp_offs = 0;
+ 
+@@ -36,6 +39,11 @@ bool is_odroidgo3(void)
+ 		return false;
+ }
+ 
++bool is_rg351v(void)
++{
++	return true;
++}
++
+ void board_alive_led(void)
+ {
+ 	gpio_request(ALIVE_LED_GPIO, "alive_led");
+@@ -46,7 +54,7 @@ void board_alive_led(void)
+ void board_wifi_en(void)
+ {
+ 	gpio_request(WIFI_EN_GPIO, "wifi_enable");
+-	gpio_direction_output(WIFI_EN_GPIO, 1);
++	gpio_direction_output(WIFI_EN_GPIO, 0);
+ 	gpio_free(WIFI_EN_GPIO);
+ }
+ 
+@@ -143,10 +151,10 @@ void board_check_mandatory_files(void)
+ 	}
+ 
+ 	/* check launcher in ext4 fs of sd card */
+-	if (file_exists("mmc", "1:2", "/usr/local/bin/emulationstation/emulationstation",
++	if (!file_exists("mmc", "1:2", "/usr/local/bin/emulationstation/emulationstation",
+ 				FS_TYPE_EXT)) {
+ 		lcd_setfg_color("white");
+-		lcd_printf(0, 0, 1, "[ GO Advanced EMULATION Image ]");
++		lcd_printf(0, 0, 1, "[ EmuELEC RG351V ]");
+ 	}
+ 
+ 	return;
+@@ -157,16 +165,20 @@ err:
+ 
+ int rk_board_late_init(void)
+ {
+-	if (is_odroidgo3())
++	if (is_odroidgo3() || is_rg351v())
+ 		disp_offs = 9;
+ 
++	#ifdef __VIB__
++	gpio_direction_output(VIB_EN_GPIO, 0);
++	gpio_free(VIB_EN_GPIO);
++	#endif
+ 	/* turn on blue led */
+ 	board_alive_led();
+-
++	#ifndef __CLOSE_WIFI_INIT__
+ 	/* set wifi_en as default high */
+-	if (!is_odroidgo3())
++	if (!is_odroidgo3() || is_rg351v())
+ 		board_wifi_en();
+-
++	#endif
+ 	/* set uart2-m1 port as a default debug console */
+ 	board_debug_uart2m1();
+ 
+diff --git a/board/rockchip/odroidgoa/odroidgoa_power.c b/board/rockchip/odroidgoa/odroidgoa_power.c
+index 4e3eb683e6..1d2c680509 100644
+--- a/board/rockchip/odroidgoa/odroidgoa_power.c
++++ b/board/rockchip/odroidgoa/odroidgoa_power.c
+@@ -10,7 +10,7 @@
+ #include <power/fuel_gauge.h>
+ #include <odroidgoa_status.h>
+ 
+-#define MIN_VOL_LEVEL	3530	/* 3.53V */
++#define MIN_VOL_LEVEL	3400	/* 3.4V */
+ 
+ #define PWR_LED_GPIO	18	/* GPIO0_C2 */
+ #define DC_DET_GPIO	11	/* GPIO0_B3 */
+diff --git a/cmd/hwrev.c b/cmd/hwrev.c
+index 640397e1cb..02d009685d 100644
+--- a/cmd/hwrev.c
++++ b/cmd/hwrev.c
+@@ -19,15 +19,15 @@ int do_hwrev(cmd_tbl_t *cmdtp, int flag, int argc, char * const argv[])
+ 		return CMD_RET_FAILURE;
+ 	}
+ 
+-	/* GO2 rev 1.1 */
++	/* GO2 rev 1.1 or RG351P */
+ 	if (check_range(655, 695, hwrev_adc)) {
+ 		env_set("hwrev", "v11");
+-		env_set("dtb_name", "rk3326-odroidgo2-linux-v11.dtb");
++		env_set("dtb_name", "rk3326-rg351p.dtb");
+ 	}
+-	/* GO2 rev 1.0 */
++	/* GO2 rev 1.0 or RG351V */
+ 	else if (check_range(816, 896, hwrev_adc)) {
+ 		env_set("hwrev", "v10");
+-		env_set("dtb_name", "rk3326-odroidgo2-linux.dtb");
++		env_set("dtb_name", "rk3326-rg351v.dtb");
+ 	}
+ 	/* GO3 rev 1.0 */
+ 	else if (check_range(40, 126, hwrev_adc)) {
+diff --git a/drivers/power/charge_animation.c b/drivers/power/charge_animation.c
+index 95e8064246..66b4099ec4 100644
+--- a/drivers/power/charge_animation.c
++++ b/drivers/power/charge_animation.c
+@@ -43,7 +43,12 @@ DECLARE_GLOBAL_DATA_PTR;
+ #define FUEL_GAUGE_POLL_MS			1000
+ 
+ #define LED_CHARGING_NAME			"battery_charging"
++#ifndef __CLOSE_CHARGE_LED__
+ #define LED_CHARGING_FULL_NAME			"battery_full"
++#endif
++#ifdef __BATTERY_LOW__
++#define LED_CHARGING_LOW_NAME			"battery_low"
++#endif
+ 
+ struct charge_image {
+ 	const char *name;
+@@ -58,7 +63,12 @@ struct charge_animation_priv {
+ 	struct udevice *rtc;
+ #ifdef CONFIG_LED
+ 	struct udevice *led_charging;
++#ifndef __CLOSE_CHARGE_LED__
+ 	struct udevice *led_full;
++#endif
++#ifdef __BATTERY_LOW__
++	struct udevice *led_low;
++#endif
+ #endif
+ 	const struct charge_image *image;
+ 	int image_num;
+@@ -406,7 +416,7 @@ static int leds_update(struct udevice *dev, int soc)
+ 			return ret;
+ 		}
+ 	}
+-
++#ifndef __CLOSE_CHARGE_LED__
+ 	if (priv->led_full) {
+ 		ledst = (soc == 100) ? LEDST_ON : LEDST_OFF;
+ 		ret = led_set_state(priv->led_full, ledst);
+@@ -416,21 +426,38 @@ static int leds_update(struct udevice *dev, int soc)
+ 			return ret;
+ 		}
+ 	}
+-
++#endif
++#ifdef __BATTERY_LOW__
++	if (priv->led_low) {
++		ledst = (soc >= 5) ? LEDST_ON : LEDST_OFF;
++		ret = led_set_state(priv->led_low, ledst);
++		if (ret) {
++			printf("set charging low led %s failed, ret=%d\n",
++			       ledst == LEDST_ON ? "ON" : "OFF", ret);
++			return ret;
++		}
++	}
++#endif
+ 	return 0;
+ }
+ #else
+ static int leds_update(struct udevice *dev, int soc) { return 0; }
+ #endif
+-
++#ifdef __DC_DETECT__
++extern int odroid_check_dcjack(void);
++#endif
+ static int fg_charger_get_chrg_online(struct udevice *dev)
+ {
++#ifdef __DC_DETECT__
++	return odroid_check_dcjack()?0:1;
++#else
+ 	struct charge_animation_priv *priv = dev_get_priv(dev);
+ 	struct udevice *charger;
+ 
+ 	charger = priv->charger ? : priv->fg;
+ 
+ 	return fuel_gauge_get_chrg_online(charger);
++#endif
+ }
+ 
+ static int charge_extrem_low_power(struct udevice *dev)
+@@ -1034,9 +1061,16 @@ static int charge_animation_probe(struct udevice *dev)
+ 	ret = led_get_by_label(LED_CHARGING_NAME, &priv->led_charging);
+ 	if (!ret)
+ 		printf("Found Charging LED\n");
++#ifndef __CLOSE_CHARGE_LED__
+ 	ret = led_get_by_label(LED_CHARGING_FULL_NAME, &priv->led_full);
+ 	if (!ret)
+ 		printf("Found Charging-Full LED\n");
++#endif
++#ifdef __BATTERY_LOW__
++	ret = led_get_by_label(LED_CHARGING_LOW_NAME, &priv->led_low);
++	if (!ret)
++		printf("Found Charging-Low LED\n");
++#endif
+ #endif
+ 
+ 	/* Get charge images */
+diff --git a/drivers/video/drm/rockchip_display.c b/drivers/video/drm/rockchip_display.c
+index c6c6c531a7..8dea2fa010 100644
+--- a/drivers/video/drm/rockchip_display.c
++++ b/drivers/video/drm/rockchip_display.c
+@@ -1047,7 +1047,7 @@ void rockchip_show_fbbase(ulong fbbase)
+ 			s->logo.width = 480;
+ 			s->logo.height = 854;
+ 		} else {
+-			s->logo.width = 320;
++			s->logo.width = 640;
+ 			s->logo.height = 480;
+ 		}
+ #else
+@@ -1422,7 +1422,7 @@ static int rockchip_display_probe(struct udevice *dev)
+ 		uc_priv->xsize = 480;
+ 		uc_priv->ysize = 854;
+ 	} else {
+-		uc_priv->xsize = 320;
++		uc_priv->xsize = 640;
+ 		uc_priv->ysize = 480;
+ 	}
+ #else
+diff --git a/include/common.h b/include/common.h
+index 624daaca37..422363ee0a 100644
+--- a/include/common.h
++++ b/include/common.h
+@@ -7,7 +7,10 @@
+ 
+ #ifndef __COMMON_H_
+ #define __COMMON_H_	1
+-
++#define __VIB__//Vibration function
++#define __CLOSE_CHARGE_LED__//Turn off the charging light
++#define __BATTERY_LOW__//Low battery prompt
++#define __DC_DETECT__//Charge detection
+ #ifndef __ASSEMBLY__		/* put C only stuff in this section */
+ 
+ typedef unsigned char		uchar;
+diff --git a/include/rockchip_display_cmds.h b/include/rockchip_display_cmds.h
+index f7a5dc7737..163f972f5e 100644
+--- a/include/rockchip_display_cmds.h
++++ b/include/rockchip_display_cmds.h
+@@ -23,12 +23,13 @@
+ #define	LCD_ROTATE_180		2
+ #define	LCD_ROTATE_270		3
+ 
+-#define	DEFAULT_LCD_ROTATE	LCD_ROTATE_270
++#define	DEFAULT_LCD_ROTATE	LCD_ROTATE_0
+ 
+ /*----------------------------------------------------------------------------*/
+ /* Max logo bmp file is 2M bytes */
+ /* ODROID-GO2 320x480x24bpp bitmap, needs bytes = 460,800              */
+ /* ODROID-GO3 480x854x24bpp bitmap, needs bytes = 1,229,760 > 1 Mbytes */
++/* RG351V 640x480x24bpp bitmap, needs bytes = 921,600 */
+ /*----------------------------------------------------------------------------*/
+ #define	LCD_LOGO_FILENAME	"logo.bmp"
+ #define	LCD_LOGO_SIZE		(2 * 1024 * 1024)
+diff --git a/include/video_rockchip.h b/include/video_rockchip.h
+index dc62fa0119..cc51c11b65 100644
+--- a/include/video_rockchip.h
++++ b/include/video_rockchip.h
+@@ -8,9 +8,9 @@
+ #define VIDEO_ROCKCHIP_H
+ 
+ #if defined(CONFIG_PLATFORM_ODROID_GOADV)
+-	/* set larger fb size to support GO2 & GO3 */
+-	#define DRM_ROCKCHIP_FB_WIDTH		480
+-	#define DRM_ROCKCHIP_FB_HEIGHT		854
++	/* set larger fb size to support RG351V */
++	#define DRM_ROCKCHIP_FB_WIDTH		640
++	#define DRM_ROCKCHIP_FB_HEIGHT		480
+ 	#define DRM_ROCKCHIP_FB_BPP		VIDEO_BPP32
+ #else
+ 	#ifdef CONFIG_DRM_ROCKCHIP_VIDEO_FRAMEBUFFER
