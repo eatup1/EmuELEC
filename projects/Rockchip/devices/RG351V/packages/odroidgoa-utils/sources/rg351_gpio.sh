@@ -16,9 +16,9 @@ do
 GPIO64=$(cat /sys/class/gpio/gpio64/value)
 GPIO65=$(cat /sys/class/gpio/gpio65/value)
 [[ "$GPIO64" == "0" ]] && Keyvolup_down=1
-[[ "$GPIO64" == "1" ]] && [[ "$Keyvolup_down" == "1" ]] && /emuelec/scripts/odroidgoa_utils.sh vol + && Keyvolup_down=0
+[[ "$GPIO64" == "1" ]] && [[ "$Keyvolup_down" == "1" ]] && /usr/bin/odroidgoa_utils.sh vol + && Keyvolup_down=0
 [[ "$GPIO65" == "0" ]] && Keyvoldown_down=1
-[[ "$GPIO65" == "1" ]] && [[ "$Keyvoldown_down" == "1" ]] && /emuelec/scripts/odroidgoa_utils.sh vol - && Keyvoldown_down=0
+[[ "$GPIO65" == "1" ]] && [[ "$Keyvoldown_down" == "1" ]] && /usr/bin/odroidgoa_utils.sh vol - && Keyvoldown_down=0
 [[ ! -b "/dev/mmcblk1p1" ]] && Sdcard_in=1
 #[[ -b "/dev/mmcblk1p1" ]] && [[ "$Sdcard_in" == "1" ]] && umount /var/media/GAMES
 #[[ -b "/dev/mmcblk1p1" ]] && [[ "$Sdcard_in" == "1" ]] && umount /storage/roms
