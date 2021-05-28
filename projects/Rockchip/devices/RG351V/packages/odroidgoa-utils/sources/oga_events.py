@@ -6,12 +6,17 @@ import time
 from subprocess import check_output
 
 pwrkey = evdev.InputDevice("/dev/input/event0")
+rg351v_volume = evdev.InputDevice("/dev/input/by-path/platform-rg351v-keys-event")
 
 need_to_swallow_pwr_key = False # After a resume, we swallow the pwr input that triggered the resume
 time_start=0
 time_end=0
 class Power:
     pwr = 116
+
+class Volume:
+    up = 115
+    down = 114
 
 def runcmd(cmd, *args, **kw):
     print(f">>> {cmd}")
@@ -36,6 +41,14 @@ async def handle_event(device):
                 if (time_end-time_start) >= 3:
                     runcmd("/usr/sbin/poweroff", shell=True)
 
+        elif device.name == "rg351v-keys":
+            keys = rg351v_volume.active_keys()
+            if event.value == 1:
+                if Volume.up in keys:
+                        runcmd("/usr/bin/odroidgoa_utils.sh vol +", shell=True)
+                elif Volume.down in keys:
+                        runcmd("/usr/bin/odroidgoa_utils.sh vol -", shell=True)
+
 
         if event.code != 0:
             print(device.name, event)
@@ -44,6 +57,7 @@ async def handle_event(device):
 
 def run():
     asyncio.ensure_future(handle_event(pwrkey))
+    asyncio.ensure_future(handle_event(rg351v_volume))
 
     loop = asyncio.get_event_loop()
     loop.run_forever()
