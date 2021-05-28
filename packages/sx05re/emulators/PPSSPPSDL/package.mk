@@ -52,9 +52,12 @@ makeinstall_target() {
 if [ "$DEVICE" == "OdroidGoAdvance" ]; then
     rm -f $INSTALL/usr/config/ppsspp/PSP/SYSTEM/controls_*.ini
     cp -f $PKG_DIR/config/PSP/SYSTEM/controls_oga.ini $INSTALL/usr/config/ppsspp/PSP/SYSTEM/controls.ini
-elif [ "$DEVICE" == "RG351P" -o "$DEVICE" == "RG351V" ]; then
+elif [ "$DEVICE" == "RG351P" ]; then
     rm -f $INSTALL/usr/config/ppsspp/PSP/SYSTEM/controls_*.ini
     cp -f $PKG_DIR/config/PSP/SYSTEM/controls_rg351p.ini $INSTALL/usr/config/ppsspp/PSP/SYSTEM/controls.ini
+elif [ "$DEVICE" == "RG351V" ]; then
+    rm -f $INSTALL/usr/config/ppsspp/PSP/SYSTEM/controls_*.ini
+    cp -f $PKG_DIR/config/PSP/SYSTEM/controls_rg351v.ini $INSTALL/usr/config/ppsspp/PSP/SYSTEM/controls.ini
 fi
     rm $INSTALL/usr/config/ppsspp/assets/gamecontrollerdb.txt
     ln -sf /storage/.config/SDL-GameControllerDB/gamecontrollerdb.txt $INSTALL/usr/config/ppsspp/assets/gamecontrollerdb.txt
