@@ -90,6 +90,13 @@ makeinstall_target() {
         sed -i "s|<\/config>|	<string name=\"GamelistViewStyle\" value=\"Small Screen\" />\n<string name=\"ThemeSystemView\" value=\"panel\" />\n<\/config>|g" "$INSTALL/usr/config/emulationstation/es_settings.cfg"
     fi
     
+    if [[ "${DEVICE}" == "RG351P" ]]; then
+        sed -i "s|<!--RG351P inputConfig|<inputConfig|g" "$INSTALL/usr/config/emulationstation/es_input.cfg"
+        sed -i "s|inputConfig RG351P-->|inputConfig>|g" "$INSTALL/usr/config/emulationstation/es_input.cfg"
+    elif [[ "${DEVICE}" == "RG351V" ]]; then
+        sed -i "s|<!--RG351V inputConfig|<inputConfig|g" "$INSTALL/usr/config/emulationstation/es_input.cfg"
+        sed -i "s|inputConfig RG351V-->|inputConfig>|g" "$INSTALL/usr/config/emulationstation/es_input.cfg"
+    fi
     
 }
 

@@ -2,8 +2,8 @@
 <gameList>
 	<game>
 		<path>./RG351_input_Test.sh</path>
-		<name>RG351P Input Test</name>
-		<desc>RG351P의 Joypad를 Test합니다.</desc>
+		<name>RG351 Input Test</name>
+		<desc>RG351의 Joypad를 Test합니다.</desc>
 		<developer>Anbernic</developer>
 		<publisher>Anbernic</publisher>
 		<genre>script</genre>

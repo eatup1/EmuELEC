@@ -135,6 +135,11 @@ post_install() {
 
 mkdir -p $INSTALL/etc/retroarch-joypad-autoconfig
 cp -r $PKG_DIR/gamepads/* $INSTALL/etc/retroarch-joypad-autoconfig
+if [[ ${DEVICE} == "RG351V" ]]; then 
+    rm -rf "$INSTALL/etc/retroarch-joypad-autoconfig/OpenSimHardware OSH PB Controller.cfg"
+    rm -rf "$INSTALL/etc/retroarch-joypad-autoconfig/OpenSimHardware OSH PB Controller_vertical.cfg"
+    mv "$INSTALL/etc/retroarch-joypad-autoconfig/OpenSimHardware OSH PB Controller (RG351V).cfg" "$INSTALL/etc/retroarch-joypad-autoconfig/OpenSimHardware OSH PB Controller.cfg"
+fi
 
 # link default.target to emuelec.target
    ln -sf emuelec.target $INSTALL/usr/lib/systemd/system/default.target
@@ -183,7 +188,7 @@ fi
 	done
 	fi 
 
-  # Remove scripts from except RG351P build
+  # Remove scripts from except RG351P/V build
 	if [[ ${DEVICE} != "RG351P" && ${DEVICE} != "RG351V" ]]; then 
 	for i in "RG351_input_Test" ; do 
 	xmlstarlet ed -L -P -d "/gameList/game[name='${i}']" $INSTALL/usr/bin/scripts/setup/gamelist.xml
