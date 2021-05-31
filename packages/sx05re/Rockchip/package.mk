@@ -17,6 +17,8 @@ if [ "$DEVICE" == "OdroidGoAdvance" ]; then
 	cp boot_oga.ini $INSTALL/usr/share/bootloader/boot.ini
 elif [ "$DEVICE" == "RG351P" ]; then
 	cp boot_rg351p.ini $INSTALL/usr/share/bootloader/boot.ini
+elif [ "$DEVICE" == "RG351V" ]; then
+	cp boot_rg351v.ini $INSTALL/usr/share/bootloader/boot.ini
 elif [ "$DEVICE" == "GameForce" ]; then
 	cp boot_gameforce.ini $INSTALL/usr/share/bootloader/boot.ini
 fi

@@ -16,7 +16,7 @@ PKG_TOOLCHAIN="make"
 PKG_MAKE_OPTS_TARGET="all"
 
 pre_configure_target() {
-if [ "$DEVICE" == "OdroidGoAdvance" -o "$DEVICE" == "RG351P" ] || [ "$DEVICE" == "GameForce" ]; then
+if [ "$DEVICE" == "OdroidGoAdvance" -o "$DEVICE" == "RG351P" -o "$DEVICE" == "RG351V" ] || [ "$DEVICE" == "GameForce" ]; then
 sed -i -e "s/cortex-a7/cortex-a35/" $PKG_BUILD/Makefile
 else
 sed -i -e "s/cortex-a7/cortex-a53/" $PKG_BUILD/Makefile

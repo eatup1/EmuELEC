@@ -29,7 +29,7 @@ fi
 
 
 pre_configure_target() {
-if [ "$DEVICE" == "OdroidGoAdvance" -o "$DEVICE" == "RG351P" ] || [ "$DEVICE" == "GameForce" ]; then
+if [ "$DEVICE" == "OdroidGoAdvance" -o "$DEVICE" == "RG351P" -o "$DEVICE" == "RG351V" ] || [ "$DEVICE" == "GameForce" ]; then
 	sed -i "s|include_directories(/usr/include/drm)|include_directories(${SYSROOT_PREFIX}/usr/include/drm)|" $PKG_BUILD/CMakeLists.txt
 fi
 }
@@ -55,6 +55,9 @@ if [ "$DEVICE" == "OdroidGoAdvance" ]; then
 elif [ "$DEVICE" == "RG351P" ]; then
     rm -f $INSTALL/usr/config/ppsspp/PSP/SYSTEM/controls_*.ini
     cp -f $PKG_DIR/config/PSP/SYSTEM/controls_rg351p.ini $INSTALL/usr/config/ppsspp/PSP/SYSTEM/controls.ini
+elif [ "$DEVICE" == "RG351V" ]; then
+    rm -f $INSTALL/usr/config/ppsspp/PSP/SYSTEM/controls_*.ini
+    cp -f $PKG_DIR/config/PSP/SYSTEM/controls_rg351v.ini $INSTALL/usr/config/ppsspp/PSP/SYSTEM/controls.ini
 fi
     rm $INSTALL/usr/config/ppsspp/assets/gamecontrollerdb.txt
     ln -sf /storage/.config/SDL-GameControllerDB/gamecontrollerdb.txt $INSTALL/usr/config/ppsspp/assets/gamecontrollerdb.txt

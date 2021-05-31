@@ -15,11 +15,11 @@ PKG_TOOLCHAIN="manual"
 
 makeinstall_target() {
   mkdir -p $INSTALL
-if [[ "$DEVICE" == "OdroidGoAdvance" || "$DEVICE" == "RG351P" ]] || [[ "$DEVICE" == "GameForce" ]]; then
+if [[ "$DEVICE" == "OdroidGoAdvance" || "$DEVICE" == "RG351P" || "$DEVICE" == "RG351V" ]] || [[ "$DEVICE" == "GameForce" ]]; then
 	cp "$(get_build_dir mali-bifrost)/libmali.so_rk3326_gbm_arm32_r13p0_with_vulkan_and_cl" $PKG_BUILD/OdroidGoAdvance/usr/config/emuelec/lib32/libmali.so
 	cp -rf $PKG_BUILD/OdroidGoAdvance/* $INSTALL/
 	
-	if [[ "$DEVICE" == "GameForce" ]]; then
+	if [[ "$DEVICE" == "GameForce" || "$DEVICE" == "RG351V" ]]; then
 	   cp -rf $PKG_BUILD/GameForce/* $INSTALL/
 	fi
 	

@@ -40,7 +40,7 @@ if [[ ${DEVICE} == "GameForce" ]]; then
 PKG_CMAKE_OPTS_TARGET+=" -DENABLE_GAMEFORCE=1"
 fi
 
-if [[ ${DEVICE} == "OdroidGoAdvance" || ${DEVICE} == "RG351P" ]]; then
+if [[ ${DEVICE} == "OdroidGoAdvance" || ${DEVICE} == "RG351P" || ${DEVICE} == "RG351V" ]]; then
 PKG_CMAKE_OPTS_TARGET+=" -DODROIDGOA=1"
 fi
 
@@ -86,10 +86,17 @@ makeinstall_target() {
         sed -i "s|</config>|	<bool name=\"StopMusicOnScreenSaver\" value=\"false\" />\n</config>|g" "$INSTALL/usr/config/emulationstation/es_settings.cfg"
     fi
 
-    if [[ "${DEVICE}" == "OdroidGoAdvance" || "${DEVICE}" == "RG351P" ]] || [[ "${DEVICE}" == "GameForce" ]]; then
+    if [[ "${DEVICE}" == "OdroidGoAdvance" || "${DEVICE}" == "RG351P" || ${DEVICE} == "RG351V" ]] || [[ "${DEVICE}" == "GameForce" ]]; then
         sed -i "s|<\/config>|	<string name=\"GamelistViewStyle\" value=\"Small Screen\" />\n<string name=\"ThemeSystemView\" value=\"panel\" />\n<\/config>|g" "$INSTALL/usr/config/emulationstation/es_settings.cfg"
     fi
     
+    if [[ "${DEVICE}" == "RG351P" ]]; then
+        sed -i "s|<!--RG351P inputConfig|<inputConfig|g" "$INSTALL/usr/config/emulationstation/es_input.cfg"
+        sed -i "s|inputConfig RG351P-->|inputConfig>|g" "$INSTALL/usr/config/emulationstation/es_input.cfg"
+    elif [[ "${DEVICE}" == "RG351V" ]]; then
+        sed -i "s|<!--RG351V inputConfig|<inputConfig|g" "$INSTALL/usr/config/emulationstation/es_input.cfg"
+        sed -i "s|inputConfig RG351V-->|inputConfig>|g" "$INSTALL/usr/config/emulationstation/es_input.cfg"
+    fi
     
 }
 

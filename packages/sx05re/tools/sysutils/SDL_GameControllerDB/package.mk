@@ -18,6 +18,9 @@ sed -i "s/19000000010000000200000011000000,odroid/# 1900000001000000020000001100
 sed -i "s/03000000790000001c18000011010000,PC Game Controller,a:b2/# 03000000790000001c18000011010000,PC Game Controller,a:b2/g" gamecontrollerdb.txt
 sed -i "s/03000000790000000600000010010000,DragonRise Inc. Generic USB Joystick,a:b2/# 03000000790000000600000010010000,DragonRise Inc. Generic USB Joystick,a:b2/g" gamecontrollerdb.txt
 sed -i "s/03000000bc2000000055000010010000,ShanWan PS3/PC Wired GamePad/# 03000000bc2000000055000010010000,ShanWan PS3/PC Wired GamePad" gamecontrollerdb.txt
+if [ "$DEVICE" == "RG351V" ]; then
+sed -i "s/OpenSimHardware OSH PB Controller,platform:Linux,x:b2,a:b0,b:b1,y:b3,guide:b7,back:b7,start:b6,dpleft:h0.8,dpdown:h0.4,dpright:h0.2,dpup:h0.1,leftshoulder:b4,lefttrigger:b10,rightshoulder:b5,righttrigger:b11,leftstick:b8,rightstick:b9,leftx:a0~,lefty:a1~,rightx:a2,righty:a3,/OpenSimHardware OSH PB Controller,platform:Linux,x:b2,a:b0,b:b1,y:b3,guide:b9,back:b7,start:b6,dpleft:h0.8,dpdown:h0.4,dpright:h0.2,dpup:h0.1,leftshoulder:b4,lefttrigger:b10,rightshoulder:b5,righttrigger:b11,leftstick:b8,leftx:a0~,lefty:a1~,/g" gamecontrollerdb.txt
+fi
 }
 
 makeinstall_target() {

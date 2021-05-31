@@ -140,7 +140,7 @@ case ${PLATFORM} in
 		RUNTHIS='${TBASH} /usr/bin/openbor.sh "${ROMNAME}"'
 		;;
 	"setup")
-		if [ "$EE_DEVICE" == "OdroidGoAdvance" -o "$EE_DEVICE" == "RG351P" ] || [ "$EE_DEVICE" == "GameForce" ]; then 
+		if [ "$EE_DEVICE" == "OdroidGoAdvance" -o "$EE_DEVICE" == "RG351P" -o "$EE_DEVICE" == "RG351V" ] || [ "$EE_DEVICE" == "GameForce" ]; then 
 		    set_kill_keys "kmscon" 
 		else
 		    set_kill_keys "fbterm"

@@ -14,7 +14,7 @@ mkdir -p "${SCREENDIR}"
 # Take screenshot
 cd "${SCREENDIR}"
 
-if [[ "$EE_DEVICE" == "OdroidGoAdvance" || "$EE_DEVICE" == "RG351P" || "$EE_DEVICE" == "GameForce" ]]; then
+if [[ "$EE_DEVICE" == "OdroidGoAdvance" || "$EE_DEVICE" == "RG351P" || "$EE_DEVICE" == "RG351V" || "$EE_DEVICE" == "GameForce" ]]; then
     fbdump > "${FILENAME}.pbm"
 else
     fbgrab -z 0 "${FILENAME}.png"

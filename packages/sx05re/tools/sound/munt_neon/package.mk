@@ -15,7 +15,7 @@ PKG_CMAKE_OPTS_TARGET="-Dmunt_WITH_MT32EMU_QT=0 \
 
 
 pre_configure_target() {
-if [ "$DEVICE" == "OdroidGoAdvance" -o "$DEVICE" == "RG351P" ] || [ "$DEVICE" == "GameForce" ]; then
+if [ "$DEVICE" == "OdroidGoAdvance" -o "$DEVICE" == "RG351P" -o "$DEVICE" == "RG351V" ] || [ "$DEVICE" == "GameForce" ]; then
 sed -i -e "s/cortex-a7/cortex-a35/" $PKG_BUILD/mt32emu_alsadrv/Makefile
 else
 sed -i -e "s/cortex-a7/cortex-a53/" $PKG_BUILD/mt32emu_alsadrv/Makefile

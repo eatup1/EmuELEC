@@ -1032,7 +1032,7 @@ function joy2keyStart() {
     # if no joystick device, or joy2key is already running exit
     [[ -z "$__joy2key_dev" ]] || pgrep -f joy2key.py >/dev/null && return 1
 
-    if [[ "$EE_DEVICE" == "OdroidGoAdvance" || "$EE_DEVICE" == "RG351P" ]] || [[ "$EE_DEVICE" == "GameForce" ]]; then
+    if [[ "$EE_DEVICE" == "OdroidGoAdvance" || "$EE_DEVICE" == "RG351P" || "$EE_DEVICE" == "RG351V" ]] || [[ "$EE_DEVICE" == "GameForce" ]]; then
         devtty="/dev/tty1" 
     else
         devtty="/dev/tty0"

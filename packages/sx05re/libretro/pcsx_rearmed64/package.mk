@@ -19,7 +19,7 @@ cd ${PKG_BUILD}
 
 if [ "${PROJECT}" == "Amlogic" ]; then
 	make -f Makefile.libretro GIT_VERSION=${PKG_VERSION} platform=h5
-elif [ "${DEVICE}" == "OdroidGoAdvance" -o "${DEVICE}" == "RG351P" ] || [ "${DEVICE}" == "Gameforce" ]; then
+elif [ "${DEVICE}" == "OdroidGoAdvance" -o "${DEVICE}" == "RG351P" -o "${DEVICE}" == "RG351V" ] || [ "${DEVICE}" == "Gameforce" ]; then
 	sed -i "s|cortex-a53|cortex-a35|g" Makefile.libretro
 	make -f Makefile.libretro GIT_VERSION=${PKG_VERSION} platform=h5
 else

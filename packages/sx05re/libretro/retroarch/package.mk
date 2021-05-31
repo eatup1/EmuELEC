@@ -38,7 +38,7 @@ fi
 if [ "$DEVICE" == "OdroidGoAdvance" ] || [ "$DEVICE" == "GameForce" ]; then
   PKG_DEPENDS_TARGET+=" libdrm librga"
   PKG_PATCH_DIRS="OdroidGoAdvance"
-elif [ "$DEVICE" == "RG351P" ]; then
+elif [ "$DEVICE" == "RG351P" -o "$DEVICE" == "RG351V" ]; then
   PKG_DEPENDS_TARGET+=" libdrm librga"
   PKG_PATCH_DIRS="RG351P"
 fi
@@ -70,7 +70,7 @@ PKG_CONFIGURE_OPTS_TARGET="--disable-qt \
                            --enable-sdl2 \
                            --enable-ffmpeg"
 
-if [ "$DEVICE" == "OdroidGoAdvance" -o "$DEVICE" == "RG351P" ] || [ "$DEVICE" == "GameForce" ]; then
+if [ "$DEVICE" == "OdroidGoAdvance" -o "$DEVICE" == "RG351P" -o "$DEVICE" == "RG351V" ] || [ "$DEVICE" == "GameForce" ]; then
 PKG_CONFIGURE_OPTS_TARGET+=" --enable-opengles3 \
                            --enable-kms \
                            --disable-mali_fbdev"
@@ -133,7 +133,7 @@ fi
   sed -i -e "s/# assets_directory =/assets_directory =\/tmp\/assets/" $INSTALL/etc/retroarch.cfg
   sed -i -e "s/# overlay_directory =/overlay_directory =\/tmp\/overlays/" $INSTALL/etc/retroarch.cfg
   sed -i -e "s/# cheat_database_path =/cheat_database_path =\/tmp\/database\/cht/" $INSTALL/etc/retroarch.cfg
-if [ "$DEVICE" == "OdroidGoAdvance" -o "$DEVICE" == "RG351P" ]; then
+if [ "$DEVICE" == "OdroidGoAdvance" -o "$DEVICE" == "RG351P" -o "$DEVICE" == "RG351V" ]; then
   sed -i -e "s/# menu_driver = \"rgui\"/menu_driver = \"xmb\"/" $INSTALL/etc/retroarch.cfg
 else
   sed -i -e "s/# menu_driver = \"rgui\"/menu_driver = \"ozone\"/" $INSTALL/etc/retroarch.cfg
@@ -198,7 +198,7 @@ fi
   echo "playlist_entry_remove = \"false\"" >> $INSTALL/etc/retroarch.cfg
 
   # RG351P Vibrator
-  if [ "$DEVICE" == "RG351P" ]; then
+  if [ "$DEVICE" == "RG351P" -o "$DEVICE" == "RG351V" ]; then
     sed -i -e "s/# enable_device_vibration = false/# enable_device_vibration = true/" $INSTALL/etc/retroarch.cfg
   fi
 
@@ -222,7 +222,7 @@ fi
   echo "menu_show_restart_retroarch = \"false\"" >> $INSTALL/etc/retroarch.cfg
   echo "menu_show_quit_retroarch = \"true\"" >> $INSTALL/etc/retroarch.cfg
   
-if [ "$DEVICE" == "OdroidGoAdvance" -o "$DEVICE" == "RG351P" ] || [ "$DEVICE" == "GameForce" ]; then
+if [ "$DEVICE" == "OdroidGoAdvance" -o "$DEVICE" == "RG351P" -o "$DEVICE" == "RG351V" ] || [ "$DEVICE" == "GameForce" ]; then
     echo "xmb_layout = 2" >> $INSTALL/etc/retroarch.cfg
     echo "menu_widget_scale_auto = false" >> $INSTALL/etc/retroarch.cfg
     echo "menu_widget_scale_factor = 2.00" >> $INSTALL/etc/retroarch.cfg

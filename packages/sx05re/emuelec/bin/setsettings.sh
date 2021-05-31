@@ -603,7 +603,7 @@ EE_DEVICE=$(cat /ee_arch)
 get_setting "retroarch.menu_driver"
 
 if [ "${EES}" == "false" ] || [ "${EES}" == "auto" ] || [ "${EES}" == "none" ] || [ "${EES}" == "0" ]; then 
-    if [ "$EE_DEVICE" == "OdroidGoAdvance" -o "$EE_DEVICE" == "RG351P" ] || [ "$EE_DEVICE" == "GameForce" ]; then
+    if [ "$EE_DEVICE" == "OdroidGoAdvance" -o "$EE_DEVICE" == "RG351P" -o "$EE_DEVICE" == "RG351V" ] || [ "$EE_DEVICE" == "GameForce" ]; then
         EES="xmb"
     else
         EES="ozone"

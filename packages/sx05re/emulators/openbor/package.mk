@@ -25,6 +25,8 @@ fi
 
 if [ "$DEVICE" == "RG351P" ]; then
   PKG_PATCH_DIRS="RG351P"
+elif [ "$DEVICE" == "RG351V" ]; then
+  PKG_PATCH_DIRS="RG351V"
 fi
 
 pre_configure_target() {
@@ -50,6 +52,8 @@ makeinstall_target() {
     mkdir -p $INSTALL/usr/config/emuelec/configs/openbor
     if [ "$DEVICE" == "RG351P" ]; then
 	cp $PKG_DIR/config/master_rg351p.cfg $INSTALL/usr/config/emuelec/configs/openbor/master.cfg
+    elif [ "$DEVICE" == "RG351V" ]; then
+	cp $PKG_DIR/config/master_rg351v.cfg $INSTALL/usr/config/emuelec/configs/openbor/master.cfg
     else
 	cp $PKG_DIR/config/master.cfg $INSTALL/usr/config/emuelec/configs/openbor/master.cfg
     fi

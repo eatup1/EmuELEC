@@ -26,7 +26,7 @@ VERSION=${LIBREELEC_VERSION}
 INSTALLTO="/usr/lib/libretro/"
 PROJECT_ALT=${PROJECT}
 
-if [ "$DEVICE" == "OdroidGoAdvance" -o "$DEVICE" == "RG351P" ]; then
+if [ "$DEVICE" == "OdroidGoAdvance" -o "$DEVICE" == "RG351P" -o "$DEVICE" == "RG351V" ]; then
 PROJECT_ALT=${DEVICE}
 fi
 
@@ -78,7 +78,7 @@ if [ "${ARCH}" = "aarch64" ]; then
 	if [ "$PROJECT" == "Amlogic" ]; then
 		LIBS+=" libMali.so"
 	fi
-	if [ "$DEVICE" == "OdroidGoAdvance" -o "$DEVICE" == "RG351P" ]; then
+	if [ "$DEVICE" == "OdroidGoAdvance" -o "$DEVICE" == "RG351P" -o "$DEVICE" == "RG351V" ]; then
 		LIBS+=" libdrm.so* \
 		librga.so \
 		libpng*.so.* \

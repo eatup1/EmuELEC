@@ -16,7 +16,7 @@ if [ "$PROJECT" = "Amlogic" ]; then
   PKG_PATCH_DIRS="amlogic"
 fi
 
-if [ "$DEVICE" != "OdroidGoAdvance" -a "$DEVICE" != "RG351P" ] && [ "$DEVICE" != "GameForce" ]; then
+if [ "$DEVICE" != "OdroidGoAdvance" -a "$DEVICE" != "RG351P" -a "$DEVICE" != "RG351V" ] && [ "$DEVICE" != "GameForce" ]; then
 	PKG_DEPENDS_TARGET+=" wait-time-sync"
 fi
 
