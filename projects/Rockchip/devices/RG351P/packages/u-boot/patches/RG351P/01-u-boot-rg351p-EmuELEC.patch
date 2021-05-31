@@ -1,0 +1,196 @@
+diff --git a/board/rockchip/odroidgoa/odroidgoa.c b/board/rockchip/odroidgoa/odroidgoa.c
+index 387125fc93..98601af700 100644
+--- a/board/rockchip/odroidgoa/odroidgoa.c
++++ b/board/rockchip/odroidgoa/odroidgoa.c
+@@ -23,6 +23,9 @@ DECLARE_GLOBAL_DATA_PTR;
+ 
+ #define ALIVE_LED_GPIO	17 /* GPIO0_C1 */
+ #define WIFI_EN_GPIO	110 /* GPIO3_B6 */
++#ifdef __VIB__
++#define VIB_EN_GPIO 15
++#endif
+ 
+ unsigned char disp_offs = 0;
+ 
+@@ -143,10 +146,10 @@ void board_check_mandatory_files(void)
+ 	}
+ 
+ 	/* check launcher in ext4 fs of sd card */
+-	if (file_exists("mmc", "1:2", "/usr/local/bin/emulationstation/emulationstation",
++	if (!file_exists("mmc", "1:2", "/usr/local/bin/emulationstation/emulationstation",
+ 				FS_TYPE_EXT)) {
+ 		lcd_setfg_color("white");
+-		lcd_printf(0, 0, 1, "[ GO Advanced EMULATION Image ]");
++		lcd_printf(0, 0, 1, "[ EmuELEC RG351P ]");
+ 	}
+ 
+ 	return;
+@@ -160,12 +163,18 @@ int rk_board_late_init(void)
+ 	if (is_odroidgo3())
+ 		disp_offs = 9;
+ 
++	#ifdef __VIB__
++	gpio_direction_output(VIB_EN_GPIO, 0);
++	gpio_free(VIB_EN_GPIO);
++	#endif
+ 	/* turn on blue led */
+ 	board_alive_led();
+ 
++	#ifndef __CLOSE_WIFI_INIT__
+ 	/* set wifi_en as default high */
+ 	if (!is_odroidgo3())
+ 		board_wifi_en();
++	#endif
+ 
+ 	/* set uart2-m1 port as a default debug console */
+ 	board_debug_uart2m1();
+diff --git a/cmd/hwrev.c b/cmd/hwrev.c
+index 640397e1cb..02d009685d 100644
+--- a/cmd/hwrev.c
++++ b/cmd/hwrev.c
+@@ -19,15 +19,15 @@ int do_hwrev(cmd_tbl_t *cmdtp, int flag, int argc, char * const argv[])
+ 		return CMD_RET_FAILURE;
+ 	}
+ 
+-	/* GO2 rev 1.1 */
++	/* GO2 rev 1.1 or RG351P */
+ 	if (check_range(655, 695, hwrev_adc)) {
+ 		env_set("hwrev", "v11");
+-		env_set("dtb_name", "rk3326-odroidgo2-linux-v11.dtb");
++		env_set("dtb_name", "rk3326-rg351p.dtb");
+ 	}
+-	/* GO2 rev 1.0 */
++	/* GO2 rev 1.0 or RG351V */
+ 	else if (check_range(816, 896, hwrev_adc)) {
+ 		env_set("hwrev", "v10");
+-		env_set("dtb_name", "rk3326-odroidgo2-linux.dtb");
++		env_set("dtb_name", "rk3326-rg351v.dtb");
+ 	}
+ 	/* GO3 rev 1.0 */
+ 	else if (check_range(40, 126, hwrev_adc)) {
+diff --git a/cmd/odroidtest.c b/cmd/odroidtest.c
+index 6b54a1d57b..e372a0e441 100644
+--- a/cmd/odroidtest.c
++++ b/cmd/odroidtest.c
+@@ -795,7 +795,7 @@ static int do_odroidtest_btn(cmd_tbl_t * cmdtp, int flag,
+ 
+ #define PWR_LED_GPIO	18	/* GPIO0_C2 */
+ #define DC_DET_GPIO	11	/* GPIO0_B3 */
+-#define CHG_LED_GPIO	13	/* GPIO0_B5 */
++#define CHG_LED_GPIO	77	/* GPIO2_B5 */
+ static int do_odroidtest_bat(cmd_tbl_t * cmdtp, int flag,
+ 				int argc, char * const argv[])
+ {
+diff --git a/drivers/power/charge_animation.c b/drivers/power/charge_animation.c
+index 95e8064246..66b4099ec4 100644
+--- a/drivers/power/charge_animation.c
++++ b/drivers/power/charge_animation.c
+@@ -43,7 +43,12 @@ DECLARE_GLOBAL_DATA_PTR;
+ #define FUEL_GAUGE_POLL_MS			1000
+ 
+ #define LED_CHARGING_NAME			"battery_charging"
++#ifndef __CLOSE_CHARGE_LED__
+ #define LED_CHARGING_FULL_NAME			"battery_full"
++#endif
++#ifdef __BATTERY_LOW__
++#define LED_CHARGING_LOW_NAME			"battery_low"
++#endif
+ 
+ struct charge_image {
+ 	const char *name;
+@@ -58,7 +63,12 @@ struct charge_animation_priv {
+ 	struct udevice *rtc;
+ #ifdef CONFIG_LED
+ 	struct udevice *led_charging;
++#ifndef __CLOSE_CHARGE_LED__
+ 	struct udevice *led_full;
++#endif
++#ifdef __BATTERY_LOW__
++	struct udevice *led_low;
++#endif
+ #endif
+ 	const struct charge_image *image;
+ 	int image_num;
+@@ -406,7 +416,7 @@ static int leds_update(struct udevice *dev, int soc)
+ 			return ret;
+ 		}
+ 	}
+-
++#ifndef __CLOSE_CHARGE_LED__
+ 	if (priv->led_full) {
+ 		ledst = (soc == 100) ? LEDST_ON : LEDST_OFF;
+ 		ret = led_set_state(priv->led_full, ledst);
+@@ -416,21 +426,38 @@ static int leds_update(struct udevice *dev, int soc)
+ 			return ret;
+ 		}
+ 	}
+-
++#endif
++#ifdef __BATTERY_LOW__
++	if (priv->led_low) {
++		ledst = (soc >= 5) ? LEDST_ON : LEDST_OFF;
++		ret = led_set_state(priv->led_low, ledst);
++		if (ret) {
++			printf("set charging low led %s failed, ret=%d\n",
++			       ledst == LEDST_ON ? "ON" : "OFF", ret);
++			return ret;
++		}
++	}
++#endif
+ 	return 0;
+ }
+ #else
+ static int leds_update(struct udevice *dev, int soc) { return 0; }
+ #endif
+-
++#ifdef __DC_DETECT__
++extern int odroid_check_dcjack(void);
++#endif
+ static int fg_charger_get_chrg_online(struct udevice *dev)
+ {
++#ifdef __DC_DETECT__
++	return odroid_check_dcjack()?0:1;
++#else
+ 	struct charge_animation_priv *priv = dev_get_priv(dev);
+ 	struct udevice *charger;
+ 
+ 	charger = priv->charger ? : priv->fg;
+ 
+ 	return fuel_gauge_get_chrg_online(charger);
++#endif
+ }
+ 
+ static int charge_extrem_low_power(struct udevice *dev)
+@@ -1034,9 +1061,16 @@ static int charge_animation_probe(struct udevice *dev)
+ 	ret = led_get_by_label(LED_CHARGING_NAME, &priv->led_charging);
+ 	if (!ret)
+ 		printf("Found Charging LED\n");
++#ifndef __CLOSE_CHARGE_LED__
+ 	ret = led_get_by_label(LED_CHARGING_FULL_NAME, &priv->led_full);
+ 	if (!ret)
+ 		printf("Found Charging-Full LED\n");
++#endif
++#ifdef __BATTERY_LOW__
++	ret = led_get_by_label(LED_CHARGING_LOW_NAME, &priv->led_low);
++	if (!ret)
++		printf("Found Charging-Low LED\n");
++#endif
+ #endif
+ 
+ 	/* Get charge images */
+diff --git a/include/common.h b/include/common.h
+index 624daaca37..422363ee0a 100644
+--- a/include/common.h
++++ b/include/common.h
+@@ -7,7 +7,10 @@
+ 
+ #ifndef __COMMON_H_
+ #define __COMMON_H_	1
+-
++#define __VIB__//Vibration function
++#define __CLOSE_CHARGE_LED__//Turn off the charging light
++#define __BATTERY_LOW__//Low battery prompt
++#define __DC_DETECT__//Charge detection
+ #ifndef __ASSEMBLY__		/* put C only stuff in this section */
+ 
+ typedef unsigned char		uchar;
