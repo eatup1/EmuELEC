@@ -379,7 +379,7 @@ else # Retrorun was selected
         RUNTHIS+="32"
     fi
     
-    RUNTHIS+=' -d /storage/roms/bios /tmp/cores/${EMU}.so "${ROMNAME}"'
+    RUNTHIS+=' --triggers -n -d /storage/roms/bios /tmp/cores/${EMU}.so "${ROMNAME}"'
 
 fi # end Libretro/retrorun or standalone emu logic
 
@@ -491,6 +491,9 @@ fi
 
 # Temp fix for retrorun always erroing out on exit
 [[ "${RETRORUN}" == "yes" ]] && ret_error=0
+
+# Temp fix for libretro scummvm always erroing out on exit
+[[ "${EMU}" == *"scummvm_libretro"* ]] && ret_error=0
 
 if [[ "$ret_error" != "0" ]]; then
     echo "exit $ret_error" >> $EMUELECLOG
