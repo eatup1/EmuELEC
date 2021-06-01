@@ -7,7 +7,7 @@ PKG_SHA256="c6199223c001bb47950a157be9877f54b20211cacd05c0256a08769e9fe0f190"
 PKG_LICENSE="GPLv2"
 PKG_SITE="https://github.com/GunnarMonell/fbgrab"
 PKG_URL="$PKG_SITE/archive/$PKG_VERSION.tar.gz"
-PKG_DEPENDS_TARGET="toolchain libpng16 fbdump"
+PKG_DEPENDS_TARGET="toolchain libpng fbdump"
 PKG_LONGDESC="fbgrab linux framebuffer screenshot utility. "
 PKG_TOOLCHAIN="make"
 
