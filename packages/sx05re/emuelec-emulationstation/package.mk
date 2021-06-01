@@ -2,7 +2,7 @@
 # Copyright (C) 2019-present Shanti Gilbert (https://github.com/shantigilbert)
 
 PKG_NAME="emuelec-emulationstation"
-PKG_VERSION="19f8628297eee4938f7291a9ab2d0002a3675152"
+PKG_VERSION="c9a29e24b6b2435f07c723b58be8b28c36d036e8"
 PKG_GIT_CLONE_BRANCH="EmuELEC"
 PKG_REV="1"
 PKG_ARCH="any"
@@ -86,6 +86,7 @@ makeinstall_target() {
         sed -i "s|</config>|	<bool name=\"StopMusicOnScreenSaver\" value=\"false\" />\n</config>|g" "$INSTALL/usr/config/emulationstation/es_settings.cfg"
     fi
 
+<<<<<<< HEAD
     if [[ "${DEVICE}" == "OdroidGoAdvance" || "${DEVICE}" == "RG351P" || ${DEVICE} == "RG351V" ]] || [[ "${DEVICE}" == "GameForce" ]]; then
         sed -i "s|<\/config>|	<string name=\"GamelistViewStyle\" value=\"Small Screen\" />\n<string name=\"ThemeSystemView\" value=\"panel\" />\n<\/config>|g" "$INSTALL/usr/config/emulationstation/es_settings.cfg"
     fi
@@ -98,6 +99,18 @@ makeinstall_target() {
         sed -i "s|inputConfig RG351V-->|inputConfig>|g" "$INSTALL/usr/config/emulationstation/es_input.cfg"
     fi
     
+=======
+    if [[ "${DEVICE}" == "OdroidGoAdvance" ]] || [[ "${DEVICE}" == "GameForce" ]]; then
+        sed -i "s|<\/config>|	<string name=\"GamelistViewStyle\" value=\"Small Screen\" />\n<\/config>|g" "$INSTALL/usr/config/emulationstation/es_settings.cfg"
+        sed -i "s|value=\"panel\" />|value=\"small panel\" />|g" "$INSTALL/usr/config/emulationstation/es_settings.cfg"
+    fi
+    
+    if  [[ "${DEVICE}" == "GameForce" ]]; then
+    	mkdir -p $INSTALL/usr/config/emulationstation/themesettings
+        sed -i "s|<\/config>|	<string name=\"subset.ratio\" value=\"43\" />\n<\/config>|g" "$INSTALL/usr/config/emulationstation/es_settings.cfg"
+        echo "subset.ratio=43" > $INSTALL/usr/config/emulationstation/themesettings/Crystal.cfg
+    fi    
+>>>>>>> 4d439d07740428f61fe65cc4412f2557c7fc179c
 }
 
 post_install() {  

@@ -17,7 +17,7 @@ PKG_AUTORECONF="no"
 PKG_TOOLCHAIN="make"
 
 PKG_EXPERIMENTAL="munt nestopiaCV quasi88 xmil np2kai hypseus dosbox-x"
-PKG_EMUS="$LIBRETRO_CORES advancemame PPSSPPSDL amiberry hatarisa openbor dosbox-staging mupen64plus-nx scummvmsa stellasa solarus dosbox-pure pcsx_rearmed64 ecwolf potator"
+PKG_EMUS="$LIBRETRO_CORES advancemame PPSSPPSDL amiberry hatarisa openbor dosbox-staging mupen64plus-nx scummvmsa stellasa solarus dosbox-pure pcsx_rearmed ecwolf potator freej2me"
 PKG_TOOLS="emuelec-tools"
 PKG_DEPENDS_TARGET+=" $PKG_TOOLS $PKG_EMUS $PKG_EXPERIMENTAL emuelec-ports"
 
@@ -51,7 +51,7 @@ if [ "$ARCH" == "aarch64" ]; then
 for discore in munt_neon quicknes reicastsa_old reicastsa parallel-n64 pcsx_rearmed; do
 		PKG_DEPENDS_TARGET=$(echo $PKG_DEPENDS_TARGET | sed "s|$discore||")
 	done
-PKG_DEPENDS_TARGET+=" duckstation emuelec-32bit-libs"
+PKG_DEPENDS_TARGET+=" swanstation emuelec-32bit-libs"
 
 if [ "$PROJECT" == "Amlogic-ng" ]; then
 	PKG_DEPENDS_TARGET+=" dolphinSA"
@@ -158,6 +158,28 @@ fi
   echo "chmod 4755 $INSTALL/usr/bin/busybox" >> $FAKEROOT_SCRIPT
   find $INSTALL/usr/ -type f -iname "*.sh" -exec chmod +x {} \;
   
+# RG351P : BT disable
+if [[ ${DEVICE} == "RG351P" ]]; then 
+    sed -i "s|ee_bluetooth.enabled=1|ee_bluetooth.enabled=0|g" $INSTALL/usr/config/emuelec/configs/emuelec.conf
+fi
+
+# Remove scripts from OdroidGoAdvance build
+if [[ ${DEVICE} == "OdroidGoAdvance" || ${DEVICE} == "RG351P" || ${DEVICE} == "RG351V" || "$DEVICE" == "GameForce" ]]; then 
+  for i in "wifi" "sselphs_scraper" "skyscraper" "system_info"; do 
+  xmlstarlet ed -L -P -d "/gameList/game[name='${i}']" $INSTALL/usr/bin/scripts/setup/gamelist.xml
+  rm "$INSTALL/usr/bin/scripts/setup/${i}.sh"
+  done
+fi 
+
+# Remove scripts from except RG351P/V build
+if [[ ${DEVICE} != "RG351P" && ${DEVICE} != "RG351V" ]]; then 
+  for i in "RG351_input_Test" ; do 
+  xmlstarlet ed -L -P -d "/gameList/game[name='${i}']" $INSTALL/usr/bin/scripts/setup/gamelist.xml
+  rm "$INSTALL/usr/bin/scripts/setup/${i}.sh"
+  done
+fi 
+
+# Remove unused cores
 CORESFILE="$INSTALL/usr/config/emulationstation/es_systems.cfg"
 
 if [ "${PROJECT}" != "Amlogic-ng" ]; then
@@ -168,33 +190,16 @@ if [ "${PROJECT}" != "Amlogic-ng" ]; then
         xmlstarlet ed -L -P -d "/systemList/system[name='saturn']" $CORESFILE
     fi
     
-    # remove unused cores
     for discore in ${remove_cores}; do
         sed -i "s|<core>$discore</core>||g" $CORESFILE
         sed -i '/^[[:space:]]*$/d' $CORESFILE
     done
 fi
 
-# RG351P : BT disable
-if [[ ${DEVICE} == "RG351P" ]]; then 
-    sed -i "s|ee_bluetooth.enabled=1|ee_bluetooth.enabled=0|g" $INSTALL/usr/config/emuelec/configs/emuelec.conf
+# Remove Retrorun For unsupported devices
+if [[ ${DEVICE} != "OdroidGoAdvance" ]] && [[ ${DEVICE} != "RG351P" ]] && [[ ${DEVICE} != "RG351V" ]] && [[ "${DEVICE}" != "GameForce" ]]; then
+	xmlstarlet ed -L -P -d "/systemList/system/emulators/emulator[@name='retrorun']" $CORESFILE
 fi
-
-  # Remove scripts from OdroidGoAdvance build
-	if [[ ${DEVICE} == "OdroidGoAdvance" || ${DEVICE} == "RG351P" || ${DEVICE} == "RG351V" || "$DEVICE" == "GameForce" ]]; then 
-	for i in "wifi" "sselphs_scraper" "skyscraper" "system_info"; do 
-	xmlstarlet ed -L -P -d "/gameList/game[name='${i}']" $INSTALL/usr/bin/scripts/setup/gamelist.xml
-	rm "$INSTALL/usr/bin/scripts/setup/${i}.sh"
-	done
-	fi 
-
-  # Remove scripts from except RG351P/V build
-	if [[ ${DEVICE} != "RG351P" && ${DEVICE} != "RG351V" ]]; then 
-	for i in "RG351_input_Test" ; do 
-	xmlstarlet ed -L -P -d "/gameList/game[name='${i}']" $INSTALL/usr/bin/scripts/setup/gamelist.xml
-	rm "$INSTALL/usr/bin/scripts/setup/${i}.sh"
-	done
-	fi 
 
 #For automatic updates we use the buildate
 	date +"%Y%m%d" > $INSTALL/usr/buildate
