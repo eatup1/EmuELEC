@@ -1,0 +1,42 @@
+diff --git a/engine/Makefile b/engine/Makefile
+index 24fdf485..482c5e0f 100644
+--- a/engine/Makefile
++++ b/engine/Makefile
+@@ -140,6 +140,7 @@ BUILD_PTHREAD   = 1
+ BUILD_SDL_IO    = 1
+ BUILD_VORBIS    = 1
+ BUILD_WEBM      = 1
++BUILD_RG351_RUMBLE = 1
+ BUILDING        = 1
+ INCLUDES        = $(SDKPATH)/usr/include \
+                   $(SDKPATH)/usr/include/SDL2
+@@ -587,6 +588,11 @@ CFLAGS 	       += -DWEBM
+ endif
+ 
+ 
++ifdef BUILD_RG351_RUMBLE
++CFLAGS 	       += -DRG351_RUMBLE
++endif
++
++
+ CXXFLAGS        = $(CFLAGS) -fno-exceptions -fno-rtti
+ ASFLAGS         = $(CFLAGS)
+ 
+diff --git a/engine/sdl/control.c b/engine/sdl/control.c
+index 9118fb1c..108b278b 100644
+--- a/engine/sdl/control.c
++++ b/engine/sdl/control.c
+@@ -980,6 +980,13 @@ void control_rumble(int port, int ratio, int msec)
+ {
+     #if SDL
+     if (joystick[port] != NULL && joystick_haptic[port] != NULL) {
++        #ifdef RG351_RUMBLE
++        if (strcmp(joysticks[port].Name, "OpenSimHardware OSH PB Controller") == false)
++        {
++            if (msec == 0) return;
++            msec *= 10;
++        }
++        #endif
+         if(SDL_HapticRumblePlay(joystick_haptic[port], ratio, msec) != 0)
+         {
+             //printf( "Warning: Unable to play rumble! %s\n", SDL_GetError() );

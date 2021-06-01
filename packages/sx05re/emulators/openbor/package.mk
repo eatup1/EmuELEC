@@ -14,29 +14,16 @@ PKG_TOOLCHAIN="make"
 
 if [ "$DEVICE" == "OdroidGoAdvance" ] || [ "$DEVICE" == "GameForce" ]; then
 PKG_PATCH_DIRS="OdroidGoAdvance"
-fi
-
-
-if [[ "$ARCH" == "arm" ]]; then
-	PKG_PATCH_DIRS="${ARCH}"
-else
-	PKG_PATCH_DIRS="emuelec-aarch64"
-fi
-
-if [ "$DEVICE" == "RG351P" ]; then
-  PKG_PATCH_DIRS="RG351P"
-elif [ "$DEVICE" == "RG351V" ]; then
-  PKG_PATCH_DIRS="RG351V"
+elif [ "$DEVICE" == "RG351P" ] || [ "$DEVICE" == "RG351V" ]; then
+PKG_PATCH_DIRS="RG351"
 fi
 
 pre_configure_target() {
-  PKG_MAKE_OPTS_TARGET="BUILD_LINUX_${ARCH}=1 \
+  PKG_MAKE_OPTS_TARGET="BUILD_LINUX_LE_arm=1 \
                         -C ${PKG_BUILD}/engine \
                         SDKPATH="${SYSROOT_PREFIX}"
                         PREFIX=${TARGET_NAME}"
-  #### Fix compile error in commit version e761464 ####
-  sed -i "s|O_BINARY, per) == -1)|O_BINARY, per)) == -1)|" $PKG_BUILD/engine/source/gamelib/packfile.c
-  #####################################################
+  sed -i "s|\$(LNXDEV)/\$(PREFIX)strip|\$(PREFIX)-strip|" $PKG_BUILD/engine/Makefile
 }
 
 pre_make_target() {
