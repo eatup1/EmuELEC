@@ -10,8 +10,11 @@ PKG_DEPENDS_TARGET="toolchain"
 PKG_TOOLCHAIN="manual"
 
 makeinstall_target() {
-
   mkdir -p $INSTALL/usr/share/fonts/hangul
     cp *.ttf $INSTALL/usr/share/fonts/hangul
+}
 
+post_install() {
+  mkfontdir $INSTALL/usr/share/fonts/hangul
+  mkfontscale $INSTALL/usr/share/fonts/hangul
 }
