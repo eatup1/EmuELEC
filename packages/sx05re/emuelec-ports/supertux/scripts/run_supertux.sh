@@ -26,7 +26,7 @@ case $(oga_ver) in
         sed -i "s|(window_width *|(window_width 854)|" ${CONFIGFOLDER}/config
         sed -i "s|(window_height *|(window_height 480)|" ${CONFIGFOLDER}/config
     ;;
-    "GF" | "RG351V))
+    "GF" | "RG351V")
         sed -i "s|(fullscreen_width *|(fullscreen_width 640)|" ${CONFIGFOLDER}/config
         sed -i "s|(fullscreen_height *|(fullscreen_height 480)|" ${CONFIGFOLDER}/config
         sed -i "s|(fullscreen_refresh_rate *|(fullscreen_refresh_rate 60)|" ${CONFIGFOLDER}/config
