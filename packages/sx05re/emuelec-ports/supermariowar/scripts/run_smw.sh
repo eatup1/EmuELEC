@@ -44,7 +44,7 @@ if [ ! -e "${DATAFOLDER}/worlds/Big JM_Mixed River.txt" ]; then
             exit 0
         fi
 else
-    smw "${DATAFOLDER}" > /emuelec/logs/emuelec.log 2>&1
+    smw --datadir "${DATAFOLDER}" > /emuelec/logs/emuelec.log 2>&1
 fi
 
 killall gptokeyb &
