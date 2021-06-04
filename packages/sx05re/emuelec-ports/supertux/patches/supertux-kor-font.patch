@@ -1,0 +1,31 @@
+diff --git a/src/supertux/resources.cpp b/src/supertux/resources.cpp
+index 4d033bfb9..c4fd7e219 100644
+--- a/src/supertux/resources.cpp
++++ b/src/supertux/resources.cpp
+@@ -27,6 +27,7 @@
+ #include "video/font.hpp"
+ #include "video/surface.hpp"
+ #include "video/ttf_font.hpp"
++#include "util/gettext.hpp"
+
+ std::unique_ptr<MouseCursor> Resources::mouse_cursor;
+
+@@ -66,7 +67,7 @@ Resources::load()
+   {
+     console_font.reset(new TTFFont("fonts/SuperTux-Medium.ttf", 12, 1.25f, 0, 1));
+
+-    auto font = get_font_for_locale(g_config->locale);
++    auto font = get_font_for_locale(g_config->locale.empty() ? g_dictionary_manager->get_language().get_language() : g_config->locale);
+     if(font != current_font)
+     {
+       current_font = font;
+@@ -92,7 +93,7 @@ Resources::get_font_for_locale(const std::string& locale)
+ {
+   if(locale == "ne")
+     return "fonts/NotoSansDevanagari-Medium.ttf";
+-  if(locale == "cmn" || locale == "ja" || locale == "zh_CN" || locale == "zh_TW")
++  if(locale == "cmn" || locale == "ja" || locale == "ko" || locale == "zh_CN" || locale == "zh_TW")
+     return "fonts/NotoSansCJKjp-Medium.otf";
+   if(locale == "he")
+     return "fonts/shuneet3-medium.otf";
+
