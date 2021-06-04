@@ -135,7 +135,9 @@ post_install() {
 
 mkdir -p $INSTALL/etc/retroarch-joypad-autoconfig
 cp -r $PKG_DIR/gamepads/* $INSTALL/etc/retroarch-joypad-autoconfig
-if [[ ${DEVICE} == "RG351V" ]]; then 
+if [[ ${DEVICE} == "RG351P" ]]; then 
+    rm -rf "$INSTALL/etc/retroarch-joypad-autoconfig/OpenSimHardware OSH PB Controller (RG351V).cfg"
+elif [[ ${DEVICE} == "RG351V" ]]; then 
     rm -rf "$INSTALL/etc/retroarch-joypad-autoconfig/OpenSimHardware OSH PB Controller.cfg"
     rm -rf "$INSTALL/etc/retroarch-joypad-autoconfig/OpenSimHardware OSH PB Controller_vertical.cfg"
     mv "$INSTALL/etc/retroarch-joypad-autoconfig/OpenSimHardware OSH PB Controller (RG351V).cfg" "$INSTALL/etc/retroarch-joypad-autoconfig/OpenSimHardware OSH PB Controller.cfg"
