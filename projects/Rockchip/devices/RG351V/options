@@ -61,7 +61,6 @@
   # debug tty path
     DEBUG_TTY="/dev/ttyFIQ0"
     
-    
   # short project description
   DESCRIPTION="Retro emulation for the RG351V."
 
