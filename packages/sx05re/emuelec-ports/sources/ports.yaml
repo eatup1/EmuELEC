@@ -143,7 +143,9 @@ OpenJazz:
   developer: sana2dang, AlisterT
   publisher: non-commercial
 
+  init_port: true
   port_exe: "OpenJazz"
+  audio: "alsa"
   commands:
     - ${PORT} --Datadir /storage/roms/ports/openjazz >> $EE_LOG 2>&1
     
