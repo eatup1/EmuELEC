@@ -16,4 +16,10 @@ makeinstall_target() {
 mkdir -p $INSTALL/usr/bin
 cp $PKG_BUILD/.${TARGET_NAME}/Binaries/Release/* $INSTALL/usr/bin
 cp $PKG_DIR/scripts/* $INSTALL/usr/bin
+mkdir -p $INSTALL/usr/config/emuelec/configs/smw
+cp $PKG_DIR/config/* $INSTALL/usr/config/emuelec/configs/smw
+if [ "$DEVICE" == "RG351P" -o "$DEVICE" == "RG351V" ]; then
+    cp $PKG_DIR/config/controls.sdl2.rg351 $INSTALL/usr/config/emuelec/configs/smw/controls.sdl2.bin
+    rm -rf $INSTALL/usr/config/emuelec/configs/smw/controls.sdl2.rg351
+fi
 } 
