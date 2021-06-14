@@ -44,7 +44,7 @@ fi
 esac
 fi
 
-if [ "$EE_DEVICE" != "GameForce" ]; then
+if [ "$EE_DEVICE" != "GameForce" -a "$EE_DEVICE" != "RG351P" -a "$EE_DEVICE" != "RG351V" ]; then
 AUTOGP=$(get_ee_setting advmame_auto_gamepad)
 [[ "${AUTOGP}" != "0" ]] && /usr/bin/set_advmame_joy.sh
 fi
