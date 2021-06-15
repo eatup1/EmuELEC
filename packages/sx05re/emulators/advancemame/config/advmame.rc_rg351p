@@ -25,7 +25,6 @@ sound_latency 0.10
 sound_normalize no
 device_video_clock 10-180 / 30-80 / 50-70
 display_mode 320x224x32
-device_joystick raw
 input_map[coin1] joystick_button[opensimhardware_osh_pb_controller,button8]
 input_map[start1] joystick_button[opensimhardware_osh_pb_controller,button7]
 input_map[p1_button1] joystick_button[opensimhardware_osh_pb_controller,button1]
