@@ -21,7 +21,11 @@ if [ ${JDKINSTALLED} == "no" ]; then
 echo -e "GET http://google.com HTTP/1.0\n\n" | nc google.com 80 > /dev/null 2>&1
 if [ $? -ne 0 ]; then
     echo "No internet connection, exiting..." > /dev/console
+    if [ $(get_ee_setting system.language) == "ko_KR" ]; then
+    text_viewer -e -w -t "인터넷이 없습니다!" -m "JDK를 다운로드하려면 인터넷에 연결되어 있어야 합니다.\n인터넷에 연결되어 있지 않습니다. 종료 중...";
+    else
     text_viewer -e -w -t "No Internet!" -m "You need to be connected to the internet to download the JDK\nNo internet connection, exiting...";
+    fi
     exit 1
 fi
 
@@ -33,7 +37,7 @@ fi
     tar xvfz ${JDKNAME}-linux_aarch64.tar.gz zulu11.48.21-ca-jdk11.0.11-linux_aarch64/bin > /dev/console 2>&1
     tar xvfz ${JDKNAME}-linux_aarch64.tar.gz zulu11.48.21-ca-jdk11.0.11-linux_aarch64/conf > /dev/console 2>&1
     rm zulu11.48.21-ca-jdk11.0.11-linux_aarch64/lib/*.zip
-    mv ${JDKNAME}-linux_aarch64/* jdk
+    cp -rf ${JDKNAME}-linux_aarch64/* jdk
     rm -rf ${JDKNAME}-linux_aarch64*
     
     for del in jmods include demo legal man DISCLAIMER LICENSE readme.txt release Welcome.html; do
