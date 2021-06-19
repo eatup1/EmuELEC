@@ -147,8 +147,12 @@ CVER=$(cat /usr/config/EE_VERSION)
 if $(echo "${CVER}" | grep -q "k-TEST"); then
     CVER=$(echo "$CVER" | sed "s|k-TEST-||")
 fi
+if $(echo "${CVER}" | grep -q "k"); then
+    CVER=$(echo "$CVER" | sed "s|k||")
+fi
 
 UVER=$(echo "$UVER" | sed "s|k-TEST-||")
+UVER=$(echo "$UVER" | sed "s|k||")
 [[ -z "$UVER" ]] && no_update
 
 CURRENTVER="${CVER%%.*}${CVER#*.}"
