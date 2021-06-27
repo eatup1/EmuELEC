@@ -13,25 +13,25 @@ CONFIGFOLDER="/emuelec/configs/supertux2"
 if [ "$EE_DEVICE" == "OdroidGoAdvance" ] || [ "$EE_DEVICE" == "RG351P" ] || [ "$EE_DEVICE" == "RG351V" ] || [ "$EE_DEVICE" == "GameForce" ]; then
 case $(oga_ver) in
     "OGA" | "RG351P")
-        sed -i "s|(fullscreen_width [0-9]*|(fullscreen_width 480|" ${CONFIGFOLDER}/config
-        sed -i "s|(fullscreen_height [0-9]*|(fullscreen_height 320|" ${CONFIGFOLDER}/config
-        sed -i "s|(fullscreen_refresh_rate [0-9]*|(fullscreen_refresh_rate 60|" ${CONFIGFOLDER}/config
-        sed -i "s|(window_width [0-9]*|(window_width 480|" ${CONFIGFOLDER}/config
-        sed -i "s|(window_height [0-9]*|(window_height 320|" ${CONFIGFOLDER}/config
+        sed -i "s|(fullscreen_width .*|(fullscreen_width 480)|" ${CONFIGFOLDER}/config
+        sed -i "s|(fullscreen_height .*|(fullscreen_height 320)|" ${CONFIGFOLDER}/config
+        sed -i "s|(fullscreen_refresh_rate .*|(fullscreen_refresh_rate 60)|" ${CONFIGFOLDER}/config
+        sed -i "s|(window_width .*|(window_width 480)|" ${CONFIGFOLDER}/config
+        sed -i "s|(window_height .*|(window_height 320)|" ${CONFIGFOLDER}/config
     ;;
     "OGS")
-        sed -i "s|(fullscreen_width [0-9]*|(fullscreen_width 854|" ${CONFIGFOLDER}/config
-        sed -i "s|(fullscreen_height [0-9]*|(fullscreen_height 480|" ${CONFIGFOLDER}/config
-        sed -i "s|(fullscreen_refresh_rate [0-9]*|(fullscreen_refresh_rate 60|" ${CONFIGFOLDER}/config
-        sed -i "s|(window_width [0-9]*|(window_width 854|" ${CONFIGFOLDER}/config
-        sed -i "s|(window_height [0-9]*|(window_height 480|" ${CONFIGFOLDER}/config
+        sed -i "s|(fullscreen_width .*|(fullscreen_width 854)|" ${CONFIGFOLDER}/config
+        sed -i "s|(fullscreen_height .*|(fullscreen_height 480)|" ${CONFIGFOLDER}/config
+        sed -i "s|(fullscreen_refresh_rate .*|(fullscreen_refresh_rate 60)|" ${CONFIGFOLDER}/config
+        sed -i "s|(window_width .*|(window_width 854)|" ${CONFIGFOLDER}/config
+        sed -i "s|(window_height .*|(window_height 480)|" ${CONFIGFOLDER}/config
     ;;
     "GF" | "RG351V")
-        sed -i "s|(fullscreen_width [0-9]*|(fullscreen_width 640|" ${CONFIGFOLDER}/config
-        sed -i "s|(fullscreen_height [0-9]*|(fullscreen_height 480|" ${CONFIGFOLDER}/config
-        sed -i "s|(fullscreen_refresh_rate [0-9]*|(fullscreen_refresh_rate 60|" ${CONFIGFOLDER}/config
-        sed -i "s|(window_width [0-9]*|(window_width 640|" ${CONFIGFOLDER}/config
-        sed -i "s|(window_height [0-9]*|(window_height 480|" ${CONFIGFOLDER}/config
+        sed -i "s|(fullscreen_width .*|(fullscreen_width 640)|" ${CONFIGFOLDER}/config
+        sed -i "s|(fullscreen_height .*|(fullscreen_height 480)|" ${CONFIGFOLDER}/config
+        sed -i "s|(fullscreen_refresh_rate .*|(fullscreen_refresh_rate 60)|" ${CONFIGFOLDER}/config
+        sed -i "s|(window_width .*|(window_width 640)|" ${CONFIGFOLDER}/config
+        sed -i "s|(window_height .*|(window_height 480)|" ${CONFIGFOLDER}/config
     ;;
 esac
 fi
