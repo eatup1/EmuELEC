@@ -1,6 +1,6 @@
 --- a/menu/menu_setting.c
 +++ b/menu/menu_setting.c
-@@ -10985,7 +10985,6 @@
+@@ -11463,7 +11463,6 @@
                 MENU_SETTINGS_LIST_CURRENT_ADD_CMD(list, list_info, CMD_EVENT_REINIT);
              }
  
@@ -8,7 +8,7 @@
              CONFIG_BOOL(
                    list, list_info,
                    &settings->bools.video_ctx_scaling,
-@@ -11002,7 +11001,6 @@
+@@ -11480,7 +11480,6 @@
                    SD_FLAG_NONE
                    );
              MENU_SETTINGS_LIST_CURRENT_ADD_CMD(list, list_info, CMD_EVENT_REINIT);
@@ -18,7 +18,7 @@
                    list, list_info,
 --- a/msg_hash.h
 +++ b/msg_hash.h
-@@ -1037,9 +1037,7 @@
+@@ -1063,9 +1063,7 @@
     MENU_LABEL(VIDEO_RECORD_THREADS),
     MENU_LABEL(VIDEO_SMOOTH),
     MENU_LABEL(VIDEO_CTX_SCALING),

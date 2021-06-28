@@ -2,7 +2,7 @@ diff --git a/configuration.c b/configuration.c
 index 6824bb2f3a..cf3d35187f 100644
 --- a/configuration.c
 +++ b/configuration.c
-@@ -1404,6 +1404,11 @@ static struct config_bool_setting *populate_settings_bool(
+@@ -1453,6 +1453,11 @@ static struct config_bool_setting *populate_settings_bool(
  {
     struct config_bool_setting  *tmp    = (struct config_bool_setting*)calloc(1, (*size + 1) * sizeof(struct config_bool_setting));
     unsigned count                      = 0;
@@ -18,7 +18,7 @@ diff --git a/configuration.h b/configuration.h
 index d758fe630e..aedf9f8f28 100644
 --- a/configuration.h
 +++ b/configuration.h
-@@ -459,6 +459,10 @@ typedef struct settings
+@@ -483,6 +483,10 @@ typedef struct settings
     {
        bool placeholder;
  
@@ -41,7 +41,7 @@ index ef890fb88c..21c4f8532f 100644
  
  #include <boolean.h>
  #include <clamping.h>
-@@ -13947,9 +13947,32 @@ bool command_event(enum event_command cmd, void *data)
+@@ -14005,9 +14005,32 @@ bool command_event(enum event_command cmd, void *data)
  #endif
           break;
        case CMD_EVENT_QUIT:

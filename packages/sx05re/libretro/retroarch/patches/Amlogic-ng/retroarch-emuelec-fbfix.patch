@@ -31,15 +31,15 @@
 
 --- a/retroarch.c	2019-01-15 12:55:14.000000000 -0600
 +++ b/retroarch.c	2019-01-28 22:00:41.340468631 -0600 
-@@ -12264,6 +12264,7 @@
-       input_remapping_set_defaults();
+@@ -12244,6 +12244,7 @@
     }
- #endif
+    else
+       input_remapping_restore_global_config(true);
 +system("/usr/bin/fbfix"); // emuelec
  }
  
  #ifdef HAVE_CHEATS
-@@ -15000,6 +15001,8 @@
+@@ -15161,6 +15161,8 @@
                 RARCH_LOG("[Input]: %s => %s\n",
                       "Game Focus",
                       p_rarch->game_focus_state.enabled ? "ON" : "OFF");
