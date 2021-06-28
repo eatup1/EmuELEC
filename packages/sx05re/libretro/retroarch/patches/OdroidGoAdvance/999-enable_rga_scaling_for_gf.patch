@@ -1,6 +1,6 @@
 --- a/menu/menu_setting.c
 +++ b/menu/menu_setting.c
-@@ -11463,7 +11463,6 @@
+@@ -11463,12 +11463,15 @@
                 MENU_SETTINGS_LIST_CURRENT_ADD_CMD(list, list_info, CMD_EVENT_REINIT);
              }
  
@@ -8,7 +8,16 @@
              CONFIG_BOOL(
                    list, list_info,
                    &settings->bools.video_ctx_scaling,
-@@ -11480,7 +11480,6 @@
+                   MENU_ENUM_LABEL_VIDEO_CTX_SCALING,
++#ifdef HAVE_ODROIDGO2
+                   MENU_ENUM_LABEL_VALUE_VIDEO_RGA_SCALING,
++#else
++                  MENU_ENUM_LABEL_VALUE_VIDEO_CTX_SCALING,
++#endif
+                   DEFAULT_VIDEO_CTX_SCALING,
+                   MENU_ENUM_LABEL_VALUE_OFF,
+                   MENU_ENUM_LABEL_VALUE_ON,
+@@ -11480,7 +11483,6 @@
                    SD_FLAG_NONE
                    );
              MENU_SETTINGS_LIST_CURRENT_ADD_CMD(list, list_info, CMD_EVENT_REINIT);
