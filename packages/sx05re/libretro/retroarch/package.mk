@@ -211,7 +211,7 @@ fi
   sed -i -e "s/# audio_volume = 0.0/audio_volume = "0.000000"/" $INSTALL/etc/retroarch.cfg
   sed -i -e "s/# cache_directory =/cache_directory = \/tmp\/cache/" $INSTALL/etc/retroarch.cfg
   echo "user_language = \"10\"" >> $INSTALL/etc/retroarch.cfg
-  echo "menu_timedate_style = \"6\"" >> >> $INSTALL/etc/retroarch.cfg
+  echo "menu_timedate_style = \"6\"" >> $INSTALL/etc/retroarch.cfg
   echo "menu_show_shutdown = \"false\"" >> $INSTALL/etc/retroarch.cfg
   echo "menu_show_reboot = \"false\"" >> $INSTALL/etc/retroarch.cfg
   echo "input_player1_analog_dpad_mode = \"1\"" >> $INSTALL/etc/retroarch.cfg
