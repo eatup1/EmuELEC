@@ -72,6 +72,7 @@ PKG_CONFIGURE_OPTS_TARGET="--disable-qt \
 
 if [ "$DEVICE" == "OdroidGoAdvance" -o "$DEVICE" == "RG351P" -o "$DEVICE" == "RG351V" ] || [ "$DEVICE" == "GameForce" ]; then
 PKG_CONFIGURE_OPTS_TARGET+=" --enable-opengles3 \
+                           --enable-opengles3_2 \
                            --enable-kms \
                            --disable-mali_fbdev"
 else
