@@ -5,7 +5,7 @@ diff --git a/SonicCDDecomp/RetroEngine.hpp b/SonicCDDecomp/RetroEngine.hpp
 index 7cd77c3..76c1161 100644
 --- a/RSDKv3/RetroEngine.hpp
 +++ b/RSDKv3/RetroEngine.hpp
-@@ -104,6 +104,27 @@ typedef unsigned int uint;
+@@ -161,6 +161,27 @@ typedef unsigned int uint;
  
  #endif
  
@@ -31,5 +31,5 @@ index 7cd77c3..76c1161 100644
 +#endif
 +
  // this macro defines the touch device read by the game (UWP requires DIRECT)
- #if RETRO_UWP
+ #if defined(RETRO_UWP) && defined(SDL_TOUCH_DEVICE_DIRECT)
  #define RETRO_TOUCH_DEVICE SDL_TOUCH_DEVICE_DIRECT
