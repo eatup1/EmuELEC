@@ -5,7 +5,7 @@ MRFIXIT: Revert the removal of the maxfps feature
 diff --git a/Core/Config.cpp b/Core/Config.cpp
 --- b/Core/Config.cpp
 +++ a/Core/Config.cpp
-@@ -772,6 +772,7 @@ static ConfigSetting graphicsSettings[] = {
+@@ -793,6 +793,7 @@ static ConfigSetting graphicsSettings[] = {
  #if defined(USING_WIN_UI)
  	ConfigSetting("RestartRequired", &g_Config.bRestartRequired, false, false),
  #endif
@@ -16,7 +16,7 @@ diff --git a/Core/Config.cpp b/Core/Config.cpp
 diff --git a/Core/Config.h b/Core/Config.h
 --- b/Core/Config.h
 +++ a/Core/Config.h
-@@ -196,6 +196,7 @@ struct Config {
+@@ -197,6 +197,7 @@ struct Config {
 	bool bTexHardwareScaling;
  	int iFpsLimit1;
  	int iFpsLimit2;
@@ -48,7 +48,7 @@ diff --git a/Core/HLE/sceDisplay.cpp b/Core/HLE/sceDisplay.cpp
 diff --git a/UI/GameSettingsScreen.cpp b/UI/GameSettingsScreen.cpp
 --- b/UI/GameSettingsScreen.cpp
 +++ a/UI/GameSettingsScreen.cpp
-@@ -163,6 +163,8 @@ void GameSettingsScreen::CreateViews() {
+@@ -172,6 +172,8 @@ void GameSettingsScreen::CreateViews() {
 		g_Config.loadGameConfig(gameID_, info->GetTitle());
  	}
  
@@ -57,7 +57,7 @@ diff --git a/UI/GameSettingsScreen.cpp b/UI/GameSettingsScreen.cpp
  	iAlternateSpeedPercent1_ = g_Config.iFpsLimit1 < 0 ? -1 : (g_Config.iFpsLimit1 * 100) / 60;
  	iAlternateSpeedPercent2_ = g_Config.iFpsLimit2 < 0 ? -1 : (g_Config.iFpsLimit2 * 100) / 60;
  
-@@ -299,6 +299,7 @@ void GameSettingsScreen::CreateViews() {
+@@ -308,6 +308,7 @@ void GameSettingsScreen::CreateViews() {
  	graphicsSettings->Add(new PopupMultiChoice(&g_Config.iFrameSkipType, gr->T("Frame Skipping Type"), frameSkipType, 0, ARRAY_SIZE(frameSkipType), gr->GetName(), screenManager()));
  	frameSkipAuto_ = graphicsSettings->Add(new CheckBox(&g_Config.bAutoFrameSkip, gr->T("Auto FrameSkip")));
  	frameSkipAuto_->OnClick.Handle(this, &GameSettingsScreen::OnAutoFrameskip);
@@ -65,7 +65,7 @@ diff --git a/UI/GameSettingsScreen.cpp b/UI/GameSettingsScreen.cpp
  
  	PopupSliderChoice *altSpeed1 = graphicsSettings->Add(new PopupSliderChoice(&iAlternateSpeedPercent1_, 0, 1000, gr->T("Alternative Speed", "Alternative speed"), 5, screenManager(), gr->T("%, 0:unlimited")));
  	altSpeed1->SetFormat("%i%%");
-@@ -1249,6 +1249,7 @@ UI::EventReturn GameSettingsScreen::OnDumpNextFrameToLog(UI::EventParams &e) {
+@@ -1222,6 +1222,7 @@ UI::EventReturn GameSettingsScreen::OnDumpNextFrameToLog(UI::EventParams &e) {
  
  void GameSettingsScreen::update() {
  	UIScreen::update();
@@ -76,7 +76,7 @@ diff --git a/UI/GameSettingsScreen.cpp b/UI/GameSettingsScreen.cpp
 diff --git a/libretro/libretro.cpp b/libretro/libretro.cpp
 --- b/libretro/libretro.cpp
 +++ a/libretro/libretro.cpp
-@@ -202,6 +202,7 @@
+@@ -204,6 +204,7 @@
  static RetroOption<bool> ppsspp_auto_frameskip("ppsspp_auto_frameskip", "Auto Frameskip", false);
  static RetroOption<int> ppsspp_frameskip("ppsspp_frameskip", "Frameskip", 0, 10);
  static RetroOption<int> ppsspp_frameskiptype("ppsspp_frameskiptype", "Frameskip Type", { {"number of frames", 0}, {"percent of fps", 1} });
@@ -84,7 +84,7 @@ diff --git a/libretro/libretro.cpp b/libretro/libretro.cpp
  static RetroOption<int> ppsspp_internal_resolution("ppsspp_internal_resolution", "Internal Resolution (restart)", 1, { "480x272", "960x544", "1440x816", "1920x1088", "2400x1360", "2880x1632", "3360x1904", "3840x2176", "4320x2448", "4800x2720" });
  static RetroOption<int> ppsspp_button_preference("ppsspp_button_preference", "Confirmation Button", { { "cross", PSP_SYSTEMPARAM_BUTTON_CROSS }, { "circle", PSP_SYSTEMPARAM_BUTTON_CIRCLE } });
  static RetroOption<bool> ppsspp_fast_memory("ppsspp_fast_memory", "Fast Memory (Speedhack)", true);
-@@ -242,6 +243,7 @@
+@@ -244,6 +244,7 @@
     vars.push_back(ppsspp_auto_frameskip.GetOptions());
     vars.push_back(ppsspp_frameskip.GetOptions());
     vars.push_back(ppsspp_frameskiptype.GetOptions());
@@ -92,7 +92,7 @@ diff --git a/libretro/libretro.cpp b/libretro/libretro.cpp
     vars.push_back(ppsspp_frame_duplication.GetOptions());
     vars.push_back(ppsspp_vertex_cache.GetOptions());
     vars.push_back(ppsspp_fast_memory.GetOptions());
-@@ -328,6 +330,7 @@
+@@ -330,6 +330,7 @@
     ppsspp_cheats.Update(&g_Config.bEnableCheats);
     ppsspp_locked_cpu_speed.Update(&g_Config.iLockedCPUSpeed);
     ppsspp_rendering_mode.Update(&g_Config.iRenderingMode);
@@ -104,7 +104,7 @@ diff --git a/libretro/libretro.cpp b/libretro/libretro.cpp
 MRFIXIT: Now change the maxFPS to be a user-selected value to fine-tune performance for high demanding games
 --- a/UI/GameSettingsScreen.cpp	2018-11-18 02:06:08.250398000 +0000
 +++ b/UI/GameSettingsScreen.cpp	2018-11-18 02:20:02.941563758 +0000
-@@ -163,8 +163,8 @@
+@@ -172,8 +172,8 @@
  		g_Config.loadGameConfig(gameID_, info->GetTitle());
  	}
  
@@ -114,7 +114,7 @@ MRFIXIT: Now change the maxFPS to be a user-selected value to fine-tune performa
  	iAlternateSpeedPercent1_ = g_Config.iFpsLimit1 < 0 ? -1 : (g_Config.iFpsLimit1 * 100) / 60;
  	iAlternateSpeedPercent2_ = g_Config.iFpsLimit2 < 0 ? -1 : (g_Config.iFpsLimit2 * 100) / 60;
  
-@@ -301,8 +301,10 @@
+@@ -310,8 +310,10 @@
  	graphicsSettings->Add(new PopupMultiChoice(&g_Config.iFrameSkipType, gr->T("Frame Skipping Type"), frameSkipType, 0, ARRAY_SIZE(frameSkipType), gr->GetName(), screenManager()));
  	frameSkipAuto_ = graphicsSettings->Add(new CheckBox(&g_Config.bAutoFrameSkip, gr->T("Auto FrameSkip")));
  	frameSkipAuto_->OnClick.Handle(this, &GameSettingsScreen::OnAutoFrameskip);
@@ -127,7 +127,7 @@ MRFIXIT: Now change the maxFPS to be a user-selected value to fine-tune performa
  	PopupSliderChoice *altSpeed1 = graphicsSettings->Add(new PopupSliderChoice(&iAlternateSpeedPercent1_, 0, 1000, gr->T("Alternative Speed", "Alternative speed"), 5, screenManager(), gr->T("%, 0:unlimited")));
  	altSpeed1->SetFormat("%i%%");
  	altSpeed1->SetZeroLabel(gr->T("Unlimited"));
-@@ -1230,6 +1230,16 @@
+@@ -1203,6 +1203,16 @@
  	return UI::EVENT_DONE;
  };
  
@@ -144,7 +144,7 @@ MRFIXIT: Now change the maxFPS to be a user-selected value to fine-tune performa
  UI::EventReturn GameSettingsScreen::OnResolutionChange(UI::EventParams &e) {
  	if (g_Config.iAndroidHwScale == 1) {
  		RecreateActivity();
-@@ -1252,7 +1252,6 @@
+@@ -1225,7 +1225,6 @@
  
  void GameSettingsScreen::update() {
  	UIScreen::update();
@@ -155,7 +155,7 @@ MRFIXIT: Now change the maxFPS to be a user-selected value to fine-tune performa
 
 --- a/UI/GameSettingsScreen.h	2018-11-18 02:05:21.907810600 +0000
 +++ b/UI/GameSettingsScreen.h	2018-11-18 02:20:47.993962676 +0000
-@@ -57,6 +57,7 @@
+@@ -55,6 +55,7 @@
  	UI::Choice *displayEditor_;
  	UI::Choice *backgroundChoice_ = nullptr;
  	UI::PopupMultiChoice *resolutionChoice_;
@@ -171,7 +171,7 @@ MRFIXIT: Now change the maxFPS to be a user-selected value to fine-tune performa
  	UI::EventReturn OnHwScaleChange(UI::EventParams &e);
  	UI::EventReturn OnRestoreDefaultSettings(UI::EventParams &e);
  	UI::EventReturn OnRenderingMode(UI::EventParams &e);
-@@ -125,6 +125,7 @@
+@@ -124,6 +124,7 @@
  	UI::EventReturn OnSysInfo(UI::EventParams &e);
  
  	// Temporaries to convert setting types, cache enabled, etc.
