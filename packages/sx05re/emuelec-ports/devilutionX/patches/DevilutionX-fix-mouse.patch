@@ -1,10 +1,28 @@
---- a/Source/miniwin/misc_msg.cpp	2021-04-16 13:34:35.000000000 -0500
-+++ b/Source/miniwin/misc_msg.cpp	2021-04-16 15:47:52.874697748 -0500
-@@ -43,6 +43,7 @@
- 	mouseWarping = true;
- 	LogicalToOutput(&x, &y);
- 	SDL_WarpMouseInWindow(ghMainWnd, x, y);
-+ 	MousePosition = { x, y };
+diff --git a/Source/controls/plrctrls.cpp b/Source/controls/plrctrls.cpp
+index 6d178d5a..7ad7126b 100644
+--- a/Source/controls/plrctrls.cpp
++++ b/Source/controls/plrctrls.cpp
+@@ -634,6 +634,7 @@ void ResetInvCursorPosition()
+ 	mousePos.y -= (InventorySlotSizeInPixels.height / 2);
+ 
+ 	SetCursorPos(mousePos.x, mousePos.y);
++	MousePosition = mousePos;
  }
  
- // Moves the mouse to the first attribute "+" button.
+ /**
+@@ -927,6 +928,7 @@ void InvMove(AxisDirection dir)
+ 	}
+ 
+ 	SetCursorPos(mousePos.x, mousePos.y);
++	MousePosition = mousePos;
+ }
+ 
+ /**
+@@ -1288,6 +1290,7 @@ void HandleRightStickMotion()
+ 		if (now - lastMouseSetTick > 0) {
+ 			SetCursorPos(x, y);
+ 			lastMouseSetTick = now;
++			MousePosition = { x, y };
+ 		}
+ 	}
+ }
