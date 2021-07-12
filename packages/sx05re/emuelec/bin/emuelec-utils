@@ -88,7 +88,7 @@ function ee_backup() {
 					  /storage/.emulationstation/themesettings \
 					  /tmp/joypads/* \
 					  /storage/.config/retroarch/*.cfg \
-					  /storage/.config/ppsspp/* \
+					  /storage/.config/ppsspp/PSP/* \
 					  /storage/.config/retroarch/config/* \
 					  /storage/.config/supertux* \
 					  /storage/.emulationstation/scripts/drastic/config/* \
