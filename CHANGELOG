@@ -1,6 +1,42 @@
 EmuELEC CHANGELOG
 ==================
 
+# 4.3k
+
+General: 
+
+* Fix Autoupdate
+* Fix no backup restore if EEROMS was set to fat32
+* Fix no external ROMS if EEROMS was set to fat32
+* Fix typo on Parallel N64 32b core name
+* Unify Brightness between ES and RA
+* Fix advmame.sh: unset DISPLAY for Amlogic and Amlogic-ng
+* Fix SuperTux2: Fix sed in launch script
+* Fix vertical mode not respecting index ratio
+* Fix Connect to WiFi on first boot if using es_defaults.txt
+* Fix volume resets to 98% using AV
+* Fix Do not redirect stdout/stderr to /dev/null in maxperf and normperf. (#661)
+* Fix Reverse ABXY button in devilutionX
+* Fix Do not update ppsspp assets
+* emuelecRunEmu.sh: remove hardcoded bin path, this allows to use most of the binaries/scripts be called from `/emuelec/bin` or `/usr/bin` in that order
+* Add Megadrive MSU to es_systems.cfg
+* Add fceumm-mod libretro core to play some additional NES ROM hacks. (#658)
+* New Packages: Box64, Box86, GL4es, Axe11, libglu (for future use)
+* Bump most cores and emulators to current versions
+* Bump fbneo to 886e424 (include korean hack)
+* Bump SDLPoP to v1.22
+* Bump sonic2013 to c3be493
+* Bump soniccd to 129cd86
+* Bump devilutionX to 72e888c
+* Bump Retroarch to 1.9.6
+* Bump ppsspp to eb0f0d3 (fix some korean character is broken in settings)
+* Bump VVVVVV to 95ffc3a
+
+Amlogic-ng: 
+
+* Add preliminary support for Raxda Zero (But not support korean version)
+
+
 # 4.2k
 
 A new forum has been open for emuelec: https://emuelec.org
