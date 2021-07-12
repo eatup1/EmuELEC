@@ -2,20 +2,20 @@ diff --git a/desktop_version/src/FileSystemUtils.cpp b/desktop_version/src/FileS
 index d40e7e9..d19895d 100644
 --- a/desktop_version/src/FileSystemUtils.cpp
 +++ b/desktop_version/src/FileSystemUtils.cpp
-@@ -102,7 +102,7 @@
+@@ -160,7 +160,7 @@
  	else
  	{
  		SDL_snprintf(output, sizeof(output), "%s%s",
--			PHYSFS_getBaseDir(),
+-			basePath,
 +			"/storage/roms/ports/VVVVVV/",
  			"data.zip"
  		);
  	}
-@@ -124,7 +124,7 @@
- 		return 0;
+@@ -183,7 +183,7 @@
+ 		goto end;
  	}
  
--	SDL_snprintf(output, sizeof(output), "%s%s", PHYSFS_getBaseDir(), "gamecontrollerdb.txt");
+-	SDL_snprintf(output, sizeof(output), "%s%s", basePath, "gamecontrollerdb.txt");
 +	SDL_snprintf(output, sizeof(output), "%s%s", "/storage/.config/SDL-GameControllerDB/", "gamecontrollerdb.txt");
  	if (SDL_GameControllerAddMappingsFromFile(output) < 0)
  	{

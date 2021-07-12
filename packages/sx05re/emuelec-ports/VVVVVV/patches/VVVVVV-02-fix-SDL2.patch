@@ -1,0 +1,57 @@
+diff --git a/desktop_version/src/BinaryBlob.cpp b/desktop_version/src/BinaryBlob.cpp
+index 59e6760..fadfd3a 100644
+--- a/desktop_version/src/BinaryBlob.cpp
++++ b/desktop_version/src/BinaryBlob.cpp
+@@ -7,6 +7,10 @@
+ #include "FileSystemUtils.h"
+ #include "UtilityClass.h"
+ 
++#ifndef SDL_zeroa
++#define SDL_zeroa(x) SDL_memset((x), 0, sizeof((x)))
++#endif
++
+ binaryBlob::binaryBlob(void)
+ {
+ 	numberofHeaders = 0;
+diff --git a/desktop_version/src/FileSystemUtils.cpp b/desktop_version/src/FileSystemUtils.cpp
+index 06a4293..ba5b82e 100644
+--- a/desktop_version/src/FileSystemUtils.cpp
++++ b/desktop_version/src/FileSystemUtils.cpp
+@@ -1100,6 +1100,7 @@ bool FILESYSTEM_openDirectoryEnabled(void)
+ 	return !SDL_GetHintBoolean("SteamTenfoot", SDL_FALSE);
+ }
+ 
++#ifdef _WIN32
+ bool FILESYSTEM_openDirectory(const char *dname)
+ {
+ 	char url[MAX_PATH];
+@@ -1111,6 +1112,12 @@ bool FILESYSTEM_openDirectory(const char *dname)
+ 	}
+ 	return true;
+ }
++#else
++bool FILESYSTEM_openDirectory(const char *dname)
++{
++	return false;
++}
++#endif
+ 
+ bool FILESYSTEM_delete(const char *name)
+ {
+diff --git a/desktop_version/src/editor.cpp b/desktop_version/src/editor.cpp
+index 34d3e4b..500503c 100644
+--- a/desktop_version/src/editor.cpp
++++ b/desktop_version/src/editor.cpp
+@@ -32,7 +32,11 @@
+ #endif
+ #include <inttypes.h>
+ #endif
+-
++
++#ifndef SDL_zeroa
++#define SDL_zeroa(x) SDL_memset((x), 0, sizeof((x)))
++#endif
++
+ edlevelclass::edlevelclass(void)
+ {
+     tileset=0;
