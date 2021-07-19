@@ -2,11 +2,11 @@
 # Copyright (C) 2021-present Shanti Gilbert (https://github.com/shantigilbert)
 
 PKG_NAME="351Files"
-PKG_VERSION="492961726abb04ebefa58f7dda47b7040f3bd088"
-PKG_SHA256="249ef2842fb28fc9a1296f25a35b7f02ac5a5ef7a472b9a4e1a977722cf39643"
+PKG_VERSION="d5789cbe8b3d32ea52859649e5651d56690f174e"
+PKG_SHA256="249fc68dd3bd15792233deb8b71df2e53075c1e4adf813b6b09ad86c13ac989e"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
-PKG_SITE="https://github.com/EmuELEC/351Files"
+PKG_SITE="https://github.com/Tardigrade-nx/351Files"
 PKG_URL="$PKG_SITE/archive/$PKG_VERSION.tar.gz"
 PKG_DEPENDS_TARGET="toolchain SDL2-git SDL2_image SDL2_gfx SDL2_ttf freetype file"
 PKG_LONGDESC="File Manager"
@@ -38,5 +38,7 @@ makeinstall_target() {
   
   cp -rf ${PKG_DIR}/config/* $INSTALL/usr/config/emuelec/configs/
   
+  # Copy korean font
+  cp -rf ${PKG_DIR}/res/*.ttf $INSTALL/usr/config/emuelec/configs/fm/res/
   
 }
