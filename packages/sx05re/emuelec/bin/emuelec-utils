@@ -104,7 +104,7 @@ function ee_backup() {
 }
 
 function filemanager() {
-	fbterm.sh "/usr/bin/scripts/setup/file_manager_(kb).sh"
+	/usr/bin/scripts/setup/file_manager.sh
 }
 
 function getshaders() {

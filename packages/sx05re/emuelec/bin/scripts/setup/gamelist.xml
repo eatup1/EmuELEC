@@ -10,9 +10,9 @@
 		<!--image>./downloaded_images/Input Test.png</image-->
 	</game>
 	<game>
-		<path>./file_manager_(kb).sh</path>
+		<path>./file_manager.sh</path>
 		<name>파일 매니저</name>
-		<desc>MC 파일 매니저. 키보드가 필요합니다!</desc>
+		<desc>MC 파일 매니저. 키보드 불필요</desc>
 		<developer>shantigilbert </developer>
 		<publisher>Emuelec</publisher>
 		<genre>script</genre>
