@@ -27,7 +27,7 @@ index cfea030..af54274 100644
 -   #define KEYBOARD_MARGIN          8
 -   #define KEYBOARD_KEY_SPACING     4
 +   #define FONT_NAME                "NanumGothic.ttf"
-+   #define FONT_NAME_MONO           "NanumGothicCoding.ttf"
++   #define FONT_NAME_MONO           "NanumGothicCoding-Bold.ttf"
 +   extern int FONT_SIZE;
 +   extern int LINE_HEIGHT;
 +   extern int ICON_SIZE;
