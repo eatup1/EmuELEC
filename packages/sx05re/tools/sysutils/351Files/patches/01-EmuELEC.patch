@@ -2,10 +2,10 @@ diff --git a/src/def.h b/src/def.h
 index cfea030..af54274 100644
 --- a/src/def.h
 +++ b/src/def.h
-@@ -41,19 +41,23 @@
+@@ -86,19 +86,23 @@
     #define KEYBOARD_KEY_SPACING     4
  
- // Paraters for desktop PC
+ // Paramaters for desktop PC
 -#else
 -   #define SCREEN_WIDTH             640
 -   #define SCREEN_HEIGHT            480
