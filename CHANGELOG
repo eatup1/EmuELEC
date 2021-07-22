@@ -31,6 +31,10 @@ General:
 * Bump Retroarch to 1.9.6
 * Bump ppsspp to eb0f0d3 (fix some korean character is broken in settings)
 * Bump VVVVVV to 95ffc3a
+* Add Flycast Stand Alone 
+* Add Alternate version of Mupen64plus-nx
+* Replace old filemanager for 351Files
+* Fix Amstrad GX4000
 
 Amlogic-ng: 
 
