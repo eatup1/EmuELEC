@@ -19,7 +19,7 @@
 ################################################################################
 
 PKG_NAME="ppsspp"
-PKG_VERSION="eb0f0d39ba8f9bc3c405adacc46f8ab1cf386b02"
+PKG_VERSION="6daa18cca0ba412a3c511f5a358aa15e67bb9264"
 PKG_LICENSE="GPLv2"
 PKG_SITE="https://github.com/hrydgard/ppsspp"
 PKG_URL="https://github.com/hrydgard/ppsspp.git"
@@ -46,6 +46,13 @@ pre_configure_target() {
                              -DUSING_EGL=ON \
                              -DUSING_GLES2=ON"
   fi
+  
+if [ $ARCH == "aarch64" ]; then
+PKG_CMAKE_OPTS_TARGET+=" -DARM64=ON"
+else
+PKG_CMAKE_OPTS_TARGET+=" -DARMV7=ON"
+fi
+  
 }
 
 pre_make_target() {

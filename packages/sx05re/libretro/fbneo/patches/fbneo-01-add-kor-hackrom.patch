@@ -898,7 +898,7 @@ diff --git a/src/burn/drv/megadrive/d_megadrive.cpp b/src/burn/drv/megadrive/d_m
 index 92a16cef8..0fe4b04f4 100644
 --- a/src/burn/drv/megadrive/d_megadrive.cpp
 +++ b/src/burn/drv/megadrive/d_megadrive.cpp
-@@ -53004,3 +53004,462 @@ struct BurnDriver BurnDrvmd_mworld4f = {
+@@ -53293,3 +53293,462 @@ struct BurnDriver BurnDrvmd_mworld4f = {
  	MegadriveInit, MegadriveExit, MegadriveFrame, MegadriveDraw, MegadriveScan,
  	&bMegadriveRecalcPalette, 0x100, 320, 224, 4, 3
  };
