@@ -388,3 +388,18 @@ Supermariowar:
   commands:
     - /usr/bin/show_splash.sh "ports" "supermariowar"
     - run_smw.sh
+
+Hurrican:
+  name: 허리케인
+  description: Poke53280이 만든 점프 엔 슛 게임
+  rating: 1.0
+  release_date: 2001
+  developer: Poke53280
+  publisher: Hurrican Team
+
+  init_port: true
+  port_exe: "hurrican"
+  audio: "alsa"
+  commands:
+    - /usr/bin/show_splash.sh "ports" "hurrican"
+    - hurrican.sh
