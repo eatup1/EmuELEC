@@ -20,7 +20,7 @@ fi
 
 if [ ! -e "${DATAFOLDER}/levels/levellist.dat" ]; then
     if [ $(get_ee_setting system.language) == "ko_KR" ]; then
-        text_viewer -y -w -f 24 -t "µ¥ÀÌÅÍ ¾øÀ½!" -m "Çã¸®ÄÉÀÎÀ» Ã³À½ ½ÇÇàÇÏ°Å³ª µ¥ÀÌÅÍ Æú´õ°¡ Á¸ÀçÇÏÁö ¾Ê½À´Ï´Ù.\n\nµ¥ÀÌÅÍ´Â ÃÑ 95MBÀÌ¸ç ÀÎÅÍ³İ¿¡ ¿¬°áµÇ¾î ÀÖ¾î¾ß ÇÕ´Ï´Ù.\n\n\n´Ù¿î·ÎµåÇÏ°í °è¼ÓÇÏ½Ã°Ú½À´Ï±î?"
+        text_viewer -y -w -f 24 -t "ë°ì´í„° ì—†ìŒ!" -m "í—ˆë¦¬ì¼€ì¸ì„ ì²˜ìŒ ì‹¤í–‰í•˜ê±°ë‚˜ ë°ì´í„° í´ë”ê°€ ì¡´ì¬í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.\n\në°ì´í„°ëŠ” ì´ 95MBì´ë©° ì¸í„°ë„·ì— ì—°ê²°ë˜ì–´ ìˆì–´ì•¼ í•©ë‹ˆë‹¤.\n\n\në‹¤ìš´ë¡œë“œí•˜ê³  ê³„ì†í•˜ì‹œê² ìŠµë‹ˆê¹Œ?"
     else
         text_viewer -y -w -f 24 -t "Data does not exists!" -m "It seems this is the first time you are launching Hurrican or the data folder does not exists\n\nData is about 95 MB total, and you need to be connected to the internet\n\n\nDownload and continue?"
     fi
