@@ -2,7 +2,7 @@
 # Copyright (C) 2020-present Shanti Gilbert (https://github.com/shantigilbert)
 
 PKG_NAME="devilutionX"
-PKG_VERSION="cb62e7bf2d9797d74363c7350eaf631144d2d2a5"
+PKG_VERSION="8c188634c4a82d9b12bcd1be299989924f680842"
 PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="unlicense"
@@ -17,6 +17,7 @@ pre_configure_target() {
 PKG_CMAKE_OPTS_TARGET=" -DBINARY_RELEASE=1 -DCMAKE_BUILD_TYPE="Release" -DDEBUG=OFF -DPREFILL_PLAYER_NAME=ON"
 #PKG_CMAKE_OPTS_TARGET=" -DBINARY_RELEASE=1 -DCMAKE_BUILD_TYPE="Release" -DDEBUG=OFF -DPREFILL_PLAYER_NAME=ON -DUSE_GETTEXT=ON"
 sed -i "s|;-static-libstdc++>|;-lstdc++>|" $PKG_BUILD/CMakeLists.txt
+sed -i "s|GetIniBool(\"Graphics\", \"Hardware Cursor\", true)|GetIniBool(\"Graphics\", \"Hardware Cursor\", false)|" $PKG_BUILD/Source/options.cpp
 #sed -i "s|lang da es fr hr it pt_BR sv zh_CN|lang da es fr hr it ko_KR pt_BR sv zh_CN|" $PKG_BUILD/CMakeLists.txt
 }
 
