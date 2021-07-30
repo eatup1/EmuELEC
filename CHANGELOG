@@ -31,6 +31,7 @@ General:
 * Bump Retroarch to 1.9.8
 * Bump ppsspp to eb0f0d3 (fix some korean character is broken in settings)
 * Bump VVVVVV to 95ffc3a
+* Bump dosbox-pure to v0.14
 * Add Flycast Stand Alone 
 * Add Alternate version of Mupen64plus-nx
 * Replace old filemanager for 351Files
