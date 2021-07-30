@@ -1,9 +1,9 @@
 --- a/frontend/drivers/platform_unix.c
 +++ b/frontend/drivers/platform_unix.c
 @@ -1359,12 +1359,17 @@
+       free(buffer);
     }
-    #endif
- 
+
 -   /* Calculate the brightness */
 +   char bright[64];
 +   sprintf(bright, "/usr/bin/odroidgoa_utils.sh bright %i", value);
@@ -34,7 +34,7 @@
  }
  
  static void frontend_unix_init(void *data)
-@@ -2825,7 +2825,7 @@
+@@ -2826,7 +2826,7 @@
  #else
     NULL,                               /* get_lakka_version */
  #endif

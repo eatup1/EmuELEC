@@ -11,7 +11,7 @@ index 8ebd13ade4..066de9a6d2 100644
  #define UDEV_XKB_HANDLING
  #endif
  
-@@ -1307,7 +1307,7 @@ static void *udev_input_init(const char *joypad_driver)
+@@ -1319,7 +1319,7 @@ static void *udev_input_init(const char *joypad_driver)
        goto error;
  
     video_context_driver_get_ident(&ctx_ident);

@@ -39,7 +39,7 @@
  }
  
  #ifdef HAVE_CHEATS
-@@ -15161,6 +15161,8 @@
+@@ -15174,6 +15174,8 @@
                 RARCH_LOG("[Input]: %s => %s\n",
                       "Game Focus",
                       p_rarch->game_focus_state.enabled ? "ON" : "OFF");

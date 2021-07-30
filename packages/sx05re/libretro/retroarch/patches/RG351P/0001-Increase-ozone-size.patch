@@ -20,7 +20,7 @@ index f381ee9a20..fd900473b5 100644
  
     file_list_initialize(&ozone->selection_buf_old);
  
-@@ -1763,7 +1763,7 @@ static void ozone_render(void *data,
+@@ -1771,7 +1771,7 @@ static void ozone_render(void *data,
  
     /* Check whether screen dimensions or menu scale
      * factor have changed */
