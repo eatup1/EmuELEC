@@ -2,7 +2,7 @@
 # Copyright (C) 2021-present Shanti Gilbert (https://github.com/shantigilbert)
 
 PKG_NAME="hurrican"
-PKG_VERSION="4a9a8a80f9a12f13e8226c8b161b417f06b2e7fe"
+PKG_VERSION="f2cce99acebd1b155cbb445c26e77785a14287d6"
 PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="MIT"
@@ -17,6 +17,10 @@ PKG_CMAKE_OPTS_TARGET=" ./Hurrican -DCMAKE_BUILD_TYPE=Release -DRENDERER=GLES2"
 
 if [ "${DEVICE}" == "OdroidGoAdvance" -o "${DEVICE}" == "RG351P" -o "${DEVICE}" == "RG351V" ] || [ "${DEVICE}" == "GameForce" ]; then
 	PKG_CMAKE_OPTS_TARGET+=" -DDEFAULT_SCREENBPP=16"
+fi
+
+if [ "${DEVICE}" == "RG351P" -o "${DEVICE}" == "RG351V" ]; then
+    PKG_PATCH_DIRS="RG351"
 fi
 
 pre_configure_target() {

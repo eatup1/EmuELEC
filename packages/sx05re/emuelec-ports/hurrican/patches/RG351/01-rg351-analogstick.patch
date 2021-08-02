@@ -1,0 +1,19 @@
+diff --git a/Hurrican/src/Menu.cpp b/Hurrican/src/Menu.cpp
+index bd0d6f3..0794a95 100644
+--- a/Hurrican/src/Menu.cpp
++++ b/Hurrican/src/Menu.cpp
+@@ -1242,8 +1242,14 @@ void MenuClass::DoMenu() {
+                 } else if (DirectInput.Joysticks[joy_idx].JoystickX < -Player[0].JoystickSchwelle) {
+                     joy_left = true;
+                 } else if (DirectInput.Joysticks[joy_idx].JoystickY > Player[0].JoystickSchwelle) {
++                    if (strcmp(DirectInput.Joysticks[joy_idx].JoystickName, "OpenSimHardware OSH PB Controller") == 0)
++                        joy_up = true;
++                    else
+                     joy_down = true;
+                 } else if (DirectInput.Joysticks[joy_idx].JoystickY < -Player[0].JoystickSchwelle) {
++                    if (strcmp(DirectInput.Joysticks[joy_idx].JoystickName, "OpenSimHardware OSH PB Controller") == 0)
++                        joy_down = true;
++                    else
+                     joy_up = true;
+                 }
+ #endif  // GCW
