@@ -15,7 +15,7 @@ PKG_TOOLCHAIN="cmake"
 
 PKG_CMAKE_OPTS_TARGET=" ./Hurrican -DCMAKE_BUILD_TYPE=Release -DRENDERER=GLES2"
 
-if [ "${DEVICE}" == "OdroidGoAdvance" ] || [ "${DEVICE}" == "GameForce" ]; then
+if [ "${DEVICE}" == "OdroidGoAdvance" -o "${DEVICE}" == "RG351P" -o "${DEVICE}" == "RG351V" ] || [ "${DEVICE}" == "GameForce" ]; then
 	PKG_CMAKE_OPTS_TARGET+=" -DDEFAULT_SCREENBPP=16"
 fi
 
