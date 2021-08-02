@@ -1,14 +1,22 @@
-back = backspace
+back = esc
 start = enter
-guide = esc
-a = enter
-b = backspace
-x = x
-y = backspace
-l1 = pageup
-l2 = home
-r1 = pagedown
-r2 = end
+guide = enter
+# Jump
+a = leftalt 
+# Shoot
+b = leftctrl
+# Grenade
+x = rightctrl
+# Powerline
+y = space
+# Ligthing
+l1 = leftshift
+# Grenade
+l2 = rightctrl
+# cycle Weapons
+r1 = enter
+# Shockwave
+r2 = rightshift
 up = up
 down = down
 left = left
