@@ -20,7 +20,7 @@ fi
 
 if [ "$EE_DEVICE" != "Amlogic-ng" ]; then 
     gptokeyb -c /emuelec/configs/gptokeyb/hurrican.gptk &
-    FLAGS=" --depth 16"
+    FLAGS=" --depth 16 --lowres"
 fi
 
 if [ ! -e "${DATAFOLDER}/levels/levellist.dat" ]; then
