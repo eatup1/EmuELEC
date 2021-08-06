@@ -30,7 +30,7 @@ if [ "$DEVICE" == "OdroidGoAdvance" -o "$DEVICE" == "RG351P" -o "$DEVICE" == "RG
 	PKG_MAKE_OPTS_TARGET+=" platform=classic_armv8_a35"
 	fi
 fi
-
+perl ./src/dep/scripts/gamelist.pl -o ./src/dep/generated/driverlist.h ./src/burn/drv/atari ./src/burn/drv/capcom ./src/burn/drv/cave ./src/burn/drv/channelf ./src/burn/drv/coleco ./src/burn/drv/cps3 ./src/burn/drv/dataeast ./src/burn/drv/galaxian ./src/burn/drv/irem ./src/burn/drv/konami ./src/burn/drv/megadrive ./src/burn/drv/midway ./src/burn/drv/msx ./src/burn/drv/neogeo ./src/burn/drv/pce ./src/burn/drv/pgm ./src/burn/drv/pst90s ./src/burn/drv/pre90s ./src/burn/drv/psikyo ./src/burn/drv/sega ./src/burn/drv/sg1000 ./src/burn/drv/spectrum ./src/burn/drv/taito ./src/burn/drv/toaplan  ./src/burn/drv/sms ./src/burn/drv/nes ./src/burn/drv
 }
 
 makeinstall_target() {
