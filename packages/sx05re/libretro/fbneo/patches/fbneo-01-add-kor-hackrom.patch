@@ -361,10 +361,10 @@ index bdfd20bf6..036914a85 100644
  #undef CPS1_68K_PROGRAM_NO_BYTESWAP
  #undef CPS1_Z80_PROGRAM
 diff --git a/src/burn/drv/capcom/d_cps2.cpp b/src/burn/drv/capcom/d_cps2.cpp
-index 3f5fdab2d..f1746ba26 100644
+index b6eed7f45..79d4a8250 100644
 --- a/src/burn/drv/capcom/d_cps2.cpp
 +++ b/src/burn/drv/capcom/d_cps2.cpp
-@@ -13924,3 +13924,571 @@ struct BurnDriver BurnDrvCpsGigaman2 = {
+@@ -13965,3 +13965,570 @@ struct BurnDriver BurnDrvCpsGigaman2 = {
  	Gigaman2Init, Gigaman2Exit, Cps2Frame, CpsRedraw, Gigaman2Scan,
  	&CpsRecalcPal, 0x1000, 384, 224, 4, 3
  };
@@ -406,10 +406,51 @@ index 3f5fdab2d..f1746ba26 100644
 +
 +struct BurnDriver BurnDrvCpsDdsomav4 = {
 +	"ddsomav4", "ddsom", NULL, NULL, "1996",
-+	"Dungeons & Dragons - shadow over mystara (960619 Asia, 1 vs 4 Hack)\0", NULL, "Capcom", "CPS2",
++	"Dungeons & Dragons - shadow over mystara (960619 Asia, 1 vs 4 Hack)\0", "Hack", "Capcom", "CPS2",
 +	NULL, NULL, NULL, NULL,
 +	BDF_GAME_WORKING | BDF_CLONE | BDF_HISCORE_SUPPORTED, 4, HARDWARE_CAPCOM_CPS2, GBF_SCRFIGHT, 0,
 +	NULL, Ddsomav4RomInfo, Ddsomav4RomName, NULL, NULL, NULL, NULL, DdsomInputInfo, NULL,
++	Cps2Init, DrvExit, Cps2Frame, CpsRedraw, CpsAreaScan,
++	&CpsRecalcPal, 0x1000, 384, 224, 4, 3
++};
++
++static struct BurnRomInfo DdsomkRomDesc[] = {
++	{ "dd2k.03g",      0x080000, 0xce684dd4, CPS2_PRG_68K | BRF_ESS | BRF_PRG },
++	{ "dd2k.04g",      0x080000, 0x64212c8d, CPS2_PRG_68K | BRF_ESS | BRF_PRG },
++	{ "dd2.05g",       0x080000, 0x5eb1991c, CPS2_PRG_68K | BRF_ESS | BRF_PRG },
++	{ "dd2k.06g",      0x080000, 0x14c46332, CPS2_PRG_68K | BRF_ESS | BRF_PRG },
++	{ "dd2k.07",       0x080000, 0x9c6706d7, CPS2_PRG_68K | BRF_ESS | BRF_PRG },
++	{ "dd2.08",        0x080000, 0xe53c4d01, CPS2_PRG_68K | BRF_ESS | BRF_PRG },
++	{ "dd2.09",        0x080000, 0x5f86279f, CPS2_PRG_68K | BRF_ESS | BRF_PRG },
++	{ "dd2.10",        0x080000, 0xad954c26, CPS2_PRG_68K | BRF_ESS | BRF_PRG },
++
++	{ "dd2k.13m",      0x400000, 0x2ed06031, CPS2_GFX | BRF_GRA },
++	{ "dd2k.15m",      0x400000, 0x1ca4f74e, CPS2_GFX | BRF_GRA },
++	{ "dd2k.17m",      0x400000, 0x6471aea9, CPS2_GFX | BRF_GRA },
++	{ "dd2k.19m",      0x400000, 0x61456d14, CPS2_GFX | BRF_GRA },
++	{ "dd2k.14m",      0x200000, 0xfca8f094, CPS2_GFX | BRF_GRA },
++	{ "dd2k.16m",      0x200000, 0xaa1a1481, CPS2_GFX | BRF_GRA },
++	{ "dd2k.18m",      0x200000, 0xb278079a, CPS2_GFX | BRF_GRA },
++	{ "dd2k.20m",      0x200000, 0x60540da9, CPS2_GFX | BRF_GRA },
++
++	{ "dd2.01",        0x020000, 0x99d657e5, CPS2_PRG_Z80 | BRF_ESS | BRF_PRG },
++	{ "dd2.02",        0x020000, 0x117a3824, CPS2_PRG_Z80 | BRF_ESS | BRF_PRG },
++
++	{ "dd2.11m",       0x200000, 0x98d0c325, CPS2_QSND | BRF_SND },
++	{ "dd2.12m",       0x200000, 0x5ea2e7fa, CPS2_QSND | BRF_SND },
++	
++	{ "ddsomj.key",    0x000014, 0xd8dadb22, CPS2_ENCRYPTION_KEY },
++};
++
++STD_ROM_PICK(Ddsomk)
++STD_ROM_FN(Ddsomk)
++
++struct BurnDriver BurnDrvCpsDdsomk = {
++	"ddsomk", "ddsom", NULL, NULL, "1996",
++	"Dungeons & Dragons - shadow over mystara (960619 Korea)\0", "Hack", "Capcom", "CPS2",
++	NULL, NULL, NULL, NULL,
++	BDF_GAME_WORKING | BDF_CLONE | BDF_HISCORE_SUPPORTED, 4, HARDWARE_CAPCOM_CPS2, GBF_SCRFIGHT, 0,
++	NULL, DdsomkRomInfo, DdsomkRomName, NULL, NULL, NULL, NULL, DdsomInputInfo, NULL,
 +	Cps2Init, DrvExit, Cps2Frame, CpsRedraw, CpsAreaScan,
 +	&CpsRecalcPal, 0x1000, 384, 224, 4, 3
 +};
@@ -894,53 +935,11 @@ index 3f5fdab2d..f1746ba26 100644
 +	Ssf2tInit, DrvExit, Cps2Frame, CpsRedraw, CpsAreaScan,
 +	&CpsRecalcPal, 0x1000, 384, 224, 4, 3
 +};
-+
-+// Korean hack by dsno
-+static struct BurnRomInfo DdsomjkRomDesc[] = {
-+	{ "dd2j.03g",      0x080000, 0x2363c442, CPS2_PRG_68K | BRF_ESS | BRF_PRG },
-+	{ "dd2j.04g",      0x080000, 0xd03e4e93, CPS2_PRG_68K | BRF_ESS | BRF_PRG },
-+	{ "dd2.05g",       0x080000, 0x5eb1991c, CPS2_PRG_68K | BRF_ESS | BRF_PRG },
-+	{ "dd2.06g",       0x080000, 0x89929cd9, CPS2_PRG_68K | BRF_ESS | BRF_PRG },
-+	{ "dd2.07",        0x080000, 0xbade7fbf, CPS2_PRG_68K | BRF_ESS | BRF_PRG },
-+	{ "dd2.08",        0x080000, 0xe53c4d01, CPS2_PRG_68K | BRF_ESS | BRF_PRG },
-+	{ "dd2.09",        0x080000, 0x5f86279f, CPS2_PRG_68K | BRF_ESS | BRF_PRG },
-+	{ "dd2.10",        0x080000, 0xad954c26, CPS2_PRG_68K | BRF_ESS | BRF_PRG },
-+
-+	{ "dd2.13m",       0x400000, 0x29d2cac6, CPS2_GFX | BRF_GRA },
-+	{ "dd2.15m",       0x400000, 0x547a3bad, CPS2_GFX | BRF_GRA },
-+	{ "dd2.17m",       0x400000, 0xdbbb5162, CPS2_GFX | BRF_GRA },
-+	{ "dd2.19m",       0x400000, 0x23c37b35, CPS2_GFX | BRF_GRA },
-+	{ "dd2.14m",       0x200000, 0x37b525a1, CPS2_GFX | BRF_GRA },
-+	{ "dd2.16m",       0x200000, 0xe1a3762c, CPS2_GFX | BRF_GRA },
-+	{ "dd2.18m",       0x200000, 0xb278079a, CPS2_GFX | BRF_GRA },
-+	{ "dd2.20m",       0x200000, 0x60540da9, CPS2_GFX | BRF_GRA },
-+
-+	{ "dd2.01",        0x020000, 0x99d657e5, CPS2_PRG_Z80 | BRF_ESS | BRF_PRG },
-+	{ "dd2.02",        0x020000, 0x117a3824, CPS2_PRG_Z80 | BRF_ESS | BRF_PRG },
-+
-+	{ "dd2.11m",       0x200000, 0x98d0c325, CPS2_QSND | BRF_SND },
-+	{ "dd2.12m",       0x200000, 0x5ea2e7fa, CPS2_QSND | BRF_SND },
-+	
-+	{ "ddsomj.key",    0x000014, 0xd8dadb22, CPS2_ENCRYPTION_KEY },
-+};
-+
-+STD_ROM_PICK(Ddsomjk)
-+STD_ROM_FN(Ddsomjk)
-+
-+struct BurnDriver BurnDrvCpsDdsomjk = {
-+	"ddsomjk", NULL, NULL, NULL, "2021",
-+	"Dungeons & Dragons - shadow over mystara (960619 Japan)(Korean hack by dsno)\0", NULL, "Capcom", "CPS2",
-+	NULL, NULL, NULL, NULL,
-+	BDF_GAME_WORKING | BDF_HISCORE_SUPPORTED, 4, HARDWARE_CAPCOM_CPS2, GBF_SCRFIGHT, 0,
-+	NULL, DdsomjkRomInfo, DdsomjkRomName, NULL, NULL, NULL, NULL, DdsomInputInfo, NULL,
-+	Cps2Init, DrvExit, Cps2Frame, CpsRedraw, CpsAreaScan,
-+	&CpsRecalcPal, 0x1000, 384, 224, 4, 3
-+};
 diff --git a/src/burn/drv/megadrive/d_megadrive.cpp b/src/burn/drv/megadrive/d_megadrive.cpp
-index 92a16cef8..0fe4b04f4 100644
+index a1966caeb..e93cd616e 100644
 --- a/src/burn/drv/megadrive/d_megadrive.cpp
 +++ b/src/burn/drv/megadrive/d_megadrive.cpp
-@@ -53293,3 +53293,462 @@ struct BurnDriver BurnDrvmd_mworld4f = {
+@@ -53312,3 +53312,462 @@ struct BurnDriver BurnDrvmd_mworld4f = {
  	MegadriveInit, MegadriveExit, MegadriveFrame, MegadriveDraw, MegadriveScan,
  	&bMegadriveRecalcPalette, 0x100, 320, 224, 4, 3
  };
@@ -1404,7 +1403,7 @@ index 92a16cef8..0fe4b04f4 100644
 +	&bMegadriveRecalcPalette, 0x100, 320, 224, 4, 3
 +};
 diff --git a/src/burn/drv/neogeo/d_neogeo.cpp b/src/burn/drv/neogeo/d_neogeo.cpp
-index 6527f1349..f68a20e6f 100644
+index 4a6403699..c2406a0f5 100644
 --- a/src/burn/drv/neogeo/d_neogeo.cpp
 +++ b/src/burn/drv/neogeo/d_neogeo.cpp
 @@ -110,7 +110,7 @@ static struct BurnDIPInfo ms5pcbDIPList[] = {
@@ -1506,7 +1505,7 @@ index 6527f1349..f68a20e6f 100644
  
  	// DIP 1
  	{0,		0xFE, 0,	2,	  "Setting mode"},
-@@ -20689,3 +20689,2886 @@ struct BurnDriver BurnDrvCabalng = {
+@@ -20690,3 +20690,2886 @@ struct BurnDriver BurnDrvCabalng = {
  	NeoInit, NeoExit, NeoFrame, NeoRender, NeoScan, &NeoRecalcPalette,
  	0x1000, 304, 224, 4, 3
  };
@@ -4394,7 +4393,7 @@ index 6527f1349..f68a20e6f 100644
 +	0x1000, 304, 224, 4, 3
 +};
 diff --git a/src/burn/drv/pre90s/d_blktiger.cpp b/src/burn/drv/pre90s/d_blktiger.cpp
-index ba5d22890..1e18f850e 100644
+index ba5d22890..54947adef 100644
 --- a/src/burn/drv/pre90s/d_blktiger.cpp
 +++ b/src/burn/drv/pre90s/d_blktiger.cpp
 @@ -1,1157 +1,1202 @@
@@ -6671,7 +6670,7 @@ index ba5d22890..1e18f850e 100644
 +};
 +
 +
-+// Black Dragon (Korea)
++// Black Dragon (Korean)
 +
 +static struct BurnRomInfo blkdrgnkRomDesc[] = {
 +	{ "bd_01k.5e",		0x08000, 0xe713b486, 1 | BRF_PRG | BRF_ESS }, //  0 - Z80 #0 Code
@@ -6707,7 +6706,7 @@ index ba5d22890..1e18f850e 100644
 +
 +struct BurnDriver BurnDrvBlkdrgnk = {
 +	"blkdrgnk", "blktiger", NULL, NULL, "1987",
-+	"Black Dragon (Korea)\0", NULL, "Capcom", "Miscellaneous",
++	"Black Dragon (Korean)\0", NULL, "Capcom", "Miscellaneous",
 +	NULL, NULL, NULL, NULL,
 +	BDF_GAME_WORKING | BDF_CLONE | BDF_HISCORE_SUPPORTED, 2, HARWARE_CAPCOM_MISC, GBF_PLATFORM | GBF_SCRFIGHT, 0,
 +	NULL, blkdrgnkRomInfo, blkdrgnkRomName, NULL, NULL, NULL, NULL, DrvInputInfo, DrvDIPInfo,
@@ -6758,10 +6757,10 @@ index ba5d22890..1e18f850e 100644
 +	256, 224, 4, 3
 +};
 diff --git a/src/burn/drv/pre90s/d_ginganin.cpp b/src/burn/drv/pre90s/d_ginganin.cpp
-index 599627c09..43844f638 100644
+index 82ffa5f2a..0f4995272 100644
 --- a/src/burn/drv/pre90s/d_ginganin.cpp
 +++ b/src/burn/drv/pre90s/d_ginganin.cpp
-@@ -745,3 +745,43 @@ struct BurnDriver BurnDrvGinganina = {
+@@ -717,3 +717,43 @@ struct BurnDriver BurnDrvGinganina = {
  	DrvInit, DrvExit, DrvFrame, DrvDraw, DrvScan, &DrvRecalc, 0x400,
  	256, 224, 4, 3
  };
