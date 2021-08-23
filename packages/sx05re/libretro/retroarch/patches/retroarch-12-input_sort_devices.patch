@@ -17,7 +17,7 @@ index 4b985f1953..d66e2b50d3 100644
  static void *udev_joypad_init(void *data)
  {
     unsigned i;
-@@ -577,12 +585,32 @@ static void *udev_joypad_init(void *data)
+@@ -578,12 +586,32 @@ static void *udev_joypad_init(void *data)
     udev_enumerate_scan_devices(enumerate);
     devs = udev_enumerate_get_list_entry(enumerate);
  
