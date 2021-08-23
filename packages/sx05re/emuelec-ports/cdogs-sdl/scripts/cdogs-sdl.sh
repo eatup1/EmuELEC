@@ -20,7 +20,11 @@ if [ "$EE_DEVICE" == "Amlogic-ng" ]; then
 fi
 
 if [ ! -e "${CONFIGFOLDER}/data/ammo.json" ]; then
-    text_viewer -y -w -f 24 -t "Data does not exists!" -m "It seems this is the first time you are launching ${PORTNAME} or the data folder does not exists\n\nData is about 35 MB total, and you need to be connected to the internet\n\n\nDownload and continue?"
+    if [ $(get_ee_setting system.language) == "ko_KR" ]; then
+        text_viewer -y -w -f 24 -t "데이터 없음!" -m "${PORTNAME}을 처음 실행하거나 데이터 폴더가 존재하지 않습니다.\n\n데이터는 총 35MB이며 인터넷에 연결되어 있어야 합니다.\n\n\n다운로드하고 계속하시겠습니까?"
+    else
+        text_viewer -y -w -f 24 -t "Data does not exists!" -m "It seems this is the first time you are launching ${PORTNAME} or the data folder does not exists\n\nData is about 35 MB total, and you need to be connected to the internet\n\n\nDownload and continue?"
+    fi
         if [[ $? == 21 ]]; then
             ee_console enable
             clear > /dev/tty0

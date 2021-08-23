@@ -411,7 +411,8 @@ Hurrican:
     - hurrican.sh
 
 Cdogs-sdl:
-  description: C-Dogs SDL is a classic overhead run-and-gun game, supporting up to 4 players in co-op and deathmatch modes. Customize your player, choose from many weapons, and blast, slide and slash your way through over 100 user-created campaigns. Have fun!
+  name: C-Dogs SDL
+  description: C-Dogs SDL은 협동 및 데스매치 모드에서 최대 4명의 플레이어를 지원하는 고전적인 오버헤드 런앤건 게임입니다. 플레이어를 커스터마이즈하고, 다양한 무기 중에서 선택하고, 100개 이상의 사용자 제작 캠페인을 통해 자신의 길을 가십시오. 즐거운 시간 보내세요!
   rating: 1.0
   release_date: 2002
   developer: Cxong
