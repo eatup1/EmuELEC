@@ -2,8 +2,8 @@
 # Copyright (C) 2021-present Shanti Gilbert (https://github.com/shantigilbert)
 
 PKG_NAME="351Files"
-PKG_VERSION="1ee7591c591ae18e6a2d2e19d96cf996f71bf712"
-PKG_SHA256="a88e6c02b4f8412bb004b251f6a0f8219c45f35dfaab47cde82eda28cbfc0eda"
+PKG_VERSION="08e82877655a231f5fefc3f7aa15a640b58a7ceb"
+PKG_SHA256="cffc55ebeddb35f7f5b17f175e8191cb7ea8f29a63626b242949deeb98c50af7"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="https://github.com/Tardigrade-nx/351Files"
