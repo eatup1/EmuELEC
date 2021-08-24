@@ -1,6 +1,6 @@
 --- a/src/video/SDL_egl.c
 +++ b/src/video/SDL_egl.c
-@@ -432,6 +432,13 @@
+@@ -510,6 +510,13 @@
  int
  SDL_EGL_ChooseConfig(_THIS) 
  {
@@ -14,7 +14,7 @@
  /* 64 seems nice. */
      EGLint attribs[64];
      EGLint found_configs = 0, value;
-@@ -521,7 +528,7 @@
+@@ -592,7 +599,7 @@
      attribs[i++] = EGL_NONE;
  
      if (_this->egl_data->eglChooseConfig(_this->egl_data->egl_display,

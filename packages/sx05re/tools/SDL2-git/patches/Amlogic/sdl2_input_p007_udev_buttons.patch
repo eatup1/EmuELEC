@@ -2,7 +2,7 @@ diff --git a/src/joystick/linux/SDL_sysjoystick.c b/src/joystick/linux/SDL_sysjo
 index fd32720..b3c0e3f 100644
 --- a/src/joystick/linux/SDL_sysjoystick.c
 +++ b/src/joystick/linux/SDL_sysjoystick.c
-@@ -655,8 +655,8 @@ ConfigJoystick(SDL_Joystick * joystick, int fd)
+@@ -683,8 +683,8 @@ ConfigJoystick(SDL_Joystick * joystick, int fd)
  #ifdef DEBUG_INPUT_EVENTS
                  printf("Joystick has button: 0x%x\n", i);
  #endif

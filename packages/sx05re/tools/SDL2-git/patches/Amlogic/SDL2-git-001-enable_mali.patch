@@ -2,7 +2,7 @@ diff --git a/CMakeLists.txt b/CMakeLists.txt
 index 73d9407..bcc872f 100644
 --- a/CMakeLists.txt
 +++ b/CMakeLists.txt
-@@ -333,6 +333,7 @@ set_option(VIDEO_VIVANTE       "Use Vivante EGL video driver" ${UNIX_SYS})
+@@ -343,6 +343,7 @@ set_option(VIDEO_VIVANTE       "Use Vivante EGL video driver" ${UNIX_SYS})
  dep_option(VIDEO_VULKAN        "Enable Vulkan support" ON "ANDROID OR APPLE OR LINUX OR WINDOWS" OFF)
  set_option(VIDEO_KMSDRM        "Use KMS DRM video driver" ${UNIX_SYS})
  dep_option(KMSDRM_SHARED       "Dynamically load KMS DRM support" ON "VIDEO_KMSDRM" OFF)
@@ -10,7 +10,7 @@ index 73d9407..bcc872f 100644
  
  # TODO: We should (should we?) respect cmake's ${BUILD_SHARED_LIBS} flag here
  # The options below are for compatibility to configure's default behaviour.
-@@ -976,6 +977,7 @@ elseif(UNIX AND NOT APPLE AND NOT ANDROID)
+@@ -1004,6 +1005,7 @@ elseif(UNIX AND NOT APPLE AND NOT ANDROID)
      CheckWayland()
      CheckVivante()
      CheckKMSDRM()
@@ -22,7 +22,7 @@ diff --git a/cmake/sdlchecks.cmake b/cmake/sdlchecks.cmake
 index e2e89a2..b890f49 100644
 --- a/cmake/sdlchecks.cmake
 +++ b/cmake/sdlchecks.cmake
-@@ -768,6 +768,28 @@ endmacro()
+@@ -750,6 +750,28 @@ endmacro()
  
  # Requires:
  # - n/a
@@ -55,23 +55,23 @@ diff --git a/configure b/configure
 index 55e0d4d..cd60ad6 100755
 --- a/configure
 +++ b/configure
-@@ -845,6 +845,7 @@ enable_video_x11_scrnsaver
+@@ -846,6 +846,7 @@ enable_video_x11_scrnsaver
  enable_video_x11_xshape
  enable_video_x11_vm
  enable_video_vivante
 +enable_video_mali
  enable_video_cocoa
+ enable_render_metal
  enable_video_directfb
- enable_directfb_shared
-@@ -1593,6 +1594,7 @@ Optional Features:
+@@ -1598,6 +1599,7 @@ Optional Features:
                            enable X11 XShape support [[default=yes]]
    --enable-video-x11-vm   use X11 VM extension for fullscreen [[default=yes]]
    --enable-video-vivante  use Vivante EGL video driver [[default=yes]]
 +  --enable-video-mali     use Mali EGL video driver [[default=yes]]
    --enable-video-cocoa    use Cocoa video driver [[default=yes]]
+   --enable-render-metal   enable the Metal render driver [[default=yes]]
    --enable-video-directfb use DirectFB video driver [[default=no]]
-   --enable-directfb-shared
-@@ -21142,6 +21144,56 @@ $as_echo "#define SDL_VIDEO_DRIVER_VIVANTE_VDK 1" >>confdefs.h
+@@ -21229,6 +21231,56 @@ $as_echo "#define SDL_VIDEO_DRIVER_VIVANTE_VDK 1" >>confdefs.h
      fi
  }
  
@@ -128,7 +128,7 @@ index 55e0d4d..cd60ad6 100755
  CheckHaikuVideo()
  {
      if test x$enable_video = xyes; then
-@@ -23803,6 +23855,7 @@ case "$host" in
+@@ -24072,6 +24124,7 @@ case "$host" in
          CheckLinuxVersion
          CheckRPATH
          CheckVivanteVideo
@@ -140,7 +140,7 @@ diff --git a/configure.in b/configure.in
 index 5ac2130..3e67f09 100644
 --- a/configure.in
 +++ b/configure.in
-@@ -2012,6 +2012,35 @@ AC_HELP_STRING([--enable-video-vivante], [use Vivante EGL video driver [[default
+@@ -2037,6 +2037,35 @@ AC_HELP_STRING([--enable-video-vivante], [use Vivante EGL video driver [[default
      fi
  }
  
@@ -176,7 +176,7 @@ index 5ac2130..3e67f09 100644
  dnl Set up the Haiku video driver if enabled
  CheckHaikuVideo()
  {
-@@ -3324,6 +3353,7 @@ case "$host" in
+@@ -3446,6 +3475,7 @@ case "$host" in
          CheckLinuxVersion
          CheckRPATH
          CheckVivanteVideo
@@ -188,7 +188,7 @@ diff --git a/include/SDL_config.h.cmake b/include/SDL_config.h.cmake
 index 9b20398..a14a92b 100644
 --- a/include/SDL_config.h.cmake
 +++ b/include/SDL_config.h.cmake
-@@ -302,6 +302,7 @@
+@@ -328,6 +328,7 @@
  #cmakedefine SDL_VIDEO_DRIVER_RPI @SDL_VIDEO_DRIVER_RPI@
  #cmakedefine SDL_VIDEO_DRIVER_VIVANTE @SDL_VIDEO_DRIVER_VIVANTE@
  #cmakedefine SDL_VIDEO_DRIVER_VIVANTE_VDK @SDL_VIDEO_DRIVER_VIVANTE_VDK@
@@ -200,7 +200,7 @@ diff --git a/include/SDL_config.h.in b/include/SDL_config.h.in
 index a28e83f..605a421 100644
 --- a/include/SDL_config.h.in
 +++ b/include/SDL_config.h.in
-@@ -310,6 +310,7 @@
+@@ -337,6 +337,7 @@
  #undef SDL_VIDEO_DRIVER_KMSDRM_DYNAMIC_GBM
  #undef SDL_VIDEO_DRIVER_ANDROID
  #undef SDL_VIDEO_DRIVER_EMSCRIPTEN
@@ -225,7 +225,7 @@ diff --git a/src/video/SDL_sysvideo.h b/src/video/SDL_sysvideo.h
 index 811fe19..991245e 100644
 --- a/src/video/SDL_sysvideo.h
 +++ b/src/video/SDL_sysvideo.h
-@@ -418,6 +418,7 @@ extern VideoBootStrap NACL_bootstrap;
+@@ -422,6 +422,7 @@ extern VideoBootStrap NACL_bootstrap;
  extern VideoBootStrap VIVANTE_bootstrap;
  extern VideoBootStrap Emscripten_bootstrap;
  extern VideoBootStrap QNX_bootstrap;

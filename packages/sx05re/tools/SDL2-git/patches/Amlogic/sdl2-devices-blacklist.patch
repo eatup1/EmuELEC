@@ -2,8 +2,8 @@ diff --git a/src/joystick/linux/SDL_sysjoystick.c b/src/joystick/linux/SDL_sysjo
 index b3c0e3f..948b22b 100644
 --- a/src/joystick/linux/SDL_sysjoystick.c
 +++ b/src/joystick/linux/SDL_sysjoystick.c
-@@ -243,6 +243,13 @@ IsJoystick(int fd, char *namebuf, const size_t namebuflen, SDL_JoystickGUID *gui
-         SDL_ShouldIgnoreGameController(namebuf, *guid)) {
+@@ -250,6 +250,13 @@ IsJoystick(int fd, char *namebuf, const size_t namebuflen, SDL_JoystickGUID *gui
+     if (SDL_ShouldIgnoreJoystick(namebuf, *guid)) {
          return 0;
      }
 +
