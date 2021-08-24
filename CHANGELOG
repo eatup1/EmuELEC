@@ -25,15 +25,10 @@ General:
 * Add fceumm-mod libretro core to play some additional NES ROM hacks. (#658)
 * New Packages: Box64, Box86, GL4es, Axe11, libglu (for future use)
 * Bump most cores and emulators to current versions
-* Bump fbneo to 886e424 (include korean hack)
 * Bump SDLPoP to v1.22
 * Bump sonic2013 to c3be493
 * Bump soniccd to 129cd86
-* Bump devilutionX to 72e888c
-* Bump Retroarch to 1.9.8
 * Bump ppsspp to eb0f0d3 (fix some korean character is broken in settings)
-* Bump VVVVVV to 95ffc3a
-* Bump dosbox-pure to v0.14
 * Add Flycast Stand Alone 
 * Add Alternate version of Mupen64plus-nx
 * Replace old filemanager for 351Files
@@ -41,10 +36,18 @@ General:
 * Add Hurrican port (Handhelds currently have no working controls) 
 * Atomiswave: Remove workaround for nvmem
 * Fix Stadia Gamepad. Thanks to amuzulo#1322 
+* Fix RA uses correct time zone
 * Fix issue with lzdoom loading .doom files and sound on mods
 * Update some sound packages
 * Fix es_systems.cfg: Add extensions to c64/c128 and Amiga (#677)
 * Add Cdogs-sdl to ports
+* Bump Retroarch to v1.9.8
+* Bump fbneo to 8ffe131 (support dsno's korean hack 8/22)
+* Bump dosbox-pure to v0.15
+* Bump devilutionX to 966cae8
+* Bump VVVVVV to 749a885
+* Bump mame2003-plus to d7dd8e7
+* Bump neocd_libretro to 323f102
 
 Amlogic-ng: 
 
