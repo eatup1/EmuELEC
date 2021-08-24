@@ -2,7 +2,7 @@
 # Copyright (C) 2020-present Shanti Gilbert (https://github.com/shantigilbert)
 
 PKG_NAME="devilutionX"
-PKG_VERSION="8c188634c4a82d9b12bcd1be299989924f680842"
+PKG_VERSION="966cae8b8215211c696721cf8717fffd268d9b4d"
 PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="unlicense"
@@ -17,8 +17,6 @@ pre_configure_target() {
 PKG_CMAKE_OPTS_TARGET=" -DBINARY_RELEASE=1 -DCMAKE_BUILD_TYPE="Release" -DDEBUG=OFF -DPREFILL_PLAYER_NAME=ON"
 #PKG_CMAKE_OPTS_TARGET=" -DBINARY_RELEASE=1 -DCMAKE_BUILD_TYPE="Release" -DDEBUG=OFF -DPREFILL_PLAYER_NAME=ON -DUSE_GETTEXT=ON"
 sed -i "s|;-static-libstdc++>|;-lstdc++>|" $PKG_BUILD/CMakeLists.txt
-sed -i "s|GetIniBool(\"Graphics\", \"Hardware Cursor\", true)|GetIniBool(\"Graphics\", \"Hardware Cursor\", false)|" $PKG_BUILD/Source/options.cpp
-#sed -i "s|lang da es fr hr it pt_BR sv zh_CN|lang da es fr hr it ko_KR pt_BR sv zh_CN|" $PKG_BUILD/CMakeLists.txt
 }
 
 makeinstall_target() { 
@@ -38,7 +36,7 @@ ninja -t clean
   cmake ${CMAKE_GENERATOR_NINJA} ${TARGET_CMAKE_OPTS} ${PKG_CMAKE_OPTS_TARGET} -DHELLFIRE=1 $(dirname ${PKG_CMAKE_SCRIPT})
   ninja ${NINJA_OPTS}
 
-  cp devilutionx $INSTALL/usr/bin/devilutionx.hf
+  #cp devilutionx $INSTALL/usr/bin/devilutionx.hf
 
  
 }
