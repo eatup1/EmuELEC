@@ -17,7 +17,7 @@ diff --git a/desktop_version/src/FileSystemUtils.cpp b/desktop_version/src/FileS
 index 06a4293..ba5b82e 100644
 --- a/desktop_version/src/FileSystemUtils.cpp
 +++ b/desktop_version/src/FileSystemUtils.cpp
-@@ -1100,6 +1100,7 @@ bool FILESYSTEM_openDirectoryEnabled(void)
+@@ -1176,6 +1176,7 @@ bool FILESYSTEM_openDirectoryEnabled(void)
  	return !SDL_GetHintBoolean("SteamTenfoot", SDL_FALSE);
  }
  
@@ -25,7 +25,7 @@ index 06a4293..ba5b82e 100644
  bool FILESYSTEM_openDirectory(const char *dname)
  {
  	char url[MAX_PATH];
-@@ -1111,6 +1112,12 @@ bool FILESYSTEM_openDirectory(const char *dname)
+@@ -1187,6 +1188,12 @@ bool FILESYSTEM_openDirectory(const char *dname)
  	}
  	return true;
  }
@@ -38,20 +38,16 @@ index 06a4293..ba5b82e 100644
  
  bool FILESYSTEM_delete(const char *name)
  {
-diff --git a/desktop_version/src/editor.cpp b/desktop_version/src/editor.cpp
-index 34d3e4b..500503c 100644
---- a/desktop_version/src/editor.cpp
-+++ b/desktop_version/src/editor.cpp
-@@ -32,7 +32,11 @@
+diff --git a/desktop_version/src/UtilityClass.h b/desktop_version/src/UtilityClass.h
+index b3b6af6..ebe5206 100644
+--- a/desktop_version/src/UtilityClass.h
++++ b/desktop_version/src/UtilityClass.h
+@@ -121,4 +121,8 @@ public:
+ extern UtilityClass help;
  #endif
- #include <inttypes.h>
- #endif
--
-+
+ 
 +#ifndef SDL_zeroa
 +#define SDL_zeroa(x) SDL_memset((x), 0, sizeof((x)))
 +#endif
 +
- edlevelclass::edlevelclass(void)
- {
-     tileset=0;
+ #endif /* UTILITYCLASS_H */
