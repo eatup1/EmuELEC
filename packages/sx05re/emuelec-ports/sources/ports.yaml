@@ -62,12 +62,22 @@ Diablo:
   port_exe: "devilutionx"
   audio: "pulseaudio"
   commands:
-    - if [ ! -L /storage/.local/share/diasurgical/devilution/diabdat.mpq ]; then
-    - mkdir -p /storage/.local/share/diasurgical/devilution/
-    - ln -sf /storage/roms/ports/diablo/diabdat.mpq /storage/.local/share/diasurgical/devilution/diabdat.mpq
-    - fi
-    - cd /usr/bin/
-    - ./${PORT} >> $EE_LOG 2>&1
+    - devilutionx.sh >> $EE_LOG 2>&1
+
+Diablo Hellfire:
+  name: 디아블로 헬파이어
+  description: 헬파이어는 시에라 사업부 시너지스틱 소프트웨어(Syngeristic Software)가 개발하고 1997년 시에라 온라인(Sierra On-Line)이 출시한 비디오 게임 디아블로의 확장팩이다. 블리자드 엔터테인먼트의 반대에도 불구하고 헬파이어 확장팩은 당시 그들의 모회사인 Davidson & Associates에 의해 허가되었다.
+  rating: 1.0
+  release_date: 19971124T000000
+  developer: DevilutionX - Blizzard - Synergistic Software
+  publisher: Blizzard
+
+  check_bios: Hellfire
+  init_port: true
+  port_exe: "devilutionx"
+  audio: "pulseaudio"
+  commands:
+    - devilutionx.sh hellfire >> $EE_LOG 2>&1
 
 Dinothawr:
   name: 디노타우르
@@ -411,7 +421,7 @@ Hurrican:
     - hurrican.sh
 
 Cdogs-sdl:
-  name: C-Dogs SDL
+  name: 씨독(C-Dogs)
   description: C-Dogs SDL은 협동 및 데스매치 모드에서 최대 4명의 플레이어를 지원하는 고전적인 오버헤드 런앤건 게임입니다. 플레이어를 커스터마이즈하고, 다양한 무기 중에서 선택하고, 100개 이상의 사용자 제작 캠페인을 통해 자신의 길을 가십시오. 즐거운 시간 보내세요!
   rating: 1.0
   release_date: 2002
@@ -424,3 +434,18 @@ Cdogs-sdl:
   commands:
     - /usr/bin/show_splash.sh "ports" "cdogs-sdl"
     - cdogs-sdl.sh
+
+Abuse:
+  name: 어뷰즈(Abuse)
+  description: Abuse는 1995년 Crack dot Com에서 개발한 어두운 2D 횡스크롤 플랫폼 게임입니다. 아름다운 조명, 사실적인 애니메이션 및 파괴할 수 있는 끔찍한 외계인 같은 생물이 특징입니다. 현재 Sam Hocevar가 인터넷에서 사라지는 것을 방지하기 위해 관리하고 있습니다.
+  rating: 1.0
+  release_date: 1995
+  developer: Crack dot Com
+  publisher: Crack dot Com
+
+  init_port: true
+  port_exe: "abuse"
+  audio: "alsa"
+  commands:
+    - /usr/bin/show_splash.sh "ports" "abuse"
+    - abuse.sh
