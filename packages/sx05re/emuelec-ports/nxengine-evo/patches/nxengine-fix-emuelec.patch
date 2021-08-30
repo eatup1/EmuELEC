@@ -1,0 +1,44 @@
+diff --git a/src/ResourceManager.cpp b/src/ResourceManager.cpp
+index 29355ae..4cc51e8 100644
+--- a/src/ResourceManager.cpp
++++ b/src/ResourceManager.cpp
+@@ -75,6 +75,7 @@ std::string ResourceManager::getUserPrefPath()
+ #if defined(__SWITCH__)
+   return std::string("/switch/nxengine/");
+ #else
++/*
+   char *path = SDL_GetPrefPath(NULL, "nxengine");
+   if (NULL != path)
+   {
+@@ -82,8 +83,8 @@ std::string ResourceManager::getUserPrefPath()
+     SDL_free(path);
+     return strpath;
+   }
+-
+-  return std::string("");
++*/
++  return std::string("/storage/roms/ports/nxengine/");
+ #endif
+ }
+
+diff --git a/src/input.cpp b/src/input.cpp
+index 4b8b116..e73e003 100644
+--- a/src/input.cpp
++++ b/src/input.cpp
+@@ -129,8 +129,14 @@ bool input_init(void)
+
+ void rumble(float str, uint32_t len)
+ {
+-  if (settings->rumble)
+-    SDL_JoystickRumble(joy, 0xFFFF * str, 0xFFFF * str, len);
++
++  if (settings->rumble) {
++    if (strcmp(SDL_JoystickName(joy), "OpenSimHardware OSH PB Controller") == false) {
++        SDL_JoystickRumble(joy, 0xAFFF * str + 0x5000, 0xAFFF * str + 0x5000, len);
++    } else {
++        SDL_JoystickRumble(joy, 0xFFFF * str, 0xFFFF * str, len);
++    }
++  }
+ }
+
+ // set the SDL key that triggers an input

@@ -1,0 +1,23 @@
+back = esc
+start = enter
+guide = enter
+# FIREKEY
+a = x
+# JUMPKEY
+b = z 
+# MAPSYSTEMKEY
+x = w
+# INVENTORYKEY
+y = q
+# PREVWPNKEY
+l1 = a
+# NEXTWPNKEY
+r1 = s
+up = up
+down = down
+left = left
+right = right
+left_analog_up = up
+left_analog_down = down
+left_analog_left = left
+left_analog_right = right

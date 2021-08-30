@@ -33,6 +33,21 @@ Cave Story:
   commands:
     - /usr/bin/emuelecRunEmu.sh "/storage/roms/ports/CaveStory/Doukutsu.exe" -Pports "${2}" -Cnxengine "-SC${0}"
 
+Nxengine-evo:
+  name: 동굴 이야기-evo
+  description: Caitlin Shaw에 의해 NXEngine이 업그레이드 및 리팩토링된 버전으로 Wide screen 및 Force feedback(진동)을 지원한다.
+  rating: 1.0
+  release_date: 20041220T000000
+  developer: Caitlin Shaw
+  publisher: Nxengine-evo Team
+
+  init_port: true
+  port_exe: "hurrican"
+  audio: "alsa"
+  commands:
+    - /usr/bin/show_splash.sh "ports" "nxengine-evo"
+    - nxengine-evo.sh
+
 Commander Keen:
   name: 코맨더 킨
   description: 커맨더 지니어스(Commander Genius)는 보티콘과 갤럭시 시리즈의 커맨더 킨 인베이션을 해석한 소프트웨어 작품이다. 팬과 개발자로서 우리는 새로운 기능을 구현하고, 게임 플레이를 개선하고, 플레이어들에게 오리지널 게임을 하는 느낌이지만 좀 더 신선한 경험을 주려고 한다.
