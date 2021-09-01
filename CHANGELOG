@@ -48,10 +48,14 @@ General:
 * Bump VVVVVV to 749a885
 * Bump mame2003-plus to d7dd8e7
 * Bump neocd_libretro to 323f102
+* Add Abuse to ports NOTE: WIP controls
+* Add Streets of Rage Remake
 
 Amlogic-ng: 
 
 * Add preliminary support for Raxda Zero (But not support korean version)
+* Add preliminary support for Raxda Zero 
+* Add RTL8761 Bluetooth Support (#698)
 
 
 # 4.2k

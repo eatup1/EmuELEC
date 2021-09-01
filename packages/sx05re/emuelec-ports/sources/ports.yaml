@@ -464,3 +464,20 @@ Abuse:
   commands:
     - /usr/bin/show_splash.sh "ports" "abuse"
     - abuse.sh
+
+Sorr:
+  name: 스트리츠 오브 레이지 리메이크
+  description: Streets of Rage Remake는 MegaDrive 클래식의 리마스터 버전입니다. 60가지가 넘는 다양한 적들이 있으며, 16명의 캐릭터 중에서 선택하고, 좋아하는 캐릭터를 선택하고, 거기에 뛰어들 수 있습니다. 심지어 원본보다 낫습니다. 더 많은 캐릭터, 더 많은 레벨, 더 많은 액션, 더 많은 결승전,... 놀랍습니다.
+  rating: 1.0
+  release_date: 2011
+  developer: BomberGames
+  publisher: BomberGames
+
+  init_port: true
+  port_exe: "bgdi"
+  audio: "alsa"
+  commands:
+    - /usr/bin/show_splash.sh "ports" "sorr"
+    - cd /storage/roms/ports/sorr
+    - '[[ ! -e "/storage/roms/ports/sorr/SorR.dat" ]] && exit 21'
+    - bgdi "/storage/roms/ports/sorr/SorR.dat"
