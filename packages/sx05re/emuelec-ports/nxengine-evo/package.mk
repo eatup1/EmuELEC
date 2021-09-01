@@ -2,7 +2,7 @@
 # Copyright (C) 2021-present Young-jun Choi (https://github.com/british.choi)
 
 PKG_NAME="nxengine-evo"
-PKG_VERSION="761d86db42439d0a37239858d2e024dbc80fe601"
+PKG_VERSION="1ca767cb5b81f251da714e9eb91fd73277e81e35"
 PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="GPLv3"

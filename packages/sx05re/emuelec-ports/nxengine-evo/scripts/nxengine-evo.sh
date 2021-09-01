@@ -9,7 +9,7 @@
 DATA="http://www.cavestory.org/downloads/cavestoryen.zip"
 LANG="https://github.com/british-choi/lang_korean/releases/download/v1.0/lang_korean.tar.gz"
 DATAFOLDER="/storage/roms/ports/nxengine"
-CONFIGFOLDER="/emuelec/configs/nxengine"
+CONFIGFOLDER="/usr/config/emuelec/configs/nxengine"
 
 mkdir -p "${DATAFOLDER}"
 cd "${DATAFOLDER}"
@@ -42,6 +42,20 @@ if [ ! -e "${DATAFOLDER}/Doukutsu.exe" ]; then
             rm "cavestoryen.zip" > /dev/tty0 2>&1
 	    rm "lang_korean.tar.gz" > /dev/tty0 2>&1
 
+            case "$(oga_ver)" in
+                "OGA"*)
+                    cp "${CONFIGFOLDER}/settings_oga.dat" "${DATAFOLDER}/settings.dat"
+                ;;
+                "OGS")
+                    cp "${CONFIGFOLDER}/settings_ogs.dat" "${DATAFOLDER}/settings.dat"
+                ;;
+                "RG351P")
+                    cp "${CONFIGFOLDER}/settings_rg351p.dat" "${DATAFOLDER}/settings.dat"
+                ;;
+                "RG351V")
+                    cp "${CONFIGFOLDER}/settings_rg351v.dat" "${DATAFOLDER}/settings.dat"
+                ;;
+            esac
             ee_console disable
             gptokeyb -c /emuelec/configs/gptokeyb/nxengine-evo.gptk &
             nxengine-evo > /emuelec/logs/emuelec.log 2>&1
@@ -49,6 +63,23 @@ if [ ! -e "${DATAFOLDER}/Doukutsu.exe" ]; then
             exit 0
         fi
 else
+    if [ ! -e "${DATAFOLDER}/settings.dat" ]; then
+        case "$(oga_ver)" in
+            "OGA"*)
+                cp "${CONFIGFOLDER}/settings_oga.dat" "${DATAFOLDER}/settings.dat"
+            ;;
+            "OGS")
+                cp "${CONFIGFOLDER}/settings_ogs.dat" "${DATAFOLDER}/settings.dat"
+            ;;
+            "RG351P")
+                cp "${CONFIGFOLDER}/settings_rg351p.dat" "${DATAFOLDER}/settings.dat"
+            ;;
+            "RG351V")
+                cp "${CONFIGFOLDER}/settings_rg351v.dat" "${DATAFOLDER}/settings.dat"
+            ;;
+        esac
+    fi
+    gptokeyb -c /emuelec/configs/gptokeyb/nxengine-evo.gptk &
     nxengine-evo > /emuelec/logs/emuelec.log 2>&1
 fi
 

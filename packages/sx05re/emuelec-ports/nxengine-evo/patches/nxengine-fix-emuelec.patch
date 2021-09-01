@@ -1,37 +1,69 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index adc3e3e..757be9e 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -190,6 +190,7 @@ ELSEIF(PLATFORM STREQUAL "switch")
+ ENDIF()
+ 
+ IF(PLATFORM STREQUAL "pc")
++    add_definitions("-D__EMUELEC__")
+     add_executable(extract ${EXTR_SOURCES})
+     target_link_libraries(extract ${SDL2_LIBRARY})
+     set_property(TARGET extract PROPERTY OUTPUT_NAME nxextract)
+@@ -198,9 +199,9 @@ IF(PLATFORM STREQUAL "pc")
+     install(DIRECTORY data DESTINATION ${CMAKE_INSTALL_DATADIR}/nxengine)
+ 
+     # Install XDG metadata on Desktop Linux like platforms
+-    IF(UNIX_LIKE)
+-        install(FILES platform/xdg/${nx_APP_ID}.desktop     DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/applications)
+-        install(FILES platform/xdg/${nx_APP_ID}.png         DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/icons/hicolor/256x256/apps)
+-        install(FILES platform/xdg/${nx_APP_ID}.appdata.xml DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/metainfo)
+-    ENDIF()
++    #IF(UNIX_LIKE)
++    #    install(FILES platform/xdg/${nx_APP_ID}.desktop     DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/applications)
++    #    install(FILES platform/xdg/${nx_APP_ID}.png         DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/icons/hicolor/256x256/apps)
++    #    install(FILES platform/xdg/${nx_APP_ID}.appdata.xml DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/metainfo)
++    #ENDIF()
+ ENDIF()
 diff --git a/src/ResourceManager.cpp b/src/ResourceManager.cpp
-index 29355ae..4cc51e8 100644
+index 29355ae..e35b9e8 100644
 --- a/src/ResourceManager.cpp
 +++ b/src/ResourceManager.cpp
-@@ -75,6 +75,7 @@ std::string ResourceManager::getUserPrefPath()
+@@ -74,6 +74,8 @@ std::string ResourceManager::getUserPrefPath()
+ {
  #if defined(__SWITCH__)
    return std::string("/switch/nxengine/");
++#elif defined(__EMUELEC__)
++  return std::string("/storage/roms/ports/nxengine/");
  #else
-+/*
    char *path = SDL_GetPrefPath(NULL, "nxengine");
    if (NULL != path)
-   {
-@@ -82,8 +83,8 @@ std::string ResourceManager::getUserPrefPath()
-     SDL_free(path);
-     return strpath;
-   }
--
--  return std::string("");
-+*/
-+  return std::string("/storage/roms/ports/nxengine/");
- #endif
- }
-
+diff --git a/src/graphics/Renderer.cpp b/src/graphics/Renderer.cpp
+index 38c26ab..1087362 100644
+--- a/src/graphics/Renderer.cpp
++++ b/src/graphics/Renderer.cpp
+@@ -225,7 +225,12 @@ const Graphics::gres_t *Renderer::getResolutions(bool full_list)
+          {(char *)"1280x1024", 1280, 1024, 320, 256, 4, false, true},
+          {(char *)"1600x1200", 1600, 1200, 320, 240, 5, false, true},
+          // widescreen
++#if defined(__EMUELEC__)
++         {(char *)"480x320", 480, 320, 480, 320, 1, true, true},
++         {(char *)"854x480", 854, 480, 427, 240, 2, true, true},
++#else
+          {(char *)"480x272", 480, 272, 480, 272, 1, true, true},
++#endif
+          {(char *)"1360x768", 1360, 768, 454, 256, 3, true, true},
+          {(char *)"1366x768", 1366, 768, 455, 256, 3, true, true},
+          {(char *)"1440x900", 1440, 900, 480, 300, 3, true, true},
 diff --git a/src/input.cpp b/src/input.cpp
-index 4b8b116..e73e003 100644
+index 4b8b116..37b9db3 100644
 --- a/src/input.cpp
 +++ b/src/input.cpp
-@@ -129,8 +129,14 @@ bool input_init(void)
-
+@@ -129,8 +129,18 @@ bool input_init(void)
+ 
  void rumble(float str, uint32_t len)
  {
--  if (settings->rumble)
--    SDL_JoystickRumble(joy, 0xFFFF * str, 0xFFFF * str, len);
-+
++#if defined(__EMUELEC__)
 +  if (settings->rumble) {
 +    if (strcmp(SDL_JoystickName(joy), "OpenSimHardware OSH PB Controller") == false) {
 +        SDL_JoystickRumble(joy, 0xAFFF * str + 0x5000, 0xAFFF * str + 0x5000, len);
@@ -39,6 +71,41 @@ index 4b8b116..e73e003 100644
 +        SDL_JoystickRumble(joy, 0xFFFF * str, 0xFFFF * str, len);
 +    }
 +  }
++#else
+   if (settings->rumble)
+     SDL_JoystickRumble(joy, 0xFFFF * str, 0xFFFF * str, len);
++#endif
  }
-
+ 
  // set the SDL key that triggers an input
+diff --git a/src/settings.cpp b/src/settings.cpp
+index 40213f8..4db5174 100644
+--- a/src/settings.cpp
++++ b/src/settings.cpp
+@@ -79,6 +79,8 @@ bool settings_load(Settings *setfile)
+     memset(setfile, 0, sizeof(Settings));
+ #if defined(__VITA__) || defined(__SWITCH__)
+     setfile->resolution     = 1;
++#elif defined(__EMUELEC__)
++    setfile->resolution     = 12; // 1980x1080 Windowed
+ #else
+     setfile->resolution     = 2; // 640x480 Windowed, should be safe value
+ #endif
+@@ -94,9 +96,17 @@ bool settings_load(Settings *setfile)
+     setfile->music_interpolation = 0;
+     setfile->animated_facepics = true;
+     setfile->lights = false;
++#if defined(__EMUELEC__)
++    setfile->control_scheme = true;
++#else
+     setfile->control_scheme = false;
++#endif
+     memset(setfile->language, 0, 256);
++#if defined(__EMUELEC__)
++    strncpy(setfile->language, "korean", 255);
++#else
+     strncpy(setfile->language, "english", 255);
++#endif
+ 
+     return 1;
+   }

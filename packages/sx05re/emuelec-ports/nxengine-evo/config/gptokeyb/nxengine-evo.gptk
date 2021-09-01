@@ -1,6 +1,6 @@
 back = esc
+guide = esc
 start = enter
-guide = enter
 # FIREKEY
 a = x
 # JUMPKEY
