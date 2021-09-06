@@ -26,9 +26,9 @@ General:
 * New Packages: Box64, Box86, GL4es, Axe11, libglu (for future use)
 * Bump most cores and emulators to current versions
 * Bump SDLPoP to v1.22
-* Bump sonic2013 to c3be493
-* Bump soniccd to 129cd86
-* Bump ppsspp to eb0f0d3 (fix some korean character is broken in settings)
+* Bump sonic2013 to bff61df
+* Bump soniccd to a5e1f2a
+* Bump ppsspp to 9de9420 (fix some korean character is broken in settings)
 * Add Flycast Stand Alone 
 * Add Alternate version of Mupen64plus-nx
 * Replace old filemanager for 351Files
@@ -42,13 +42,14 @@ General:
 * Fix es_systems.cfg: Add extensions to c64/c128 and Amiga (#677)
 * Add Cdogs-sdl to ports
 * Bump Retroarch to v1.9.8
-* Bump fbneo to 8ffe131 (support dsno's korean hack 8/22)
-* Bump dosbox-pure to v0.15
-* Bump devilutionX to 966cae8
+* Bump fbneo to 8c3aade (support dsno's korean hack 8/22)
+* Bump dosbox-pure to v0.16
+* Bump devilutionX to 9345c7c
 * Bump VVVVVV to 749a885
-* Bump mame2003-plus to d7dd8e7
+* Bump mame2003-plus to 458b856
 * Bump neocd_libretro to 323f102
 * Add Abuse to ports NOTE: WIP controls
+* Add Nxengine-evo to ports (support korean language)
 * Add Streets of Rage Remake
 * Fix Retroarch display of CJK characters
 * Fix SFC not scraping
