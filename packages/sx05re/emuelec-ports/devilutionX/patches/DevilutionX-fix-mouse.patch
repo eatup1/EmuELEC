@@ -2,25 +2,25 @@ diff --git a/Source/controls/plrctrls.cpp b/Source/controls/plrctrls.cpp
 index 6d178d5a..7ad7126b 100644
 --- a/Source/controls/plrctrls.cpp
 +++ b/Source/controls/plrctrls.cpp
-@@ -641,6 +641,7 @@ void ResetInvCursorPosition()
+@@ -635,6 +635,7 @@ void ResetInvCursorPosition()
  	mousePos.y -= (InventorySlotSizeInPixels.height / 2);
  
- 	SetCursorPos(mousePos.x, mousePos.y);
+ 	SetCursorPos(mousePos);
 +	MousePosition = mousePos;
  }
  
  /**
-@@ -934,6 +935,7 @@ void InvMove(AxisDirection dir)
+@@ -928,6 +929,7 @@ void InvMove(AxisDirection dir)
  	}
  
- 	SetCursorPos(mousePos.x, mousePos.y);
+ 	SetCursorPos(mousePos);
 +	MousePosition = mousePos;
  }
  
  /**
-@@ -1284,6 +1286,7 @@ void HandleRightStickMotion()
+@@ -1278,6 +1280,7 @@ void HandleRightStickMotion()
  		if (now - lastMouseSetTick > 0) {
- 			SetCursorPos(x, y);
+ 			SetCursorPos({ x, y });
  			lastMouseSetTick = now;
 +			MousePosition = { x, y };
  		}

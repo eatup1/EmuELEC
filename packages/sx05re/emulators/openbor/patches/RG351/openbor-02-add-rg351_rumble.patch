@@ -10,7 +10,7 @@ index 24fdf485..482c5e0f 100644
  BUILDING        = 1
  INCLUDES        = $(SDKPATH)/usr/include \
                    $(SDKPATH)/usr/include/SDL2
-@@ -587,6 +588,11 @@ CFLAGS 	       += -DWEBM
+@@ -586,6 +587,11 @@ CFLAGS 	       += -DWEBM
  endif
  
  
@@ -26,17 +26,17 @@ diff --git a/engine/sdl/control.c b/engine/sdl/control.c
 index 9118fb1c..108b278b 100644
 --- a/engine/sdl/control.c
 +++ b/engine/sdl/control.c
-@@ -980,6 +980,13 @@ void control_rumble(int port, int ratio, int msec)
+@@ -860,6 +860,13 @@ void control_rumble(int deviceID, int ratio, int msec)
  {
-     #if SDL
-     if (joystick[port] != NULL && joystick_haptic[port] != NULL) {
+     if (msec > 0 && devices[deviceID].haptic)
+     {
 +        #ifdef RG351_RUMBLE
-+        if (strcmp(joysticks[port].Name, "OpenSimHardware OSH PB Controller") == false)
++        if (strcmp(devices[deviceID].name, "OpenSimHardware OSH PB Controller") == false)
 +        {
 +            if (msec == 0) return;
 +            msec *= 10;
 +        }
 +        #endif
-         if(SDL_HapticRumblePlay(joystick_haptic[port], ratio, msec) != 0)
+         if (SDL_HapticRumblePlay(devices[deviceID].haptic, ratio, msec) != 0)
          {
-             //printf( "Warning: Unable to play rumble! %s\n", SDL_GetError() );
+             printf("Warning: Unable to play rumble! %s\n", SDL_GetError());

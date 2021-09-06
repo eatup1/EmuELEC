@@ -2,8 +2,8 @@
 # Copyright (C) 2020-present Shanti Gilbert (https://github.com/shantigilbert)
 
 PKG_NAME="dosbox-x"
-PKG_VERSION="0ed2b808e7429bcbe15ae7ce1be4d7f8f26371e3"
-PKG_SHA256="0b146e16c95fafd3db24bec40bb26d45cb1c7b162e3a6ef4cdf86c8d25d42dca"
+PKG_VERSION="c7a970a43fae53a5b15eb792e907e993e0177486"
+PKG_SHA256="9bd32a30d33449a023d01889f4b193a7d5ff783ff94c2d118055ebe2aaee970c"
 PKG_LICENSE="GPLv2"
 PKG_SITE="https://github.com/joncampbell123/dosbox-x"
 PKG_URL="$PKG_SITE/archive/${PKG_VERSION}.tar.gz"
@@ -29,6 +29,11 @@ pre_configure_target() {
 pre_make_target() {
   # Define DOSBox version
   sed -e "s/SVN/SDL2/" -i ${PKG_BUILD}/config.h
+
+if [[ "${DEVICE}" == "GameForce" ]] || [[ "${DEVICE}" == "OdroidGoAdvance" ]] || [[ "${DEVICE}" == "RG351P" ]] || [[ "${DEVICE}" == "RG351V" ]] ; then
+		cp $PKG_DIR/include/gpio.h ${SYSROOT_PREFIX}/usr/include/linux
+fi
+ 	
 }
 
 post_makeinstall_target() {
@@ -36,4 +41,9 @@ post_makeinstall_target() {
   mkdir -p ${INSTALL}/usr/config/emuelec/configs/dosbox-x/
   cp -a ${PKG_DIR}/scripts/* ${INSTALL}/usr/bin/
   cp -a ${PKG_DIR}/config/*  ${INSTALL}/usr/config/emuelec/configs/dosbox-x/
+  
+if [[ "${DEVICE}" == "GameForce" ]] || [[ "${DEVICE}" == "OdroidGoAdvance" ]] || [[ "${DEVICE}" == "RG351P" ]] || [[ "${DEVICE}" == "RG351V" ]] ; then
+	echo ${TOOLCHAIN}/${TARGET_NAME}/sysroot/usr/include/linux/gpio.h
+	rm ${TOOLCHAIN}/${TARGET_NAME}/sysroot/usr/include/linux/gpio.h
+fi
 }
