@@ -35,6 +35,7 @@ PKG_DEPENDS_TARGET+=" commander-genius \
                 hurrican \
                 cdogs-sdl \
                 abuse \
+                bennugd-monolithic \
                 nxengine-evo"
 
 amlogicports=""
