@@ -31,7 +31,7 @@
 
 --- a/retroarch.c	2019-01-15 12:55:14.000000000 -0600
 +++ b/retroarch.c	2019-01-28 22:00:41.340468631 -0600 
-@@ -12261,6 +12261,7 @@
+@@ -10390,6 +10390,7 @@
     }
     else
        input_remapping_restore_global_config(true);
@@ -39,7 +39,7 @@
  }
  
  #ifdef HAVE_CHEATS
-@@ -15221,6 +15222,8 @@
+@@ -13383,6 +13384,8 @@
                 RARCH_LOG("[Input]: %s => %s\n",
                       "Game Focus",
                       p_rarch->game_focus_state.enabled ? "ON" : "OFF");
