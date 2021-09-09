@@ -36,7 +36,8 @@ PKG_DEPENDS_TARGET+=" commander-genius \
                 cdogs-sdl \
                 abuse \
                 bennugd-monolithic \
-                nxengine-evo"
+                nxengine-evo \
+                fheroes2"
 
 amlogicports=""
 hhports=" openjazz"
