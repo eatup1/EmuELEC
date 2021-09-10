@@ -21,7 +21,7 @@ fi
 
 if [ ! -e "${CONFIGFOLDER}/data/HEROES2.AGG" ]; then
     if [ $(get_ee_setting system.language) == "ko_KR" ]; then
-        text_viewer -y -w -f 24 -t "µ¥ÀÌÅÍ°¡ ¾ø½À´Ï´Ù!" -m "${PORTNAME}¸¦ Ã³À½ ½ÇÇàÇÏ°Å³ª µ¥ÀÌÅÍ Æú´õ°¡ ¾ø½À´Ï´Ù.\n\nµ¥¸ğ µ¥ÀÌÅÍ´Â ÃÑ 20MBÀÌ¸ç ÀÎÅÍ³İ¿¡ ¿¬°áµÇ¾î ÀÖ¾î¾ß ÇÕ´Ï´Ù.\n\n\nµ¥¸ğ¸¦ ´Ù¿î·ÎµåÇÏ°í °è¼ÓÇÏ½Ã°Ú½À´Ï±î?"
+        text_viewer -y -w -f 24 -t "ë°ì´í„°ê°€ ì—†ìŠµë‹ˆë‹¤!" -m "${PORTNAME}ë¥¼ ì²˜ìŒ ì‹¤í–‰í•˜ê±°ë‚˜ ë°ì´í„° í´ë”ê°€ ì—†ìŠµë‹ˆë‹¤.\n\në°ëª¨ ë°ì´í„°ëŠ” ì´ 20MBì´ë©° ì¸í„°ë„·ì— ì—°ê²°ë˜ì–´ ìˆì–´ì•¼ í•©ë‹ˆë‹¤.\n\n\në°ëª¨ë¥¼ ë‹¤ìš´ë¡œë“œí•˜ê³  ê³„ì†í•˜ì‹œê² ìŠµë‹ˆê¹Œ?"
     else
         text_viewer -y -w -f 24 -t "Data does not exists!" -m "It seems this is the first time you are launching ${PORTNAME} or the data folder does not exists\n\nDemo data is about 20 MB total, and you need to be connected to the internet\n\n\nDownload demo and continue?"
     fi
