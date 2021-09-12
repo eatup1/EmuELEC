@@ -1,6 +1,6 @@
 --- a/Makefile
 +++ b/Makefile
-@@ -248,9 +248,13 @@
+@@ -313,9 +313,13 @@
     LDFLAGS += -shared -Wl,--version-script=$(LIBRETRO_DIR)/link.T -Wl,--no-undefined -ldl
     GLES = 1
     GL_LIB := -lGLESv2
