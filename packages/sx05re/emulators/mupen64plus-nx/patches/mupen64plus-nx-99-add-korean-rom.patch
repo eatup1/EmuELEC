@@ -2,25 +2,26 @@ diff --git a/custom/mupen64plus-core/main/mupen64plus.ini.h b/custom/mupen64plus
 index 3fc56c8..58539b8 100644
 --- a/custom/mupen64plus-core/main/mupen64plus.ini.h
 +++ b/custom/mupen64plus-core/main/mupen64plus.ini.h
-@@ -18030,6 +18030,20 @@ char inifile[] =
+@@ -18030,6 +18030,21 @@ char inifile[] =
  "GoodName=Zelda no Densetsu - Mujura no Kamen (J) (V1.1) [!]\n"
  "CRC=69AE0438 2C63F3F3\n"
  "RefMD5=15D1A2217CAD61C39CFECBFFA0703E25\n"
 -"\n";
 +"\n"
-+"[96342f4cfd814ced6c5854c5e7ea0aa3]\n"
++"[96342F4CFD814CED6C5854C5E7EA0AA3]\n"
 +"GoodName=Neon Genesis Evangelion (K) [DXB]\n"
 +"CRC=8D79C198 14D66F6D\n"
 +"Players=1\n"
 +"SaveType=Eeprom 16KB\n"
 +"Rumble=Yes\n"
 +"\n"
-+"[f8ee2904cd9aed615b1031b2b742ee70]\n"
++"[F8EE2904CD9AED615B1031B2B742EE70]\n"
 +"GoodName=Neon Genesis Evangelion (K) [SMJ]\n"
 +"CRC=8D79C198 14D66F6D\n"
 +"Players=1\n"
 +"SaveType=Eeprom 16KB\n"
-+"Rumble=Yes\n";
++"Rumble=Yes\n"
++"\n";
  
  #endif
 +
@@ -32,14 +33,14 @@ index f1536b2..5bb5cd9 100644
  CRC=69AE0438 2C63F3F3
  RefMD5=15D1A2217CAD61C39CFECBFFA0703E25
  
-+[96342f4cfd814ced6c5854c5e7ea0aa3]
++[96342F4CFD814CED6C5854C5E7EA0AA3]
 +GoodName=Neon Genesis Evangelion (K) [DXB]
 +CRC=8D79C198 14D66F6D
 +Players=1
 +SaveType=Eeprom 16KB
 +Rumble=Yes
 +
-+[f8ee2904cd9aed615b1031b2b742ee70]
++[F8EE2904CD9AED615B1031B2B742EE70]
 +GoodName=Neon Genesis Evangelion (K) [SMJ]
 +CRC=8D79C198 14D66F6D
 +Players=1
