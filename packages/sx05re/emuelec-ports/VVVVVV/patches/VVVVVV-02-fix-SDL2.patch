@@ -2,7 +2,7 @@ diff --git a/desktop_version/src/FileSystemUtils.cpp b/desktop_version/src/FileS
 index e9deec7..5bfa9da 100644
 --- a/desktop_version/src/FileSystemUtils.cpp
 +++ b/desktop_version/src/FileSystemUtils.cpp
-@@ -1019,7 +1019,7 @@ bool FILESYSTEM_openDirectoryEnabled(void)
+@@ -1021,7 +1021,7 @@ bool FILESYSTEM_openDirectoryEnabled(void)
      return !SDL_GetHintBoolean("SteamTenfoot", SDL_FALSE);
  }
  

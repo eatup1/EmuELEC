@@ -18,7 +18,7 @@ index 6d178d5a..7ad7126b 100644
  }
  
  /**
-@@ -1278,6 +1280,7 @@ void HandleRightStickMotion()
+@@ -1259,6 +1259,7 @@ void HandleRightStickMotion()
  		if (now - lastMouseSetTick > 0) {
  			SetCursorPos({ x, y });
  			lastMouseSetTick = now;

@@ -59,7 +59,7 @@ diff --git a/src/input.cpp b/src/input.cpp
 index 4b8b116..37b9db3 100644
 --- a/src/input.cpp
 +++ b/src/input.cpp
-@@ -129,8 +129,18 @@ bool input_init(void)
+@@ -123,8 +123,18 @@ bool input_init(void)
  
  void rumble(float str, uint32_t len)
  {
