@@ -54,12 +54,11 @@ if [ $HZ = "50" ]; then
 	HZ=60
 fi
 
-
-show_blank
+[[ "${1}" != "intro" ]] && show_blank
 
 case $MODE in
 	480*hz)
-		W=720
+		W=854
 		DI=$(($H*2))
 		W1=$(($W-1))
 		H1=$(($H-1))
@@ -153,8 +152,6 @@ case $MODE in
     fi
     ;;
 esac
-
-show_blank
 
 # Enable the buffer again.
 echo 0 > /sys/class/graphics/fb0/blank

@@ -15,12 +15,17 @@ GAMELOADINGSPLASH="/storage/.config/splash/loading-game.png"
 BLANKSPLASH="/storage/.config/splash/blank.png"
 DEFAULTSPLASH="/storage/.config/splash/splash-1080.png"
 VIDEOSPLASH="/usr/config/splash/emuelec_intro_1080p.mp4"
+RANDOMVIDEO="/storage/roms/splash/introvideos"
 DURATION="5"
 
 # Change splash image for RG351V
 if [ "$EE_DEVICE" == "RG351V" ]; then
 GAMELOADINGSPLASH="/storage/.config/splash/loading-game-rg351v.png"
 DEFAULTSPLASH="/storage/.config/splash/splash-rg351v.png"
+fi
+
+if [ -f "/storage/roms/splash/intro.mp4" ]; then
+    VIDEOSPLASH="/storage/roms/splash/intro.mp4"
 fi
 
 # we make sure the platform is all lowercase
@@ -99,51 +104,57 @@ fi
 MODE=`cat /sys/class/display/mode`;
 case "$MODE" in
 		480*)
-			SIZE=" -x 720 -y 480 "
+			SIZE=" -x 720 -y 480"
 		;;
 		576*)
 			SIZE=" -x 768 -y 576"
 		;;
 		720*)
-			SIZE=" -x 1280 -y 720 "
+			SIZE=" -x 1280 -y 720"
+		;;
+		1080*)
+			SIZE=" -x 1920 -y 1080"
 		;;
 		1280x1024*)
-			SIZE=" -x 1280 -y 1024 "
+			SIZE=" -x 1280 -y 1024"
 		;;
 		1024x768*)
-			SIZE=" -x 1024 -y 768 "
+			SIZE=" -x 1024 -y 768"
 		;;
 		640x480*)
-			SIZE=" -x 640 -y 480 "
+			SIZE=" -x 640 -y 480"
 		;;
 		*)
-			SIZE=" -x 3184 -y 2160"
+			SIZE=" -x 1920 -y 1080"
 		;;
 esac
 
 # Blank screen needs to fill entire screen.
 if [ "$PLATFORM" == "blank" ]; then
-  SIZE=" -x 1920 -y 1080"
+  SIZE=" -x 3840 -y 2160"
 fi
 
 
-VIDEO="0"
-[[ "${PLATFORM}" == "intro" ]] && VIDEO=$(get_ee_setting ee_bootvideo.enabled)
+[[ "${PLATFORM}" != "intro" ]] && VIDEO=0 || VIDEO=$(get_ee_setting ee_bootvideo.enabled)
 
-if [[ ${VIDEO} == "0" ]]; then
-  if [ $SS_DEVICE -eq 1 ]; then
-      $PLAYER "$SPLASH" > /dev/null 2>&1
-  else
-      $PLAYER -fs -autoexit ${SIZE} "$SPLASH" > /dev/null 2>&1
-  fi
-fi 
+if [[ -f "/storage/.config/emuelec/configs/novideo" ]] && [[ ${VIDEO} != "1" ]]; then
+	if [ "$PLATFORM" != "intro" ]; then
+	if [ "$SS_DEVICE" == 1 ]; then
+        $PLAYER "$SPLASH" > /dev/null 2>&1
+    else
+        $PLAYER -fs -autoexit ${SIZE} "$SPLASH" > /dev/null 2>&1
+    fi
 
-VIDEOSTART=1
-[[ -f "/storage/.config/emuelec/configs/novideo" ]] && VIDEOSTART=0
-
-if [[ $VIDEOSTART -eq 1 ]] || [[ ${VIDEO} == "1" ]]; then
+	fi 
+else
 # Show intro video
-	SPLASH=${VIDEOSPLASH}
+RND=$(get_ee_setting "ee_randombootvideo.enabled" == "1")
+if [ "${RND}" ==  1 ]; then
+    SPLASH=$(ls ${RANDOMVIDEO}/*.mp4 |sort -R |tail -1)
+    [[ -z "${SPLASH}" ]] && SPLASH="${VIDEOSPLASH}"
+else
+	SPLASH="${VIDEOSPLASH}"
+fi
 	set_audio alsa
 	#[ -e /storage/.config/asound.conf ] && mv /storage/.config/asound.conf /storage/.config/asound.confs
     if [ $SS_DEVICE -eq 1 ]; then
@@ -151,7 +162,7 @@ if [[ $VIDEOSTART -eq 1 ]] || [[ ${VIDEO} == "1" ]]; then
     else
         $PLAYER -fs -autoexit ${SIZE} "$SPLASH" > /dev/null 2>&1
     fi
-	[ $VIDEOSTART -eq 1 ] && touch "/storage/.config/emuelec/configs/novideo"
+	touch "/storage/.config/emuelec/configs/novideo"
 	#[ -e /storage/.config/asound.confs ] && mv /storage/.config/asound.confs /storage/.config/asound.conf
 fi
 
