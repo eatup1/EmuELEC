@@ -6,7 +6,7 @@
 # Source predefined functions and variables
 . /etc/profile
 
-DATA="https://github.com/EmuELEC/supertux/archive/data_only.zip"
+DATA="https://github.com/british-choi/supertux/archive/data_only.zip"
 DATAFOLDER="/storage/roms/ports/supertux"
 CONFIGFOLDER="/emuelec/configs/supertux2"
 
