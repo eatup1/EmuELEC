@@ -6,8 +6,8 @@
 # Source predefined functions and variables
 . /etc/profile
 
-ASSETS="https://github.com/supertuxkart/stk-assets-mobile/releases/download/git20210208/stk-assets.zip"
-DATA="https://github.com/EmuELEC/stk-code/archive/data_only.zip"
+ASSETS="https://github.com/supertuxkart/stk-assets-mobile/releases/download/git20210909/stk-assets.zip"
+DATA="https://github.com/british-choi/stk-code/archive/data_only.zip"
 DATAFOLDER="/storage/roms/ports/supertuxkart"
 
 mkdir -p "${DATAFOLDER}"
