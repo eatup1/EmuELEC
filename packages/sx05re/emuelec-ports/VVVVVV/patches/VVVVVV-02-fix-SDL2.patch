@@ -2,7 +2,7 @@ diff --git a/desktop_version/src/FileSystemUtils.cpp b/desktop_version/src/FileS
 index e9deec7..5bfa9da 100644
 --- a/desktop_version/src/FileSystemUtils.cpp
 +++ b/desktop_version/src/FileSystemUtils.cpp
-@@ -1021,7 +1021,7 @@ bool FILESYSTEM_openDirectoryEnabled(void)
+@@ -1068,7 +1068,7 @@ bool FILESYSTEM_openDirectoryEnabled(void)
      return !SDL_GetHintBoolean("SteamTenfoot", SDL_FALSE);
  }
  
@@ -12,15 +12,19 @@ index e9deec7..5bfa9da 100644
  {
      return false;
 diff --git a/desktop_version/src/UtilityClass.h b/desktop_version/src/UtilityClass.h
-index 1f2a0f7..73c10f9 100644
+index cbda281..a7527ab 100644
 --- a/desktop_version/src/UtilityClass.h
 +++ b/desktop_version/src/UtilityClass.h
-@@ -121,4 +121,8 @@ public:
+@@ -125,4 +125,12 @@ public:
  extern UtilityClass help;
  #endif
  
 +#ifndef SDL_zeroa
 +#define SDL_zeroa(x) SDL_memset((x), 0, sizeof((x)))
++#endif
++
++#ifndef SDL_isxdigit
++#define SDL_isxdigit(x) ((((x) >= 'A') && ((x) <= 'F')) || (((x) >= 'a') && ((x) <= 'f')) || (SDL_isdigit(x)))
 +#endif
 +
  #endif /* UTILITYCLASS_H */
