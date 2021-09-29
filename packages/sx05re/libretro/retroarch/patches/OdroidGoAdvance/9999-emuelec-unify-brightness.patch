@@ -19,7 +19,7 @@
  }
  
  #endif
-@@ -1998,11 +2003,13 @@
+@@ -2001,11 +2006,13 @@
     android_app_destroy(android_app);
  #endif
  
@@ -34,7 +34,7 @@
  }
  
  static void frontend_unix_init(void *data)
-@@ -2833,7 +2840,7 @@
+@@ -2836,7 +2843,7 @@
  #else
     NULL,                               /* get_lakka_version */
  #endif
