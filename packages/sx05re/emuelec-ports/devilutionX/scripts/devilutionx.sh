@@ -7,18 +7,28 @@
 . /etc/profile
 
 DIABLOPATH="/storage/.local/share/diasurgical/devilution"
+DIABLOMPQPATH="/usr/local/share/diasurgical/devilutionx"
 DIABLOROMPATH="/storage/roms/ports/diablo"
 
 EELANG=$(echo ${LANG} | cut -d= -f2 | cut -d_ -f1)
 
 if [ "${EELANG}" == "en" ]; then
     LANG=""
+# Not yet, korean font missing
+#elif [ "${EELANG}" == "ko" -o "${EELANG}" == "pt" -o "${EELANG}" == "zh" ]; then
+#    EELANG=${LANG}
 fi
 
 mkdir -p ${DIABLOPATH}
 
 if [ -e ${DIABLOPATH}/diablo.ini ]; then
     sed -i "s|Code=.*|Code=${EELANG}|g" ${DIABLOPATH}/diablo.ini
+fi
+
+if [ -e ${DIABLOMPQPATH}/devilutionx.mpq ]; then
+    if [ ! -L ${DIABLOPATH}/diabdat.mpq ]; then
+        ln -sf ${DIABLOMPQPATH}/devilutionx.mpq ${DIABLOPATH}/devilutionx.mpq
+    fi
 fi
 
 if [ -e ${DIABLOROMPATH}/diabdat.mpq ]; then
@@ -43,4 +53,4 @@ else
 PARAMS=" --diablo"
 fi 
 
-devilutionx --verbose --ttf-dir /usr/bin ${PARAMS}
+devilutionx --verbose ${PARAMS}
