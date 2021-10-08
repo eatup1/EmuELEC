@@ -1,8 +1,8 @@
 --- a/es-app/src/guis/GuiMenu.cpp
 +++ b/es-app/src/guis/GuiMenu.cpp
-@@ -1049,7 +1049,7 @@
+@@ -1809,7 +1809,7 @@
+ 	}
  #endif
- 
  
 -#if !defined(WIN32) && !defined _ENABLEEMUELEC || defined(_DEBUG)
 +#if !defined(WIN32) || defined(_DEBUG)
@@ -11,7 +11,7 @@
  	// brighness
 --- a/es-core/src/Settings.cpp
 +++ b/es-core/src/Settings.cpp
-@@ -181,7 +181,7 @@
+@@ -242,7 +242,7 @@
  
  	// Audio out device for volume control
  	#if defined _RPI_ || defined _ENABLEEMUELEC
@@ -34,9 +34,9 @@
  	const std::string rom = Utils::FileSystem::getEscapedPath(getPath());
 --- a/es-core/src/InputManager.cpp
 +++ b/es-core/src/InputManager.cpp
-@@ -317,20 +317,11 @@
- 		//	return false;
- 		//}
+@@ -279,20 +279,11 @@
+ 		if (ev.key.repeat)
+ 			return false;
  
 -#ifdef _ENABLEEMUELEC
 -		/* use the POWER KEY to turn off EmuELEC, specially useful for GTKING-PRO and Odroid Go Advance*/
@@ -59,7 +59,7 @@
  	case SDL_TEXTINPUT:
 --- a/es-app/src/views/ViewController.cpp
 +++ b/es-app/src/views/ViewController.cpp
-@@ -527,11 +527,9 @@
+@@ -819,11 +819,9 @@
  #ifdef _ENABLEEMUELEC
  /* Detect unconfigured keyboad as well */
          if(config->isConfigured() == false) {
