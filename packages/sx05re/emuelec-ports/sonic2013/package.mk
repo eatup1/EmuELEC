@@ -2,7 +2,7 @@
 # Copyright (C) 2021-present Shanti Gilbert (https://github.com/shantigilbert)
 
 PKG_NAME="sonic2013"
-PKG_VERSION="bff61dff624ee986ace719583b00baab22a40d52"
+PKG_VERSION="1f3f245faca59a2a1414fe4556c6c89949041244"
 PKG_ARCH="any"
 PKG_SITE="https://github.com/Rubberduckycooly/Sonic-1-2-2013-Decompilation"
 PKG_URL="$PKG_SITE.git"
