@@ -5,7 +5,7 @@ MRFIXIT: Revert the removal of the maxfps feature
 diff --git a/Core/Config.cpp b/Core/Config.cpp
 --- b/Core/Config.cpp
 +++ a/Core/Config.cpp
-@@ -793,6 +793,7 @@ static ConfigSetting graphicsSettings[] = {
+@@ -867,6 +867,7 @@ static ConfigSetting graphicsSettings[] = {
  #if defined(USING_WIN_UI)
  	ConfigSetting("RestartRequired", &g_Config.bRestartRequired, false, false),
  #endif
@@ -16,7 +16,7 @@ diff --git a/Core/Config.cpp b/Core/Config.cpp
 diff --git a/Core/Config.h b/Core/Config.h
 --- b/Core/Config.h
 +++ a/Core/Config.h
-@@ -197,6 +197,7 @@ struct Config {
+@@ -204,6 +204,7 @@ struct Config {
 	bool bTexHardwareScaling;
  	int iFpsLimit1;
  	int iFpsLimit2;
@@ -27,7 +27,7 @@ diff --git a/Core/Config.h b/Core/Config.h
 diff --git a/Core/HLE/sceDisplay.cpp b/Core/HLE/sceDisplay.cpp
 --- b/Core/HLE/sceDisplay.cpp
 +++ a/Core/HLE/sceDisplay.cpp
-@@ -1010,7 +1010,7 @@ u32 sceDisplaySetFramebuf(u32 topaddr, int linesize, int pixelformat, int sync)
+@@ -1012,7 +1012,7 @@ u32 sceDisplaySetFramebuf(u32 topaddr, int linesize, int pixelformat, int sync)
  
  	s64 delayCycles = 0;
  	// Don't count transitions between display off and display on.
@@ -36,7 +36,7 @@ diff --git a/Core/HLE/sceDisplay.cpp b/Core/HLE/sceDisplay.cpp
  		// sceDisplaySetFramebuf() isn't supposed to delay threads at all.  This is a hack.
  		// So let's only delay when it's more than 1ms.
  		const s64 FLIP_DELAY_CYCLES_MIN = usToCycles(1000);
-@@ -1034,7 +1034,7 @@ u32 sceDisplaySetFramebuf(u32 topaddr, int linesize, int pixelformat, int sync)
+@@ -1036,7 +1036,7 @@ u32 sceDisplaySetFramebuf(u32 topaddr, int linesize, int pixelformat, int sync)
  		}
  
  		// 1001 to account for NTSC timing (59.94 fps.)
@@ -48,8 +48,8 @@ diff --git a/Core/HLE/sceDisplay.cpp b/Core/HLE/sceDisplay.cpp
 diff --git a/UI/GameSettingsScreen.cpp b/UI/GameSettingsScreen.cpp
 --- b/UI/GameSettingsScreen.cpp
 +++ a/UI/GameSettingsScreen.cpp
-@@ -172,6 +172,8 @@ void GameSettingsScreen::CreateViews() {
-		g_Config.loadGameConfig(gameID_, info->GetTitle());
+@@ -197,6 +197,8 @@ void GameSettingsScreen::CreateViews() {
+ 		g_Config.loadGameConfig(gameID_, info->GetTitle());
  	}
  
 +	cap60FPS_ = g_Config.iForceMaxEmulatedFPS == 60;
@@ -57,7 +57,7 @@ diff --git a/UI/GameSettingsScreen.cpp b/UI/GameSettingsScreen.cpp
  	iAlternateSpeedPercent1_ = g_Config.iFpsLimit1 < 0 ? -1 : (g_Config.iFpsLimit1 * 100) / 60;
  	iAlternateSpeedPercent2_ = g_Config.iFpsLimit2 < 0 ? -1 : (g_Config.iFpsLimit2 * 100) / 60;
  
-@@ -308,6 +308,7 @@ void GameSettingsScreen::CreateViews() {
+@@ -338,6 +340,7 @@ void GameSettingsScreen::CreateViews() {
  	graphicsSettings->Add(new PopupMultiChoice(&g_Config.iFrameSkipType, gr->T("Frame Skipping Type"), frameSkipType, 0, ARRAY_SIZE(frameSkipType), gr->GetName(), screenManager()));
  	frameSkipAuto_ = graphicsSettings->Add(new CheckBox(&g_Config.bAutoFrameSkip, gr->T("Auto FrameSkip")));
  	frameSkipAuto_->OnClick.Handle(this, &GameSettingsScreen::OnAutoFrameskip);
@@ -65,26 +65,26 @@ diff --git a/UI/GameSettingsScreen.cpp b/UI/GameSettingsScreen.cpp
  
  	PopupSliderChoice *altSpeed1 = graphicsSettings->Add(new PopupSliderChoice(&iAlternateSpeedPercent1_, 0, 1000, gr->T("Alternative Speed", "Alternative speed"), 5, screenManager(), gr->T("%, 0:unlimited")));
  	altSpeed1->SetFormat("%i%%");
-@@ -1222,6 +1222,7 @@ UI::EventReturn GameSettingsScreen::OnDumpNextFrameToLog(UI::EventParams &e) {
+@@ -1315,6 +1318,7 @@ void GameSettingsScreen::sendMessage(const char *message, const char *value) {
  
- void GameSettingsScreen::update() {
- 	UIScreen::update();
-+	g_Config.iForceMaxEmulatedFPS = cap60FPS_ ? 60 : 0;
+ void GameSettingsScreen::dialogFinished(const Screen *dialog, DialogResult result) {
+ 	if (result == DialogResult::DR_OK) {
++		g_Config.iForceMaxEmulatedFPS = cap60FPS_ ? 60 : 0;
+ 		g_Config.iFpsLimit1 = iAlternateSpeedPercent1_ < 0 ? -1 : (iAlternateSpeedPercent1_ * 60) / 100;
+ 		g_Config.iFpsLimit2 = iAlternateSpeedPercent2_ < 0 ? -1 : (iAlternateSpeedPercent2_ * 60) / 100;
  
- 	g_Config.iFpsLimit1 = iAlternateSpeedPercent1_ < 0 ? -1 : (iAlternateSpeedPercent1_ * 60) / 100;
- 	g_Config.iFpsLimit2 = iAlternateSpeedPercent2_ < 0 ? -1 : (iAlternateSpeedPercent2_ * 60) / 100;
 diff --git a/libretro/libretro.cpp b/libretro/libretro.cpp
 --- b/libretro/libretro.cpp
 +++ a/libretro/libretro.cpp
-@@ -204,6 +204,7 @@
+@@ -205,6 +205,7 @@ static RetroOption<int> ppsspp_rendering_mode("ppsspp_rendering_mode", "Renderin
  static RetroOption<bool> ppsspp_auto_frameskip("ppsspp_auto_frameskip", "Auto Frameskip", false);
- static RetroOption<int> ppsspp_frameskip("ppsspp_frameskip", "Frameskip", 0, 10);
- static RetroOption<int> ppsspp_frameskiptype("ppsspp_frameskiptype", "Frameskip Type", { {"number of frames", 0}, {"percent of fps", 1} });
+ static RetroOption<int> ppsspp_frameskip("ppsspp_frameskip", "Frameskip", { "Off", "1", "2", "3", "4", "5", "6", "7", "8" });
+ static RetroOption<int> ppsspp_frameskiptype("ppsspp_frameskiptype", "Frameskip Type", { {"Number of frames", 0}, {"Percent of FPS", 1} });
 +static RetroOption<int> ppsspp_force_max_fps("ppsspp_force_max_fps", "Force Max FPS", { {"Auto", 0}, {"10", 10}, {"20", 20}, {"30", 30}, {"40", 40}, {"50", 50}, {"60", 60}, {"70", 70}, {"80", 80} });
- static RetroOption<int> ppsspp_internal_resolution("ppsspp_internal_resolution", "Internal Resolution (restart)", 1, { "480x272", "960x544", "1440x816", "1920x1088", "2400x1360", "2880x1632", "3360x1904", "3840x2176", "4320x2448", "4800x2720" });
- static RetroOption<int> ppsspp_button_preference("ppsspp_button_preference", "Confirmation Button", { { "cross", PSP_SYSTEMPARAM_BUTTON_CROSS }, { "circle", PSP_SYSTEMPARAM_BUTTON_CIRCLE } });
+ static RetroOption<int> ppsspp_internal_resolution("ppsspp_internal_resolution", "Internal Resolution (Restart)", 1, { "480x272", "960x544", "1440x816", "1920x1088", "2400x1360", "2880x1632", "3360x1904", "3840x2176", "4320x2448", "4800x2720" });
+ static RetroOption<int> ppsspp_button_preference("ppsspp_button_preference", "Confirmation Button", { { "Cross", PSP_SYSTEMPARAM_BUTTON_CROSS }, { "Circle", PSP_SYSTEMPARAM_BUTTON_CIRCLE } });
  static RetroOption<bool> ppsspp_fast_memory("ppsspp_fast_memory", "Fast Memory (Speedhack)", true);
-@@ -244,6 +244,7 @@
+@@ -247,6 +248,7 @@ void retro_set_environment(retro_environment_t cb)
     vars.push_back(ppsspp_auto_frameskip.GetOptions());
     vars.push_back(ppsspp_frameskip.GetOptions());
     vars.push_back(ppsspp_frameskiptype.GetOptions());
@@ -92,7 +92,7 @@ diff --git a/libretro/libretro.cpp b/libretro/libretro.cpp
     vars.push_back(ppsspp_frame_duplication.GetOptions());
     vars.push_back(ppsspp_vertex_cache.GetOptions());
     vars.push_back(ppsspp_fast_memory.GetOptions());
-@@ -330,6 +330,7 @@
+@@ -367,6 +369,7 @@ static void check_variables(CoreParameter &coreParam)
     ppsspp_cheats.Update(&g_Config.bEnableCheats);
     ppsspp_locked_cpu_speed.Update(&g_Config.iLockedCPUSpeed);
     ppsspp_rendering_mode.Update(&g_Config.iRenderingMode);
@@ -104,7 +104,7 @@ diff --git a/libretro/libretro.cpp b/libretro/libretro.cpp
 MRFIXIT: Now change the maxFPS to be a user-selected value to fine-tune performance for high demanding games
 --- a/UI/GameSettingsScreen.cpp	2018-11-18 02:06:08.250398000 +0000
 +++ b/UI/GameSettingsScreen.cpp	2018-11-18 02:20:02.941563758 +0000
-@@ -172,8 +172,8 @@
+@@ -197,8 +197,8 @@
  		g_Config.loadGameConfig(gameID_, info->GetTitle());
  	}
  
@@ -114,7 +114,7 @@ MRFIXIT: Now change the maxFPS to be a user-selected value to fine-tune performa
  	iAlternateSpeedPercent1_ = g_Config.iFpsLimit1 < 0 ? -1 : (g_Config.iFpsLimit1 * 100) / 60;
  	iAlternateSpeedPercent2_ = g_Config.iFpsLimit2 < 0 ? -1 : (g_Config.iFpsLimit2 * 100) / 60;
  
-@@ -310,8 +310,10 @@
+@@ -340,8 +340,10 @@
  	graphicsSettings->Add(new PopupMultiChoice(&g_Config.iFrameSkipType, gr->T("Frame Skipping Type"), frameSkipType, 0, ARRAY_SIZE(frameSkipType), gr->GetName(), screenManager()));
  	frameSkipAuto_ = graphicsSettings->Add(new CheckBox(&g_Config.bAutoFrameSkip, gr->T("Auto FrameSkip")));
  	frameSkipAuto_->OnClick.Handle(this, &GameSettingsScreen::OnAutoFrameskip);
@@ -127,7 +127,7 @@ MRFIXIT: Now change the maxFPS to be a user-selected value to fine-tune performa
  	PopupSliderChoice *altSpeed1 = graphicsSettings->Add(new PopupSliderChoice(&iAlternateSpeedPercent1_, 0, 1000, gr->T("Alternative Speed", "Alternative speed"), 5, screenManager(), gr->T("%, 0:unlimited")));
  	altSpeed1->SetFormat("%i%%");
  	altSpeed1->SetZeroLabel(gr->T("Unlimited"));
-@@ -1203,6 +1203,16 @@
+@@ -1250,6 +1252,16 @@
  	return UI::EVENT_DONE;
  };
  
@@ -144,18 +144,18 @@ MRFIXIT: Now change the maxFPS to be a user-selected value to fine-tune performa
  UI::EventReturn GameSettingsScreen::OnResolutionChange(UI::EventParams &e) {
  	if (g_Config.iAndroidHwScale == 1) {
  		RecreateActivity();
-@@ -1225,7 +1225,6 @@
+@@ -1318,7 +1330,6 @@
  
- void GameSettingsScreen::update() {
- 	UIScreen::update();
--	g_Config.iForceMaxEmulatedFPS = cap60FPS_ ? 60 : 0;
+ void GameSettingsScreen::dialogFinished(const Screen *dialog, DialogResult result) {
+ 	if (result == DialogResult::DR_OK) {
+-		g_Config.iForceMaxEmulatedFPS = cap60FPS_ ? 60 : 0;
+ 		g_Config.iFpsLimit1 = iAlternateSpeedPercent1_ < 0 ? -1 : (iAlternateSpeedPercent1_ * 60) / 100;
+ 		g_Config.iFpsLimit2 = iAlternateSpeedPercent2_ < 0 ? -1 : (iAlternateSpeedPercent2_ * 60) / 100;
  
- 	g_Config.iFpsLimit1 = iAlternateSpeedPercent1_ < 0 ? -1 : (iAlternateSpeedPercent1_ * 60) / 100;
- 	g_Config.iFpsLimit2 = iAlternateSpeedPercent2_ < 0 ? -1 : (iAlternateSpeedPercent2_ * 60) / 100;
 
 --- a/UI/GameSettingsScreen.h	2018-11-18 02:05:21.907810600 +0000
 +++ b/UI/GameSettingsScreen.h	2018-11-18 02:20:47.993962676 +0000
-@@ -55,6 +55,7 @@
+@@ -57,6 +57,7 @@
  	UI::Choice *displayEditor_;
  	UI::Choice *backgroundChoice_ = nullptr;
  	UI::PopupMultiChoice *resolutionChoice_;
@@ -163,7 +163,7 @@ MRFIXIT: Now change the maxFPS to be a user-selected value to fine-tune performa
  	UI::CheckBox *frameSkipAuto_;
  	SettingInfoMessage *settingInfo_;
  #ifdef _WIN32
-@@ -96,6 +96,7 @@
+@@ -98,6 +99,7 @@
  	UI::EventReturn OnFullscreenChange(UI::EventParams &e);
  	UI::EventReturn OnDisplayLayoutEditor(UI::EventParams &e);
  	UI::EventReturn OnResolutionChange(UI::EventParams &e);
@@ -171,7 +171,7 @@ MRFIXIT: Now change the maxFPS to be a user-selected value to fine-tune performa
  	UI::EventReturn OnHwScaleChange(UI::EventParams &e);
  	UI::EventReturn OnRestoreDefaultSettings(UI::EventParams &e);
  	UI::EventReturn OnRenderingMode(UI::EventParams &e);
-@@ -124,6 +124,7 @@
+@@ -126,6 +128,7 @@
  	UI::EventReturn OnSysInfo(UI::EventParams &e);
  
  	// Temporaries to convert setting types, cache enabled, etc.
@@ -184,7 +184,7 @@ MRFIXIT: Now change the maxFPS to be a user-selected value to fine-tune performa
 MRFIXIT: Add logic for "Auto" (default PSP behavior - pull value from compat.ini)
 --- b/Core/HLE/sceDisplay.cpp
 +++ a/Core/HLE/sceDisplay.cpp
-@@ -1009,8 +1009,13 @@
+@@ -1011,8 +1011,13 @@
  	hleEatCycles(290);
  
  	s64 delayCycles = 0;
@@ -199,7 +199,7 @@ MRFIXIT: Add logic for "Auto" (default PSP behavior - pull value from compat.ini
  		// sceDisplaySetFramebuf() isn't supposed to delay threads at all.  This is a hack.
  		// So let's only delay when it's more than 1ms.
  		const s64 FLIP_DELAY_CYCLES_MIN = usToCycles(1000);
-@@ -1034,7 +1034,7 @@
+@@ -1036,7 +1041,7 @@
  		}
  
  		// 1001 to account for NTSC timing (59.94 fps.)
