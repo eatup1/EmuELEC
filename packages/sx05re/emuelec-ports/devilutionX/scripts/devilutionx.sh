@@ -15,7 +15,8 @@ EELANG=$(echo ${LANG} | cut -d= -f2 | cut -d_ -f1)
 if [ "${EELANG}" == "en" ]; then
     LANG=""
 # Not yet, korean font missing
-#elif [ "${EELANG}" == "ko" -o "${EELANG}" == "pt" -o "${EELANG}" == "zh" ]; then
+elif [ "${EELANG}" == "ko" -o "${EELANG}" == "pt" -o "${EELANG}" == "zh" ]; then
+    EELANG=""
 #    EELANG=${LANG}
 fi
 
