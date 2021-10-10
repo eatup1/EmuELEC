@@ -31,7 +31,7 @@
 
 --- a/retroarch.c	2019-01-15 12:55:14.000000000 -0600
 +++ b/retroarch.c	2019-01-28 22:00:41.340468631 -0600 
-@@ -6494,6 +6494,7 @@
+@@ -6039,6 +6039,7 @@
     }
     else
        input_remapping_restore_global_config(true);
@@ -39,10 +39,10 @@
  }
  
  static bool event_init_content(
-@@ -9166,6 +9167,8 @@
+@@ -8725,6 +8726,8 @@
                 RARCH_LOG("[Input]: %s => %s\n",
                       "Game Focus",
-                      p_rarch->game_focus_state.enabled ? "ON" : "OFF");
+                      input_st->game_focus_state.enabled ? "ON" : "OFF");
 +                    
 +                    system("/usr/bin/fbfix"); // emuelec   
              }
