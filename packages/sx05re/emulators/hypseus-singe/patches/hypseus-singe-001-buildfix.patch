@@ -26,7 +26,7 @@ index 438451d..f153740 100644
  )
  
  if( "${CMAKE_TARGET_ARCHITECTURES}" MATCHES "i386" )
-@@ -106,10 +105,6 @@
+@@ -107,10 +106,6 @@
  add_subdirectory(video)
  add_subdirectory(vldp)
  
@@ -37,7 +37,7 @@ index 438451d..f153740 100644
  
  find_package(SDL2 REQUIRED)
  find_package(SDL2TTF REQUIRED)
-@@ -129,3 +129,5 @@ set(CPACK_PACKAGE_VERSION_MINOR "${VER_MINOR}")
+@@ -150,3 +145,5 @@ set(CPACK_PACKAGE_VERSION_MINOR "${VER_MINOR}")
  set(CPACK_PACKAGE_VERSION_PATCH "${VER_PATCH}")
  
  include(CPack)
@@ -71,9 +71,9 @@ diff --git a/src/vldp/vldp.h b/src/vldp/vldp.h
 index 021c30d..f589ff1 100644
 --- a/src/vldp/vldp.h
 +++ b/src/vldp/vldp.h
-@@ -33,6 +33,7 @@ extern "C" {
- // by RDG2010
+@@ -34,6 +34,7 @@ extern "C" {
  // Ubuntu Linux complains with plain <SDL.h>
+ // But CMake does the right thing here 
  #include <SDL.h> // only used for threading
 +#include <mpeg2.h>
  
@@ -83,7 +83,7 @@ diff --git a/src/vldp/vldp_internal.cpp b/src/vldp/vldp_internal.cpp
 index a08ebd0..3057534 100644
 --- a/src/vldp/vldp_internal.cpp
 +++ b/src/vldp/vldp_internal.cpp
-@@ -37,8 +37,6 @@
+@@ -38,8 +38,6 @@
  
  #include <inttypes.h>
  
