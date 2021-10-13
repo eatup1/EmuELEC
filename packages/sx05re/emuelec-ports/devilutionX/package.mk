@@ -16,6 +16,9 @@ PKG_BUILD_FLAGS="-lto"
 pre_configure_target() {
 PKG_CMAKE_OPTS_TARGET=" -DBINARY_RELEASE=1 -DCMAKE_BUILD_TYPE="Release" -DDEBUG=OFF -DPREFILL_PLAYER_NAME=ON -DDEVILUTIONX_SYSTEM_LIBSODIUM=OFF -DMO_LANG_DIR=\"/emuelec/configs/devilution/langs/\""
 sed -i "s|;-static-libstdc++>|;-lstdc++>|" $PKG_BUILD/CMakeLists.txt
+
+# copy korean font (with DevilutionX-add-koreanfont.patch)
+cp -rf $PKG_DIR/fonts/* $PKG_BUILD/Packaging/resources/assets/fonts
 }
 
 makeinstall_target() { 
