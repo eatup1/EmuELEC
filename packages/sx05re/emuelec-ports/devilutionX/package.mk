@@ -2,7 +2,7 @@
 # Copyright (C) 2020-present Shanti Gilbert (https://github.com/shantigilbert)
 
 PKG_NAME="devilutionX"
-PKG_VERSION="2c1aa0c330026e452322ca9708ad491652db87a0"
+PKG_VERSION="5a75e076b6816e01b185343d97e15e961cd2d7ae"
 PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="unlicense"
@@ -19,6 +19,9 @@ sed -i "s|;-static-libstdc++>|;-lstdc++>|" $PKG_BUILD/CMakeLists.txt
 
 # copy korean font (with DevilutionX-add-koreanfont.patch)
 cp -rf $PKG_DIR/fonts/* $PKG_BUILD/Packaging/resources/assets/fonts
+# copy korean translation
+cp -rf $PKG_DIR/Translations/* $PKG_BUILD/Translations
+sed -i "s|lang bg da de es fr hr it ko_KR|lang bg da de es fr hr it ko ko_KR|" $PKG_BUILD/CMakeLists.txt
 }
 
 makeinstall_target() { 
