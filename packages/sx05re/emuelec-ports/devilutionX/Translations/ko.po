@@ -598,7 +598,7 @@ msgstr "새로운 싱글 플레이어 영웅"
 
 #: Source/DiabloUI/selhero.cpp:203
 msgid "Save File Exists"
-msgstr "기존 파일에 저장"
+msgstr "기존 파일이 존재"
 
 #: Source/DiabloUI/selhero.cpp:206 Source/gamemenu.cpp:38
 msgid "Load Game"
@@ -862,7 +862,7 @@ msgstr "{:s} 스펠"
 
 #: Source/control.cpp:760
 msgid "Damages undead only"
-msgstr ""
+msgstr "언데드에게만 피해"
 
 #: Source/control.cpp:764 Source/control.cpp:1219 Source/control.cpp:1581
 msgid "Spell Level 0 - Unusable"
@@ -952,24 +952,23 @@ msgstr[0] "지팡이 (충전 {:d}회)"
 #. TRANSLATORS: Dam refers to damage. UI constrains, keep short please.
 #: Source/control.cpp:1571
 msgid "Mana: {:d}  Dam: {:d} - {:d}"
-msgstr ""
+msgstr "마나: {:d}  피해: {:d} - {:d}"
 
 #. TRANSLATORS: Dam refers to damage. UI constrains, keep short please.
 #: Source/control.cpp:1573
 msgid "Mana: {:d}   Dam: n/a"
-msgstr ""
+msgstr "마나: {:d}   피해: n/a"
 
 #. TRANSLATORS: Dam refers to damage. UI constrains, keep short please.
 #: Source/control.cpp:1576
 msgid "Mana: {:d}  Dam: 1/3 tgt hp"
-msgstr ""
+msgstr "마나: {:d}  피해: 타켓 HP 1/3"
 
 #. TRANSLATORS: {:d} is a number. Dialog is shown when splitting a stash of Gold.
 #: Source/control.cpp:1634
 msgid "You have {:d} gold piece. How many do you want to remove?"
 msgid_plural "You have {:d} gold pieces. How many do you want to remove?"
 msgstr[0] "골드 {:d}개를 갖고 있습니다. 얼마나 버릴까요?"
-
 
 #: Source/controls/modifier_hints.cpp:121
 msgid "Menu"
@@ -1113,7 +1112,7 @@ msgstr ""
 #. TRANSLATORS: Commandline Option
 #: Source/diablo.cpp:794
 msgid "Force diablo mode even if hellfire.mpq is found"
-msgstr "hellfire.mpq 가 있어도 디아블로 모드로 강제 실행"
+msgstr "hellfire.mpq 파일이 있어도 디아블로 모드로 강제 실행"
 
 #. TRANSLATORS: Commandline Option
 #: Source/diablo.cpp:795
@@ -1146,11 +1145,11 @@ msgstr "-- 플레이어 대기 중 --"
 
 #: Source/diablo.cpp:1223
 msgid "No help available"
-msgstr ""
+msgstr "상점에서는 도움을"
 
 #: Source/diablo.cpp:1224
 msgid "while in stores"
-msgstr ""
+msgstr "받을 수 없습니다"
 
 #. TRANSLATORS: {:s} means: Character Name, Game Version, Game Difficulty.
 #: Source/diablo.cpp:1436
@@ -1183,7 +1182,7 @@ msgstr "다이렉트 사운드 생성 실패"
 
 #: Source/error.cpp:60
 msgid "Not available in shareware version"
-msgstr "쉐어웨어 버전에서는 사용할 수 없습니다"
+msgstr "체험판 버전에서는 사용할 수 없습니다"
 
 #: Source/error.cpp:61
 msgid "Not enough space to save"
@@ -1503,7 +1502,7 @@ msgstr "Tab:   오토맵 표시"
 
 #: Source/help.cpp:30
 msgid "Space: Hide all info screens"
-msgstr ""
+msgstr "Space: 모든 정보 화면 숨기기"
 
 #: Source/help.cpp:31
 msgid "S: Open Speedbook"
@@ -1595,11 +1594,11 @@ msgstr "$물건 줍기"
 
 #: Source/help.cpp:62
 msgid "Useable items that are small in size, such as potions or scrolls, are automatically placed in your 'belt' located at the top of the Interface bar . When an item is placed in the belt, a small number appears in that box. Items may be used by either pressing the corresponding number or right-clicking on the item."
-msgstr "포션이나 스크롤과 같이 크기가 작은 사용 가능한 아이템은 인터페이스 표시줄 상단에 있는 '벨트'에 자동으로 배치됩니다. 벨트에 아이템을 넣으면 그 상자에 작은 숫자가 나타납니다. 항목은 해당 번호를 누르거나 항목을 마우스 오른쪽 버튼으로 클릭하여 사용할 수 있습니다."
+msgstr "포션이나 스크롤과 같이 크기가 작은 사용 가능한 아이템은 인터페이스바 상단에 있는 '벨트'에 자동으로 배치됩니다. 벨트에 아이템을 넣으면 그 상자에 작은 숫자가 나타납니다. 항목은 해당 번호를 누르거나 항목을 마우스 오른쪽 버튼으로 클릭하여 사용할 수 있습니다."
 
 #: Source/help.cpp:68
 msgid "$Gold"
-msgstr ""
+msgstr "$골드"
 
 #: Source/help.cpp:69
 msgid "You can select a specific amount of gold to drop by right-clicking on a pile of gold in your inventory."
@@ -1611,7 +1610,7 @@ msgstr "$스킬과 스펠:"
 
 #: Source/help.cpp:73
 msgid "You can access your list of skills and spells by left-clicking on the 'SPELLS' button in the interface bar. Memorized spells and those available through staffs are listed here. Left-clicking on the spell you wish to cast will ready the spell. A readied spell may be cast by simply right-clicking in the play area."
-msgstr ""
+msgstr "인터페이스바에서 'SPELLS' 버튼을 좌클릭하여 스킬 및 스펠 목록에 액세스할 수 있습니다. 암기된 스펠과 지팡이를 통해 사용할 수 있는 주문이 여기에 나열됩니다. 사용하려는 주문을 좌클릭하면 스펠이 준비됩니다. 준비된 스펠은 플레이 영역을 우클릭하여 사용할 수 있습니다."
 
 #: Source/help.cpp:79
 msgid "$Using the Speedbook for Spells"
@@ -1619,11 +1618,11 @@ msgstr "스펠에 스피드북 사용"
 
 #: Source/help.cpp:80
 msgid "Left-clicking on the 'readied spell' button will open the 'Speedbook' which allows you to select a skill or spell for immediate use. To use a readied skill or spell, simply right-click in the main play area."
-msgstr ""
+msgstr "'준비된 스펠' 버튼을 좌클릭하면 '스피드북'이 열리고 즉시 사용할 스킬이나 스펠을 선택할 수 있습니다. 준비된 스킬이나 스펠을 사용하려면 메인 플레이 영역을 우클릭하기만 하면 됩니다."
 
 #: Source/help.cpp:84
 msgid "Shift + Left-clicking on the 'select current spell' button will clear the readied spell"
-msgstr ""
+msgstr "'현재 스펠 선택' 버튼을 Shift + 좌클릭하면 준비된 스펠이 지워집니다."
 
 #: Source/help.cpp:86
 msgid "$Setting Spell Hotkeys"
@@ -1631,7 +1630,7 @@ msgstr "$스펠 핫키 설정"
 
 #: Source/help.cpp:87
 msgid "You can assign up to four Hotkeys for skills, spells or scrolls. Start by opening the 'speedbook' as described in the section above. Press the F5, F6, F7 or F8 keys after highlighting the spell you wish to assign."
-msgstr ""
+msgstr "스킬, 스펠 또는 스크롤에 대해 최대 4개의 핫키를 설정할 수 있습니다. 위의 섹션에 설명된 대로 '스피드북'을 열어 시작하세요. 설정하려는 스펠을 선택한 후 F5, F6, F7 또는 F8 키를 누릅니다."
 
 #: Source/help.cpp:92
 msgid "$Spell Books"
@@ -1639,11 +1638,11 @@ msgstr "$스펠북"
 
 #: Source/help.cpp:93
 msgid "Reading more than one book increases your knowledge of that spell, allowing you to cast the spell more effectively."
-msgstr ""
+msgstr "같은 종류의 책을 한권 이상 읽는것은 해당 스펠에 대한 지식을 늘려줘서 스펠 사용을을 더 효과적으로 할 수 있습니다."
 
 #: Source/help.cpp:129
 msgid "Shareware Hellfire Help"
-msgstr "쉐어웨어 헬파이어 도움말"
+msgstr "체험판 헬파이어 도움말"
 
 #: Source/help.cpp:129
 msgid "Hellfire Help"
@@ -1651,7 +1650,7 @@ msgstr "헬파이어 도움말"
 
 #: Source/help.cpp:131
 msgid "Shareware Diablo Help"
-msgstr "쉐어웨어 디아블로 도움말"
+msgstr "체험판 디아블로 도움말"
 
 #: Source/help.cpp:131
 msgid "Diablo Help"
@@ -1659,25 +1658,27 @@ msgstr "디아블로 도움말"
 
 #: Source/help.cpp:155
 msgid "Press ESC to end or the arrow keys to scroll."
-msgstr ""
+msgstr "ESC를 눌러서 종료하거나 화살표 키로 스크롤하세요."
 
 #: Source/init.cpp:217
 msgid "Some Hellfire MPQs are missing"
-msgstr ""
+msgstr "일부 헬파이어 MPQ 파일이 없습니다"
 
 #: Source/init.cpp:217
 msgid ""
 "Not all Hellfire MPQs were found.\n"
 "Please copy all the hf*.mpq files."
 msgstr ""
+"헬파이어 관련 모든 MPQ 파일들을 찾을수 없습니다.\n"
+"hf*.mpq 파일들을 모두 복사해주세요."
 
 #: Source/init.cpp:225
 msgid "Unable to create main window"
-msgstr ""
+msgstr "메인 윈도우 생성 불가"
 
 #: Source/itemdat.cpp:16 Source/itemdat.cpp:198 Source/panels/charpanel.cpp:154
 msgid "Gold"
-msgstr ""
+msgstr "골드"
 
 #: Source/itemdat.cpp:17 Source/itemdat.cpp:135
 msgid "Short Sword"
@@ -1765,7 +1766,7 @@ msgstr ""
 
 #: Source/itemdat.cpp:38
 msgid "Cathedral Map"
-msgstr ""
+msgstr "대성당 지도"
 
 #: Source/itemdat.cpp:39
 msgid "Heart"
@@ -3610,31 +3611,31 @@ msgstr "모든 life와 mana 회복"
 
 #: Source/items.cpp:2041 Source/items.cpp:2066
 msgid "Right-click to read"
-msgstr "우클릭으로 읽기"
+msgstr "Select + R1으로 읽기"
 
 #: Source/items.cpp:2045
 msgid "Right-click to read, then"
-msgstr "우클릭으로 읽기, 그리고"
+msgstr "Select + R1으로 읽기, 그리고"
 
 #: Source/items.cpp:2047
 msgid "left-click to target"
-msgstr "좌클릭으로 지정"
+msgstr "Select + L1으로 지정"
 
 #: Source/items.cpp:2052
 msgid "Right-click to use"
-msgstr "우클릭으로 사용"
+msgstr "Select + R1으로 사용"
 
 #: Source/items.cpp:2057 Source/items.cpp:2062
 msgid "Right click to use"
-msgstr "우클릭으로 사용"
+msgstr "Select + R1으로 사용"
 
 #: Source/items.cpp:2070
 msgid "Right click to read"
-msgstr "우클릭으로 읽기"
+msgstr "Select + R1으로 읽기"
 
 #: Source/items.cpp:2074
 msgid "Right-click to view"
-msgstr "우클릭으로 보기"
+msgstr "Select + R1으로 보기"
 
 #: Source/items.cpp:2082
 msgid "Doubles gold capacity"
@@ -3668,11 +3669,11 @@ msgstr "명중 기회: {:+d}%"
 #: Source/items.cpp:3829
 #, no-c-format
 msgid "{:+d}% damage"
-msgstr "{:+d}% 데미지"
+msgstr "{:+d}% 피해"
 
 #: Source/items.cpp:3833 Source/items.cpp:4089
 msgid "to hit: {:+d}%, {:+d}% damage"
-msgstr "to hit: {:+d}%, {:+d}% 데미지"
+msgstr "적중 시: {:+d}%, {:+d}% 피해"
 
 #: Source/items.cpp:3837
 #, no-c-format
@@ -3681,7 +3682,7 @@ msgstr "{:+d}% 방어"
 
 #: Source/items.cpp:3841
 msgid "armor class: {:d}"
-msgstr ""
+msgstr "방어 수준: {:d}"
 
 #: Source/items.cpp:3846 Source/items.cpp:4071
 msgid "Resist Fire: {:+d}%"
@@ -4104,27 +4105,27 @@ msgstr "메인메뉴를 표시할 수 없습니다"
 #: Source/monstdat.cpp:20
 msgctxt "monster"
 msgid "Zombie"
-msgstr ""
+msgstr "좀비"
 
 #: Source/monstdat.cpp:21
 msgctxt "monster"
 msgid "Ghoul"
-msgstr ""
+msgstr "구울"
 
 #: Source/monstdat.cpp:22
 msgctxt "monster"
 msgid "Rotting Carcass"
-msgstr ""
+msgstr "썩은 시체"
 
 #: Source/monstdat.cpp:23
 msgctxt "monster"
 msgid "Black Death"
-msgstr ""
+msgstr "블랙 데스"
 
 #: Source/monstdat.cpp:24 Source/monstdat.cpp:32
 msgctxt "monster"
 msgid "Fallen One"
-msgstr ""
+msgstr "펄른 원"
 
 #: Source/monstdat.cpp:25 Source/monstdat.cpp:33
 msgctxt "monster"
@@ -4134,17 +4135,17 @@ msgstr ""
 #: Source/monstdat.cpp:26 Source/monstdat.cpp:34
 msgctxt "monster"
 msgid "Devil Kin"
-msgstr ""
+msgstr "데빌 킨"
 
 #: Source/monstdat.cpp:27 Source/monstdat.cpp:35
 msgctxt "monster"
 msgid "Dark One"
-msgstr ""
+msgstr "다크 원"
 
 #: Source/monstdat.cpp:28 Source/monstdat.cpp:40
 msgctxt "monster"
 msgid "Skeleton"
-msgstr ""
+msgstr "스켈레톤"
 
 #: Source/monstdat.cpp:29
 msgctxt "monster"
@@ -4154,17 +4155,17 @@ msgstr ""
 #: Source/monstdat.cpp:30 Source/monstdat.cpp:42
 msgctxt "monster"
 msgid "Burning Dead"
-msgstr ""
+msgstr "버닝데드"
 
 #: Source/monstdat.cpp:31 Source/monstdat.cpp:43
 msgctxt "monster"
 msgid "Horror"
-msgstr ""
+msgstr "호러"
 
 #: Source/monstdat.cpp:36
 msgctxt "monster"
 msgid "Scavenger"
-msgstr ""
+msgstr "스캐빈저"
 
 #: Source/monstdat.cpp:37
 msgctxt "monster"
@@ -4174,7 +4175,7 @@ msgstr ""
 #: Source/monstdat.cpp:38
 msgctxt "monster"
 msgid "Shadow Beast"
-msgstr ""
+msgstr "쉐도우 비스트"
 
 #: Source/monstdat.cpp:39
 msgctxt "monster"
@@ -4189,7 +4190,7 @@ msgstr ""
 #: Source/monstdat.cpp:44
 msgctxt "monster"
 msgid "Skeleton Captain"
-msgstr ""
+msgstr "스켈레톤 캡틴"
 
 #: Source/monstdat.cpp:45
 msgctxt "monster"
@@ -4199,12 +4200,12 @@ msgstr ""
 #: Source/monstdat.cpp:46
 msgctxt "monster"
 msgid "Burning Dead Captain"
-msgstr ""
+msgstr "버닝데드 캡틴"
 
 #: Source/monstdat.cpp:47
 msgctxt "monster"
 msgid "Horror Captain"
-msgstr ""
+msgstr "호러 캡틴"
 
 #: Source/monstdat.cpp:48
 msgctxt "monster"
@@ -4214,7 +4215,7 @@ msgstr ""
 #: Source/monstdat.cpp:49
 msgctxt "monster"
 msgid "Hidden"
-msgstr ""
+msgstr "히든"
 
 #: Source/monstdat.cpp:50
 msgctxt "monster"
@@ -4239,22 +4240,22 @@ msgstr ""
 #: Source/monstdat.cpp:54 Source/monstdat.cpp:62
 msgctxt "monster"
 msgid "Flesh Clan"
-msgstr ""
+msgstr "플레쉬 클랜"
 
 #: Source/monstdat.cpp:55 Source/monstdat.cpp:63
 msgctxt "monster"
 msgid "Stone Clan"
-msgstr ""
+msgstr "스톤 클랜"
 
 #: Source/monstdat.cpp:56 Source/monstdat.cpp:64
 msgctxt "monster"
 msgid "Fire Clan"
-msgstr ""
+msgstr "파이어 클랜"
 
 #: Source/monstdat.cpp:57 Source/monstdat.cpp:65
 msgctxt "monster"
 msgid "Night Clan"
-msgstr ""
+msgstr "나이트 클랜"
 
 #: Source/monstdat.cpp:58
 msgctxt "monster"
@@ -4299,12 +4300,12 @@ msgstr ""
 #: Source/monstdat.cpp:70 Source/monstdat.cpp:474
 msgctxt "monster"
 msgid "Skeleton King"
-msgstr ""
+msgstr "스켈레톤 킹"
 
 #: Source/monstdat.cpp:71 Source/monstdat.cpp:482
 msgctxt "monster"
 msgid "The Butcher"
-msgstr ""
+msgstr "도살자"
 
 #: Source/monstdat.cpp:72
 msgctxt "monster"
@@ -4349,17 +4350,17 @@ msgstr ""
 #: Source/monstdat.cpp:80
 msgctxt "monster"
 msgid "Magma Demon"
-msgstr ""
+msgstr "마그마 데몬"
 
 #: Source/monstdat.cpp:81
 msgctxt "monster"
 msgid "Blood Stone"
-msgstr ""
+msgstr "블러드 스톤"
 
 #: Source/monstdat.cpp:82
 msgctxt "monster"
 msgid "Hell Stone"
-msgstr ""
+msgstr "헬 스톤"
 
 #: Source/monstdat.cpp:83
 msgctxt "monster"
@@ -4369,12 +4370,12 @@ msgstr ""
 #: Source/monstdat.cpp:84
 msgctxt "monster"
 msgid "Horned Demon"
-msgstr ""
+msgstr "혼드 데몬"
 
 #: Source/monstdat.cpp:85
 msgctxt "monster"
 msgid "Mud Runner"
-msgstr ""
+msgstr "머드 러너"
 
 #: Source/monstdat.cpp:86
 msgctxt "monster"
@@ -4394,7 +4395,7 @@ msgstr ""
 #: Source/monstdat.cpp:89
 msgctxt "monster"
 msgid "Red Death"
-msgstr ""
+msgstr "레드 데스"
 
 #: Source/monstdat.cpp:90
 msgctxt "monster"
@@ -4404,7 +4405,7 @@ msgstr ""
 #: Source/monstdat.cpp:91
 msgctxt "monster"
 msgid "Undead Balrog"
-msgstr ""
+msgstr "언데드 발로그"
 
 #: Source/monstdat.cpp:92
 msgctxt "monster"
@@ -4429,17 +4430,17 @@ msgstr ""
 #: Source/monstdat.cpp:96
 msgctxt "monster"
 msgid "Red Storm"
-msgstr ""
+msgstr "레드 스톰"
 
 #: Source/monstdat.cpp:97
 msgctxt "monster"
 msgid "Storm Rider"
-msgstr ""
+msgstr "스톰 라이더"
 
 #: Source/monstdat.cpp:98
 msgctxt "monster"
 msgid "Storm Lord"
-msgstr ""
+msgstr "스톰 로드"
 
 #: Source/monstdat.cpp:99
 msgctxt "monster"
@@ -4459,7 +4460,7 @@ msgstr ""
 #: Source/monstdat.cpp:102
 msgctxt "monster"
 msgid "Gargoyle"
-msgstr ""
+msgstr "가고일"
 
 #: Source/monstdat.cpp:103
 msgctxt "monster"
@@ -4669,7 +4670,7 @@ msgstr ""
 #: Source/monstdat.cpp:144
 msgctxt "monster"
 msgid "Hell Bug"
-msgstr ""
+msgstr "헬 버그"
 
 #: Source/monstdat.cpp:145
 msgctxt "monster"
@@ -4684,7 +4685,7 @@ msgstr ""
 #: Source/monstdat.cpp:147
 msgctxt "monster"
 msgid "Firebat"
-msgstr ""
+msgstr "파이어뱃"
 
 #: Source/monstdat.cpp:148
 msgctxt "monster"
@@ -4694,22 +4695,22 @@ msgstr ""
 #: Source/monstdat.cpp:149
 msgctxt "monster"
 msgid "Lich"
-msgstr ""
+msgstr "리치"
 
 #: Source/monstdat.cpp:150
 msgctxt "monster"
 msgid "Crypt Demon"
-msgstr ""
+msgstr "크립 데몬"
 
 #: Source/monstdat.cpp:151
 msgctxt "monster"
 msgid "Hellbat"
-msgstr ""
+msgstr "헬뱃"
 
 #: Source/monstdat.cpp:152
 msgctxt "monster"
 msgid "Bone Demon"
-msgstr ""
+msgstr "본 데몬"
 
 #: Source/monstdat.cpp:153
 msgctxt "monster"
@@ -4736,53 +4737,53 @@ msgstr ""
 #: Source/monstdat.cpp:158 Source/monstdat.cpp:485
 msgctxt "monster"
 msgid "Na-Krul"
-msgstr ""
+msgstr "나-크룰"
 
 #. TRANSLATORS: Unique Monster Block start
 #: Source/monstdat.cpp:473
 msgctxt "monster"
 msgid "Gharbad the Weak"
-msgstr ""
+msgstr "약골 가바드"
 
 #: Source/monstdat.cpp:475
 msgctxt "monster"
 msgid "Zhar the Mad"
-msgstr ""
+msgstr "미치광이 자르"
 
 #: Source/monstdat.cpp:476
 msgctxt "monster"
 msgid "Snotspill"
-msgstr ""
+msgstr "코흘리개"
 
 #: Source/monstdat.cpp:477
 msgctxt "monster"
 msgid "Arch-Bishop Lazarus"
-msgstr ""
+msgstr "대주교 라자루스"
 
 #: Source/monstdat.cpp:478
 msgctxt "monster"
 msgid "Red Vex"
-msgstr ""
+msgstr "레드 벡스"
 
 #: Source/monstdat.cpp:479
 msgctxt "monster"
 msgid "Black Jade"
-msgstr ""
+msgstr "블랙 제이드"
 
 #: Source/monstdat.cpp:480
 msgctxt "monster"
 msgid "Lachdanan"
-msgstr ""
+msgstr "라크다난"
 
 #: Source/monstdat.cpp:481
 msgctxt "monster"
 msgid "Warlord of Blood"
-msgstr ""
+msgstr "피의 전쟁군주"
 
 #: Source/monstdat.cpp:484
 msgctxt "monster"
 msgid "The Defiler"
-msgstr ""
+msgstr "디파일러"
 
 #: Source/monstdat.cpp:486
 msgctxt "monster"
@@ -5957,7 +5958,7 @@ msgstr "세계의 주춧돌"
 #. TRANSLATORS: Quest Name Block end
 #: Source/quests.cpp:64
 msgid "The Jersey's Jersey"
-msgstr " 젖소의 블라우스"
+msgstr "젖소의 블라우스"
 
 #. TRANSLATORS: Quest Map
 #: Source/quests.cpp:90
@@ -6316,7 +6317,7 @@ msgstr "상점을 떠난다"
 #. TRANSLATORS: This text is white space sensitive. Check for correct alignment!
 #: Source/stores.cpp:289 Source/stores.cpp:654 Source/stores.cpp:1032
 msgid "I have these items for sale:             Your gold: {:d}"
-msgstr "판매중인 아이템:                         당신의 금: {:d}"
+msgstr "판매중인 아이템:                       당신의 골드: {:d}"
 
 #: Source/stores.cpp:295 Source/stores.cpp:356 Source/stores.cpp:479
 #: Source/stores.cpp:495 Source/stores.cpp:569 Source/stores.cpp:585
@@ -6330,27 +6331,27 @@ msgstr "이전"
 #. TRANSLATORS: This text is white space sensitive. Check for correct alignment!
 #: Source/stores.cpp:351
 msgid "I have these premium items for sale:     Your gold: {:d}"
-msgstr "판매중인 고급 아이템:                    당신의 금: {:d}"
+msgstr "판매중인 고급 아이템:                  당신의 골드: {:d}"
 
 #. TRANSLATORS: This text is white space sensitive. Check for correct alignment!
 #: Source/stores.cpp:474 Source/stores.cpp:746
 msgid "You have nothing I want.             Your gold: {:d}"
-msgstr "살만한 아이템이 없군요.              당신의 금: {:d}"
+msgstr "살만한 아이템이 없군요.            당신의 골드: {:d}"
 
 #. TRANSLATORS: This text is white space sensitive. Check for correct alignment!
 #: Source/stores.cpp:489 Source/stores.cpp:761
 msgid "Which item is for sale?             Your gold: {:d}"
-msgstr "어떤 아이템을 판매하나요?           당신의 금: {:d}"
+msgstr "어떤 아이템을 판매하나요?         당신의 골드: {:d}"
 
 #. TRANSLATORS: This text is white space sensitive. Check for correct alignment!
 #: Source/stores.cpp:564
 msgid "You have nothing to repair.             Your gold: {:d}"
-msgstr "수리할 아이템이 없군요.                 당신의 금: {:d}"
+msgstr "수리할 아이템이 없군요.               당신의 골드: {:d}"
 
 #. TRANSLATORS: This text is white space sensitive. Check for correct alignment!
 #: Source/stores.cpp:579
 msgid "Repair which item?             Your gold: {:d}"
-msgstr "수리할 아이템은?               당신의 금: {:d}"
+msgstr "수리할 아이템은?             당신의 골드: {:d}"
 
 #: Source/stores.cpp:609
 msgid "Witch's shack"
@@ -6375,12 +6376,12 @@ msgstr "오두막을 떠난다"
 #. TRANSLATORS: This text is white space sensitive. Check for correct alignment!
 #: Source/stores.cpp:827
 msgid "You have nothing to recharge.             Your gold: {:d}"
-msgstr "충전할 것이 없습니다.                     당신의 금: {:d}"
+msgstr "충전할 것이 없습니다.                   당신의 골드: {:d}"
 
 #. TRANSLATORS: This text is white space sensitive. Check for correct alignment!
 #: Source/stores.cpp:842
 msgid "Recharge which item?             Your gold: {:d}"
-msgstr "충전할 아이템은?                 당신의 금: {:d}"
+msgstr "충전할 아이템은?               당신의 골드: {:d}"
 
 #: Source/stores.cpp:858
 msgid "You do not have enough gold"
@@ -6446,7 +6447,7 @@ msgstr "작별한다"
 #. TRANSLATORS: This text is white space sensitive. Check for correct alignment!
 #: Source/stores.cpp:957
 msgid "I have this item for sale:             Your gold: {:d}"
-msgstr "이 아이템을 팔고 있어요:               당신의 금: {:d}"
+msgstr "이 아이템을 팔고 있어요:             당신의 골드: {:d}"
 
 #: Source/stores.cpp:974
 msgid "Leave"
@@ -6479,12 +6480,12 @@ msgstr "아이템 감정"
 #. TRANSLATORS: This text is white space sensitive. Check for correct alignment!
 #: Source/stores.cpp:1149
 msgid "You have nothing to identify.             Your gold: {:d}"
-msgstr "감정할 것이 없습니다.                     당신의 금: {:d}"
+msgstr "감정할 것이 없습니다.                   당신의 골드: {:d}"
 
 #. TRANSLATORS: This text is white space sensitive. Check for correct alignment!
 #: Source/stores.cpp:1164
 msgid "Identify which item?             Your gold: {:d}"
-msgstr "감정할 물품은?                   당신의 금: {:d}"
+msgstr "감정할 물품은?                 당신의 골드: {:d}"
 
 #: Source/stores.cpp:1184
 msgid "This item is:"
@@ -7668,7 +7669,7 @@ msgid ""
 " \n"
 "She claims that they are visions, but I have no proof of that one way or the other."
 msgstr ""
-"오그덴이 고용한 여종업원은 참한 아가씨야. 그 아가씨 할머니는 병이 중한데다 망상을 겪고 있지. \n"
+"오그덴이 고용한 여급은 참한 아가씨야. 그 아가씨 할머니는 병이 중한데다 망상을 겪고 있지. \n"
 " \n"
 "본인 말로는 예지몽이라고 하는데 증명할 방법이 없지 않겠나."
 
@@ -8384,7 +8385,7 @@ msgstr "마녀 아드리아"
 
 #: Source/towners.cpp:148
 msgid "Gillian the Barmaid"
-msgstr "여바텐더 질리언"
+msgstr "여급 질리언"
 
 #: Source/towners.cpp:179
 msgid "Pepin the Healer"
@@ -8416,32 +8417,32 @@ msgstr "살해당한 마을사람"
 
 #: Source/trigs.cpp:341
 msgid "Down to dungeon"
-msgstr ""
+msgstr "던전으로 내려간다"
 
 #: Source/trigs.cpp:352
 msgid "Down to catacombs"
-msgstr ""
+msgstr "지하묘지로 내려간다"
 
 #: Source/trigs.cpp:362
 msgid "Down to caves"
-msgstr ""
+msgstr "동굴로 내려간다"
 
 #: Source/trigs.cpp:372
 msgid "Down to hell"
-msgstr ""
+msgstr "지옥으로 내려간다"
 
 #: Source/trigs.cpp:384
 msgid "Down to Hive"
-msgstr ""
+msgstr "하이브로 내려간다"
 
 #: Source/trigs.cpp:396
 msgid "Down to Crypt"
-msgstr ""
+msgstr "지하묘지로 내려간다"
 
 #: Source/trigs.cpp:412 Source/trigs.cpp:492 Source/trigs.cpp:539
 #: Source/trigs.cpp:630
 msgid "Up to level {:d}"
-msgstr ""
+msgstr "레벨 {:d}로 올라간다"
 
 #: Source/trigs.cpp:414 Source/trigs.cpp:469 Source/trigs.cpp:521
 #: Source/trigs.cpp:596 Source/trigs.cpp:613 Source/trigs.cpp:660
@@ -8455,20 +8456,20 @@ msgstr "레벨 {:d}로 내려간다"
 
 #: Source/trigs.cpp:437
 msgid "Up to Crypt level {:d}"
-msgstr ""
+msgstr "지하묘지 레벨 {:d}로 올라간다"
 
 #: Source/trigs.cpp:452
 msgid "Down to Crypt level {:d}"
-msgstr ""
+msgstr "지하묘지 레벨 {:d}로 내려간다"
 
 #: Source/trigs.cpp:564
 msgid "Up to Nest level {:d}"
-msgstr ""
+msgstr "네스트 레벨 {:d}로 올라간다"
 
 #: Source/trigs.cpp:673
 msgid "Down to Diablo"
-msgstr ""
+msgstr "디아블로에게 내려간다"
 
 #: Source/trigs.cpp:706 Source/trigs.cpp:720 Source/trigs.cpp:734
 msgid "Back to Level {:d}"
-msgstr ""
+msgstr "레벨 {:d}로 돌아간다"
