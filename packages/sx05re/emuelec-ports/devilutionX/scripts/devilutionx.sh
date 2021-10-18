@@ -20,8 +20,8 @@ fi
 
 mkdir -p ${DIABLOPATH}
 
-if [ -e ${DIABLOPATH}/diablo.ini ]; then
-    sed -i "s|Code=.*|Code=${EELANG}|g" ${DIABLOPATH}/diablo.ini
+if [ -e ${DIABLOROMPATH}/diablo.ini ]; then
+    sed -i "s|Code=.*|Code=${EELANG}|g" ${DIABLOROMPATH}/diablo.ini
 fi
 
 if [ -e ${DIABLOMPQPATH}/devilutionx.mpq ]; then
@@ -52,4 +52,4 @@ else
 PARAMS=" --diablo"
 fi 
 
-devilutionx --verbose ${PARAMS}
+devilutionx --verbose ${PARAMS} --config-dir ${DIABLOROMPATH} --save-dir ${DIABLOROMPATH}
