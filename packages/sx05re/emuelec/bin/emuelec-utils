@@ -79,6 +79,7 @@ function ee_backup() {
 		[ -f "${BACKUPFILE}" ] && rm "${BACKUPFILE}"
 		[ -z "$2" ] && systemctl stop emustation
         tar -zcvf "${BACKUPFILE}" /storage/.local/share/VVVVVV/* \
+					  /storage/.local/share/diasurgical/devilution/* \
 					  /storage/.cache/bluetooth/* \
 					  /storage/.cache/timezone \
 					  /storage/.config/scummvm/* \
