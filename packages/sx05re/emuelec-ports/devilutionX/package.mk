@@ -2,7 +2,7 @@
 # Copyright (C) 2020-present Shanti Gilbert (https://github.com/shantigilbert)
 
 PKG_NAME="devilutionX"
-PKG_VERSION="4048b876e75fe2abf5dcca9ef9e073eb6e914dc5"
+PKG_VERSION="900af16a9e0db104e37e307b1ccec17e32b441ea"
 PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="unlicense"
@@ -17,8 +17,6 @@ pre_configure_target() {
 PKG_CMAKE_OPTS_TARGET=" -DBINARY_RELEASE=1 -DCMAKE_BUILD_TYPE="Release" -DDEBUG=OFF -DPREFILL_PLAYER_NAME=ON -DDEVILUTIONX_SYSTEM_LIBSODIUM=OFF -DMO_LANG_DIR=\"/emuelec/configs/devilution/langs/\""
 sed -i "s|;-static-libstdc++>|;-lstdc++>|" $PKG_BUILD/CMakeLists.txt
 
-# copy korean font (with DevilutionX-add-koreanfont.patch)
-cp -rf $PKG_DIR/fonts/* $PKG_BUILD/Packaging/resources/assets/fonts
 # copy korean translation
 cp -rf $PKG_DIR/Translations/ko.po $PKG_BUILD/Translations/ko_KR.po
 }
@@ -26,7 +24,6 @@ cp -rf $PKG_DIR/Translations/ko.po $PKG_BUILD/Translations/ko_KR.po
 makeinstall_target() { 
 mkdir -p $INSTALL/usr/bin
 cp -rf $PKG_BUILD/.$TARGET_NAME/devilutionx $INSTALL/usr/bin
-#cp -rf $PKG_BUILD/Packaging/resources/CharisSILB.ttf $INSTALL/usr/bin
 cp -rf $PKG_DIR/scripts/* $INSTALL/usr/bin
 
 mkdir -p ${INSTALL}/usr/config/emuelec/configs/devilution/langs
@@ -34,6 +31,6 @@ cp $PKG_BUILD/.$TARGET_NAME/*.gmo ${INSTALL}/usr/config/emuelec/configs/deviluti
 
 mkdir -p ${INSTALL}/usr/local/share/diasurgical/devilutionx/
 cp $PKG_BUILD/.$TARGET_NAME/devilutionx.mpq ${INSTALL}/usr/local/share/diasurgical/devilutionx/
-
+cp $PKG_DIR/fonts/fonts.mpq ${INSTALL}/usr/local/share/diasurgical/devilutionx/
  
 }

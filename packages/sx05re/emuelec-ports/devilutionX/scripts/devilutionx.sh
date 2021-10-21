@@ -25,8 +25,14 @@ if [ -e ${DIABLOPATH}/diablo.ini ]; then
 fi
 
 if [ -e ${DIABLOMPQPATH}/devilutionx.mpq ]; then
-    if [ ! -L ${DIABLOPATH}/diabdat.mpq ]; then
+    if [ ! -L ${DIABLOPATH}/devilutionx.mpq ]; then
         ln -sf ${DIABLOMPQPATH}/devilutionx.mpq ${DIABLOPATH}/devilutionx.mpq
+    fi
+fi
+
+if [ -e ${DIABLOMPQPATH}/fonts.mpq ]; then
+    if [ ! -L ${DIABLOPATH}/fonts.mpq ]; then
+        ln -sf ${DIABLOMPQPATH}/fonts.mpq ${DIABLOPATH}/fonts.mpq
     fi
 fi
 
