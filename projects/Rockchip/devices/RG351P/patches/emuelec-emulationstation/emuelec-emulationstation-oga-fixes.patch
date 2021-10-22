@@ -1,6 +1,6 @@
 --- a/es-app/src/guis/GuiMenu.cpp
 +++ b/es-app/src/guis/GuiMenu.cpp
-@@ -1809,7 +1809,7 @@
+@@ -1811,7 +1811,7 @@
  	}
  #endif
  
@@ -22,7 +22,7 @@
  	#endif
 --- a/es-app/src/FileData.cpp
 +++ b/es-app/src/FileData.cpp
-@@ -538,9 +538,6 @@
+@@ -559,9 +559,6 @@
  	VolumeControl::getInstance()->deinit();
  
  	bool hideWindow = Settings::getInstance()->getBool("HideWindow");
@@ -34,7 +34,7 @@
  	const std::string rom = Utils::FileSystem::getEscapedPath(getPath());
 --- a/es-core/src/InputManager.cpp
 +++ b/es-core/src/InputManager.cpp
-@@ -279,20 +279,11 @@
+@@ -298,20 +298,11 @@
  		if (ev.key.repeat)
  			return false;
  
