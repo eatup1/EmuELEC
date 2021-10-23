@@ -2,8 +2,8 @@
 # Copyright (C) 2019-present Shanti Gilbert (https://github.com/shantigilbert)
 
 PKG_NAME="emuelec-32bit-libs"
-PKG_VERSION="3ef5bdd6293439347b5909b92ead57196dc48aba"
-PKG_SHA256="1c9da0bec3dd3980e4393749a2c269b38f1822a3fea6c891309c3d0aa54eeca5"
+PKG_VERSION="86c5193dd11199938f509f908c5d679705a901e4"
+PKG_SHA256="6f627f5ace64f5d047f48e0ac638c0e6e97889feddb53c660ec4b568d92e83f7"
 PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="GPLv2"
@@ -21,6 +21,8 @@ if [[ "$DEVICE" == "OdroidGoAdvance" || "$DEVICE" == "RG351P" || "$DEVICE" == "R
 	
 	if [[ "$DEVICE" == "GameForce" ]]; then
 	   cp -rf $PKG_BUILD/GameForce/* $INSTALL/
+	elif [[ "$DEVICE" == "RG351P" ]]; then
+	   cp -rf $PKG_BUILD/RG351P/* $INSTALL/
 	elif [[ "$DEVICE" == "RG351V" ]]; then
 	   cp -rf $PKG_BUILD/RG351V/* $INSTALL/
 	fi
