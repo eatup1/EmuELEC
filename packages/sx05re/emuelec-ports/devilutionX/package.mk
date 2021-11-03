@@ -2,7 +2,7 @@
 # Copyright (C) 2020-present Shanti Gilbert (https://github.com/shantigilbert)
 
 PKG_NAME="devilutionX"
-PKG_VERSION="900af16a9e0db104e37e307b1ccec17e32b441ea"
+PKG_VERSION="3f065d579498a92b0e2a4c1ee5e34c1dcae5b0a0"
 PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="unlicense"
@@ -18,7 +18,7 @@ PKG_CMAKE_OPTS_TARGET=" -DBINARY_RELEASE=1 -DCMAKE_BUILD_TYPE="Release" -DDEBUG=
 sed -i "s|;-static-libstdc++>|;-lstdc++>|" $PKG_BUILD/CMakeLists.txt
 
 # copy korean translation
-cp -rf $PKG_DIR/Translations/ko.po $PKG_BUILD/Translations/ko_KR.po
+cp -rf $PKG_DIR/Translations/ko_KR.po $PKG_BUILD/Translations/ko_KR.po
 }
 
 makeinstall_target() { 
