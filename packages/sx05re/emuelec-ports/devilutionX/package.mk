@@ -2,13 +2,13 @@
 # Copyright (C) 2020-present Shanti Gilbert (https://github.com/shantigilbert)
 
 PKG_NAME="devilutionX"
-PKG_VERSION="3f065d579498a92b0e2a4c1ee5e34c1dcae5b0a0"
+PKG_VERSION="41ff03e94c02477bffb2d62764e8624c0e06854d"
 PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="unlicense"
 PKG_SITE="https://github.com/diasurgical/devilutionX"
 PKG_URL="$PKG_SITE.git"
-PKG_DEPENDS_TARGET="toolchain SDL2-git SDL2_mixer SDL2_ttf"
+PKG_DEPENDS_TARGET="toolchain SDL2-git SDL2_mixer SDL2_image"
 PKG_LONGDESC="Diablo build for modern operating systems "
 GET_HANDLER_SUPPORT="git"
 PKG_BUILD_FLAGS="-lto"
