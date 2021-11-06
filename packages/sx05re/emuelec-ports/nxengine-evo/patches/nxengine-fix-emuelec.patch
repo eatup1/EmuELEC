@@ -2,7 +2,7 @@ diff --git a/CMakeLists.txt b/CMakeLists.txt
 index adc3e3e..757be9e 100644
 --- a/CMakeLists.txt
 +++ b/CMakeLists.txt
-@@ -190,6 +190,7 @@ ELSEIF(PLATFORM STREQUAL "switch")
+@@ -194,6 +194,7 @@ ELSEIF(PLATFORM STREQUAL "switch")
  ENDIF()
  
  IF(PLATFORM STREQUAL "pc")
@@ -10,7 +10,7 @@ index adc3e3e..757be9e 100644
      add_executable(extract ${EXTR_SOURCES})
      target_link_libraries(extract ${SDL2_LIBRARY})
      set_property(TARGET extract PROPERTY OUTPUT_NAME nxextract)
-@@ -198,9 +199,9 @@ IF(PLATFORM STREQUAL "pc")
+@@ -202,9 +203,9 @@ IF(PLATFORM STREQUAL "pc")
      install(DIRECTORY data DESTINATION ${CMAKE_INSTALL_DATADIR}/nxengine)
  
      # Install XDG metadata on Desktop Linux like platforms
