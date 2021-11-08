@@ -19,7 +19,7 @@ diff --git a/src/basic/meson.build b/src/basic/meson.build
 index 524f3785dc0..81c3d0f3e80 100644
 --- a/src/basic/meson.build
 +++ b/src/basic/meson.build
-@@ -99,6 +99,7 @@ basic_sources = files('''
+@@ -98,6 +98,7 @@ basic_sources = files('''
          linux/if_tun.h
          linux/if_tunnel.h
          linux/libc-compat.h

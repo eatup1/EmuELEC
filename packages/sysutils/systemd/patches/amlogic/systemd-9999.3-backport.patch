@@ -637,8 +637,8 @@ diff --git a/src/basic/meson.build b/src/basic/meson.build
 index 81c3d0f3e80..26c7fc42c76 100644
 --- a/src/basic/meson.build
 +++ b/src/basic/meson.build
-@@ -98,6 +98,8 @@ basic_sources = files('''
-         linux/if_macsec.h
+@@ -97,6 +97,8 @@ basic_sources = files('''
+         linux/if_link.h
          linux/if_tun.h
          linux/if_tunnel.h
 +        linux/in.h

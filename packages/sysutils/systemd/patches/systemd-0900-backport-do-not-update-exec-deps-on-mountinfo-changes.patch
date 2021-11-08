@@ -12,7 +12,7 @@ diff --git a/src/core/mount.c b/src/core/mount.c
 index 1d1d2683da4..dfed691c43f 100644
 --- a/src/core/mount.c
 +++ b/src/core/mount.c
-@@ -550,6 +550,32 @@ static int mount_verify(Mount *m) {
+@@ -545,6 +545,32 @@ static int mount_verify(Mount *m) {
          return 0;
  }
  
@@ -45,7 +45,7 @@ index 1d1d2683da4..dfed691c43f 100644
  static int mount_add_extras(Mount *m) {
          Unit *u = UNIT(m);
          int r;
-@@ -577,18 +603,6 @@ static int mount_add_extras(Mount *m) {
+@@ -572,18 +598,6 @@ static int mount_add_extras(Mount *m) {
                          return r;
          }
  
@@ -64,7 +64,7 @@ index 1d1d2683da4..dfed691c43f 100644
          r = unit_patch_contexts(u);
          if (r < 0)
                  return r;
-@@ -601,7 +615,7 @@ static int mount_add_extras(Mount *m) {
+@@ -596,7 +610,7 @@ static int mount_add_extras(Mount *m) {
          if (r < 0)
                  return r;
  
@@ -73,7 +73,7 @@ index 1d1d2683da4..dfed691c43f 100644
          if (r < 0)
                  return r;
  
-@@ -1574,7 +1588,7 @@ static int mount_setup_existing_unit(
+@@ -1532,7 +1546,7 @@ static int mount_setup_existing_unit(
  
                  unit_remove_dependencies(u, UNIT_DEPENDENCY_MOUNTINFO_IMPLICIT);
  
