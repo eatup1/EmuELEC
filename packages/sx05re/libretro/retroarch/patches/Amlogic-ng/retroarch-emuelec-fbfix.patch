@@ -1,6 +1,6 @@
 --- a/tasks/task_content.c	2019-01-15 12:55:14.000000000 -0600
 +++ b/tasks/task_content.c	2019-01-28 22:00:41.340468631 -0600
-@@ -790,7 +790,9 @@
+@@ -787,7 +787,9 @@
  
     *data      = content_data;
     *data_size = (size_t)content_size;
@@ -11,7 +11,7 @@
     return true;
  }
  
-@@ -1369,6 +1371,7 @@
+@@ -1366,6 +1368,7 @@
     {
        RARCH_LOG("[CORE]: Using content: %s.\n", args->content_path);
        argv[(*argc)++] = strdup(args->content_path);
@@ -19,7 +19,7 @@
     }
  #ifdef HAVE_MENU
     else
-@@ -1708,7 +1711,7 @@
+@@ -1705,7 +1708,7 @@
  #else
     frontend_driver_set_fork(FRONTEND_FORK_CORE_WITH_ARGS);
  #endif
@@ -31,7 +31,7 @@
 
 --- a/retroarch.c	2019-01-15 12:55:14.000000000 -0600
 +++ b/retroarch.c	2019-01-28 22:00:41.340468631 -0600 
-@@ -7917,6 +7917,8 @@
+@@ -5518,6 +5518,8 @@
                 RARCH_LOG("[Input]: %s => %s\n",
                       "Game Focus",
                       input_st->game_focus_state.enabled ? "ON" : "OFF");
@@ -40,11 +40,11 @@
              }
           }
           break;
-@@ -12689,6 +12691,7 @@
+@@ -10270,6 +10272,7 @@
           ui_companion_qt.toggle(p_rarch->ui_companion_qt_data, force);
     }
  #endif
 + system("/usr/bin/fbfix"); // emuelec
  }
  
- static void ui_companion_driver_init_first(
+ static void ui_companion_driver_init_first(struct rarch_state *p_rarch)
