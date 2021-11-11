@@ -31,7 +31,7 @@
 
 --- a/retroarch.c	2019-01-15 12:55:14.000000000 -0600
 +++ b/retroarch.c	2019-01-28 22:00:41.340468631 -0600 
-@@ -5518,6 +5518,8 @@
+@@ -5877,6 +5877,8 @@
                 RARCH_LOG("[Input]: %s => %s\n",
                       "Game Focus",
                       input_st->game_focus_state.enabled ? "ON" : "OFF");
@@ -40,7 +40,7 @@
              }
           }
           break;
-@@ -10270,6 +10272,7 @@
+@@ -10646,6 +10648,7 @@
           ui_companion_qt.toggle(p_rarch->ui_companion_qt_data, force);
     }
  #endif
