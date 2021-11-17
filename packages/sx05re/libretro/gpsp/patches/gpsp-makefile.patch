@@ -1,0 +1,26 @@
+diff --git a/Makefile b/Makefile
+index a0ed865..bf49fec 100644
+--- a/Makefile
++++ b/Makefile
+@@ -21,15 +21,15 @@ endif
+ 
+ ifeq ($(platform), unix)
+ ifeq ($(firstword $(filter x86_64,$(UNAME))),x86_64)
+-	HAVE_DYNAREC := 1
+-	CPU_ARCH := x86_32
++#	HAVE_DYNAREC := 1
++#	CPU_ARCH := x86_32
+ else ifeq ($(firstword $(filter amd64,$(UNAME))),amd64)
+-	HAVE_DYNAREC := 1
+-	CPU_ARCH := x86_32
++#	HAVE_DYNAREC := 1
++#	CPU_ARCH := x86_32
+ else ifeq ($(firstword $(filter x86,$(UNAME))),x86)
+ 	FORCE_32BIT_ARCH = 1
+-	HAVE_DYNAREC := 1
+-	CPU_ARCH := x86_32
++#	HAVE_DYNAREC := 1
++#	CPU_ARCH := x86_32
+ endif
+ endif
+ 
