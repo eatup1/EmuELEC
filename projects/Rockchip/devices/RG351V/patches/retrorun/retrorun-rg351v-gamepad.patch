@@ -1,5 +1,5 @@
 diff --git a/src/input.cpp b/src/input.cpp
-index aa7d107..a4a5374 100644
+index aa7d107..8900a02 100644
 --- a/src/input.cpp
 +++ b/src/input.cpp
 @@ -41,7 +41,7 @@ static go2_input_state_t* prevGamepadState;
@@ -22,6 +22,17 @@ index aa7d107..a4a5374 100644
      {
          input_exit_requested = true;
      }
+@@ -133,8 +133,8 @@ int16_t core_input_state(unsigned port, unsigned device, unsigned index, unsigne
+     // if (port || index || device != RETRO_DEVICE_JOYPAD)
+     //         return 0;
+ 
+-    if (go2_input_state_button_get(gamepadState, Hotkey) == ButtonState_Pressed)
+-        return 0;
++    //if (go2_input_state_button_get(gamepadState, Hotkey) == ButtonState_Pressed)
++    //    return 0;
+ 
+     if (!Retrorun_UseAnalogStick)
+     {
 @@ -183,11 +183,11 @@ int16_t core_input_state(unsigned port, unsigned device, unsigned index, unsigne
                      break;
  
