@@ -15,7 +15,7 @@ EELANG=$(echo ${LANG} | cut -d= -f2 | cut -d_ -f1)
 if [ "${EELANG}" == "en" ]; then
     LANG=""
 elif [ "${EELANG}" == "ko" -o "${EELANG}" == "pt" -o "${EELANG}" == "zh" ]; then
-    EELANG=${LANG}
+    EELANG=$(echo ${LANG} | cut -d= -f2 | cut -d. -f1)
 fi
 
 mkdir -p ${DIABLOPATH}

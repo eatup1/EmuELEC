@@ -2,7 +2,7 @@
 # Copyright (C) 2020-present Shanti Gilbert (https://github.com/shantigilbert)
 
 PKG_NAME="devilutionX"
-PKG_VERSION="14eae23441e0d3133a5c49c2552d827a6b6c0f71"
+PKG_VERSION="af168fd8df68581d03334b2d4602071e59810f98"
 PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="unlicense"
@@ -25,9 +25,6 @@ makeinstall_target() {
 mkdir -p $INSTALL/usr/bin
 cp -rf $PKG_BUILD/.$TARGET_NAME/devilutionx $INSTALL/usr/bin
 cp -rf $PKG_DIR/scripts/* $INSTALL/usr/bin
-
-mkdir -p ${INSTALL}/usr/config/emuelec/configs/devilution/langs
-cp $PKG_BUILD/.$TARGET_NAME/*.gmo ${INSTALL}/usr/config/emuelec/configs/devilution/langs
 
 mkdir -p ${INSTALL}/usr/local/share/diasurgical/devilutionx/
 cp $PKG_BUILD/.$TARGET_NAME/devilutionx.mpq ${INSTALL}/usr/local/share/diasurgical/devilutionx/
