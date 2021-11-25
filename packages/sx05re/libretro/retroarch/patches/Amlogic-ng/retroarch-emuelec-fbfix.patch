@@ -1,6 +1,8 @@
---- a/tasks/task_content.c	2019-01-15 12:55:14.000000000 -0600
-+++ b/tasks/task_content.c	2019-01-28 22:00:41.340468631 -0600
-@@ -787,7 +787,9 @@
+diff --git a/tasks/task_content.c b/tasks/task_content.c
+index cdce01158c..39f43e8bc0 100644
+--- a/tasks/task_content.c
++++ b/tasks/task_content.c
+@@ -787,7 +787,9 @@ static bool content_file_load_into_memory(
  
     *data      = content_data;
     *data_size = (size_t)content_size;
@@ -11,27 +13,28 @@
     return true;
  }
  
-@@ -1366,6 +1368,7 @@
+@@ -1366,6 +1368,7 @@ static void content_load_init_wrap(
     {
        RARCH_LOG("[CORE]: Using content: %s.\n", args->content_path);
        argv[(*argc)++] = strdup(args->content_path);
-+    system("/usr/bin/fbfix"); // emuelec
++      system("/usr/bin/fbfix"); // emuelec
     }
  #ifdef HAVE_MENU
     else
-@@ -1705,7 +1708,7 @@
+@@ -1736,7 +1739,7 @@ static bool command_event_cmd_exec(
  #else
     frontend_driver_set_fork(FRONTEND_FORK_CORE_WITH_ARGS);
  #endif
 -
-+	system("/usr/bin/fbfix"); // emuelec
++   system("/usr/bin/fbfix"); // emuelec
     return true;
  }
  #endif
-
---- a/retroarch.c	2019-01-15 12:55:14.000000000 -0600
-+++ b/retroarch.c	2019-01-28 22:00:41.340468631 -0600 
-@@ -5831,6 +5831,8 @@
+diff --git a/retroarch.c b/retroarch.c
+index a94c6a7f5e..3692056edd 100644
+--- a/retroarch.c
++++ b/retroarch.c
+@@ -3271,6 +3271,8 @@ bool command_event(enum event_command cmd, void *data)
                 RARCH_LOG("[Input]: %s => %s\n",
                       "Game Focus",
                       input_st->game_focus_state.enabled ? "ON" : "OFF");
@@ -40,11 +43,15 @@
              }
           }
           break;
-@@ -10600,6 +10602,7 @@
-          ui_companion_qt.toggle(p_rarch->ui_companion_qt_data, force);
+diff --git a/ui/ui_companion_driver.c b/ui/ui_companion_driver.c
+index f2c7c30314..4917273619 100644
+--- a/ui/ui_companion_driver.c
++++ b/ui/ui_companion_driver.c
+@@ -143,6 +143,7 @@ void ui_companion_driver_toggle(
+          ui_companion_qt.toggle(uico_st->qt_data, force);
     }
  #endif
-+ system("/usr/bin/fbfix"); // emuelec
++   system("/usr/bin/fbfix"); // emuelec
  }
  
- static void ui_companion_driver_init_first(struct rarch_state *p_rarch)
+ void ui_companion_driver_init_first(void)

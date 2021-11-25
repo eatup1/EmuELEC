@@ -1,6 +1,6 @@
 --- a/menu/menu_setting.c
 +++ b/menu/menu_setting.c
-@@ -11846,12 +11846,15 @@
+@@ -11895,12 +11895,15 @@
                 MENU_SETTINGS_LIST_CURRENT_ADD_CMD(list, list_info, CMD_EVENT_REINIT);
              }
  
@@ -17,7 +17,7 @@
                    DEFAULT_VIDEO_CTX_SCALING,
                    MENU_ENUM_LABEL_VALUE_OFF,
                    MENU_ENUM_LABEL_VALUE_ON,
-@@ -11863,7 +11866,6 @@
+@@ -11912,7 +11915,6 @@
                    SD_FLAG_NONE
                    );
              MENU_SETTINGS_LIST_CURRENT_ADD_CMD(list, list_info, CMD_EVENT_REINIT);
@@ -27,7 +27,7 @@
                    list, list_info,
 --- a/msg_hash.h
 +++ b/msg_hash.h
-@@ -1071,9 +1071,7 @@
+@@ -1072,9 +1072,7 @@
     MENU_LABEL(VIDEO_RECORD_THREADS),
     MENU_LABEL(VIDEO_SMOOTH),
     MENU_LABEL(VIDEO_CTX_SCALING),
