@@ -15,7 +15,7 @@ diff --git a/desktop_version/src/UtilityClass.h b/desktop_version/src/UtilityCla
 index cbda281..a7527ab 100644
 --- a/desktop_version/src/UtilityClass.h
 +++ b/desktop_version/src/UtilityClass.h
-@@ -125,4 +125,12 @@ public:
+@@ -115,4 +115,12 @@ public:
  extern UtilityClass help;
  #endif
  
