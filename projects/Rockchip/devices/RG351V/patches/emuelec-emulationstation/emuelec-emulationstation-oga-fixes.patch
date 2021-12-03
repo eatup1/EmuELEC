@@ -1,6 +1,6 @@
 --- a/es-app/src/guis/GuiMenu.cpp
 +++ b/es-app/src/guis/GuiMenu.cpp
-@@ -1840,7 +1840,7 @@
+@@ -1769,7 +1769,7 @@
  	}
  #endif
  
@@ -22,7 +22,7 @@
  	#endif
 --- a/es-app/src/FileData.cpp
 +++ b/es-app/src/FileData.cpp
-@@ -579,9 +579,6 @@
+@@ -604,9 +604,6 @@
  	VolumeControl::getInstance()->deinit();
  
  	bool hideWindow = Settings::getInstance()->getBool("HideWindow");
@@ -59,7 +59,7 @@
  	case SDL_TEXTINPUT:
 --- a/es-app/src/views/ViewController.cpp
 +++ b/es-app/src/views/ViewController.cpp
-@@ -828,11 +828,9 @@
+@@ -840,11 +840,9 @@
  #ifdef _ENABLEEMUELEC
  /* Detect unconfigured keyboad as well */
          if(config->isConfigured() == false) {
