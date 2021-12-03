@@ -80,6 +80,11 @@ makeinstall_target() {
 	mkdir -p $INSTALL/usr/config/
     cp -rf $PKG_DIR/config/* $INSTALL/usr/config/
     ln -sf /storage/.config/emuelec $INSTALL/emuelec
+
+    # Added for compatibility with portmaster
+    ln -sf /storage/roms $INSTALL/roms
+    ln -sf /storage/roms/ports/portmaster $INSTALL/portmaster
+
     find $INSTALL/usr/config/emuelec/ -type f -exec chmod o+x {} \;
     
     if [ "$PROJECT" == "Amlogic" ]; then 
@@ -87,9 +92,6 @@ makeinstall_target() {
     else
         rm $INSTALL/usr/config/asound.conf
         mv $INSTALL/usr/config/asound.conf-amlogic-ng $INSTALL/usr/config/asound.conf
-    fi 
-    if [ "$DEVICE" != "RG351P" ]; then 
-        rm $INSTALL/usr/config/rg351p_joystick.cal
     fi 
   
 	mkdir -p $INSTALL/usr/config/emuelec/logs
