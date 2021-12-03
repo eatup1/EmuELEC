@@ -2,7 +2,7 @@
 # Copyright (C) 2020-present Shanti Gilbert (https://github.com/shantigilbert)
 
 PKG_NAME="devilutionX"
-PKG_VERSION="945ee04f622cc96bdee88d107da29802b6d3d722"
+PKG_VERSION="da837c4d2e68784b9e65e3cbf526aa4aef596ee0"
 PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="unlicense"
