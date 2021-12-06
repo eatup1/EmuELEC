@@ -15,7 +15,7 @@ index cdce01158c..39f43e8bc0 100644
  
 @@ -1366,6 +1368,7 @@ static void content_load_init_wrap(
     {
-       RARCH_LOG("[CORE]: Using content: %s.\n", args->content_path);
+       RARCH_LOG("[Core]: Using content: \"%s\".\n", args->content_path);
        argv[(*argc)++] = strdup(args->content_path);
 +      system("/usr/bin/fbfix"); // emuelec
     }
@@ -34,7 +34,7 @@ diff --git a/retroarch.c b/retroarch.c
 index a94c6a7f5e..3692056edd 100644
 --- a/retroarch.c
 +++ b/retroarch.c
-@@ -3271,6 +3271,8 @@ bool command_event(enum event_command cmd, void *data)
+@@ -3275,6 +3275,8 @@ bool command_event(enum event_command cmd, void *data)
                 RARCH_LOG("[Input]: %s => %s\n",
                       "Game Focus",
                       input_st->game_focus_state.enabled ? "ON" : "OFF");

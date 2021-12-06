@@ -1,6 +1,6 @@
 --- a/menu/menu_displaylist.c	2017-08-18 06:30:31.000000000 -0500
 +++ b/menu/menu_displaylist.c	2017-08-20 01:54:59.625855817 -0500
-@@ -12003,7 +12003,7 @@
+@@ -12016,7 +12016,7 @@
        case DISPLAYLIST_OPTIONS:
           menu_entries_ctl(MENU_ENTRIES_CTL_CLEAR, info->list);
           {
@@ -20,7 +20,7 @@
           CONFIG_ACTION(
                 list, list_info,
                 MENU_ENUM_LABEL_QUIT_RETROARCH,
-@@ -16277,7 +16277,7 @@
+@@ -16279,7 +16279,7 @@
                    general_read_handler,
                    SD_FLAG_LAKKA_ADVANCED);
  
