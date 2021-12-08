@@ -5824,11 +5824,11 @@ msgstr "끄기"
 
 #: Source/options.cpp:507
 msgid "Start Up"
-msgstr ""
+msgstr "시작"
 
 #: Source/options.cpp:507
 msgid "Start Up Settings"
-msgstr ""
+msgstr "시작 설정"
 
 #: Source/options.cpp:508 Source/options.cpp:514
 msgid "Intro"
