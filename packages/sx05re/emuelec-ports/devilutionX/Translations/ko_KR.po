@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: DevilutionX\n"
-"POT-Creation-Date: 2021-11-23 10:13+0000\n"
+"POT-Creation-Date: 2021-12-10 20:11+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: NSM53PROJECT <nsm53project@gmail.com>\n"
 "Language-Team: \n"
@@ -5843,6 +5843,8 @@ msgid ""
 "Makes the game compatible with the demo. Enables multiplayer with friends "
 "who don't own a full copy of Diablo."
 msgstr ""
+"데모와 호환되는 게임을 만듭니다. 디아블로 전체를 소유하지 않은 친구와 멀티 "
+"플레이가 가능합니다."
 
 #: Source/options.cpp:511 Source/options.cpp:517
 msgid "Intro"
@@ -6209,8 +6211,9 @@ msgstr "자동 장신구 장착"
 
 #: Source/options.cpp:742
 msgid ""
-"활성화된 경우 장신구를 픽업 또는 구매 시 자동으로 장착됩니다."
+"Jewelry will be automatically equipped on pickup or purchase if enabled."
 msgstr ""
+"활성화된 경우 장신구를 픽업 또는 구매 시 자동으로 장착됩니다."
 
 #: Source/options.cpp:743
 msgid "Randomize Quests"
