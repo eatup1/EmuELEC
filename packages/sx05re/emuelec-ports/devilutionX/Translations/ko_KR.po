@@ -328,7 +328,7 @@ msgstr "싱글 플레이어"
 msgid "Multi Player"
 msgstr "멀티 플레이어"
 
-#: Source/DiabloUI/mainmenu.cpp:38 Source/DiabloUI/settingsmenu.cpp:130
+#: Source/DiabloUI/mainmenu.cpp:38 Source/DiabloUI/settingsmenu.cpp:197
 msgid "Settings"
 msgstr "설정"
 
@@ -457,17 +457,17 @@ msgstr "난이도 선택"
 
 #: Source/DiabloUI/selgame.cpp:185 Source/DiabloUI/selgame.cpp:238
 #: Source/DiabloUI/selgame.cpp:342 Source/DiabloUI/selgame.cpp:362
-#: Source/diablo.cpp:1453
+#: Source/diablo.cpp:1457
 msgid "Normal"
 msgstr "보통"
 
 #: Source/DiabloUI/selgame.cpp:186 Source/DiabloUI/selgame.cpp:242
-#: Source/diablo.cpp:1454
+#: Source/diablo.cpp:1458
 msgid "Nightmare"
 msgstr "악몽"
 
 #: Source/DiabloUI/selgame.cpp:187 Source/DiabloUI/selgame.cpp:246
-#: Source/diablo.cpp:1455
+#: Source/diablo.cpp:1459
 msgid "Hell"
 msgstr "지옥"
 
@@ -714,11 +714,11 @@ msgstr "싱글 플레이어 영웅 삭제"
 msgid "Are you sure you want to delete the character \"{:s}\"?"
 msgstr "\"{:s}\" 캐럭터를 정말로 삭제하겠습니까?"
 
-#: Source/DiabloUI/selstart.cpp:43
+#: Source/DiabloUI/selstart.cpp:42
 msgid "Enter Hellfire"
 msgstr "헬파이어 입장"
 
-#: Source/DiabloUI/selstart.cpp:44 Source/DiabloUI/settingsmenu.cpp:136
+#: Source/DiabloUI/selstart.cpp:43
 msgid "Switch to Diablo"
 msgstr "디아블로로 변경"
 
@@ -730,19 +730,7 @@ msgstr "예"
 msgid "No"
 msgstr "아니요"
 
-#: Source/DiabloUI/settingsmenu.cpp:136
-msgid "Switch to Hellfire"
-msgstr "헬파이어로 변경"
-
-#: Source/DiabloUI/settingsmenu.cpp:138
-msgid "Switch to Fullgame"
-msgstr "정식 게임으로 변경"
-
-#: Source/DiabloUI/settingsmenu.cpp:138
-msgid "Switch to Shareware"
-msgstr "체험판으로 변경"
-
-#: Source/DiabloUI/settingsmenu.cpp:166 Source/gamemenu.cpp:61
+#: Source/DiabloUI/settingsmenu.cpp:237 Source/gamemenu.cpp:61
 msgid "Previous Menu"
 msgstr "이전 메뉴"
 
@@ -1030,89 +1018,89 @@ msgstr "불경한 제단"
 msgid "level 15"
 msgstr "지하 15층"
 
-#: Source/diablo.cpp:117
+#: Source/diablo.cpp:118
 msgid "I need help! Come Here!"
 msgstr "도와 줘! 여기야!"
 
-#: Source/diablo.cpp:118
+#: Source/diablo.cpp:119
 msgid "Follow me."
 msgstr "날 따라와."
 
-#: Source/diablo.cpp:119
+#: Source/diablo.cpp:120
 msgid "Here's something for you."
 msgstr "자, 여기."
 
-#: Source/diablo.cpp:120
+#: Source/diablo.cpp:121
 msgid "Now you DIE!"
 msgstr "그럼 이제 죽어!"
 
 #. TRANSLATORS: Commandline Option
-#: Source/diablo.cpp:784
+#: Source/diablo.cpp:785
 msgid "Options:\n"
 msgstr "설정:\n"
 
 #. TRANSLATORS: Commandline Option
-#: Source/diablo.cpp:785
+#: Source/diablo.cpp:786
 msgid "Print this message and exit"
 msgstr "이 메시지를 출력하고 종료"
 
 #. TRANSLATORS: Commandline Option
-#: Source/diablo.cpp:786
+#: Source/diablo.cpp:787
 msgid "Print the version and exit"
 msgstr "버전을 출력하고 종료"
 
 #. TRANSLATORS: Commandline Option
-#: Source/diablo.cpp:787
+#: Source/diablo.cpp:788
 msgid "Specify the folder of diabdat.mpq"
 msgstr "diabdat.mpq가 있는 폴더 지정"
 
 #. TRANSLATORS: Commandline Option
-#: Source/diablo.cpp:788
+#: Source/diablo.cpp:789
 msgid "Specify the folder of save files"
 msgstr "저장 파일 폴더 지정"
 
 #. TRANSLATORS: Commandline Option
-#: Source/diablo.cpp:789
+#: Source/diablo.cpp:790
 msgid "Specify the location of diablo.ini"
 msgstr "diablo.ini의 경로 지정"
 
 #. TRANSLATORS: Commandline Option
-#: Source/diablo.cpp:790
+#: Source/diablo.cpp:791
 msgid "Skip startup videos"
 msgstr "실행 시 오프닝 재생 안 함"
 
 #. TRANSLATORS: Commandline Option
-#: Source/diablo.cpp:791
+#: Source/diablo.cpp:792
 msgid "Display frames per second"
 msgstr "초당 프레임 표시"
 
 #. TRANSLATORS: Commandline Option
-#: Source/diablo.cpp:792
+#: Source/diablo.cpp:793
 msgid "Run in windowed mode"
 msgstr "창모드 실행"
 
 #. TRANSLATORS: Commandline Option
-#: Source/diablo.cpp:793
+#: Source/diablo.cpp:794
 msgid "Enable verbose logging"
 msgstr "상세한 기록 사용"
 
 #. TRANSLATORS: Commandline Option
-#: Source/diablo.cpp:794
+#: Source/diablo.cpp:795
 msgid "Record a demo file"
 msgstr "데모 파일 기록"
 
 #. TRANSLATORS: Commandline Option
-#: Source/diablo.cpp:795
+#: Source/diablo.cpp:796
 msgid "Play a demo file"
 msgstr "데모 파일 플레이"
 
 #. TRANSLATORS: Commandline Option
-#: Source/diablo.cpp:796
+#: Source/diablo.cpp:797
 msgid "Disable all frame limiting during demo playback"
 msgstr "데모 플레이 프레임 제한 해제"
 
 #. TRANSLATORS: Commandline Option
-#: Source/diablo.cpp:797
+#: Source/diablo.cpp:798
 msgid ""
 "\n"
 "Game selection:\n"
@@ -1121,22 +1109,22 @@ msgstr ""
 "게임 선택:\n"
 
 #. TRANSLATORS: Commandline Option
-#: Source/diablo.cpp:798
+#: Source/diablo.cpp:799
 msgid "Force Shareware mode"
 msgstr "강제 체험판 모드"
 
 #. TRANSLATORS: Commandline Option
-#: Source/diablo.cpp:799
+#: Source/diablo.cpp:800
 msgid "Force Diablo mode"
 msgstr "강제 디아블로 모드"
 
 #. TRANSLATORS: Commandline Option
-#: Source/diablo.cpp:800
+#: Source/diablo.cpp:801
 msgid "Force Hellfire mode"
 msgstr "강제 헬파이어 모드"
 
 #. TRANSLATORS: Commandline Option
-#: Source/diablo.cpp:801
+#: Source/diablo.cpp:802
 msgid ""
 "\n"
 "Hellfire options:\n"
@@ -1145,11 +1133,11 @@ msgstr ""
 "헬파이어 설정:\n"
 
 #. TRANSLATORS: Commandline Option
-#: Source/diablo.cpp:802
+#: Source/diablo.cpp:803
 msgid "Use alternate nest palette"
 msgstr "대체 팔레트 사용"
 
-#: Source/diablo.cpp:808
+#: Source/diablo.cpp:809
 msgid ""
 "\n"
 "Report bugs at https://github.com/diasurgical/devilutionX/\n"
@@ -1157,32 +1145,32 @@ msgstr ""
 "\n"
 "https://github.com/diasurgical/devilutionX/ 에 버그 리포트하기\n"
 
-#: Source/diablo.cpp:872
+#: Source/diablo.cpp:873
 msgid "unrecognized option '{:s}'\n"
 msgstr "인식할 수 없는 설정 '{:s}'\n"
 
-#: Source/diablo.cpp:903
+#: Source/diablo.cpp:904
 msgid "version {:s}"
 msgstr "버전 {:s}"
 
-#: Source/diablo.cpp:1225
+#: Source/diablo.cpp:1226
 msgid "-- Network timeout --"
 msgstr "-- 네트워크 시간 초과 --"
 
-#: Source/diablo.cpp:1226
+#: Source/diablo.cpp:1227
 msgid "-- Waiting for players --"
 msgstr "-- 플레이어 대기 중 --"
 
-#: Source/diablo.cpp:1245
+#: Source/diablo.cpp:1246
 msgid "No help available"
 msgstr "상점에서는 도움을"
 
-#: Source/diablo.cpp:1246
+#: Source/diablo.cpp:1247
 msgid "while in stores"
 msgstr "받을 수 없습니다"
 
 #. TRANSLATORS: {:s} means: Character Name, Game Version, Game Difficulty.
-#: Source/diablo.cpp:1458
+#: Source/diablo.cpp:1462
 msgid "{:s}, version = {:s}, mode = {:s}"
 msgstr "{:s}, 버전 = {:s}, 모드 = {:s}"
 
@@ -5814,131 +5802,214 @@ msgstr "갇힌 {:s}"
 msgid "{:s} (disabled)"
 msgstr "{:s} (끄기)"
 
-#: Source/options.cpp:436 Source/options.cpp:512 Source/options.cpp:518
+#: Source/options.cpp:432 Source/options.cpp:515 Source/options.cpp:521
 msgid "ON"
 msgstr "켜기"
 
-#: Source/options.cpp:436 Source/options.cpp:510 Source/options.cpp:516
+#: Source/options.cpp:432 Source/options.cpp:513 Source/options.cpp:519
 msgid "OFF"
 msgstr "끄기"
 
-#: Source/options.cpp:507
+#: Source/options.cpp:503
 msgid "Start Up"
 msgstr "시작"
 
-#: Source/options.cpp:507
+#: Source/options.cpp:503
 msgid "Start Up Settings"
 msgstr "시작 설정"
 
-#: Source/options.cpp:508 Source/options.cpp:514
-msgid "Intro"
-msgstr "인트로"
+#: Source/options.cpp:504
+msgid "Game Mode"
+msgstr "게임 모드"
 
-#: Source/options.cpp:508 Source/options.cpp:514
-msgid "Shown Intro cinematic."
-msgstr "인트로 시네마 보이기."
+#: Source/options.cpp:504
+msgid "Play Diablo or Hellfire."
+msgstr "디아블로나 헬파이어 플레이"
 
-#: Source/options.cpp:520
-msgid "Splash"
-msgstr "스플래쉬"
-
-#: Source/options.cpp:520
-msgid "Shown splash screen."
-msgstr "스플래쉬 스크린 보이기."
-
-#: Source/options.cpp:522
-msgid "Logo and Title Screen"
-msgstr "로고와 타이틀 스크린"
-
-#: Source/options.cpp:523
-msgid "Title Screen"
-msgstr "타이틀 스크린"
-
-#: Source/options.cpp:524 Source/panels/charpanel.cpp:139
-msgid "None"
-msgstr "없음"
-
-#: Source/options.cpp:538 Source/quests.cpp:48
+#: Source/options.cpp:506 Source/options.cpp:545 Source/quests.cpp:48
 msgid "Diablo"
 msgstr "디아블로"
 
-#: Source/options.cpp:538
-msgid "Diablo specific Settings"
-msgstr "디아블로 전용 설정"
-
-#: Source/options.cpp:547
+#: Source/options.cpp:508 Source/options.cpp:554
 msgid "Hellfire"
 msgstr "헬파이어"
 
-#: Source/options.cpp:547
+#: Source/options.cpp:510
+msgid "Restrict to Shareware"
+msgstr "셰어웨어로 제한"
+
+#: Source/options.cpp:510
+msgid ""
+"Makes the game compatible with the demo. Enables multiplayer with friends "
+"who don't own a full copy of Diablo."
+msgstr ""
+
+#: Source/options.cpp:511 Source/options.cpp:517
+msgid "Intro"
+msgstr "인트로"
+
+#: Source/options.cpp:511 Source/options.cpp:517
+msgid "Shown Intro cinematic."
+msgstr "인트로 시네마 보이기."
+
+#: Source/options.cpp:523
+msgid "Splash"
+msgstr "스플래쉬"
+
+#: Source/options.cpp:523
+msgid "Shown splash screen."
+msgstr "스플래쉬 스크린 보이기."
+
+#: Source/options.cpp:525
+msgid "Logo and Title Screen"
+msgstr "로고와 타이틀 스크린"
+
+#: Source/options.cpp:526
+msgid "Title Screen"
+msgstr "타이틀 스크린"
+
+#: Source/options.cpp:527 Source/panels/charpanel.cpp:139
+msgid "None"
+msgstr "없음"
+
+#: Source/options.cpp:545
+msgid "Diablo specific Settings"
+msgstr "디아블로 전용 설정"
+
+#: Source/options.cpp:554
 msgid "Hellfire specific Settings"
 msgstr "헬파이어 전용 설정"
 
-#: Source/options.cpp:556
+#: Source/options.cpp:563
 msgid "Audio"
 msgstr "오디오"
 
-#: Source/options.cpp:556
+#: Source/options.cpp:563
 msgid "Audio Settings"
 msgstr "오디오 설정"
 
-#: Source/options.cpp:557
+#: Source/options.cpp:564
 msgid "Walking Sound"
 msgstr "워킹 사운드"
 
-#: Source/options.cpp:557
+#: Source/options.cpp:564
 msgid "Player emits sound when walking."
 msgstr "플레이어가 걸을 때 소리를 냅니다."
 
-#: Source/options.cpp:558
+#: Source/options.cpp:565
 msgid "Auto Equip Sound"
 msgstr "자동 장착 사운드"
 
-#: Source/options.cpp:558
+#: Source/options.cpp:565
 msgid "Automatically equipping items on pickup emits the equipment sound."
 msgstr "자동으로 아이템 픽업하여 장착할 때 장착 소리를 냅니다."
 
-#: Source/options.cpp:559
+#: Source/options.cpp:566
 msgid "Item Pickup Sound"
 msgstr "아이템 픽업 사운드"
 
-#: Source/options.cpp:559
+#: Source/options.cpp:566
 msgid "Picking up items emits the items pickup sound."
 msgstr "아이템을 픽업할 때 소리를 냅니다."
 
-#: Source/options.cpp:572
+#: Source/options.cpp:579
+msgid "Resolution"
+msgstr "해상도"
+
+#: Source/options.cpp:579
+msgid ""
+"Affect the game's internal resolution and determine your view area. Note: "
+"This can differ from screen resolution, when Upscaling, Integer Scaling or "
+"Fit to Screen is used."
+msgstr ""
+"게임의 내부 해상도에 영향을 미치고 보기 영역을 결정됩니다. 참고: 이것은 "
+"업스케일링, 정수 스케일링 또는 화면에 맞춤을 사용할 때 화면 해상도와 다를 "
+"수 있습니다."
+
+#: Source/options.cpp:664
 msgid "Graphics"
 msgstr "그래픽"
 
-#: Source/options.cpp:572
+#: Source/options.cpp:664
 msgid "Graphics Settings"
 msgstr "그래픽 설정"
 
-#: Source/options.cpp:573
+#: Source/options.cpp:665
+msgid "Fullscreen"
+msgstr "전체 화면"
+
+#: Source/options.cpp:665
+msgid "Display the game in windowed or fullscreen mode."
+msgstr "윈도우 또는 전체 화면 모드에서 게임을 표시합니다."
+
+#: Source/options.cpp:667
+msgid "Fit to Screen"
+msgstr "화면에 맞춤"
+
+#: Source/options.cpp:667
+msgid ""
+"Automatically adjust the game window to your current desktop screen aspect "
+"ratio and resolution."
+msgstr ""
+"현재 바탕 화면 화면 비율과 해상도에 맞게 게임 윈도우를 자동으로 조정합니다."
+
+#: Source/options.cpp:670
+msgid "Upscale"
+msgstr "업스케일"
+
+#: Source/options.cpp:670
+msgid ""
+"Enables image scaling from the game resolution to your monitor resolution. "
+"Prevents changing the monitor resolution and allows window resizing."
+msgstr ""
+"게임 해상도에서 모니터 해상도로 이미지 크기 조정을 활성화합니다. 모니터 "
+"해상도 변경을 방지하고 윈도우 크기를 조정할 수 있습니다."
+
+#: Source/options.cpp:671
 msgid "Scaling Quality"
 msgstr "스케일링 품질"
 
-#: Source/options.cpp:573
+#: Source/options.cpp:671
 msgid "Enables optional filters to the output image when upscaling."
 msgstr "업스케일링할 때 출력 이미지 필터를 사용합니다."
 
-#: Source/options.cpp:575
+#: Source/options.cpp:673
 msgid "Nearest Pixel"
 msgstr "근접 픽셀"
 
-#: Source/options.cpp:576
+#: Source/options.cpp:674
 msgid "Bilinear"
 msgstr "이중선(Bilinear)"
 
-#: Source/options.cpp:577
+#: Source/options.cpp:675
 msgid "Anisotropic"
 msgstr "이방성(Anisotropic)"
 
-#: Source/options.cpp:579
+#: Source/options.cpp:677
+msgid "Integer Scaling"
+msgstr "정수 스케일링"
+
+#: Source/options.cpp:677
+msgid "Scales the image using whole number pixel ratio."
+msgstr "정수 픽셀 비율을 사용하여 이미지 크기를 조정합니다."
+
+#: Source/options.cpp:678
+msgid "Vertical Sync"
+msgstr "수직 동기"
+
+#: Source/options.cpp:678
+msgid ""
+"Forces waiting for Vertical Sync. Prevents tearing effect when drawing a "
+"frame. Disabling it can help with mouse lag on some systems."
+msgstr ""
+"수직 동기화를 강제로 수행합니다. 프레임을 그릴 때 티어링 효과를 방지합니다. "
+"비활성화하면 일부 시스템에서 마우스 랙에 도움이 될 수 있습니다."
+
+#: Source/options.cpp:680
 msgid "Blended Transparency"
 msgstr "혼합 투명도"
 
-#: Source/options.cpp:579
+#: Source/options.cpp:680
 msgid ""
 "Enables uniform transparency mode. This setting affects the transparency on "
 "walls, game text menus, and boxes. If disabled will default to old "
@@ -5947,44 +6018,44 @@ msgstr ""
 "균일한 투명도 모드를 활성화합니다. 이 설정은 벽, 게임 텍스트 메뉴 및 상자의 "
 "투명도에 영향을 줍니다. 비활성화하면 기본적으로 기본 바둑판 투명도가 됩니다."
 
-#: Source/options.cpp:580
+#: Source/options.cpp:681
 msgid "Color Cycling"
 msgstr "컬러 사이클링"
 
-#: Source/options.cpp:580
+#: Source/options.cpp:681
 msgid "Color cycling effect used for water, lava, and acid animation."
 msgstr "물, 용암 및 액체 애니메이션에 사용되는 색상 순환 효과입니다."
 
-#: Source/options.cpp:581
+#: Source/options.cpp:682
 msgid "FPS Limiter"
 msgstr "FPS 제한"
 
-#: Source/options.cpp:581
+#: Source/options.cpp:682
 msgid "FPS is limited to avoid high CPU load. Limit considers refresh rate."
 msgstr "FPS는 높은 CPU 부하를 피하기 위해 제한됩니다. 새로고침 빈도를 고려해서 "
 "제한됩니다."
 
-#: Source/options.cpp:582
+#: Source/options.cpp:683
 msgid "Show FPS"
 msgstr "FPS 보이기"
 
-#: Source/options.cpp:582
+#: Source/options.cpp:683
 msgid "Displays the FPS in the upper left corner of the screen."
 msgstr "화면 왼쪽 상단에 FPS를 표시합니다."
 
-#: Source/options.cpp:598
+#: Source/options.cpp:724
 msgid "Gameplay"
 msgstr "게임 플레이"
 
-#: Source/options.cpp:598
+#: Source/options.cpp:724
 msgid "Gameplay Settings"
 msgstr "게임 플레이 설정"
 
-#: Source/options.cpp:599
+#: Source/options.cpp:725
 msgid "Run in Town"
 msgstr "마을에서 빠른 걷기"
 
-#: Source/options.cpp:599
+#: Source/options.cpp:725
 msgid ""
 "Enable jogging/fast walking in town for Diablo and Hellfire. This option was "
 "introduced in the expansion."
@@ -5992,169 +6063,187 @@ msgstr ""
 "디아블로 및 헬파이어의 경우 마을에서 빠른 걷기를 활성화합니다. 이 옵션은 "
 "확장팩에서 도입되었습니다."
 
-#: Source/options.cpp:600
+#: Source/options.cpp:726
 msgid "Grab Input"
 msgstr "마우스 입력"
 
-#: Source/options.cpp:600
+#: Source/options.cpp:726
 msgid "When enabled mouse is locked to the game window."
 msgstr "켜져 있으면 마우스가 게임 창에 잠깁니다."
 
-#: Source/options.cpp:601
+#: Source/options.cpp:727
 msgid "Theo Quest"
 msgstr "테오 퀘스트"
 
-#: Source/options.cpp:601
+#: Source/options.cpp:727
 msgid "Enable Little Girl quest."
 msgstr "어린 소녀 퀘스트를 활성화 합니다."
 
-#: Source/options.cpp:602
+#: Source/options.cpp:728
 msgid "Cow Quest"
 msgstr "소 퀘스트"
 
-#: Source/options.cpp:602
+#: Source/options.cpp:728
 msgid ""
 "Enable Jersey's quest. Lester the farmer is replaced by the Complete Nut."
 msgstr "저지의 퀘스트를 활성화 합니다. 농부 레스터 대신 완전 미친놈으로 교체됩니다."
 
-#: Source/options.cpp:603
+#: Source/options.cpp:729
 msgid "Friendly Fire"
 msgstr "아군 사격"
 
-#: Source/options.cpp:603
+#: Source/options.cpp:729
 msgid ""
 "Allow arrow/spell damage between players in multiplayer even when the "
 "friendly mode is on."
 msgstr ""
 "친선 모드가 켜져 있어도 멀티 플레이어에서 플레이어간 활과 주문의 피해를 허용합니다."
 
-#: Source/options.cpp:604
+#: Source/options.cpp:730
 msgid "Test Bard"
 msgstr "음유시인 테스트"
 
-#: Source/options.cpp:604
+#: Source/options.cpp:730
 msgid "Force the Bard character type to appear in the hero selection menu."
 msgstr "영웅 선택 메뉴에서 음유시인 캐릭터를 강제로 표시합니다."
 
-#: Source/options.cpp:605
+#: Source/options.cpp:731
 msgid "Test Barbarian"
 msgstr "야만용사 테스트"
 
-#: Source/options.cpp:605
+#: Source/options.cpp:731
 msgid ""
 "Force the Barbarian character type to appear in the hero selection menu."
 msgstr ""
 "영웅 선택 메뉴에서 야만용사 캐릭터를 강제로 표시합니다."
 
-#: Source/options.cpp:606
+#: Source/options.cpp:732
 msgid "Experience Bar"
 msgstr "경험치 바"
 
-#: Source/options.cpp:606
+#: Source/options.cpp:732
 msgid "Experience Bar is added to the UI at the bottom of the screen."
 msgstr "화면 하단에 경험치 바를 추가합니다."
 
-#: Source/options.cpp:607
+#: Source/options.cpp:733
 msgid "Enemy Health Bar"
 msgstr "적 체력 바"
 
-#: Source/options.cpp:607
+#: Source/options.cpp:733
 msgid "Enemy Health Bar is displayed at the top of the screen."
 msgstr "적의 체력 바는 화면 상단에 표시됩니다."
 
-#: Source/options.cpp:608
+#: Source/options.cpp:734
 msgid "Auto Gold Pickup"
 msgstr "자동 금화 픽업"
 
-#: Source/options.cpp:608
+#: Source/options.cpp:734
 msgid "Gold is automatically collected when in close proximity to the player."
-msgstr "플레이어와 가까이 있으면 금화가 자동으로 수집됩니다."
+msgstr "금화가 플레이어와 가까이 있으면 금화가 자동으로 수집됩니다."
 
-#: Source/options.cpp:609
+#: Source/options.cpp:735
+msgid "Auto Elixir Pickup"
+msgstr "자동 영약 픽업"
+
+#: Source/options.cpp:735
+msgid ""
+"Elixirs are automatically collected when in close proximity to the player."
+msgstr ""
+"영약이 플레이어와 가까이 있으면 자동으로 수집됩니다."
+
+#: Source/options.cpp:736
+msgid "Auto Pickup in Town"
+msgstr "마을에서 자동 픽업"
+
+#: Source/options.cpp:736
+msgid "Automatically pickup items in town."
+msgstr "마을에서 자동으로 아이템을 픽업합니다."
+
+#: Source/options.cpp:737
 msgid "Adria Refills Mana"
 msgstr "아드리아가 마나를 충전함"
 
-#: Source/options.cpp:609
+#: Source/options.cpp:737
 msgid "Adria will refill your mana when you visit her shop."
 msgstr "아드리아의 가게를 방문할 때 마나를 채워줍니다."
 
-#: Source/options.cpp:610
+#: Source/options.cpp:738
 msgid "Auto Equip Weapons"
 msgstr "자동 무기 장착"
 
-#: Source/options.cpp:610
+#: Source/options.cpp:738
 msgid ""
 "Weapons will be automatically equipped on pickup or purchase if enabled."
 msgstr ""
 "활성화된 경우 무기를 픽업 또는 구매 시 자동으로 장착됩니다."
 
-#: Source/options.cpp:611
+#: Source/options.cpp:739
 msgid "Auto Equip Armor"
 msgstr "자동 갑옷 장착"
 
-#: Source/options.cpp:611
+#: Source/options.cpp:739
 msgid "Armor will be automatically equipped on pickup or purchase if enabled."
 msgstr ""
 "활성화된 경우 갑옷을 픽업 또는 구매 시 자동으로 장착됩니다."
 
-#: Source/options.cpp:612
+#: Source/options.cpp:740
 msgid "Auto Equip Helms"
 msgstr "자동 투구 장착"
 
-#: Source/options.cpp:612
+#: Source/options.cpp:740
 msgid "Helms will be automatically equipped on pickup or purchase if enabled."
 msgstr "활성화된 경우 투구를 픽업 또는 구매 시 자동으로 장착됩니다."
 
-#: Source/options.cpp:613
+#: Source/options.cpp:741
 msgid "Auto Equip Shields"
 msgstr "자동 방패 장착"
 
-#: Source/options.cpp:613
+#: Source/options.cpp:741
 msgid ""
 "Shields will be automatically equipped on pickup or purchase if enabled."
 msgstr "활성화된 경우 방패를 픽업 또는 구매 시 자동으로 장착됩니다."
 
-#: Source/options.cpp:614
+#: Source/options.cpp:742
 msgid "Auto Equip Jewelry"
 msgstr "자동 장신구 장착"
 
-#: Source/options.cpp:614
+#: Source/options.cpp:742
 msgid ""
 "활성화된 경우 장신구를 픽업 또는 구매 시 자동으로 장착됩니다."
 msgstr ""
 
-#: Source/options.cpp:615
+#: Source/options.cpp:743
 msgid "Randomize Quests"
 msgstr "랜덤 퀘스트"
 
-#: Source/options.cpp:615
+#: Source/options.cpp:743
 msgid "Randomly selecting available quests for new games."
 msgstr "새로운 게임을 위한 퀘스트가 랜덤으로 선택됩니다."
 
-#: Source/options.cpp:616
+#: Source/options.cpp:744
 msgid "Show Monster Type"
 msgstr "몬스터 타입 보기"
 
-#: Source/options.cpp:616
+#: Source/options.cpp:744
 msgid ""
 "Hovering over a monster will display the type of monster in the description "
 "box in the UI."
 msgstr ""
 "몬스터 위로 마우스를 가져가면 UI의 설명 박스에 몬스터 타입이 표시됩니다."
 
-#: Source/options.cpp:617
+#: Source/options.cpp:745
 msgid "Auto Refill Belt"
 msgstr "자동 리필 벨트"
 
-#: Source/options.cpp:617
+#: Source/options.cpp:745
 msgid "Refill belt from inventory when belt item is consumed."
 msgstr "벨트 아이템 소모 시 인벤토리에서 벨트를 채웁니다."
 
-#: Source/options.cpp:618
+#: Source/options.cpp:746
 msgid "Disable Crippling Shrines"
 msgstr "무력한 신전 비활성화"
 
-#: Source/options.cpp:618
+#: Source/options.cpp:746
 msgid ""
 "When enabled Cauldrons, Fascinating Shrines, Goat Shrines, Ornate Shrines "
 "and Sacred Shrines are not able to be clicked on and labeled as disabled."
@@ -6162,35 +6251,50 @@ msgstr ""
 "활성화되면 가마솥, 흥미로운 신단, 염소 신단, 화려한 신단 및 신성한 신단을 "
 "클릭할 수 없고 비활성화 된 것으로 표시됩니다."
 
-#: Source/options.cpp:651
+#: Source/options.cpp:747
+msgid "Quick Cast"
+msgstr "빠른 시전"
+
+#: Source/options.cpp:747
+msgid ""
+"Spell hotkeys instantly cast the spell, rather than switching the readied "
+"spell."
+msgstr ""
+"주문 단축키는 준비된 주문을 전환하는 것 보다 더 빠르게 주문을 시전합니다."
+
+#: Source/options.cpp:784
 msgid "Controller"
 msgstr "컨트롤러"
 
-#: Source/options.cpp:651
+#: Source/options.cpp:784
 msgid "Controller Settings"
 msgstr "컨트롤러 설정"
 
-#: Source/options.cpp:660
+#: Source/options.cpp:793
 msgid "Network"
 msgstr "네트워크"
 
-#: Source/options.cpp:660
+#: Source/options.cpp:793
 msgid "Network Settings"
 msgstr "네트워크 설정"
 
-#: Source/options.cpp:669
+#: Source/options.cpp:802
 msgid "Chat"
 msgstr "채팅"
 
-#: Source/options.cpp:669
+#: Source/options.cpp:802
 msgid "Chat Settings"
 msgstr "채팅 설정"
 
-#: Source/options.cpp:809
+#: Source/options.cpp:811 Source/options.cpp:973
 msgid "Language"
 msgstr "언어"
 
-#: Source/options.cpp:809
+#: Source/options.cpp:811
+msgid "Define what language to use in game."
+msgstr "게임에서 사용할 언어를 선택합니다."
+
+#: Source/options.cpp:973
 msgid "Language Settings"
 msgstr "언어 설정"
 
