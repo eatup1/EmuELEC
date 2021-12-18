@@ -3,15 +3,15 @@
 # Copyright (C) 2017-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="iwlwifi-firmware"
-PKG_VERSION="19ce5372ff369fe90ba70a0b8ef7e4ffa80a068b"
-PKG_SHA256="26b09c74ff5bb19eb1891e1f150759cd3cae10dce3a167fc120f3c81276cac95"
+PKG_VERSION="97df2badf8a4308f5b55ae0cf4d6b3ebe2fa564d"
+PKG_SHA256="a14dad55a00aff022d4792d03dc904b929c4d32d07860f4db69d400c70ab5d46"
 PKG_LICENSE="Free-to-use"
 PKG_SITE="https://github.com/LibreELEC/iwlwifi-firmware"
-PKG_URL="https://github.com/LibreELEC/iwlwifi-firmware/archive/$PKG_VERSION.tar.gz"
+PKG_URL="https://github.com/LibreELEC/iwlwifi-firmware/archive/${PKG_VERSION}.tar.gz"
 PKG_DEPENDS_TARGET="toolchain"
 PKG_LONGDESC="iwlwifi-firmware: firmwares for various Intel WLAN drivers"
 PKG_TOOLCHAIN="manual"
 
 makeinstall_target() {
-  DESTDIR=$INSTALL/$(get_kernel_overlay_dir) ./install
+  DESTDIR=${INSTALL}/$(get_kernel_overlay_dir) ./install
 }

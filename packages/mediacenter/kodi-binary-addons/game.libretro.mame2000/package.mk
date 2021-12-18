@@ -2,12 +2,12 @@
 # Copyright (C) 2016-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="game.libretro.mame2000"
-PKG_VERSION="0.37.0.9-Leia"
-PKG_SHA256="205d66d5cb94ccb455f617cc6b20c3338f5c06e1d4bdaf9bce279392b5cdac71"
+PKG_VERSION="0.37.0.19-Matrix"
+PKG_SHA256="c2c5c0c24acdb1bc93f9456fb8abac271afb725470a7819e558224dd8ebd9a36"
 PKG_REV="1"
 PKG_LICENSE="GPL"
 PKG_SITE="https://github.com/kodi-game/game.libretro.mame2000"
-PKG_URL="https://github.com/kodi-game/game.libretro.mame2000/archive/$PKG_VERSION.tar.gz"
+PKG_URL="https://github.com/kodi-game/game.libretro.mame2000/archive/${PKG_VERSION}.tar.gz"
 PKG_DEPENDS_TARGET="toolchain kodi-platform libretro-mame2000"
 PKG_SECTION=""
 PKG_LONGDESC="game.libretro.mame2000: MAME 2000 emulator for Kodi"

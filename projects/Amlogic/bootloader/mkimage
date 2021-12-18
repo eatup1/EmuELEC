@@ -1,54 +1,105 @@
-#!/bin/bash
-
 # SPDX-License-Identifier: GPL-2.0
-# Copyright (C) 2017-2018 Team LibreELEC (https://libreelec.tv)
-# Copyright (C) 2018-present Team CoreELEC (https://coreelec.org)
+# Copyright (C) 2019-present Team LibreELEC (https://libreelec.tv)
 
-# copy amlogic autoscript files to part1 for Generic img only
-if [ "${SUBDEVICE}" == "Generic" ]; then
-  for f in $RELEASE_DIR/3rdparty/bootloader/*autoscript; do
-    [ -e "$f" ] && mcopy "$f" ::
-  done
-fi
+. config/options ""
 
-# copy device trees to part1
-for dtb in $RELEASE_DIR/3rdparty/bootloader/device_trees $RELEASE_DIR/3rdparty/bootloader/*.dtb $RELEASE_DIR/3rdparty/bootloader/dtb.img ; do
-  [ -e "$dtb" ] && mcopy -s "$dtb" ::
-done
+mkimage_uboot(){
+  echo "image: writing u-boot to $(basename $DISK)"
+  dd if="$INSTALL/usr/share/bootloader/u-boot.bin.sd.bin" of="$DISK" conv=fsync,notrunc bs=1 count=444 >"$SAVE_ERROR" 2>&1 || show_error
+  dd if="$INSTALL/usr/share/bootloader/u-boot.bin.sd.bin" of="$DISK" conv=fsync,notrunc bs=512 skip=1 seek=1 >"$SAVE_ERROR" 2>&1 || show_error
+}
 
-if [ -n ${SUBDEVICE} ]; then
-  if [ -f "$RELEASE_DIR/3rdparty/bootloader/${SUBDEVICE}_dtb.img" ]; then
-    mcopy $RELEASE_DIR/3rdparty/bootloader/${SUBDEVICE}_dtb.img "::/dtb.img"
+mkimage_autoscripts(){
+  echo "image: copying autoscript files"
+  mcopy -s -o ${RELEASE_DIR}/3rdparty/bootloader/*script ::
+  mcopy -s -o ${RELEASE_DIR}/3rdparty/bootloader/*.scr ::
+  touch "$RELEASE_DIR/3rdparty/bootloader/aml_autoscript.zip"
+}
+
+mkimage_bootini(){
+  if [ -f ${RELEASE_DIR}/3rdparty/bootloader/boot.ini ]; then
+    echo "image: copying boot.ini"
+    mcopy -s -o ${RELEASE_DIR}/3rdparty/bootloader/boot.ini ::
   fi
-  if [ -f "$RELEASE_DIR/3rdparty/bootloader/${SUBDEVICE}_u-boot" ]; then
-    echo "Writing u-boot to $(basename $DISK)"
-    dd if="$RELEASE_DIR/3rdparty/bootloader/${SUBDEVICE}_u-boot" of="$DISK" conv=fsync,notrunc bs=1 count=112 >"$SAVE_ERROR" 2>&1 || show_error
-    dd if="$RELEASE_DIR/3rdparty/bootloader/${SUBDEVICE}_u-boot" of="$DISK" conv=fsync,notrunc bs=512 skip=1 seek=1 >"$SAVE_ERROR" 2>&1 || show_error
-  fi
+}
 
-  if [ -f "$RELEASE_DIR/3rdparty/bootloader/${SUBDEVICE}_boot.ini" ]; then
-    cp -p "$RELEASE_DIR/3rdparty/bootloader/${SUBDEVICE}_boot.ini" "$LE_TMP/boot.ini"
-    sed -e "s/@BOOT_UUID@/$UUID_SYSTEM/" \
-        -e "s/@DISK_UUID@/$UUID_STORAGE/" \
-        -i "$LE_TMP/boot.ini"
-    mcopy "$LE_TMP/boot.ini" ::
-    if [ -f "$RELEASE_DIR/3rdparty/bootloader/config.ini" ]; then
-      mcopy $RELEASE_DIR/3rdparty/bootloader/config.ini ::
+mkimage_uEnv(){
+  echo "image: creating uEnv.ini"
+cat << EOF > "${LE_TMP}/uEnv.ini"
+dtb_name=/dtb/${DTB}
+bootargs=boot=UUID=${UUID_SYSTEM} disk=UUID=${UUID_STORAGE} quiet ${EXTRA_CMDLINE}
+EOF
+  mcopy -s "${LE_TMP}/uEnv.ini" ::
+}
+
+mkimage_extlinux(){
+  echo "image: copying exlinux.conf"
+  mkdir -p "${LE_TMP}/extlinux"
+  cat << EOF > "${LE_TMP}/extlinux/extlinux.conf"
+LABEL ${DISTRO}
+  LINUX /${KERNEL_NAME}
+  FDT /${DTB}
+  APPEND boot=LABEL=${DISTRO_BOOTLABEL} disk=LABEL=${DISTRO_DISKLABEL} quiet ${EXTRA_CMDLINE}
+EOF
+  mcopy -s -o "${LE_TMP}/extlinux" ::
+}
+
+mkimage_extlinux_fdtdir(){
+  echo "image: copying exlinux.conf"
+  mkdir -p "${LE_TMP}/extlinux"
+  cat << EOF > "${LE_TMP}/extlinux/extlinux.conf"
+LABEL ${DISTRO}
+  LINUX /${KERNEL_NAME}
+  FDTDIR /
+  APPEND boot=LABEL=${DISTRO_BOOTLABEL} disk=LABEL=${DISTRO_DISKLABEL} quiet ${EXTRA_CMDLINE}
+EOF
+  mcopy -s -o "${LE_TMP}/extlinux" ::
+}
+
+mkimage_dtb(){
+  if [ "$DTB" != "@@DTB_NAME@@" ]; then
+    echo "image: copying device tree"
+    mcopy -s -o "${RELEASE_DIR}/3rdparty/bootloader/dtb/$DTB" ::
+    if [ "$DTB" = "meson-g12b-odroid-n2.dtb" ]; then
+      mcopy -s -o "${RELEASE_DIR}/3rdparty/bootloader/dtb/meson-g12b-odroid-n2-plus.dtb" ::
+    elif [ "$DTB" = "meson-g12b-gtking.dtb" ]; then
+      mcopy -s -o "${RELEASE_DIR}/3rdparty/bootloader/dtb/meson-g12b-gtking-pro.dtb" ::
+      mcopy -s -o "${RELEASE_DIR}/3rdparty/bootloader/dtb/meson-g12b-gsking-x.dtb" ::
+    elif [ "$DTB" = "meson-gxl-s905x-libretech-cc.dtb" ]; then
+      mcopy -s -o "${RELEASE_DIR}/3rdparty/bootloader/dtb/meson-gxl-s905x-libretech-cc-v2.dtb" ::
+    elif [ "$DTB" = "meson-sm1-odroid-c4.dtb" ]; then
+      mcopy -s -o "${RELEASE_DIR}/3rdparty/bootloader/dtb/meson-sm1-odroid-hc4.dtb" ::
     fi
+  else
+    echo "image: copying device trees"
+    mcopy -s -o "${RELEASE_DIR}/3rdparty/bootloader/dtb" ::
   fi
+}
 
-  if [ "${SUBDEVICE}" == "Odroid_C2" ]; then
-    if [ -f "$RELEASE_DIR/3rdparty/bootloader/boot-logo.bmp.gz" ]; then
-      mcopy $RELEASE_DIR/3rdparty/bootloader/boot-logo.bmp.gz ::
-    fi
-  fi
-
-  if [ "${SUBDEVICE}" == "LePotato" ]; then
-    if [ -f "$RELEASE_DIR/3rdparty/bootloader/boot-logo-1080.bmp.gz" ]; then
-      mcopy $RELEASE_DIR/3rdparty/bootloader/boot-logo-1080.bmp.gz ::
-    fi
-    if [ -f "$RELEASE_DIR/3rdparty/bootloader/timeout-logo-1080.bmp.gz" ]; then
-      mcopy $RELEASE_DIR/3rdparty/bootloader/timeout-logo-1080.bmp.gz ::
-    fi
-  fi
-fi
+case "${UBOOT_SYSTEM}" in
+  box|"")
+    DTB="@@DTB_NAME@@"
+    mkimage_uEnv
+    mkimage_autoscripts
+    mkimage_bootini
+    mkimage_dtb
+    ;;
+  odroid-n2|odroid-c4)
+    mkimage_uboot
+    mkimage_extlinux_fdtdir
+    mkimage_dtb
+    ;;
+  bananapi*|khadas*|lafrite|lepotato|nanopi-k2|odroid*|radxa*|wetek*)
+    mkimage_uboot
+    mkimage_extlinux
+    mkimage_dtb
+    ;;
+  *)
+    mkimage_uEnv
+    mkimage_autoscripts
+    mkimage_bootini
+    mkimage_extlinux
+    mkimage_uboot
+    mkimage_dtb
+    ;;
+esac

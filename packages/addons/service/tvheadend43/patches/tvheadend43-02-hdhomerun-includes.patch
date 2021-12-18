@@ -2,7 +2,7 @@ fix libhdhomerun includes
 
 --- a/configure
 +++ b/configure
-@@ -362,7 +362,7 @@ if enabled hdhomerun_static; then
+@@ -419,7 +419,7 @@ if enabled hdhomerun_static; then
  else
  
    if enabled_or_auto hdhomerun_client; then
@@ -11,7 +11,6 @@ fix libhdhomerun includes
        enable  hdhomerun_client
        LDFLAGS="$LDFLAGS -lhdhomerun"
      fi
-
 --- a/src/input/mpegts/tvhdhomerun/tvhdhomerun.c
 +++ b/src/input/mpegts/tvhdhomerun/tvhdhomerun.c
 @@ -17,7 +17,7 @@
@@ -23,7 +22,6 @@ fix libhdhomerun includes
  
  #include "tvheadend.h"
  #include "input.h"
-
 --- a/src/input/mpegts/tvhdhomerun/tvhdhomerun_frontend.c
 +++ b/src/input/mpegts/tvhdhomerun/tvhdhomerun_frontend.c
 @@ -17,7 +17,7 @@

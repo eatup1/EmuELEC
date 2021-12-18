@@ -19,8 +19,8 @@
 ################################################################################
 
 PKG_NAME="retroarch-overlays"
-PKG_VERSION="c03deff91cb2e4f713975c75c3f3d43f8ad9f46e"
-PKG_SHA256="9279259420ae3dd781a3f46a3bb4c9a212550d44cd2231eb83e25e716a0a0237"
+PKG_VERSION="db9744f4e58a740f0f10b04b62af347cd6f01928"
+PKG_SHA256="f9624b35005ac56442aea210e603d92328bf17fc305b7a501a51f7a7972fc641"
 PKG_LICENSE="GPL"
 PKG_SITE="https://github.com/libretro/common-overlays"
 PKG_URL="https://github.com/libretro/common-overlays/archive/$PKG_VERSION.tar.gz"
@@ -30,12 +30,10 @@ PKG_TOOLCHAIN="manual"
 
 makeinstall_target() {
   mkdir -p $INSTALL/usr/share/retroarch-overlays
-  cp -r * $INSTALL/usr/share/retroarch-overlays
+  rm -rf ${PKG_BUILD}/gamepads
+  rm -rf ${PKG_BUILD}/misc
+  rm -rf ${PKG_BUILD}/ipad
+  rm -rf ${PKG_BUILD}/keyboards
+  cp -r ${PKG_BUILD}/* $INSTALL/usr/share/retroarch-overlays
 }
 
-post_makeinstall_target() {
-rm -rf /usr/share/retroarch-overlays/gamepads
-rm -rf /usr/share/retroarch-overlays/misc
-rm -rf /usr/share/retroarch-overlays/ipad
-rm -rf /usr/share/retroarch-overlays/keyboards
-}

@@ -1,10 +1,13 @@
-if [ "${OPENGL}" = no ]; then
+[ -z "${OPENGL}" ] && OPENGL="no"
+[ -z "${OPENGLES}" ] && OPENGLES="no"
+
+if [ "${OPENGL}" = "no" ]; then
   OPENGL_SUPPORT="no"
 else
   OPENGL_SUPPORT="yes"
 fi
 
-if [ "${OPENGLES}" = no ]; then
+if [ "${OPENGLES}" = "no" ]; then
   OPENGLES_SUPPORT="no"
 else
   OPENGLES_SUPPORT="yes"
@@ -14,7 +17,6 @@ get_graphicdrivers() {
 
   # set defaults
   GALLIUM_DRIVERS=""
-  DRI_DRIVERS=""
   XORG_DRIVERS=""
   LLVM_SUPPORT="no"
   COMPOSITE_SUPPORT="no"
@@ -23,11 +25,18 @@ get_graphicdrivers() {
   V4L2_SUPPORT="no"
 
   if [ "${GRAPHIC_DRIVERS}" = "all" ]; then
-    GRAPHIC_DRIVERS="i915 i965 r200 r300 r600 radeonsi nvidia nvidia-legacy vmware virtio vc4"
+    GRAPHIC_DRIVERS="crocus i915 iris r300 r600 radeonsi nvidia nvidia-legacy vmware virtio vc4"
+  fi
+
+  if listcontains "${GRAPHIC_DRIVERS}" "crocus"; then
+    GALLIUM_DRIVERS+=" crocus"
+    XORG_DRIVERS+=" intel"
+    COMPOSITE_SUPPORT="yes"
+    VAAPI_SUPPORT="yes"
   fi
 
   if listcontains "${GRAPHIC_DRIVERS}" "etnaviv"; then
-    GALLIUM_DRIVERS+=" etnaviv imx"
+    GALLIUM_DRIVERS+=" etnaviv kmsro"
     V4L2_SUPPORT="yes"
     VAAPI_SUPPORT="no"
     VDPAU_SUPPORT="no"
@@ -41,14 +50,14 @@ get_graphicdrivers() {
   fi
 
   if listcontains "${GRAPHIC_DRIVERS}" "i915"; then
-    DRI_DRIVERS+=" i915"
+    GALLIUM_DRIVERS+=" i915"
     XORG_DRIVERS+=" intel"
     COMPOSITE_SUPPORT="yes"
     VAAPI_SUPPORT="yes"
   fi
 
-  if listcontains "${GRAPHIC_DRIVERS}" "i965"; then
-    DRI_DRIVERS+=" i965"
+  if listcontains "${GRAPHIC_DRIVERS}" "iris"; then
+    GALLIUM_DRIVERS+=" iris"
     XORG_DRIVERS+=" intel"
     COMPOSITE_SUPPORT="yes"
     VAAPI_SUPPORT="yes"
@@ -56,6 +65,10 @@ get_graphicdrivers() {
 
   if listcontains "${GRAPHIC_DRIVERS}" "lima"; then
     GALLIUM_DRIVERS+=" kmsro lima"
+    V4L2_SUPPORT="yes"
+  fi
+
+  if listcontains "${GRAPHIC_DRIVERS}" "mali"; then
     V4L2_SUPPORT="yes"
   fi
 
@@ -72,12 +85,6 @@ get_graphicdrivers() {
   if listcontains "${GRAPHIC_DRIVERS}" "panfrost"; then
     GALLIUM_DRIVERS+=" kmsro panfrost"
     V4L2_SUPPORT="yes"
-  fi
-
-  if listcontains "${GRAPHIC_DRIVERS}" "r200"; then
-    DRI_DRIVERS+=" r200"
-    XORG_DRIVERS+=" ati"
-    COMPOSITE_SUPPORT="yes"
   fi
 
   if listcontains "${GRAPHIC_DRIVERS}" "r300"; then
@@ -123,8 +130,13 @@ get_graphicdrivers() {
     COMPOSITE_SUPPORT="yes"
   fi
 
+  # VDPAU Support depends on X11
+  if [ ! "${DISPLAYSERVER}" = "x11" ]; then
+    VDPAU_SUPPORT="no"
+  fi
+
   # remove duplicate entries
   GALLIUM_DRIVERS="$(echo ${GALLIUM_DRIVERS} | xargs -n1 | sort -u | xargs)"
+  GRAPHIC_DRIVERS="$(echo ${GRAPHIC_DRIVERS} | xargs -n1 | sort -u | xargs)"
   XORG_DRIVERS="$(echo ${XORG_DRIVERS} | xargs -n1 | sort -u | xargs)"
-  DRI_DRIVERS="$(echo ${DRI_DRIVERS} | xargs -n1 | sort -u | xargs)"
 }

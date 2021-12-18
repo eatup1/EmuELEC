@@ -3,13 +3,13 @@
 # Copyright (C) 2018-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="pvr.njoy"
-PKG_VERSION="3.4.2-Leia"
-PKG_SHA256="8c42a3c3754d7a07de9682504c4883a584eb21a92b9af70f0129ffc2707c1554"
-PKG_REV="4"
+PKG_VERSION="20.1.0-Nexus"
+PKG_SHA256="5762067b7fd574e188c53ffc3459e39114b14d17f94efa745a765e28fb3341e0"
+PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="https://github.com/kodi-pvr/pvr.njoy"
-PKG_URL="https://github.com/kodi-pvr/pvr.njoy/archive/$PKG_VERSION.tar.gz"
+PKG_URL="https://github.com/kodi-pvr/pvr.njoy/archive/${PKG_VERSION}.tar.gz"
 PKG_DEPENDS_TARGET="toolchain kodi-platform"
 PKG_SECTION=""
 PKG_SHORTDESC="pvr.njoy"

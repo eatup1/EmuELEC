@@ -39,7 +39,7 @@ PKG_MAKE_OPTS_TARGET="REGENIE=1 \
 		      RETRO=1 \
 		      PTR64=$PTR64 \
 		      NOASM=$NOASM \
-		      PYTHON_EXECUTABLE=python3 \
+		      PYTHON_EXECUTABLE=python \
 		      CONFIG=libretro \
 		      LIBRETRO_OS=unix \
 		      LIBRETRO_CPU=$PLAT \

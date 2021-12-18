@@ -15,6 +15,7 @@ PKG_LONGDESC="EmuELEC Meta Package"
 PKG_IS_ADDON="no"
 PKG_AUTORECONF="no"
 PKG_TOOLCHAIN="make"
+PKG_NEED_UNPACK="$(get_pkg_directory busybox)"
 
 PKG_EXPERIMENTAL="munt nestopiaCV quasi88 xmil np2kai hypseus-singe dosbox-x"
 PKG_EMUS="$LIBRETRO_CORES advancemame PPSSPPSDL amiberry hatarisa openbor dosbox-staging mupen64plus-nx mupen64plus-nx-alt scummvmsa stellasa solarus dosbox-pure pcsx_rearmed ecwolf potator freej2me duckstation flycastsa fmsx-libretro jzintv"
@@ -25,7 +26,7 @@ PKG_DEPENDS_TARGET+=" $PKG_TOOLS $PKG_EMUS $PKG_EXPERIMENTAL emuelec-ports"
 # PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET mame2015 fba4arm reicastsa reicastsa_old mba.mini.plus $LIBRETRO_EXTRA_CORES xow"
 
 # These packages are only meant for S922x, S905x2 and A311D devices as they run poorly on S905" 
-if [ "$PROJECT" == "Amlogic-ng" ]; then
+if [ "${DEVICE}" == "Amlogic-ng" ]; then
 PKG_DEPENDS_TARGET+=" $LIBRETRO_S922X_CORES mame2016"
 fi
 
@@ -53,14 +54,14 @@ for discore in munt_neon quicknes reicastsa_old reicastsa parallel-n64 pcsx_rear
 	done
 PKG_DEPENDS_TARGET+=" swanstation emuelec-32bit-libs"
 
-if [ "$PROJECT" == "Amlogic-ng" ]; then
+if [ "${DEVICE}" == "Amlogic-ng" ]; then
 	PKG_DEPENDS_TARGET+=" dolphinSA"
 fi
 
 fi
 
 make_target() {
-if [ "$PROJECT" == "Amlogic-ng" ]; then
+if [ "${DEVICE}" == "Amlogic-ng" ]; then
     cp -r $PKG_DIR/fbfix* $PKG_BUILD/
     cd $PKG_BUILD/fbfix
     $CC -O2 fbfix.c -o fbfix
@@ -73,7 +74,7 @@ makeinstall_target() {
 	mkdir -p $INSTALL/usr/bin
 	cp -rf $PKG_DIR/bin $INSTALL/usr
 
-    if [ "$PROJECT" == "Amlogic-ng" ]; then
+    if [ "${DEVICE}" == "Amlogic-ng" ]; then
     	cp $PKG_BUILD/fbfix/fbfix $INSTALL/usr/bin
     fi
 	
@@ -87,7 +88,7 @@ makeinstall_target() {
 
     find $INSTALL/usr/config/emuelec/ -type f -exec chmod o+x {} \;
     
-    if [ "$PROJECT" == "Amlogic" ]; then 
+    if [ "${DEVICE}" == "Amlogic" ]; then 
         rm $INSTALL/usr/config/asound.conf-amlogic-ng
     else
         rm $INSTALL/usr/config/asound.conf
@@ -98,14 +99,14 @@ makeinstall_target() {
 	ln -sf /var/log $INSTALL/usr/config/emuelec/logs/var-log
     
   # leave for compatibility
-  if [ "$PROJECT" == "Amlogic" ]; then
+  if [ "${DEVICE}" == "Amlogic" ]; then
       echo "s905" > $INSTALL/ee_s905
   fi
   
   if [ "$DEVICE" == "OdroidGoAdvance" -o "$DEVICE" == "RG351P" -o "$DEVICE" == "RG351V" ] || [ "$DEVICE" == "GameForce" ]; then
       echo "$DEVICE" > $INSTALL/ee_arch
   else
-      echo "$PROJECT" > $INSTALL/ee_arch
+      echo "${DEVICE}" > $INSTALL/ee_arch
   fi
 
   mkdir -p $INSTALL/usr/share/retroarch-overlays
@@ -152,10 +153,10 @@ fi
   
 # Thanks to vpeter we can now have bash :) 
   rm -f $INSTALL/usr/bin/{sh,bash,busybox,sort,wget}
-  cp $(get_build_dir busybox)/.install_pkg/usr/bin/busybox $INSTALL/usr/bin
-  cp $(get_build_dir bash)/.install_pkg/usr/bin/bash $INSTALL/usr/bin
-  cp $(get_build_dir wget)/.install_pkg/usr/bin/wget $INSTALL/usr/bin
-  cp $(get_build_dir coreutils)/.install_pkg/usr/bin/sort $INSTALL/usr/bin
+  cp $(get_install_dir busybox)/usr/bin/busybox $INSTALL/usr/bin
+  cp $(get_install_dir bash)/usr/bin/bash $INSTALL/usr/bin
+  cp $(get_install_dir wget)/usr/bin/wget $INSTALL/usr/bin
+  cp $(get_install_dir coreutils)/usr/bin/sort $INSTALL/usr/bin
   ln -sf bash $INSTALL/usr/bin/sh
  
   echo "chmod 4755 $INSTALL/usr/bin/bash" >> $FAKEROOT_SCRIPT
@@ -186,10 +187,10 @@ fi
 # Remove unused cores
 CORESFILE="$INSTALL/usr/config/emulationstation/es_systems.cfg"
 
-if [ "${PROJECT}" != "Amlogic-ng" ]; then
+if [ "${DEVICE}" != "Amlogic-ng" ]; then
     if [[ ${DEVICE} == "OdroidGoAdvance" || ${DEVICE} == "RG351P" || ${DEVICE} == "RG351V" || "$DEVICE" == "GameForce" ]]; then
         remove_cores="mesen-s quicknes REICASTSA_OLD REICASTSA mame2016 mesen"
-    elif [ "${PROJECT}" == "Amlogic" ]; then
+    elif [ "${DEVICE}" == "Amlogic" ]; then
         remove_cores="mesen-s quicknes mame2016 mesen"
         xmlstarlet ed -L -P -d "/systemList/system[name='saturn']" $CORESFILE
     fi

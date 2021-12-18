@@ -2,13 +2,13 @@
 # Copyright (C) 2016-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="game.libretro.virtualjaguar"
-PKG_VERSION="2.1.0.8-Leia"
-PKG_SHA256="cc8bdc093d4df01f5bca1f517e450390126392eb5c24c86997eee2faced5b745"
+PKG_VERSION="2.1.0.22-Matrix"
+PKG_SHA256="3e3a35cf415e43b298003c72ec88bc77c5a83a96020a131335eb95351fe3f0ec"
 PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="https://github.com/kodi-game/game.libretro.virtualjaguar"
-PKG_URL="https://github.com/kodi-game/game.libretro.virtualjaguar/archive/$PKG_VERSION.tar.gz"
+PKG_URL="https://github.com/kodi-game/game.libretro.virtualjaguar/archive/${PKG_VERSION}.tar.gz"
 PKG_DEPENDS_TARGET="toolchain kodi-platform libretro-virtualjaguar"
 PKG_SECTION=""
 PKG_LONGDESC="game.libretro.virtualjaguar: VirtualJaguar for Kodi"

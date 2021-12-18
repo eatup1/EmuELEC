@@ -18,7 +18,7 @@ Based on  [CoreELEC](https://github.com/CoreELEC/CoreELEC) and [Lakka](https://g
 These instructions are only for Debian/Ubuntu based systems.
 
 ```
-$ apt install gcc make git unzip wget xz-utils libsdl2-dev libsdl2-mixer-dev libfreeimage-dev libfreetype6-dev libcurl4-openssl-dev rapidjson-dev libasound2-dev libgl1-mesa-dev build-essential libboost-all-dev cmake fonts-droid-fallback libvlc-dev libvlccore-dev vlc-bin texinfo premake4 golang libssl-dev curl patchelf xmlstarlet default-jre xsltproc bc libncurses5-dev libc6-i386 lib32stdc++6 zlib1g:i386 smpq
+$ apt install gcc make git unzip wget xz-utils libsdl2-dev libsdl2-mixer-dev libfreeimage-dev libfreetype6-dev libcurl4-openssl-dev rapidjson-dev libasound2-dev libgl1-mesa-dev build-essential libboost-all-dev cmake fonts-droid-fallback libvlc-dev libvlccore-dev vlc-bin texinfo premake4 golang libssl-dev curl patchelf xmlstarlet default-jre xsltproc bc libncurses5-dev libc6-i386 lib32stdc++6 zlib1g:i386 zstd perl
 ```
 
 ### Building EmuELEC
@@ -27,12 +27,12 @@ To build EmuELEC locally do the following:
 ```
 $ git clone https://github.com/british-choi/EmuELEC.git
 $ cd EmuELEC
-$ git checkout master
-$ PROJECT=Amlogic ARCH=aarch64 DISTRO=EmuELEC make image
+$ git checkout dev
+$ PROJECT=Amlogic-ce DEVICE=Amlogic-old ARCH=aarch64 DISTRO=EmuELEC make image
 ```
 For the Odroid N2/S905X2/S905X3/A311D:
 ```
-$ PROJECT=Amlogic-ng ARCH=aarch64 DISTRO=EmuELEC make image
+$ PROJECT=Amlogic-ce DEVICE=Amlogic-ng ARCH=aarch64 DISTRO=EmuELEC make image
 ```
 
 For the Odroid GO Advance/Super:

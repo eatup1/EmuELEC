@@ -4,6 +4,10 @@
   <section id="system">
     <category id="display">
       <group id="1">
+        <setting id="videoscreen.limitedrange">
+          <default>false</default>
+          <visible>false</visible>
+        </setting>
         <setting id="videoscreen.limitguisize">
           <visible>false</visible>
           <default>3</default>

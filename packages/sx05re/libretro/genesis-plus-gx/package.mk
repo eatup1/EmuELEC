@@ -19,8 +19,8 @@
 ################################################################################
 
 PKG_NAME="genesis-plus-gx"
-PKG_VERSION="6f782a3d42e7a5dcdeaee8e234286c43fe6e6d65"
-PKG_SHA256="27df73ecef996ce986fdd3f3b9b1b5a4a297e38bfdeccc3a7ecc3a6b8070df84"
+PKG_VERSION="f591cf33157898d8a115c6dad4c00c2fe1402c93"
+PKG_SHA256="add27dbd9f62bb0e6124104e8388a37d0dda23110ee58f78c1778d0da9677c1c"
 PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="Non-commercial"

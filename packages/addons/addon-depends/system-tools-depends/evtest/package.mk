@@ -3,14 +3,11 @@
 
 PKG_NAME="evtest"
 PKG_VERSION="1.34"
-PKG_SHA256="f8a2a790e0116979e6fd64d933e20ab067bc48aa70f2416834e05cfe11ed5a32"
+PKG_SHA256="8e2431cdc83587925048157a5772aa0c79b79a64ae5815bf004634cbe53597d0"
 PKG_LICENSE="GPL"
 PKG_SITE="http://cgit.freedesktop.org/evtest/"
-PKG_URL="https://gitlab.freedesktop.org/libevdev/evtest/-/archive/master/$PKG_NAME-$PKG_VERSION.tar.bz2"
+PKG_URL="https://repo.or.cz/evtest.git/snapshot/evtest-${PKG_VERSION}.tar.gz"
 PKG_DEPENDS_TARGET="toolchain libxml2"
 PKG_LONGDESC="A simple tool for input event debugging."
 PKG_TOOLCHAIN="autotools"
-
-#makeinstall_target() {
-#  : # nop
-#}
+PKG_BUILD_FLAGS="-sysroot"

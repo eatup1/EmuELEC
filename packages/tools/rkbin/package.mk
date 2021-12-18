@@ -6,13 +6,13 @@ if [ "$DEVICE" == "OdroidGoAdvance" -o "$DEVICE" == "RG351P" -o "$DEVICE" == "RG
 PKG_VERSION="0bb1c512492386a72a3a0b5a0e18e49c636577b9"
 PKG_SHA256="aa37452788219a1fb10ef3cb62b55baccf6baee2b63b9fdc1bfebc2d6fac22e0"
 else
-# Version is: Kwiboo/tag:libreelec-ba436b9
-PKG_VERSION="ba436b9d616318a9437895457f6bbef1cc873e2b"
-PKG_SHA256="72c2ef6ec1fe79da7c701056662343b9e1df1cf20e5df10bafc4ec0619ef4578"
+# Version is: Kwiboo/tag:libreelec-4563e24
+PKG_VERSION="4563e249a3f47e7fcd47a4c3769b6c05683b6e9d"
+PKG_SHA256="0b3479117700bce9afea2110c1f027b626c76d99045802218b35a53606547d60"
 fi
 PKG_ARCH="arm aarch64"
 PKG_LICENSE="nonfree"
 PKG_SITE="https://github.com/rockchip-linux/rkbin"
-PKG_URL="https://github.com/rockchip-linux/rkbin/archive/$PKG_VERSION.tar.gz"
+PKG_URL="https://github.com/rockchip-linux/rkbin/archive/${PKG_VERSION}.tar.gz"
 PKG_LONGDESC="rkbin: Rockchip Firmware and Tool Binaries"
 PKG_TOOLCHAIN="manual"

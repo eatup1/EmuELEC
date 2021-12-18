@@ -2,13 +2,13 @@
 # Copyright (C) 2019-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="imagedecoder.mpo"
-PKG_VERSION="1.1.2-Leia"
-PKG_SHA256="e0eaad1ff7ffbca13bf4d38be2c7c1acf8127c6c55f3d06940166f4775e6c2ab"
+PKG_VERSION="20.0.0-Nexus"
+PKG_SHA256="523707e3809408d3a87546994436782bdb89a51e083e46a5ee3bccb0f0d560a2"
 PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="https://github.com/xbmc/imagedecoder.mpo"
-PKG_URL="https://github.com/xbmc/imagedecoder.mpo/archive/$PKG_VERSION.tar.gz"
+PKG_URL="https://github.com/xbmc/imagedecoder.mpo/archive/${PKG_VERSION}.tar.gz"
 PKG_DEPENDS_TARGET="toolchain kodi-platform libjpeg-turbo"
 PKG_SECTION=""
 PKG_SHORTDESC="imagedecoder.mpo"

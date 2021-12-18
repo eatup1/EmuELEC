@@ -1,8 +1,8 @@
 diff --git a/sshconnect2.c b/sshconnect2.c
-index 059c9480..200daa1a 100644
+index d6af0b9..22c0aa6 100644
 --- a/sshconnect2.c
 +++ b/sshconnect2.c
-@@ -1524,9 +1524,7 @@ load_identity_file(Identity *id)
+@@ -1524,9 +1524,7 @@
  	struct stat st;
  
  	if (stat(id->filename, &st) == -1) {

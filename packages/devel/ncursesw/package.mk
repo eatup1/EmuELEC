@@ -7,9 +7,9 @@ PKG_VERSION="6.1-20181215"
 PKG_SHA256="08b07c3e792961f300829512c283d5fefc0b1c421a57b76922c3d13303ed677d"
 PKG_LICENSE="MIT"
 PKG_SITE="http://www.gnu.org/software/ncurses/"
-#PKG_URL="http://invisible-mirror.net/archives/ncurses/current/ncurses-$PKG_VERSION.tgz"
-PKG_URL="http://sources.libreelec.tv/mirror/ncurses/ncurses-$PKG_VERSION.tgz"
-PKG_DEPENDS_HOST="gcc:host"
+#PKG_URL="http://invisible-mirror.net/archives/ncurses/current/ncurses-${PKG_VERSION}.tgz"
+PKG_URL="http://sources.libreelec.tv/mirror/ncurses/ncurses-${PKG_VERSION}.tgz"
+PKG_DEPENDS_HOST="ccache:host"
 PKG_DEPENDS_TARGET="toolchain zlib ncurses:host"
 PKG_LONGDESC="A library is a free software emulation of curses in System V Release 4.0, and more."
 # causes some segmentation fault's (dialog) when compiled with gcc's link time optimization.
@@ -35,7 +35,7 @@ PKG_CONFIGURE_OPTS_TARGET="--without-ada \
                            --without-dmalloc \
                            --disable-rpath \
                            --disable-database \
-                           --with-fallbacks=linux,screen,xterm,xterm-color \
+                           --with-fallbacks=linux,screen,xterm,xterm-color,dumb,st-256color \
                            --with-termpath=/storage/.config/termcap \
                            --disable-big-core \
                            --enable-termcap \
@@ -64,9 +64,9 @@ PKG_CONFIGURE_OPTS_TARGET="--without-ada \
                            --disable-assertions"
 
 post_makeinstall_target() {
-  cp misc/ncurses-config $TOOLCHAIN/bin/ncursesw-config
-  chmod +x $TOOLCHAIN/bin/ncursesw-config
-  sed -e "s:\(['=\" ]\)/usr:\\1$SYSROOT_PREFIX/usr:g" -i $TOOLCHAIN/bin/ncursesw-config
-  sed -i "s|if test ncurses = ncurses|if test ncursesw = ncursesw|g" "$TOOLCHAIN/bin/ncursesw-config"
+  cp misc/ncurses-config ${TOOLCHAIN}/bin/ncursesw-config
+  chmod +x ${TOOLCHAIN}/bin/ncursesw-config
+  sed -e "s:\(['=\" ]\)/usr:\\1${PKG_ORIG_SYSROOT_PREFIX}/usr:g" -i ${TOOLCHAIN}/bin/ncursesw-config
+  sed -i "s|if test ncurses = ncurses|if test ncursesw = ncursesw|g" "${TOOLCHAIN}/bin/ncursesw-config"
   rm -rf $INSTALL/usr/bin
 }

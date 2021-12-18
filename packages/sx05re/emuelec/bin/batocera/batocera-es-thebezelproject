@@ -15,7 +15,8 @@ DEFAULTBEZELDIR="default/systems/"
 BEZELPROJECTDIR="bezels/"
 BEZELPROJECTGAMESDIR="${BEZELPROJECTDIR}"
 BEZELPROJECTSYSTEMDIR="${BEZELPROJECTDIR}"
-BEZELSLIST="https://raw.githubusercontent.com/EmuELEC/emuelec.github.io/master/settings/bezelproject"
+BEZELSLIST="https://raw.githubusercontent.com/british-choi/emuelec.github.io/master/settings/bezelproject"
+#BEZELSLIST="https://pastebin.com/raw/C4wdxTMv"
 LOCALBEZELSLIST="/storage/.config/emuelec/configs/bezels.txt"
 # bezels.txt must be a plain file with the format 'bezel_name https://githubURL' (spaces or tabs)
 # Example of a bezels.txt file:

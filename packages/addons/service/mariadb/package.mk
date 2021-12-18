@@ -2,18 +2,18 @@
 # Copyright (C) 2018-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="mariadb"
-PKG_VERSION="10.3.14"
-PKG_REV="103"
-PKG_SHA256="ba1c94d92fc8ebdf9b8a1d1b93ed6aeeead33da507efbbd4afcf49f32023e054"
+PKG_VERSION="10.4.21"
+PKG_REV="105"
+PKG_SHA256="94dd2e6f5d286de8a7dccffe984015d4253a0568281c7440e772cfbe098a291d"
 PKG_LICENSE="GPL2"
 PKG_SITE="https://mariadb.org"
-PKG_URL="https://downloads.mariadb.org/interstitial/${PKG_NAME}-${PKG_VERSION}/source/${PKG_NAME}-${PKG_VERSION}.tar.gz"
-PKG_DEPENDS_HOST="toolchain ncurses:host"
+PKG_URL="https://downloads.mariadb.com/MariaDB/${PKG_NAME}-${PKG_VERSION}/source/${PKG_NAME}-${PKG_VERSION}.tar.gz"
+PKG_DEPENDS_HOST="toolchain:host ncurses:host"
 PKG_DEPENDS_TARGET="toolchain binutils bzip2 libaio libxml2 lzo ncurses openssl systemd zlib mariadb:host"
 PKG_SHORTDESC="MariaDB is a community-developed fork of the MySQL."
 PKG_LONGDESC="MariaDB (${PKG_VERSION}) is a fast SQL database server and a drop-in replacement for MySQL."
 PKG_TOOLCHAIN="cmake"
-PKG_BUILD_FLAGS="-gold"
+PKG_BUILD_FLAGS="-gold -sysroot"
 
 PKG_IS_ADDON="yes"
 PKG_SECTION="service"
@@ -71,15 +71,13 @@ makeinstall_host() {
   :
 }
 
-makeinstall_target() {
-  # use only for addon
-  DESTDIR=${PKG_BUILD}/.install_addon ninja ${NINJA_OPTS} install
-  rm -rf "${PKG_BUILD}/.install_addon/usr/mysql-test"
+post_makeinstall_target() {
+  rm -rf "${PKG_INSTALL}/usr/mysql-test"
 }
 
 addon() {
   local ADDON="${ADDON_BUILD}/${PKG_ADDON_ID}"
-  local MARIADB="${PKG_BUILD}/.install_addon/usr"
+  local MARIADB="${PKG_INSTALL}/usr"
 
   mkdir -p ${ADDON}/bin
   mkdir -p ${ADDON}/config

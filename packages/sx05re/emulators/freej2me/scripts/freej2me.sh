@@ -37,7 +37,7 @@ fi
     tar xvfz ${JDKNAME}-linux_aarch64.tar.gz zulu11.48.21-ca-jdk11.0.11-linux_aarch64/bin > /dev/console 2>&1
     tar xvfz ${JDKNAME}-linux_aarch64.tar.gz zulu11.48.21-ca-jdk11.0.11-linux_aarch64/conf > /dev/console 2>&1
     rm zulu11.48.21-ca-jdk11.0.11-linux_aarch64/lib/*.zip
-    cp -rf ${JDKNAME}-linux_aarch64/* jdk
+    mv ${JDKNAME}-linux_aarch64/* jdk
     rm -rf ${JDKNAME}-linux_aarch64*
     
     for del in jmods include demo legal man DISCLAIMER LICENSE readme.txt release Welcome.html; do

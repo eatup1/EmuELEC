@@ -2,13 +2,13 @@
 # Copyright (C) 2016-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="imagedecoder.raw"
-PKG_VERSION="2.1.2-Leia"
-PKG_SHA256="8f1b38e7a1412cc36e2c2648af5f8b92ad4dc08e3723930ae8324c4224aa6b90"
+PKG_VERSION="20.0.0-Nexus"
+PKG_SHA256="f9d7ed652e5c2364c40a43706c642156aafad9fed88a227019867b58fb6f5763"
 PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="https://github.com/xbmc/imagedecoder.raw"
-PKG_URL="https://github.com/xbmc/imagedecoder.raw/archive/$PKG_VERSION.tar.gz"
+PKG_URL="https://github.com/xbmc/imagedecoder.raw/archive/${PKG_VERSION}.tar.gz"
 PKG_DEPENDS_TARGET="toolchain kodi-platform libraw"
 PKG_SECTION=""
 PKG_SHORTDESC="imagedecoder.raw"

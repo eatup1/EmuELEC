@@ -2,13 +2,13 @@
 # Copyright (C) 2017-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="pvr.zattoo"
-PKG_VERSION="18.1.23-Leia"
-PKG_SHA256="9c3dc2ed9f8c39bcc4f5798439b85f2bdae1a427ffeb1b9d18aa5e2caca29f4e"
+PKG_VERSION="20.1.0-Nexus"
+PKG_SHA256="a30bf3c66ab3715eaaa0c12d9da99ff00fd95bbdc151a291d5dbe4d0b824c51d"
 PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="https://github.com/rbuehlma/pvr.zattoo"
-PKG_URL="https://github.com/rbuehlma/pvr.zattoo/archive/$PKG_VERSION.tar.gz"
+PKG_URL="https://github.com/rbuehlma/pvr.zattoo/archive/${PKG_VERSION}.tar.gz"
 PKG_DEPENDS_TARGET="toolchain kodi-platform tinyxml2"
 PKG_SECTION=""
 PKG_SHORTDESC="pvr.zattoo"

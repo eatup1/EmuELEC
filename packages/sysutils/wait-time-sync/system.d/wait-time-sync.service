@@ -9,22 +9,18 @@
 #  (at your option) any later version.
 
 [Unit]
-Description=Wait For Kernel Time Synchronized
-
+Description=Wait for Kernel Time Synchronisation
 ConditionVirtualization=!container
 
 DefaultDependencies=no
 Before=time-sync.target shutdown.target
 Wants=time-sync.target
 Conflicts=shutdown.target
-Requires=network-online.target
-After=network-online.target
-Wants=network-online.target
 
 [Service]
 Type=oneshot
 ExecStart=/usr/bin/wait-time-sync
-TimeoutStartSec=30
+TimeoutStartSec=infinity
 RemainAfterExit=yes
 
 [Install]

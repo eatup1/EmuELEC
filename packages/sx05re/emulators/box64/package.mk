@@ -2,9 +2,9 @@
 # Copyright (C) 2021-present Shanti Gilbert (https://github.com/shantigilbert)
 
 PKG_NAME="box64"
-PKG_VERSION="e10a78d67112b10806825732f4122d8ade9e6b4e"
+PKG_VERSION="40c58241eac0603b87847ec60ac1ea2870e101ac"
 PKG_REV="1"
-PKG_ARCH="any"
+PKG_ARCH="aarch64"
 PKG_LICENSE="MIT"
 PKG_SITE="https://github.com/ptitSeb/box64"
 PKG_URL="$PKG_SITE.git"
@@ -12,7 +12,7 @@ PKG_DEPENDS_TARGET="toolchain gl4es"
 PKG_LONGDESC="Box64 - Linux Userspace x86_64 Emulator with a twist, targeted at ARM64 Linux devices"
 PKG_TOOLCHAIN="cmake"
 
-if [[ "${PROJECT}" == "Amlogic"* ]]; then
+if [[ "${DEVICE}" == "Amlogic"* ]]; then
 	PKG_CMAKE_OPTS_TARGET=" -DRK3399=1 -DCMAKE_BUILD_TYPE=RelWithDebInfo"
 else
 	PKG_CMAKE_OPTS_TARGET=" -DRK3326=1 -DCMAKE_BUILD_TYPE=RelWithDebInfo"

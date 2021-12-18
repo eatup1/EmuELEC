@@ -3,30 +3,30 @@
 # Copyright (C) 2019-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="Pillow"
-PKG_VERSION="6.2.2"
-PKG_SHA256="db9ff0c251ed066d367f53b64827cc9e18ccea001b986d08c265e53625dab950"
+PKG_VERSION="8.4.0"
+PKG_SHA256="a726a4246cf1f26a5024b57c5d5fa0e98789262799860ed554ec028e2698f2c0"
 PKG_LICENSE="BSD"
-PKG_SITE="http://www.pythonware.com/products/pil/"
-PKG_URL="https://files.pythonhosted.org/packages/source/${PKG_NAME:0:1}/$PKG_NAME/$PKG_NAME-$PKG_VERSION.tar.gz"
-PKG_DEPENDS_TARGET="toolchain Python2 distutilscross:host zlib freetype libjpeg-turbo tiff"
+PKG_SITE="https://python-pillow.org/"
+PKG_URL="https://github.com/python-pillow/${PKG_NAME}/archive/${PKG_VERSION}.tar.gz"
+PKG_DEPENDS_TARGET="toolchain Python3 distutilscross:host zlib freetype libjpeg-turbo tiff"
 PKG_LONGDESC="The Python Imaging Library adds image processing capabilities to your Python interpreter."
 PKG_TOOLCHAIN="manual"
 
 pre_make_target() {
-  export PYTHONXCPREFIX="$SYSROOT_PREFIX/usr"
-  export LDSHARED="$CC -shared"
+  export PYTHONXCPREFIX="${SYSROOT_PREFIX}/usr"
+  export LDSHARED="${CC} -shared"
 }
 
 make_target() {
-  python setup.py build --cross-compile
+  python3 setup.py build --cross-compile
 }
 
 makeinstall_target() {
-  python setup.py install --root=$INSTALL --prefix=/usr
+  python3 setup.py install --root=${INSTALL} --prefix=/usr
 }
 
 post_makeinstall_target() {
-  find $INSTALL/usr/lib -name "*.py" -exec rm -rf "{}" ";"
+  python_remove_source
 
-  rm -rf $INSTALL/usr/bin
+  rm -rf ${INSTALL}/usr/bin
 }

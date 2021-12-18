@@ -3,16 +3,16 @@
 # Copyright (C) 2016-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="alsa-utils"
-PKG_VERSION="1.2.5"
-PKG_SHA256="09970af05838b30001ca93ba27cb85b24c45056c70a80066c3ece6abe5a19997"
+PKG_VERSION="1.2.5.1"
+PKG_SHA256="9c169ae37a49295f9b97b92ace772803daf6b6510a19574e0b78f87e562118d0"
 PKG_LICENSE="GPL"
 PKG_SITE="http://www.alsa-project.org/"
 PKG_URL="ftp://ftp.alsa-project.org/pub/utils/alsa-utils-${PKG_VERSION}.tar.bz2"
-PKG_DEPENDS_TARGET="toolchain alsa-lib ncurses systemd libsamplerate"
+PKG_DEPENDS_TARGET="toolchain alsa-lib ncurses systemd"
 PKG_LONGDESC="This package includes the utilities for ALSA, like alsamixer, aplay, arecord, alsactl, iecset and speaker-test."
 
 PKG_CONFIGURE_OPTS_TARGET="--disable-alsaconf \
-                           --enable-alsaloop \
+                           --disable-alsaloop \
                            --enable-alsatest \
                            --disable-bat \
                            --disable-dependency-tracking \
@@ -30,10 +30,10 @@ post_makeinstall_target() {
 # so we avoid resetting our soundconfig
   rm -rf ${INSTALL}/usr/lib/udev/rules.d/90-alsa-restore.rules
 
-#  mkdir -p ${INSTALL}/.noinstall
-#  for i in aconnect alsamixer amidi aplaymidi arecord arecordmidi aseqdump aseqnet iecset; do
-#    mv ${INSTALL}/usr/bin/${i} ${INSTALL}/.noinstall
-#  done
+  mkdir -p ${INSTALL}/.noinstall
+  for i in aconnect alsamixer amidi aplaymidi arecord arecordmidi aseqdump aseqnet iecset; do
+    mv ${INSTALL}/usr/bin/${i} ${INSTALL}/.noinstall
+  done
 
   mkdir -p ${INSTALL}/usr/lib/udev
     cp ${PKG_DIR}/scripts/soundconfig ${INSTALL}/usr/lib/udev

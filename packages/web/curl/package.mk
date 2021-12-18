@@ -3,12 +3,12 @@
 # Copyright (C) 2018-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="curl"
-PKG_VERSION="7.71.1"
-PKG_SHA256="40f83eda27cdbeb25cd4da48cefb639af1b9395d6026d2da1825bf059239658c"
+PKG_VERSION="7.80.0"
+PKG_SHA256="a132bd93188b938771135ac7c1f3ac1d3ce507c1fcbef8c471397639214ae2ab"
 PKG_LICENSE="MIT"
-PKG_SITE="http://curl.haxx.se"
-PKG_URL="http://curl.haxx.se/download/$PKG_NAME-$PKG_VERSION.tar.xz"
-PKG_DEPENDS_TARGET="toolchain zlib openssl rtmpdump nghttp2"
+PKG_SITE="https://curl.haxx.se"
+PKG_URL="https://curl.haxx.se/download/${PKG_NAME}-${PKG_VERSION}.tar.xz"
+PKG_DEPENDS_TARGET="toolchain zlib openssl rtmpdump libidn2 nghttp2"
 PKG_LONGDESC="Client and library for (HTTP, HTTPS, FTP, ...) transfers."
 PKG_TOOLCHAIN="configure"
 
@@ -53,31 +53,28 @@ PKG_CONFIGURE_OPTS_TARGET="ac_cv_lib_rtmp_RTMP_Init=yes \
                            --without-spnego \
                            --without-gssapi \
                            --with-zlib \
+                           --without-brotli \
+                           --without-zstd \
                            --without-egd-socket \
                            --enable-thread \
                            --with-random=/dev/urandom \
                            --without-gnutls \
                            --with-ssl \
-                           --without-polarssl \
+                           --without-mbedtls \
                            --without-nss \
                            --with-ca-bundle=/run/libreelec/cacert.pem \
                            --without-ca-path \
                            --without-libpsl \
-                           --without-libmetalink \
                            --without-libssh2 \
-                           --with-librtmp=$SYSROOT_PREFIX/usr \
-                           --without-libidn \
-                           --without-libidn2 \
+                           --with-librtmp \
+                           --with-libidn2 \
                            --with-nghttp2"
 
-pre_configure_target() {
-# link against librt because of undefined reference to 'clock_gettime'
-  export LIBS="-lrt -lm -lrtmp"
-}
-
 post_makeinstall_target() {
-  rm -rf $INSTALL/usr/share/zsh
-  rm -rf $INSTALL/usr/bin/curl-config
+  rm -rf ${INSTALL}/usr/share/zsh
 
-  sed -e "s:\(['= ]\)/usr:\\1$SYSROOT_PREFIX/usr:g" -i $SYSROOT_PREFIX/usr/bin/curl-config
+  rm -rf ${INSTALL}/usr/bin/${PKG_NAME}-config
+  cp ${PKG_NAME}-config ${TOOLCHAIN}/bin
+  sed -e "s:\(['= ]\)/usr:\\1${PKG_ORIG_SYSROOT_PREFIX}/usr:g" -i ${TOOLCHAIN}/bin/${PKG_NAME}-config
+  chmod +x ${TOOLCHAIN}/bin/${PKG_NAME}-config
 }

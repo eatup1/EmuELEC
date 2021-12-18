@@ -16,7 +16,7 @@ PKG_IS_ADDON="no"
 PKG_AUTORECONF="no"
 PKG_TOOLCHAIN="manual"
 
-if [ ${PROJECT} = "Amlogic-ng" ] || [ ${PROJECT} = "Amlogic" ]; then
+if [ ${DEVICE} = "Amlogic-ng" ] || [ ${DEVICE} = "Amlogic" ]; then
   PKG_PATCH_DIRS="Amlogic"
 fi
 

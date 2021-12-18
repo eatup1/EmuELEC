@@ -3,7 +3,6 @@
 
 PKG_NAME="mupen64plus-nx-alt"
 PKG_VERSION="018ee72b4fe247b38ed161033ad12a19bb936f00"
-#PKG_SHA256="eab353fe5834d256af96f1fdac328b0656bdeeebde111860067a88bf5442bfe2"
 PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="GPLv2"
@@ -20,18 +19,18 @@ pre_configure_target() {
   sed -e "s|^GIT_VERSION ?.*$|GIT_VERSION := \" ${PKG_VERSION:0:7}\"|" -i Makefile
 
 if [ $ARCH == "arm" ]; then
-	if [ ${PROJECT} = "Amlogic-ng" ]; then
+	if [ "${DEVICE}" = "Amlogic-ng" ]; then
 		PKG_MAKE_OPTS_TARGET+=" platform=AMLG12B"
-	elif [ "${PROJECT}" = "Amlogic" ]; then
+	elif [ "${DEVICE}" = "Amlogic" ]; then
 		PKG_MAKE_OPTS_TARGET+=" platform=amlogic"
 	elif [ "${DEVICE}" = "OdroidGoAdvance" -o "${DEVICE}" = "RG351P" -o "${DEVICE}" = "RG351V" ] || [ "$DEVICE" == "GameForce" ]; then
 		sed -i "s|cortex-a53|cortex-a35|g" Makefile
 		PKG_MAKE_OPTS_TARGET+=" platform=odroidgoa"
 	fi
 else
-	if [ ${PROJECT} = "Amlogic-ng" ]; then
+	if [ "${DEVICE}" = "Amlogic-ng" ]; then
 		PKG_MAKE_OPTS_TARGET+=" platform=odroid64 BOARD=N2"
-	elif [ "${PROJECT}" = "Amlogic" ]; then 
+	elif [ "${DEVICE}" = "Amlogic" ]; then 
 		PKG_MAKE_OPTS_TARGET+=" platform=amlogic64"
 	elif [ "${DEVICE}" = "OdroidGoAdvance" -o "${DEVICE}" = "RG351P" -o "${DEVICE}" = "RG351V" ] || [ "$DEVICE" == "GameForce" ]; then
 		PKG_MAKE_OPTS_TARGET+=" platform=amlogic64"

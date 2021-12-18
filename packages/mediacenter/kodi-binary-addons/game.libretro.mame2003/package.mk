@@ -2,12 +2,12 @@
 # Copyright (C) 2016-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="game.libretro.mame2003"
-PKG_VERSION="0.78.0.16-Leia"
-PKG_SHA256="8f6bb0d2e90995ec9c8e247e24f12a4840125305f78400318434ddebfb0b0a60"
+PKG_VERSION="0.78.0.38-Matrix"
+PKG_SHA256="fc8339ca4cf8021a5178b5f500f1b4fd4d3f035a55e4985029e3658e36c3ffbc"
 PKG_REV="1"
 PKG_LICENSE="GPL"
 PKG_SITE="https://github.com/kodi-game/game.libretro.mame2003"
-PKG_URL="https://github.com/kodi-game/game.libretro.mame2003/archive/$PKG_VERSION.tar.gz"
+PKG_URL="https://github.com/kodi-game/game.libretro.mame2003/archive/${PKG_VERSION}.tar.gz"
 PKG_DEPENDS_TARGET="toolchain kodi-platform libretro-mame2003"
 PKG_SECTION=""
 PKG_LONGDESC="game.libretro.mame2003: MAME 2003 emulator for Kodi"

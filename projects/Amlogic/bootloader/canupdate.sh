@@ -1,18 +1,21 @@
-# SPDX-License-Identifier: GPL-2.0-or-later
-# Copyright (C) 2018-present Team CoreELEC (https://coreelec.tv)
+#!/bin/sh
 
-# Detect newer kernel installs and abort to prevent downgrades
-if [ "$(uname -r)" != "3.14.29" ]; then
-    echo "Downgrading to 3.14 kernel is not supported!"
+# SPDX-License-Identifier: GPL-2.0
+# Copyright (C) 2019-present Team LibreELEC (https://libreelec.tv)
+
+# detect legacy kernel installs and abort to prevent upgrades
+case $(uname -r) in
+  3.14*|4.9*)
+    echo "Updates from Amlogic vendor kernels are not supported!"
     sleep 10
     exit 1
-fi
-
-case $1 in
-   @PROJECT@|S905*|S912*)
-       exit 0
-    ;;
-   *)
-       exit 1
     ;;
 esac
+
+# allow upgrades between aarch64 and arm images
+PROJECT=$("$1" | cut -d. -f1)
+if [ "$1" = "${PROJECT}.aarch64" -o "$1" = "${PROJECT}.arm" ]; then
+  exit 0
+else
+  exit 1
+fi

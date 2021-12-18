@@ -2,13 +2,13 @@
 # Copyright (C) 2020-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="visualization.goom"
-PKG_VERSION="2.2.3-Leia"
-PKG_SHA256="fdd656721f6d1b1962fd0a1e240eafb4710237ba70809dd0391cd10cacf4417c"
+PKG_VERSION="20.0.0-Nexus"
+PKG_SHA256="2edd4347c3e63d1fe2b416f86af018c0cf38909bfa52491cf7afbc73014db967"
 PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="https://github.com/xbmc/visualization.goom"
-PKG_URL="https://github.com/xbmc/visualization.goom/archive/$PKG_VERSION.tar.gz"
+PKG_URL="https://github.com/xbmc/visualization.goom/archive/${PKG_VERSION}.tar.gz"
 PKG_DEPENDS_TARGET="toolchain kodi-platform glm"
 PKG_SECTION=""
 PKG_SHORTDESC="visualization.goom"

@@ -3,33 +3,34 @@
 # Copyright (C) 2017-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="LibreELEC-settings"
-PKG_VERSION="42acf2613927fa93d9d8ec9aa1d3135d101db0e0"
-PKG_SHA256="5f904cde29454902ea4da3980e88d38a1432ef8eb91995436d3d6ffbddfd260c"
+PKG_VERSION="0a634ef0d56c6a718652dafec08b21b8e7509715"
+PKG_SHA256="7b2d4372eda6e0cf8137884afb607e7c0286905de47905018775d29eab0fd8d8"
 PKG_LICENSE="GPL"
 PKG_SITE="https://libreelec.tv"
-PKG_URL="https://github.com/LibreELEC/service.libreelec.settings/archive/$PKG_VERSION.tar.gz"
-PKG_DEPENDS_TARGET="toolchain Python2 connman pygobject dbus-python"
+PKG_URL="https://github.com/LibreELEC/service.libreelec.settings/archive/${PKG_VERSION}.tar.gz"
+PKG_DEPENDS_TARGET="toolchain Python3 connman dbussy"
 PKG_LONGDESC="LibreELEC-settings: is a settings dialog for LibreELEC"
 
-PKG_MAKE_OPTS_TARGET="DISTRONAME=$DISTRONAME ROOT_PASSWORD=$ROOT_PASSWORD"
+PKG_MAKE_OPTS_TARGET="ADDON_VERSION=${OS_VERSION} \
+                      DISTRONAME=${DISTRONAME} \
+                      ROOT_PASSWORD=${ROOT_PASSWORD}"
 
-if [ "$DISPLAYSERVER" = "x11" ]; then
-  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET setxkbmap"
+if [ "${DISPLAYSERVER}" = "x11" ]; then
+  PKG_DEPENDS_TARGET+=" setxkbmap"
 else
-  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET bkeymaps"
+  PKG_DEPENDS_TARGET+=" bkeymaps"
 fi
 
 post_makeinstall_target() {
-  mkdir -p $INSTALL/usr/lib/libreelec
-    cp $PKG_DIR/scripts/* $INSTALL/usr/lib/libreelec
+  mkdir -p ${INSTALL}/usr/lib/libreelec
+    cp ${PKG_DIR}/scripts/* ${INSTALL}/usr/lib/libreelec
+    sed -e "s/@DISTRONAME@/${DISTRONAME}/g" \
+      -i ${INSTALL}/usr/lib/libreelec/backup-restore
+    sed -e "s/@DISTRONAME@/${DISTRONAME}/g" \
+      -i ${INSTALL}/usr/lib/libreelec/factory-reset
 
-  ADDON_INSTALL_DIR=$INSTALL/usr/share/kodi/addons/service.libreelec.settings
-
-  $TOOLCHAIN/bin/python -Wi -t -B $TOOLCHAIN/lib/$PKG_PYTHON_VERSION/compileall.py $ADDON_INSTALL_DIR/resources/lib/ -f
-  rm -rf $(find $ADDON_INSTALL_DIR/resources/lib/ -name "*.py")
-
-  $TOOLCHAIN/bin/python -Wi -t -B $TOOLCHAIN/lib/$PKG_PYTHON_VERSION/compileall.py $ADDON_INSTALL_DIR/oe.py -f
-  rm -rf $ADDON_INSTALL_DIR/oe.py
+  ADDON_INSTALL_DIR=${INSTALL}/usr/share/kodi/addons/service.libreelec.settings
+  python_compile ${ADDON_INSTALL_DIR}/resources/lib/
 }
 
 post_install() {

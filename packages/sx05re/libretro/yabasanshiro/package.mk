@@ -47,7 +47,7 @@ else
 		sed -i "s|-mtune=cortex-a73.cortex-a53|-mtune=cortex-a35|g" $PKG_BUILD/yabause/src/libretro/Makefile
 	fi
 	
-	if [[ "$PROJECT" == "Amlogic" ]]; then
+	if [[ "${DEVICE}" == "Amlogic" ]]; then
 		sed -i "s|-mtune=cortex-a73.cortex-a53|-mtune=cortex-a53|g" $PKG_BUILD/yabause/src/libretro/Makefile
 	fi
 	

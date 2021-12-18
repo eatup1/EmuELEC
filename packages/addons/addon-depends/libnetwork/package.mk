@@ -3,8 +3,8 @@
 # Copyright (C) 2016-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="libnetwork"
-PKG_VERSION="e7933d41e7b206756115aa9df5e0599fc5169742"
-PKG_SHA256="b9695c4d7711487543b2eff8ca74cc2deb9828f7f4582196324d39d20eab3855"
+PKG_VERSION="64b7a4574d1426139437d20e81c0b6d391130ec8" # 2021-05-25
+PKG_SHA256="ede21e645ff6552b3a508f6186d3f34d267015ec0f96eefecf6d08c03cbd2987"
 PKG_LICENSE="APL"
 PKG_SITE="https://github.com/docker/libnetwork"
 PKG_URL="https://github.com/docker/libnetwork/archive/${PKG_VERSION}.tar.gz"
@@ -13,46 +13,21 @@ PKG_LONGDESC="A native Go implementation for connecting containers."
 PKG_TOOLCHAIN="manual"
 
 pre_make_target() {
-  case $TARGET_ARCH in
-    x86_64)
-      export GOARCH=amd64
-      ;;
-    arm)
-      export GOARCH=arm
+  go_configure
 
-      case $TARGET_CPU in
-        arm1176jzf-s)
-          export GOARM=6
-          ;;
-        *)
-          export GOARM=7
-          ;;
-      esac
-      ;;
-    aarch64)
-      export GOARCH=arm64
-      ;;
-  esac
-
-  export GOOS=linux
   export CGO_ENABLED=0
-  export CGO_NO_EMULATION=1
-  export CGO_CFLAGS=$CFLAGS
-  export LDFLAGS="-extld $CC"
-  export GOLANG=$TOOLCHAIN/lib/golang/bin/go
-  export GOPATH=$PKG_BUILD/.gopath
-  export GOROOT=$TOOLCHAIN/lib/golang
-  export PATH=$PATH:$GOROOT/bin
+  export LDFLAGS="-extld ${CC}"
+  export GO111MODULE=off
 
-  mkdir -p $PKG_BUILD/.gopath
-  if [ -d $PKG_BUILD/vendor ]; then
-    mv $PKG_BUILD/vendor $PKG_BUILD/.gopath/src
+  mkdir -p ${GOPATH}
+  if [ -d ${PKG_BUILD}/vendor ]; then
+    mv ${PKG_BUILD}/vendor ${GOPATH}/src
   fi
 
-  ln -fs $PKG_BUILD $PKG_BUILD/.gopath/src/github.com/docker/libnetwork
+  ln -fs ${PKG_BUILD} ${GOPATH}/src/github.com/docker/libnetwork
 }
 
 make_target() {
   mkdir -p bin
-  $GOLANG build -v -o bin/docker-proxy -a -ldflags "$LDFLAGS" ./cmd/proxy
+  ${GOLANG} build -v -o bin/docker-proxy -a -ldflags "${LDFLAGS}" ./cmd/proxy
 }

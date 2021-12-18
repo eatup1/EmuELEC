@@ -10,3 +10,6 @@ PKG_DEPENDS_TARGET="toolchain"
 PKG_SHORTDESC="The approximate regex matching library and agrep command line tool."
 PKG_TOOLCHAIN="autotools"
 
+pre_configure_target() {
+sed -i "s|GETTEXT_MACRO_VERSION = 0.17|GETTEXT_MACRO_VERSION = 0.20|" ${PKG_BUILD}/po/Makefile.in.in
+}

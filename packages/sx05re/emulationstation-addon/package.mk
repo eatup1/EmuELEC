@@ -41,7 +41,7 @@ post_makeinstall_target() {
 	cp -rf $PKG_DIR/config/*.cfg $INSTALL/usr/config/emulationstation
 	
 	# Remove systems that are not compatible with S905
-	if [ ${PROJECT} = "Amlogic" ]; then 	
+	if [ ${DEVICE} = "Amlogic" ]; then 	
 	xmlstarlet ed -L -P -d "/systemList/system[name='3do']" $INSTALL/usr/config/emulationstation/es_systems.cfg
 	xmlstarlet ed -L -P -d "/systemList/system[name='segasaturn']" $INSTALL/usr/config/emulationstation/es_systems.cfg
 	fi
@@ -50,7 +50,7 @@ post_makeinstall_target() {
 	chmod +x $INSTALL/usr/config/emulationstation/scripts/configscripts/*
 	find $INSTALL/usr/config/emulationstation/scripts/ -type f -exec chmod o+x {} \; 
 
-	if [ ${PROJECT} = "Amlogic-ng" ]; then    
+	if [ "${DEVICE}" = "Amlogic-ng" ]; then    
 	sed -i "s|-r 32000 -Z|-Z|" $INSTALL/usr/config/emulationstation/scripts/bgm.sh
 	sed -i "s|Libretro_mba_mini|Libretro_mba_mini,Libretro_mame2016|" $INSTALL/usr/config/emulationstation/scripts/getcores.sh
 	sed -i "s|Libretro_snes9x2005_plus|Libretro_snes9x2005_plus,Libretro_mesen-s|" $INSTALL/usr/config/emulationstation/scripts/getcores.sh

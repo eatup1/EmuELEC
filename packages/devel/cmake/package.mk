@@ -3,23 +3,22 @@
 # Copyright (C) 2016-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="cmake"
-PKG_VERSION="3.20.0"
-PKG_SHA256="9c06b2ddf7c337e31d8201f6ebcd3bba86a9a033976a9aee207fe0c6971f4755"
+PKG_VERSION="3.22.0"
+PKG_SHA256="998c7ba34778d2dfdb3df8a695469e24b11e2bfa21fbe41b361a3f45e1c9345e"
 PKG_LICENSE="BSD"
-PKG_SITE="http://www.cmake.org/"
-PKG_URL="http://www.cmake.org/files/v${PKG_VERSION%.*}/$PKG_NAME-$PKG_VERSION.tar.gz"
-PKG_DEPENDS_HOST="ccache:host openssl:host"
+PKG_SITE="https://cmake.org/"
+PKG_URL="https://cmake.org/files/v$(get_pkg_version_maj_min)/cmake-${PKG_VERSION}.tar.gz"
+PKG_DEPENDS_HOST="ccache:host openssl:host pkg-config:host"
 PKG_LONGDESC="A cross-platform, open-source make system."
 PKG_TOOLCHAIN="configure"
 
 configure_host() {
-  ../configure --prefix=$TOOLCHAIN \
+  ../configure --prefix=${TOOLCHAIN} \
                --no-qt-gui --no-system-libs \
                -- \
                -DCMAKE_C_FLAGS="-O2 -Wall -pipe -Wno-format-security" \
                -DCMAKE_CXX_FLAGS="-O2 -Wall -pipe -Wno-format-security" \
-               -DCMAKE_EXE_LINKER_FLAGS="$HOST_LDFLAGS" \
+               -DCMAKE_EXE_LINKER_FLAGS="${HOST_LDFLAGS}" \
                -DCMAKE_USE_OPENSSL=ON \
-               -DOPENSSL_ROOT_DIR="$TOOLCHAIN" \
                -DBUILD_CursesDialog=0
 }

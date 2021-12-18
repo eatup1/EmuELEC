@@ -2,10 +2,9 @@
 
 # SPDX-License-Identifier: GPL-2.0-or-later
 # Copyright (C) 2009-2014 Stephan Raue (stephan@openelec.tv)
-# Copyright (C) 2018-present Team CoreELEC (https://coreelec.org)
 
 if [ -e /storage/.please_resize_me ] ; then
-  . /usr/lib/coreelec/functions
+  . /usr/lib/libreelec/functions
 
   hidecursor
 
@@ -20,7 +19,7 @@ if [ -e /storage/.please_resize_me ] ; then
   fi
 
   # get the disk. /storage on 2nd partition
-  PART=$(grep "/storage " /proc/mounts | cut -d" " -f1)
+  PART=$(grep "/storage " /proc/mounts | cut -d" " -f1 | grep '2$')
 
   # get disk: /dev/sdx2 -> /dev/sdx, /dev/mmcblkxp2 -> /dev/mmcblkx
   case $PART in
@@ -50,7 +49,7 @@ if [ -e /storage/.please_resize_me ] ; then
       StartProgress spinner "Checking layout...      " "sgdisk -e $DISK &>/dev/null"
     fi
     
-# Get EEROMS filetype
+# EmueELEC Get EEROMS filetype
 ROM_FS_TYPE="vfat"
 PARTED_FS_TYPE="fat32"
 

@@ -19,14 +19,14 @@ index b45b1fe..1097eb0 100644
  };
  
 @@ -234,7 +236,7 @@ static const struct argp_option options[] = {
- 	{"clear",	'c',	0,		0,	N_("clears the old table"), 0},
- 	{"sysdev",	's',	N_("SYSDEV"),	0,	N_("ir class device to control"), 0},
+ 	{"clear",	'c',	0,		0,	N_("Clears the scancode to keycode mappings"), 0},
+ 	{"sysdev",	's',	N_("SYSDEV"),	0,	N_("rc device to control, defaults to rc0 if not specified"), 0},
  	{"test",	't',	0,		0,	N_("test if IR is generating events"), 0},
 -	{"power-key",	'u',	0,		0,	N_("will scan for NEC power on code"), 0},
 +	{"power-key",	'u',	0,		0,	N_("will scan for a compatible power on code"), 0},
- 	{"device",	'd',	N_("DEV"),	0,	N_("ir device to control"), 0},
- 	{"read",	'r',	0,		0,	N_("reads the current scancode/keycode table"), 0},
- 	{"write",	'w',	N_("TABLE"),	0,	N_("write (adds) the scancodes to the device scancode/keycode table from an specified file"), 0},
+ 	{"read",	'r',	0,		0,	N_("reads the current scancode/keycode mapping"), 0},
+ 	{"write",	'w',	N_("KEYMAP"),	0,	N_("write (adds) the keymap from the specified file"), 0},
+ 	{"set-key",	'k',	N_("SCANKEY"),	0,	N_("Change scan/key pairs"), 0},
 @@ -1356,6 +1358,8 @@ static void test_event(struct rc_device *rc_dev, int fd, int power_on)
  	struct lirc_scancode sc[64];
  	int rd, i, lircfd = -1;

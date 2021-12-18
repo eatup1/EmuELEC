@@ -3,12 +3,12 @@
 
 PKG_NAME="dosbox-x"
 
-if [[ "${PROJECT}" == "Amlogic" ]]; then
+if [[ "${DEVICE}" == "Amlogic" ]]; then
 PKG_VERSION="286e859e08b60a04c0b4c2bc952432122c957a9c"
 PKG_SHA256="1a44710e38b05f67e76da74f46bbea4bb8b73ed4a28044575dfa24765bc65d7c"
 else
-PKG_VERSION="c7a970a43fae53a5b15eb792e907e993e0177486"
-PKG_SHA256="9bd32a30d33449a023d01889f4b193a7d5ff783ff94c2d118055ebe2aaee970c"
+PKG_VERSION="314ecadb18e1646409562ec519e846a6c62b8ff2"
+PKG_SHA256="110372d89eaa6c03df83581de1619f4bcd05bab604ca76207ce05776deea9351"
 fi
 PKG_LICENSE="GPLv2"
 PKG_SITE="https://github.com/joncampbell123/dosbox-x"
@@ -39,7 +39,7 @@ pre_make_target() {
 if [[ "${DEVICE}" == "GameForce" ]] || [[ "${DEVICE}" == "OdroidGoAdvance" ]] || [[ "${DEVICE}" == "RG351P" ]] || [[ "${DEVICE}" == "RG351V" ]] ; then
 		cp $PKG_DIR/include/gpio.h ${SYSROOT_PREFIX}/usr/include/linux
 fi
- 	
+
 }
 
 post_makeinstall_target() {
