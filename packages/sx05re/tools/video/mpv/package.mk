@@ -8,7 +8,7 @@ PKG_SHA256="50705b1332947b4dfe001434f16d75e0fe8d9ded8423f0a2d419704f4314f776"
 PKG_LICENSE="GPLv2+"
 PKG_SITE="https://github.com/mpv-player/mpv"
 PKG_URL="$PKG_SITE/archive/$PKG_VERSION.tar.gz"
-PKG_DEPENDS_TARGET="toolchain ffmpeg SDL2-git youtube-dl libass uchardet"
+PKG_DEPENDS_TARGET="toolchain ffmpeg SDL2 youtube-dl libass uchardet"
 PKG_LONGDESC="Video player based on MPlayer/mplayer2 https://mpv.io"
 PKG_TOOLCHAIN="manual"
 
