@@ -7,7 +7,7 @@ PKG_SHA256="85631208ac5068dbd12e0ea2e7c4c3fc0b07328c4bd4c270255dfececb906546"
 PKG_LICENSE="MIT"
 PKG_SITE="https://github.com/lualiliu/RG351P_input-test"
 PKG_URL="$PKG_SITE/archive/$PKG_VERSION.tar.gz"
-PKG_DEPENDS_TARGET="toolchain SDL2-git SDL2_ttf"
+PKG_DEPENDS_TARGET="toolchain SDL2 SDL2_ttf"
 PKG_LONGDESC="Anbernic RG351V Input Tester"
 PKG_TOOLCHAIN="make"
 
