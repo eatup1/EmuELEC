@@ -28,10 +28,6 @@ To build EmuELEC locally do the following:
 $ git clone https://github.com/british-choi/EmuELEC.git
 $ cd EmuELEC
 $ git checkout dev
-$ PROJECT=Amlogic-ce DEVICE=Amlogic-old ARCH=aarch64 DISTRO=EmuELEC make image
-```
-For the Odroid N2/S905X2/S905X3/A311D:
-```
 $ PROJECT=Amlogic-ce DEVICE=Amlogic-ng ARCH=aarch64 DISTRO=EmuELEC make image
 ```
 
