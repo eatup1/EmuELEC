@@ -2,7 +2,7 @@
 # Copyright (C) 2019-present Shanti Gilbert (https://github.com/shantigilbert)
 
 PKG_NAME="emuelec-emulationstation"
-PKG_VERSION="e0e8d09d25ba4dad457e4351c8ddd7b42231df8c"
+PKG_VERSION="bdcde0150ffe954f36e9f48dd28d42aa3f0f307a"
 PKG_GIT_CLONE_BRANCH="EmuELEC"
 PKG_REV="1"
 PKG_ARCH="any"
@@ -104,6 +104,31 @@ makeinstall_target() {
         sed -i "s|<!--RG351V inputConfig|<inputConfig|g" "$INSTALL/usr/config/emulationstation/es_input.cfg"
         sed -i "s|inputConfig RG351V-->|inputConfig>|g" "$INSTALL/usr/config/emulationstation/es_input.cfg"
     fi
+
+# Remove unused cores
+CORESFILE="$INSTALL/usr/config/emulationstation/es_systems.cfg"
+
+if [ "${DEVICE}" != "Amlogic-ng" ]; then
+    if [[ ${DEVICE} == "OdroidGoAdvance" || "$DEVICE" == "RG351P" || "$DEVICE" == "RG351V" || "$DEVICE" == "GameForce" ]]; then
+        remove_cores="mesen-s quicknes mame2016 mesen"
+    elif [ "${DEVICE}" == "Amlogic" ]; then
+        remove_cores="mesen-s quicknes mame2016 mesen"
+        xmlstarlet ed -L -P -d "/systemList/system[name='saturn']" ${CORESFILE}
+    fi
+    
+    for discore in ${remove_cores}; do
+        sed -i "s|<core>$discore</core>||g" ${CORESFILE}
+        sed -i '/^[[:space:]]*$/d' ${CORESFILE}
+    done
+fi
+
+# Remove Retrorun For unsupported devices
+if [[ ${DEVICE} != "OdroidGoAdvance" ]] && [[ "${DEVICE}" != "RG351P" ]] && [[ "${DEVICE}" != "RG351V" ]] && [[ "${DEVICE}" != "GameForce" ]]; then
+	xmlstarlet ed -L -P -d "/systemList/system/emulators/emulator[@name='retrorun']" ${CORESFILE}
+else
+	# remove duckstation for the OGA/GF
+	xmlstarlet ed -L -P -d "/systemList/system/emulators/emulator[@name='Duckstation']" ${CORESFILE}
+fi
 }
 
 post_install() {  

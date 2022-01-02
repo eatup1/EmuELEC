@@ -18,12 +18,12 @@ PKG_TOOLCHAIN="make"
 PKG_NEED_UNPACK="$(get_pkg_directory busybox)"
 
 PKG_EXPERIMENTAL="munt nestopiaCV quasi88 xmil np2kai hypseus-singe dosbox-x"
-PKG_EMUS="$LIBRETRO_CORES advancemame PPSSPPSDL amiberry hatarisa openbor dosbox-staging mupen64plus-nx mupen64plus-nx-alt scummvmsa stellasa solarus dosbox-pure pcsx_rearmed ecwolf potator freej2me duckstation flycastsa fmsx-libretro jzintv mupen64plussa"
+PKG_EMUS="$LIBRETRO_CORES advancemame PPSSPPSDL amiberry hatarisa openbor dosbox-staging mupen64plus-nx mupen64plus-nx-alt scummvmsa stellasa solarus dosbox-pure pcsx_rearmed ecwolf potator freej2me duckstation-lr duckstation flycastsa fmsx-libretro jzintv mupen64plussa"
 PKG_TOOLS="emuelec-tools"
 PKG_DEPENDS_TARGET+=" $PKG_TOOLS $PKG_EMUS $PKG_EXPERIMENTAL emuelec-ports"
 
 # Removed cores for space and/or performance
-# PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET mame2015 fba4arm reicastsa reicastsa_old mba.mini.plus $LIBRETRO_EXTRA_CORES xow"
+# PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET mame2015 fba4arm mba.mini.plus $LIBRETRO_EXTRA_CORES xow"
 
 # These packages are only meant for S922x, S905x2 and A311D devices as they run poorly on S905" 
 if [ "${DEVICE}" == "Amlogic-ng" ]; then
@@ -39,8 +39,8 @@ if [ "$DEVICE" == "OdroidGoAdvance" -o "$DEVICE" == "RG351P" -o "$DEVICE" == "RG
     PKG_DEPENDS_TARGET+=" kmscon odroidgoa-utils"
     
     #we disable some cores that are not working or work poorly on OGA
-    for discore in mesen-s virtualjaguar quicknes reicastsa_old reicastsa MC; do
-        PKG_DEPENDS_TARGET=$(echo $PKG_DEPENDS_TARGET | sed "s|$discore||")
+    for discore in duckstation mesen-s virtualjaguar quicknes MC; do
+         PKG_DEPENDS_TARGET=$(echo $PKG_DEPENDS_TARGET | sed "s|$discore | |")
     done
     PKG_DEPENDS_TARGET+=" yabasanshiro"
 else
@@ -49,8 +49,8 @@ fi
 
 # These cores do not work, or are not needed on aarch64, this package needs cleanup :) 
 if [ "$ARCH" == "aarch64" ]; then
-for discore in munt_neon quicknes reicastsa_old reicastsa parallel-n64 pcsx_rearmed; do
-		PKG_DEPENDS_TARGET=$(echo $PKG_DEPENDS_TARGET | sed "s|$discore||")
+for discore in munt_neon quicknes parallel-n64 pcsx_rearmed; do
+		PKG_DEPENDS_TARGET=$(echo $PKG_DEPENDS_TARGET | sed "s|$discore| |")
 	done
 PKG_DEPENDS_TARGET+=" swanstation emuelec-32bit-libs"
 
@@ -71,8 +71,8 @@ fi
 
 makeinstall_target() {
    
-	mkdir -p $INSTALL/usr/bin
-	cp -rf $PKG_DIR/bin $INSTALL/usr
+    mkdir -p $INSTALL/usr/bin
+    cp -rf $PKG_DIR/bin $INSTALL/usr
 
     if [ "${DEVICE}" == "Amlogic-ng" ]; then
     	cp $PKG_BUILD/fbfix/fbfix $INSTALL/usr/bin
@@ -169,7 +169,7 @@ if [[ ${DEVICE} == "RG351P" ]]; then
 fi
 
 # Remove scripts from OdroidGoAdvance build
-if [[ ${DEVICE} == "OdroidGoAdvance" || ${DEVICE} == "RG351P" || ${DEVICE} == "RG351V" || "$DEVICE" == "GameForce" ]]; then 
+if [[ ${DEVICE} == "OdroidGoAdvance" || "${DEVICE}" == "RG351P" || "${DEVICE}" == "RG351V" || "$DEVICE" == "GameForce" ]]; then 
   for i in "wifi" "sselphs_scraper" "skyscraper" "system_info"; do 
   xmlstarlet ed -L -P -d "/gameList/game[name='${i}']" $INSTALL/usr/bin/scripts/setup/gamelist.xml
   rm "$INSTALL/usr/bin/scripts/setup/${i}.sh"
@@ -177,34 +177,12 @@ if [[ ${DEVICE} == "OdroidGoAdvance" || ${DEVICE} == "RG351P" || ${DEVICE} == "R
 fi 
 
 # Remove scripts from except RG351P/V build
-if [[ ${DEVICE} != "RG351P" && ${DEVICE} != "RG351V" ]]; then 
+if [[ "${DEVICE}" != "RG351P" && "${DEVICE}" != "RG351V" ]]; then 
   for i in "RG351_input_Test" ; do 
   xmlstarlet ed -L -P -d "/gameList/game[name='${i}']" $INSTALL/usr/bin/scripts/setup/gamelist.xml
   rm "$INSTALL/usr/bin/scripts/setup/${i}.sh"
   done
 fi 
-
-# Remove unused cores
-CORESFILE="$INSTALL/usr/config/emulationstation/es_systems.cfg"
-
-if [ "${DEVICE}" != "Amlogic-ng" ]; then
-    if [[ ${DEVICE} == "OdroidGoAdvance" || ${DEVICE} == "RG351P" || ${DEVICE} == "RG351V" || "$DEVICE" == "GameForce" ]]; then
-        remove_cores="mesen-s quicknes REICASTSA_OLD REICASTSA mame2016 mesen"
-    elif [ "${DEVICE}" == "Amlogic" ]; then
-        remove_cores="mesen-s quicknes mame2016 mesen"
-        xmlstarlet ed -L -P -d "/systemList/system[name='saturn']" $CORESFILE
-    fi
-    
-    for discore in ${remove_cores}; do
-        sed -i "s|<core>$discore</core>||g" $CORESFILE
-        sed -i '/^[[:space:]]*$/d' $CORESFILE
-    done
-fi
-
-# Remove Retrorun For unsupported devices
-if [[ ${DEVICE} != "OdroidGoAdvance" ]] && [[ ${DEVICE} != "RG351P" ]] && [[ ${DEVICE} != "RG351V" ]] && [[ "${DEVICE}" != "GameForce" ]]; then
-	xmlstarlet ed -L -P -d "/systemList/system/emulators/emulator[@name='retrorun']" $CORESFILE
-fi
 
 #For automatic updates we use the buildate
 	date +"%Y%m%d" > $INSTALL/usr/buildate
