@@ -30,7 +30,7 @@ fi
 }
 
 pre_make_target() {
-if [ "$DEVICE" == "OdroidGoAdvance" ] || [ "$DEVICE" == "GameForce" ]; then
+if [ "$DEVICE" == "OdroidGoAdvance" -o "$DEVICE" == "RG351P" -o "$DEVICE" == "RG351V" ] || [ "$DEVICE" == "GameForce" ]; then
 # Since we removed "-lrga" from host we need to re-add it for target, hacky way of doing it but for now it works.
 if ! `grep -rnw "${PKG_BUILD}/CMakeLists.txt" -e '-lrga'`; then
 	sed -i "s|--no-undefined|--no-undefined -lrga|" ${PKG_BUILD}/CMakeLists.txt
