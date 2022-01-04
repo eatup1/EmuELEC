@@ -1,6 +1,6 @@
 --- a/Makefile
 +++ b/Makefile
-@@ -280,6 +280,59 @@
+@@ -284,6 +284,59 @@
     PLATFORM_EXT := unix
     WITH_DYNAREC=arm
     HAVE_NEON=1
