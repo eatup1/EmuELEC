@@ -17,10 +17,10 @@ PKG_TOOLCHAIN="make"
 PKG_BUILD_FLAGS="-lto"
 
 if [[ "$ARCH" == "arm" ]]; then
-	PKG_PATCH_DIRS="${ARCH}"
 	PKG_MAKE_OPTS_TARGET=" platform=${DEVICE}"
 	
 	if [ "${DEVICE}" == "OdroidGoAdvance" -o "${DEVICE}" == "RG351P" -o "${DEVICE}" == "RG351V" ] || [ "$DEVICE" == "GameForce" ]; then
+		PKG_PATCH_DIRS="${ARCH}"
 		PKG_MAKE_OPTS_TARGET=" platform=Odroidgoa"
 	fi
 else
