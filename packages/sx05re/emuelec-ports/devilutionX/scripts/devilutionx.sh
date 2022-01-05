@@ -10,20 +10,6 @@ DIABLOPATH="/storage/.local/share/diasurgical/devilution"
 DIABLOMPQPATH="/usr/local/share/diasurgical/devilutionx"
 DIABLOROMPATH="/storage/roms/ports/diablo"
 
-EELANG=$(echo ${LANG} | cut -d= -f2 | cut -d_ -f1)
-
-if [ "${EELANG}" == "en" ]; then
-    LANG=""
-elif [ "${EELANG}" == "ko" -o "${EELANG}" == "pt" -o "${EELANG}" == "zh" ]; then
-    EELANG=$(echo ${LANG} | cut -d= -f2 | cut -d. -f1)
-fi
-
-mkdir -p ${DIABLOPATH}
-
-if [ -e ${DIABLOPATH}/diablo.ini ]; then
-    sed -i "s|Code=.*|Code=${EELANG}|g" ${DIABLOPATH}/diablo.ini
-fi
-
 if [ -e ${DIABLOMPQPATH}/devilutionx.mpq ]; then
     if [ ! -L ${DIABLOPATH}/devilutionx.mpq ]; then
         ln -sf ${DIABLOMPQPATH}/devilutionx.mpq ${DIABLOPATH}/devilutionx.mpq

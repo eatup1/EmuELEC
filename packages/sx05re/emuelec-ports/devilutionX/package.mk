@@ -25,21 +25,15 @@ sed -i "s|languages.emplace_back(\"zh_TW\"|//languages.emplace_back(\"zh_TW\"|" 
 
 # copy korean translation
 cp -rf $PKG_DIR/Translations/ko_KR.po $PKG_BUILD/Translations/ko_KR.po
-
-# change assets path
-sed -i "s|assets/|assets_dvx/|" $PKG_BUILD/Source/utils/paths.cpp
 }
 
 makeinstall_target() { 
-mkdir -p $INSTALL/usr/bin/assets_dvx
+mkdir -p $INSTALL/usr/bin
 cp -rf $PKG_BUILD/.$TARGET_NAME/devilutionx $INSTALL/usr/bin
 cp -rf $PKG_DIR/scripts/* $INSTALL/usr/bin
-cp -rf $PKG_BUILD/.$TARGET_NAME/assets/* $INSTALL/usr/bin/assets_dvx/
 
 mkdir -p ${INSTALL}/usr/local/share/diasurgical/devilutionx/
 cp $PKG_BUILD/.$TARGET_NAME/devilutionx.mpq ${INSTALL}/usr/local/share/diasurgical/devilutionx/
 cp $PKG_DIR/fonts/fonts.mpq ${INSTALL}/usr/local/share/diasurgical/devilutionx/
  
-mkdir -p ${INSTALL}/usr/config/emuelec/configs/devilution/langs
-mv $INSTALL/usr/bin/assets_dvx/*.gmo ${INSTALL}/usr/config/emuelec/configs/devilution/langs
 }
