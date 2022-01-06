@@ -2,7 +2,7 @@
 # Copyright (C) 2020-present Shanti Gilbert (https://github.com/shantigilbert)
 
 PKG_NAME="devilutionX"
-PKG_VERSION="a4bc8fea7d4d368c036c0e45602ed5983ec04926"
+PKG_VERSION="8e6433f400f3508925490c4d2735a1546d085076"
 PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="unlicense"
@@ -14,17 +14,14 @@ GET_HANDLER_SUPPORT="git"
 PKG_BUILD_FLAGS="-lto"
 
 pre_configure_target() {
-PKG_CMAKE_OPTS_TARGET=" -DBINARY_RELEASE=1 -DCMAKE_BUILD_TYPE="Release" -DDEBUG=OFF -DPREFILL_PLAYER_NAME=ON -DDEVILUTIONX_SYSTEM_LIBSODIUM=OFF -DMO_LANG_DIR=\"/emuelec/configs/devilution/langs/\""
+PKG_CMAKE_OPTS_TARGET=" -DBINARY_RELEASE=1 -DCMAKE_BUILD_TYPE="Release" -DDEBUG=OFF -DPREFILL_PLAYER_NAME=ON -DDEVILUTIONX_SYSTEM_LIBSODIUM=OFF"
 sed -i "s|;-static-libstdc++>|;-lstdc++>|" $PKG_BUILD/CMakeLists.txt
 
 # Remove ja zh due to font size 
 sed -i "s|ja ko_KR pl pt_BR ro_RO ru uk sv zh_CN zh_TW)|ko_KR pl pt_BR ro_RO ru uk sv)|" $PKG_BUILD/CMakeLists.txt
-sed -i "s|languages.emplace_back(\"ja\"|//languages.emplace_back(\"ja\"|" $PKG_BUILD/Source/options.cpp
-sed -i "s|languages.emplace_back(\"zh_CN\"|//languages.emplace_back(\"zh_CN\"|" $PKG_BUILD/Source/options.cpp
-sed -i "s|languages.emplace_back(\"zh_TW\"|//languages.emplace_back(\"zh_TW\"|" $PKG_BUILD/Source/options.cpp
 
 # copy korean translation
-cp -rf $PKG_DIR/Translations/ko_KR.po $PKG_BUILD/Translations/ko_KR.po
+cp -rf $PKG_DIR/Translations/ko.po $PKG_BUILD/Translations/ko.po
 }
 
 makeinstall_target() { 

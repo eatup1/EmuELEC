@@ -1,22 +1,71 @@
 diff --git a/Source/options.cpp b/Source/options.cpp
-index 66f271bc..3eb2d9bf 100644
+index 9f29120d..cb0bc2a8 100644
 --- a/Source/options.cpp
 +++ b/Source/options.cpp
-@@ -316,7 +316,7 @@ void LoadOptions()
- 	sgOptions.Graphics.bVSync = GetIniBool("Graphics", "Vertical Sync", true);
- 	sgOptions.Graphics.nGammaCorrection = GetIniInt("Graphics", "Gamma Correction", 100);
- #if SDL_VERSION_ATLEAST(2, 0, 0)
--	sgOptions.Graphics.bHardwareCursor = GetIniBool("Graphics", "Hardware Cursor", HardwareCursorDefault());
-+	sgOptions.Graphics.bHardwareCursor = GetIniBool("Graphics", "Hardware Cursor", false);
- 	sgOptions.Graphics.bHardwareCursorForItems = GetIniBool("Graphics", "Hardware Cursor For Items", false);
- 	sgOptions.Graphics.nHardwareCursorMaxSize = GetIniInt("Graphics", "Hardware Cursor Maximum Size", 128);
+@@ -218,7 +218,7 @@ void SaveIni()
+ 	IniChanged = false;
+ }
+ 
+-#if SDL_VERSION_ATLEAST(2, 0, 0)
++#if 0//#if SDL_VERSION_ATLEAST(2, 0, 0)
+ bool HardwareCursorDefault()
+ {
+ #if defined(__ANDROID__) || defined(TARGET_OS_IPHONE)
+@@ -304,7 +304,7 @@ void OptionAudioChanged()
+ Options sgOptions;
+ bool sbWasOptionsLoaded = false;
+ 
+-#if SDL_VERSION_ATLEAST(2, 0, 0)
++#if 0//#if SDL_VERSION_ATLEAST(2, 0, 0)
+ bool HardwareCursorSupported()
+ {
+ #if defined(TARGET_OS_IPHONE)
+@@ -758,7 +758,7 @@ GraphicsOptions::GraphicsOptions()
+     , vSync("Vertical Sync", OptionEntryFlags::RecreateUI, N_("Vertical Sync"), N_("Forces waiting for Vertical Sync. Prevents tearing effect when drawing a frame. Disabling it can help with mouse lag on some systems."), true)
  #endif
-@@ -794,7 +794,7 @@ void OptionEntryLanguageCode::LoadFromIni(string_view category)
- 	if (!HasTranslation(locale)) {
- 		locale = locale.substr(0, 2);
- 		if (!HasTranslation(locale)) {
--			locale = "en";
-+			locale = "ko_KR";
- 		}
+     , colorCycling("Color Cycling", OptionEntryFlags::None, N_("Color Cycling"), N_("Color cycling effect used for water, lava, and acid animation."), true)
+-#if SDL_VERSION_ATLEAST(2, 0, 0)
++#if 0//#if SDL_VERSION_ATLEAST(2, 0, 0)
+     , hardwareCursor("Hardware Cursor", OptionEntryFlags::CantChangeInGame | OptionEntryFlags::RecreateUI | (HardwareCursorSupported() ? OptionEntryFlags::None : OptionEntryFlags::Invisible), N_("Hardware Cursor"), N_("Use a hardware cursor"), HardwareCursorDefault())
+     , hardwareCursorForItems("Hardware Cursor For Items", OptionEntryFlags::CantChangeInGame | (HardwareCursorSupported() ? OptionEntryFlags::None : OptionEntryFlags::Invisible), N_("Hardware Cursor For Items"), N_("Use a hardware cursor for items."), false)
+     , hardwareCursorMaxSize("Hardware Cursor Maximum Size", OptionEntryFlags::CantChangeInGame | OptionEntryFlags::RecreateUI | (HardwareCursorSupported() ? OptionEntryFlags::None : OptionEntryFlags::Invisible), N_("Hardware Cursor Maximum Size"), N_("Maximum width / height for the hardware cursor. Larger cursors fall back to software."), 128, { 0, 64, 128, 256, 512 })
+@@ -797,7 +797,7 @@ std::vector<OptionEntryBase *> GraphicsOptions::GetEntries()
+ 		&vSync,
+ #endif
+ 		&colorCycling,
+-#if SDL_VERSION_ATLEAST(2, 0, 0)
++#if 0//#if SDL_VERSION_ATLEAST(2, 0, 0)
+ 		&hardwareCursor,
+ 		&hardwareCursorForItems,
+ 		&hardwareCursorMaxSize,
+@@ -951,7 +951,7 @@ void OptionEntryLanguageCode::LoadFromIni(string_view category)
  	}
- 	LogVerbose("Best match locale: {}", locale);
+ 
+ 	LogVerbose("No suitable translation found");
+-	strcpy(szCode, "en");
++	strcpy(szCode, "ko");	// default language to ko
+ }
+ void OptionEntryLanguageCode::SaveToIni(string_view category) const
+ {
+@@ -975,7 +975,8 @@ void OptionEntryLanguageCode::CheckLanguagesAreInitialized() const
+ 	languages.emplace_back("it", "Italiano");
+ 
+ 	if (font_mpq) {
+-		languages.emplace_back("ja", "日本語");
++		//remove japanese font
++		//languages.emplace_back("ja", "日本語");
+ 		languages.emplace_back("ko", "한국어");
+ 	}
+ 
+@@ -987,8 +988,9 @@ void OptionEntryLanguageCode::CheckLanguagesAreInitialized() const
+ 	languages.emplace_back("uk", "Українська");
+ 
+ 	if (font_mpq) {
+-		languages.emplace_back("zh_CN", "汉语");
+-		languages.emplace_back("zh_TW", "漢語");
++		//remove chinese font
++		//languages.emplace_back("zh_CN", "汉语");
++		//languages.emplace_back("zh_TW", "漢語");
+ 	}
+ 
+ 	// Ensures that the ini specified language is present in languages list even if unknown (for example if someone starts to translate a new language)
