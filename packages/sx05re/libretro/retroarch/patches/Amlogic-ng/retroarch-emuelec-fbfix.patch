@@ -2,7 +2,7 @@ diff --git a/tasks/task_content.c b/tasks/task_content.c
 index cdce01158c..39f43e8bc0 100644
 --- a/tasks/task_content.c
 +++ b/tasks/task_content.c
-@@ -787,7 +787,9 @@ static bool content_file_load_into_memory(
+@@ -788,7 +788,9 @@ static bool content_file_load_into_memory(
  
     *data      = content_data;
     *data_size = (size_t)content_size;
@@ -13,7 +13,7 @@ index cdce01158c..39f43e8bc0 100644
     return true;
  }
  
-@@ -1366,6 +1368,7 @@ static void content_load_init_wrap(
+@@ -1375,6 +1377,7 @@ static void content_load_init_wrap(
     {
        RARCH_LOG("[Core]: Using content: \"%s\".\n", args->content_path);
        argv[(*argc)++] = strdup(args->content_path);
@@ -21,7 +21,7 @@ index cdce01158c..39f43e8bc0 100644
     }
  #ifdef HAVE_MENU
     else
-@@ -1736,7 +1739,7 @@ static bool command_event_cmd_exec(
+@@ -1745,7 +1748,7 @@ static bool command_event_cmd_exec(
  #else
     frontend_driver_set_fork(FRONTEND_FORK_CORE_WITH_ARGS);
  #endif
@@ -34,7 +34,7 @@ diff --git a/retroarch.c b/retroarch.c
 index a94c6a7f5e..3692056edd 100644
 --- a/retroarch.c
 +++ b/retroarch.c
-@@ -3275,6 +3275,8 @@ bool command_event(enum event_command cmd, void *data)
+@@ -3278,6 +3278,8 @@ bool command_event(enum event_command cmd, void *data)
                 RARCH_LOG("[Input]: %s => %s\n",
                       "Game Focus",
                       input_st->game_focus_state.enabled ? "ON" : "OFF");
