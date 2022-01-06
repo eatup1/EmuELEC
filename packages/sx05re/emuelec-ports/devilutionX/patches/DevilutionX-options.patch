@@ -1,43 +1,25 @@
 diff --git a/Source/options.cpp b/Source/options.cpp
-index 9f29120d..cb0bc2a8 100644
+index 9f29120d..4863e549 100644
 --- a/Source/options.cpp
 +++ b/Source/options.cpp
-@@ -218,7 +218,7 @@ void SaveIni()
- 	IniChanged = false;
- }
- 
--#if SDL_VERSION_ATLEAST(2, 0, 0)
-+#if 0//#if SDL_VERSION_ATLEAST(2, 0, 0)
+@@ -221,7 +221,7 @@ void SaveIni()
+ #if SDL_VERSION_ATLEAST(2, 0, 0)
  bool HardwareCursorDefault()
  {
- #if defined(__ANDROID__) || defined(TARGET_OS_IPHONE)
-@@ -304,7 +304,7 @@ void OptionAudioChanged()
- Options sgOptions;
- bool sbWasOptionsLoaded = false;
- 
--#if SDL_VERSION_ATLEAST(2, 0, 0)
-+#if 0//#if SDL_VERSION_ATLEAST(2, 0, 0)
+-#if defined(__ANDROID__) || defined(TARGET_OS_IPHONE)
++#if 1//#if defined(__ANDROID__) || defined(TARGET_OS_IPHONE)
+ 	// See https://github.com/diasurgical/devilutionX/issues/2502
+ 	return false;
+ #else
+@@ -307,7 +307,7 @@ bool sbWasOptionsLoaded = false;
+ #if SDL_VERSION_ATLEAST(2, 0, 0)
  bool HardwareCursorSupported()
  {
- #if defined(TARGET_OS_IPHONE)
-@@ -758,7 +758,7 @@ GraphicsOptions::GraphicsOptions()
-     , vSync("Vertical Sync", OptionEntryFlags::RecreateUI, N_("Vertical Sync"), N_("Forces waiting for Vertical Sync. Prevents tearing effect when drawing a frame. Disabling it can help with mouse lag on some systems."), true)
- #endif
-     , colorCycling("Color Cycling", OptionEntryFlags::None, N_("Color Cycling"), N_("Color cycling effect used for water, lava, and acid animation."), true)
--#if SDL_VERSION_ATLEAST(2, 0, 0)
-+#if 0//#if SDL_VERSION_ATLEAST(2, 0, 0)
-     , hardwareCursor("Hardware Cursor", OptionEntryFlags::CantChangeInGame | OptionEntryFlags::RecreateUI | (HardwareCursorSupported() ? OptionEntryFlags::None : OptionEntryFlags::Invisible), N_("Hardware Cursor"), N_("Use a hardware cursor"), HardwareCursorDefault())
-     , hardwareCursorForItems("Hardware Cursor For Items", OptionEntryFlags::CantChangeInGame | (HardwareCursorSupported() ? OptionEntryFlags::None : OptionEntryFlags::Invisible), N_("Hardware Cursor For Items"), N_("Use a hardware cursor for items."), false)
-     , hardwareCursorMaxSize("Hardware Cursor Maximum Size", OptionEntryFlags::CantChangeInGame | OptionEntryFlags::RecreateUI | (HardwareCursorSupported() ? OptionEntryFlags::None : OptionEntryFlags::Invisible), N_("Hardware Cursor Maximum Size"), N_("Maximum width / height for the hardware cursor. Larger cursors fall back to software."), 128, { 0, 64, 128, 256, 512 })
-@@ -797,7 +797,7 @@ std::vector<OptionEntryBase *> GraphicsOptions::GetEntries()
- 		&vSync,
- #endif
- 		&colorCycling,
--#if SDL_VERSION_ATLEAST(2, 0, 0)
-+#if 0//#if SDL_VERSION_ATLEAST(2, 0, 0)
- 		&hardwareCursor,
- 		&hardwareCursorForItems,
- 		&hardwareCursorMaxSize,
+-#if defined(TARGET_OS_IPHONE)
++#if 1//#if defined(TARGET_OS_IPHONE)
+ 	return false;
+ #else
+ 	SDL_version v;
 @@ -951,7 +951,7 @@ void OptionEntryLanguageCode::LoadFromIni(string_view category)
  	}
  

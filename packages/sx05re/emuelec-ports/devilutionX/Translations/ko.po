@@ -1312,7 +1312,7 @@ msgstr ""
 
 #: Source/discord/discord.cpp:66 Source/objects.cpp:135
 msgid "Town"
-msgstr ""
+msgstr "마을"
 
 #: Source/discord/discord.cpp:66
 msgid "Cathedral"
@@ -5729,10 +5729,6 @@ msgstr "탁발 수도사의"
 #: Source/objects.cpp:134
 msgid "Sparkling"
 msgstr "반짝이는"
-
-#: Source/objects.cpp:135
-msgid "Town"
-msgstr "마을"
 
 #: Source/objects.cpp:136
 msgid "Shimmering"
