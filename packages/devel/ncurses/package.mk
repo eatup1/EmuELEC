@@ -50,7 +50,7 @@ PKG_CONFIGURE_OPTS_TARGET="--without-ada \
                            --without-develop \
                            --disable-hard-tabs \
                            --disable-xmc-glitch \
-                           --disable-hashmap \
+                           --enable-hashmap \
                            --disable-safe-sprintf \
                            --disable-scroll-hints \
                            --enable-widec \
@@ -65,7 +65,9 @@ PKG_CONFIGURE_OPTS_HOST="--enable-termcap \
                          --with-shared \
                          --enable-pc-files \
                          --without-manpages \
-                         --without-tests"
+                         --without-tests \
+                         --enable-hashmap \
+			 --enable-widec"
 
 post_makeinstall_target() {
   local f
