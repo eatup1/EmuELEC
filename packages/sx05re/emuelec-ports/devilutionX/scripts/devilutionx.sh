@@ -10,6 +10,8 @@ DIABLOPATH="/storage/.local/share/diasurgical/devilution"
 DIABLOMPQPATH="/usr/local/share/diasurgical/devilutionx"
 DIABLOROMPATH="/storage/roms/ports/diablo"
 
+mkdir -p ${DIABLOPATH}
+
 if [ -e ${DIABLOMPQPATH}/devilutionx.mpq ]; then
     if [ ! -L ${DIABLOPATH}/devilutionx.mpq ]; then
         ln -sf ${DIABLOMPQPATH}/devilutionx.mpq ${DIABLOPATH}/devilutionx.mpq
