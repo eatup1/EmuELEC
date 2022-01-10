@@ -959,7 +959,7 @@ index 1c0800f37..62f74e402 100644
  #undef CPS1_68K_PROGRAM_NO_BYTESWAP
  #undef CPS1_Z80_PROGRAM
 diff --git a/src/burn/drv/capcom/d_cps2.cpp b/src/burn/drv/capcom/d_cps2.cpp
-index e7191e9d4..5ea29117c 100644
+index 6f15f10ea..27ceec74d 100644
 --- a/src/burn/drv/capcom/d_cps2.cpp
 +++ b/src/burn/drv/capcom/d_cps2.cpp
 @@ -646,6 +646,34 @@ static struct BurnInputInfo MpangInputList[] = {
@@ -997,7 +997,7 @@ index e7191e9d4..5ea29117c 100644
  static struct BurnInputInfo ProgearInputList[] = {
  	{"P1 Coin"          , BIT_DIGITAL  , CpsInp020+4, "p1 coin"   },
  	{"P1 Start"         , BIT_DIGITAL  , CpsInp020+0, "p1 start"  },
-@@ -14095,3 +14123,855 @@ struct BurnDriver BurnDrvCpsGigaman2 = {
+@@ -14139,3 +14167,856 @@ struct BurnDriver BurnDrvCpsGigaman2 = {
  	Gigaman2Init, Gigaman2Exit, Cps2Frame, CpsRedraw, Gigaman2Scan,
  	&CpsRecalcPal, 0x1000, 384, 224, 4, 3
  };
@@ -1853,6 +1853,7 @@ index e7191e9d4..5ea29117c 100644
 +	PhoenixInit, DrvExit, Cps2Frame, CpsRedraw, CpsAreaScan,
 +	&CpsRecalcPal, 0x1000, 384, 224, 4, 3
 +};
++
 diff --git a/src/burn/drv/irem/d_m92.cpp b/src/burn/drv/irem/d_m92.cpp
 index 1b46f97e9..874b6bd3f 100644
 --- a/src/burn/drv/irem/d_m92.cpp
@@ -1941,10 +1942,10 @@ index 1b46f97e9..874b6bd3f 100644
 +	320, 240, 4, 3
 +};
 diff --git a/src/burn/drv/megadrive/d_megadrive.cpp b/src/burn/drv/megadrive/d_megadrive.cpp
-index cbdf6f2ba..bded39905 100644
+index 72fa09046..647d5b113 100644
 --- a/src/burn/drv/megadrive/d_megadrive.cpp
 +++ b/src/burn/drv/megadrive/d_megadrive.cpp
-@@ -53622,3 +53622,462 @@ struct BurnDriver BurnDrvmd_tpwresen = {
+@@ -53750,3 +53750,462 @@ struct BurnDriver BurnDrvmd_cannonfire = {
  	MegadriveInit, MegadriveExit, MegadriveFrame, MegadriveDraw, MegadriveScan,
  	&bMegadriveRecalcPalette, 0x100, 320, 224, 4, 3
  };
@@ -2408,7 +2409,7 @@ index cbdf6f2ba..bded39905 100644
 +	&bMegadriveRecalcPalette, 0x100, 320, 224, 4, 3
 +};
 diff --git a/src/burn/drv/neogeo/d_neogeo.cpp b/src/burn/drv/neogeo/d_neogeo.cpp
-index 9482bcf42..1628e14c5 100644
+index c6882750e..a72ce1ed1 100644
 --- a/src/burn/drv/neogeo/d_neogeo.cpp
 +++ b/src/burn/drv/neogeo/d_neogeo.cpp
 @@ -110,7 +110,7 @@ static struct BurnDIPInfo ms5pcbDIPList[] = {
@@ -2510,7 +2511,7 @@ index 9482bcf42..1628e14c5 100644
  
  	// DIP 1
  	{0,		0xFE, 0,	2,	  "Setting mode"},
-@@ -20838,3 +20838,2886 @@ struct BurnDriver BurnDrvCabalng = {
+@@ -20925,3 +20925,2886 @@ struct BurnDriver BurnDrvHypernoid = {
  	NeoInit, NeoExit, NeoFrame, NeoRender, NeoScan, &NeoRecalcPalette,
  	0x1000, 304, 224, 4, 3
  };
@@ -5502,10 +5503,10 @@ index 82ffa5f2a..0f4995272 100644
 +	256, 224, 4, 3
 +};
 diff --git a/src/burner/libretro/retro_input.cpp b/src/burner/libretro/retro_input.cpp
-index ac714003f..c4e14a884 100644
+index 219e86368..181e75b83 100644
 --- a/src/burner/libretro/retro_input.cpp
 +++ b/src/burner/libretro/retro_input.cpp
-@@ -1680,6 +1680,36 @@ static INT32 GameInpSpecialOne(struct GameInp* pgi, INT32 nPlayer, char* szb, ch
+@@ -1714,6 +1714,36 @@ static INT32 GameInpSpecialOne(struct GameInp* pgi, INT32 nPlayer, char* szb, ch
  		}
  	}
  
