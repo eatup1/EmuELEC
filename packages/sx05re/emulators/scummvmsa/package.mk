@@ -2,8 +2,8 @@
 # Copyright (C) 2019-present Shanti Gilbert (https://github.com/shantigilbert)
 
 PKG_NAME="scummvmsa"
-PKG_VERSION="c515216cd367a1de219d119986bb202177afe36f"
-PKG_SHA256="c95ab02b298d3cacbac58855351b567c6a64656c40591208404b6486aa13a1ef"
+PKG_VERSION="3a0e9d98fcb69ee201ad5a0bd6b4182868877350"
+PKG_SHA256="105cbcf89ad43bf19d98bb0e8c822fb0379113f2a4432d3175efc3e7eae01fd8"
 PKG_REV="1"
 PKG_LICENSE="GPL2"
 PKG_SITE="https://github.com/scummvm/scummvm"
@@ -18,9 +18,8 @@ TARGET_CONFIGURE_OPTS="--host=${TARGET_NAME} --backend=sdl --enable-vkeybd --ena
 }
 
 post_makeinstall_target() {
-mkdir -p $INSTALL/usr/config/scummvm/extra 
+mkdir -p $INSTALL/usr/config/scummvm
 	cp -rf $PKG_DIR/config/* $INSTALL/usr/config/scummvm/
-	cp -rf $PKG_BUILD/backends/vkeybd/packs/*.zip $INSTALL/usr/config/scummvm/extra
 
 mv $INSTALL/usr/local/bin $INSTALL/usr/
 	cp -rf $PKG_DIR/bin/* $INSTALL/usr/bin
