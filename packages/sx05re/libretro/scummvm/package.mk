@@ -19,7 +19,7 @@
 ################################################################################
 
 PKG_NAME="scummvm"
-PKG_VERSION="63e57573a9ffe71a1083ff46d9cd210203b87afb"
+PKG_VERSION="80cb7269a33b233dcea27d8d01df084b0d35c80a"
 PKG_SHA256="b5be836e068caf16418d3fde87c6ba436b31d87e1d9627855ba463bb0841a5d5"
 PKG_REV="1"
 PKG_ARCH="any"
