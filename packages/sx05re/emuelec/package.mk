@@ -150,6 +150,7 @@ fi
    ln -sf emuelec.target $INSTALL/usr/lib/systemd/system/default.target
    enable_service emuelec-autostart.service
    enable_service emuelec-disable_small_cores.service
+   enable_service bluetooth-agent.service
   
 # Thanks to vpeter we can now have bash :) 
   rm -f $INSTALL/usr/bin/{sh,bash,busybox,sort,wget}

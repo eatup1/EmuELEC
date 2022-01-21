@@ -2,7 +2,7 @@
 # Copyright (C) 2019-present Shanti Gilbert (https://github.com/shantigilbert)
 
 PKG_NAME="emuelec-emulationstation"
-PKG_VERSION="b48179dc82ae2df6a5978aba80fcc14521a85bf7"
+PKG_VERSION="48cbbaab3b5e6e6060d81b6d9b61779998c4254e"
 PKG_GIT_CLONE_BRANCH="EmuELEC"
 PKG_REV="1"
 PKG_ARCH="any"
@@ -55,10 +55,17 @@ makeinstall_target() {
 	ln -sf /storage/.config/emuelec/configs/locale $INSTALL/usr/lib/locale
 	
 	mkdir -p $INSTALL/usr/config/emulationstation/resources
+<<<<<<< HEAD
 	cp -rf $PKG_BUILD/resources/* $INSTALL/usr/config/emulationstation/resources/
 
 	mkdir -p $INSTALL/usr/lib/python3.7
 	cp -rf $PKG_DIR/bluez/* $INSTALL/usr/lib/python3.7
+=======
+    cp -rf $PKG_BUILD/resources/* $INSTALL/usr/config/emulationstation/resources/
+    
+	mkdir -p $INSTALL/usr/lib/${PKG_PYTHON_VERSION}
+	cp -rf $PKG_DIR/bluez/* $INSTALL/usr/lib/${PKG_PYTHON_VERSION}
+>>>>>>> a2c1984ce1e024c0e2d5b847c54609860ac1e250
 	
 	mkdir -p $INSTALL/usr/bin
 	ln -sf /storage/.config/emulationstation/resources $INSTALL/usr/bin/resources
