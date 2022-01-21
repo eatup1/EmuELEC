@@ -55,17 +55,10 @@ makeinstall_target() {
 	ln -sf /storage/.config/emuelec/configs/locale $INSTALL/usr/lib/locale
 	
 	mkdir -p $INSTALL/usr/config/emulationstation/resources
-<<<<<<< HEAD
 	cp -rf $PKG_BUILD/resources/* $INSTALL/usr/config/emulationstation/resources/
 
-	mkdir -p $INSTALL/usr/lib/python3.7
-	cp -rf $PKG_DIR/bluez/* $INSTALL/usr/lib/python3.7
-=======
-    cp -rf $PKG_BUILD/resources/* $INSTALL/usr/config/emulationstation/resources/
-    
 	mkdir -p $INSTALL/usr/lib/${PKG_PYTHON_VERSION}
 	cp -rf $PKG_DIR/bluez/* $INSTALL/usr/lib/${PKG_PYTHON_VERSION}
->>>>>>> a2c1984ce1e024c0e2d5b847c54609860ac1e250
 	
 	mkdir -p $INSTALL/usr/bin
 	ln -sf /storage/.config/emulationstation/resources $INSTALL/usr/bin/resources
