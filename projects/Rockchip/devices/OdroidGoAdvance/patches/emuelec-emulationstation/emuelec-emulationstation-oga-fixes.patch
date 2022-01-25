@@ -1,6 +1,6 @@
 --- a/es-app/src/guis/GuiMenu.cpp
 +++ b/es-app/src/guis/GuiMenu.cpp
-@@ -1543,7 +1543,7 @@
+@@ -1544,7 +1544,7 @@
  	}
  #endif
  
