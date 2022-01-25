@@ -19,23 +19,23 @@ if [[ "$DEVICE" == "OdroidGoAdvance" || "$DEVICE" == "RG351P" || "$DEVICE" == "R
 	cp "$(get_build_dir mali-bifrost)/libmali.so_rk3326_gbm_arm32_r13p0_with_vulkan_and_cl" $PKG_BUILD/OdroidGoAdvance/usr/config/emuelec/lib32/libmali.so
 	cp -rf $PKG_BUILD/OdroidGoAdvance/* $INSTALL/
 	
-	if [[ "$DEVICE" == "GameForce" ]]; then
+	if [[ "${DEVICE}" == "GameForce" ]]; then
 	   cp -rf $PKG_BUILD/GameForce/* $INSTALL/
-	elif [[ "$DEVICE" == "RG351P" ]]; then
+	elif [[ "${DEVICE}" == "RG351P" ]]; then
 	   cp -rf $PKG_BUILD/RG351P/* $INSTALL/
-	elif [[ "$DEVICE" == "RG351V" ]]; then
+	elif [[ "${DEVICE}" == "RG351V" ]]; then
 	   cp -rf $PKG_BUILD/RG351V/* $INSTALL/
 	fi
 	
-elif [[ "$PROJECT" == "Amlogic-ng" ]]; then
+elif [[ "${DEVICE}" == "Amlogic-ng" ]]; then
     cp -p "$(get_build_dir opengl-meson)/lib/eabihf/gondul/r12p0/fbdev/libMali.so" $PKG_BUILD/Amlogic-ng/usr/config/emuelec/lib32/libMali.gondul.so
     cp -p "$(get_build_dir opengl-meson)/lib/eabihf/dvalin/r12p0/fbdev/libMali.so" $PKG_BUILD/Amlogic-ng/usr/config/emuelec/lib32/libMali.dvalin.so
     cp -rf $PKG_BUILD/Amlogic-ng/* $INSTALL/
-elif [[ "$PROJECT" == "Amlogic" ]]; then
+elif [[ "${DEVICE}" == "Amlogic" ]]; then
 	cp -rf $PKG_BUILD/Amlogic/* $INSTALL/
 fi
 
 mkdir -p $INSTALL/usr/lib
 ln -sf /emuelec/lib32 $INSTALL/usr/lib/arm-linux-gnueabihf
-ln -sf /emuelec/lib32/ld-2.29.so $INSTALL/usr/lib/ld-linux-armhf.so.3
+ln -sf /emuelec/lib32/ld-2.32.so $INSTALL/usr/lib/ld-linux-armhf.so.3
 }
