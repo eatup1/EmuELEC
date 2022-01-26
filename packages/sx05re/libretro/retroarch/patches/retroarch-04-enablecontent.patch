@@ -1,6 +1,6 @@
 --- a/menu/menu_displaylist.c	2017-08-18 06:30:31.000000000 -0500
 +++ b/menu/menu_displaylist.c	2017-08-20 01:54:59.625855817 -0500
-@@ -12069,7 +12069,7 @@
+@@ -12065,7 +12065,7 @@
        case DISPLAYLIST_OPTIONS:
           menu_entries_ctl(MENU_ENTRIES_CTL_CLEAR, info->list);
           {
@@ -11,7 +11,7 @@
                       msg_hash_to_str(MENU_ENUM_LABEL_UPDATE_LAKKA),
 --- a/menu/menu_setting.c
 +++ b/menu/menu_setting.c
-@@ -9275,7 +9275,7 @@
+@@ -9281,7 +9281,7 @@
  #endif
  #if !defined(IOS)
           /* Apple rejects iOS apps that let you forcibly quit them. */
@@ -20,7 +20,7 @@
           CONFIG_ACTION(
                 list, list_info,
                 MENU_ENUM_LABEL_QUIT_RETROARCH,
-@@ -16378,7 +16378,7 @@
+@@ -16401,7 +16401,7 @@
                    general_read_handler,
                    SD_FLAG_LAKKA_ADVANCED);
  

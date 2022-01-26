@@ -1,9 +1,9 @@
 --- a/cheevos/cheevos.c
 +++ b/cheevos/cheevos.c
-@@ -304,6 +304,12 @@
-       cheevo->active &= ~RCHEEVOS_ACTIVE_HARDCORE;
+@@ -323,6 +323,12 @@
  
-    cheevo->unlock_time = cpu_features_get_time_usec();
+    CHEEVOS_LOG(RCHEEVOS_TAG "Awarding achievement %u: %s (%s)\n",
+          cheevo->id, cheevo->title, cheevo->description);
 +
 +    char pixelcade[256];
 +    snprintf(pixelcade, sizeof(pixelcade), "/storage/.emulationstation/scripts/achievements/pixelcade.sh %u \"%s\" \"%s\" > /dev/null 2>/dev/null",

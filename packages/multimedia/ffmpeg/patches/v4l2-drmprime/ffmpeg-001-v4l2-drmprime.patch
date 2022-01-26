@@ -435,7 +435,7 @@ diff --git a/configure b/configure
 index d7a3f507e8..d203f6f7da 100755
 --- a/configure
 +++ b/configure
-@@ -3437,6 +3437,7 @@ sndio_indev_deps="sndio"
+@@ -3452,6 +3452,7 @@ sndio_indev_deps="sndio"
  sndio_outdev_deps="sndio"
  v4l2_indev_deps_any="linux_videodev2_h sys_videoio_h"
  v4l2_indev_suggest="libv4l2"

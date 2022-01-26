@@ -19,7 +19,7 @@
  }
  
  #endif
-@@ -2052,13 +2052,13 @@
+@@ -2047,13 +2052,13 @@
  
     android_app_destroy(android_app);
  #endif
