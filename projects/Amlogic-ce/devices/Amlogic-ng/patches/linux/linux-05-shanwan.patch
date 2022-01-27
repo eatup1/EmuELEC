@@ -1,10 +1,10 @@
 *** a/drivers/hid/hid-sony.c	2019-11-07 15:09:43.000000000 -0700
 --- b/drivers/hid/hid-sony.c	2019-12-13 11:10:19.353325098 -0700
 ***************
-*** 1061,1066 ****
---- 1061,1076 ----
-  	u8 led_count;
-  };
+*** 575,580 ****
+--- 575,590 ----
+  
+  static void sony_set_leds(struct sony_sc *sc);
   
 + /*
 +  * The ShanWan reports the same id as the Sony SixAxis, therefore
@@ -16,12 +16,12 @@
 +    return strstr(hdev->name, "ShanWan") || strstr(hdev->name, "SHANWAN") ;
 + }
 + 
-  static inline void sony_schedule_work(struct sony_sc *sc)
+  static inline void sony_schedule_work(struct sony_sc *sc,
+  				      enum sony_worker which)
   {
-  	if (!sc->defer_initialization)
 ***************
-*** 1134,1139 ****
---- 1144,1157 ----
+*** 812,817 ****
+--- 822,835 ----
   {
   	struct sony_sc *sc = hid_get_drvdata(hdev);
   

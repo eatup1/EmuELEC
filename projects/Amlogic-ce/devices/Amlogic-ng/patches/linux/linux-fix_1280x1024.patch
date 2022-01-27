@@ -4,28 +4,14 @@ Date: Tue, 24 Nov 2020 19:50:41 -0500
 Subject: hdmitx: fix 1280x1024p60 on g12a and newer
 
 ---
- .../media/vout/hdmitx/hdmi_common/hdmi_parameters.c  |  2 +-
  .../media/vout/hdmitx/hdmi_tx_20/hw/hw_g12a.c        | 12 ++++++++++++
- 2 files changed, 13 insertions(+), 1 deletion(-)
+ 1 files changed, 12 insertions(+)
 
-diff --git a/drivers/amlogic/media/vout/hdmitx/hdmi_common/hdmi_parameters.c b/drivers/amlogic/media/vout/hdmitx/hdmi_common/hdmi_parameters.c
-index 6787bd05b24e..7ebd07a250a5 100644
---- a/drivers/amlogic/media/vout/hdmitx/hdmi_common/hdmi_parameters.c
-+++ b/drivers/amlogic/media/vout/hdmitx/hdmi_common/hdmi_parameters.c
-@@ -2017,7 +2017,7 @@ static struct hdmi_format_para fmt_para_vesa_1280x1024p60_5x4 = {
- 	.tmds_clk = 108000,
- 	.timing = {
- 		.pixel_freq = 108000,
--		.h_freq = 64080,
-+		.h_freq = 63981,
- 		.v_freq = 60020,
- 		.vsync = 60,
- 		.vsync_polarity = 1,
 diff --git a/drivers/amlogic/media/vout/hdmitx/hdmi_tx_20/hw/hw_g12a.c b/drivers/amlogic/media/vout/hdmitx/hdmi_tx_20/hw/hw_g12a.c
 index b7fa53cea9e1..8cf418a1d965 100644
 --- a/drivers/amlogic/media/vout/hdmitx/hdmi_tx_20/hw/hw_g12a.c
 +++ b/drivers/amlogic/media/vout/hdmitx/hdmi_tx_20/hw/hw_g12a.c
-@@ -266,6 +266,18 @@ void set_g12a_hpll_clk_out(unsigned int frac_rate, unsigned int clk)
+@@ -315,6 +315,18 @@ void set_g12a_hpll_clk_out(unsigned int frac_rate, unsigned int clk)
  		WAIT_FOR_PLL_LOCKED(P_HHI_HDMI_PLL_CNTL0);
  		pr_info("HPLL: 0x%x\n", hd_read_reg(P_HHI_HDMI_PLL_CNTL0));
  		break;

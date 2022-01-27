@@ -2,7 +2,7 @@ diff --git a/drivers/amlogic/media/enhancement/amvecm/amcsc.c b/drivers/amlogic/
 index ac9a91d9fa8c..6e32156a51d6 100644
 --- a/drivers/amlogic/media/enhancement/amvecm/amcsc.c
 +++ b/drivers/amlogic/media/enhancement/amvecm/amcsc.c
-@@ -3836,8 +3836,7 @@ uint32_t sink_hdr_support(const struct vinfo_s *vinfo)
+@@ -3972,8 +3972,7 @@ uint32_t sink_hdr_support(const struct vinfo_s *vinfo)
  
  	/* when policy == follow sink(0) or force output (2) */
  	/* use force_output */
@@ -11,4 +11,4 @@ index ac9a91d9fa8c..6e32156a51d6 100644
 +	if ((get_force_output() != 0)) {
  		switch (get_force_output()) {
  		case BT709:
- 			break;
+ 		case BT_BYPASS:

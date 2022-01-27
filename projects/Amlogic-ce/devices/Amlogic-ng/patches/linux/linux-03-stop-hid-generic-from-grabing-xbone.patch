@@ -12,7 +12,7 @@ diff --git a/drivers/hid/hid-core.c b/drivers/hid/hid-core.c
 index f5e17e8ce9ba..188c25a30870 100644
 --- a/drivers/hid/hid-core.c
 +++ b/drivers/hid/hid-core.c
-@@ -2004,6 +2004,8 @@ static const struct hid_device_id hid_have_special_driver[] = {
+@@ -2074,6 +2074,8 @@ static const struct hid_device_id hid_have_special_driver[] = {
  	{ HID_USB_DEVICE(USB_VENDOR_ID_MICROSOFT, USB_DEVICE_ID_MS_DIGITAL_MEDIA_600) },
  	{ HID_USB_DEVICE(USB_VENDOR_ID_MICROSOFT, USB_DEVICE_ID_MS_DIGITAL_MEDIA_3KV1) },
  	{ HID_USB_DEVICE(USB_VENDOR_ID_MICROSOFT, USB_DEVICE_ID_MS_POWER_COVER) },
@@ -20,12 +20,12 @@ index f5e17e8ce9ba..188c25a30870 100644
 +	{ HID_BLUETOOTH_DEVICE(USB_VENDOR_ID_MICROSOFT, USB_DEVICE_ID_MS_XBOX_ONE_S_2016) },
  	{ HID_USB_DEVICE(USB_VENDOR_ID_MONTEREY, USB_DEVICE_ID_GENIUS_KB29E) },
  	{ HID_USB_DEVICE(USB_VENDOR_ID_MSI, USB_DEVICE_ID_MSI_GT683R_LED_PANEL) },
- 	{ HID_USB_DEVICE(USB_VENDOR_ID_NTRIG, USB_DEVICE_ID_NTRIG_TOUCH_SCREEN) },
+ #if IS_ENABLED(CONFIG_HID_NINTENDO)
 diff --git a/drivers/hid/hid-ids.h b/drivers/hid/hid-ids.h
 index 8b5d1166416a..4d753184436a 100644
 --- a/drivers/hid/hid-ids.h
 +++ b/drivers/hid/hid-ids.h
-@@ -745,6 +745,8 @@
+@@ -748,6 +748,8 @@
  #define USB_DEVICE_ID_MS_TYPE_COVER_PRO_3_JP 0x07dd
  #define USB_DEVICE_ID_MS_TYPE_COVER_PRO_4_JP 0x07e9
  #define USB_DEVICE_ID_MS_POWER_COVER     0x07da

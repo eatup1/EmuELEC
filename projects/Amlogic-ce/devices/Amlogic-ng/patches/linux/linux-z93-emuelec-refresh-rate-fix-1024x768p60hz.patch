@@ -17,8 +17,8 @@ diff --git a/drivers/amlogic/media/vout/hdmitx/hdmi_tx_20/hw/hdmi_tx_hw.c b/driv
 index beae6aea4c9b..4c34abcca8b9 100644
 --- a/drivers/amlogic/media/vout/hdmitx/hdmi_tx_20/hw/hdmi_tx_hw.c
 +++ b/drivers/amlogic/media/vout/hdmitx/hdmi_tx_20/hw/hdmi_tx_hw.c
-@@ -1705,6 +1705,22 @@ static void hdmi_tvenc_set(struct hdmitx_vidpara *param)
- 		SOF_LINES = 28;
+@@ -1677,6 +1677,22 @@ static void hdmi_tvenc_set(struct hdmitx_vidpara *param)
+ 		SOF_LINES = hdmi_encp_timing->v_back;
  		TOTAL_FRAMES = 4;
  		break;
 +	case HDMIV_1024x768p60hz:
@@ -44,7 +44,7 @@ diff --git a/drivers/amlogic/media/vout/hdmitx/hdmi_tx_20/hw/hw_g12a.c b/drivers
 index e46b964491b8..9b24cc61f3f9 100644
 --- a/drivers/amlogic/media/vout/hdmitx/hdmi_tx_20/hw/hw_g12a.c
 +++ b/drivers/amlogic/media/vout/hdmitx/hdmi_tx_20/hw/hw_g12a.c
-@@ -192,6 +192,29 @@ static void set_hpll_hclk_dongle_5940m(void)
+@@ -205,6 +205,29 @@ static void set_hpll_hclk_dongle_5940m(void)
  	pr_info("HPLL: 0x%x\n", hd_read_reg(P_HHI_HDMI_PLL_CNTL0));
  }
  
@@ -74,7 +74,7 @@ index e46b964491b8..9b24cc61f3f9 100644
  void set_g12a_hpll_clk_out(unsigned int frac_rate, unsigned int clk)
  {
  	struct hdmitx_dev *hdev = get_hdmitx_device();
-@@ -366,7 +389,50 @@ void set_g12a_hpll_clk_out(unsigned int frac_rate, unsigned int clk)
+@@ -409,7 +432,50 @@ void set_g12a_hpll_clk_out(unsigned int frac_rate, unsigned int clk)
  		pr_info("HPLL: 0x%x\n", hd_read_reg(P_HHI_HDMI_PLL_CNTL0));
  		break;
  	default:

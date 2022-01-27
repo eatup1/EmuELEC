@@ -14,7 +14,7 @@ diff --git a/drivers/hid/Kconfig b/drivers/hid/Kconfig
 index 8eed456a67be..4d385d46fb4c 100644
 --- a/drivers/hid/Kconfig
 +++ b/drivers/hid/Kconfig
-@@ -909,6 +909,13 @@ config HID_XINMO
+@@ -946,6 +946,13 @@ config HID_XINMO
  	standard. Currently only supports the Xin-Mo Dual Arcade. Say Y here
  	if you have a Xin-Mo Dual Arcade controller.
  
@@ -32,7 +32,7 @@ diff --git a/drivers/hid/Makefile b/drivers/hid/Makefile
 index 86b2b5785fd2..dfdcb2e64cde 100644
 --- a/drivers/hid/Makefile
 +++ b/drivers/hid/Makefile
-@@ -98,6 +98,7 @@ obj-$(CONFIG_HID_TWINHAN)	+= hid-twinhan.o
+@@ -101,6 +101,7 @@ obj-$(CONFIG_HID_TWINHAN)	+= hid-twinhan.o
  obj-$(CONFIG_HID_UCLOGIC)	+= hid-uclogic.o
  obj-$(CONFIG_HID_LED)		+= hid-led.o
  obj-$(CONFIG_HID_XINMO)		+= hid-xinmo.o

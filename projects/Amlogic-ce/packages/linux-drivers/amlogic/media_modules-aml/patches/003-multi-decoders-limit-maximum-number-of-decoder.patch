@@ -16,7 +16,7 @@ diff --git a/drivers/frame_provider/decoder/utils/vdec.h b/drivers/frame_provide
 index 18d7cd1..56f044a 100644
 --- a/drivers/frame_provider/decoder/utils/vdec.h
 +++ b/drivers/frame_provider/decoder/utils/vdec.h
-@@ -45,7 +45,7 @@ struct device *get_vdec_device(void);
+@@ -48,7 +48,7 @@ struct device *get_vdec_device(void);
  int vdec_module_init(void);
  void vdec_module_exit(void);
  

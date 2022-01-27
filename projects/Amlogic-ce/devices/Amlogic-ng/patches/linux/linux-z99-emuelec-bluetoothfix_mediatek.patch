@@ -17,7 +17,7 @@
  
  	/* Broadcom SoftSailing reporting vendor specific */
  	{ USB_DEVICE(0x0a5c, 0x21e1) },
-@@ -2917,6 +2918,10 @@
+@@ -2925,6 +2926,10 @@
  		set_bit(HCI_QUIRK_FIXUP_INQUIRY_MODE, &hdev->quirks);
  		set_bit(HCI_QUIRK_BROKEN_LOCAL_COMMANDS, &hdev->quirks);
  	}

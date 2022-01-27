@@ -20,7 +20,7 @@ diff --git a/arch/arm64/boot/dts/amlogic/Makefile b/arch/arm64/boot/dts/amlogic/
 index d006c453ac7ff..2a852a303c355 100644
 --- a/arch/arm64/boot/dts/amlogic/Makefile
 +++ b/arch/arm64/boot/dts/amlogic/Makefile
-@@ -57,6 +57,10 @@ dtb-$(CONFIG_ARM64) += coreelec-gxl/gxl_p241_1g.dtb
+@@ -70,6 +70,10 @@ dtb-$(CONFIG_ARM64) += coreelec-gxl/gxl_p241_1g.dtb
  dtb-$(CONFIG_ARM64) += coreelec-gxl/gxl_p241_v2-1g.dtb
  dtb-$(CONFIG_ARM64) += coreelec-gxl/gxl_p241_1g_lafrite.dtb
  
