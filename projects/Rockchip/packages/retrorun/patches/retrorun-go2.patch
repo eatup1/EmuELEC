@@ -1,0 +1,58 @@
+diff --git a/src/globals.h b/src/globals.h
+index 9a54e8e..61eeb53 100644
+--- a/src/globals.h
++++ b/src/globals.h
+@@ -4,7 +4,10 @@ enum RETRORUN_CORE_TYPE
+ {
+     RETRORUN_CORE_UNKNOWN = 0,
+     RETRORUN_CORE_ATARI800,
+-    RETRORUN_CORE_MGBA
++    RETRORUN_CORE_MGBA,
++    RETRORUN_CORE_PARALLEL_N64,
++    RETRORUN_CORE_FLYCAST,
++
+ };
+ 
+ extern RETRORUN_CORE_TYPE Retrorun_Core;
+diff --git a/src/main.cpp b/src/main.cpp
+index 64ff933..980fac8 100644
+--- a/src/main.cpp
++++ b/src/main.cpp
+@@ -47,6 +47,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+ #include <sys/time.h>
+ #include <go2/input.h>
+ 
++#include <string>
+ 
+ #define RETRO_DEVICE_ATARI_JOYSTICK RETRO_DEVICE_SUBCLASS(RETRO_DEVICE_JOYPAD, 1)
+ #define RETRO_ENVIRONMENT_GET_PREFERRED_HW_RENDER 56
+@@ -379,9 +380,10 @@ static bool core_environment(unsigned cmd, void* data)
+             }
+             else if (strcmp(var->key, "reicast_texupscale") == 0)
+             {
+-                var->value = "off";
+-                printf("Texupscale should be off\n");
+-                return true;
++                //var->value = "off";
++                //printf("Texupscale should be off\n");
++                //return true;
++				return false;	// [temp] flycast not running
+             }
+             else if (strcmp(var->key, "reicast_enable_purupuru") == 0)
+             {
+@@ -548,6 +550,15 @@ static void core_load(const char* sofile)
+         Retrorun_Core = RETRORUN_CORE_ATARI800;
+         g_retro.retro_set_controller_port_device(0, RETRO_DEVICE_ATARI_JOYSTICK);
+     }
++    else if (strcmp(system.library_name, "ParaLLEl N64") == 0 || strcmp(system.library_name, "ParaLLEl N64 GLN64") == 0)
++    {
++        Retrorun_Core = RETRORUN_CORE_PARALLEL_N64;
++    }
++    else if (strcmp(system.library_name, "Flycast") == 0)
++    {
++        Retrorun_Core = RETRORUN_CORE_FLYCAST;
++    }
++    printf("Core:'%s'\n", system.library_name);
+ }
+ 
+ static void core_load_game(const char * filename)
