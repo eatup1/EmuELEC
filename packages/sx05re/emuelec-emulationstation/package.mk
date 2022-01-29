@@ -77,7 +77,7 @@ makeinstall_target() {
     find ${INSTALL}/usr/config/emulationstation/scripts/ -type f -exec chmod o+x {} \; 
 	
     # Vertical Games are only supported in the OdroidGoAdvance
-    if [[ ${DEVICE} != "OdroidGoAdvance" && ${DEVICE} != "RG351P"]]; then
+    if [[ ${DEVICE} != "OdroidGoAdvance" && ${DEVICE} != "RG351P" ]]; then
         sed -i "s|, vertical||g" "${INSTALL}/usr/config/emulationstation/es_features.cfg"
     fi
 	
@@ -95,6 +95,7 @@ makeinstall_target() {
     	mkdir -p ${INSTALL}/usr/config/emulationstation/themesettings
         sed -i "s|<\/config>|	<string name=\"subset.ratio\" value=\"43\" />\n<\/config>|g" "${INSTALL}/usr/config/emulationstation/es_settings.cfg"
         echo "subset.ratio=43" > ${INSTALL}/usr/config/emulationstation/themesettings/Crystal.cfg
+    fi
 
     if [[ "${DEVICE}" == "RG351P" ]]; then
         sed -i "s|<!--RG351P inputConfig|<inputConfig|g" "${INSTALL}/usr/config/emulationstation/es_input.cfg"
