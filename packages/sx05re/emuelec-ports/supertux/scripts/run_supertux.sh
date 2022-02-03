@@ -6,7 +6,7 @@
 # Source predefined functions and variables
 . /etc/profile
 
-DATA="https://github.com/british-choi/supertux/archive/data_only.zip"
+DATA="https://github.com/SuperTux/supertux/archive/refs/heads/master.zip"
 DATAFOLDER="/storage/roms/ports/supertux"
 CONFIGFOLDER="/emuelec/configs/supertux2"
 
@@ -51,12 +51,15 @@ if [ ! -e "${DATAFOLDER}/credits.stxt" ]; then
     fi
         if [[ $? == 21 ]]; then
             ee_console enable
+            rm -rf ${DATAFOLDER}/*
             wget "${DATA}" -q --show-progress > /dev/tty0 2>&1
-            unzip "data_only.zip" > /dev/tty0
-            mv supertux-data_only/data/* "${DATAFOLDER}" > /dev/tty0
-            rm -rf "supertux-data_only"
-            rm "data_only.zip"
+            unzip "master.zip" > /dev/tty0
+            mv supertux-master/data/* "${DATAFOLDER}" > /dev/tty0
+            rm -rf "supertux-master"
+            rm "master.zip"
             rm "imgui.ini"
+            mv ${DATAFOLDER}/levels/misc/menu.stl.in ${DATAFOLDER}/levels/misc/menu.stl
+            sed -i "s|@LOGO_FILE@|logo_final.sprite|g" ${DATAFOLDER}/levels/misc/menu.stl
             ee_console disable
            SUPERTUX2_DATA_DIR="${DATAFOLDER}" supertux2
         else
