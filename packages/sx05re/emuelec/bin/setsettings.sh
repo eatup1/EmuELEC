@@ -243,6 +243,9 @@ else
             else
                 echo "ai_service_url = \"${AI_URL}&mode=Fast&output=png&target_lang=\"${AI_LANG}\"" >> ${RACONF}
             fi
+            get_setting "ai_service_pause"
+            AI_PAUSE=${EES}
+            echo "ai_service_pause = ${AI_PAUSE}" >> ${RACONF}
         fi
     ;;
     "retroachievements")
