@@ -2,7 +2,7 @@ diff --git a/src/burn/drv/capcom/d_cps1.cpp b/src/burn/drv/capcom/d_cps1.cpp
 index 1c0800f37..62f74e402 100644
 --- a/src/burn/drv/capcom/d_cps1.cpp
 +++ b/src/burn/drv/capcom/d_cps1.cpp
-@@ -15665,6 +15665,27 @@ static const struct GameConfig ConfigTable[] =
+@@ -15702,6 +15702,27 @@ static const struct GameConfig ConfigTable[] =
  	{ "sfzech"        , CPS_B_21_DEF, mapper_sfzch , 0, NULL                },
  	{ "sfzhch"        , CPS_B_21_DEF, mapper_sfzch , 0, NULL                },
  
@@ -30,7 +30,7 @@ index 1c0800f37..62f74e402 100644
  	{ 0               , 0           , 0            , 0, 0                   }
  };
  
-@@ -24471,6 +24492,927 @@ struct BurnDriver BurnDrvCpssf2mix = {
+@@ -24518,6 +24539,927 @@ struct BurnDriver BurnDrvCpssf2mix = {
  
  #include "d_kenseim.h"
  
@@ -1945,7 +1945,7 @@ diff --git a/src/burn/drv/megadrive/d_megadrive.cpp b/src/burn/drv/megadrive/d_m
 index 72fa09046..647d5b113 100644
 --- a/src/burn/drv/megadrive/d_megadrive.cpp
 +++ b/src/burn/drv/megadrive/d_megadrive.cpp
-@@ -53768,3 +53768,462 @@ struct BurnDriver BurnDrvmd_cannonfire = {
+@@ -53840,3 +53840,462 @@ struct BurnDriver BurnDrvmd_cannonfire = {
  	MegadriveInit, MegadriveExit, MegadriveFrame, MegadriveDraw, MegadriveScan,
  	&bMegadriveRecalcPalette, 0x100, 320, 224, 4, 3
  };
@@ -2511,7 +2511,7 @@ index c6882750e..a72ce1ed1 100644
  
  	// DIP 1
  	{0,		0xFE, 0,	2,	  "Setting mode"},
-@@ -20925,3 +20925,2886 @@ struct BurnDriver BurnDrvHypernoid = {
+@@ -20951,3 +20951,2886 @@ struct BurnDriver BurnDrvHypernoid = {
  	NeoInit, NeoExit, NeoFrame, NeoRender, NeoScan, &NeoRecalcPalette,
  	0x1000, 304, 224, 4, 3
  };
