@@ -66,6 +66,7 @@ function clean_settings() {
     sed -i '/ai_service_enable =/d' ${RACONF}
     sed -i '/ai_service_source_lang =/d' ${RACONF}
     sed -i '/ai_service_url =/d' ${RACONF}
+    sed -i '/ai_service_pause =/d' ${RACONF}
     sed -i "/input_libretro_device_p1/d" ${RACONF}
     sed -i "/fps_show/d" ${RACONF}
     sed -i "/netplay =/d" ${RACONF}
@@ -114,10 +115,11 @@ function default_settings() {
     echo 'cheevos_leaderboards_enable = "false"' >> ${RACONF}
     echo 'cheevos_verbose_enable = "false"' >> ${RACONF}
     echo 'cheevos_auto_screenshot = "false"' >> ${RACONF}
-    echo 'ai_service_mode = "0"' >> ${RACONF}
+    echo 'ai_service_mode = "1"' >> ${RACONF}
     echo 'ai_service_enable = false' >> ${RACONF}
     echo 'ai_service_source_lang = "0"' >> ${RACONF}
     echo 'ai_service_url = ""' >> ${RACONF}
+    echo 'ai_service_pause = "0"' >> ${RACONF}
     echo "input_libretro_device_p1 = \"1\"" >> ${RACONF}
     echo 'fps_show = false' >> ${RACONF}
     echo 'netplay = false' >> ${RACONF}
@@ -232,6 +234,9 @@ else
             echo 'ai_service_enable = "false"' >> ${RACONF}
         else
             echo 'ai_service_enable = "true"' >> ${RACONF}
+            get_setting "ai_service_mode"
+            AI_MODE=${EES}
+            echo "ai_service_mode = ${AI_MODE}" >> ${RACONF}
             get_setting "ai_target_lang"
             AI_LANG=${EES}
             [[ "$AI_LANG" == "false" ]] && $AI_LANG="0"
