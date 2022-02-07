@@ -88,10 +88,10 @@ index 1c0800f37..62f74e402 100644
 +	{ "cc_02.4a",      0x080000, 0x6a60f949, BRF_GRA | CPS1_TILES },
 +	{ "cc_03.5a",      0x080000, 0x00637302, BRF_GRA | CPS1_TILES },
 +	{ "cc_04.6a",      0x080000, 0xcc87cf61, BRF_GRA | CPS1_TILES },
-+	{ "cck_05.7a",     0x080000, 0x41591c9f, BRF_GRA | CPS1_TILES },
-+	{ "cck_06.8a",     0x080000, 0xe478b0e2, BRF_GRA | CPS1_TILES },
-+	{ "cck_07.9a",     0x080000, 0x2392f472, BRF_GRA | CPS1_TILES },
-+	{ "cck_08.10a",    0x080000, 0xf8389983, BRF_GRA | CPS1_TILES },
++	{ "cck_05.7a",     0x080000, 0x3c7b514c, BRF_GRA | CPS1_TILES },
++	{ "cck_06.8a",     0x080000, 0xdbcf6c0e, BRF_GRA | CPS1_TILES },
++	{ "cck_07.9a",     0x080000, 0x18632bf0, BRF_GRA | CPS1_TILES },
++	{ "cck_08.10a",    0x080000, 0x10fd12a3, BRF_GRA | CPS1_TILES },
 +
 +	{ "ccj_09.12a",    0x010000, 0x698e8b58, BRF_PRG | CPS1_Z80_PROGRAM },
 +
