@@ -1,6 +1,6 @@
 --- a/Makefile
 +++ b/Makefile
-@@ -215,6 +215,30 @@
+@@ -212,6 +212,30 @@
  LDFLAGS += $(CPUFLAGS) -lpthread -shared
  #LDFLAGS += -static-libstdc++ -static-libgcc #adds 1MB to output and still dynamically links against libc and libm
  
