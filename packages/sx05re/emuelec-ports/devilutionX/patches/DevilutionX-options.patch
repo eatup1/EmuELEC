@@ -20,7 +20,7 @@ index 9f29120d..4863e549 100644
  	return false;
  #else
  	SDL_version v;
-@@ -955,7 +955,7 @@ void OptionEntryLanguageCode::LoadFromIni(string_view category)
+@@ -953,7 +953,7 @@ void OptionEntryLanguageCode::LoadFromIni(string_view category)
  	}
  
  	LogVerbose("No suitable translation found");
@@ -29,7 +29,7 @@ index 9f29120d..4863e549 100644
  }
  void OptionEntryLanguageCode::SaveToIni(string_view category) const
  {
-@@ -979,7 +979,8 @@ void OptionEntryLanguageCode::CheckLanguagesAreInitialized() const
+@@ -977,7 +977,8 @@ void OptionEntryLanguageCode::CheckLanguagesAreInitialized() const
  	languages.emplace_back("it", "Italiano");
  
  	if (font_mpq) {
@@ -39,7 +39,7 @@ index 9f29120d..4863e549 100644
  		languages.emplace_back("ko", "한국어");
  	}
  
-@@ -991,8 +992,9 @@ void OptionEntryLanguageCode::CheckLanguagesAreInitialized() const
+@@ -989,8 +990,9 @@ void OptionEntryLanguageCode::CheckLanguagesAreInitialized() const
  	languages.emplace_back("uk", "Українська");
  
  	if (font_mpq) {
