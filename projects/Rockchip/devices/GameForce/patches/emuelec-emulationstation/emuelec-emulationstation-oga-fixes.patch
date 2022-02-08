@@ -1,17 +1,17 @@
 --- a/es-app/src/guis/GuiMenu.cpp
 +++ b/es-app/src/guis/GuiMenu.cpp
-@@ -1769,7 +1769,7 @@
+@@ -1566,7 +1566,7 @@
  	}
  #endif
  
--#if !defined(WIN32) && !defined _ENABLEEMUELEC || defined(_DEBUG)
-+#if !defined(WIN32) || defined(_DEBUG)
+-#ifdef BATOCERA
++#if defined(ENABLE_GAMEFORCE) || defined(ODROIDGOA)
  	s->addGroup(_("HARDWARE"));
+ #endif
  
- 	// brighness
 --- a/es-core/src/Settings.cpp
 +++ b/es-core/src/Settings.cpp
-@@ -243,7 +243,7 @@
+@@ -282,7 +282,7 @@
  
  	// Audio out device for volume control
  	#if defined _RPI_ || defined _ENABLEEMUELEC
@@ -22,7 +22,7 @@
  	#endif
 --- a/es-app/src/FileData.cpp
 +++ b/es-app/src/FileData.cpp
-@@ -604,9 +604,6 @@
+@@ -647,9 +647,6 @@
  	VolumeControl::getInstance()->deinit();
  
  	bool hideWindow = Settings::getInstance()->getBool("HideWindow");
@@ -34,7 +34,7 @@
  	const std::string rom = Utils::FileSystem::getEscapedPath(getPath());
 --- a/es-core/src/InputManager.cpp
 +++ b/es-core/src/InputManager.cpp
-@@ -298,20 +298,11 @@
+@@ -298,16 +298,6 @@
  		if (ev.key.repeat)
  			return false;
  
@@ -47,6 +47,14 @@
 -			return false;
 -		}
 -#endif
+-
+ #if !WIN32
+ 		if (ev.key.keysym.sym == SDLK_F4)
+ 		{
+@@ -318,11 +308,11 @@
+ 		}
+ #endif
+ 
 -		window->input(getInputConfigByDevice(DEVICE_KEYBOARD), Input(DEVICE_KEYBOARD, TYPE_KEY, ev.key.keysym.sym, 1, false));
 +		if(ev.key.keysym.sym != SDLK_POWER) window->input(getInputConfigByDevice(DEVICE_KEYBOARD), Input(DEVICE_KEYBOARD, TYPE_KEY, ev.key.keysym.sym, 1, false));
  		return true;
@@ -57,18 +65,19 @@
  		return true;
  
  	case SDL_TEXTINPUT:
+
 --- a/es-app/src/views/ViewController.cpp
 +++ b/es-app/src/views/ViewController.cpp
-@@ -840,11 +840,9 @@
+@@ -843,11 +843,9 @@
  #ifdef _ENABLEEMUELEC
  /* Detect unconfigured keyboad as well */
          if(config->isConfigured() == false) {
--			if(input.type == TYPE_BUTTON || input.type == TYPE_KEY) {
--				if(input.id != SDLK_POWER) {
-+			if(input.type == TYPE_BUTTON) {
- 	    mWindow->pushGui(new GuiDetectDevice(mWindow, false, NULL));
- 	    return true;
--	}
- 	  }
+-            if(input.type == TYPE_BUTTON || input.type == TYPE_KEY) {
+-                if(input.id != SDLK_POWER) {
++            if(input.type == TYPE_BUTTON) {
+                     mWindow->pushGui(new GuiDetectDevice(mWindow, false, NULL));
+                     return true;
+-                }
+             }
          }
  #else

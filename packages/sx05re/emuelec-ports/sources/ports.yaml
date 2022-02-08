@@ -495,5 +495,20 @@ Heroes of Might and Magic II:
   port_exe: "fheroes2"
   audio: "alsa"
   commands:
-    - /usr/bin/show_splash.sh "ports" "abuse"
+    - /usr/bin/show_splash.sh "ports" "fheroes2"
     - fheroes2.sh
+
+Blake Stone:
+  name: 블레이크 스톤
+  description: '블레이크 스톤:《에일리언 오브 골드(Alien of Gold)》는 1993년 JAM 프로덕션에서 제작하고 아포기 소프트웨어가 배급한 도스용 1인칭 슈팅 게임이다. 그 다음 해, 블레이크 스톤: 플래닛 스트라이크라는 속편이 출시되었는데, 이 속편은 에일리언 오브 골드가 중단되는 곳에서 계속됩니다.'
+  rating: 1.0
+  release_date: 1993
+  developer: 3D Realms
+  publisher: 3D Realms
+
+  init_port: true
+  port_exe: "bstone"
+  audio: "alsa"
+  commands:
+    - /usr/bin/show_splash.sh "ports" "bstone"
+    - bstone.sh

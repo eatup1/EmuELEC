@@ -37,6 +37,15 @@
 		<image>./downloaded_images/drastic.png</image>
 	</game>
 	<game>
+		<path>./install_pixelcade.sh</path>
+		<name>Install Pixelcade</name>
+		<desc>Download and install software for Pixelcade - LED Marquee for Arcade Machines!</desc>
+		<developer>pixelcade</developer>
+		<publisher>pixelcade.org</publisher>
+		<genre>script</genre>
+		<image>./downloaded_images/pixelcade.png</image>
+	</game>
+	<game>
 		<path>./sselphs_scraper.sh</path>
 		<name>Sselph의 스크래퍼</name>
 		<desc>대체용 롬 스크래퍼. 설정이 필요합니다!</desc>
@@ -107,15 +116,6 @@
 		<publisher>Emuelec</publisher>
 		<genre>script</genre>
 		<image>./downloaded_images/youtube.png</image>
-	</game>
-	<game>
-		<path>./bt_controller_management.sh</path>
-		<name>블루투스 컨트롤러 관리</name>
-		<desc>대체 블루투스 설정 메뉴</desc>
-		<developer>shantigilbert </developer>
-		<publisher>Emuelec</publisher>
-		<genre>script</genre>
-		<image>./downloaded_images/bluetooth.png</image>
 	</game>
 	<game>
 		<path>./scan_scummVM_games.sh</path>
