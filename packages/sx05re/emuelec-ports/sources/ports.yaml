@@ -500,11 +500,11 @@ Heroes of Might and Magic II:
 
 Blake Stone:
   name: 블레이크 스톤
-  description: '블레이크 스톤:《에일리언 오브 골드(Alien of Gold)》는 1993년 JAM 프로덕션에서 제작하고 아포기 소프트웨어가 배급한 도스용 1인칭 슈팅 게임이다. 그 다음 해, 블레이크 스톤: 플래닛 스트라이크라는 속편이 출시되었는데, 이 속편은 에일리언 오브 골드가 중단되는 곳에서 계속됩니다.'
+  description: 'Blake Stone: Aliens of Gold는 JAM Productions에서 제작하고 1993년 Apogee Software에서 발매한 DOS용 1인칭 슈팅 게임입니다.'
   rating: 1.0
   release_date: 1993
-  developer: 3D Realms
-  publisher: 3D Realms
+  developer: JAM Productions
+  publisher: Apogee Software
 
   init_port: true
   port_exe: "bstone"
@@ -512,3 +512,18 @@ Blake Stone:
   commands:
     - /usr/bin/show_splash.sh "ports" "bstone"
     - bstone.sh
+
+Blake Stone Planet Strike:
+  name: 블레이크 스톤 플래닛 스트라이크
+  description: 'Blake Stone: Planet Strike는 JAM Productions에서 제작하고 Apogee Software에서 1994년 10월 28일 DOS용으로 출시한 Blake Stone: Aliens of Gold의 속편인 1인칭 슈팅 비디오 게임입니다.'
+  rating: 1.0
+  release_date: 1994
+  developer: JAM Productions
+  publisher: Apogee Software
+
+  init_port: true
+  port_exe: "bstone"
+  audio: "alsa"
+  commands:
+    - /usr/bin/show_splash.sh "ports" "bstone"
+    - bstone.sh ps

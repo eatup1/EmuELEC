@@ -6,7 +6,12 @@
 # Source predefined functions and variables
 . /etc/profile
 
-DATADIR="/storage/roms/ports/bstone"
+DATADIR="/storage/roms/ports/bstone/aog"
+
+if [ "${1}" == "ps" ]; then 
+    DATADIR="/storage/roms/ports/bstone/ps"
+fi
+
 CONFIGFOLDER="/storage/.config/emuelec/configs/bstone"
 PORTNAME="bstone"
 params="--vid_renderer software"
@@ -14,7 +19,7 @@ GPTOKEYB_CONFIG="/emuelec/configs/gptokeyb/default.gptk"
 
 [[ -e "/emuelec/configs/gptokeyb/bstone.gptk" ]] && GPTOKEYB_CONFIG="/emuelec/configs/gptokeyb/bstone.gptk"
 
-gptokeyb -c "${GPTOKEYB_CONFIG}"
+gptokeyb -c "${GPTOKEYB_CONFIG}" &
 
 mkdir -p "${CONFIGFOLDER}"
 cd "${CONFIGFOLDER}"
@@ -27,10 +32,10 @@ else
         "OGS")
             params+=" --vid_width 854 --vid_height 480 --vid_is_widescreen 1"
         ;;
-        "OGA")
+        "OGA"|"RG351P")
             params+=" --vid_width 480 --vid_height 320 --vid_is_widescreen 1"
         ;;
-        "GF")
+        "GF"|"RG351V")
             params+=" --vid_width 640 --vid_height 480 --vid_is_widescreen 0"
         ;;
     esac
