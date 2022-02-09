@@ -51,16 +51,3 @@ index 2982587a..4426bf45 100644
  	}
  
  	// Ensures that the ini specified language is present in languages list even if unknown (for example if someone starts to translate a new language)
-diff --git a/Source/options.h b/Source/options.h
-index 2ac3e33a..ab69aafa 100644
---- a/Source/options.h
-+++ b/Source/options.h
-@@ -569,7 +569,7 @@ struct KeymapperOptions : OptionCategoryBase {
- 
- 	void AddAction(
- 	    string_view key, string_view name, string_view description, int defaultKey,
--	    std::function<void()> actionPressed, std::function<void()> actionReleased = nullptr, std::function<bool()> enable = nullptr, int index = -1);
-+	    std::function<void()> actionPressed, std::function<void()> actionReleased = nullptr, std::function<bool()> enable = nullptr, int index = 0);
- 	void KeyPressed(int key) const;
- 	void KeyReleased(int key) const;
- 	string_view KeyNameForAction(string_view actionName) const;
