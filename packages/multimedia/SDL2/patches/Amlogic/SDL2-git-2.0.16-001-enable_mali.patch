@@ -23,7 +23,7 @@ diff --git a/cmake/sdlchecks.cmake b/cmake/sdlchecks.cmake
 index e2e89a2..b890f49 100644
 --- a/cmake/sdlchecks.cmake
 +++ b/cmake/sdlchecks.cmake
-@@ -768,6 +768,28 @@ endmacro()
+@@ -774,6 +774,28 @@ endmacro()
  
  # Requires:
  # - n/a
@@ -142,7 +142,7 @@ diff --git a/configure.in b/configure.in
 index 5ac2130..3e67f09 100644
 --- a/configure.ac
 +++ b/configure.ac
-@@ -2012,6 +2012,35 @@ AC_HELP_STRING([--enable-video-vivante], [use Vivante EGL video driver [[default
+@@ -2118,6 +2118,35 @@ AC_HELP_STRING([--enable-video-vivante], [use Vivante EGL video driver [[default
      fi
  }
  
@@ -178,14 +178,14 @@ index 5ac2130..3e67f09 100644
  dnl Set up the Haiku video driver if enabled
  CheckHaikuVideo()
  {
-@@ -3324,6 +3353,7 @@ case "$host" in
+@@ -3632,6 +3661,7 @@ case "$host" in
          CheckLinuxVersion
          CheckRPATH
          CheckVivanteVideo
-+	CheckMaliVideo
++        CheckMaliVideo
  
-         # Set up files for the audio library
-         if test x$enable_audio = xyes; then
+         SOURCES="$SOURCES $srcdir/src/misc/unix/*.c"
+         have_misc=yes
 diff --git a/include/SDL_config.h.cmake b/include/SDL_config.h.cmake
 index 9b20398..a14a92b 100644
 --- a/include/SDL_config.h.cmake
@@ -203,7 +203,7 @@ diff --git a/include/SDL_config.h.in b/include/SDL_config.h.in
 index a28e83f..605a421 100644
 --- a/include/SDL_config.h.in
 +++ b/include/SDL_config.h.in
-@@ -310,6 +310,7 @@
+@@ -374,6 +374,7 @@
  #undef SDL_VIDEO_DRIVER_KMSDRM_DYNAMIC_GBM
  #undef SDL_VIDEO_DRIVER_ANDROID
  #undef SDL_VIDEO_DRIVER_EMSCRIPTEN
@@ -215,7 +215,7 @@ diff --git a/src/video/SDL_egl.c b/src/video/SDL_egl.c
 index 0daf98a..5295c1c 100644
 --- a/src/video/SDL_egl.c
 +++ b/src/video/SDL_egl.c
-@@ -51,7 +51,7 @@
+@@ -52,7 +52,7 @@
  #define DEFAULT_OGL_ES_PVR ( vc4 ? "libGLES_CM.so.1" : "libbrcmGLESv2.so" )
  #define DEFAULT_OGL_ES ( vc4 ? "libGLESv1_CM.so.1" : "libbrcmGLESv2.so" )
  
@@ -228,7 +228,7 @@ diff --git a/src/video/SDL_sysvideo.h b/src/video/SDL_sysvideo.h
 index 811fe19..991245e 100644
 --- a/src/video/SDL_sysvideo.h
 +++ b/src/video/SDL_sysvideo.h
-@@ -439,6 +439,7 @@
+@@ -447,6 +447,7 @@
  extern VideoBootStrap OFFSCREEN_bootstrap;
  extern VideoBootStrap OS2DIVE_bootstrap;
  extern VideoBootStrap OS2VMAN_bootstrap;

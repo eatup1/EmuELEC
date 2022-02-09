@@ -2,7 +2,7 @@ diff --git a/src/core/linux/SDL_udev.c b/src/core/linux/SDL_udev.c
 index 751e2ca..bec1485 100644
 --- a/src/core/linux/SDL_udev.c
 +++ b/src/core/linux/SDL_udev.c
-@@ -191,12 +191,31 @@ SDL_UDEV_Quit(void)
+@@ -193,12 +193,31 @@ SDL_UDEV_Quit(void)
      }
  }
  
@@ -35,7 +35,7 @@ index 751e2ca..bec1485 100644
      
      if (_this == NULL) {
          return;
-@@ -218,11 +237,28 @@ SDL_UDEV_Scan(void)
+@@ -220,11 +239,28 @@ SDL_UDEV_Scan(void)
          const char *path = _this->syms.udev_list_entry_get_name(item);
          struct udev_device *dev = _this->syms.udev_device_new_from_syspath(_this->udev, path);
          if (dev != NULL) {

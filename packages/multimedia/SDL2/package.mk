@@ -15,8 +15,8 @@ if [ "${DEVICE}" = "Amlogic-ng" ] || [ "${DEVICE}" = "Amlogic" ]; then
   PKG_PATCH_DIRS="Amlogic"
 fi
 
-if [ "$DEVICE" == "OdroidGoAdvance" -o "$DEVICE" == "RG351P" -o "$DEVICE" == "RG351V" ]; then
-  PKG_PATCH_DIRS="$DEVICE"
+if [ "$DEVICE" == "OdroidGoAdvance" -o "$DEVICE" == "RG351P" ]; then
+  PKG_PATCH_DIRS="OdroidGoAdvance"
 fi
 
 if [ "$DEVICE" == "OdroidGoAdvance" -o "$DEVICE" == "RG351P" -o "$DEVICE" == "RG351V" ] || [ "$DEVICE" == "GameForce" ]; then
