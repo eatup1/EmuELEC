@@ -771,6 +771,30 @@ systems = {
 														 { "md5": "", "file": "ports/rigelengine/NUKEM2.F3" },
 														 { "md5": "", "file": "ports/rigelengine/NUKEM2.F4" },
 														 { "md5": "", "file": "ports/rigelengine/NUKEM2.F5" } ] },
+
+    "bstone_aog": { "name": "Blake Stone", "biosFiles": [ { "md5": "", "file": "ports/bstone/aog/audiohed.bs6" },
+                                                          { "md5": "", "file": "ports/bstone/aog/audiot.bs6" },
+                                                          { "md5": "", "file": "ports/bstone/aog/eanim.bs6" },
+                                                          { "md5": "", "file": "ports/bstone/aog/ganim.bs6" },
+                                                          { "md5": "", "file": "ports/bstone/aog/ianim.bs6" },
+                                                          { "md5": "", "file": "ports/bstone/aog/maphead.bs6" },
+                                                          { "md5": "", "file": "ports/bstone/aog/maptemp.bs6" },
+                                                          { "md5": "", "file": "ports/bstone/aog/sanim.bs6" },
+                                                          { "md5": "", "file": "ports/bstone/aog/vgadict.bs6" },
+                                                          { "md5": "", "file": "ports/bstone/aog/vgagraph.bs6" },
+                                                          { "md5": "", "file": "ports/bstone/aog/vgahead.bs6" },
+                                                          { "md5": "", "file": "ports/bstone/aog/vswap.bs6" } ] },
+
+    "bstone_aog": { "name": "Blake Stone", "biosFiles": [ { "md5": "", "file": "ports/bstone/ps/audiohed.vsi" },
+                                                          { "md5": "", "file": "ports/bstone/ps/audiot.vsi" },
+                                                          { "md5": "", "file": "ports/bstone/ps/eanim.vsi" },
+                                                          { "md5": "", "file": "ports/bstone/ps/ianim.vsi" },
+                                                          { "md5": "", "file": "ports/bstone/ps/maphead.vsi" },
+                                                          { "md5": "", "file": "ports/bstone/ps/maptemp.vsi" },
+                                                          { "md5": "", "file": "ports/bstone/ps/vgadict.vsi" },
+                                                          { "md5": "", "file": "ports/bstone/ps/vgagraph.vsi" },
+                                                          { "md5": "", "file": "ports/bstone/ps/vgahead.vsi" },
+                                                          { "md5": "", "file": "ports/bstone/ps/vswap.vsi" } ] },
     }
 
 class BiosStatus:
