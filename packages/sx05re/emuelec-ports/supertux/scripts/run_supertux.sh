@@ -12,7 +12,7 @@ CONFIGFOLDER="/emuelec/configs/supertux2"
 
 if [ "$EE_DEVICE" == "OdroidGoAdvance" ] || [ "$EE_DEVICE" == "RG351P" ] || [ "$EE_DEVICE" == "RG351V" ] || [ "$EE_DEVICE" == "GameForce" ]; then
 case $(oga_ver) in
-    "OGA" | "RG351P")
+    "OGA" | "OGABE" | "RG351P")
         sed -i "s|(fullscreen_width .*|(fullscreen_width 480)|" ${CONFIGFOLDER}/config
         sed -i "s|(fullscreen_height .*|(fullscreen_height 320)|" ${CONFIGFOLDER}/config
         sed -i "s|(fullscreen_refresh_rate .*|(fullscreen_refresh_rate 60)|" ${CONFIGFOLDER}/config

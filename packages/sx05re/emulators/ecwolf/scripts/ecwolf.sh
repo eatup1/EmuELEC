@@ -16,7 +16,7 @@ case $(oga_ver) in
     "OGS")
         params+=" --res 854 480 --fullscreen --aspect 16:9"
     ;;
-    "OGA" | "RG351P")
+    "OGA" | "OGABE" | "RG351P")
         params+=" --res 480 320 --fullscreen --aspect 3:2"
     ;;
     "GF" | "RG351V")

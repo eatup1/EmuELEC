@@ -32,7 +32,7 @@ else
         "OGS")
             params+=" --vid_width 854 --vid_height 480 --vid_is_widescreen 1"
         ;;
-        "OGA"|"RG351P")
+        "OGA"|"OGABE"|"RG351P")
             params+=" --vid_width 480 --vid_height 320 --vid_is_widescreen 1"
         ;;
         "GF"|"RG351V")

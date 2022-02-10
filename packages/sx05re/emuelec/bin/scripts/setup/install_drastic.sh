@@ -101,7 +101,7 @@ case "${DEVICE}" in
     "OGABE")
         cp -rf drastic_ogabe.cfg drastic.cfg
     ;;
-    "OGA1")
+    "OGA")
         cp -rf drastic_oga.cfg drastic.cfg
     ;;
     "GF")
