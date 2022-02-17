@@ -162,9 +162,9 @@ OpenTyrian:
 
 OpenJazz:
   name: 재즈 잭래빗
-  description: "재즈 잭래빗이 포트 게임"
+  description: 최초의 Jazz Jackrabbit 게임은 Epic MegaGames에서 개발 및 발매했으며 1994년 MS-DOS용으로 출시되었습니다.
   rating: 1.0
-  release_date: 20210516T000000
+  release_date: 19940801T000000
   developer: sana2dang, AlisterT
   publisher: non-commercial
 
