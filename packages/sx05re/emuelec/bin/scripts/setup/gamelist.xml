@@ -38,8 +38,8 @@
 	</game>
 	<game>
 		<path>./install_pixelcade.sh</path>
-		<name>Install Pixelcade</name>
-		<desc>Download and install software for Pixelcade - LED Marquee for Arcade Machines!</desc>
+		<name>Pixelcade 설치</name>
+		<desc>Pixelcade용 소프트웨어 다운로드 및 설치 - 아케이드 머신을 위한 LED 마키!</desc>
 		<developer>pixelcade</developer>
 		<publisher>pixelcade.org</publisher>
 		<genre>script</genre>

@@ -10,6 +10,31 @@ version=7  #increment this as the script is updated
 upgrade_software=false
 upgrade_artwork=false
 
+cat > /tmp/pixelcade_kr.txt << "EOF"
+       _          _               _
+ _ __ (_)_  _____| | ___ __ _  __| | ___
+| '_ \| \ \/ / _ \ |/ __/ _` |/ _` |/ _ \
+| |_) | |>  <  __/ | (_| (_| | (_| |  __/
+| .__/|_/_/\_\___|_|\___\__,_|\__,_|\___|
+|_|
+EOF
+
+cat >> /tmp/pixelcade_kr.txt <<EOF
+
+       EmuELEC용 Pixelcade LED 설치 프로그램 : 설치 프로그램 버전 $version
+
+이 스크립트는 /storage/roms 폴더에 Pixelcade를 설치합니다.
+/storage/roms에 최소 800MB의 여유 디스크 공간이 있는지 확인하십시오.
+이제 Pixelcade를 기기(Odroid, Android Box 등)의 여유 USB 포트에 연결하세요.
+Pixelcade 보드의 토글 스위치가 BT가 아닌 USB를 가리키고 있는지 확인합니다.
+Pixelcade 하드웨어가 연결되어 있지 않으면 설치 프로그램이 실행되지 않습니다.
+이 설치 프로그램은 약 15분 정도 소요되므로 커피나 차를 준비하세요.
+
+나중에 이 설치 프로그램을 재실행하여 업데이트된 마키 아트워크를 다운로드할 수 있습니다.
+
+계속하시겠습니까?
+EOF
+
 cat > /tmp/pixelcade.txt << "EOF"
        _          _               _
  _ __ (_)_  _____| | ___ __ _  __| | ___
@@ -35,11 +60,19 @@ You may also re-run this installer later to download updated marquee artwork
 Would you like to continue?
 EOF
 
-text_viewer -w -y -t "Pixelcade LED Marquee Installer" -f 24 /tmp/pixelcade.txt
+if [ $(get_ee_setting system.language) == "ko_KR" ]; then
+    text_viewer -w -y -t "Pixelcade LED 마키 설치" -f 24 /tmp/pixelcade_kr.txt
+    if [[ $? != 21 ]]; then
+        text_viewer -w -t "설치가 취소됨!" -f 24 -m "Pixelcade 설치가 취소되었습니다. 종료하려면 Start 또는 A을 누르십시오!"
+        exit 0
+    fi
+else
+    text_viewer -w -y -t "Pixelcade LED Marquee Installer" -f 24 /tmp/pixelcade.txt
     if [[ $? != 21 ]]; then
         text_viewer -w -t "Installation canceled!" -f 24 -m "Pixelcade installation canceled! press start or A to exit!"
         exit 0
     fi
+fi
 
 INSTALLPATH="/storage/roms/"
 
@@ -159,7 +192,11 @@ else
     if ls /dev/ttyACM1 | grep -q '/dev/ttyACM1'; then
         echo "Pixelcade LED Marquee Detected on ttyACM1"
     else
-       text_viewer -e -w -t "ERROR: PixelCade Not Detected!" -f 24 -m "Sorry, Pixelcade LED Marquee was not detected, pleasse ensure Pixelcade is USB connected to your EmuELEC device and the toggle switch on the Pixelcade board is pointing towards USB, exiting..."
+       if [ $(get_ee_setting system.language) == "ko_KR" ]; then
+           text_viewer -e -w -t "에러: PixelCade가 감지되지 않습니다!" -f 24 -m "죄송합니다. Pixelcade LED Marquee가 감지되지 않았습니다. Pixelcade가 EmuELC 장치에 USB로 연결되어 있고 Pixelcade 보드의 토글 스위치가 USB를 가리키고 있는지 확인하십시오. 종료..."
+       else
+           text_viewer -e -w -t "ERROR: PixelCade Not Detected!" -f 24 -m "Sorry, Pixelcade LED Marquee was not detected, pleasse ensure Pixelcade is USB connected to your EmuELEC device and the toggle switch on the Pixelcade board is pointing towards USB, exiting..."
+       fi
        exit 1
     fi
 fi
@@ -182,14 +219,22 @@ if [[ -d "${INSTALLPATH}pixelcade" ]]; then
       if [[ $currentVersion -lt $version ]]; then
             echo "Older Pixelcade version detected, now upgrading..."
 
-        text_viewer -y -w -t "Old version detected!" -f 24 -m "You've got an older version of Pixelcade software, would you like to upgrade your Pixelcade software?"
+        if [ $(get_ee_setting system.language) == "ko_KR" ]; then
+          text_viewer -y -w -t "이전 버전이 감지되었습니다!" -f 24 -m "이전 버전의 Pixelcade 소프트웨어가 있습니다. Pixelcade 소프트웨어를 업그레이드하시겠습니까?"
+	else
+          text_viewer -y -w -t "Old version detected!" -f 24 -m "You've got an older version of Pixelcade software, would you like to upgrade your Pixelcade software?"
+        fi
             if [[ $? == 21 ]]; then
                 upgrade_software=true
             else
                 exit 0;
             fi
 
-        text_viewer -y -w -t "Update Artwork?" -f 24 -m "Would you also like to get the latest Pixelcade artwork? This will take around 15 minutes..."
+        if [ $(get_ee_setting system.language) == "ko_KR" ]; then
+          text_viewer -y -w -t "아트워크 업데이트?" -f 24 -m "최신 Pixelcade 아트웍도 받고 싶으신가요? 15분 정도 걸릴 겁니다"
+        else
+          text_viewer -y -w -t "Update Artwork?" -f 24 -m "Would you also like to get the latest Pixelcade artwork? This will take around 15 minutes..."
+	fi
             if [[ $? == 21 ]]; then
                 upgrade_artwork=true
             else
@@ -206,7 +251,11 @@ if [[ -d "${INSTALLPATH}pixelcade" ]]; then
 
       else
 
-        text_viewer -y -w -t "Software up to date" -f 24 -m "Your Pixelcade software vesion is up to date. Do you want to re-install?"
+        if [ $(get_ee_setting system.language) == "ko_KR" ]; then
+          text_viewer -y -w -t "최신 소프트웨어" -f 24 -m "Pixelcade 소프트웨어 버전이 최신 버전입니다. 다시 설치하시겠습니까?"
+        else
+          text_viewer -y -w -t "Software up to date" -f 24 -m "Your Pixelcade software vesion is up to date. Do you want to re-install?"
+        fi
             if [[ $? == 21 ]]; then
                 upgrade_software=true
             else
@@ -214,7 +263,11 @@ if [[ -d "${INSTALLPATH}pixelcade" ]]; then
             fi
 
 
-        text_viewer -y -w -t "Update Artwork?" -f 24 -m "Would you also like to get the latest Pixelcade artwork?. This will take around 15 minutes..."
+        if [ $(get_ee_setting system.language) == "ko_KR" ]; then
+          text_viewer -y -w -t "아트워크 업데이트?" -f 24 -m "최신 Pixelcade 아트웍도 받고 싶으신가요? 15분 정도 걸릴 겁니다"
+        else
+          text_viewer -y -w -t "Update Artwork?" -f 24 -m "Would you also like to get the latest Pixelcade artwork? This will take around 15 minutes..."
+        fi
             if [[ $? == 21 ]]; then
                 upgrade_artwork=true
             else
@@ -260,7 +313,11 @@ if [ "${JDKINSTALLED}" == "no" ]; then
 echo -e "GET http://google.com HTTP/1.0\n\n" | nc google.com 80
 if [ $? -ne 0 ]; then
     echo "No internet connection, exiting..."
-    text_viewer -e -w -t "No Internet!" -m "You need to be connected to the internet to download the JDK\nNo internet connection, exiting...";
+    if [ $(get_ee_setting system.language) == "ko_KR" ]; then
+      text_viewer -e -w -t "인터넷 안됨!" -m "JDK 다운로드를 위해 인터넷에 연결되어야 합니다.\n인터넷에 연결되지 않았습니다. 종료합니다...";
+    else
+      text_viewer -e -w -t "No Internet!" -m "You need to be connected to the internet to download the JDK\nNo internet connection, exiting...";
+    fi
     exit 1
 fi
     echo "Downloading JDK please be patient..."
@@ -370,12 +427,24 @@ fi
 #let's write the version so the next time the user can try and know if he/she needs to upgrade
 echo $version > ${INSTALLPATH}pixelcade/pixelcade-version
 touch ${INSTALLPATH}pixelcade/system/.initial-date
+  if [ $(get_ee_setting system.language) == "ko_KR" ]; then
+     text_viewer -y -w -t "설치 완료!" -f 24 -m "1941 게임 로고가 지금 Pixelcade에 표시되나요?"
+  else
      text_viewer -y -w -t "Installation complete!" -f 24 -m "Is the 1941 Game Logo Displaying on Pixelcade Now?"
+  fi
          if [[ $? == 21 ]]; then
-           text_viewer -y -w -t "Installation complete!" -f 24 -m "INSTALLATION COMPLETE , please now reboot and then Pixelcade will be controlled by EmuELEC, would you like to reboot now?"
+           if [ $(get_ee_setting system.language) == "ko_KR" ]; then
+             text_viewer -y -w -t "설치 완료!" -f 24 -m "설치가 완료되었습니다. 지금 다시 부팅하면 픽셀케이드가 EmuELC에 의해 제어됩니다. 지금 다시 부팅하시겠습니까?"
+           else
+             text_viewer -y -w -t "Installation complete!" -f 24 -m "INSTALLATION COMPLETE , please now reboot and then Pixelcade will be controlled by EmuELEC, would you like to reboot now?"
+           fi
             if [[ $? == 21 ]]; then
                systemctl reboot
             fi
          else
-           text_viewer -y -w -t "Installation incomplete!" -f 24 -m "It may still be ok and try rebooting, you can also refer to https://pixelcade.org/download-pi/ for troubleshooting steps, would you like to reboot now?"
+           if [ $(get_ee_setting system.language) == "ko_KR" ]; then
+             text_viewer -y -w -t "설치 완료!" -f 24 -m "여전히 괜찮고 재부팅을 시도할 수 있습니다. https://pixelcade.org/download-pi/에서 문제 해결 단계를 참조할 수도 있습니다. 지금 재부팅하시겠습니까?"
+           else
+             text_viewer -y -w -t "Installation incomplete!" -f 24 -m "It may still be ok and try rebooting, you can also refer to https://pixelcade.org/download-pi/ for troubleshooting steps, would you like to reboot now?"
+           fi
          fi
