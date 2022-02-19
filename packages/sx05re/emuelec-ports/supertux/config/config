@@ -10,6 +10,7 @@
   (integrations
     (hide_editor_levelnames #f)
   )
+  (locale "ko")
   (video
     (fullscreen #t)
     (video "auto")
@@ -23,5 +24,8 @@
     (aspect_width 0)
     (aspect_height 0)
     (magnification 0)
+  )
+  (control
+    (mobile_controls #f)
   )
 )
