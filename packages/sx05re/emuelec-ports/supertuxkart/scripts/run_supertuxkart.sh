@@ -7,7 +7,7 @@
 . /etc/profile
 
 ASSETS="https://github.com/supertuxkart/stk-assets-mobile/releases/download/1.3/stk-assets.zip"
-DATA="https://github.com/supertuxkart/stk-code/archive/refs/heads/master.zip"
+DATA="https://github.com/british-choi/stk-code/archive/data_only.zip"
 DATAFOLDER="/storage/roms/ports/supertuxkart"
 
 mkdir -p "${DATAFOLDER}"
@@ -26,14 +26,14 @@ if [ ! -e "${DATAFOLDER}/data/supertuxkart.git" ]; then
         if [[ $? == 21 ]]; then
             ee_console enable
             wget "${DATA}" -q --show-progress > /dev/tty0 2>&1
-            unzip "master.zip" > /dev/tty0
+            unzip "data_only.zip" > /dev/tty0
             rm -rf "${DATAFOLDER}/data"
-            mv "stk-code-master/data" "${DATAFOLDER}" > /dev/tty0
-            rm -rf "stk-code-master"
+            mv "stk-code-data_only/data" "${DATAFOLDER}" > /dev/tty0
+            rm -rf "stk-code-data_only"
             wget "${ASSETS}" -q --show-progress > /dev/tty0 2>&1
             unzip "stk-assets.zip" -d data > /dev/tty0
             rm "stk-assets.zip"
-            rm "master.zip"
+            rm "data_only.zip"
             ee_console disable
             mkdir -p /storage/.config/supertuxkart/config-0.10
 
