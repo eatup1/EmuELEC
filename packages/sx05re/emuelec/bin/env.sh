@@ -6,7 +6,7 @@
 export TERM="xterm"
 export TERMINFO="/usr/share/terminfo"
 export TERMINFO_DIRS=$TERMINFO
-export LANG="C.UTF-8"
+export LANG="ko_KR.UTF-8"
 export HOME="/storage"
 export romdir="/storage/roms/"
 # export configdir="/usr/bin/scripts"
