@@ -19,13 +19,21 @@
 ################################################################################
 
 PKG_NAME="flycast"
-PKG_VERSION="a4b0a69c455971c85257e3cfc3ee13a592296ce7"
-PKG_ARCH="any"
+if [ "${ARCH}" == "aarch64" ]; then
+PKG_VERSION="20571c5aa197f27f10d7e1a226d02b472dc855b5"
+PKG_ARCH="aarch64"
 PKG_LICENSE="GPLv2"
 PKG_SITE="https://github.com/flyinghead/flycast"
+else
+PKG_VERSION="886188804de48a4bd9324046598e8dedfd0d2099"
+PKG_ARCH="arm"
+PKG_SITE="https://github.com/libretro/flycast"
+PKG_LICENSE="GPLv2"
+fi
 PKG_URL="$PKG_SITE.git"
 PKG_DEPENDS_TARGET="toolchain ${OPENGLES}"
 PKG_SHORTDESC="Flycast is a multiplatform Sega Dreamcast emulator"
+if [ "${ARCH}" == "aarch64" ]; then
 PKG_BUILD_FLAGS="-lto"
 PKG_TOOLCHAIN="cmake"
 
@@ -33,10 +41,29 @@ PKG_CMAKE_OPTS_TARGET="-DLIBRETRO=ON \
                         -DUSE_OPENMP=OFF \ 
                         -DCMAKE_BUILD_TYPE=Release \
                         -DUSE_GLES2=ON"
+else
+PKG_TOOLCHAIN="make"
+PKG_BUILD_FLAGS="-gold"
+
+# Flycast defaults to -O3 but then CHD v5 do not seem to work on EmuELEC so we change it to -O2 to fix the issue
+PKG_MAKE_OPTS_TARGET="ARCH=arm HAVE_OPENMP=0 GIT_VERSION=${PKG_VERSION:0:7} FORCE_GLES=1 SET_OPTIM=-O2 HAVE_LTCG=0"
+fi
 
 pre_make_target() {
+if [ "${ARCH}" == "aarch64" ]; then
   find $PKG_BUILD -name flags.make -exec sed -i "s:isystem :I:g" \{} \;
   find $PKG_BUILD -name build.ninja -exec sed -i "s:isystem :I:g" \{} \;
+else
+   export BUILD_SYSROOT=$SYSROOT_PREFIX
+
+  if [ "${OPENGLES_SUPPORT}" = "yes" ]; then
+    PKG_MAKE_OPTS_TARGET+=" FORCE_GLES=1 LDFLAGS=-lrt"
+  fi
+
+  if [ "${DEVICE}" == "OdroidGoAdvance" -o "${DEVICE}" == "RG351P" -o "${DEVICE}" == "RG351V" ]; then
+    PKG_MAKE_OPTS_TARGET+=" platform=classic_armv8_a35"
+  fi
+fi
 }
 
 makeinstall_target() {
