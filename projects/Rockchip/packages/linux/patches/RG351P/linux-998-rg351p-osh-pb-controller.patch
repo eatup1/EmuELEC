@@ -1,24 +1,68 @@
 diff --git a/drivers/input/evdev.c b/drivers/input/evdev.c
-index e9ae3d500a55..39e2e4bd27be 100644
+index e9ae3d500a55..a15122d9bab2 100644
 --- a/drivers/input/evdev.c
 +++ b/drivers/input/evdev.c
 @@ -15,6 +15,15 @@
  #define EVDEV_MIN_BUFFER_SIZE	64U
  #define EVDEV_BUF_PACKETS	8
  
-+#define RG351P_ABS_Z_MIN 500
-+#define RG351P_ABS_Z_MAX 3500
-+#define RG351P_ABS_RY_MIN 500
-+#define RG351P_ABS_RY_MAX 3500
-+#define RG351P_ABS_RX_MIN 500
-+#define RG351P_ABS_RX_MAX 3200
-+#define RG351P_ABS_RZ_MIN 500
-+#define RG351P_ABS_RZ_MAX 3200
++#define RG351P_ABS_Z_MIN (1000-11)
++#define RG351P_ABS_Z_MAX (3095-11)
++#define RG351P_ABS_RX_MIN (1000-43)
++#define RG351P_ABS_RX_MAX (3095-43)
++#define RG351P_ABS_RY_MIN (1000-4)
++#define RG351P_ABS_RY_MAX (3095-4)
++#define RG351P_ABS_RZ_MIN (1000-42)
++#define RG351P_ABS_RZ_MAX (3095-42)
 +
  #include <linux/poll.h>
  #include <linux/sched.h>
  #include <linux/slab.h>
-@@ -808,7 +817,7 @@ static int handle_eviocgbit(struct input_dev *dev,
+@@ -260,6 +269,7 @@ static void evdev_pass_values(struct evdev_client *client,
+ 			ktime_t *ev_time)
+ {
+ 	struct evdev *evdev = client->evdev;
++	struct input_dev *dev = evdev->handle.dev;	// RG351P
+ 	const struct input_value *v;
+ 	struct input_event event;
+ 	bool wakeup = false;
+@@ -287,6 +297,35 @@ static void evdev_pass_values(struct evdev_client *client,
+ 		event.type = v->type;
+ 		event.code = v->code;
+ 		event.value = v->value;
++		// [RG351P] OpenSimHardware OSH PB Controller
++		if (dev->id.vendor == 0x1209 && dev->id.product == 0x3100) {
++			if (v->type == EV_ABS) {
++				switch(event.code) {
++				case ABS_Z:		// Analog1 X
++					if (event.value < RG351P_ABS_Z_MIN) event.value = RG351P_ABS_Z_MIN;
++					if (event.value > RG351P_ABS_Z_MAX) event.value = RG351P_ABS_Z_MAX;
++					event.value = 4095 * (event.value - RG351P_ABS_Z_MIN) / (RG351P_ABS_Z_MAX - RG351P_ABS_Z_MIN); //event.value = 4095 * (RG351P_ABS_Z_MAX - event.value) / (RG351P_ABS_Z_MAX - RG351P_ABS_Z_MIN);
++					break;
++				case ABS_RX:	// Analog1 Y
++					if (event.value < RG351P_ABS_RX_MIN) event.value = RG351P_ABS_RX_MIN;
++					if (event.value > RG351P_ABS_RX_MAX) event.value = RG351P_ABS_RX_MAX;
++					event.value = 4095 * (event.value - RG351P_ABS_RX_MIN) / (RG351P_ABS_RX_MAX - RG351P_ABS_RX_MIN); //event.value = 4095 * (RG351P_ABS_RX_MAX - event.value) / (RG351P_ABS_RX_MAX - RG351P_ABS_RX_MIN);
++					break;
++				case ABS_RY:	// Analog2 X
++					if (event.value < RG351P_ABS_RY_MIN) event.value = RG351P_ABS_RY_MIN;
++					if (event.value > RG351P_ABS_RY_MAX) event.value = RG351P_ABS_RY_MAX;
++					event.value = 4095 * (event.value - RG351P_ABS_RY_MIN) / (RG351P_ABS_RY_MAX - RG351P_ABS_RY_MIN);
++					break;
++				case ABS_RZ:	// Analog2 Y
++					if (event.value < RG351P_ABS_RZ_MIN) event.value = RG351P_ABS_RZ_MIN;
++					if (event.value > RG351P_ABS_RZ_MAX) event.value = RG351P_ABS_RZ_MAX;
++					event.value = 4095 * (event.value - RG351P_ABS_RZ_MIN) / (RG351P_ABS_RZ_MAX - RG351P_ABS_RZ_MIN);
++					break;
++				default:
++					break;
++				}
++			}
++		}
+ 		__pass_event(client, &event);
+ 	}
+ 
+@@ -808,7 +847,7 @@ static int handle_eviocgbit(struct input_dev *dev,
  			    void __user *p, int compat_mode)
  {
  	unsigned long *bits;
@@ -27,11 +71,11 @@ index e9ae3d500a55..39e2e4bd27be 100644
  
  	switch (type) {
  
-@@ -824,6 +833,34 @@ static int handle_eviocgbit(struct input_dev *dev,
+@@ -824,6 +863,26 @@ static int handle_eviocgbit(struct input_dev *dev,
  	default: return -EINVAL;
  	}
  
-+	// [RG351P] OpenSimHardware OSH PB Controller
++	// [RG351P] OpenSimHardware OSH PB Controller (Remove Unused feature)
 +	if (dev->id.vendor == 0x1209 && dev->id.product == 0x3100) {
 +		if (type == EV_KEY) {
 +			for (nr = 0; nr < BTN_GAMEPAD; nr++) {
@@ -47,14 +91,6 @@ index e9ae3d500a55..39e2e4bd27be 100644
 +			for (nr = ABS_HAT1X; nr <= ABS_HAT3Y; nr++) {
 +				clear_bit(nr, bits);
 +			}
-+			dev->absinfo[ABS_Z].minimum = RG351P_ABS_Z_MIN;		// Analog1 X
-+			dev->absinfo[ABS_Z].maximum = RG351P_ABS_Z_MAX;
-+			dev->absinfo[ABS_RY].minimum = RG351P_ABS_RY_MIN;	// Analog2 X
-+			dev->absinfo[ABS_RY].maximum = RG351P_ABS_RY_MAX;
-+			dev->absinfo[ABS_RX].minimum = RG351P_ABS_RX_MIN;	// Analog1 Y
-+			dev->absinfo[ABS_RX].maximum = RG351P_ABS_RX_MAX;
-+			dev->absinfo[ABS_RZ].minimum = RG351P_ABS_RZ_MIN;	// Analog2 Y
-+			dev->absinfo[ABS_RZ].maximum = RG351P_ABS_RZ_MAX;
 +		} else if (type == EV_MSC) {
 +			clear_bit(MSC_SCAN, bits);
 +		}
