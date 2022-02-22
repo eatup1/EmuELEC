@@ -99,10 +99,28 @@ index e9ae3d500a55..a15122d9bab2 100644
  }
  
 diff --git a/drivers/input/joydev.c b/drivers/input/joydev.c
-index 5d11fea3c8ec..e45ac874e7f1 100644
+index 5d11fea3c8ec..706b52ef2777 100644
 --- a/drivers/input/joydev.c
 +++ b/drivers/input/joydev.c
-@@ -601,6 +601,12 @@ static long joydev_compat_ioctl(struct file *file,
+@@ -137,6 +137,17 @@ static void joydev_event(struct input_handle *handle,
+ 		event.number = joydev->absmap[code];
+ 		event.value = joydev_correct(value,
+ 					&joydev->corr[event.number]);
++		// [RG351P] OpenSimHardware OSH PB Controller
++		if (!strcmp(joydev->handle.dev->name, "OpenSimHardware OSH PB Controller")) {
++			switch(code) {
++			case ABS_Z:		// Analog1 X
++			case ABS_RX:	// Analog1 Y
++				event.value *= -1;
++				break;
++			default:
++				break;
++			}
++		}
+ 		if (event.value == joydev->abs[event.number])
+ 			return;
+ 		joydev->abs[event.number] = event.value;
+@@ -601,6 +612,12 @@ static long joydev_compat_ioctl(struct file *file,
  		goto out;
  	}
  
@@ -115,7 +133,7 @@ index 5d11fea3c8ec..e45ac874e7f1 100644
  	switch (cmd) {
  
  	case JS_SET_TIMELIMIT:
-@@ -666,6 +672,12 @@ static long joydev_ioctl(struct file *file,
+@@ -666,6 +683,12 @@ static long joydev_ioctl(struct file *file,
  		goto out;
  	}
  
