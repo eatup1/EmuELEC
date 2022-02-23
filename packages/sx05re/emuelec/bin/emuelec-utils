@@ -78,7 +78,7 @@ function ee_backup() {
 		tar xvf "${BACKUPFILE}"
 		sync
         sleep 3
-        RESTOREDATE="$(date +'%m-%d-%Y')_$(uuidgen)"
+        RESTOREDATE="$(date +'%Y-%m-%d')_$(uuidgen)"
         # Move the backup file instead of deleting it
         mv "${BACKUPFILE}" "${BACKUPDIR}/restored_${RESTOREDATE}_${BACKUPTAR}" &
 		[ -z "${2}" ] && systemctl start emustation
