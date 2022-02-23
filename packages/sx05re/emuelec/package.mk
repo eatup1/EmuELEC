@@ -164,8 +164,8 @@ fi
   echo "chmod 4755 $INSTALL/usr/bin/busybox" >> $FAKEROOT_SCRIPT
   find $INSTALL/usr/ -type f -iname "*.sh" -exec chmod +x {} \;
   
-# RG351P : BT disable
-if [[ ${DEVICE} == "RG351P" ]]; then 
+# RG351P/V : BT disable
+if [[ "${DEVICE}" == "RG351P" || "${DEVICE}" == "RG351V" ]]; then 
     sed -i "s|ee_bluetooth.enabled=1|ee_bluetooth.enabled=0|g" $INSTALL/usr/config/emuelec/configs/emuelec.conf
 fi
 
