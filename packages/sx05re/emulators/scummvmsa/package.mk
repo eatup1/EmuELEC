@@ -2,8 +2,8 @@
 # Copyright (C) 2019-present Shanti Gilbert (https://github.com/shantigilbert)
 
 PKG_NAME="scummvmsa"
-PKG_VERSION="9b6bb77f80c801ac4b5aae59a5cfe4e3c0f8a5ab"
-PKG_SHA256="ff13a8e681b48b879591e83def55b987fdaa577a9e76c677470bb4f53812aee0"
+PKG_VERSION="235a54285c40f6e5e9a3eeeb8d380255e5faf0ef"
+PKG_SHA256="f0ff06228cfac0338f3fe862a160ae2319683dc22f6114dd21717fd33f72e7d7"
 PKG_REV="1"
 PKG_LICENSE="GPL2"
 PKG_SITE="https://github.com/scummvm/scummvm"
@@ -15,6 +15,9 @@ PKG_LONGDESC="ScummVM is a program which allows you to run certain classic graph
 pre_configure_target() { 
 sed -i "s|sdl-config|sdl2-config|g" $PKG_BUILD/configure
 TARGET_CONFIGURE_OPTS="--host=${TARGET_NAME} --backend=sdl --enable-vkeybd --enable-optimizations --opengl-mode=gles2 --with-sdl-prefix=${SYSROOT_PREFIX}/usr/bin"
+
+# copy korean translation
+cp -rf $PKG_DIR/po/ko.po $PKG_BUILD/po/ko.po
 }
 
 post_makeinstall_target() {
