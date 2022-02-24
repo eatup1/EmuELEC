@@ -14,13 +14,13 @@ PKG_TOOLCHAIN="make"
 
 if [ "$DEVICE" == "OdroidGoAdvance" ] || [ "$DEVICE" == "GameForce" ]; then
 PKG_PATCH_DIRS="OdroidGoAdvance"
-elif [ "$DEVICE" == "RG351P" ] || [ "$DEVICE" == "RG351V" ]; then
-PKG_PATCH_DIRS="RG351"
 fi
 
 
 if [[ "$ARCH" == "arm" ]]; then
 	PKG_PATCH_DIRS="${ARCH}"
+elif [ "$DEVICE" == "RG351P" ] || [ "$DEVICE" == "RG351V" ]; then
+	PKG_PATCH_DIRS="RG351-aarch64"
 else
 	PKG_PATCH_DIRS="emuelec-aarch64"
 fi
