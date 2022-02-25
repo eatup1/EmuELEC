@@ -2,7 +2,7 @@
 # Copyright (C) 2020-present Shanti Gilbert (https://github.com/shantigilbert)
 
 PKG_NAME="devilutionX"
-PKG_VERSION="90fbf1c535106826489e052ed976e2836c3bccbc"
+PKG_VERSION="d3995736b97fd97dfa2ce5744fca2b691b9eca06"
 PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="unlicense"
@@ -18,7 +18,7 @@ PKG_CMAKE_OPTS_TARGET=" -DCMAKE_BUILD_TYPE="Release" -DDEBUG=OFF -DPREFILL_PLAYE
 sed -i "s|;-static-libstdc++>|;-lstdc++>|" $PKG_BUILD/CMake/functions/devilutionx_library.cmake
 
 # Remove ja zh due to font size 
-sed -i "s|ja ko_KR pl pt_BR ro_RO ru uk sv zh_CN zh_TW)|ko_KR pl pt_BR ro_RO ru uk sv)|" $PKG_BUILD/CMakeLists.txt
+sed -i "s|ja ko_KR pl pt_BR ro_RO ru uk sv zh_CN zh_TW)|ko_KR pl pt_BR ro_RO ru uk sv)|" $PKG_BUILD/CMake/Assets.cmake
 
 # copy korean translation
 cp -rf $PKG_DIR/Translations/ko.po $PKG_BUILD/Translations/ko.po

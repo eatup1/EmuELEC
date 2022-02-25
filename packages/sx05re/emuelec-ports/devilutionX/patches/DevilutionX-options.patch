@@ -29,7 +29,7 @@ index 2982587a..4426bf45 100644
  }
  void OptionEntryLanguageCode::SaveToIni(string_view category) const
  {
-@@ -977,7 +977,8 @@ void OptionEntryLanguageCode::CheckLanguagesAreInitialized() const
+@@ -978,7 +978,8 @@ void OptionEntryLanguageCode::CheckLanguagesAreInitialized() const
  	languages.emplace_back("it", "Italiano");
  
  	if (font_mpq) {
@@ -39,7 +39,7 @@ index 2982587a..4426bf45 100644
  		languages.emplace_back("ko", "한국어");
  	}
  
-@@ -989,8 +990,9 @@ void OptionEntryLanguageCode::CheckLanguagesAreInitialized() const
+@@ -990,8 +991,9 @@ void OptionEntryLanguageCode::CheckLanguagesAreInitialized() const
  	languages.emplace_back("uk", "Українська");
  
  	if (font_mpq) {
