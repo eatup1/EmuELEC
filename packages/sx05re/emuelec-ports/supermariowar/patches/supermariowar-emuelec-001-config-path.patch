@@ -1,6 +1,6 @@
 --- a/src/common/path.cpp
 +++ b/src/common/path.cpp
-@@ -48,8 +48,8 @@
+@@ -52,8 +52,8 @@
      return result;
  
  #else // catch-all for Linux-based systems
