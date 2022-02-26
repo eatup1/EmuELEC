@@ -1,6 +1,6 @@
 --- a/advance/linux/vfb.c	2018-03-10 10:38:17.000000000 -0600
 +++ b/advance/linux/vfb.c	2018-03-10 13:55:40.977788463 -0600
-@@ -859,6 +859,7 @@
+@@ -864,6 +864,7 @@
  	}
  
  	/* set the preferred bit depth */
@@ -8,7 +8,7 @@
  	switch (fb_state.varinfo.bits_per_pixel) {
  	case 16:
  		if ((fb_state.flags & VIDEO_DRIVER_FLAGS_MODE_BGR16) != 0)
-@@ -873,6 +874,9 @@
+@@ -878,6 +879,9 @@
  			fb_state.flags |= VIDEO_DRIVER_FLAGS_DEFAULT_BGR32;
  		break;
  	}
