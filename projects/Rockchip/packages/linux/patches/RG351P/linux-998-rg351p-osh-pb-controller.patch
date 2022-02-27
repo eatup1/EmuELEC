@@ -81,7 +81,7 @@ index e9ae3d500a55..a15122d9bab2 100644
 +			for (nr = 0; nr < BTN_GAMEPAD; nr++) {
 +				clear_bit(nr, bits);
 +			}
-+			for (nr = BTN_MODE; nr < KEY_MAX; nr++) {
++			for (nr = BTN_DIGI; nr < KEY_MAX; nr++) {
 +				clear_bit(nr, bits);
 +			}
 +		} else if (type == EV_ABS) {
