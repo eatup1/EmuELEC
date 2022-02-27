@@ -37,12 +37,12 @@ index e9ae3d500a55..a15122d9bab2 100644
 +				case ABS_Z:		// Analog1 X
 +					if (event.value < RG351P_ABS_Z_MIN) event.value = RG351P_ABS_Z_MIN;
 +					if (event.value > RG351P_ABS_Z_MAX) event.value = RG351P_ABS_Z_MAX;
-+					event.value = 4095 * (event.value - RG351P_ABS_Z_MIN) / (RG351P_ABS_Z_MAX - RG351P_ABS_Z_MIN); //event.value = 4095 * (RG351P_ABS_Z_MAX - event.value) / (RG351P_ABS_Z_MAX - RG351P_ABS_Z_MIN);
++					event.value = 4095 * (RG351P_ABS_Z_MAX - event.value) / (RG351P_ABS_Z_MAX - RG351P_ABS_Z_MIN);
 +					break;
 +				case ABS_RX:	// Analog1 Y
 +					if (event.value < RG351P_ABS_RX_MIN) event.value = RG351P_ABS_RX_MIN;
 +					if (event.value > RG351P_ABS_RX_MAX) event.value = RG351P_ABS_RX_MAX;
-+					event.value = 4095 * (event.value - RG351P_ABS_RX_MIN) / (RG351P_ABS_RX_MAX - RG351P_ABS_RX_MIN); //event.value = 4095 * (RG351P_ABS_RX_MAX - event.value) / (RG351P_ABS_RX_MAX - RG351P_ABS_RX_MIN);
++					event.value = 4095 * (RG351P_ABS_RX_MAX - event.value) / (RG351P_ABS_RX_MAX - RG351P_ABS_RX_MIN);
 +					break;
 +				case ABS_RY:	// Analog2 X
 +					if (event.value < RG351P_ABS_RY_MIN) event.value = RG351P_ABS_RY_MIN;
