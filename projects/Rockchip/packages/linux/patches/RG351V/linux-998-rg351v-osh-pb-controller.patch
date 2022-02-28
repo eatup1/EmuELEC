@@ -17,10 +17,10 @@ index e9ae3d500a55..6da6caf0e13c 100644
 +		// [RG351V] OpenSimHardware OSH PB Controller
 +		if (dev->id.vendor == 0x1209 && dev->id.product == 0x3100) {
 +			if (v->type == EV_ABS) {
-+				switch(event.code) {
++				switch(v->code) {
 +				case ABS_Z:		// ABS_X
 +				case ABS_RX:	// ABS_Y
-+					event.value = 4095 - event.value;
++					event.value = dev->absinfo[v->code].maximum - v->value;
 +					break;
 +				default:
 +					break;
@@ -49,7 +49,7 @@ index e9ae3d500a55..6da6caf0e13c 100644
 +			for (nr = 0; nr < BTN_GAMEPAD; nr++) {
 +				clear_bit(nr, bits);
 +			}
-+			for (nr = BTN_MODE; nr < KEY_MAX; nr++) {
++			for (nr = BTN_DIGI; nr < KEY_MAX; nr++) {
 +				clear_bit(nr, bits);
 +			}
 +		} else if (type == EV_ABS) {
