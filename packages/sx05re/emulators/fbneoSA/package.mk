@@ -20,6 +20,7 @@ sed -i "s|objdir	= obj/|objdir	= ${PKG_BUILD}/obj/|" makefile.sdl2
 sed -i "s|srcdir	= src/|srcdir	= ${PKG_BUILD}/src/|" makefile.sdl2
 sed -i "s|CC	= gcc|#CC	= gcc|" makefile.sdl2
 export LDFLAGS+=" -L$(get_install_dir gl4es)/usr/lib"
+unset MAKELEVEL
 }
 
 makeinstall_target() {

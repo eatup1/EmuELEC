@@ -6,7 +6,10 @@
 # Source predefined functions and variables
 . /etc/profile
 
-ASSETS="https://github.com/supertuxkart/stk-assets-mobile/releases/download/1.3/stk-assets.zip"
+# This variable has to match the version on package.mk
+VERSION="1.3"
+
+ASSETS="https://github.com/supertuxkart/stk-assets-mobile/releases/download/${VERSION}/stk-assets.zip"
 DATA="https://github.com/british-choi/stk-code/archive/data_only.zip"
 DATAFOLDER="/storage/roms/ports/supertuxkart"
 
@@ -17,7 +20,7 @@ if [ "$EE_DEVICE" == "Amlogic-ng" ]; then
 fbfix
 fi
 
-if [ ! -e "${DATAFOLDER}/data/supertuxkart.git" ]; then
+if [ ! -e "${DATAFOLDER}/data/stk_config.xml" ]; then
     if [ $(get_ee_setting system.language) == "ko_KR" ]; then
     text_viewer -y -w -f 24 -t "데이터가 없습니다!" -m "수퍼 턱스 카트를 처음 실행하거나 데이터 폴더가 없습니다.\n\n데이터는 약250MB이며 인터넷에 연결되어 있어야 합니다.\n\n다운로드하고 계속하시겠습니까?"
     else
