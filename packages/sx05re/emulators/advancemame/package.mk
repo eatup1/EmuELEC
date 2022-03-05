@@ -44,9 +44,9 @@ mkdir -p ${INSTALL}/usr/bin
 if [ "${DEVICE}" == "OdroidGoAdvance" ]; then
    cp -r ${PKG_DIR}/config/advmame.rc_oga ${INSTALL}/usr/config/emuelec/configs/advmame/advmame.rc
 elif [ "${DEVICE}" == "RG351P" ]; then
-   cp -r ${PKG_DIR}/config/advmame.rc_rg351p ${INSTALL}/usr/config/emuelec/configs/advmame.rc
+   cp -r ${PKG_DIR}/config/advmame.rc_rg351p ${INSTALL}/usr/config/emuelec/configs/advmame/advmame.rc
 elif [ "${DEVICE}" == "RG351V" ]; then
-   cp -r ${PKG_DIR}/config/advmame.rc_rg351v ${INSTALL}/usr/config/emuelec/configs/advmame.rc
+   cp -r ${PKG_DIR}/config/advmame.rc_rg351v ${INSTALL}/usr/config/emuelec/configs/advmame/advmame.rc
 elif [ "$DEVICE" == "GameForce" ]; then
    cp -r ${PKG_DIR}/config/advmame.rc_gf ${INSTALL}/usr/config/emuelec/configs/advmame/advmame.rc
 else
