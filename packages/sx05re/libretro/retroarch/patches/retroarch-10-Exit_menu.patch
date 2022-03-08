@@ -18,7 +18,7 @@ diff --git a/configuration.h b/configuration.h
 index d758fe630e..aedf9f8f28 100644
 --- a/configuration.h
 +++ b/configuration.h
-@@ -529,6 +529,10 @@ typedef struct settings
+@@ -530,6 +530,10 @@ typedef struct settings
     {
        bool placeholder;
  
@@ -41,7 +41,7 @@ index ef890fb88c..21c4f8532f 100644
  
  #include <boolean.h>
  #include <clamping.h>
-@@ -1980,9 +1981,32 @@ bool command_event(enum event_command cmd, void *data)
+@@ -1984,9 +1985,32 @@ bool command_event(enum event_command cmd, void *data)
  #endif
           break;
        case CMD_EVENT_QUIT:

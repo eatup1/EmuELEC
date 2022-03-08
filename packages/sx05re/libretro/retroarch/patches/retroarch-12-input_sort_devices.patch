@@ -17,9 +17,9 @@ index 4b985f1953..d66e2b50d3 100644
  static void *udev_joypad_init(void *data)
  {
     unsigned i;
-@@ -624,12 +632,32 @@ static void *udev_joypad_init(void *data)
-    udev_enumerate_scan_devices(enumerate);
-    devs = udev_enumerate_get_list_entry(enumerate);
+@@ -626,11 +632,31 @@ static void *udev_joypad_init(void *data)
+    if (!devs)
+       RARCH_DBG("[udev]: Couldn't open any joypads. Are permissions set correctly for /dev/input/event* and /run/udev/?\n");
  
 -   udev_list_entry_foreach(item, devs)
 +   for (item = devs; item; item = udev_list_entry_get_next(item))
@@ -27,7 +27,6 @@ index 4b985f1953..d66e2b50d3 100644
        const char         *name = udev_list_entry_get_name(item);
        struct udev_device  *dev = udev_device_new_from_syspath(udev_joypad_fd, name);
        const char      *devnode = udev_device_get_devnode(dev);
- 
 +      if (devnode != NULL) {
 +         sorted[sorted_count].devnode = devnode;
 +         sorted[sorted_count].item = item;
@@ -48,6 +47,7 @@ index 4b985f1953..d66e2b50d3 100644
 +      struct udev_device  *dev = udev_device_new_from_syspath(udev_joypad_fd, name);
 +      const char      *devnode = udev_device_get_devnode(dev);
 +
-       if (devnode)
-          udev_check_device(dev, devnode);
-       udev_device_unref(dev);
+ #if defined(DEBUG)
+       struct udev_list_entry *list_entry = NULL;
+       RARCH_DBG("udev_joypad_init entry name=%s devnode=%s\n", name, devnode);
+
