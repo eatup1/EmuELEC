@@ -14,6 +14,7 @@ device_keyboard sdl
 display_magnifysize 320
 display_resize none
 display_resizeeffect none
+misc_smp no
 misc_quiet yes
 sound_mode mono
 device_alsa_device sdl

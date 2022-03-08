@@ -11,6 +11,8 @@ dir_snap /storage/roms/mame/snap
 dir_sta /storage/roms/mame/nvram
 record_sound no
 record_video no
+misc_smp no
+misc_quiet yes
 sound_latency 0.10
 sound_normalize no
 device_video_clock 10-180 / 30-80 / 50-70
