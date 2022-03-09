@@ -11,16 +11,28 @@ diff --git a/src/video/kmsdrm/SDL_kmsdrmmouse.c b/src/video/kmsdrm/SDL_kmsdrmmou
 index b22fc8e..c9d7700 100644
 --- a/src/video/kmsdrm/SDL_kmsdrmmouse.c
 +++ b/src/video/kmsdrm/SDL_kmsdrmmouse.c
-@@ -202,7 +202,7 @@ KMSDRM_DumpCursorToBO(SDL_VideoDisplay *display, SDL_Cursor *cursor)
-         for (j = 0; j < curdata->w; j++) {
-             pixel = ((uint32_t*)curdata->buffer)[i * curdata->w + j];
-             legacy_alpha_premultiply_ARGB8888 (&pixel);
--            SDL_memcpy(ready_buffer + (i * dispdata->cursor_w) + j, &pixel, 4);
-+            SDL_memcpy(ready_buffer + ((curdata->w - j + 1) * dispdata->cursor_w) + i, &pixel, 4);
-         }
+@@ -156,6 +156,7 @@
+     uint8_t *src_row;
+ 
+     int i;
++    int j;
+     int ret;
+ 
+     if (!curdata || !dispdata->cursor_bo) {
+@@ -176,8 +177,10 @@
+ 
+     /* Copy from the cursor buffer to a buffer that we can dump to the GBM BO. */
+     for (i = 0; i < curdata->h; i++) {
+-        src_row = &((uint8_t*)curdata->buffer)[i * curdata->w * 4];
+-        SDL_memcpy(ready_buffer + (i * bo_stride), src_row, 4 * curdata->w);
++        for (j = 0; j < curdata->w; j++) {
++            src_row = ((uint32_t*)curdata->buffer)[i * curdata->w + j];
++            SDL_memcpy(ready_buffer + ((curdata->w - j + 1) * bo_stride) + i, &src_row, 4);
++        }
      }
  
-@@ -216,10 +216,10 @@ KMSDRM_DumpCursorToBO(SDL_VideoDisplay *display, SDL_Cursor *cursor)
+     /* Dump the cursor buffer to our GBM BO. */
+@@ -190,10 +193,10 @@ KMSDRM_DumpCursorToBO(SDL_VideoDisplay *display, SDL_Cursor *cursor)
      bo_handle = KMSDRM_gbm_bo_get_handle(dispdata->cursor_bo).u32;
      if (curdata->hot_x == 0 && curdata->hot_y == 0) {
          ret = KMSDRM_drmModeSetCursor(viddata->drm_fd, dispdata->crtc->crtc_id,
@@ -33,7 +45,7 @@ index b22fc8e..c9d7700 100644
      }
  
      if (ret) {
-@@ -417,9 +417,9 @@ KMSDRM_WarpMouseGlobal(int x, int y)
+@@ -378,9 +381,9 @@ KMSDRM_WarpMouseGlobal(int x, int y)
      SDL_Mouse *mouse = SDL_GetMouse();
  
      if (mouse && mouse->cur_cursor && mouse->focus) {
@@ -44,7 +56,7 @@ index b22fc8e..c9d7700 100644
  
          /* Update internal mouse position. */
          SDL_SendMouseMotion(mouse->focus, mouse->mouseID, 0, x, y);
-@@ -428,7 +428,7 @@ KMSDRM_WarpMouseGlobal(int x, int y)
+@@ -389,7 +392,7 @@ KMSDRM_WarpMouseGlobal(int x, int y)
          if (dispdata->cursor_bo) {
              int ret = 0;
  
@@ -53,7 +65,7 @@ index b22fc8e..c9d7700 100644
  
              if (ret) {
                  SDL_SetError("drmModeMoveCursor() failed.");
-@@ -484,16 +484,16 @@ KMSDRM_MoveCursor(SDL_Cursor * cursor)
+@@ -443,16 +446,16 @@ KMSDRM_MoveCursor(SDL_Cursor * cursor)
      /* We must NOT call SDL_SendMouseMotion() here or we will enter recursivity!
         That's why we move the cursor graphic ONLY. */
      if (mouse && mouse->cur_cursor && mouse->focus) {
