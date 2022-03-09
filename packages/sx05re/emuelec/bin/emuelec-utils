@@ -127,12 +127,20 @@ function ee_cloud_backup() {
     # We need to check if rclone.conf exists and its configured correctly, else show error
     if [ -e "${RCLONECONF}" ]; then
         if ! grep -Fxq "[${EE_SYNC_REMOTE}]" ${RCLONECONF}; then
-            text_viewer -e -w -t "rclone.conf error!" -f 24 -m "rclone.conf exist but it does not contain a remote named ${EE_SYNC_REMOTE}, please read https://rclone.org/remote_setup/ name your remote ${EE_SYNC_REMOTE} and copy resulting rclone.conf to /emuelec/configs/rclone/"
+            if [ $(get_ee_setting system.language) == "ko_KR" ]; then
+              text_viewer -e -w -t "rclone.conf 에러!" -f 24 -m "rclone.conf가 있지만 remote name ${EE_SYNC_REMOTE}이 포함되어 있지 않습니다. https://rclone.org/remote_setup/에서 원격 이름 ${EE_SYNC_REMOTE}을 읽고 결과 rclone.conf를 /emuelec/configs/rclone/에 복사하십시오."
+	    else
+              text_viewer -e -w -t "rclone.conf error!" -f 24 -m "rclone.conf exist but it does not contain a remote named ${EE_SYNC_REMOTE}, please read https://rclone.org/remote_setup/ name your remote ${EE_SYNC_REMOTE} and copy resulting rclone.conf to /emuelec/configs/rclone/"
+	    fi
             systemctl start emustation
             exit 1;
         fi
     else
-        text_viewer -e -w -t "rclone.conf does not exist!" -f 24 -m "rclone.conf does not exist and its required for cloud sync to function! please read https://rclone.org/remote_setup/ and copy resulting rclone.conf to /emuelec/configs/rclone/"
+        if [ $(get_ee_setting system.language) == "ko_KR" ]; then
+          text_viewer -e -w -t "rclone.conf가 존재하지 않습니다!" -f 24 -m "rclone.conf가 존재하지 않으며 이는 클라우드 동기화에 필요합니다! https://rclone.org/remote_setup/을 읽고 결과 rclone.conf를 /emuelec/configs/rclone/에 복사하십시오."
+        else
+          text_viewer -e -w -t "rclone.conf does not exist!" -f 24 -m "rclone.conf does not exist and its required for cloud sync to function! please read https://rclone.org/remote_setup/ and copy resulting rclone.conf to /emuelec/configs/rclone/"
+	fi
         systemctl start emustation
         exit 1;
     fi
@@ -153,7 +161,11 @@ function ee_cloud_backup() {
 	esac
     echo "echo \"Done!...Press 'Select' or choose 'Close' to continue!\"" >> /tmp/cloud.sh    
     chmod +x /tmp/cloud.sh
-    text_viewer -s /tmp/cloud.sh -t "EmuELEC cloud sync, please wait!..."
+    if [ $(get_ee_setting system.language) == "ko_KR" ]; then
+      text_viewer -s /tmp/cloud.sh -t -f 24 "EmuELEC 클라우드 싱크, 잠시 기다리세요!..."
+    else
+      text_viewer -s /tmp/cloud.sh -t -f 24 "EmuELEC cloud sync, please wait!..."
+    fi
     rm /tmp/cloud.sh > /dev/null 2>&1
     
     if [ "${1}" == "restore" ]; then 

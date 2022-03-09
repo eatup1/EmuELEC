@@ -29,7 +29,7 @@ echo -e "GET http://google.com HTTP/1.0\n\n" | nc google.com 80 > /dev/null 2>&1
 if [ $? -ne 0 ]; then
     echo "No internet connection, exiting..." > /dev/console
     if [ $(get_ee_setting system.language) == "ko_KR" ]; then
-    text_viewer -e -w -t "ÀÎÅÍ³İÀÌ ¾ø½À´Ï´Ù!" -m "JDK¸¦ ´Ù¿î·ÎµåÇÏ·Á¸é ÀÎÅÍ³İ¿¡ ¿¬°áµÇ¾î ÀÖ¾î¾ß ÇÕ´Ï´Ù.\nÀÎÅÍ³İ¿¡ ¿¬°áµÇ¾î ÀÖÁö ¾Ê½À´Ï´Ù. Á¾·á Áß...";
+    text_viewer -e -w -t "ì¸í„°ë„·ì´ ì—†ìŠµë‹ˆë‹¤!" -m "JDKë¥¼ ë‹¤ìš´ë¡œë“œí•˜ë ¤ë©´ ì¸í„°ë„·ì— ì—°ê²°ë˜ì–´ ìˆì–´ì•¼ í•©ë‹ˆë‹¤.\nì¸í„°ë„·ì— ì—°ê²°ë˜ì–´ ìˆì§€ ì•ŠìŠµë‹ˆë‹¤. ì¢…ë£Œ ì¤‘...";
     else
     text_viewer -e -w -t "No Internet!" -m "You need to be connected to the internet to download the JDK\nNo internet connection, exiting...";
     fi

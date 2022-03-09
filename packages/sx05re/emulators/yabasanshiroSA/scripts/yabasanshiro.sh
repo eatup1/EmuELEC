@@ -33,7 +33,11 @@ if [ "${HLEBIOS}" != 1 ]; then
     if [ -e "/storage/roms/bios/saturn_bios.bin" ]; then
         BIOS="-b /storage/roms/bios/saturn_bios.bin"
     else
-        text_viewer -w -t "Notice! Yabasanshiro BIOS Missing!" -f 24 -m "/storage/roms/bios/saturn_bios.bin was not found!\n\nYabasanshiro will continue to load with HLE BIOS\n\nTo avoid this message please copy saturn_bios.bin with checksum af5828fdff51384f99b3c4926be27762 to /storage/roms/bios/\n\nOr select \"USE HLE BIOS\" on the emulator options"
+        if [ $(get_ee_setting system.language) == "ko_KR" ]; then
+          text_viewer -w -t "알림! Yabasanshiro BIOS 누락!" -f 24 -m "/storage/roms/bios/saturn_bios.bin을 찾을 수 없습니다!\n\nYabasanshiro가 HLE BIOS로 계속 로드합니다.\n\n이 메시지를 피하려면 체크섬이 af5828fdff51384f99b3c4926be27762인 saturn_bios.bin을 /storage/roms/bios/로 복사하거나\n\n에뮬레이터 옵션에서 \"USE HLE BIOS\"를 선택하십시오."
+        else
+          text_viewer -w -t "Notice! Yabasanshiro BIOS Missing!" -f 24 -m "/storage/roms/bios/saturn_bios.bin was not found!\n\nYabasanshiro will continue to load with HLE BIOS\n\nTo avoid this message please copy saturn_bios.bin with checksum af5828fdff51384f99b3c4926be27762 to /storage/roms/bios/\n\nOr select \"USE HLE BIOS\" on the emulator options"
+	fi
         BIOS=""
     fi
 fi
