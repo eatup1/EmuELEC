@@ -162,9 +162,9 @@ function ee_cloud_backup() {
     echo "echo \"Done!...Press 'Select' or choose 'Close' to continue!\"" >> /tmp/cloud.sh    
     chmod +x /tmp/cloud.sh
     if [ $(get_ee_setting system.language) == "ko_KR" ]; then
-      text_viewer -s /tmp/cloud.sh -t -f 24 "EmuELEC 클라우드 싱크, 잠시 기다리세요!..."
+      text_viewer -s /tmp/cloud.sh -t "EmuELEC 클라우드 싱크, 잠시 기다리세요!..." -f 24
     else
-      text_viewer -s /tmp/cloud.sh -t -f 24 "EmuELEC cloud sync, please wait!..."
+      text_viewer -s /tmp/cloud.sh -t "EmuELEC cloud sync, please wait!..." -f 24
     fi
     rm /tmp/cloud.sh > /dev/null 2>&1
     
