@@ -79,7 +79,7 @@ if [ -f "${BACKUPFILE}" ]; then
     echo "echo \"Done!...Press 'Select' or choose 'Close' to continue!\"" >> /tmp/script.sh
     chmod +x /tmp/script.sh
     if [ $(get_ee_setting system.language) == "ko_KR" ]; then
-      text_viewer -s /tmp/script.sh -t "¹é¾÷À» º¹¿ø ÁßÀÔ´Ï´Ù, ±â´Ù¸®¼¼¿ä!..." -f 24
+      text_viewer -s /tmp/script.sh -t "ë°±ì—…ì„ ë³µì› ì¤‘ì…ë‹ˆë‹¤, ê¸°ë‹¤ë¦¬ì„¸ìš”!..." -f 24
     else
       text_viewer -s /tmp/script.sh -t "Restoring backup, please wait!..." -f 24
     fi
