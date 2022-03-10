@@ -2,7 +2,7 @@ diff --git a/desktop_version/src/FileSystemUtils.cpp b/desktop_version/src/FileS
 index d40e7e9..d19895d 100644
 --- a/desktop_version/src/FileSystemUtils.cpp
 +++ b/desktop_version/src/FileSystemUtils.cpp
-@@ -150,7 +150,7 @@
+@@ -152,7 +152,7 @@
      else
      {
          SDL_snprintf(output, sizeof(output), "%s%s",
@@ -11,8 +11,8 @@ index d40e7e9..d19895d 100644
              "data.zip"
          );
      }
-@@ -173,7 +173,7 @@
-         goto end;
+@@ -174,7 +174,7 @@
+         return 0;
      }
  
 -    SDL_snprintf(output, sizeof(output), "%s%s", basePath, "gamecontrollerdb.txt");
