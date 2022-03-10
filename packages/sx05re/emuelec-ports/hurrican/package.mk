@@ -19,10 +19,6 @@ if [ "${DEVICE}" == "OdroidGoAdvance" -o "${DEVICE}" == "RG351P" -o "${DEVICE}" 
 	PKG_CMAKE_OPTS_TARGET+=" -DDEFAULT_SCREENBPP=16"
 fi
 
-if [ "${DEVICE}" == "RG351P" -o "${DEVICE}" == "RG351V" ]; then
-    PKG_PATCH_DIRS="RG351"
-fi
-
 pre_configure_target() {
   git submodule update --init --recursive
 }
