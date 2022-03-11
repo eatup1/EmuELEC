@@ -75,7 +75,6 @@ pre_configure_target(){
                          -DSDL_PTHREADS_SEM=ON \
                          -DSDL_DIRECTX=OFF \
                          -DSDL_DLOPEN=ON \
-<<<<<<< HEAD
                          -DSDL_CLOCK_GETTIME=OFF \
                          -DSDL_RPATH=OFF \
                          -DSDL_RENDER_D3D=OFF \
