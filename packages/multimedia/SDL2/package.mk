@@ -38,57 +38,56 @@ fi
 fi
 }
 
-PKG_CMAKE_OPTS_HOST="-DVIDEO_MALI=OFF -DVIDEO_KMSDRM=OFF"
+PKG_CMAKE_OPTS_HOST="-DVIDEO_MALI=OFF -DKMSDRM=OFF"
 
 pre_configure_target(){
   PKG_CMAKE_OPTS_TARGET="-DSDL_STATIC=OFF \
-                         -DLIBC=ON \
-                         -DGCC_ATOMICS=ON \
-                         -DALTIVEC=OFF \
-                         -DOSS=OFF \
-                         -DALSA=ON \
-                         -DALSA_SHARED=ON \
-                         -DJACK=OFF \
-                         -DJACK_SHARED=OFF \
-                         -DESD=OFF \
-                         -DESD_SHARED=OFF \
-                         -DARTS=OFF \
-                         -DARTS_SHARED=OFF \
-                         -DNAS=OFF \
-                         -DNAS_SHARED=OFF \
-                         -DLIBSAMPLERATE=OFF \
-                         -DLIBSAMPLERATE_SHARED=OFF \
-                         -DSNDIO=OFF \
-                         -DDISKAUDIO=OFF \
-                         -DDUMMYAUDIO=OFF \
-                         -DVIDEO_WAYLAND=OFF \
-                         -DVIDEO_WAYLAND_QT_TOUCH=ON \
-                         -DWAYLAND_SHARED=OFF \
-                         -DVIDEO_MIR=OFF \
-                         -DMIR_SHARED=OFF \
-                         -DVIDEO_COCOA=OFF \
-                         -DVIDEO_DIRECTFB=OFF \
-                         -DVIDEO_VIVANTE=OFF \
-                         -DDIRECTFB_SHARED=OFF \
-                         -DFUSIONSOUND=OFF \
-                         -DFUSIONSOUND_SHARED=OFF \
-                         -DVIDEO_DUMMY=OFF \
-                         -DINPUT_TSLIB=OFF \
-                         -DPTHREADS=ON \
-                         -DPTHREADS_SEM=ON \
-                         -DDIRECTX=OFF \
+                         -DSDL_LIBC=ON \
+                         -DSDL_GCC_ATOMICS=ON \
+                         -DSDL_ALTIVEC=OFF \
+                         -DSDL_OSS=OFF \
+                         -DSDL_ALSA=ON \
+                         -DSDL_ALSA_SHARED=ON \
+                         -DSDL_JACK=OFF \
+                         -DSDL_JACK_SHARED=OFF \
+                         -DSDL_ESD=OFF \
+                         -DSDL_ESD_SHARED=OFF \
+                         -DSDL_ARTS=OFF \
+                         -DSDL_ARTS_SHARED=OFF \
+                         -DSDL_NAS=OFF \
+                         -DSDL_NAS_SHARED=OFF \
+                         -DSDL_LIBSAMPLERATE=OFF \
+                         -DSDL_LIBSAMPLERATE_SHARED=OFF \
+                         -DSDL_SNDIO=OFF \
+                         -DSDL_DISKAUDIO=OFF \
+                         -DSDL_DUMMYAUDIO=OFF \
+                         -DSDL_DUMMYVIDEO=OFF \
+                         -DSDL_WAYLAND=OFF \
+                         -DSDL_WAYLAND_QT_TOUCH=ON \
+                         -DSDL_WAYLAND_SHARED=OFF \
+                         -DSDL_COCOA=OFF \
+                         -DSDL_DIRECTFB=OFF \
+                         -DSDL_VIVANTE=OFF \
+                         -DSDL_DIRECTFB_SHARED=OFF \
+                         -DSDL_FUSIONSOUND=OFF \
+                         -DSDL_FUSIONSOUND_SHARED=OFF \
+                         -DSDL_PTHREADS=ON \
+                         -DSDL_PTHREADS_SEM=ON \
+                         -DSDL_DIRECTX=OFF \
                          -DSDL_DLOPEN=ON \
-                         -DCLOCK_GETTIME=OFF \
-                         -DRPATH=OFF \
-                         -DRENDER_D3D=OFF \
-                         -DVIDEO_X11=OFF \
-                         -DVIDEO_OPENGLES=ON \
-                         -DVIDEO_VULKAN=OFF \
-                         -DPULSEAUDIO=ON"
+<<<<<<< HEAD
+                         -DSDL_CLOCK_GETTIME=OFF \
+                         -DSDL_RPATH=OFF \
+                         -DSDL_RENDER_D3D=OFF \
+                         -DSDL_X11=OFF \
+                         -DSDL_OPENGLES=ON \
+                         -DSDL_VULKAN=OFF \
+                         -DSDL_PULSEAUDIO=ON \
+                         -DSDL_HIDAPI_JOYSTICK=OFF"
 if [ "$DEVICE" == "OdroidGoAdvance" -o "$DEVICE" == "RG351P" -o "$DEVICE" == "RG351V" ] || [ "$DEVICE" == "GameForce" ]; then
-PKG_CMAKE_OPTS_TARGET="$PKG_CMAKE_OPTS_TARGET -DVIDEO_KMSDRM=ON"
+PKG_CMAKE_OPTS_TARGET="$PKG_CMAKE_OPTS_TARGET -DSDL_KMSDRM=ON"
 else
-PKG_CMAKE_OPTS_TARGET="$PKG_CMAKE_OPTS_TARGET -DVIDEO_MALI=ON -DVIDEO_KMSDRM=OFF"
+PKG_CMAKE_OPTS_TARGET="$PKG_CMAKE_OPTS_TARGET -DVIDEO_MALI=ON -DSDL_KMSDRM=OFF"
 fi
 }
 
