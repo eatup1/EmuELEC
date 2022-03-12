@@ -19,9 +19,9 @@
 ################################################################################
 
 PKG_NAME="flycast"
-if [ "${ARCH}" == "aarch64" ]; then
+if [ "${ARCH}" == "aarch64" -o "${DEVICE}" == "Amlogic-ng" ]; then
 PKG_VERSION="20571c5aa197f27f10d7e1a226d02b472dc855b5"
-PKG_ARCH="aarch64"
+PKG_ARCH="any"
 PKG_LICENSE="GPLv2"
 PKG_SITE="https://github.com/flyinghead/flycast"
 else
@@ -33,7 +33,7 @@ fi
 PKG_URL="$PKG_SITE.git"
 PKG_DEPENDS_TARGET="toolchain ${OPENGLES}"
 PKG_SHORTDESC="Flycast is a multiplatform Sega Dreamcast emulator"
-if [ "${ARCH}" == "aarch64" ]; then
+if [ "${ARCH}" == "aarch64" -o "${DEVICE}" == "Amlogic-ng" ]; then
 PKG_BUILD_FLAGS="-lto"
 PKG_TOOLCHAIN="cmake"
 
@@ -50,7 +50,7 @@ PKG_MAKE_OPTS_TARGET="ARCH=arm HAVE_OPENMP=0 GIT_VERSION=${PKG_VERSION:0:7} FORC
 fi
 
 pre_make_target() {
-if [ "${ARCH}" == "aarch64" ]; then
+if [ "${ARCH}" == "aarch64" -o "${DEVICE}" == "Amlogic-ng" ]; then
   find $PKG_BUILD -name flags.make -exec sed -i "s:isystem :I:g" \{} \;
   find $PKG_BUILD -name build.ninja -exec sed -i "s:isystem :I:g" \{} \;
 else
