@@ -1,0 +1,14 @@
+diff --git a/src/fheroes2/game/fheroes2.cpp b/src/fheroes2/game/fheroes2.cpp
+index fde9bfa0..c656baad 100644
+--- a/src/fheroes2/game/fheroes2.cpp
++++ b/src/fheroes2/game/fheroes2.cpp
+@@ -187,9 +187,7 @@ int main( int argc, char ** argv )
+         std::set<fheroes2::SystemInitializationComponent> coreComponents{ fheroes2::SystemInitializationComponent::Audio,
+                                                                           fheroes2::SystemInitializationComponent::Video };
+ 
+-#if defined( FHEROES2_VITA ) || defined( __SWITCH__ )
+         coreComponents.emplace( fheroes2::SystemInitializationComponent::GameController );
+-#endif
+ 
+         const fheroes2::CoreInitializer coreInitializer( coreComponents );
+ 
