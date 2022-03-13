@@ -19,7 +19,7 @@ if [ "$EE_DEVICE" == "Amlogic-ng" ]; then
     fbfix
 fi
 
-if [ ! -e "${CONFIGFOLDER}/data/HEROES2.AGG" ]; then
+if [ ! -e "${CONFIGFOLDER}/DATA/HEROES2.AGG" ]; then
     if [ $(get_ee_setting system.language) == "ko_KR" ]; then
         text_viewer -y -w -f 24 -t "데이터가 없습니다!" -m "${PORTNAME}를 처음 실행하거나 데이터 폴더가 없습니다.\n\n데모 데이터는 총 20MB이며 인터넷에 연결되어 있어야 합니다.\n\n\n데모를 다운로드하고 계속하시겠습니까?"
     else
@@ -33,8 +33,8 @@ if [ ! -e "${CONFIGFOLDER}/data/HEROES2.AGG" ]; then
             wget "${DATA}" -q --show-progress > /dev/tty0 2>&1
             echo "Installing ${PORTNAME} data, please wait..." > /dev/tty0
             unzip -o "${DATAFILE}" -d "${CONFIGFOLDER}/zip" > /dev/tty0
-            mv "${CONFIGFOLDER}/zip/DATA" "${CONFIGFOLDER}/data" > /dev/tty0 2>&1
-            mv "${CONFIGFOLDER}/zip/MAPS" "${CONFIGFOLDER}/maps" > /dev/tty0 2>&1
+            mv "${CONFIGFOLDER}/zip/DATA" "${CONFIGFOLDER}/DATA" > /dev/tty0 2>&1
+            mv "${CONFIGFOLDER}/zip/MAPS" "${CONFIGFOLDER}/MAPS" > /dev/tty0 2>&1
             rm "${DATAFILE}" > /dev/tty0 2>&1
             rm -rf "${CONFIGFOLDER}/zip" > /dev/tty0 2>&1
             echo "Starting ${PORTNAME} for the first time, please wait..." > /dev/tty0
