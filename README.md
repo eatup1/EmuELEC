@@ -46,9 +46,9 @@ For the RG351V:
 $ PROJECT=Rockchip DEVICE=RG351V ARCH=aarch64 DISTRO=EmuELEC make image
 ```
 
-Note: In some cases you may also need to install the tzdata, xfonts-utils and/or lzop packages.
+Note: In some cases you may also need to install the tzdata, xfonts-utils and/or lzop smpq packages.
 ```
-$ apt install tzdata xfonts-utils lzop
+$ apt install tzdata xfonts-utils lzop smpq
 ```
 
 

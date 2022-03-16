@@ -5,7 +5,7 @@ MRFIXIT: Revert the removal of the maxfps feature
 diff --git a/Core/Config.cpp b/Core/Config.cpp
 --- b/Core/Config.cpp
 +++ a/Core/Config.cpp
-@@ -625,6 +625,7 @@ static ConfigSetting graphicsSettings[] = {
+@@ -864,6 +864,7 @@ static ConfigSetting graphicsSettings[] = {
  #if defined(USING_WIN_UI)
  	ConfigSetting("RestartRequired", &g_Config.bRestartRequired, false, false),
  #endif
@@ -16,8 +16,8 @@ diff --git a/Core/Config.cpp b/Core/Config.cpp
 diff --git a/Core/Config.h b/Core/Config.h
 --- b/Core/Config.h
 +++ a/Core/Config.h
-@@ -176,6 +176,7 @@ struct Config {
- 	bool bTexDeposterize;
+@@ -205,6 +205,7 @@ struct Config {
+ 	bool bTexHardwareScaling;
  	int iFpsLimit1;
  	int iFpsLimit2;
 +	int iForceMaxEmulatedFPS;
@@ -27,7 +27,7 @@ diff --git a/Core/Config.h b/Core/Config.h
 diff --git a/Core/HLE/sceDisplay.cpp b/Core/HLE/sceDisplay.cpp
 --- b/Core/HLE/sceDisplay.cpp
 +++ a/Core/HLE/sceDisplay.cpp
-@@ -928,7 +928,7 @@ u32 sceDisplaySetFramebuf(u32 topaddr, int linesize, int pixelformat, int sync)
+@@ -1031,7 +1031,7 @@ u32 sceDisplaySetFramebuf(u32 topaddr, int linesize, int pixelformat, int sync)
  
  	s64 delayCycles = 0;
  	// Don't count transitions between display off and display on.
@@ -36,7 +36,7 @@ diff --git a/Core/HLE/sceDisplay.cpp b/Core/HLE/sceDisplay.cpp
  		// sceDisplaySetFramebuf() isn't supposed to delay threads at all.  This is a hack.
  		// So let's only delay when it's more than 1ms.
  		const s64 FLIP_DELAY_CYCLES_MIN = usToCycles(1000);
-@@ -952,7 +952,7 @@ u32 sceDisplaySetFramebuf(u32 topaddr, int linesize, int pixelformat, int sync)
+@@ -1055,7 +1055,7 @@ u32 sceDisplaySetFramebuf(u32 topaddr, int linesize, int pixelformat, int sync)
  		}
  
  		// 1001 to account for NTSC timing (59.94 fps.)
@@ -48,8 +48,8 @@ diff --git a/Core/HLE/sceDisplay.cpp b/Core/HLE/sceDisplay.cpp
 diff --git a/UI/GameSettingsScreen.cpp b/UI/GameSettingsScreen.cpp
 --- b/UI/GameSettingsScreen.cpp
 +++ a/UI/GameSettingsScreen.cpp
-@@ -137,6 +137,8 @@ void GameSettingsScreen::CreateViews() {
- 		g_Config.loadGameConfig(gameID_);
+@@ -197,6 +197,8 @@ void GameSettingsScreen::CreateViews() {
+ 		g_Config.loadGameConfig(gameID_, info->GetTitle());
  	}
  
 +	cap60FPS_ = g_Config.iForceMaxEmulatedFPS == 60;
@@ -57,7 +57,7 @@ diff --git a/UI/GameSettingsScreen.cpp b/UI/GameSettingsScreen.cpp
  	iAlternateSpeedPercent1_ = g_Config.iFpsLimit1 < 0 ? -1 : (g_Config.iFpsLimit1 * 100) / 60;
  	iAlternateSpeedPercent2_ = g_Config.iFpsLimit2 < 0 ? -1 : (g_Config.iFpsLimit2 * 100) / 60;
  
-@@ -274,6 +276,7 @@ void GameSettingsScreen::CreateViews() {
+@@ -335,6 +337,7 @@ void GameSettingsScreen::CreateViews() {
  	graphicsSettings->Add(new PopupMultiChoice(&g_Config.iFrameSkipType, gr->T("Frame Skipping Type"), frameSkipType, 0, ARRAY_SIZE(frameSkipType), gr->GetName(), screenManager()));
  	frameSkipAuto_ = graphicsSettings->Add(new CheckBox(&g_Config.bAutoFrameSkip, gr->T("Auto FrameSkip")));
  	frameSkipAuto_->OnClick.Handle(this, &GameSettingsScreen::OnAutoFrameskip);
@@ -65,14 +65,6 @@ diff --git a/UI/GameSettingsScreen.cpp b/UI/GameSettingsScreen.cpp
  
  	PopupSliderChoice *altSpeed1 = graphicsSettings->Add(new PopupSliderChoice(&iAlternateSpeedPercent1_, 0, 1000, gr->T("Alternative Speed", "Alternative speed"), 5, screenManager(), gr->T("%, 0:unlimited")));
  	altSpeed1->SetFormat("%i%%");
-@@ -1034,6 +1037,7 @@ UI::EventReturn GameSettingsScreen::OnDumpNextFrameToLog(UI::EventParams &e) {
- 
- void GameSettingsScreen::update() {
- 	UIScreen::update();
-+	g_Config.iForceMaxEmulatedFPS = cap60FPS_ ? 60 : 0;
- 
- 	g_Config.iFpsLimit1 = iAlternateSpeedPercent1_ < 0 ? -1 : (iAlternateSpeedPercent1_ * 60) / 100;
- 	g_Config.iFpsLimit2 = iAlternateSpeedPercent2_ < 0 ? -1 : (iAlternateSpeedPercent2_ * 60) / 100;
 diff --git a/libretro/libretro.cpp b/libretro/libretro.cpp
 --- b/libretro/libretro.cpp
 +++ a/libretro/libretro.cpp
@@ -103,8 +95,8 @@ diff --git a/libretro/libretro.cpp b/libretro/libretro.cpp
 
 --- a/UI/GameSettingsScreen.cpp	2018-11-18 02:06:08.250398000 +0000
 +++ b/UI/GameSettingsScreen.cpp	2018-11-18 02:20:02.941563758 +0000
-@@ -136,8 +136,8 @@
- 		g_Config.loadGameConfig(gameID_);
+@@ -197,8 +197,8 @@
+ 		g_Config.loadGameConfig(gameID_, info->GetTitle());
  	}
  
 -	cap60FPS_ = g_Config.iForceMaxEmulatedFPS == 60;
@@ -113,7 +105,7 @@ diff --git a/libretro/libretro.cpp b/libretro/libretro.cpp
  	iAlternateSpeedPercent1_ = g_Config.iFpsLimit1 < 0 ? -1 : (g_Config.iFpsLimit1 * 100) / 60;
  	iAlternateSpeedPercent2_ = g_Config.iFpsLimit2 < 0 ? -1 : (g_Config.iFpsLimit2 * 100) / 60;
  
-@@ -275,8 +273,10 @@
+@@ -337,8 +337,10 @@
  	graphicsSettings->Add(new PopupMultiChoice(&g_Config.iFrameSkipType, gr->T("Frame Skipping Type"), frameSkipType, 0, ARRAY_SIZE(frameSkipType), gr->GetName(), screenManager()));
  	frameSkipAuto_ = graphicsSettings->Add(new CheckBox(&g_Config.bAutoFrameSkip, gr->T("Auto FrameSkip")));
  	frameSkipAuto_->OnClick.Handle(this, &GameSettingsScreen::OnAutoFrameskip);
@@ -126,7 +118,7 @@ diff --git a/libretro/libretro.cpp b/libretro/libretro.cpp
  	PopupSliderChoice *altSpeed1 = graphicsSettings->Add(new PopupSliderChoice(&iAlternateSpeedPercent1_, 0, 1000, gr->T("Alternative Speed", "Alternative speed"), 5, screenManager(), gr->T("%, 0:unlimited")));
  	altSpeed1->SetFormat("%i%%");
  	altSpeed1->SetZeroLabel(gr->T("Unlimited"));
-@@ -1022,6 +1022,16 @@
+@@ -1274,6 +1276,16 @@
  	return UI::EVENT_DONE;
  };
  
@@ -143,26 +135,18 @@ diff --git a/libretro/libretro.cpp b/libretro/libretro.cpp
  UI::EventReturn GameSettingsScreen::OnResolutionChange(UI::EventParams &e) {
  	if (g_Config.iAndroidHwScale == 1) {
  		RecreateActivity();
-@@ -1045,7 +1053,6 @@
- 
- void GameSettingsScreen::update() {
- 	UIScreen::update();
--	g_Config.iForceMaxEmulatedFPS = cap60FPS_ ? 60 : 0;
- 
- 	g_Config.iFpsLimit1 = iAlternateSpeedPercent1_ < 0 ? -1 : (iAlternateSpeedPercent1_ * 60) / 100;
- 	g_Config.iFpsLimit2 = iAlternateSpeedPercent2_ < 0 ? -1 : (iAlternateSpeedPercent2_ * 60) / 100;
 
 --- a/UI/GameSettingsScreen.h	2018-11-18 02:05:21.907810600 +0000
 +++ b/UI/GameSettingsScreen.h	2018-11-18 02:20:47.993962676 +0000
-@@ -56,6 +56,7 @@
+@@ -59,6 +59,7 @@
  	UI::Choice *displayEditor_;
  	UI::Choice *backgroundChoice_ = nullptr;
  	UI::PopupMultiChoice *resolutionChoice_;
 +	UI::PopupMultiChoice *maxFps_;
  	UI::CheckBox *frameSkipAuto_;
  	SettingInfoMessage *settingInfo_;
- #ifdef _WIN32
-@@ -94,6 +95,7 @@
+ 	UI::Choice *clearSearchChoice_;
+@@ -106,6 +107,7 @@
  	UI::EventReturn OnFullscreenChange(UI::EventParams &e);
  	UI::EventReturn OnDisplayLayoutEditor(UI::EventParams &e);
  	UI::EventReturn OnResolutionChange(UI::EventParams &e);
@@ -170,8 +154,8 @@ diff --git a/libretro/libretro.cpp b/libretro/libretro.cpp
  	UI::EventReturn OnHwScaleChange(UI::EventParams &e);
  	UI::EventReturn OnRestoreDefaultSettings(UI::EventParams &e);
  	UI::EventReturn OnRenderingMode(UI::EventParams &e);
-@@ -122,6 +124,7 @@
- 	UI::EventReturn OnSysInfo(UI::EventParams &e);
+@@ -137,6 +139,7 @@
+ 	UI::EventReturn OnClearSearchFilter(UI::EventParams &e);
  
  	// Temporaries to convert setting types, cache enabled, etc.
 +	int maxFpsChoice;
@@ -183,7 +167,7 @@ diff --git a/libretro/libretro.cpp b/libretro/libretro.cpp
 MRFIXIT: Add logic for "Auto" (default PSP behavior - pull value from compat.ini)
 --- b/Core/HLE/sceDisplay.cpp
 +++ a/Core/HLE/sceDisplay.cpp
-@@ -998,8 +998,13 @@
+@@ -1030,8 +1030,13 @@
  	hleEatCycles(290);
  
  	s64 delayCycles = 0;
@@ -198,7 +182,7 @@ MRFIXIT: Add logic for "Auto" (default PSP behavior - pull value from compat.ini
  		// sceDisplaySetFramebuf() isn't supposed to delay threads at all.  This is a hack.
  		// So let's only delay when it's more than 1ms.
  		const s64 FLIP_DELAY_CYCLES_MIN = usToCycles(1000);
-@@ -1023,7 +1028,7 @@
+@@ -1055,7 +1060,7 @@
  		}
  
  		// 1001 to account for NTSC timing (59.94 fps.)
