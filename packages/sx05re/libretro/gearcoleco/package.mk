@@ -18,17 +18,24 @@
 #  http://www.gnu.org/copyleft/gpl.html
 ################################################################################
 
-PKG_NAME="core-info"
-PKG_VERSION="baff69f21792f463d3411e0f3a1e944a6662744f"
-PKG_SHA256="1c39d27814227d82c127ce15f5b730215693d1c4825d819f78dd15b0440f22ed"
-PKG_LICENSE="GPL"
-PKG_SITE="https://github.com/libretro/libretro-core-info"
-PKG_URL="https://github.com/libretro/libretro-core-info/archive/$PKG_VERSION.tar.gz"
+PKG_NAME="gearcoleco"
+PKG_VERSION="443207ea3cf3df75299f3346692b873189c44183"
+PKG_SHA256="97dd3eb67c5388431d6ecfb7b54842d753520a489abb3e3529d349cdc8431d5a"
+PKG_REV="1"
+PKG_ARCH="any"
+PKG_LICENSE="GPLv3"
+PKG_SITE="https://github.com/drhelius/Gearcoleco/"
+PKG_URL="$PKG_SITE/archive/$PKG_VERSION.tar.gz"
 PKG_DEPENDS_TARGET="toolchain"
-PKG_LONGDESC="Mirror of libretro's core info files"
-PKG_TOOLCHAIN="manual"
+PKG_SECTION="libretro"
+PKG_LONGDESC="Gearcoleco is a very accurate cross-platform ColecoVision emulator written in C++"
+PKG_TOOLCHAIN="make"
+
+make_target() {
+  make -C platforms/libretro/
+}
 
 makeinstall_target() {
   mkdir -p $INSTALL/usr/lib/libretro
-  cp $PKG_BUILD/*.info $INSTALL/usr/lib/libretro/
+  cp platforms/libretro/gearcoleco_libretro.so $INSTALL/usr/lib/libretro/
 }

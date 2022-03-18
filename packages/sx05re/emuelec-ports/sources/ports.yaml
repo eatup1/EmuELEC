@@ -62,7 +62,7 @@ Commander Keen:
   commands:
     - '[[ ! -L "/storage/.CommanderGenius" ]] && ln -sf /emuelec/configs/CommanderGenius /storage/.CommanderGenius'
     - cd /storage/roms/ports/cgenius
-    - /usr/bin/${PORT}
+    - /usr/bin/${PORT} >> $EE_LOG 2>&1
 
 Diablo:
   name: 디아블로
@@ -130,6 +130,20 @@ Doom 2:
   commands:
     - /usr/bin/emuelecRunEmu.sh "/storage/roms/ports/doom2/doom2.wad" -Pports "${2}" -Cprboom "-SC${0}"
 
+Heart of Darkness:
+  name: 앤디 - 어둠을 뚫고서 (Heart of Darkness)
+  description: Hode는 Eric Chahi의 이전 게임 Another World와 같은 영화적 플랫폼인 Heart of Darkness를 재구현한 것입니다. 플레이어는 자신의 강아지 위스키를 찾아 다양한 위험에 직면한 앤디를 조종합니다. 플레이어는 다양한 환경을 탐색하고 퍼즐을 풀고 게임의 선형적인 줄거리를 진행하면서 앤디가 사악한 그림자에 의해 죽임을 당하지 않도록 합니다.
+  rating: 0.9
+  release_date: 19980704T000000
+  developer: Amazing Studio
+  publisher: Infogrames Interplay
+
+  init_port: true
+  port_exe: "hode"
+  audio: "alsa"
+  commands:
+    - ${PORT} --datapath=/storage/roms/ports/hode/ --savepath=/storage/roms/ports/hode/ >> $EE_LOG 2>&1
+ 
 Mr. Boom:
   name: 미스터 붐
   description: 미스터 붐은 8인용 봄버맨(Bomberman)의 클론이다. 게임의 목표는 당신의 적들과 다른 플레이어들을 폭격하는 것이다.
@@ -231,7 +245,7 @@ Prince of Persia:
     - '[[ ! -f "/storage/.config/emuelec/configs/SDLPoP/SDLPoP.cfg" ]] && touch "/storage/.config/emuelec/configs/SDLPoP/SDLPoP.cfg"'
     - '# SDLPop will complain about a missing data and config files by showing a nice blank screen after the intro'
     - cd /storage/.config/emuelec/configs/SDLPoP
-    - ${PORT}
+    - ${PORT} >> $EE_LOG 2>&1
 
 VVVVVV:
   name: VVVVVV
@@ -248,7 +262,7 @@ VVVVVV:
   commands:
     - '# VVVVVV will complain about a missing gamecontrollerdb.txt unless we switch to this folder first'
     - cd /storage/.config/SDL-GameControllerDB/
-    - ${PORT}
+    - ${PORT} >> $EE_LOG 2>&1
 
 Duke Nukem:
   name: 듀크 뉴켐 3D
@@ -265,7 +279,7 @@ Duke Nukem:
   check_bios: eduke32
   commands:
     - cd /storage/roms/ports/eduke
-    - eduke.sh
+    - eduke.sh >> $EE_LOG 2>&1
 
 Hydra Castle Labyrinth:
   name: 히드라 성 미로
@@ -280,7 +294,7 @@ Hydra Castle Labyrinth:
   audio: "alsa"
   commands:
     - cd /emuelec/configs/hcl/
-    - ${PORT} -d
+    - ${PORT} -d >> $EE_LOG 2>&1
 
 Bermuda Syndrome:
   name: 버뮤다 신드롬
@@ -295,7 +309,7 @@ Bermuda Syndrome:
   audio: "alsa"
   commands:
     - cd /storage/roms/ports/bermuda/
-    - ${PORT} --datapath=/storage/roms/ports/bermuda/ --fullscreen --widescreen=4:3
+    - ${PORT} --datapath=/storage/roms/ports/bermuda/ --fullscreen --widescreen=4:3 >> $EE_LOG 2>&1
 
 RigelEngine:
   name: 듀크 뉴켐 II(RigelEngine)
@@ -310,7 +324,7 @@ RigelEngine:
   audio: "alsa"
   check_bios: RigelEngine
   commands:
-    - ${PORT} /storage/roms/ports/rigelengine
+    - ${PORT} /storage/roms/ports/rigelengine >> $EE_LOG 2>&1
 
 
 MineCraft:
@@ -339,7 +353,7 @@ Sonic 1:
   commands:
     - '[ ! -e "/storage/roms/ports/sonic1/settings.ini" ] && cp "/emuelec/configs/sonic/settings.ini" "/storage/roms/ports/sonic1/settings.ini"'
     - cd /storage/roms/ports/sonic1/
-    - ${PORT}
+    - ${PORT} >> $EE_LOG 2>&1
 
 Sonic 2:
   name: 수퍼 소닉 2
@@ -356,7 +370,7 @@ Sonic 2:
   commands:
     - '[ ! -e "/storage/roms/ports/sonic2/settings.ini" ] && cp "/emuelec/configs/sonic/settings.ini" "/storage/roms/ports/sonic2/settings.ini"'
     - cd /storage/roms/ports/sonic2/
-    - ${PORT}
+    - ${PORT} >> $EE_LOG 2>&1
 
 Sonic CD:
   name: 수퍼 소닉 CD
@@ -373,7 +387,7 @@ Sonic CD:
   commands:
     - '[ ! -e "/storage/roms/ports/soniccd/settings.ini" ] && cp "/emuelec/configs/sonic/settings.ini" "/storage/roms/ports/soniccd/settings.ini"'
     - cd /storage/roms/ports/soniccd/
-    - ${PORT}
+    - ${PORT} >> $EE_LOG 2>&1
 
 SuperTux:
   name: 수퍼 턱스
@@ -388,7 +402,7 @@ SuperTux:
   audio: "alsa"
   commands:
     - /usr/bin/show_splash.sh "ports" "supertux"
-    - run_supertux.sh
+    - run_supertux.sh >> $EE_LOG 2>&1
 
 SuperTuxKart:
   name: 수퍼 턱스 카트
@@ -403,7 +417,7 @@ SuperTuxKart:
   audio: "alsa"
   commands:
     - /usr/bin/show_splash.sh "ports" "supertuxkart"
-    - run_supertuxkart.sh
+    - run_supertuxkart.sh >> $EE_LOG 2>&1
 
 Supermariowar:
   name: 수퍼 마리오 워
@@ -418,7 +432,7 @@ Supermariowar:
   audio: "alsa"
   commands:
     - /usr/bin/show_splash.sh "ports" "supermariowar"
-    - run_smw.sh
+    - run_smw.sh >> $EE_LOG 2>&1
 
 Hurrican:
   name: 허리케인
@@ -433,7 +447,7 @@ Hurrican:
   audio: "alsa"
   commands:
     - /usr/bin/show_splash.sh "ports" "hurrican"
-    - hurrican.sh
+    - hurrican.sh >> $EE_LOG 2>&1
 
 Cdogs-sdl:
   name: 씨독(C-Dogs)
@@ -448,7 +462,7 @@ Cdogs-sdl:
   audio: "alsa"
   commands:
     - /usr/bin/show_splash.sh "ports" "cdogs-sdl"
-    - cdogs-sdl.sh
+    - cdogs-sdl.sh >> $EE_LOG 2>&1
 
 Abuse:
   name: 어뷰즈(Abuse)
@@ -463,7 +477,7 @@ Abuse:
   audio: "alsa"
   commands:
     - /usr/bin/show_splash.sh "ports" "abuse"
-    - abuse.sh
+    - abuse.sh >> $EE_LOG 2>&1
 
 Sorr:
   name: 스트리츠 오브 레이지 리메이크
@@ -481,7 +495,7 @@ Sorr:
     - '[[ "${EE_DEVICE}" != "Amlogic"* ]] && gptokeyb -c /emuelec/configs/gptokeyb/sorr.gptk &'
     - cd /storage/roms/ports/sorr
     - '[[ ! -e "/storage/roms/ports/sorr/SorR.dat" ]] && exit 21'
-    - bgdi "/storage/roms/ports/sorr/SorR.dat"
+    - bgdi "/storage/roms/ports/sorr/SorR.dat" >> $EE_LOG 2>&1
 
 Heroes of Might and Magic II:
   name: 히어로즈 오브 마이트 앤 매직 II
@@ -496,7 +510,7 @@ Heroes of Might and Magic II:
   audio: "alsa"
   commands:
     - /usr/bin/show_splash.sh "ports" "fheroes2"
-    - fheroes2.sh
+    - fheroes2.sh >> $EE_LOG 2>&1
 
 Blake Stone:
   name: '블레이크 스톤: 에일리언즈 오브 골드'
@@ -512,7 +526,7 @@ Blake Stone:
   check_bios: bstone_aog
   commands:
     - /usr/bin/show_splash.sh "ports" "bstone"
-    - bstone.sh
+    - bstone.sh >> $EE_LOG 2>&1
 
 Blake Stone Planet Strike:
   name: '블레이크 스톤: 플래닛 스트라이크'
@@ -528,4 +542,4 @@ Blake Stone Planet Strike:
   check_bios: bstone_ps
   commands:
     - /usr/bin/show_splash.sh "ports" "bstone"
-    - bstone.sh ps
+    - bstone.sh ps >> $EE_LOG 2>&1
