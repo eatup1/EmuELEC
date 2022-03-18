@@ -2,12 +2,12 @@
 # Copyright (C) 2021-present Shanti Gilbert (https://github.com/shantigilbert)
 
 PKG_NAME="solarus"
-PKG_VERSION="cc580fb399f720e241754ecc7817ce5d551d74d0"
+PKG_VERSION="8fff7c03de610669fc4f4079fa64df2bed28dfcd"
 PKG_ARCH="any"
 PKG_LICENSE="GPLv3"
 PKG_SITE="https://gitlab.com/solarus-games/solarus"
 PKG_URL="$PKG_SITE.git"
-PKG_DEPENDS_TARGET="toolchain luajit glm libmodplug physfs"
+PKG_DEPENDS_TARGET="toolchain luajit glm libmodplug physfs SDL2 SDL2_Image SDL2_ttf"
 PKG_SHORTDESC="Action-RPG/Adventure 2D game engine"
 PKG_TOOLCHAIN="cmake"
 GET_HANDLER_SUPPORT="git"
