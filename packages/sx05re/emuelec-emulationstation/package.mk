@@ -128,7 +128,12 @@ if [[ ${DEVICE} != "OdroidGoAdvance" ]] && [[ "${DEVICE}" != "RG351P" ]] && [[ "
 else
 	# remove duckstation for the OGA/GF
 	xmlstarlet ed -L -P -d "/systemList/system/emulators/emulator[@name='Duckstation']" ${CORESFILE}
+
+	# set parallel_n64_32b as default for handhelds
+	sed -i "s|<core default=\"true\">mupen64plus_next</core>|<core>mupen64plus_next</core>|g" ${CORESFILE}
+	sed -i "s|<core>parallel_n64_32b</core>|<core default=\"true\">parallel_n64_32b</core>|g" ${CORESFILE}
 fi
+
 }
 
 post_install() {  

@@ -32,7 +32,7 @@ else
 		PKG_MAKE_OPTS_TARGET+=" platform=odroid64 BOARD=N2"
 	elif [ "${DEVICE}" = "Amlogic" ]; then 
 		PKG_MAKE_OPTS_TARGET+=" platform=amlogic64"
-	elif [ "${DEVICE}" = "OdroidGoAdvance" -o "${DEVICE}" = "RG351P" -o "${DEVICE}" = "RG351V" ] || [ "$DEVICE" == "GameForce" ]; then
+	elif [ "${DEVICE}" = "OdroidGoAdvance" -o "${DEVICE}" = "RG351P" -o "${DEVICE}" = "RG351V" ] || [ "$DEVICE" == "GameForce" ] || [ "$DEVICE" == "RK356x" ]; then
 		PKG_MAKE_OPTS_TARGET+=" platform=amlogic64"
 	fi
 fi
