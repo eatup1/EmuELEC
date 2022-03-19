@@ -1,24 +1,22 @@
-diff --git a/cmake/AddDefines.cmake b/cmake/AddDefines.cmake
-index 6330da7..35e80e3 100644
---- a/cmake/AddDefines.cmake
-+++ b/cmake/AddDefines.cmake
-@@ -8,16 +8,14 @@ endif()
+diff --git a/cmake/AddOptions.cmake b/cmake/AddOptions.cmake
+index 5f9e839f9..8a908dd84 100644
+--- a/cmake/AddOptions.cmake
++++ b/cmake/AddOptions.cmake
+@@ -9,7 +9,7 @@ set(SOLARUS_DEFAULT_QUEST "." CACHE STRING "Path to the quest to launch if none
  
  # Base directory where to write files.
  # If blank it will be set depending on the OS (typically the user's home directory).
 -set(SOLARUS_BASE_WRITE_DIR "" CACHE STRING "Base directory where to write files, if blank it will be set depending on the OS (typically the user's home directory).")
--if(SOLARUS_BASE_WRITE_DIR)
--  add_definitions(-DSOLARUS_BASE_WRITE_DIR=\"${SOLARUS_BASE_WRITE_DIR}\")
--endif()
 +set(SOLARUS_BASE_WRITE_DIR "/emuelec/configs/solarus/saves" CACHE STRING "Base directory where to write files, if blank it will be set depending on the OS (typically the user's home directory).")
-+add_definitions(-DSOLARUS_BASE_WRITE_DIR=\"${SOLARUS_BASE_WRITE_DIR}\")
  
- # Directory where to write savegames and other files saved by quests.
  if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
-   set(SOLARUS_INITIAL_WRITE_DIR "Solarus")
+   # Directory where to write savegames and other files saved by quests.
+@@ -17,7 +17,7 @@ if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
+   # The native macOS OpenAL already handles device changes, no need for OpenAL extensions.
+   SET(SOLARUS_INITIAL_OPENAL_EXTENSIONS_RECONNECT OFF)
  else()
 -  set(SOLARUS_INITIAL_WRITE_DIR ".solarus")
 +  set(SOLARUS_INITIAL_WRITE_DIR "solarus")
+   SET(SOLARUS_INITIAL_OPENAL_EXTENSIONS_RECONNECT ON)
  endif()
  set(SOLARUS_WRITE_DIR ${SOLARUS_INITIAL_WRITE_DIR} CACHE STRING "Directory where Solarus savegames are stored, relative to the base write directory.")
- if(SOLARUS_WRITE_DIR)
