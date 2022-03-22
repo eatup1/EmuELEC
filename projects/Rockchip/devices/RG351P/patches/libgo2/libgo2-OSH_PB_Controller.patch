@@ -144,8 +144,8 @@ index 2ac2f48..76f03c5 100644
 +    input->current_state.buttons[Go2InputButton_ThumbLeft] = libevdev_get_event_value(input->dev, EV_KEY, BTN_THUMBL) ? ButtonState_Pressed : ButtonState_Released;
 +    input->current_state.buttons[Go2InputButton_ThumbRight] = libevdev_get_event_value(input->dev, EV_KEY, BTN_THUMBR) ? ButtonState_Pressed : ButtonState_Released;
 +
-+    input->current_state.thumbs[Go2InputThumbstick_Left].x = -(libevdev_get_event_value(input->dev, EV_ABS, ABS_X) - abs_x_mid) * 2 / (float)(abs_x_max - abs_x_min);
-+    input->current_state.thumbs[Go2InputThumbstick_Left].y = -(libevdev_get_event_value(input->dev, EV_ABS, ABS_Y) - abs_y_mid) * 2 / (float)(abs_y_max - abs_y_min);
++    input->current_state.thumbs[Go2InputThumbstick_Left].x = (libevdev_get_event_value(input->dev, EV_ABS, ABS_X) - abs_x_mid) * 2 / (float)(abs_x_max - abs_x_min);
++    input->current_state.thumbs[Go2InputThumbstick_Left].y = (libevdev_get_event_value(input->dev, EV_ABS, ABS_Y) - abs_y_mid) * 2 / (float)(abs_y_max - abs_y_min);
  
 -    input->current_state.thumbs[Go2InputThumbstick_Right].x = libevdev_get_event_value(input->dev, EV_ABS, ABS_RX) / (float)abs_rx_max;
 -    input->current_state.thumbs[Go2InputThumbstick_Right].y = libevdev_get_event_value(input->dev, EV_ABS, ABS_RY) / (float)abs_ry_max;
@@ -263,11 +263,11 @@ index 2ac2f48..76f03c5 100644
                  {
                      case ABS_X:
 -                        input->pending_state.thumbs[Go2InputThumbstick_Left].x = ev.value / (float)abs_x_max;
-+                        input->pending_state.thumbs[Go2InputThumbstick_Left].x = -(ev.value - abs_x_mid) * 2 / (float)(abs_x_max - abs_x_min);
++                        input->pending_state.thumbs[Go2InputThumbstick_Left].x = (ev.value - abs_x_mid) * 2 / (float)(abs_x_max - abs_x_min);
                          break;
                      case ABS_Y:
 -                        input->pending_state.thumbs[Go2InputThumbstick_Left].y = ev.value / (float)abs_y_max;
-+                        input->pending_state.thumbs[Go2InputThumbstick_Left].y = -(ev.value - abs_y_mid) * 2 / (float)(abs_y_max - abs_y_min);
++                        input->pending_state.thumbs[Go2InputThumbstick_Left].y = (ev.value - abs_y_mid) * 2 / (float)(abs_y_max - abs_y_min);
                          break;
  
                      case ABS_RX:

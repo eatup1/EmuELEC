@@ -111,6 +111,29 @@ index aa7d107..9ff0861 100644
                      break;
  
                  default:
+@@ -267,9 +243,11 @@ int16_t core_input_state(unsigned port, unsigned device, unsigned index, unsigne
+                     break;
+             }
+         }
+-        else if (Retrorun_UseAnalogStick && device == RETRO_DEVICE_ANALOG && index == RETRO_DEVICE_INDEX_ANALOG_LEFT)
++        else if (Retrorun_UseAnalogStick && device == RETRO_DEVICE_ANALOG)
+         {
+-            go2_thumb_t thumb = go2_input_state_thumbstick_get(gamepadState, Go2InputThumbstick_Left);
++			go2_input_thumbstick_t thumbstick = Go2InputThumbstick_Left;
++			if (index == RETRO_DEVICE_INDEX_ANALOG_RIGHT) thumbstick = Go2InputThumbstick_Right;
++            go2_thumb_t thumb = go2_input_state_thumbstick_get(gamepadState, thumbstick);
+ 
+             if (thumb.x > 1.0f)
+                 thumb.x = 1.0f;
+@@ -287,7 +265,7 @@ int16_t core_input_state(unsigned port, unsigned device, unsigned index, unsigne
+                     return thumb.x * 0x7fff;
+                     break;
+                 
+-                case RETRO_DEVICE_ID_JOYPAD_Y:
++                case RETRO_DEVICE_ID_ANALOG_Y:
+                     return thumb.y * 0x7fff;
+                     break;
+                     
 diff --git a/src/main.cpp b/src/main.cpp
 index 64ff933..1d71524 100644
 --- a/src/main.cpp
