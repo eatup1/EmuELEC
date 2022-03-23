@@ -1,6 +1,6 @@
 --- a/frontend/drivers/platform_unix.c
 +++ b/frontend/drivers/platform_unix.c
-@@ -1363,12 +1363,17 @@
+@@ -1358,12 +1358,17 @@
        free(buffer);
     }
  
