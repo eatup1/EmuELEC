@@ -2,8 +2,8 @@
 # Copyright (C) 2019-present Shanti Gilbert (https://github.com/shantigilbert)
 
 PKG_NAME="emuelec-32bit-libs"
-PKG_VERSION="53ea6be233a9cd5e45186bb43ebcd6c6b0f5091f"
-PKG_SHA256="340e360204700c456009d6cade15f78e1fd3d12465a606c6a9f382f5741a76b3"
+PKG_VERSION="3ba54dd47cb44175e2162032cf9451f61e8f862d"
+PKG_SHA256="dbdf0a27a9deca9d4f5cd9c0c6ae40aa712bc9fcab03c12106a9d73d94b64256"
 PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="GPLv2"
