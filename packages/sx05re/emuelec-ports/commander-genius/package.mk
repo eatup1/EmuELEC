@@ -2,12 +2,12 @@
 # Copyright (C) 2019-present Shanti Gilbert (https://github.com/shantigilbert)
 
 PKG_NAME="commander-genius"
-PKG_VERSION="6f7e67ad07323416f798046d62be8e10e856d62a"
+PKG_VERSION="26bd84895161167afb7b442a178aea2a384c7b53"
 PKG_ARCH="any"
 PKG_LICENSE="GPLv2"
 PKG_SITE="https://gitlab.com/Dringgstein/Commander-Genius"
 PKG_URL="$PKG_SITE.git"
-PKG_DEPENDS_TARGET="toolchain boost Python3"
+PKG_DEPENDS_TARGET="toolchain boost Python3 SDL2"
 PKG_SECTION="libretro"
 PKG_SHORTDESC="Modern Interpreter for the Commander Keen Games (Vorticon and Galaxy Games)"
 PKG_TOOLCHAIN="cmake"

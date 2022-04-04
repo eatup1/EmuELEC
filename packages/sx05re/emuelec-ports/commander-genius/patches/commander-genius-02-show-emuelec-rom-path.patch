@@ -1,6 +1,6 @@
 --- a/src/engine/CGameLauncher.cpp
 +++ b/src/engine/CGameLauncher.cpp
-@@ -217,9 +217,7 @@ bool CGameLauncher::setupMenu()
+@@ -236,9 +236,7 @@ bool CGameLauncher::setupMenu()
  
          ss << "No games detected!\n";
          ss << "You can copy some into:\n";
