@@ -20,7 +20,7 @@
 
 PKG_NAME="flycast"
 if [ "${ARCH}" == "aarch64" -o "${DEVICE}" == "Amlogic-ng" ]; then
-PKG_VERSION="20571c5aa197f27f10d7e1a226d02b472dc855b5"
+PKG_VERSION="959685e26071ded69529497a92d86a79d9c12edf"
 PKG_ARCH="any"
 PKG_LICENSE="GPLv2"
 PKG_SITE="https://github.com/flyinghead/flycast"

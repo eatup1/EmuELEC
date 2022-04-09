@@ -2,8 +2,8 @@
 # Copyright (C) 2021-present Shanti Gilbert (https://github.com/shantigilbert)
 
 PKG_NAME="pcsx_rearmed"
-PKG_VERSION="db0df4bd25f7f13fb6c6d02fc82a952a9c1baa23"
-PKG_SHA256="8299baa60e393783e0a7504a3041e8c21cbd5151498e8e308f115b402b926e58"
+PKG_VERSION="46a38bdab1a4d9f578a368705a9e3e144fd81189"
+PKG_SHA256="fb0b8b70f33d7e4422c597c8eb7a3a689bd2e9d2d3c8e915f66160ad236019ae"
 PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="GPLv2"
@@ -27,9 +27,9 @@ else
 		make -f Makefile.libretro GIT_VERSION=${PKG_VERSION} platform=h5
 	elif [ "${DEVICE}" == "OdroidGoAdvance" -o "${DEVICE}" == "RG351P" -o "${DEVICE}" == "RG351V" ] || [ "${DEVICE}" == "Gameforce" ]; then
 		sed -i "s|cortex-a53|cortex-a35|g" Makefile.libretro
-		make -f Makefile.libretro GIT_VERSION=${PKG_VERSION} platform=h5
+		make -f Makefile.libretro GIT_VERSION=${PKG_VERSION} platform=h5 DYNAREC=ari64
 	else
-		make -f Makefile.libretro GIT_VERSION=${PKG_VERSION} platform=CortexA73_G12B
+		make -f Makefile.libretro GIT_VERSION=${PKG_VERSION} platform=CortexA73_G12B DYNAREC=ari64
 	fi
 fi
 }

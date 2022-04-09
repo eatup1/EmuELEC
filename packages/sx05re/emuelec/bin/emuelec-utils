@@ -126,6 +126,8 @@ function ee_cloud_backup() {
     
     # We need to check if rclone.conf exists and its configured correctly, else show error
     if [ -e "${RCLONECONF}" ]; then
+        # in case this file was created in windows, we need to convert it
+        dos2unix ${RCLONECONF}
         if ! grep -Fxq "[${EE_SYNC_REMOTE}]" ${RCLONECONF}; then
             if [ $(get_ee_setting system.language) == "ko_KR" ]; then
               text_viewer -e -w -t "rclone.conf 에러!" -f 24 -m "rclone.conf가 있지만 remote name ${EE_SYNC_REMOTE}이 포함되어 있지 않습니다. https://rclone.org/remote_setup/에서 원격 이름 ${EE_SYNC_REMOTE}을 읽고 결과 rclone.conf를 /emuelec/configs/rclone/에 복사하십시오."

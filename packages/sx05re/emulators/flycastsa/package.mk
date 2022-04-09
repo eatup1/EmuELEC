@@ -2,7 +2,7 @@
 # Copyright (C) 2021-present Shanti Gilbert (https://github.com/shantigilbert)
 
 PKG_NAME="flycastsa"
-PKG_VERSION="a4b0a69c455971c85257e3cfc3ee13a592296ce7"
+PKG_VERSION="959685e26071ded69529497a92d86a79d9c12edf"
 PKG_LICENSE="GPLv2"
 PKG_SITE="https://github.com/flyinghead/flycast"
 PKG_URL="$PKG_SITE.git"
@@ -14,16 +14,9 @@ PKG_GIT_CLONE_BRANCH="master"
 if [ "${ARCH}" == "arm" ]; then
 	PKG_PATCH_DIRS="arm"
 fi
-
-PKG_CMAKE_OPTS_TARGET="-DUSE_VULKAN=OFF \
-                        -DUSE_OPENMP=OFF \ 
-                        -DCMAKE_BUILD_TYPE=Release \
-                        -DUSE_GLES2=ON"
-
-pre_make_target() {
-  find $PKG_BUILD -name flags.make -exec sed -i "s:isystem :I:g" \{} \;
-  find $PKG_BUILD -name build.ninja -exec sed -i "s:isystem :I:g" \{} \;
-  sed -i "s|as_fn_append WARN_CXXFLAGS \" -Werror\"|as_fn_append WARN_CXXFLAGS \" -Wall\"|g" ${PKG_BUILD}/core/deps/breakpad/configure
+pre_configure_target() {
+export CXXFLAGS="${CXXFLAGS} -Wno-error=array-bounds"
+PKG_CMAKE_OPTS_TARGET+="-DUSE_GLES=ON -DUSE_VULKAN=OFF"
 }
 
 makeinstall_target() {

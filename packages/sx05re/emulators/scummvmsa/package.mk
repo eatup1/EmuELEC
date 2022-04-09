@@ -2,8 +2,8 @@
 # Copyright (C) 2019-present Shanti Gilbert (https://github.com/shantigilbert)
 
 PKG_NAME="scummvmsa"
-PKG_VERSION="3610df85c63794eebd77b2a1e1b69052741b5506"
-PKG_SHA256="1aca4e6b82f304fb5bc0d55adad2c2d293bbc98f94d850305ed113286f31a439"
+PKG_VERSION="8aa198fb0e1fa476b71a78dc3eed6c38fab3e002"
+PKG_SHA256="ae8408fc38f209a72d8946a0133360984a3588bfba49c13a4af65ace32456bff"
 PKG_REV="1"
 PKG_LICENSE="GPL2"
 PKG_SITE="https://github.com/scummvm/scummvm"
@@ -17,7 +17,7 @@ sed -i "s|sdl-config|sdl2-config|g" $PKG_BUILD/configure
 TARGET_CONFIGURE_OPTS="--host=${TARGET_NAME} --backend=sdl --enable-vkeybd --enable-optimizations --opengl-mode=gles2 --with-sdl-prefix=${SYSROOT_PREFIX}/usr/bin"
 
 # copy korean translation
-cp -rf $PKG_DIR/po/ko.po $PKG_BUILD/po/ko.po
+#cp -rf $PKG_DIR/po/ko.po $PKG_BUILD/po/ko.po
 }
 
 post_makeinstall_target() {

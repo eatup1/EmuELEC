@@ -17,8 +17,8 @@ PKG_PATCH_DIRS="$LINUX"
 
 case "$LINUX" in
   amlogic-4.9)
-    PKG_VERSION="a874da03bd5768056602b0eb1717ef0de56ca2ea"
-    PKG_SHA256="aabda169e8e4b6e65ccf73ee74779b0cbccfde3872acea15c8a4540193cd4b54"
+    PKG_VERSION="92dfdbfa5eab0bca0b13213d9ee1f640232f28ca"
+    PKG_SHA256="5da5427989a687484e07246926913cd0da8bcff3fc4b357183ea86ef840f53bc"
     PKG_URL="https://github.com/CoreELEC/linux-amlogic/archive/$PKG_VERSION.tar.gz"
     PKG_SOURCE_NAME="linux-$LINUX-$PKG_VERSION.tar.gz"
     PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET aml-dtbtools:host"
@@ -244,11 +244,7 @@ make_target() {
         mv $DTB_PATH/$file $DTB_PATH/dtbtool_input
       done
 
-      case $multidtb in
-        *odroid_n2*) compress="" ;;
-        *) compress="-c" ;;
-      esac
-      dtbTool $compress -o $DTB_PATH/$multidtb $DTB_PATH/dtbtool_input
+      dtbTool -c -o $DTB_PATH/$multidtb $DTB_PATH/dtbtool_input
       rm -fr "$DTB_PATH/dtbtool_input"
       cnt_m=$((cnt_m+1))
     done
