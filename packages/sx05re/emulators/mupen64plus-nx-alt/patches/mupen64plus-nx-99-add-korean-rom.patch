@@ -2,7 +2,7 @@ diff --git a/custom/mupen64plus-core/main/mupen64plus.ini.h b/custom/mupen64plus
 index 3fc56c8..58539b8 100644
 --- a/custom/mupen64plus-core/main/mupen64plus.ini.h
 +++ b/custom/mupen64plus-core/main/mupen64plus.ini.h
-@@ -18046,6 +18046,21 @@ char inifile[] =
+@@ -18061,7 +18061,21 @@ char inifile[] =
  "GoodName=Zelda no Densetsu - Mujura no Kamen (J) (V1.1) [!]\n"
  "CRC=69AE0438 2C63F3F3\n"
  "RefMD5=15D1A2217CAD61C39CFECBFFA0703E25\n"
@@ -24,12 +24,12 @@ index 3fc56c8..58539b8 100644
 +"\n";
  
  #endif
-+
+ 
 diff --git a/mupen64plus-core/data/mupen64plus.ini b/mupen64plus-core/data/mupen64plus.ini
 index f1536b2..5bb5cd9 100644
 --- a/mupen64plus-core/data/mupen64plus.ini
 +++ b/mupen64plus-core/data/mupen64plus.ini
-@@ -18043,3 +18043,16 @@ GoodName=Zelda no Densetsu - Mujura no Kamen (J) (V1.1) [!]
+@@ -18058,3 +18058,16 @@ GoodName=Zelda no Densetsu - Mujura no Kamen (J) (V1.1) [!]
  CRC=69AE0438 2C63F3F3
  RefMD5=15D1A2217CAD61C39CFECBFFA0703E25
  
