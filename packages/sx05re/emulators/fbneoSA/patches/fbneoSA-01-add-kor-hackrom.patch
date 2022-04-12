@@ -1,8 +1,8 @@
 diff --git a/src/burn/drv/capcom/d_cps1.cpp b/src/burn/drv/capcom/d_cps1.cpp
-index 1c0800f37..62f74e402 100644
+index 50be4f8ab..3ded76aec 100644
 --- a/src/burn/drv/capcom/d_cps1.cpp
 +++ b/src/burn/drv/capcom/d_cps1.cpp
-@@ -15702,6 +15702,27 @@ static const struct GameConfig ConfigTable[] =
+@@ -16006,6 +16006,27 @@ static const struct GameConfig ConfigTable[] =
  	{ "sfzech"        , CPS_B_21_DEF, mapper_sfzch , 0, NULL                },
  	{ "sfzhch"        , CPS_B_21_DEF, mapper_sfzch , 0, NULL                },
  
@@ -30,7 +30,7 @@ index 1c0800f37..62f74e402 100644
  	{ 0               , 0           , 0            , 0, 0                   }
  };
  
-@@ -24518,6 +24539,927 @@ struct BurnDriver BurnDrvCpssf2mix = {
+@@ -25335,6 +25356,927 @@ struct BurnDriver BurnDrvCpsPunisherhr = {
  
  #include "d_kenseim.h"
  
@@ -959,7 +959,7 @@ index 1c0800f37..62f74e402 100644
  #undef CPS1_68K_PROGRAM_NO_BYTESWAP
  #undef CPS1_Z80_PROGRAM
 diff --git a/src/burn/drv/capcom/d_cps2.cpp b/src/burn/drv/capcom/d_cps2.cpp
-index 6f15f10ea..27ceec74d 100644
+index 66d5b7ffa..2562a4f89 100644
 --- a/src/burn/drv/capcom/d_cps2.cpp
 +++ b/src/burn/drv/capcom/d_cps2.cpp
 @@ -646,6 +646,34 @@ static struct BurnInputInfo MpangInputList[] = {
@@ -997,7 +997,7 @@ index 6f15f10ea..27ceec74d 100644
  static struct BurnInputInfo ProgearInputList[] = {
  	{"P1 Coin"          , BIT_DIGITAL  , CpsInp020+4, "p1 coin"   },
  	{"P1 Start"         , BIT_DIGITAL  , CpsInp020+0, "p1 start"  },
-@@ -14139,3 +14167,856 @@ struct BurnDriver BurnDrvCpsGigaman2 = {
+@@ -14183,3 +14211,856 @@ struct BurnDriver BurnDrvCpsGigaman2 = {
  	Gigaman2Init, Gigaman2Exit, Cps2Frame, CpsRedraw, Gigaman2Scan,
  	&CpsRecalcPal, 0x1000, 384, 224, 4, 3
  };
@@ -1855,7 +1855,7 @@ index 6f15f10ea..27ceec74d 100644
 +};
 +
 diff --git a/src/burn/drv/irem/d_m92.cpp b/src/burn/drv/irem/d_m92.cpp
-index 1b46f97e9..874b6bd3f 100644
+index 24d46ff29..df69af8a0 100644
 --- a/src/burn/drv/irem/d_m92.cpp
 +++ b/src/burn/drv/irem/d_m92.cpp
 @@ -4047,3 +4047,82 @@ struct BurnDriver BurnDrvSkingame2 = {
@@ -1942,14 +1942,13 @@ index 1b46f97e9..874b6bd3f 100644
 +	320, 240, 4, 3
 +};
 diff --git a/src/burn/drv/megadrive/d_megadrive.cpp b/src/burn/drv/megadrive/d_megadrive.cpp
-index 72fa09046..647d5b113 100644
+index 3ccca4988..7aed02429 100644
 --- a/src/burn/drv/megadrive/d_megadrive.cpp
 +++ b/src/burn/drv/megadrive/d_megadrive.cpp
-@@ -53840,3 +53840,462 @@ struct BurnDriver BurnDrvmd_cannonfire = {
+@@ -54021,3 +54021,461 @@ struct BurnDriverD BurnDrvmd_spritemask = {
  	MegadriveInit, MegadriveExit, MegadriveFrame, MegadriveDraw, MegadriveScan,
  	&bMegadriveRecalcPalette, 0x100, 320, 224, 4, 3
- };
-+
+ };*/
 +//============================================================
 +//  Add Korean Translation
 +//============================================================
@@ -2409,7 +2408,7 @@ index 72fa09046..647d5b113 100644
 +	&bMegadriveRecalcPalette, 0x100, 320, 224, 4, 3
 +};
 diff --git a/src/burn/drv/neogeo/d_neogeo.cpp b/src/burn/drv/neogeo/d_neogeo.cpp
-index c6882750e..a72ce1ed1 100644
+index 39636d2ab..4f72adc9c 100644
 --- a/src/burn/drv/neogeo/d_neogeo.cpp
 +++ b/src/burn/drv/neogeo/d_neogeo.cpp
 @@ -110,7 +110,7 @@ static struct BurnDIPInfo ms5pcbDIPList[] = {
@@ -2511,7 +2510,7 @@ index c6882750e..a72ce1ed1 100644
  
  	// DIP 1
  	{0,		0xFE, 0,	2,	  "Setting mode"},
-@@ -20951,3 +20951,2886 @@ struct BurnDriver BurnDrvHypernoid = {
+@@ -21204,3 +21204,2886 @@ struct BurnDriver BurnDrvHypernoid = {
  	NeoInit, NeoExit, NeoFrame, NeoRender, NeoScan, &NeoRecalcPalette,
  	0x1000, 304, 224, 4, 3
  };
