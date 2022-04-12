@@ -1,6 +1,6 @@
 --- a/menu/menu_setting.c
 +++ b/menu/menu_setting.c
-@@ -12095,12 +12095,15 @@
+@@ -12166,12 +12166,15 @@
                 MENU_SETTINGS_LIST_CURRENT_ADD_CMD(list, list_info, CMD_EVENT_REINIT);
              }
  
@@ -17,7 +17,7 @@
                    DEFAULT_VIDEO_CTX_SCALING,
                    MENU_ENUM_LABEL_VALUE_OFF,
                    MENU_ENUM_LABEL_VALUE_ON,
-@@ -12112,7 +12115,6 @@
+@@ -12183,7 +12186,6 @@
                    SD_FLAG_NONE
                    );
              MENU_SETTINGS_LIST_CURRENT_ADD_CMD(list, list_info, CMD_EVENT_REINIT);

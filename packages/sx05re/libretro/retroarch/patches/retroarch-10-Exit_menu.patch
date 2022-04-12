@@ -18,7 +18,7 @@ diff --git a/configuration.h b/configuration.h
 index d758fe630e..aedf9f8f28 100644
 --- a/configuration.h
 +++ b/configuration.h
-@@ -531,6 +531,10 @@ typedef struct settings
+@@ -535,6 +535,10 @@ typedef struct settings
     {
        bool placeholder;
  
