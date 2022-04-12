@@ -1,13 +1,13 @@
 diff --git a/Source/options.cpp b/Source/options.cpp
-index 2982587a..4426bf45 100644
+index 9e03df04..119d789e 100644
 --- a/Source/options.cpp
 +++ b/Source/options.cpp
 @@ -221,7 +221,7 @@ void SaveIni()
  #if SDL_VERSION_ATLEAST(2, 0, 0)
  bool HardwareCursorDefault()
  {
--#if defined(__ANDROID__) || defined(TARGET_OS_IPHONE)
-+#if 1//#if defined(__ANDROID__) || defined(TARGET_OS_IPHONE)
+-#if defined(__ANDROID__) || (defined(TARGET_OS_IPHONE) && TARGET_OS_IPHONE == 1)
++#if 1//#if defined(__ANDROID__) || (defined(TARGET_OS_IPHONE) && TARGET_OS_IPHONE == 1)
  	// See https://github.com/diasurgical/devilutionX/issues/2502
  	return false;
  #else
@@ -15,12 +15,12 @@ index 2982587a..4426bf45 100644
  #if SDL_VERSION_ATLEAST(2, 0, 0)
  bool HardwareCursorSupported()
  {
--#if defined(TARGET_OS_IPHONE)
-+#if 1//#if defined(TARGET_OS_IPHONE)
+-#if (defined(TARGET_OS_IPHONE) && TARGET_OS_IPHONE == 1)
++#if 1//#if (defined(TARGET_OS_IPHONE) && TARGET_OS_IPHONE == 1)
  	return false;
  #else
  	SDL_version v;
-@@ -953,7 +953,7 @@ void OptionEntryLanguageCode::LoadFromIni(string_view category)
+@@ -957,7 +957,7 @@ void OptionEntryLanguageCode::LoadFromIni(string_view category)
  	}
  
  	LogVerbose("No suitable translation found");
@@ -29,7 +29,7 @@ index 2982587a..4426bf45 100644
  }
  void OptionEntryLanguageCode::SaveToIni(string_view category) const
  {
-@@ -978,7 +978,8 @@ void OptionEntryLanguageCode::CheckLanguagesAreInitialized() const
+@@ -982,7 +982,8 @@ void OptionEntryLanguageCode::CheckLanguagesAreInitialized() const
  	languages.emplace_back("it", "Italiano");
  
  	if (font_mpq) {
@@ -39,7 +39,7 @@ index 2982587a..4426bf45 100644
  		languages.emplace_back("ko", "한국어");
  	}
  
-@@ -990,8 +991,9 @@ void OptionEntryLanguageCode::CheckLanguagesAreInitialized() const
+@@ -994,8 +995,9 @@ void OptionEntryLanguageCode::CheckLanguagesAreInitialized() const
  	languages.emplace_back("uk", "Українська");
  
  	if (font_mpq) {
