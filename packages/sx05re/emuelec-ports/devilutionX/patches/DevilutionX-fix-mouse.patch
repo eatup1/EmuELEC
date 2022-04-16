@@ -2,7 +2,7 @@ diff --git a/Source/controls/plrctrls.cpp b/Source/controls/plrctrls.cpp
 index 69455f94..c385b633 100644
 --- a/Source/controls/plrctrls.cpp
 +++ b/Source/controls/plrctrls.cpp
-@@ -741,6 +741,7 @@ void ResetInvCursorPosition()
+@@ -737,6 +737,7 @@ void ResetInvCursorPosition()
  	mousePos.y -= (InventorySlotSizeInPixels.height / 2);
  
  	SetCursorPos(mousePos);
@@ -10,7 +10,7 @@ index 69455f94..c385b633 100644
  }
  
  int FindClosestInventorySlot(Point mousePos)
-@@ -1073,6 +1074,7 @@ void InventoryMove(AxisDirection dir)
+@@ -1069,6 +1070,7 @@ void InventoryMove(AxisDirection dir)
  	}
  
  	SetCursorPos(mousePos);
@@ -18,7 +18,7 @@ index 69455f94..c385b633 100644
  }
  
  /**
-@@ -1625,6 +1627,7 @@ void HandleRightStickMotion()
+@@ -1621,6 +1623,7 @@ void HandleRightStickMotion()
  
  			ControlMode = ControlTypes::KeyboardAndMouse;
  			lastMouseSetTick = now;
