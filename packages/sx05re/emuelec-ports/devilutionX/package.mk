@@ -2,7 +2,7 @@
 # Copyright (C) 2020-present Shanti Gilbert (https://github.com/shantigilbert)
 
 PKG_NAME="devilutionX"
-PKG_VERSION="0ac787fc054208000339f412a2bc6818661157dc"
+PKG_VERSION="0ac787fc054208000339f412a2bc6818661157dc" #1.4.0
 PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="unlicense"
@@ -14,12 +14,10 @@ GET_HANDLER_SUPPORT="git"
 PKG_BUILD_FLAGS="-lto"
 
 pre_configure_target() {
-PKG_CMAKE_OPTS_TARGET=" -DCMAKE_BUILD_TYPE="Release" -DDEBUG=OFF -DPREFILL_PLAYER_NAME=ON -DDEVILUTIONX_SYSTEM_LIBSODIUM=OFF -DDISABLE_ZERO_TIER=ON"
-sed -i "s|;-static-libstdc++>|;-lstdc++>|" $PKG_BUILD/CMake/functions/devilutionx_library.cmake
+PKG_CMAKE_OPTS_TARGET=" -DCMAKE_BUILD_TYPE="Release" -DDEVILUTIONX_STATIC_CXX_STDLIB=OFF -DDISABLE_ZERO_TIER=ON -DBUILD_TESTING=OFF -DBUILD_ASSETS_MPQ=ON -DDEBUG=OFF -DPREFILL_PLAYER_NAME=ON -DDEVILUTIONX_SYSTEM_LIBSODIUM=OFF"
 
 # Remove ja zh due to font size 
 sed -i "s|ja ko pl pt_BR ro ru uk sv zh_CN zh_TW)|ko pl pt_BR ro ru uk sv)|" $PKG_BUILD/CMake/Assets.cmake
-
 }
 
 makeinstall_target() { 

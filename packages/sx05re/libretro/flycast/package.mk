@@ -20,11 +20,12 @@
 
 PKG_NAME="flycast"
 if [ "${ARCH}" == "aarch64" -o "${DEVICE}" == "Amlogic-ng" ]; then
-PKG_VERSION="959685e26071ded69529497a92d86a79d9c12edf"
+PKG_VERSION="aa6c9e21063c929ccf651328547e5c6a9afd1f62"
 PKG_ARCH="any"
 PKG_LICENSE="GPLv2"
 PKG_SITE="https://github.com/flyinghead/flycast"
 else
+#for RK3326 32bit core
 PKG_VERSION="886188804de48a4bd9324046598e8dedfd0d2099"
 PKG_ARCH="arm"
 PKG_SITE="https://github.com/libretro/flycast"

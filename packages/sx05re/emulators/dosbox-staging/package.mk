@@ -2,7 +2,7 @@
 # Copyright (C) 2020-present Shanti Gilbert (https://github.com/shantigilbert)
 
 PKG_NAME="dosbox-staging"
-PKG_VERSION="4c510ff7dddf9aa177df8e41d5224b8789db2be6"
+PKG_VERSION="748e323185018af6a6d5b6a6d07ee779ffe5a258"
 PKG_LICENSE="GPLv2"
 PKG_SITE="https://github.com/dosbox-staging/dosbox-staging"
 PKG_URL="$PKG_SITE.git"
@@ -25,5 +25,7 @@ post_makeinstall_target () {
 	mkdir -p ${INSTALL}/usr/config/dosbox
 	cp -a ${PKG_DIR}/scripts/* ${INSTALL}/usr/bin/
 	cp -a ${PKG_DIR}/config/*  ${INSTALL}/usr/config/dosbox/
-	rm -rf $INSTALL/usr/share
+	cp -a ${PKG_BUILD}/contrib/resources/*  ${INSTALL}/usr/config/dosbox/
+	rm -rf ${INSTALL}/usr/share
+	find ${INSTALL}/usr/config/dosbox -name "meson.build" -exec rm -rf {} \;
 }
