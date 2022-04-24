@@ -74,37 +74,39 @@ function ee_backup() {
 	case "${1}" in
 	"restore")
 		[ -z "${2}" ] && systemctl stop emustation
-        cd /
+		cd /
 		tar xvf "${BACKUPFILE}"
 		sync
-        sleep 3
-        RESTOREDATE="$(date +'%Y-%m-%d')_$(uuidgen)"
-        # Move the backup file instead of deleting it
-        mv "${BACKUPFILE}" "${BACKUPDIR}/restored_${RESTOREDATE}_${BACKUPTAR}" &
+		sleep 3
+		RESTOREDATE="$(date +'%Y-%m-%d')_$(uuidgen)"
+		# Move the backup file instead of deleting it
+		mv "${BACKUPFILE}" "${BACKUPDIR}/restored_${RESTOREDATE}_${BACKUPTAR}" &
 		[ -z "${2}" ] && systemctl start emustation
 	;;
 	"backup")
 		[ -f "${BACKUPFILE}" ] && rm "${BACKUPFILE}"
 		[ -z "${2}" ] && systemctl stop emustation
-        tar -zcvf "${BACKUPFILE}" /storage/.local/share/VVVVVV/* \
-					  /storage/.local/share/diasurgical/devilution/* \
-					  /storage/.cache/bluetooth/* \
-					  /storage/.cache/timezone \
-					  /storage/.cache/hostname \
-					  /storage/.config/scummvm/* \
-					  /storage/.config/emuelec/configs/* \
-					  /storage/.emulationstation/es_*.cfg \
-					  /storage/.emulationstation/themesettings \
-					  /tmp/joypads/* \
-					  /storage/.config/retroarch/*.cfg \
-					  /storage/.config/ppsspp/PSP/* \
-					  /storage/.config/retroarch/config/* \
-					  /storage/.config/supertux* \
-					  /storage/.emulationstation/scripts/drastic/config/* \
-					  /storage/.emulationstation/scripts/drastic/backup/* \
-					  /storage/.emulationstation/scripts/drastic/savestates/* \
-					  /storage/.config/emuelec/bin/pico-8/* \
-        sync
+		tar -zcvf "${BACKUPFILE}" \
+			--exclude "storage/.config/emuelec/configs/locale/*" \
+			/storage/.local/share/VVVVVV/* \
+			/storage/.local/share/diasurgical/devilution/* \
+			/storage/.cache/bluetooth/* \
+			/storage/.cache/timezone \
+			/storage/.cache/hostname \
+			/storage/.config/scummvm/* \
+			/storage/.config/emuelec/configs/* \
+			/storage/.emulationstation/es_*.cfg \
+			/storage/.emulationstation/themesettings \
+			/tmp/joypads/* \
+			/storage/.config/retroarch/*.cfg \
+			/storage/.config/ppsspp/PSP/* \
+			/storage/.config/retroarch/config/* \
+			/storage/.config/supertux* \
+			/storage/.emulationstation/scripts/drastic/config/* \
+			/storage/.emulationstation/scripts/drastic/backup/* \
+			/storage/.emulationstation/scripts/drastic/savestates/* \
+			/storage/.config/emuelec/bin/pico-8/*
+		sync
 		sleep 3
 		[ -z "${2}" ] && systemctl start emustation
 	;;
