@@ -1,6 +1,6 @@
 --- a/es-app/src/guis/GuiMenu.cpp
 +++ b/es-app/src/guis/GuiMenu.cpp
-@@ -1566,7 +1566,7 @@
+@@ -1692,7 +1692,7 @@
  	}
  #endif
  
@@ -22,7 +22,7 @@
  	#endif
 --- a/es-app/src/FileData.cpp
 +++ b/es-app/src/FileData.cpp
-@@ -647,9 +647,6 @@
+@@ -649,9 +649,6 @@
  	VolumeControl::getInstance()->deinit();
  
  	bool hideWindow = Settings::getInstance()->getBool("HideWindow");
