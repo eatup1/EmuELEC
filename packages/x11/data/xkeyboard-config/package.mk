@@ -24,7 +24,6 @@ pre_configure_target() {
                              --disable-runtime-deps \
                              --enable-nls \
                              --disable-rpath \
-                             --datadir=/usr/lib \
                              --with-gnu-ld"
 
   if [ "${DISPLAYSERVER}" = "x11" ]; then
