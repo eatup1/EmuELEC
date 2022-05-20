@@ -17,7 +17,7 @@ diff --git a/Core/Config.h b/Core/Config.h
 --- b/Core/Config.h
 +++ a/Core/Config.h
 @@ -208,6 +208,7 @@ struct Config {
-	bool bTexHardwareScaling;
+ 	bool bTexHardwareScaling;
  	int iFpsLimit1;
  	int iFpsLimit2;
 +	int iForceMaxEmulatedFPS;

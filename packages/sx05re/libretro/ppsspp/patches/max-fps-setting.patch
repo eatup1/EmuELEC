@@ -5,7 +5,7 @@ MRFIXIT: Revert the removal of the maxfps feature
 diff --git a/Core/Config.cpp b/Core/Config.cpp
 --- b/Core/Config.cpp
 +++ a/Core/Config.cpp
-@@ -864,6 +864,7 @@ static ConfigSetting graphicsSettings[] = {
+@@ -866,6 +866,7 @@ static ConfigSetting graphicsSettings[] = {
  #if defined(USING_WIN_UI)
  	ConfigSetting("RestartRequired", &g_Config.bRestartRequired, false, false),
  #endif
@@ -16,7 +16,7 @@ diff --git a/Core/Config.cpp b/Core/Config.cpp
 diff --git a/Core/Config.h b/Core/Config.h
 --- b/Core/Config.h
 +++ a/Core/Config.h
-@@ -205,6 +205,7 @@ struct Config {
+@@ -208,6 +208,7 @@ struct Config {
  	bool bTexHardwareScaling;
  	int iFpsLimit1;
  	int iFpsLimit2;
@@ -27,7 +27,7 @@ diff --git a/Core/Config.h b/Core/Config.h
 diff --git a/Core/HLE/sceDisplay.cpp b/Core/HLE/sceDisplay.cpp
 --- b/Core/HLE/sceDisplay.cpp
 +++ a/Core/HLE/sceDisplay.cpp
-@@ -1031,7 +1031,7 @@ u32 sceDisplaySetFramebuf(u32 topaddr, int linesize, int pixelformat, int sync)
+@@ -815,7 +815,7 @@ u32 sceDisplaySetFramebuf(u32 topaddr, int linesize, int pixelformat, int sync)
  
  	s64 delayCycles = 0;
  	// Don't count transitions between display off and display on.
@@ -36,7 +36,7 @@ diff --git a/Core/HLE/sceDisplay.cpp b/Core/HLE/sceDisplay.cpp
  		// sceDisplaySetFramebuf() isn't supposed to delay threads at all.  This is a hack.
  		// So let's only delay when it's more than 1ms.
  		const s64 FLIP_DELAY_CYCLES_MIN = usToCycles(1000);
-@@ -1055,7 +1055,7 @@ u32 sceDisplaySetFramebuf(u32 topaddr, int linesize, int pixelformat, int sync)
+@@ -839,7 +839,7 @@ u32 sceDisplaySetFramebuf(u32 topaddr, int linesize, int pixelformat, int sync)
  		}
  
  		// 1001 to account for NTSC timing (59.94 fps.)
@@ -48,7 +48,7 @@ diff --git a/Core/HLE/sceDisplay.cpp b/Core/HLE/sceDisplay.cpp
 diff --git a/UI/GameSettingsScreen.cpp b/UI/GameSettingsScreen.cpp
 --- b/UI/GameSettingsScreen.cpp
 +++ a/UI/GameSettingsScreen.cpp
-@@ -197,6 +197,8 @@ void GameSettingsScreen::CreateViews() {
+@@ -199,6 +199,8 @@ void GameSettingsScreen::CreateViews() {
  		g_Config.loadGameConfig(gameID_, info->GetTitle());
  	}
  
@@ -57,7 +57,7 @@ diff --git a/UI/GameSettingsScreen.cpp b/UI/GameSettingsScreen.cpp
  	iAlternateSpeedPercent1_ = g_Config.iFpsLimit1 < 0 ? -1 : (g_Config.iFpsLimit1 * 100) / 60;
  	iAlternateSpeedPercent2_ = g_Config.iFpsLimit2 < 0 ? -1 : (g_Config.iFpsLimit2 * 100) / 60;
  
-@@ -335,6 +337,7 @@ void GameSettingsScreen::CreateViews() {
+@@ -324,6 +326,7 @@ void GameSettingsScreen::CreateViews() {
  	graphicsSettings->Add(new PopupMultiChoice(&g_Config.iFrameSkipType, gr->T("Frame Skipping Type"), frameSkipType, 0, ARRAY_SIZE(frameSkipType), gr->GetName(), screenManager()));
  	frameSkipAuto_ = graphicsSettings->Add(new CheckBox(&g_Config.bAutoFrameSkip, gr->T("Auto FrameSkip")));
  	frameSkipAuto_->OnClick.Handle(this, &GameSettingsScreen::OnAutoFrameskip);
@@ -68,7 +68,7 @@ diff --git a/UI/GameSettingsScreen.cpp b/UI/GameSettingsScreen.cpp
 diff --git a/libretro/libretro.cpp b/libretro/libretro.cpp
 --- b/libretro/libretro.cpp
 +++ a/libretro/libretro.cpp
-@@ -355,6 +355,7 @@
+@@ -538,6 +538,7 @@ static RetroOption<int> ppsspp_rendering_mode("ppsspp_rendering_mode", "Renderin
  static RetroOption<bool> ppsspp_auto_frameskip("ppsspp_auto_frameskip", "Auto Frameskip", false);
  static RetroOption<int> ppsspp_frameskip("ppsspp_frameskip", "Frameskip", { "Off", "1", "2", "3", "4", "5", "6", "7", "8" });
  static RetroOption<int> ppsspp_frameskiptype("ppsspp_frameskiptype", "Frameskip Type", { {"Number of frames", 0}, {"Percent of FPS", 1} });
@@ -76,15 +76,15 @@ diff --git a/libretro/libretro.cpp b/libretro/libretro.cpp
  static RetroOption<int> ppsspp_internal_resolution("ppsspp_internal_resolution", "Internal Resolution (Restart)", 1, { "480x272", "960x544", "1440x816", "1920x1088", "2400x1360", "2880x1632", "3360x1904", "3840x2176", "4320x2448", "4800x2720" });
  static RetroOption<int> ppsspp_button_preference("ppsspp_button_preference", "Confirmation Button", { { "Cross", PSP_SYSTEMPARAM_BUTTON_CROSS }, { "Circle", PSP_SYSTEMPARAM_BUTTON_CIRCLE } });
  static RetroOption<bool> ppsspp_fast_memory("ppsspp_fast_memory", "Fast Memory (Speedhack)", true);
-@@ -395,6 +396,7 @@
+@@ -688,6 +689,7 @@ void retro_set_environment(retro_environment_t cb)
     vars.push_back(ppsspp_auto_frameskip.GetOptions());
     vars.push_back(ppsspp_frameskip.GetOptions());
     vars.push_back(ppsspp_frameskiptype.GetOptions());
 +   vars.push_back(ppsspp_force_max_fps.GetOptions());
+    vars.push_back(ppsspp_frame_duplication.GetOptions());
+    vars.push_back(ppsspp_detect_vsync_swap_interval.GetOptions());
     vars.push_back(ppsspp_vertex_cache.GetOptions());
-    vars.push_back(ppsspp_fast_memory.GetOptions());
-    vars.push_back(ppsspp_block_transfer_gpu.GetOptions());
-@@ -513,6 +515,7 @@
+@@ -819,6 +821,7 @@
     ppsspp_cheats.Update(&g_Config.bEnableCheats);
     ppsspp_locked_cpu_speed.Update(&g_Config.iLockedCPUSpeed);
     ppsspp_rendering_mode.Update(&g_Config.iRenderingMode);
@@ -95,7 +95,7 @@ diff --git a/libretro/libretro.cpp b/libretro/libretro.cpp
 
 --- a/UI/GameSettingsScreen.cpp	2018-11-18 02:06:08.250398000 +0000
 +++ b/UI/GameSettingsScreen.cpp	2018-11-18 02:20:02.941563758 +0000
-@@ -197,8 +197,8 @@
+@@ -199,8 +199,8 @@
  		g_Config.loadGameConfig(gameID_, info->GetTitle());
  	}
  
@@ -105,7 +105,7 @@ diff --git a/libretro/libretro.cpp b/libretro/libretro.cpp
  	iAlternateSpeedPercent1_ = g_Config.iFpsLimit1 < 0 ? -1 : (g_Config.iFpsLimit1 * 100) / 60;
  	iAlternateSpeedPercent2_ = g_Config.iFpsLimit2 < 0 ? -1 : (g_Config.iFpsLimit2 * 100) / 60;
  
-@@ -337,8 +337,10 @@
+@@ -326,8 +326,10 @@
  	graphicsSettings->Add(new PopupMultiChoice(&g_Config.iFrameSkipType, gr->T("Frame Skipping Type"), frameSkipType, 0, ARRAY_SIZE(frameSkipType), gr->GetName(), screenManager()));
  	frameSkipAuto_ = graphicsSettings->Add(new CheckBox(&g_Config.bAutoFrameSkip, gr->T("Auto FrameSkip")));
  	frameSkipAuto_->OnClick.Handle(this, &GameSettingsScreen::OnAutoFrameskip);
@@ -118,7 +118,7 @@ diff --git a/libretro/libretro.cpp b/libretro/libretro.cpp
  	PopupSliderChoice *altSpeed1 = graphicsSettings->Add(new PopupSliderChoice(&iAlternateSpeedPercent1_, 0, 1000, gr->T("Alternative Speed", "Alternative speed"), 5, screenManager(), gr->T("%, 0:unlimited")));
  	altSpeed1->SetFormat("%i%%");
  	altSpeed1->SetZeroLabel(gr->T("Unlimited"));
-@@ -1274,6 +1276,16 @@
+@@ -1269,6 +1271,16 @@
  	return UI::EVENT_DONE;
  };
  
@@ -154,7 +154,7 @@ diff --git a/libretro/libretro.cpp b/libretro/libretro.cpp
  	UI::EventReturn OnHwScaleChange(UI::EventParams &e);
  	UI::EventReturn OnRestoreDefaultSettings(UI::EventParams &e);
  	UI::EventReturn OnRenderingMode(UI::EventParams &e);
-@@ -137,6 +139,7 @@
+@@ -134,6 +136,7 @@
  	UI::EventReturn OnClearSearchFilter(UI::EventParams &e);
  
  	// Temporaries to convert setting types, cache enabled, etc.
@@ -167,7 +167,7 @@ diff --git a/libretro/libretro.cpp b/libretro/libretro.cpp
 MRFIXIT: Add logic for "Auto" (default PSP behavior - pull value from compat.ini)
 --- b/Core/HLE/sceDisplay.cpp
 +++ a/Core/HLE/sceDisplay.cpp
-@@ -1030,8 +1030,13 @@
+@@ -814,8 +814,13 @@
  	hleEatCycles(290);
  
  	s64 delayCycles = 0;
@@ -182,7 +182,7 @@ MRFIXIT: Add logic for "Auto" (default PSP behavior - pull value from compat.ini
  		// sceDisplaySetFramebuf() isn't supposed to delay threads at all.  This is a hack.
  		// So let's only delay when it's more than 1ms.
  		const s64 FLIP_DELAY_CYCLES_MIN = usToCycles(1000);
-@@ -1055,7 +1060,7 @@
+@@ -839,7 +844,7 @@
  		}
  
  		// 1001 to account for NTSC timing (59.94 fps.)
