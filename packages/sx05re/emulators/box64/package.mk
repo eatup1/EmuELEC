@@ -2,7 +2,7 @@
 # Copyright (C) 2021-present Shanti Gilbert (https://github.com/shantigilbert)
 
 PKG_NAME="box64"
-PKG_VERSION="8d9d5f3fc3da7356c71d98b0380b81293a486bba"
+PKG_VERSION="c8d4d3b69e045e105a690d5cbd20ad70ec801b83"
 PKG_REV="1"
 PKG_ARCH="aarch64"
 PKG_LICENSE="MIT"
