@@ -16,7 +16,7 @@ if [ "${ARCH}" == "arm" ]; then
 fi
 pre_configure_target() {
 export CXXFLAGS="${CXXFLAGS} -Wno-error=array-bounds"
-PKG_CMAKE_OPTS_TARGET+="-DUSE_GLES2=ON -DUSE_OPENMP=ON -DUSE_VULKAN=OFF -DCMAKE_BUILD_TYPE=Release"
+PKG_CMAKE_OPTS_TARGET+="-DUSE_GLES=ON -DUSE_OPENMP=ON -DUSE_VULKAN=OFF -DCMAKE_BUILD_TYPE=Release"
 }
 
 makeinstall_target() {
