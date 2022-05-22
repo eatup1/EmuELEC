@@ -2,7 +2,7 @@
 # Copyright (C) 2021-present Shanti Gilbert (https://github.com/shantigilbert)
 
 PKG_NAME="flycastsa"
-PKG_VERSION="aa6c9e21063c929ccf651328547e5c6a9afd1f62"
+PKG_VERSION="af2fe242f92c4934faf1383915325ad6d68c5cfd"
 PKG_LICENSE="GPLv2"
 PKG_SITE="https://github.com/flyinghead/flycast"
 PKG_URL="$PKG_SITE.git"
@@ -16,7 +16,7 @@ if [ "${ARCH}" == "arm" ]; then
 fi
 pre_configure_target() {
 export CXXFLAGS="${CXXFLAGS} -Wno-error=array-bounds"
-PKG_CMAKE_OPTS_TARGET+="-DUSE_GLES=ON -DUSE_VULKAN=OFF"
+PKG_CMAKE_OPTS_TARGET+="-DUSE_GLES2=ON -DUSE_OPENMP=ON -DUSE_VULKAN=OFF -DCMAKE_BUILD_TYPE=Release"
 }
 
 makeinstall_target() {

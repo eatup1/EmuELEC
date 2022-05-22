@@ -20,7 +20,7 @@
 
 PKG_NAME="flycast"
 if [ "${ARCH}" == "aarch64" -o "${DEVICE}" == "Amlogic-ng" ]; then
-PKG_VERSION="aa6c9e21063c929ccf651328547e5c6a9afd1f62"
+PKG_VERSION="af2fe242f92c4934faf1383915325ad6d68c5cfd"
 PKG_ARCH="any"
 PKG_LICENSE="GPLv2"
 PKG_SITE="https://github.com/flyinghead/flycast"
@@ -39,9 +39,10 @@ PKG_BUILD_FLAGS="-lto"
 PKG_TOOLCHAIN="cmake"
 
 PKG_CMAKE_OPTS_TARGET="-DLIBRETRO=ON \
-                        -DUSE_OPENMP=OFF \ 
+                        -DUSE_OPENMP=ON \ 
                         -DCMAKE_BUILD_TYPE=Release \
-                        -DUSE_GLES2=ON"
+                        -DUSE_GLES2=ON \
+			-DUSE_VULKAN=OFF"
 else
 PKG_TOOLCHAIN="make"
 PKG_BUILD_FLAGS="-gold"
