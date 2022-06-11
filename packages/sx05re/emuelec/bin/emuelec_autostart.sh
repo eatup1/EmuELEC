@@ -29,6 +29,10 @@ if [ "${EE_DEVICE}" == "Amlogic" ]; then
 elif [ "${EE_DEVICE}" == "Amlogic-ng" ]; then
   rm /storage/.config/asound.conf > /dev/null 2>&1
   cp /storage/.config/asound.conf-amlogic-ng /storage/.config/asound.conf
+
+elif [ "${EE_DEVICE}" == "OdroidGoAdvance" -o "$EE_DEVICE" == "RG351P" -o "$EE_DEVICE" == "RG351V" ]; then
+  rm /storage/.config/asound.conf > /dev/null 2>&1
+  cp /storage/.config/asound.conf-amlogic-ng /storage/.config/asound.conf
 fi
 
 HOSTNAME=$(get_ee_setting system.hostname)
