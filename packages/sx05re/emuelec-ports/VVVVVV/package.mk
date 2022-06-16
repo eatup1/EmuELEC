@@ -2,8 +2,8 @@
 # Copyright (C) 2020-present Shanti Gilbert (https://github.com/shantigilbert)
 
 PKG_NAME="VVVVVV"
-PKG_VERSION="f6ede079fb2e636a218cf6534fff83da5142acfd"
-#PKG_SHA256="ccd6d3d6cee31e4caa282e34ec137382bca768c0d97950d64732f45666f6625c"
+PKG_VERSION="dca3c9600caf3d1ef4f2eaec8e727ad26abad344"
+PKG_SHA256="ccd6d3d6cee31e4caa282e34ec137382bca768c0d97950d64732f45666f6625c"
 PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="CUSTOM"

@@ -2,7 +2,7 @@
 # Copyright (C) 2021-present Shanti Gilbert (https://github.com/shantigilbert)
 
 PKG_NAME="box64"
-PKG_VERSION="c8d4d3b69e045e105a690d5cbd20ad70ec801b83"
+PKG_VERSION="6392550208eadf07419692920acc2955bb844af7"
 PKG_REV="1"
 PKG_ARCH="aarch64"
 PKG_LICENSE="MIT"
@@ -13,7 +13,7 @@ PKG_LONGDESC="Box64 - Linux Userspace x86_64 Emulator with a twist, targeted at 
 PKG_TOOLCHAIN="cmake"
 
 if [[ "${DEVICE}" == "Amlogic"* ]]; then
-	PKG_CMAKE_OPTS_TARGET=" -DRK3399=1 -DCMAKE_BUILD_TYPE=RelWithDebInfo"
+	PKG_CMAKE_OPTS_TARGET=" -DODROIDN2=1 -DCMAKE_BUILD_TYPE=RelWithDebInfo"
 else
 	PKG_CMAKE_OPTS_TARGET=" -DRK3326=1 -DCMAKE_BUILD_TYPE=RelWithDebInfo"
 fi

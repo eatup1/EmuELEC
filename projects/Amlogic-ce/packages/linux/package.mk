@@ -16,14 +16,20 @@ PKG_STAMP="$KERNEL_TARGET $KERNEL_MAKE_EXTRACMD $KERNEL_UBOOT_EXTRA_TARGET"
 PKG_PATCH_DIRS="$LINUX"
 
 case "$LINUX" in
-  amlogic-4.9)
-    PKG_VERSION="92dfdbfa5eab0bca0b13213d9ee1f640232f28ca"
-    PKG_SHA256="5da5427989a687484e07246926913cd0da8bcff3fc4b357183ea86ef840f53bc"
+  amlogic-3.14)
+    PKG_VERSION="07d26b4ce91cf934d65a64e2da7ab3bc75e59fcc"
+    PKG_SHA256="682f93c0bb8ad888a681e93882bc169007bacb880714b980af00ca34fb5b8365"
     PKG_URL="https://github.com/CoreELEC/linux-amlogic/archive/$PKG_VERSION.tar.gz"
     PKG_SOURCE_NAME="linux-$LINUX-$PKG_VERSION.tar.gz"
     PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET aml-dtbtools:host"
-    PKG_DEPENDS_UNPACK="media_modules-aml"
-    PKG_NEED_UNPACK="$PKG_NEED_UNPACK $(get_pkg_directory media_modules-aml)"
+    PKG_BUILD_PERF="no"
+    ;;
+  amlogic-4.9)
+    PKG_VERSION="e194bc3ea82ab0c5b6104f196c02b57bb29cfe62"
+    PKG_SHA256="c94a52d3a864073d4f9b07d581ae14f3f0d0162325cd18cfc5c8315f76f759c9"
+    PKG_URL="https://github.com/CoreELEC/linux-amlogic/archive/$PKG_VERSION.tar.gz"
+    PKG_SOURCE_NAME="linux-$LINUX-$PKG_VERSION.tar.gz"
+    PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET aml-dtbtools:host"
     PKG_BUILD_PERF="no"
     PKG_GIT_BRANCH="amlogic-4.9-19"
     ;;
@@ -32,8 +38,8 @@ esac
 PKG_KERNEL_CFG_FILE=$(kernel_config_path) || die
 
 if [ -n "$KERNEL_TOOLCHAIN" ]; then
-  PKG_DEPENDS_HOST="$PKG_DEPENDS_HOST gcc-arm-$KERNEL_TOOLCHAIN:host"
-  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET gcc-arm-$KERNEL_TOOLCHAIN:host"
+  PKG_DEPENDS_HOST="$PKG_DEPENDS_HOST gcc-$KERNEL_TOOLCHAIN:host"
+  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET gcc-$KERNEL_TOOLCHAIN:host"
   HEADERS_ARCH=$TARGET_ARCH
 fi
 
@@ -171,9 +177,6 @@ pre_make_target() {
   cd ${PREEXF}
 
   kernel_make oldconfig
-
-  # copy video firmware (kernel won't compile without it)
-  [ "$LINUX" = "amlogic-4.9" ] && cp -PR $(get_build_dir media_modules-aml)/firmware $PKG_BUILD/firmware/video || :
 }
 
 make_target() {

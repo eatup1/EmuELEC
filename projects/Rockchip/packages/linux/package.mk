@@ -21,19 +21,33 @@ case "$LINUX" in
     PKG_URL="https://github.com/rockchip-linux/kernel/archive/$PKG_VERSION.tar.gz"
     PKG_SOURCE_NAME="linux-$LINUX-$PKG_VERSION.tar.gz"
     ;;
+  rk356x-4.19)
+    PKG_VERSION="c0c173e0214eeaa0d057599d2f1c6a83213483b1"
+    PKG_SHA256="d748bc0f272373ed219a9bfd242566871dafd0437f88d0212780b8469ea89e5e"
+    PKG_URL="https://gitlab.com/firefly-linux/kernel/-/archive/$PKG_VERSION/kernel-$PKG_VERSION.tar.gz"
+    PKG_SOURCE_NAME="linux-$LINUX-$PKG_VERSION.tar.gz"
+    PKG_PATCH_DIRS="RK356x"
+    ;;
+  OdroidM1-4.19)
+	PKG_VERSION="e45b118834e1395eeacbed77e8b8f35e8105663e"
+	PKG_SHA256="3c4f1bea0b8c26d9951c8b46c6c93127fc0929ff9947c5eb8e479fbaf05fa1f4"
+	PKG_URL="https://github.com/hardkernel/linux/archive/$PKG_VERSION.tar.gz"
+	PKG_SOURCE_NAME="linux-$LINUX-$PKG_VERSION.tar.gz"
+	PKG_PATCH_DIRS="RK356x"
+    ;;
   odroid-go-a-4.4)
     PKG_VERSION="faeb665a41b53ebb386e69fe737ccf0707aaf07b"
     PKG_SHA256="bef15386f296b282e1e75ed78f14c7c0762058806da37854d09af642a15594ae"
     PKG_URL="https://github.com/hardkernel/linux/archive/$PKG_VERSION.tar.gz"
     PKG_SOURCE_NAME="linux-$LINUX-$PKG_VERSION.tar.gz"
-    PKG_PATCH_DIRS="OdroidGoAdvance"
+    PKG_PATCH_DIRS="OdroidGoAdvance base"
     ;;
   gameforce-4.4)
     PKG_VERSION="8eddb294dcb1a1b0cf63bdf04ea5cdc41a9bd601"
     PKG_SHA256="ad2f6fee44dfb19c8a43722ca02601f6742af39129f0c79c990ed582709f63cf"
     PKG_URL="https://github.com/shantigilbert/hardkernel-linux/archive/$PKG_VERSION.tar.gz"
     PKG_SOURCE_NAME="linux-$LINUX-$PKG_VERSION.tar.gz"
-    PKG_PATCH_DIRS="GameForce"
+    PKG_PATCH_DIRS="GameForce base"
     ;;
   rg351p-4.4)
     PKG_VERSION="faeb665a41b53ebb386e69fe737ccf0707aaf07b"
@@ -236,6 +250,9 @@ pre_make_target() {
 }
 
 make_target() {
+
+export KCFLAGS="-Wno-deprecated-declarations -Wno-stringop-overflow -Wno-array-bounds -Wno-misleading-indentation"
+
   # arm64 target does not support creating uImage.
   # Build Image first, then wrap it using u-boot's mkimage.
   if [[ "${TARGET_KERNEL_ARCH}" = "arm64" && "${KERNEL_TARGET}" = uImage* ]]; then

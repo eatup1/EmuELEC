@@ -2,8 +2,8 @@
 # Copyright (C) 2021-present Shanti Gilbert (https://github.com/shantigilbert)
 
 PKG_NAME="pcsx_rearmed"
-PKG_VERSION="7dee1e8e9e0c5606f237e487efbd0c5fe6154b3f"
-PKG_SHA256="5999f81dca882c49eaa76a2ee198f996b49cabbd40f1e927ea046697f2f95d21"
+PKG_VERSION="0b8caa417c2bef660d6a0c70cbab71f1e997023b"
+PKG_SHA256="1cccb86310a3f88c74132263cc044fc7b0e3bce3529c0481d9356079052bb915"
 PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="GPLv2"
@@ -18,13 +18,13 @@ make_target() {
 cd ${PKG_BUILD}
 export ALLOW_LIGHTREC_ON_ARM=1
 if [ "${ARCH}" == "arm" ]; then
-	if [ "${DEVICE}" == "Amlogic" ]; then
+	if [ "${DEVICE}" == "Amlogic-old" ]; then
 		make -f Makefile.libretro GIT_VERSION=${PKG_VERSION} platform=rpi3
 	else
 		make -f Makefile.libretro GIT_VERSION=${PKG_VERSION} platform=rpi4
 	fi
 else
-	if [ "${DEVICE}" == "Amlogic" ]; then
+	if [ "${DEVICE}" == "Amlogic-old" ]; then
 		make -f Makefile.libretro GIT_VERSION=${PKG_VERSION} platform=h5
 	elif [ "${DEVICE}" == "OdroidGoAdvance" -o "${DEVICE}" == "RG351P" -o "${DEVICE}" == "RG351V" ] || [ "${DEVICE}" == "Gameforce" ]; then
 		sed -i "s|cortex-a53|cortex-a35|g" Makefile.libretro
