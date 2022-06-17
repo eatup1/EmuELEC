@@ -2,7 +2,7 @@
 # Copyright (C) 2019-present Shanti Gilbert (https://github.com/shantigilbert)
 
 PKG_NAME="poppler"
-PKG_VERSION="3b82fb789116c805b0a69f6bf3a72466a1e87308"
+PKG_VERSION="83a39c7be2148acdb267ba9a03aba991b50c3437" #21.04.0
 PKG_LICENSE="GPL"
 PKG_SITE="https://github.com/freedesktop/poppler"
 PKG_URL="$PKG_SITE.git"

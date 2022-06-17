@@ -36,7 +36,7 @@ PKG_CMAKE_OPTS_TARGET="${PKG_BUILD}/yabause \
                          -DLIBPNG_LIB_DIR=${SYSROOT_PREFIX}/usr/lib \
                          -Dpng_STATIC_LIBRARIES=${SYSROOT_PREFIX}/usr/lib/libpng16.a"
                          
-if [[ ${DEVICE} == "OdroidGoAdvance" || ${DEVICE} == "GameForce" ]]; then
+if [[ ${DEVICE} == "OdroidGoAdvance" || ${DEVICE} == "RG351P" || ${DEVICE} == "RG351V" || ${DEVICE} == "GameForce" ]]; then
 	PKG_CMAKE_OPTS_TARGET+=" -DCMAKE_BUILD_TYPE=Release"
 fi
 
