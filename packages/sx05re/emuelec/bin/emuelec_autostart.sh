@@ -77,6 +77,9 @@ systemctl restart bluetooth
 systemctl restart bluetooth-agent
 fi
 
+# Setting resolution
+setres.sh
+
 # Mounts /storage/roms
 mount_romfs.sh 
 
