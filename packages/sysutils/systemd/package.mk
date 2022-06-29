@@ -3,8 +3,14 @@
 # Copyright (C) 2018-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="systemd"
-PKG_VERSION="251.1"
-PKG_SHA256="0d986657082ce72246a12093933ea4c3c8e2a50e3000f1a4192d14dcaa20cd9a"
+if [ "$DEVICE" == "OdroidGoAdvance" -o "$DEVICE" == "RG351P" -o "$DEVICE" == "RG351V" ] || [ "$DEVICE" == "GameForce" ]; then
+PKG_VERSION="250.7"
+PKG_SHA256="14348e1a3b2eef01ad62f996757400256008e5f8e655b4ffd5a60e5124e20eee"
+else
+# systemd 251 is required minimum kernel version 4.15
+PKG_VERSION="251.2"
+PKG_SHA256="5b371e824fe3e3128f2338b8db8cd37171f8e249eea88077eea468f73d833545"
+fi
 PKG_LICENSE="LGPL2.1+"
 PKG_SITE="http://www.freedesktop.org/wiki/Software/systemd"
 PKG_URL="https://github.com/systemd/systemd-stable/archive/v${PKG_VERSION}.tar.gz"

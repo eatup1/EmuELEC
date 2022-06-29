@@ -8,7 +8,7 @@ diff --git a/meson.build b/meson.build
 index dbbddb68e2..4592cd1094 100644
 --- a/meson.build
 +++ b/meson.build
-@@ -266,7 +266,7 @@
+@@ -267,7 +267,7 @@
  conf.set_quoted('SYSTEMD_UPDATE_HELPER_PATH',                 rootlibexecdir / 'systemd-update-helper')
  conf.set_quoted('SYSTEMD_USERWORK_PATH',                      rootlibexecdir / 'systemd-userwork')
  conf.set_quoted('SYSTEMD_VERITYSETUP_PATH',                   rootlibexecdir / 'systemd-veritysetup')
