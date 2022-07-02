@@ -4,8 +4,9 @@
 
 PKG_NAME="systemd"
 if [ "$DEVICE" == "OdroidGoAdvance" -o "$DEVICE" == "RG351P" -o "$DEVICE" == "RG351V" ] || [ "$DEVICE" == "GameForce" ]; then
-PKG_VERSION="250.7"
-PKG_SHA256="14348e1a3b2eef01ad62f996757400256008e5f8e655b4ffd5a60e5124e20eee"
+# don't use version 250.7
+PKG_VERSION="250.6"
+PKG_SHA256="f34a9aa921cba80ec731667b8ec66c419fd78ad4469d9cba66010936bfabfd78"
 else
 # systemd 251 is required minimum kernel version 4.15
 PKG_VERSION="251.2"
