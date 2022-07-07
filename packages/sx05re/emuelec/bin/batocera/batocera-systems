@@ -795,6 +795,12 @@ systems = {
                                                           { "md5": "", "file": "ports/bstone/ps/vgagraph.vsi" },
                                                           { "md5": "", "file": "ports/bstone/ps/vgahead.vsi" },
                                                           { "md5": "", "file": "ports/bstone/ps/vswap.vsi" } ] },
+    
+    # Phillips CDI
+    "cdi": { "name": "Phillips CDI", "biosFiles": [ { "md5": "", "file": "bios/same_cdi/bios/cdimono1.zip" },
+														 { "md5": "", "file": "bios/same_cdi/bios/cdimono2.zip"						  },
+														 { "md5": "", "file": "bios/same_cdi/bios/cdibios.zip"						  } ] },
+                                                         
     }
 
 class BiosStatus:
