@@ -2,8 +2,8 @@
 # Copyright (C) 2019-present Shanti Gilbert (https://github.com/shantigilbert)
 
 PKG_NAME="mpv"
-PKG_VERSION="88120d47599da61e17350da4d35b565d5c3e29aa"
-PKG_SHA256="cdf790b66c3c1b5eefb6502292ff1fc046d0cb5527257028f52032547e3c5c87"
+PKG_VERSION="80e29d1851334935a77eb66cf570f7126f9ddf05"
+PKG_SHA256="dbb465bb79adb5f7573b1b218451cfe084b227ace02046291f0c0acd24904b49"
 PKG_LICENSE="GPLv2+"
 PKG_SITE="https://github.com/mpv-player/mpv"
 PKG_URL="$PKG_SITE/archive/$PKG_VERSION.tar.gz"
@@ -30,7 +30,7 @@ configure_target() {
 	cd ${PKG_BUILD}
 
  if [[ "$DEVICE" == "OdroidGoAdvance" || "$DEVICE" == "RG351P" || "$DEVICE" == "RG351V" || "$DEVICE" == "GameForce" ]]; then
-  ./waf configure --enable-sdl2 --enable-sdl2-gamepad --disable-pulse --enable-egl --disable-libbluray --enable-drm --enable-gl --enable-uchardet
+  ./waf configure --enable-sdl2 --enable-sdl2-gamepad --disable-pulse --enable-egl --disable-libbluray --enable-drm --disable-gl --enable-uchardet
   else
   ./waf configure --enable-libmpv-shared --enable-sdl2 --enable-sdl2-gamepad --disable-pulse --enable-egl --disable-libbluray --disable-drm --disable-gl --enable-uchardet
  fi
