@@ -1,0 +1,12 @@
+diff --git a/options/options.c b/options/options.c
+index 0b1c58d9a6..a621673d3d 100644
+--- a/options/options.c
++++ b/options/options.c
+@@ -1040,6 +1040,7 @@ static const struct MPOpts mp_default_opts = {
+     .coverart_whitelist = true,
+     .osd_bar_visible = 1,
+     .screenshot_template = "mpv-shot%n",
++    .screenshot_directory = "/storage/roms/screenshots",
+     .play_dir = 1,
+ 
+     .audio_output_channels = {
