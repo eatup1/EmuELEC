@@ -31,6 +31,16 @@ $ git checkout dev
 $ PROJECT=Amlogic-ce DEVICE=Amlogic-ng ARCH=aarch64 DISTRO=EmuELEC make image
 ```
 
+for the Amlogic old model (S905x etc):
+```
+$ PROJECT=Amlogic-ce DEVICE=Amlogic-old ARCH=aarch64 DISTRO=EmuELEC make image
+```
+
+for the Odroid M1:
+```
+$ PROJECT=Rockchip DEVICE=OdroidM1 ARCH=aarch64 DISTRO=EmuELEC make image
+```
+
 For the Odroid GO Advance/Super:
 ```
 $ PROJECT=Rockchip DEVICE=OdroidGoAdvance ARCH=aarch64 DISTRO=EmuELEC make image
@@ -48,7 +58,7 @@ $ PROJECT=Rockchip DEVICE=RG351V ARCH=aarch64 DISTRO=EmuELEC make image
 
 Note: In some cases you may also need to install the tzdata, xfonts-utils and/or lzop smpq packages.
 ```
-$ apt install tzdata xfonts-utils lzop smpq
+$ apt install tzdata xfonts-utils lzop smpq device-tree-compiler
 ```
 
 
