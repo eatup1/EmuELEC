@@ -123,6 +123,8 @@ elif [[ "${EE_DEVICE}" == "RG351V" ]]; then
     UFILE+="-rg351v.tar"
 elif [[ "${EE_DEVICE}" == "GameForce" ]]; then
     UFILE+="-chi.tar"
+elif [[ "${EE_DEVICE}" == "RK356x" ]]; then
+    UFILE+="-rk356x.tar"
 else
     UFILE+=".tar"
 fi
