@@ -2,7 +2,7 @@ diff --git a/CMakeLists.txt b/CMakeLists.txt
 index 26fe83205..32a339b05 100644
 --- a/CMakeLists.txt
 +++ b/CMakeLists.txt
-@@ -590,7 +590,7 @@ if(USE_GCC OR USE_CLANG)
+@@ -598,7 +598,7 @@ if(USE_GCC OR USE_CLANG)
      check_c_compiler_flag("" HAVE_NO_UNDEFINED)
      set(CMAKE_REQUIRED_FLAGS ${ORIG_CMAKE_REQUIRED_FLAGS})
      if(HAVE_NO_UNDEFINED AND NOT (USE_CLANG AND WINDOWS))
@@ -15,7 +15,7 @@ diff --git a/Makefile.in b/Makefile.in
 index 65ccc55..bf4e3aa 100644
 --- a/Makefile.in
 +++ b/Makefile.in
-@@ -22,7 +22,7 @@ CC      = @CC@
+@@ -23,7 +23,7 @@ CC      = @CC@
  INCLUDE = @INCLUDE@
  CFLAGS  = @BUILD_CFLAGS@
  EXTRA_CFLAGS = @EXTRA_CFLAGS@

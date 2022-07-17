@@ -2,7 +2,7 @@ diff --git a/src/video/SDL_egl.c b/src/video/SDL_egl.c
 index 87d693e8d..891d588c4 100644
 --- a/src/video/SDL_egl.c
 +++ b/src/video/SDL_egl.c
-@@ -1041,7 +1041,7 @@ SDL_EGL_CreateContext(_THIS, EGLSurface egl_surface)
+@@ -1039,7 +1039,7 @@ SDL_EGL_CreateContext(_THIS, EGLSurface egl_surface)
          return NULL;
      }
  
@@ -10,7 +10,7 @@ index 87d693e8d..891d588c4 100644
 +    _this->egl_data->egl_swapinterval = 1;
  
      if (SDL_EGL_MakeCurrent(_this, egl_surface, egl_context) < 0) {
-         /* Save the SDL error set by SDL_EGL_MakeCurrent */
+         /* Delete the context */
 --- a/src/video/kmsdrm/SDL_kmsdrmopengles.c
 +++ b/src/video/kmsdrm/SDL_kmsdrmopengles.c
 @@ -41,11 +41,17 @@ KMSDRM_GLES_DefaultProfileConfig(_THIS, int *mask, int *major, int *minor)
