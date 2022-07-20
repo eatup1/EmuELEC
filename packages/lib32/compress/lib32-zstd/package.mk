@@ -28,7 +28,7 @@ PKG_MESON_OPTS_HOST="-Dlegacy_level=0 \
 
 unpack() {
   mkdir -p ${PKG_BUILD}
-  tar --strip-components=1 -xf ${SOURCES}/zstd/zstd-${PKG_VERSION}.tar.zst -C ${PKG_BUILD}
+  tar --strip-components=1 -I zstd -xf ${SOURCES}/zstd/zstd-${PKG_VERSION}.tar.zst -C ${PKG_BUILD}
 }
 
 post_makeinstall_target() {
