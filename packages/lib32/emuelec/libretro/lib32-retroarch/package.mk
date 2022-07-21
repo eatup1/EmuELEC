@@ -41,7 +41,7 @@ if [ "${PROJECT}" = "Amlogic-ce" ]; then
   PKG_PATCH_DIRS+=" $RA_DIRECTORY/patches/Amlogic"
   PKG_CONFIGURE_OPTS_TARGET+=" --disable-kms \
                            --enable-mali_fbdev"
-elif [[ "${DEVICE}" =~ ^(OdroidGoAdvance|GameForce|RK356x|OdroidM1)$ ]]; then
+elif [[ "${DEVICE}" =~ ^(OdroidGoAdvance|RG351P|RG351V|GameForce|RK356x|OdroidM1)$ ]]; then
   PKG_RKMISC="yes"
   PKG_DEPENDS_TARGET+=" lib32-libdrm lib32-librga"
   PKG_CONFIGURE_OPTS_TARGET+=" --enable-opengles3 \
@@ -51,6 +51,11 @@ elif [[ "${DEVICE}" =~ ^(OdroidGoAdvance|GameForce|RK356x|OdroidM1)$ ]]; then
   if [ "${DEVICE}" = "OdroidGoAdvance" ]; then
     PKG_PATCH_DIRS+=" $RA_DIRECTORY/patches/OdroidGoAdvance"
     PKG_CONFIGURE_OPTS_TARGET+=" --enable-odroidgo2"
+  elif [ "${DEVICE}" = "RG351P" ]; then
+    PKG_PATCH_DIRS+=" $RA_DIRECTORY/patches/RG351P"
+    PKG_CONFIGURE_OPTS_TARGET+=" --enable-odroidgo2"
+  elif [ "${DEVICE}" = "RG351V" ]; then
+    PKG_PATCH_DIRS+=" $RA_DIRECTORY/patches/RG351P"
   fi
 else
   echo "${PKG_NAME}: Unsupported devices ${DEVICE} when only AmlNG, AmlOld, OGA, GF, RK356X, M1 is supported" 1>&2

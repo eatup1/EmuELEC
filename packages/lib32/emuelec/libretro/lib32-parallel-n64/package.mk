@@ -16,7 +16,7 @@ PKG_TOOLCHAIN="make"
 PKG_BUILD_FLAGS="lib32 -lto"
 
 case ${DEVICE} in 
-  OdroidGoAdvance|GameForce)
+  OdroidGoAdvance|RG351P|RG351V|GameForce)
     PKG_MAKE_OPTS_TARGET="platform=Odroidgoa"
   ;;
   RK356x|OdroidM1)
