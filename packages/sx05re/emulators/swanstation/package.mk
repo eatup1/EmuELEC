@@ -2,8 +2,8 @@
 # Copyright (C) 2020-present Shanti Gilbert (https://github.com/shantigilbert)
 
 PKG_NAME="swanstation"
-PKG_VERSION="8c87884dd91f9168dae87f36dbaeccfd75d68e53"
-PKG_SHA256="30477a245fc100ce2af1de61f0793145ad825bcb92aad15a10cf15eef94c104a"
+PKG_VERSION="b1e3450d4b709a977243fdde3332002ef78ed09b"
+PKG_SHA256="1233a5e0e1914d8b85affde55c0fa74d023ffb10629fe3b205a262bb20d05675"
 PKG_ARCH="aarch64"
 PKG_LICENSE="GPLv3"
 PKG_SITE="https://github.com/libretro/swanstation"
@@ -15,7 +15,7 @@ PKG_TOOLCHAIN="cmake"
 PKG_BUILD_FLAGS="-lto"
 
 pre_configure_target() {
- PKG_CMAKE_OPTS_TARGET+=" -DCMAKE_BUILD_TYPE=Release -DBUILD_LIBRETRO_CORE=ON "
+ PKG_CMAKE_OPTS_TARGET+=" -DCMAKE_BUILD_TYPE=Release "
 }
 
 makeinstall_target() {
