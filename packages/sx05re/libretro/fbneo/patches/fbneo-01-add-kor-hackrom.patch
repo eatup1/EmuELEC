@@ -1,8 +1,8 @@
 diff --git a/src/burn/drv/capcom/d_cps1.cpp b/src/burn/drv/capcom/d_cps1.cpp
-index 99cca7b70..97b4349bf 100644
+index 2e86f781a..fcbb9342d 100644
 --- a/src/burn/drv/capcom/d_cps1.cpp
 +++ b/src/burn/drv/capcom/d_cps1.cpp
-@@ -16130,6 +16130,28 @@ static const struct GameConfig ConfigTable[] =
+@@ -16173,6 +16173,28 @@ static const struct GameConfig ConfigTable[] =
  	{ "sfzech"        , CPS_B_21_DEF, mapper_sfzch , 0, NULL                },
  	{ "sfzhch"        , CPS_B_21_DEF, mapper_sfzch , 0, NULL                },
  
@@ -31,7 +31,7 @@ index 99cca7b70..97b4349bf 100644
  	{ 0               , 0           , 0            , 0, 0                   }
  };
  
-@@ -25318,6 +25340,976 @@ struct BurnDriver BurnDrvCpsPunisherhr = {
+@@ -25413,6 +25435,976 @@ struct BurnDriver BurnDrvCpsPunisherhr = {
  
  #include "d_kenseim.h"
  
@@ -807,7 +807,7 @@ index 99cca7b70..97b4349bf 100644
 +
 +struct BurnDriver BurnDrvCpsArea88k = {
 +	"area88k", "unsquad", NULL, NULL, "1989",
-+	"Area 88 (Korean Translation)\0", "Hack", "Daipro / Capcom", "CPS1",
++	"Area 88 (Korean Translation)\0", "hack", "Daipro / Capcom", "CPS1",
 +	NULL, NULL, NULL, NULL,
 +	BDF_GAME_WORKING | BDF_CLONE | BDF_HISCORE_SUPPORTED, 2, HARDWARE_CAPCOM_CPS1, GBF_HORSHOOT, 0,
 +	NULL, Area88kRomInfo, Area88kRomName, NULL, NULL, NULL, NULL, UnsquadInputInfo, UnsquadDIPInfo,
@@ -817,7 +817,7 @@ index 99cca7b70..97b4349bf 100644
 +
 +struct BurnDriver BurnDrvCpsCaptcommk = {
 +	"captcommk", "captcomm", NULL, NULL, "1991",
-+	"Captain Commando (911202 Korean Translation)\0", "Hack", "Capcom", "CPS1",
++	"Captain Commando (911202 Korean Translation)\0", "hack", "Capcom", "CPS1",
 +	NULL, NULL, NULL, NULL,
 +	BDF_GAME_WORKING | BDF_CLONE | BDF_HISCORE_SUPPORTED, 4, HARDWARE_CAPCOM_CPS1, GBF_SCRFIGHT, 0,
 +	NULL, CaptcommkRomInfo, CaptcommkRomName, NULL, NULL, NULL, NULL, CaptcommInputInfo, CaptcommDIPInfo,
@@ -827,7 +827,7 @@ index 99cca7b70..97b4349bf 100644
 +
 +struct BurnDriver BurnDrvCpsDaimakaik = {
 +	"daimakaik", "ghouls", NULL, NULL, "1988",
-+	"Dai Makai-Mura (Korean Translation)\0", "Hack", "Capcom", "CPS1",
++	"Dai Makai-Mura (Korean Translation)\0", "hack", "Capcom", "CPS1",
 +	NULL, NULL, NULL, NULL,
 +	BDF_GAME_WORKING | BDF_CLONE | BDF_HISCORE_SUPPORTED, 2, HARDWARE_CAPCOM_CPS1, GBF_RUNGUN, 0,
 +	NULL, DaimakaikRomInfo, DaimakaikRomName, NULL, NULL, NULL, NULL, GhoulsInputInfo, DaimakaiDIPInfo,
@@ -837,7 +837,7 @@ index 99cca7b70..97b4349bf 100644
 +
 +struct BurnDriver BurnDrvCpsFfgtj4v2 = {
 +	"ffgtj4v2", "ffight", NULL, NULL, "1989",
-+	"Final Fight (900613 Japan, 1 vs 2 Hack)\0", "Hack", "Capcom", "CPS1",
++	"Final Fight (900613 Japan, 1 vs 2 Hack)\0", "hack", "Capcom", "CPS1",
 +	NULL, NULL, NULL, NULL,
 +	BDF_GAME_WORKING | BDF_CLONE | BDF_HISCORE_SUPPORTED | BDF_HACK, 2, HARDWARE_CAPCOM_CPS1, GBF_SCRFIGHT, 0,
 +	NULL, Ffgtj4v2RomInfo, Ffgtj4v2RomName, NULL, NULL, NULL, NULL, FfightInputInfo, FfightDIPInfo,
@@ -847,7 +847,7 @@ index 99cca7b70..97b4349bf 100644
 +
 +struct BurnDriver BurnDrvCpsFfgtj2sp = {
 +	"ffgtj2sp", "ffight", NULL, NULL, "1989",
-+	"Final Fight (Super Plus Hack, 900305 Japan)\0", "Hack", "Capcom", "CPS1",
++	"Final Fight (Super Plus Hack, 900305 Japan)\0", "hack", "Capcom", "CPS1",
 +	NULL, NULL, NULL, NULL,
 +	BDF_GAME_WORKING | BDF_CLONE | BDF_HISCORE_SUPPORTED | BDF_HACK, 2, HARDWARE_CAPCOM_CPS1, GBF_SCRFIGHT, 0,
 +	NULL, Ffgtj2spRomInfo, Ffgtj2spRomName, NULL, NULL, NULL, NULL, FfightInputInfo, FfightDIPInfo,
@@ -857,7 +857,7 @@ index 99cca7b70..97b4349bf 100644
 +
 +struct BurnDriver BurnDrvCpsFfightk4 = {
 +	"ffightk4", "ffight", NULL, NULL, "1989",
-+	"Final Fight (900613 Korean Translation)\0", "Hack", "Capcom", "CPS1",
++	"Final Fight (900613 Korean Translation)\0", "hack", "Capcom", "CPS1",
 +	NULL, NULL, NULL, NULL,
 +	BDF_GAME_WORKING | BDF_CLONE, 2, HARDWARE_CAPCOM_CPS1, GBF_SCRFIGHT, 0,
 +	NULL, Ffightk4RomInfo, Ffightk4RomName, NULL, NULL, NULL, NULL, FfightInputInfo, FfightDIPInfo,
@@ -867,7 +867,7 @@ index 99cca7b70..97b4349bf 100644
 +
 +struct BurnDriver BurnDrvCpsFfightaek = {
 +	"ffightaek", "ffight", NULL, NULL, "2019",
-+	"Final Fight 30th Anniversary Edition (Korean Translation)\0", "Hack", "hack", "CPS1",
++	"Final Fight 30th Anniversary Edition (Korean Translation)\0", "hack", "hack", "CPS1",
 +	NULL, NULL, NULL, NULL,
 +	BDF_GAME_WORKING | BDF_CLONE | BDF_HACK, 3, HARDWARE_CAPCOM_CPS1, GBF_SCRFIGHT, 0,
 +	NULL, FfightaekRomInfo, FfightaekRomName, NULL, NULL, NULL, NULL, FfightaeInputInfo, FfightaeDIPInfo,
@@ -877,7 +877,7 @@ index 99cca7b70..97b4349bf 100644
 +
 +struct BurnDriver BurnDrvCpsKnightj3 = {
 +	"knightj3", "knights", NULL, NULL, "1991",
-+	"Knights of the Round (911127 Japan, 1 vs 3 Hack)\0", "Hack", "Capcom", "CPS1",
++	"Knights of the Round (911127 Japan, 1 vs 3 Hack)\0", "hack", "Capcom", "CPS1",
 +	NULL, NULL, NULL, NULL,
 +	BDF_GAME_WORKING | BDF_CLONE | BDF_HISCORE_SUPPORTED | BDF_HACK, 3, HARDWARE_CAPCOM_CPS1, GBF_SCRFIGHT, 0,
 +	NULL, Knightj3RomInfo, Knightj3RomName, NULL, NULL, NULL, NULL, KnightsInputInfo, KnightsDIPInfo,
@@ -887,7 +887,7 @@ index 99cca7b70..97b4349bf 100644
 +
 +struct BurnDriver BurnDrvCpsKnightsk = {
 +	"knightsk", "knights", NULL, NULL, "1991",
-+	"Knights of the Round (911127 Korean Translation, B-Board 91634B-2)\0", "Hack", "Capcom", "CPS1",
++	"Knights of the Round (911127 Korean Translation, B-Board 91634B-2)\0", "hack", "Capcom", "CPS1",
 +	NULL, NULL, NULL, NULL,
 +	BDF_GAME_WORKING | BDF_CLONE | BDF_HISCORE_SUPPORTED, 3, HARDWARE_CAPCOM_CPS1, GBF_SCRFIGHT, 0,
 +	NULL, KnightskRomInfo, KnightskRomName, NULL, NULL, NULL, NULL, KnightsInputInfo, KnightsDIPInfo,
@@ -897,7 +897,7 @@ index 99cca7b70..97b4349bf 100644
 +
 +struct BurnDriver BurnDrvCpsKodk = {
 +	"kodk", "kod", NULL, NULL, "1991",
-+	"The King of Dragons (Korean Translation 910805, B-Board 90629B-3)\0", "Hack", "Capcom", "CPS1",
++	"The King of Dragons (Korean Translation 910805, B-Board 90629B-3)\0", "hack", "Capcom", "CPS1",
 +	NULL, NULL, NULL, NULL,
 +	BDF_GAME_WORKING | BDF_CLONE | BDF_HISCORE_SUPPORTED, 3, HARDWARE_CAPCOM_CPS1, GBF_SCRFIGHT, 0,
 +	NULL, KodkRomInfo, KodkRomName, NULL, NULL, NULL, NULL, KodInputInfo, KodDIPInfo,
@@ -907,7 +907,7 @@ index 99cca7b70..97b4349bf 100644
 +
 +struct BurnDriver BurnDrvCpsPunisherk = {
 +	"punisherk", "punisher", NULL, NULL, "1993",
-+	"The Punisher (930422 Korean Translation)\0", "Hack", "Capcom", "CPS1 / QSound",
++	"The Punisher (930422 Korean Translation)\0", "hack", "Capcom", "CPS1 / QSound",
 +	NULL, NULL, NULL, NULL,
 +	BDF_GAME_WORKING | BDF_CLONE | BDF_HISCORE_SUPPORTED, 2, HARDWARE_CAPCOM_CPS1_QSOUND, GBF_SCRFIGHT, 0,
 +	NULL, PunisherkRomInfo, PunisherkRomName, NULL, NULL, NULL, NULL, PunisherInputInfo, PunisherDIPInfo,
@@ -917,7 +917,7 @@ index 99cca7b70..97b4349bf 100644
 +
 +struct BurnDriver BurnDrvCpsRockmank = {
 +	"rockmank", "megaman", NULL, NULL, "1995",
-+	"Rockman - the power battle (950922 Korean Translation)\0", "Hack", "Capcom", "CPS1",
++	"Rockman - the power battle (950922 Korean Translation)\0", "hack", "Capcom", "CPS1",
 +	NULL, NULL, NULL, NULL,
 +	BDF_GAME_WORKING | BDF_CLONE | BDF_HISCORE_SUPPORTED, 2, HARDWARE_CAPCOM_CPS1, GBF_VSFIGHT, 0,
 +	NULL, RockmankRomInfo, RockmankRomName, NULL, NULL, NULL, NULL, MegamanInputInfo, RockmanjDIPInfo,
@@ -927,7 +927,7 @@ index 99cca7b70..97b4349bf 100644
 +
 +struct BurnDriver BurnDrvCpsSf2jhpp = {
 +	"sf2jhpp", "sf2", NULL, NULL, "1991",
-+	"Street Fighter II - The World Warrior (910522 Japan, Plus Plus Hack)\0", "Hack", "Capcom", "CPS1",
++	"Street Fighter II - The World Warrior (910522 Japan, Plus Plus Hack)\0", "hack", "Capcom", "CPS1",
 +	NULL, NULL, NULL, NULL,
 +	BDF_GAME_WORKING | BDF_CLONE | BDF_HISCORE_SUPPORTED | BDF_HACK, 2, HARDWARE_CAPCOM_CPS1, GBF_VSFIGHT, FBF_SF,
 +	NULL, Sf2jhppRomInfo, Sf2jhppRomName, NULL, NULL, NULL, NULL, Sf2InputInfo, Sf2jDIPInfo,
@@ -937,7 +937,7 @@ index 99cca7b70..97b4349bf 100644
 +
 +struct BurnDriver BurnDrvCpsStriderk = {
 +	"striderk", "strider", NULL, NULL, "1989",
-+	"Strider Hiryu (Korean Translation)\0", "Hack", "Capcom", "CPS1",
++	"Strider Hiryu (Korean Translation)\0", "hack", "Capcom", "CPS1",
 +	NULL, NULL, NULL, NULL,
 +	BDF_GAME_WORKING | BDF_CLONE | BDF_HISCORE_SUPPORTED, 2, HARDWARE_CAPCOM_CPS1, GBF_PLATFORM, 0,
 +	NULL, StriderkRomInfo, StriderkRomName, NULL, NULL, NULL, NULL, StriderInputInfo, StriderDIPInfo,
@@ -947,7 +947,7 @@ index 99cca7b70..97b4349bf 100644
 +
 +struct BurnDriver BurnDrvCpsSfzchk = {
 +	"sfzchk", "sfzch", NULL, NULL, "2005",
-+	"Street Fighter Zero (CPS Changer, 951020 Korean Translation)\0", "Hack", "Capcom", "CPS Changer",
++	"Street Fighter Zero (CPS Changer, 951020 Korean Translation)\0", "hack", "Capcom", "CPS Changer",
 +	NULL, NULL, NULL, NULL,
 +	BDF_GAME_WORKING | BDF_CLONE | BDF_HACK, 2, HARDWARE_CAPCOM_CPSCHANGER, GBF_VSFIGHT, FBF_SF,
 +	NULL, SfzchkRomInfo, SfzchkRomName, NULL, NULL, NULL, NULL, SfzchInputInfo, NULL,
@@ -957,7 +957,7 @@ index 99cca7b70..97b4349bf 100644
 +
 +struct BurnDriver BurnDrvCpsWofk = {
 +	"wofk", "wof", NULL, NULL, "1992",
-+	"Tenchi wo Kurau II - Sekiheki no Tatakai (921031 Korean Translation)\0", "Hack", "Capcom", "CPS1 / QSound",
++	"Tenchi wo Kurau II - Sekiheki no Tatakai (921031 Korean Translation)\0", "hack", "Capcom", "CPS1 / QSound",
 +	NULL, NULL, NULL, NULL,
 +	BDF_GAME_WORKING | BDF_CLONE | BDF_HISCORE_SUPPORTED, 3, HARDWARE_CAPCOM_CPS1_QSOUND, GBF_SCRFIGHT, 0,
 +	NULL, WofkRomInfo, WofkRomName, NULL, NULL, NULL, NULL, WofInputInfo, WofDIPInfo,
@@ -967,7 +967,7 @@ index 99cca7b70..97b4349bf 100644
 +
 +struct BurnDriver BurnDrvCpsWofj103 = {
 +	"wofj103", "wof", NULL, NULL, "1992",
-+	"Tenchi wo Kurau II - Counter Attack of Mei Sisters (921031 Japan, Hack)\0", "Hack", "Capcom", "CPS1 / QSound",
++	"Tenchi wo Kurau II - Counter Attack of Mei Sisters (921031 Japan, Hack)\0", "hack", "Capcom", "CPS1 / QSound",
 +	NULL, NULL, NULL, NULL,
 +	BDF_GAME_WORKING | BDF_CLONE | BDF_HISCORE_SUPPORTED | BDF_HACK, 3, HARDWARE_CAPCOM_CPS1_QSOUND, GBF_SCRFIGHT, 0,
 +	NULL, Wofj103RomInfo, Wofj103RomName, NULL, NULL, NULL, NULL, WofInputInfo, WofDIPInfo,
@@ -977,7 +977,7 @@ index 99cca7b70..97b4349bf 100644
 +
 +struct BurnDriver BurnDrvCpsWofchk = {
 +	"wofchk", "wofch", NULL, NULL, "1992",
-+	"Tenchi wo Kurau II - Sekiheki no Tatakai (CPS Changer, 921031 Korean Translation)\0", "Hack", "Capcom", "CPS Changer",
++	"Tenchi wo Kurau II - Sekiheki no Tatakai (CPS Changer, 921031 Korean Translation)\0", "hack", "Capcom", "CPS Changer",
 +	NULL, NULL, NULL, NULL,
 +	BDF_GAME_WORKING | BDF_CLONE | BDF_HACK, 3, HARDWARE_CAPCOM_CPSCHANGER, GBF_SCRFIGHT, 0,
 +	NULL, WofchkRomInfo, WofchkRomName, NULL, NULL, NULL, NULL, WofchInputInfo, NULL,
@@ -987,7 +987,7 @@ index 99cca7b70..97b4349bf 100644
 +
 +struct BurnDriver BurnDrvCpsWofchu = {
 +	"wofchu", "wofch", NULL, NULL, "1992",
-+	"Tenchi wo Kurau II - Sekiheki no Tatakai (CPS Changer, 921031 Japan, Unlock Ura Mode)\0", "Hack", "Capcom", "CPS Changer 3P Hack",
++	"Tenchi wo Kurau II - Sekiheki no Tatakai (CPS Changer, 921031 Japan, Unlock Ura Mode)\0", "hack", "Capcom", "CPS Changer 3P Hack",
 +	NULL, NULL, NULL, NULL,
 +	BDF_GAME_WORKING | BDF_CLONE | BDF_HACK, 3, HARDWARE_CAPCOM_CPSCHANGER, GBF_SCRFIGHT, 0,
 +	NULL, WofchuRomInfo, WofchuRomName, NULL, NULL, NULL, NULL, WofchInputInfo, NULL,
@@ -997,7 +997,7 @@ index 99cca7b70..97b4349bf 100644
 +
 +struct BurnDriver BurnDrvCpsWofchku = {
 +	"wofchku", "wofch", NULL, NULL, "1992",
-+	"Tenchi wo Kurau II - Sekiheki no Tatakai (CPS Changer, 921031 Korean Translation, Unlock Ura Mode)\0", "Hack", "Capcom", "CPS Changer 3P Hack",
++	"Tenchi wo Kurau II - Sekiheki no Tatakai (CPS Changer, 921031 Korean Translation, Unlock Ura Mode)\0", "hack", "Capcom", "CPS Changer 3P Hack",
 +	NULL, NULL, NULL, NULL,
 +	BDF_GAME_WORKING | BDF_CLONE | BDF_HACK, 3, HARDWARE_CAPCOM_CPSCHANGER, GBF_SCRFIGHT, 0,
 +	NULL, WofchkuRomInfo, WofchkuRomName, NULL, NULL, NULL, NULL, WofchInputInfo, NULL,
@@ -1009,7 +1009,7 @@ index 99cca7b70..97b4349bf 100644
  #undef CPS1_68K_PROGRAM_NO_BYTESWAP
  #undef CPS1_Z80_PROGRAM
 diff --git a/src/burn/drv/capcom/d_cps2.cpp b/src/burn/drv/capcom/d_cps2.cpp
-index cd81c46c8..a8341b640 100644
+index 3232a9f84..a41eac7d9 100644
 --- a/src/burn/drv/capcom/d_cps2.cpp
 +++ b/src/burn/drv/capcom/d_cps2.cpp
 @@ -646,6 +646,34 @@ static struct BurnInputInfo MpangInputList[] = {
@@ -1047,7 +1047,7 @@ index cd81c46c8..a8341b640 100644
  static struct BurnInputInfo ProgearInputList[] = {
  	{"P1 Coin"          , BIT_DIGITAL  , CpsInp020+4, "p1 coin"   },
  	{"P1 Start"         , BIT_DIGITAL  , CpsInp020+0, "p1 start"  },
-@@ -14302,3 +14330,1080 @@ struct BurnDriver BurnDrvCpsGigaman2 = {
+@@ -14360,3 +14388,998 @@ struct BurnDriver BurnDrvCpsGigaman2 = {
  	Gigaman2Init, Gigaman2Exit, Cps2Frame, CpsRedraw, Gigaman2Scan,
  	&CpsRecalcPal, 0x1000, 384, 224, 4, 3
  };
@@ -1924,88 +1924,6 @@ index cd81c46c8..a8341b640 100644
 +	&CpsRecalcPal, 0x1000, 384, 224, 4, 3
 +};
 +
-+static struct BurnRomInfo Sfa3ceRomDesc[] = {
-+	{ "sz3ceu.03c",    0x080000, 0xe6a3c330, CPS2_PRG_68K | BRF_ESS | BRF_PRG },
-+	{ "sz3ce.04c",     0x080000, 0x78650280, CPS2_PRG_68K | BRF_ESS | BRF_PRG },
-+	{ "sz3.05c",       0x080000, 0x57fd0a40, CPS2_PRG_68K | BRF_ESS | BRF_PRG },
-+	{ "sz3.06c",       0x080000, 0xf6305f8b, CPS2_PRG_68K | BRF_ESS | BRF_PRG },
-+	{ "sz3.07c",       0x080000, 0x6eab0f6f, CPS2_PRG_68K | BRF_ESS | BRF_PRG },
-+	{ "sz3.08c",       0x080000, 0x910c4a3b, CPS2_PRG_68K | BRF_ESS | BRF_PRG },
-+	{ "sz3ce.09c",     0x080000, 0x8353dae0, CPS2_PRG_68K | BRF_ESS | BRF_PRG },
-+	{ "sz3.10b",       0x080000, 0xdeb2ff52, CPS2_PRG_68K | BRF_ESS | BRF_PRG },
-+
-+	{ "sz3ce.13m",     0x400000, 0xd941f463, CPS2_GFX | BRF_GRA },
-+	{ "sz3ce.15m",     0x400000, 0xd25f4fbf, CPS2_GFX | BRF_GRA },
-+	{ "sz3ce.17m",     0x400000, 0x5c210d31, CPS2_GFX | BRF_GRA },
-+	{ "sz3ce.19m",     0x400000, 0xa0b6f359, CPS2_GFX | BRF_GRA },
-+	{ "sz3.14m",       0x400000, 0x5ff98297, CPS2_GFX | BRF_GRA },
-+	{ "sz3.16m",       0x400000, 0x52b5bdee, CPS2_GFX | BRF_GRA },
-+	{ "sz3.18m",       0x400000, 0x40631ed5, CPS2_GFX | BRF_GRA },
-+	{ "sz3.20m",       0x400000, 0x763409b4, CPS2_GFX | BRF_GRA },
-+
-+	{ "sz3.01",        0x020000, 0xde810084, CPS2_PRG_Z80 | BRF_ESS | BRF_PRG },
-+	{ "sz3.02",        0x020000, 0x72445dc4, CPS2_PRG_Z80 | BRF_ESS | BRF_PRG },
-+
-+	{ "sz3.11m",       0x400000, 0x1c89eed1, CPS2_QSND | BRF_SND },
-+	{ "sz3.12m",       0x400000, 0xf392b13a, CPS2_QSND | BRF_SND },
-+	
-+	{ "sfa3u.key",     0x000014, 0x4a8f98c1, CPS2_ENCRYPTION_KEY },
-+};
-+
-+STD_ROM_PICK(Sfa3ce)
-+STD_ROM_FN(Sfa3ce)
-+
-+struct BurnDriver BurnDrvCpsSfa3ce = {
-+	"sfa3ce", "sfa3", NULL, NULL, "1998",
-+	"Street Fighter Alpha 3 - Challenger's Edition (980904 USA)\0", "Hack", "Capcom", "CPS2",
-+	NULL, NULL, NULL, NULL,
-+	BDF_GAME_WORKING | BDF_CLONE | BDF_HISCORE_SUPPORTED, 2, HARDWARE_CAPCOM_CPS2, GBF_VSFIGHT, FBF_SF,
-+	NULL, Sfa3ceRomInfo, Sfa3ceRomName, NULL, NULL, NULL, NULL, Cps2FightingInputInfo, NULL,
-+	Cps2Init, DrvExit, Cps2Frame, CpsRedraw, CpsAreaScan,
-+	&CpsRecalcPal, 0x1000, 384, 224, 4, 3
-+};
-+
-+static struct BurnRomInfo Sfz3ceRomDesc[] = {
-+	{ "sz3cez.03c",    0x080000, 0x1e369ac2, CPS2_PRG_68K | BRF_ESS | BRF_PRG },
-+	{ "sz3ce.04c",     0x080000, 0x78650280, CPS2_PRG_68K | BRF_ESS | BRF_PRG },
-+	{ "sz3.05c",       0x080000, 0x57fd0a40, CPS2_PRG_68K | BRF_ESS | BRF_PRG },
-+	{ "sz3.06c",       0x080000, 0xf6305f8b, CPS2_PRG_68K | BRF_ESS | BRF_PRG },
-+	{ "sz3.07c",       0x080000, 0x6eab0f6f, CPS2_PRG_68K | BRF_ESS | BRF_PRG },
-+	{ "sz3.08c",       0x080000, 0x910c4a3b, CPS2_PRG_68K | BRF_ESS | BRF_PRG },
-+	{ "sz3ce.09c",     0x080000, 0x8353dae0, CPS2_PRG_68K | BRF_ESS | BRF_PRG },
-+	{ "sz3.10b",       0x080000, 0xdeb2ff52, CPS2_PRG_68K | BRF_ESS | BRF_PRG },
-+
-+	{ "sz3ce.13m",     0x400000, 0xd941f463, CPS2_GFX | BRF_GRA },
-+	{ "sz3ce.15m",     0x400000, 0xd25f4fbf, CPS2_GFX | BRF_GRA },
-+	{ "sz3ce.17m",     0x400000, 0x5c210d31, CPS2_GFX | BRF_GRA },
-+	{ "sz3ce.19m",     0x400000, 0xa0b6f359, CPS2_GFX | BRF_GRA },
-+	{ "sz3.14m",       0x400000, 0x5ff98297, CPS2_GFX | BRF_GRA },
-+	{ "sz3.16m",       0x400000, 0x52b5bdee, CPS2_GFX | BRF_GRA },
-+	{ "sz3.18m",       0x400000, 0x40631ed5, CPS2_GFX | BRF_GRA },
-+	{ "sz3.20m",       0x400000, 0x763409b4, CPS2_GFX | BRF_GRA },
-+
-+	{ "sz3.01",        0x020000, 0xde810084, CPS2_PRG_Z80 | BRF_ESS | BRF_PRG },
-+	{ "sz3.02",        0x020000, 0x72445dc4, CPS2_PRG_Z80 | BRF_ESS | BRF_PRG },
-+
-+	{ "sz3.11m",       0x400000, 0x1c89eed1, CPS2_QSND | BRF_SND },
-+	{ "sz3.12m",       0x400000, 0xf392b13a, CPS2_QSND | BRF_SND },
-+	
-+	{ "sfa3u.key",     0x000014, 0x4a8f98c1, CPS2_ENCRYPTION_KEY },
-+};
-+
-+STD_ROM_PICK(Sfz3ce)
-+STD_ROM_FN(Sfz3ce)
-+
-+struct BurnDriver BurnDrvCpsSfz3ce = {
-+	"sfz3ce", "sfa3", NULL, NULL, "1998",
-+	"Street Fighter Zero 3 - Challenger's Edition (980904 USA)\0", "Hack", "Capcom", "CPS2",
-+	NULL, NULL, NULL, NULL,
-+	BDF_GAME_WORKING | BDF_CLONE | BDF_HISCORE_SUPPORTED, 2, HARDWARE_CAPCOM_CPS2, GBF_VSFIGHT, FBF_SF,
-+	NULL, Sfz3ceRomInfo, Sfz3ceRomName, NULL, NULL, NULL, NULL, Cps2FightingInputInfo, NULL,
-+	Cps2Init, DrvExit, Cps2Frame, CpsRedraw, CpsAreaScan,
-+	&CpsRecalcPal, 0x1000, 384, 224, 4, 3
-+};
-+
 +static struct BurnRomInfo Sfz3jhRomDesc[] = {
 +	{ "sz3jh.03c",     0x080000, 0xd7eca311, CPS2_PRG_68K | BRF_ESS | BRF_PRG },
 +	{ "sz3jh.04c",     0x080000, 0xee836561, CPS2_PRG_68K | BRF_ESS | BRF_PRG },
@@ -2216,10 +2134,10 @@ index 8e39d82da..37151c995 100644
 +	320, 240, 4, 3
 +};
 diff --git a/src/burn/drv/megadrive/d_megadrive.cpp b/src/burn/drv/megadrive/d_megadrive.cpp
-index dd9bc40eb..1e660be92 100644
+index 81cb78fb7..a47523e41 100644
 --- a/src/burn/drv/megadrive/d_megadrive.cpp
 +++ b/src/burn/drv/megadrive/d_megadrive.cpp
-@@ -54150,3 +54150,462 @@ struct BurnDriverD BurnDrvmd_spritemask = {
+@@ -54410,3 +54410,462 @@ struct BurnDriverD BurnDrvmd_spritemask = {
  	MegadriveInit, MegadriveExit, MegadriveFrame, MegadriveDraw, MegadriveScan,
  	&bMegadriveRecalcPalette, 0x100, 320, 224, 4, 3
  };*/
@@ -2683,7 +2601,7 @@ index dd9bc40eb..1e660be92 100644
 +	&bMegadriveRecalcPalette, 0x100, 320, 224, 4, 3
 +};
 diff --git a/src/burn/drv/neogeo/d_neogeo.cpp b/src/burn/drv/neogeo/d_neogeo.cpp
-index 754c0e629..fe0d01c13 100644
+index 98dfd99f7..e6e0b03cc 100644
 --- a/src/burn/drv/neogeo/d_neogeo.cpp
 +++ b/src/burn/drv/neogeo/d_neogeo.cpp
 @@ -145,7 +145,7 @@ static struct BurnDIPInfo ms5pcbDIPList[] = {
@@ -2785,34 +2703,9 @@ index 754c0e629..fe0d01c13 100644
  
  	// DIP 1
  	{0,		0xFE, 0,	2,	  "Setting mode"},
-@@ -15982,13 +15982,23 @@ static struct BurnRomInfo mslug5wRomDesc[] = {
- STDROMPICKEXT(mslug5w, mslug5w, neogeo)
- STD_ROM_FN(mslug5w)
- 
-+static INT32 mslug5wInit()
-+{
-+	nNeoProtectionXor = 0x05;
-+	s1945pmode = 1;
-+
-+	nNeoTextROMSize[nNeoActiveSlot] = 0x20000;
-+
-+	return NeoInit();
-+}
-+
- struct BurnDriver BurnDrvMslug5w = {
- 	"mslug5w", "mslug5", "neogeo", NULL, "2016",
- 	"Metal Slug 5 (New Campaign, 2016-03-10)\0", NULL, "hack, C.B", "Miscellaneous",
- 	NULL, NULL, NULL, NULL,
- 	BDF_GAME_WORKING | BDF_CLONE | BDF_HACK, 2, HARDWARE_PREFIX_CARTRIDGE | HARDWARE_SNK_NEOGEO | HARDWARE_SNK_CMC42, GBF_RUNGUN, FBF_MSLUG,
- 	NULL, mslug5wRomInfo, mslug5wRomName, NULL, NULL, NULL, NULL, neogeoInputInfo, neogeoDIPInfo,
--	s1945pInit, NeoExit, NeoFrame, NeoRender, NeoScan, &NeoRecalcPalette,
-+	mslug5wInit, NeoExit, NeoFrame, NeoRender, NeoScan, &NeoRecalcPalette,
+@@ -22001,3 +22001,2886 @@ struct BurnDriver BurnDrvmslug5x = {
+ 	NeoInit, NeoExit, NeoFrame, NeoRender, NeoScan, &NeoRecalcPalette,
  	0x1000,	304, 224, 4, 3
- };
- 
-@@ -21318,3 +21328,2886 @@ struct BurnDriver BurnDrvmslughb = {
- 	mslug5Init, NeoPVCExit, NeoFrame, NeoRender, NeoScan, &NeoRecalcPalette,
- 	0x1000, 304, 224, 4, 3
  };
 +
 +//============================================================
@@ -5807,7 +5700,7 @@ index 82ffa5f2a..0e925083f 100644
 +	256, 224, 4, 3
 +};
 diff --git a/src/burn/drv/psikyo/d_psikyo.cpp b/src/burn/drv/psikyo/d_psikyo.cpp
-index b4160855d..c562a61f1 100644
+index b4160855d..095b5313c 100644
 --- a/src/burn/drv/psikyo/d_psikyo.cpp
 +++ b/src/burn/drv/psikyo/d_psikyo.cpp
 @@ -614,6 +614,16 @@ static struct BurnDIPInfo tengaijRegionDIPList[] = {
@@ -5917,8 +5810,8 @@ index b4160855d..c562a61f1 100644
 +};
 +
 +static struct BurnRomInfo tengaikRomDesc[] = {
-+	{ "2-u40k.bin",   0x080000, 0xecb91b2d, BRF_ESS | BRF_PRG }, //  0 CPU #0 code
-+	{ "3-u41k.bin",   0x080000, 0x5b0db91f, BRF_ESS | BRF_PRG }, //  1
++	{ "2-u40k.bin",   0x080000, 0x279f7493, BRF_ESS | BRF_PRG }, //  0 CPU #0 code
++	{ "3-u41k.bin",   0x080000, 0x59fe486e, BRF_ESS | BRF_PRG }, //  1
 +
 +	{ "u20k.bin",     0x200000, 0x0bdc0c2d, BRF_GRA },			 //  2 Sprite data
 +	{ "u22.bin",      0x200000, 0x8d21caee, BRF_GRA },			 //  3
@@ -5926,7 +5819,7 @@ index b4160855d..c562a61f1 100644
 +
 +	{ "u1.bin",       0x040000, 0x681d7d55, BRF_GRA },			 //  5 Sprite LUT
 +
-+	{ "u34k.bin",     0x400000, 0x2100d4f7, BRF_GRA },			 //  6 Tile data
++	{ "u34k.bin",     0x400000, 0x801fc802, BRF_GRA },			 //  6 Tile data
 +
 +	{ "1-u63.bin",    0x020000, 0x2025e387, BRF_ESS | BRF_PRG }, //  7 CPU #1 code
 +
@@ -5949,10 +5842,10 @@ index b4160855d..c562a61f1 100644
 +	320, 224, 4, 3
 +};
 diff --git a/src/burner/libretro/retro_input.cpp b/src/burner/libretro/retro_input.cpp
-index 82d60d005..9cc4aef0b 100644
+index ca9f55d17..29de222a5 100644
 --- a/src/burner/libretro/retro_input.cpp
 +++ b/src/burner/libretro/retro_input.cpp
-@@ -1762,6 +1762,36 @@ static INT32 GameInpSpecialOne(struct GameInp* pgi, INT32 nPlayer, char* szb, ch
+@@ -1765,6 +1765,36 @@ static INT32 GameInpSpecialOne(struct GameInp* pgi, INT32 nPlayer, char* szb, ch
  		}
  	}
  
