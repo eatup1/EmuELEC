@@ -21,7 +21,7 @@ if [ "${PROJECT}" = "Amlogic-ce" ]; then
 elif [[ "${DEVICE}" =~ ^(OdroidGoAdvance|RG351P|RG351V|GameForce|RK356x|OdroidM1)$ ]]; then
   PKG_RKMISC="yes"
   PKG_DEPENDS_TARGET+=" lib32-libdrm lib32-mali-bifrost lib32-librga"
-  if [ "${DEVICE}" = "OdroidGoAdvance" -o "${DEVICE}" = "RG351P"]; then
+  if [ "${DEVICE}" = "OdroidGoAdvance" -o "${DEVICE}" = "RG351P" ]; then
     PKG_PATCH_DIRS+=" $SDL2_DIRECTORY/patches/OdroidGoAdvance"
   fi
 else

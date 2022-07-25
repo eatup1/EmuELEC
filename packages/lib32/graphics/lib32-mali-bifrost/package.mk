@@ -13,7 +13,7 @@ PKG_LONGDESC="The Mali GPU library used in Rockchip Platform for Odroidgo Advanc
 PKG_PATCH_DIRS+=" $(get_pkg_directory mali-bifrost)/patches"
 PKG_BUILD_FLAGS="lib32"
 
-if [[ "${DEVICE}" =~ ^(OdroidGoAdvance|GameForce)$ ]]; then
+if [[ "${DEVICE}" =~ ^(OdroidGoAdvance|RG351P|RG351V|GameForce)$ ]]; then
   PKG_RK3326="yes"
 fi
 
