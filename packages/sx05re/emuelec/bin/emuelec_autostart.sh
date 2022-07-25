@@ -29,10 +29,12 @@ if [ "${EE_DEVICE}" == "Amlogic" ]; then
 elif [ "${EE_DEVICE}" == "Amlogic-ng" ]; then
   rm /storage/.config/asound.conf > /dev/null 2>&1
   cp /storage/.config/asound.conf-amlogic-ng /storage/.config/asound.conf
+elif [ ! -z "/storage/.config/asound.conf" ]; then 
+  cp /storage/.config/asound.conf-amlogic-ng /storage/.config/asound.conf
 fi
 
 HOSTNAME=$(get_ee_setting system.hostname)
-if [ ! -z "${HOSTNAME}" ];then 
+if [ ! -z "${HOSTNAME}" ]; then 
     echo "${HOSTNAME}" > /storage/.cache/hostname
 else
     echo "EMUELEC" > /storage/.cache/hostname
