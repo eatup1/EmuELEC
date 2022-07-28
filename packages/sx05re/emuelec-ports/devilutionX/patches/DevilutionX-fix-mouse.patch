@@ -10,7 +10,7 @@ index 69455f94..c385b633 100644
  }
  
  int FindClosestInventorySlot(Point mousePos)
-@@ -1069,6 +1070,7 @@ void InventoryMove(AxisDirection dir)
+@@ -1032,6 +1033,7 @@ void InventoryMove(AxisDirection dir)
  	}
  
  	SetCursorPos(mousePos);
@@ -18,7 +18,7 @@ index 69455f94..c385b633 100644
  }
  
  /**
-@@ -1621,6 +1623,7 @@ void HandleRightStickMotion()
+@@ -1584,6 +1586,7 @@ void HandleRightStickMotion()
  
  			ControlMode = ControlTypes::KeyboardAndMouse;
  			lastMouseSetTick = now;
