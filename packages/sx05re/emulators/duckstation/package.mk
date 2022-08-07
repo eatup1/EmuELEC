@@ -2,7 +2,7 @@
 # Copyright (C) 2021-present Shanti Gilbert (https://github.com/shantigilbert)
 
 PKG_NAME="duckstation"
-PKG_VERSION="82965f741e81e4d2f7e1b2abdc011e1f266bfe7f"
+PKG_VERSION="73a80d3a1d4d3a0e6fea93f082a20b8cf4ba41fd"
 PKG_ARCH="aarch64"
 PKG_LICENSE="GPLv3"
 PKG_SITE="https://github.com/stenzek/duckstation"

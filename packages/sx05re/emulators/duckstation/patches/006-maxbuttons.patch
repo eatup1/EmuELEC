@@ -1,8 +1,8 @@
-diff --git a/src/frontend-common/controller_interface.h b/src/frontend-common/controller_interface.h
-index f97d0f6..563b5f4 100644
---- a/src/frontend-common/sdl_controller_interface.h
-+++ b/src/frontend-common/sdl_controller_interface.h
-@@ -46,7 +46,7 @@
+diff --git a/src/frontend-common/sdl_input_source.h b/src/frontend-common/sdl_input_source.h
+index 027404d8..db04db03 100644
+--- a/src/frontend-common/sdl_input_source.h
++++ b/src/frontend-common/sdl_input_source.h
+@@ -36,7 +36,7 @@ private:
    enum : int
    {
      MAX_NUM_AXES = 7,
