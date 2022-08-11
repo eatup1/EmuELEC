@@ -2,7 +2,7 @@
 # Copyright (C) 2021-present Shanti Gilbert (https://github.com/shantigilbert)
 
 PKG_NAME="duckstation"
-PKG_VERSION="73a80d3a1d4d3a0e6fea93f082a20b8cf4ba41fd"
+PKG_VERSION="3fb61865e505ba639609fbf16cb8bdf5c66e020c"
 PKG_ARCH="aarch64"
 PKG_LICENSE="GPLv3"
 PKG_SITE="https://github.com/stenzek/duckstation"
@@ -32,6 +32,9 @@ pre_configure_target() {
 	                         -DENABLE_CHEEVOS=ON \
 	                         -DHAVE_EGL=ON \
 	                         ${EXTRA_OPTS}"
+
+	# nogui_frontend dep headers
+	cp -rf ${PKG_BUILD}/dep/vulkan/include/vulkan/ ${PKG_BUILD}/src/common/vulkan/vulkan/
 
 if [ "${DEVICE}" == "Amlogic-old" ]; then
 	cp -rf $(get_build_dir libevdev)/include/linux/linux/input-event-codes.h ${SYSROOT_PREFIX}/usr/include/linux/

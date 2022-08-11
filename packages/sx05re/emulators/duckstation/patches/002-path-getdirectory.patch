@@ -2,7 +2,7 @@ diff --git a/src/common/file_system.cpp b/src/common/file_system.cpp
 index ceb2f08..0fa5a04 100644
 --- a/src/common/file_system.cpp
 +++ b/src/common/file_system.cpp
-@@ -328,6 +328,9 @@
+@@ -337,6 +337,9 @@
  
  std::string_view Path::GetDirectory(const std::string_view& path)
  {

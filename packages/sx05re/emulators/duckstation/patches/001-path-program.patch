@@ -2,7 +2,7 @@ diff --git a/src/common/file_system.cpp b/src/common/file_system.cpp
 index 6a24732..a287703 100644
 --- a/src/common/file_system.cpp
 +++ b/src/common/file_system.cpp
-@@ -1546,6 +1546,8 @@
+@@ -1553,6 +1553,8 @@
  
  std::string FileSystem::GetProgramPath()
  {
@@ -11,7 +11,7 @@ index 6a24732..a287703 100644
    std::wstring buffer;
    buffer.resize(MAX_PATH);
  
-@@ -2034,6 +2036,8 @@
+@@ -2041,6 +2043,8 @@
  
  std::string FileSystem::GetProgramPath()
  {
