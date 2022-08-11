@@ -2,7 +2,7 @@
 # Copyright (C) 2019-present Shanti Gilbert (https://github.com/shantigilbert)
 
 PKG_NAME="emuelec-emulationstation"
-PKG_VERSION="2a62dae1d4337d28639430339f7894ee5e5d004b"
+PKG_VERSION="cf94ca019aadcf67a337af0a844917119a00f6fa"
 PKG_GIT_CLONE_BRANCH="EmuELEC"
 PKG_REV="1"
 PKG_ARCH="any"
@@ -11,7 +11,7 @@ PKG_SITE="https://github.com/british-choi/emuelec-emulationstation"
 PKG_URL="$PKG_SITE.git"
 PKG_DEPENDS_TARGET="toolchain SDL2 freetype curl freeimage vlc bash rapidjson ${OPENGLES} SDL2_mixer fping p7zip"
 PKG_SECTION="emuelec"
-PKG_NEED_UNPACK="busybox"
+PKG_NEED_UNPACK="$(get_pkg_directory busybox) $(get_pkg_directory bash)"
 PKG_SHORTDESC="Emulationstation emulator frontend"
 PKG_BUILD_FLAGS="-gold"
 GET_HANDLER_SUPPORT="git"
@@ -145,4 +145,5 @@ post_install() {
 	ln -sf /storage/.config/emuelec/configs/locale ${INSTALL}/usr/share/locale
 	mkdir -p ${INSTALL}/usr/bin/batocera/
 	ln -sf /usr/bin/7zr ${INSTALL}/usr/bin/batocera/7zr
+	ln -sf /usr/bin/bash ${INSTALL}/usr/bin/sh
 }
