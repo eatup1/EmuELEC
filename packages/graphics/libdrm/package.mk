@@ -3,11 +3,11 @@
 # Copyright (C) 2018-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="libdrm"
-PKG_VERSION="2.4.111"
-PKG_SHA256="1ad7164f77424de6f4ecba7c262bde196a214c6e19a6fbf497f0815f4d7ab2a9"
+PKG_VERSION="2.4.112"
+PKG_SHA256="00b07710bd09b35cd8d80eaf4f4497fe27f4becf467a9830f1f5e8324f8420ff"
 PKG_LICENSE="GPL"
-PKG_SITE="http://dri.freedesktop.org"
-PKG_URL="http://dri.freedesktop.org/libdrm/libdrm-${PKG_VERSION}.tar.xz"
+PKG_SITE="https://dri.freedesktop.org"
+PKG_URL="https://dri.freedesktop.org/libdrm/libdrm-${PKG_VERSION}.tar.xz"
 PKG_DEPENDS_TARGET="toolchain libpciaccess"
 PKG_LONGDESC="The userspace interface library to kernel DRM services."
 PKG_TOOLCHAIN="meson"
@@ -50,10 +50,7 @@ post_makeinstall_target() {
   # Remove all test programs installed by install-test-programs=true except modetest
   # Do not "not use" the ninja install and replace this with a simple "cp modetest"
   # as ninja strips the unnecessary build rpath during the install.
-  safe_remove ${INSTALL}/usr/bin/amdgpu_stress
   safe_remove ${INSTALL}/usr/bin/drmdevice
-  safe_remove ${INSTALL}/usr/bin/kms-steal-crtc
-  safe_remove ${INSTALL}/usr/bin/kms-universal-planes
   safe_remove ${INSTALL}/usr/bin/modeprint
   safe_remove ${INSTALL}/usr/bin/proptest
   safe_remove ${INSTALL}/usr/bin/vbltest

@@ -9,8 +9,8 @@ PKG_VERSION="250.6"
 PKG_SHA256="f34a9aa921cba80ec731667b8ec66c419fd78ad4469d9cba66010936bfabfd78"
 else
 # systemd 251 is required minimum kernel version 4.15
-PKG_VERSION="251.2"
-PKG_SHA256="5b371e824fe3e3128f2338b8db8cd37171f8e249eea88077eea468f73d833545"
+PKG_VERSION="251.4"
+PKG_SHA256="3459239979f52b8c4ace33734d31c2fb69fa13cf81d04b1b982f7d8d4651e015"
 fi
 PKG_LICENSE="LGPL2.1+"
 PKG_SITE="http://www.freedesktop.org/wiki/Software/systemd"
