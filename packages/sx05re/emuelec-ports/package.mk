@@ -37,7 +37,8 @@ PKG_DEPENDS_TARGET+=" commander-genius \
                 abuse \
                 bennugd-monolithic \
                 nxengine-evo \
-                fheroes2"
+                fheroes2 \
+                augustus"
 
 amlogicports=""
 hhports=" openjazz"
