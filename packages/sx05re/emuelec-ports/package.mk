@@ -38,7 +38,8 @@ PKG_DEPENDS_TARGET+=" commander-genius \
                 bennugd-monolithic \
                 nxengine-evo \
                 fheroes2 \
-                augustus"
+                augustus \
+                xash3d"
 
 amlogicports=""
 hhports=" openjazz"
@@ -58,15 +59,15 @@ python3 port_builder.py ports.yaml scripts
 }
 
 makeinstall_target() {
-mkdir -p $INSTALL/usr/bin/ports
-cp -rf $PKG_BUILD/scripts/* $INSTALL/usr/bin/ports
+mkdir -p ${INSTALL}/usr/bin/ports
+cp -rf $PKG_BUILD/scripts/* ${INSTALL}/usr/bin/ports
 
 # Remove duplicate newlines just to be tidy
-for file in "$INSTALL/usr/bin/ports/*.sh"; do
+for file in "${INSTALL}/usr/bin/ports/*.sh"; do
 sed  -i '$!N; /^\(.*\)\n\1$/!P; D' $file
 done
 
 # Remove empty lines from gamelist.xml
-sed -i '/^$/d' $INSTALL/usr/bin/ports/gamelist.xml
+sed -i '/^$/d' ${INSTALL}/usr/bin/ports/gamelist.xml
 
 }
