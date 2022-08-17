@@ -57,7 +57,7 @@ index da9bf1b5..46b0a85d 100644
 +OBJTYPE         = elf
 +LIBRARIES       = $(SDKPATH)/usr/lib
 +# Workaround for GCC 9
-+CFLAGS          += -Wno-error=format-overflow -Wno-error=stringop-truncation -Wno-error=implicit-function-declaration -Wno-error=unused-variable -Wno-error=unused-label
++CFLAGS          += -Wno-error=address -Wno-error=format-overflow -Wno-error=stringop-truncation -Wno-error=implicit-function-declaration -Wno-error=unused-variable -Wno-error=unused-label
 +endif
 +
  ifdef BUILD_DARWIN
