@@ -566,7 +566,8 @@ Blake Stone Planet Strike:
     - bstone.sh ps >> $EE_LOG 2>&1
 
 Shovel Knight:
-  description: 'Shovel Knight is a 2D side-scrolling platform game developed and published by Yacht Club Games. '
+  name: 삽질기사
+  description: 'Shovel Knight는 Yacht Club Games에서 개발 및 퍼블리싱한 2D 횡스크롤 플랫폼 게임입니다. '
   rating: 1.0
   release_date: 2014
   developer: Yacht Club Games
@@ -580,7 +581,8 @@ Shovel Knight:
     - shovelknight.sh >> $EE_LOG 2>&1
 
 TMNTSR:
-  description: "Teenage Mutant Ninja Turtles: Shredder's Revenge is a beat'em up game developed by Tribute Games and published by Dotemu."
+  name: '돌연변이 닌자 거북이: 슈레더의 복수'
+  description: "돌연변이 닌자 거북이: 슈레더의 복수는 Tribute Games에서 개발하고 Dotemu에서 유통한 비뎀업(beat'em up) 게임입니다."
   rating: 1.0
   release_date: 2022
   developer: Tribute Games
