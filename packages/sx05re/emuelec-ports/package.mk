@@ -39,7 +39,10 @@ PKG_DEPENDS_TARGET+=" commander-genius \
                 nxengine-evo \
                 fheroes2 \
                 augustus \
-                xash3d"
+                xash3d \
+                sonicmania \
+                shovelknight \
+                tmntsr"
 
 amlogicports=""
 hhports=" openjazz"
