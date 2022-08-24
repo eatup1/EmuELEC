@@ -393,7 +393,8 @@ Sonic CD:
     - ${PORT} >> $EE_LOG 2>&1
 
 Sonic Mania:
-  description: Sonic Mania is a 2017 platform game published by Sega. Produced in commemoration of the Sonic the Hedgehog series' 25th anniversary, Sonic Mania pays homage to the original Sega Genesis Sonic games, featuring speedy side-scrolling gameplay.
+  name: 소닉 매니아
+  description: 소닉 매니아는 Sega에서 발매한 2017년 플랫폼 게임입니다. 수퍼 소닉 시리즈의 25주년을 기념하여 제작된 소닉 매니아는 빠른 횡스크롤 게임 플레이를 특징으로 하는 세가 제네시스 소닉 오리지널 게임에 경의를 표합니다.
   rating: 1.0
   release_date: 2017 
   developer: SEGA
