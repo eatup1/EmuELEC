@@ -12,7 +12,11 @@ cd "${GAMEDIR}/gamedata"
 
 # check if required files are installed
 if [[ ! -f "${GAMEDIR}/gamedata/${GAMEASSEMBLY}" ]]; then
+    if [ $(get_ee_setting system.language) == "ko_KR" ]; then
+    text_viewer -e -w -t "에러!" -f 24 -m "TMNT:SR 게임 데이터가 ${GAMEDIR}/gamedata 에 없습니다.\n\n게임 복사본에서 자신의 게임 데이터를 제공해야 합니다."
+    else
     text_viewer -e -w -t "ERROR!" -f 24 -m "TMNT:SR Game Data does not exist on ${GAMEDIR}/gamedata\n\nYou need to provide your own game data from your copy of the game"
+    fi
     exit 0
 fi
 
@@ -22,7 +26,11 @@ MONOFILE="${ROMSDIRECTORY}/ports/mono-6.12.0.122-aarch64.squashfs"
 
 if [ ! -e "${MONOFILE}" ]; then
 MONOURL="https://github.com/PortsMaster/PortMaster-Hosting/releases/download/large-files/mono-6.12.0.122-aarch64.squashfs"
+    if [ $(get_ee_setting system.language) == "ko_KR" ]; then
+    text_viewer -y -w -f 24 -t "MONO가 없습니다!" -m "TMNT:SR을 처음 시작하거나 MONO 파일이 존재하지 않는 것 같습니다\n\nMONO는 약 260MB이며 인터넷에 연결되어 있어야 합니다.\n\n중요: 이것은 게임 데이터가 아닙니다! 여전히 TMNT:SR 사본에서 제공해야 합니다.\n\n다운로드 후 계속하시겠습니까?"
+    else
     text_viewer -y -w -f 24 -t "MONO does not exists!" -m "It seems this is the first time you are launching TMNT:SR or the MONO file does not exists\n\nMONO is about 260 MB, and you need to be connected to the internet\n\nIMPORTANT: THIS IS NOT THE GAME DATA! YOU STILL NEED TO PROVIDE THIS FROM YOUR COPY OF TMNT:SR\n\nDownload and continue?"
+    fi
         if [[ $? == 21 ]]; then
             ee_console enable
             wget "${MONOURL}" -O "${MONOFILE}" -q --show-progress > /dev/tty0 2>&1
