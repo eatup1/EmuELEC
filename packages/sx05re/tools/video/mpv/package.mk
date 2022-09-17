@@ -2,8 +2,8 @@
 # Copyright (C) 2019-present Shanti Gilbert (https://github.com/shantigilbert)
 
 PKG_NAME="mpv"
-PKG_VERSION="80e29d1851334935a77eb66cf570f7126f9ddf05"
-PKG_SHA256="dbb465bb79adb5f7573b1b218451cfe084b227ace02046291f0c0acd24904b49"
+PKG_VERSION="ba81e4ed88433b021282ca435c80361418d66999"
+PKG_SHA256="8a39cc209492abb3bf689458dcf2e7aeed62dbe8c632d57939f6fde576a2f097"
 PKG_LICENSE="GPLv2+"
 PKG_SITE="https://github.com/mpv-player/mpv"
 PKG_URL="$PKG_SITE/archive/$PKG_VERSION.tar.gz"
