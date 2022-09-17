@@ -82,7 +82,7 @@
 
 --- a/gfx/drivers_context/drm_go2_ctx.c
 +++ b/gfx/drivers_context/drm_go2_ctx.c
-@@ -307,6 +307,7 @@
+@@ -306,6 +306,7 @@
  
  static void gfx_ctx_go2_drm_swap_buffers(void *data)
  {
@@ -90,7 +90,7 @@
     gfx_ctx_go2_drm_data_t 
        *drm   = (gfx_ctx_go2_drm_data_t*)data;
  
-@@ -333,11 +334,26 @@
+@@ -332,11 +333,26 @@
     go2_context_swap_buffers(drm->context);
  
     go2_surface_t* surface = go2_context_surface_lock(drm->context);

@@ -1,6 +1,6 @@
 --- a/menu/menu_driver.c	2021-11-24 22:37:55.000000000 -0600
 +++ b/menu/menu_driver_2.c	2021-11-24 23:05:06.394456320 -0600
-@@ -7961,7 +7961,7 @@
+@@ -7969,7 +7969,7 @@
                    entry->label, entry->type, i, entry->entry_idx);
           break;
        case MENU_ACTION_SEARCH:

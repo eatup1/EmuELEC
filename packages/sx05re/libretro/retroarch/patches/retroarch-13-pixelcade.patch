@@ -1,6 +1,6 @@
 --- a/cheevos/cheevos.c
 +++ b/cheevos/cheevos.c
-@@ -326,6 +326,12 @@
+@@ -329,6 +329,12 @@
  
     CHEEVOS_LOG(RCHEEVOS_TAG "Awarding achievement %u: %s (%s)\n",
           cheevo->id, cheevo->title, cheevo->description);
