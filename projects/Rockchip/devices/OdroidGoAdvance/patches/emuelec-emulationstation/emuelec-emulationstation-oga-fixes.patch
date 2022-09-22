@@ -1,6 +1,6 @@
 --- a/es-app/src/guis/GuiMenu.cpp
 +++ b/es-app/src/guis/GuiMenu.cpp
-@@ -1693,7 +1693,7 @@
+@@ -1725,7 +1725,7 @@
  	}
  #endif
  
@@ -11,7 +11,7 @@
  
 --- a/es-core/src/Settings.cpp
 +++ b/es-core/src/Settings.cpp
-@@ -283,7 +283,7 @@
+@@ -289,7 +289,7 @@
  
  	// Audio out device for volume control
  	#if defined _RPI_ || defined _ENABLEEMUELEC
@@ -22,7 +22,7 @@
  	#endif
 --- a/es-app/src/FileData.cpp
 +++ b/es-app/src/FileData.cpp
-@@ -654,9 +654,6 @@
+@@ -658,9 +658,6 @@
  	VolumeControl::getInstance()->deinit();
  
  	bool hideWindow = Settings::getInstance()->getBool("HideWindow");
@@ -34,7 +34,7 @@
  	const std::string rom = Utils::FileSystem::getEscapedPath(getPath());
 --- a/es-core/src/InputManager.cpp
 +++ b/es-core/src/InputManager.cpp
-@@ -314,16 +314,6 @@
+@@ -339,16 +339,6 @@
  		if (ev.key.repeat)
  			return false;
  
@@ -51,7 +51,7 @@
  #if !WIN32
  		if (ev.key.keysym.sym == SDLK_F4)
  		{
-@@ -334,11 +324,11 @@
+@@ -359,11 +349,11 @@
  		}
  #endif
  
