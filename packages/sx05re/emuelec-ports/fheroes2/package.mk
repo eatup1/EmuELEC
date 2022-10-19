@@ -2,7 +2,7 @@
 # Copyright (C) 2021-present Shanti Gilbert (https://github.com/shantigilbert)
 
 PKG_NAME="fheroes2"
-PKG_VERSION="9e675cb66acb992d817e6a2a6cec2d5c7199e1b4"	#v0.9.18
+PKG_VERSION="27ec7781805b21b632c47c74466e134eee8126b7"	#v0.9.20
 PKG_ARCH="any"
 PKG_SITE="https://github.com/ihhub/fheroes2"
 PKG_URL="$PKG_SITE.git"
