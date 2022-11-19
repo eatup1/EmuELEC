@@ -582,7 +582,8 @@ Shovel Knight:
     - shovelknight.sh >> $EE_LOG 2>&1
 
 Half-Life:
-  description: "Half-Life is a 1998 first-person shooter (FPS) game developed by Valve and published by Sierra Studios for Windows. It was Valve's debut product and the first game in the Half-Life series. Players assume the role of Gordon Freeman, a scientist who must escape the Black Mesa Research Facility after it is invaded by aliens. The gameplay consists of combat, exploration, and puzzle-solving. "
+  name: 하프라이프
+  description: "Half-Life는 1998년에 Valve에서 개발하고 Windows용 Sierra Studios에서 퍼블리싱한 1인칭 슈팅(FPS) 게임입니다. Valve의 데뷔작이자 Half-Life 시리즈의 첫 번째 게임이었습니다. 플레이어는 블랙 메사 연구 시설이 외계인의 침략을 받은 후 탈출해야 하는 과학자인 고든 프리먼의 역할을 맡게 됩니다. 게임 플레이는 전투, 탐험 및 퍼즐 해결로 구성됩니다. "
   rating: 1.0
   release_date: 1998
   developer: Valve
