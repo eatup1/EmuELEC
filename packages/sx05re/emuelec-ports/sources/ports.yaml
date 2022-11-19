@@ -581,6 +581,20 @@ Shovel Knight:
     - /usr/bin/show_splash.sh gameloading "ports" "shovelknight"
     - shovelknight.sh >> $EE_LOG 2>&1
 
+Half-Life:
+  description: "Half-Life is a 1998 first-person shooter (FPS) game developed by Valve and published by Sierra Studios for Windows. It was Valve's debut product and the first game in the Half-Life series. Players assume the role of Gordon Freeman, a scientist who must escape the Black Mesa Research Facility after it is invaded by aliens. The gameplay consists of combat, exploration, and puzzle-solving. "
+  rating: 1.0
+  release_date: 1998
+  developer: Valve
+  publisher: Sierra Studios
+
+  init_port: true
+  port_exe: "xash3d"
+  audio: "alsa"
+  commands:
+    - /usr/bin/show_splash.sh gameloading "ports" "hl"
+    - xash3d.sh >> $EE_LOG 2>&1
+
 TMNTSR:
   name: '돌연변이 닌자 거북이: 슈레더의 복수'
   description: "돌연변이 닌자 거북이: 슈레더의 복수는 Tribute Games에서 개발하고 Dotemu에서 유통한 비뎀업(beat'em up) 게임입니다."

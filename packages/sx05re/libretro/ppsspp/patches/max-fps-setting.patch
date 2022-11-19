@@ -44,6 +44,7 @@ diff --git a/UI/GameSettingsScreen.cpp b/UI/GameSettingsScreen.cpp
  
  	PopupSliderChoice *altSpeed1 = graphicsSettings->Add(new PopupSliderChoice(&iAlternateSpeedPercent1_, 0, 1000, gr->T("Alternative Speed", "Alternative speed"), 5, screenManager(), gr->T("%, 0:unlimited")));
  	altSpeed1->SetFormat("%i%%");
+<<<<<<< HEAD
 diff --git a/libretro/libretro.cpp b/libretro/libretro.cpp
 --- b/libretro/libretro.cpp
 +++ a/libretro/libretro.cpp
@@ -71,6 +72,82 @@ diff --git a/libretro/libretro.cpp b/libretro/libretro.cpp
     ppsspp_cpu_core.Update((CPUCore *)&g_Config.iCpuCore);
     ppsspp_io_timing_method.Update((IOTimingMethods *)&g_Config.iIOTimingMethod);
     ppsspp_lower_resolution_for_effects.Update(&g_Config.iBloomHack);
+=======
+@@ -1034,6 +1037,7 @@ UI::EventReturn GameSettingsScreen::OnDumpNextFrameToLog(UI::EventParams &e) {
+ 
+ void GameSettingsScreen::update() {
+ 	UIScreen::update();
++	g_Config.iForceMaxEmulatedFPS = cap60FPS_ ? 60 : 0;
+ 
+ 	g_Config.iFpsLimit1 = iAlternateSpeedPercent1_ < 0 ? -1 : (iAlternateSpeedPercent1_ * 60) / 100;
+ 	g_Config.iFpsLimit2 = iAlternateSpeedPercent2_ < 0 ? -1 : (iAlternateSpeedPercent2_ * 60) / 100;
+--- b/libretro/libretro_core_options.h
++++ a/libretro/libretro_core_options.h
+@@ -337,6 +337,27 @@
+          { NULL, NULL },
+       },
+       "Number of frames"
++   },
++   {
++      "ppsspp_force_max_fps",
++      "Force Max FPS",
++      NULL,
++      NULL,
++      NULL,
++      "video",
++      {
++         { "Auto", NULL },
++         { "10",   NULL },
++         { "20",   NULL },
++         { "30",   NULL },
++         { "40",   NULL },
++         { "50",   NULL },
++         { "60",   NULL },
++         { "70",   NULL },
++         { "80",   NULL },
++         { NULL, NULL },
++      },
++      "Auto"
+    },
+    {
+       "ppsspp_auto_frameskip",
+
+diff --git a/libretro/libretro.cpp b/libretro/libretro.cpp
+--- b/libretro/libretro.cpp
++++ a/libretro/libretro.cpp
+@@ -763,6 +763,31 @@
+          g_Config.bSkipGPUReadbacks = true;
+    }
+ 
++   var.key = "ppsspp_force_max_fps";
++   if (environ_cb(RETRO_ENVIRONMENT_GET_VARIABLE, &var) && var.value)
++   {
++      iInternalResolution_prev = g_Config.iInternalResolution;
++
++      if (!strcmp(var.value, "auto"))
++         g_Config.iInternalResolution = 0;
++      else if (!strcmp(var.value, "10"))
++         g_Config.iInternalResolution = 1;
++      else if (!strcmp(var.value, "20"))
++         g_Config.iInternalResolution = 2;
++      else if (!strcmp(var.value, "30"))
++         g_Config.iInternalResolution = 3;
++      else if (!strcmp(var.value, "40"))
++         g_Config.iInternalResolution = 4;
++      else if (!strcmp(var.value, "50"))
++         g_Config.iInternalResolution = 5;
++      else if (!strcmp(var.value, "60"))
++         g_Config.iInternalResolution = 6;
++      else if (!strcmp(var.value, "70"))
++         g_Config.iInternalResolution = 7;
++      else if (!strcmp(var.value, "80"))
++         g_Config.iInternalResolution = 8;
++   }
++
+    var.key = "ppsspp_frameskip";
+    if (environ_cb(RETRO_ENVIRONMENT_GET_VARIABLE, &var) && var.value)
+       g_Config.iFrameSkip = atoi(var.value);
+>>>>>>> 3efb27cbb9feccb536f4dfd3fc10cc6df09141de
 
 --- a/UI/GameSettingsScreen.cpp	2018-11-18 02:06:08.250398000 +0000
 +++ b/UI/GameSettingsScreen.cpp	2018-11-18 02:20:02.941563758 +0000
