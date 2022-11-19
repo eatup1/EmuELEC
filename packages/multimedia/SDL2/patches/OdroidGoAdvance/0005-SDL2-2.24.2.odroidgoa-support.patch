@@ -2,11 +2,7 @@ diff --git a/CMakeLists.txt b/CMakeLists.txt
 index 26fe83205..32a339b05 100644
 --- a/CMakeLists.txt
 +++ b/CMakeLists.txt
-<<<<<<< HEAD:packages/multimedia/SDL2/patches/OdroidGoAdvance/0005-SDL-2.0.20.odroidgoa-support.patch
-@@ -598,7 +598,7 @@ if(USE_GCC OR USE_CLANG)
-=======
 @@ -672,7 +672,7 @@
->>>>>>> 3efb27cbb9feccb536f4dfd3fc10cc6df09141de:packages/multimedia/SDL2/patches/OdroidGoAdvance/0005-SDL2-2.24.2.odroidgoa-support.patch
      check_c_compiler_flag("" HAVE_NO_UNDEFINED)
      set(CMAKE_REQUIRED_FLAGS ${ORIG_CMAKE_REQUIRED_FLAGS})
      if(HAVE_NO_UNDEFINED AND NOT (USE_CLANG AND WINDOWS))

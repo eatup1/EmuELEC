@@ -154,10 +154,6 @@
     ENTWARE_ARCH="aarch64-k3.10"
 
   # CoreELEC Subdevices
-<<<<<<< HEAD
-  #  SUBDEVICES="Odroid_N2 Odroid_C4 Odroid_HC4 LePotato LaFrite Radxa_Zero Radxa_Zero2"
+  #  SUBDEVICES="Odroid_N2 Odroid_N2L Odroid_C4 Odroid_HC4 LePotato LaFrite Radxa_Zero Radxa_Zero2"
   # EmuELEC Subdevices
-    SUBDEVICES="Odroid_N2 Odroid_C4 Odroid_HC4"
-=======
-    SUBDEVICES="Odroid_N2 Odroid_N2L Odroid_C4 Odroid_HC4 LePotato LaFrite Radxa_Zero Radxa_Zero2"
->>>>>>> 3efb27cbb9feccb536f4dfd3fc10cc6df09141de
+    SUBDEVICES="Odroid_N2 Odroid_N2L Odroid_C4 Odroid_HC4"
