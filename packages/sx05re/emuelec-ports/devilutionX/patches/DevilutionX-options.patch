@@ -2,7 +2,7 @@ diff --git a/Source/options.cpp b/Source/options.cpp
 index 9e03df04..119d789e 100644
 --- a/Source/options.cpp
 +++ b/Source/options.cpp
-@@ -1131,7 +1131,7 @@ void OptionEntryLanguageCode::LoadFromIni(string_view category)
+@@ -1130,7 +1130,7 @@ void OptionEntryLanguageCode::LoadFromIni(string_view category)
  	}
  
  	LogVerbose("No suitable translation found");
@@ -11,20 +11,20 @@ index 9e03df04..119d789e 100644
  }
  void OptionEntryLanguageCode::SaveToIni(string_view category) const
  {
-@@ -1156,7 +1156,8 @@ void OptionEntryLanguageCode::CheckLanguagesAreInitialized() const
+@@ -1155,7 +1155,8 @@ void OptionEntryLanguageCode::CheckLanguagesAreInitialized() const
  	languages.emplace_back("it", "Italiano");
  
- 	if (font_mpq) {
+ 	if (HaveExtraFonts()) {
 -		languages.emplace_back("ja", "日本語");
 +		//remove japanese font
 +		//languages.emplace_back("ja", "日本語");
  		languages.emplace_back("ko", "한국어");
  	}
  
-@@ -1168,8 +1169,9 @@ void OptionEntryLanguageCode::CheckLanguagesAreInitialized() const
+@@ -1167,8 +1168,9 @@ void OptionEntryLanguageCode::CheckLanguagesAreInitialized() const
  	languages.emplace_back("uk", "Українська");
  
- 	if (font_mpq) {
+ 	if (HaveExtraFonts()) {
 -		languages.emplace_back("zh_CN", "汉语");
 -		languages.emplace_back("zh_TW", "漢語");
 +		//remove chinese font
