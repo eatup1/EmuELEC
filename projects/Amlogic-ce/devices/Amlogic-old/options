@@ -168,4 +168,6 @@
     ENTWARE_ARCH="aarch64-k3.10"
 
   # CoreELEC Subdevices
-    SUBDEVICES="LePotato Odroid_C2"
+  # SUBDEVICES="LePotato Odroid_C2"
+  # EmuELEC Subdevices
+    SUBDEVICES="Odroid_C2"  

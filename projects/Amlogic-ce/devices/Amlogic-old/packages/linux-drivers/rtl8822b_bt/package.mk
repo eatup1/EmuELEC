@@ -17,8 +17,8 @@ unpack() {
 }
 
 makeinstall_target() {
-  mkdir -p $INSTALL/usr/bin
-    cp -a $(get_build_dir rkbin)/firmware/bin/rtk_hciattach $INSTALL/usr/bin/8822b_hciattach
+#  mkdir -p $INSTALL/usr/bin
+#    cp -a $(get_build_dir rkbin)/firmware/bin/rtk_hciattach $INSTALL/usr/bin/8822b_hciattach
 
   mkdir -p $INSTALL/$(get_full_firmware_dir)/rtlbt
     cp -a $PKG_BUILD/rtl8822b_config.bin $INSTALL/$(get_full_firmware_dir)/rtlbt/rtl8822b_config

@@ -28,8 +28,10 @@ PKG_CONFIGURE_OPTS_TARGET="--disable-dependency-tracking \
                            --disable-obex \
                            --enable-client \
                            --enable-systemd \
-                           --enable-tools --enable-deprecated \
+                           --enable-tools \
+			   --enable-deprecated \
                            --enable-datafiles \
+                           --disable-manpages \
                            --disable-experimental \
                            --enable-sixaxis \
                            --with-gnu-ld \
@@ -41,7 +43,7 @@ pre_configure_target() {
   cd $PKG_BUILD
     rm -rf .$TARGET_NAME
 
-  export LIBS="-lncurses -ltinfo"
+  export LIBS="-lncurses"
 }
 
 post_makeinstall_target() {
