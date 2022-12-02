@@ -2,7 +2,7 @@ diff --git a/src/burn/drv/capcom/d_cps1.cpp b/src/burn/drv/capcom/d_cps1.cpp
 index 2e86f781a..fcbb9342d 100644
 --- a/src/burn/drv/capcom/d_cps1.cpp
 +++ b/src/burn/drv/capcom/d_cps1.cpp
-@@ -16173,6 +16173,28 @@ static const struct GameConfig ConfigTable[] =
+@@ -16191,6 +16191,28 @@ static const struct GameConfig ConfigTable[] =
  	{ "sfzech"        , CPS_B_21_DEF, mapper_sfzch , 0, NULL                },
  	{ "sfzhch"        , CPS_B_21_DEF, mapper_sfzch , 0, NULL                },
  
@@ -31,7 +31,7 @@ index 2e86f781a..fcbb9342d 100644
  	{ 0               , 0           , 0            , 0, 0                   }
  };
  
-@@ -25413,6 +25435,976 @@ struct BurnDriver BurnDrvCpsPunisherhr = {
+@@ -25786,6 +25808,976 @@ struct BurnDriver BurnDrvCpsPunisherhr = {
  
  #include "d_kenseim.h"
  
@@ -1012,7 +1012,7 @@ diff --git a/src/burn/drv/capcom/d_cps2.cpp b/src/burn/drv/capcom/d_cps2.cpp
 index 3232a9f84..a41eac7d9 100644
 --- a/src/burn/drv/capcom/d_cps2.cpp
 +++ b/src/burn/drv/capcom/d_cps2.cpp
-@@ -646,6 +646,34 @@ static struct BurnInputInfo MpangInputList[] = {
+@@ -686,6 +686,34 @@ static struct BurnInputInfo MpangInputList[] = {
  
  STDINPUTINFO(Mpang)
  
@@ -1047,7 +1047,7 @@ index 3232a9f84..a41eac7d9 100644
  static struct BurnInputInfo ProgearInputList[] = {
  	{"P1 Coin"          , BIT_DIGITAL  , CpsInp020+4, "p1 coin"   },
  	{"P1 Start"         , BIT_DIGITAL  , CpsInp020+0, "p1 start"  },
-@@ -14360,3 +14388,998 @@ struct BurnDriver BurnDrvCpsGigaman2 = {
+@@ -14433,3 +14461,998 @@ struct BurnDriver BurnDrvCpsGigaman2 = {
  	Gigaman2Init, Gigaman2Exit, Cps2Frame, CpsRedraw, Gigaman2Scan,
  	&CpsRecalcPal, 0x1000, 384, 224, 4, 3
  };
@@ -2137,7 +2137,7 @@ diff --git a/src/burn/drv/megadrive/d_megadrive.cpp b/src/burn/drv/megadrive/d_m
 index 81cb78fb7..a47523e41 100644
 --- a/src/burn/drv/megadrive/d_megadrive.cpp
 +++ b/src/burn/drv/megadrive/d_megadrive.cpp
-@@ -54410,3 +54410,462 @@ struct BurnDriverD BurnDrvmd_spritemask = {
+@@ -54689,3 +54689,462 @@ struct BurnDriverD BurnDrvmd_spritemask = {
  	MegadriveInit, MegadriveExit, MegadriveFrame, MegadriveDraw, MegadriveScan,
  	&bMegadriveRecalcPalette, 0x100, 320, 224, 4, 3
  };*/
@@ -2703,9 +2703,9 @@ index 98dfd99f7..e6e0b03cc 100644
  
  	// DIP 1
  	{0,		0xFE, 0,	2,	  "Setting mode"},
-@@ -22001,3 +22001,2886 @@ struct BurnDriver BurnDrvmslug5x = {
- 	NeoInit, NeoExit, NeoFrame, NeoRender, NeoScan, &NeoRecalcPalette,
- 	0x1000,	304, 224, 4, 3
+@@ -23820,3 +23820,2886 @@ struct BurnDriver BurnDrvkof99jh = {
+ 	kof99WOPTPInit, NeoExit, NeoFrame, NeoRender, NeoScan, &NeoRecalcPalette,
+ 	0x1000, 304, 224, 4, 3
  };
 +
 +//============================================================
