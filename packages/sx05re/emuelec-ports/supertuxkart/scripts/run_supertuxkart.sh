@@ -7,10 +7,10 @@
 . /etc/profile
 
 # This variable has to match the version on package.mk
-VERSION="1.3"
+VERSION="1.4"
 
 ASSETS="https://github.com/supertuxkart/stk-assets-mobile/releases/download/${VERSION}/stk-assets.zip"
-DATA="https://github.com/british-choi/stk-code/archive/data_only.zip"
+DATA="https://github.com/supertuxkart/stk-code/archive/refs/tags/${VERSION}.zip"
 DATAFOLDER="/storage/roms/ports/supertuxkart"
 
 mkdir -p "${DATAFOLDER}"
@@ -29,16 +29,17 @@ if [ ! -e "${DATAFOLDER}/data/stk_config.xml" ]; then
         if [[ $? == 21 ]]; then
             ee_console enable
             wget "${DATA}" -q --show-progress > /dev/tty0 2>&1
-            unzip "data_only.zip" > /dev/tty0
+            unzip "${VERSION}.zip" > /dev/tty0
             rm -rf "${DATAFOLDER}/data"
-            mv "stk-code-data_only/data" "${DATAFOLDER}" > /dev/tty0
-            rm -rf "stk-code-data_only"
+            mv "stk-code-${VERSION}/data" "${DATAFOLDER}" > /dev/tty0
+            rm -rf "stk-code-${VERSION}"
             wget "${ASSETS}" -q --show-progress > /dev/tty0 2>&1
             unzip "stk-assets.zip" -d data > /dev/tty0
             rm "stk-assets.zip"
-            rm "data_only.zip"
+            rm "${VERSION}.zip"
             ee_console disable
             mkdir -p /storage/.config/supertuxkart/config-0.10
+            [[ ! -f "${DATAFOLDER}/supertuxkart.git" ]] && touch "${DATAFOLDER}/supertuxkart.git"
 
 cat > /storage/.config/supertuxkart/config-0.10/players.xml << EOF
 <?xml version="1.0"?>
