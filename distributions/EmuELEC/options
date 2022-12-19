@@ -350,6 +350,7 @@ yabause"
 
 LIBRETRO_S922X_CORES="mesen \
 mesen-s \
+yabasanshiro \
 quicknes \
 virtualjaguar"
 
