@@ -1,5 +1,5 @@
 diff --git a/src/burn/drv/capcom/d_cps1.cpp b/src/burn/drv/capcom/d_cps1.cpp
-index 2e86f781a..fcbb9342d 100644
+index 844557cf4..f5e8c504d 100644
 --- a/src/burn/drv/capcom/d_cps1.cpp
 +++ b/src/burn/drv/capcom/d_cps1.cpp
 @@ -16191,6 +16191,28 @@ static const struct GameConfig ConfigTable[] =
@@ -1009,7 +1009,7 @@ index 2e86f781a..fcbb9342d 100644
  #undef CPS1_68K_PROGRAM_NO_BYTESWAP
  #undef CPS1_Z80_PROGRAM
 diff --git a/src/burn/drv/capcom/d_cps2.cpp b/src/burn/drv/capcom/d_cps2.cpp
-index 3232a9f84..a41eac7d9 100644
+index 99c7da859..6aa50b1ad 100644
 --- a/src/burn/drv/capcom/d_cps2.cpp
 +++ b/src/burn/drv/capcom/d_cps2.cpp
 @@ -686,6 +686,34 @@ static struct BurnInputInfo MpangInputList[] = {
@@ -1047,7 +1047,7 @@ index 3232a9f84..a41eac7d9 100644
  static struct BurnInputInfo ProgearInputList[] = {
  	{"P1 Coin"          , BIT_DIGITAL  , CpsInp020+4, "p1 coin"   },
  	{"P1 Start"         , BIT_DIGITAL  , CpsInp020+0, "p1 start"  },
-@@ -14433,3 +14461,998 @@ struct BurnDriver BurnDrvCpsGigaman2 = {
+@@ -14433,3 +14461,1039 @@ struct BurnDriver BurnDrvCpsGigaman2 = {
  	Gigaman2Init, Gigaman2Exit, Cps2Frame, CpsRedraw, Gigaman2Scan,
  	&CpsRecalcPal, 0x1000, 384, 224, 4, 3
  };
@@ -1199,6 +1199,47 @@ index 3232a9f84..a41eac7d9 100644
 +	NULL, NULL, NULL, NULL,
 +	BDF_GAME_WORKING | BDF_CLONE | BDF_HISCORE_SUPPORTED, 4, HARDWARE_CAPCOM_CPS2, GBF_SCRFIGHT, 0,
 +	NULL, Ddsomav4RomInfo, Ddsomav4RomName, NULL, NULL, NULL, NULL, DdsomInputInfo, NULL,
++	Cps2Init, DrvExit, Cps2Frame, CpsRedraw, CpsAreaScan,
++	&CpsRecalcPal, 0x1000, 384, 224, 4, 3
++};
++
++static struct BurnRomInfo DdsomkRomDesc[] = {
++	{ "dd2k.03g",      0x080000, 0xe89d22e3, CPS2_PRG_68K | BRF_ESS | BRF_PRG },
++	{ "dd2k.04g",      0x080000, 0x9a44d69c, CPS2_PRG_68K | BRF_ESS | BRF_PRG },
++	{ "dd2.05g",       0x080000, 0x5eb1991c, CPS2_PRG_68K | BRF_ESS | BRF_PRG },
++	{ "dd2k.06g",      0x080000, 0x7f7ded68, CPS2_PRG_68K | BRF_ESS | BRF_PRG },
++	{ "dd2.07",        0x080000, 0x909a0b8b, CPS2_PRG_68K | BRF_ESS | BRF_PRG },
++	{ "dd2.08",        0x080000, 0xe53c4d01, CPS2_PRG_68K | BRF_ESS | BRF_PRG },
++	{ "dd2k.09",       0x080000, 0x62f76683, CPS2_PRG_68K | BRF_ESS | BRF_PRG },
++	{ "dd2k.10",       0x080000, 0xdf5efd28, CPS2_PRG_68K | BRF_ESS | BRF_PRG },
++
++	{ "dd2.13m",       0x400000, 0xa46b4e6e, CPS2_GFX | BRF_GRA },
++	{ "dd2.15m",       0x400000, 0xd5fc50fc, CPS2_GFX | BRF_GRA },
++	{ "dd2.17m",       0x400000, 0x837c0867, CPS2_GFX | BRF_GRA },
++	{ "dd2.19m",       0x400000, 0xbb0ec21c, CPS2_GFX | BRF_GRA },
++	{ "dd2.14m",       0x200000, 0x6d824ce2, CPS2_GFX | BRF_GRA },
++	{ "dd2.16m",       0x200000, 0x79682ae5, CPS2_GFX | BRF_GRA },
++	{ "dd2.18m",       0x200000, 0xacddd149, CPS2_GFX | BRF_GRA },
++	{ "dd2.20m",       0x200000, 0x117fb0c0, CPS2_GFX | BRF_GRA },
++
++	{ "dd2.01",        0x020000, 0x99d657e5, CPS2_PRG_Z80 | BRF_ESS | BRF_PRG },
++	{ "dd2.02",        0x020000, 0x117a3824, CPS2_PRG_Z80 | BRF_ESS | BRF_PRG },
++
++	{ "dd2.11m",       0x200000, 0x98d0c325, CPS2_QSND | BRF_SND },
++	{ "dd2.12m",       0x200000, 0x5ea2e7fa, CPS2_QSND | BRF_SND },
++	
++	{ "ddsom.key",     0x000014, 0x541e425d, CPS2_ENCRYPTION_KEY },
++};
++
++STD_ROM_PICK(Ddsomk)
++STD_ROM_FN(Ddsomk)
++
++struct BurnDriver BurnDrvCpsDdsomk = {
++	"ddsomk", "ddsom", NULL, NULL, "1996",
++	"Dungeons & Dragons - shadow over mystara (960619 Korean Translation, v1.0)\0", "Hack", "Capcom", "CPS2",
++	NULL, NULL, NULL, NULL,
++	BDF_GAME_WORKING | BDF_CLONE | BDF_HISCORE_SUPPORTED, 4, HARDWARE_CAPCOM_CPS2, GBF_SCRFIGHT, 0,
++	NULL, DdsomkRomInfo, DdsomkRomName, NULL, NULL, NULL, NULL, DdsomInputInfo, NULL,
 +	Cps2Init, DrvExit, Cps2Frame, CpsRedraw, CpsAreaScan,
 +	&CpsRecalcPal, 0x1000, 384, 224, 4, 3
 +};
@@ -2047,7 +2088,7 @@ index 3232a9f84..a41eac7d9 100644
 +	&CpsRecalcPal, 0x1000, 384, 224, 4, 3
 +};
 diff --git a/src/burn/drv/irem/d_m92.cpp b/src/burn/drv/irem/d_m92.cpp
-index 8e39d82da..37151c995 100644
+index bc0b0ecff..5cc7bece2 100644
 --- a/src/burn/drv/irem/d_m92.cpp
 +++ b/src/burn/drv/irem/d_m92.cpp
 @@ -4053,3 +4053,82 @@ struct BurnDriver BurnDrvSkingame2 = {
@@ -2134,7 +2175,7 @@ index 8e39d82da..37151c995 100644
 +	320, 240, 4, 3
 +};
 diff --git a/src/burn/drv/megadrive/d_megadrive.cpp b/src/burn/drv/megadrive/d_megadrive.cpp
-index 81cb78fb7..a47523e41 100644
+index 1753a310e..2acedc85f 100644
 --- a/src/burn/drv/megadrive/d_megadrive.cpp
 +++ b/src/burn/drv/megadrive/d_megadrive.cpp
 @@ -54689,3 +54689,462 @@ struct BurnDriverD BurnDrvmd_spritemask = {
@@ -2601,7 +2642,7 @@ index 81cb78fb7..a47523e41 100644
 +	&bMegadriveRecalcPalette, 0x100, 320, 224, 4, 3
 +};
 diff --git a/src/burn/drv/neogeo/d_neogeo.cpp b/src/burn/drv/neogeo/d_neogeo.cpp
-index 98dfd99f7..e6e0b03cc 100644
+index 23b654907..cfe6f9df8 100644
 --- a/src/burn/drv/neogeo/d_neogeo.cpp
 +++ b/src/burn/drv/neogeo/d_neogeo.cpp
 @@ -145,7 +145,7 @@ static struct BurnDIPInfo ms5pcbDIPList[] = {
@@ -5700,7 +5741,7 @@ index 82ffa5f2a..0e925083f 100644
 +	256, 224, 4, 3
 +};
 diff --git a/src/burn/drv/psikyo/d_psikyo.cpp b/src/burn/drv/psikyo/d_psikyo.cpp
-index b4160855d..095b5313c 100644
+index 81f003630..43fbe9a60 100644
 --- a/src/burn/drv/psikyo/d_psikyo.cpp
 +++ b/src/burn/drv/psikyo/d_psikyo.cpp
 @@ -614,6 +614,16 @@ static struct BurnDIPInfo tengaijRegionDIPList[] = {
@@ -5842,7 +5883,7 @@ index b4160855d..095b5313c 100644
 +	320, 224, 4, 3
 +};
 diff --git a/src/burner/libretro/retro_input.cpp b/src/burner/libretro/retro_input.cpp
-index ca9f55d17..29de222a5 100644
+index 8d9c96477..8e7be477b 100644
 --- a/src/burner/libretro/retro_input.cpp
 +++ b/src/burner/libretro/retro_input.cpp
 @@ -1765,6 +1765,36 @@ static INT32 GameInpSpecialOne(struct GameInp* pgi, INT32 nPlayer, char* szb, ch
