@@ -1009,7 +1009,7 @@ index 844557cf4..f5e8c504d 100644
  #undef CPS1_68K_PROGRAM_NO_BYTESWAP
  #undef CPS1_Z80_PROGRAM
 diff --git a/src/burn/drv/capcom/d_cps2.cpp b/src/burn/drv/capcom/d_cps2.cpp
-index 99c7da859..6aa50b1ad 100644
+index 99c7da859..768c31ede 100644
 --- a/src/burn/drv/capcom/d_cps2.cpp
 +++ b/src/burn/drv/capcom/d_cps2.cpp
 @@ -686,6 +686,34 @@ static struct BurnInputInfo MpangInputList[] = {
@@ -1204,8 +1204,8 @@ index 99c7da859..6aa50b1ad 100644
 +};
 +
 +static struct BurnRomInfo DdsomkRomDesc[] = {
-+	{ "dd2k.03g",      0x080000, 0xe89d22e3, CPS2_PRG_68K | BRF_ESS | BRF_PRG },
-+	{ "dd2k.04g",      0x080000, 0x9a44d69c, CPS2_PRG_68K | BRF_ESS | BRF_PRG },
++	{ "dd2k.03g",      0x080000, 0x18da55f8, CPS2_PRG_68K | BRF_ESS | BRF_PRG },
++	{ "dd2k.04g",      0x080000, 0x9b4094fe, CPS2_PRG_68K | BRF_ESS | BRF_PRG },
 +	{ "dd2.05g",       0x080000, 0x5eb1991c, CPS2_PRG_68K | BRF_ESS | BRF_PRG },
 +	{ "dd2k.06g",      0x080000, 0x7f7ded68, CPS2_PRG_68K | BRF_ESS | BRF_PRG },
 +	{ "dd2.07",        0x080000, 0x909a0b8b, CPS2_PRG_68K | BRF_ESS | BRF_PRG },
@@ -1213,14 +1213,14 @@ index 99c7da859..6aa50b1ad 100644
 +	{ "dd2k.09",       0x080000, 0x62f76683, CPS2_PRG_68K | BRF_ESS | BRF_PRG },
 +	{ "dd2k.10",       0x080000, 0xdf5efd28, CPS2_PRG_68K | BRF_ESS | BRF_PRG },
 +
-+	{ "dd2.13m",       0x400000, 0xa46b4e6e, CPS2_GFX | BRF_GRA },
-+	{ "dd2.15m",       0x400000, 0xd5fc50fc, CPS2_GFX | BRF_GRA },
-+	{ "dd2.17m",       0x400000, 0x837c0867, CPS2_GFX | BRF_GRA },
-+	{ "dd2.19m",       0x400000, 0xbb0ec21c, CPS2_GFX | BRF_GRA },
-+	{ "dd2.14m",       0x200000, 0x6d824ce2, CPS2_GFX | BRF_GRA },
-+	{ "dd2.16m",       0x200000, 0x79682ae5, CPS2_GFX | BRF_GRA },
-+	{ "dd2.18m",       0x200000, 0xacddd149, CPS2_GFX | BRF_GRA },
-+	{ "dd2.20m",       0x200000, 0x117fb0c0, CPS2_GFX | BRF_GRA },
++	{ "dd2k.13m",      0x400000, 0xb10a231e, CPS2_GFX | BRF_GRA },
++	{ "dd2k.15m",      0x400000, 0xafee32bf, CPS2_GFX | BRF_GRA },
++	{ "dd2k.17m",      0x400000, 0x5e26afaa, CPS2_GFX | BRF_GRA },
++	{ "dd2k.19m",      0x400000, 0x357cb758, CPS2_GFX | BRF_GRA },
++	{ "dd2k.14m",      0x200000, 0x75b8fd5d, CPS2_GFX | BRF_GRA },
++	{ "dd2k.16m",      0x200000, 0x9187a205, CPS2_GFX | BRF_GRA },
++	{ "dd2k.18m",      0x200000, 0x7e4fad8a, CPS2_GFX | BRF_GRA },
++	{ "dd2k.20m",      0x200000, 0x2d5bb55c, CPS2_GFX | BRF_GRA },
 +
 +	{ "dd2.01",        0x020000, 0x99d657e5, CPS2_PRG_Z80 | BRF_ESS | BRF_PRG },
 +	{ "dd2.02",        0x020000, 0x117a3824, CPS2_PRG_Z80 | BRF_ESS | BRF_PRG },
@@ -1228,7 +1228,7 @@ index 99c7da859..6aa50b1ad 100644
 +	{ "dd2.11m",       0x200000, 0x98d0c325, CPS2_QSND | BRF_SND },
 +	{ "dd2.12m",       0x200000, 0x5ea2e7fa, CPS2_QSND | BRF_SND },
 +	
-+	{ "ddsom.key",     0x000014, 0x541e425d, CPS2_ENCRYPTION_KEY },
++	{ "ddsomu.key",    0x000014, 0x09ae0f7c, CPS2_ENCRYPTION_KEY },
 +};
 +
 +STD_ROM_PICK(Ddsomk)
