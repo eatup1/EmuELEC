@@ -11,8 +11,8 @@ diff --git a/src/fheroes2/game/fheroes2.cpp b/src/fheroes2/game/fheroes2.cpp
 index d1a03c95..7d277b13 100644
 --- a/src/fheroes2/game/fheroes2.cpp
 +++ b/src/fheroes2/game/fheroes2.cpp
-@@ -239,11 +239,8 @@ int main( int argc, char ** argv )
-         }
+@@ -242,11 +242,8 @@ int main( int argc, char ** argv )
+         ReadConfigs();
  
          std::set<fheroes2::SystemInitializationComponent> coreComponents{ fheroes2::SystemInitializationComponent::Audio,
 -                                                                          fheroes2::SystemInitializationComponent::Video };
