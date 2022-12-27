@@ -11,7 +11,7 @@ index 73685802489..42b298f5c30 100644
  		return nullptr;
  
  	switch (_language) {
-@@ -507,7 +507,7 @@ int CharsetRenderer::getStringWidth(int arg, const byte *text) {
+@@ -513,7 +513,7 @@ int CharsetRenderer::getStringWidth(int arg, const byte *text) {
  		}
  
  		if (_vm->_useCJKMode) {
@@ -20,7 +20,7 @@ index 73685802489..42b298f5c30 100644
  				if (checkSJISCode(chr))
  					// This strange character conversion is the exact way the original does it here.
  					// This is the only way to get an accurate text formatting in the MI1 intro.
-@@ -600,7 +600,7 @@ void CharsetRenderer::addLinebreaks(int a, byte *str, int pos, int maxwidth) {
+@@ -606,7 +606,7 @@ void CharsetRenderer::addLinebreaks(int a, byte *str, int pos, int maxwidth) {
  			lastspace = pos - 1;
  
  		if (_vm->_useCJKMode) {
@@ -29,7 +29,7 @@ index 73685802489..42b298f5c30 100644
  				if (checkSJISCode(chr))
  					// This strange character conversion is the exact way the original does it here.
  					// This is the only way to get an accurate text formatting in the MI1 intro.
-@@ -752,6 +752,9 @@ void CharsetRendererPC::drawBits1Kor(Graphics::Surface &dest, int x1, int y1, co
+@@ -758,6 +758,9 @@ void CharsetRendererPC::drawBits1Kor(Graphics::Surface &dest, int x1, int y1, co
  	default: // Stroke
  		i = 5;
  	}
@@ -39,7 +39,7 @@ index 73685802489..42b298f5c30 100644
  
  	const byte *origSrc = src;
  	byte *origDst = dst;
-@@ -1433,7 +1436,7 @@ int CharsetRendererTownsV3::getDrawHeightIntern(uint16 chr) {
+@@ -1439,7 +1442,7 @@ int CharsetRendererTownsV3::getDrawHeightIntern(uint16 chr) {
  }
  
  void CharsetRendererTownsV3::setDrawCharIntern(uint16 chr) {
