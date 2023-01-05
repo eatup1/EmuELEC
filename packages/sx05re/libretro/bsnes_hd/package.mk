@@ -19,26 +19,24 @@
 ################################################################################
 
 PKG_NAME="bsnes_hd"
-PKG_VERSION="4ea6208ad05de7698c321db6fffea9273efc7dee"
-PKG_REV="1"
+PKG_VERSION="04821703aefdc909a4fd66d168433fcac06c2ba7"
 PKG_ARCH="any"
 PKG_LICENSE="GPLv3"
-PKG_SITE="https://github.com/libretro/bsnes"
-PKG_URL="$PKG_SITE.git"
-#PKG_GIT_CLONE_BRANCH="hd"
+PKG_SITE="https://github.com/DerKoun/bsnes-hd"
+PKG_URL="${PKG_SITE}.git"
+PKG_BRANCH="master"
 PKG_DEPENDS_TARGET="toolchain"
-PKG_SHORTDESC="Super Nintendo (Super Famicom) emulator"
-GET_HANDLER_SUPPORT="git"
+PKG_LONGDESC="Fork of bsnes that adds HD video features."
 PKG_TOOLCHAIN="make"
 
 PKG_IS_ADDON="no"
 PKG_AUTORECONF="no"
 
 make_target() {
-  make -C bsnes -f GNUmakefile target="libretro"
+  make -C bsnes -f GNUmakefile target="libretro" compiler="${CXX}" CXXFLAGS="${CXXFLAGS}" platform=linux local=false binary=library
 }
 
 makeinstall_target() {
-  mkdir -p $INSTALL/usr/lib/libretro
-  cp bsnes/out/bsnes_libretro.so $INSTALL/usr/lib/libretro/
+  mkdir -p ${INSTALL}/usr/lib/libretro
+  cp bsnes/out/bsnes_hd_beta_libretro.so ${INSTALL}/usr/lib/libretro/
 }
