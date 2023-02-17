@@ -22,6 +22,7 @@ sed -i "s/03000000bc2000000055000010010000,ShanWan PS3/PC Wired GamePad/# 030000
 if [ "$DEVICE" == "RG351V" ]; then
 sed -i "s/OpenSimHardware OSH PB Controller,platform:Linux,x:b2,a:b0,b:b1,y:b3,guide:b7,back:b7,start:b6,dpleft:h0.8,dpdown:h0.4,dpright:h0.2,dpup:h0.1,leftshoulder:b4,lefttrigger:b10,rightshoulder:b5,righttrigger:b11,leftstick:b8,rightstick:b9,leftx:a0,lefty:a1,rightx:a2,righty:a3,/OpenSimHardware OSH PB Controller,platform:Linux,x:b2,a:b0,b:b1,y:b3,guide:b9,back:b7,start:b6,dpleft:h0.8,dpdown:h0.4,dpright:h0.2,dpup:h0.1,leftshoulder:b4,lefttrigger:b10,rightshoulder:b5,righttrigger:b11,leftstick:b8,leftx:a0,lefty:a1,/g" gamecontrollerdb.txt
 fi
+sed -i "s/030000004c0500006802000011810000,PS3 Controller/# 030000004c0500006802000011810000,PS3 Controller/g" gamecontrollerdb.txt
 }
 
 makeinstall_target() {

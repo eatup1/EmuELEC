@@ -3,15 +3,8 @@
 # Copyright (C) 2018-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="systemd"
-if [ "$DEVICE" == "OdroidGoAdvance" -o "$DEVICE" == "RG351P" -o "$DEVICE" == "RG351V" ] || [ "$DEVICE" == "GameForce" ]; then
-# don't use version 250.7
-PKG_VERSION="250.6"
-PKG_SHA256="f34a9aa921cba80ec731667b8ec66c419fd78ad4469d9cba66010936bfabfd78"
-else
-# systemd 251 is required minimum kernel version 4.15
-PKG_VERSION="252.1"
-PKG_SHA256="efd1c04d14c5e44b55d19aaf9182b309c4253bbd884374f5d840947d598e9d47"
-fi
+PKG_VERSION="252.5"
+PKG_SHA256="cc57a54a323d9f813f59eb4d79c2e2ea987e27c9b5ad2079eb9d2756567d53ee"
 PKG_LICENSE="LGPL2.1+"
 PKG_SITE="http://www.freedesktop.org/wiki/Software/systemd"
 PKG_URL="https://github.com/systemd/systemd-stable/archive/v${PKG_VERSION}.tar.gz"
@@ -86,7 +79,6 @@ PKG_MESON_OPTS_TARGET="--libdir=/usr/lib \
                        -Dhwdb=true \
                        -Drfkill=false \
                        -Dldconfig=false \
-                       -Defi=false \
                        -Dtpm=false \
                        -Dima=false \
                        -Dsmack=false \
@@ -107,8 +99,13 @@ PKG_MESON_OPTS_TARGET="--libdir=/usr/lib \
                        -Dmount-path=/usr/bin/mount \
                        -Dumount-path=/usr/bin/umount \
                        -Ddebug-tty=${DEBUG_TTY} \
-                       -Dpkgconfigdatadir=/usr/lib/pkgconfig \
                        -Dversion-tag=${PKG_VERSION}"
+
+if [ "${PROJECT}" = "Generic" ]; then
+  PKG_MESON_OPTS_TARGET+=" -Defi=true"
+else
+  PKG_MESON_OPTS_TARGET+=" -Defi=false"
+fi
 
 pre_configure_target() {
   export TARGET_CFLAGS="${TARGET_CFLAGS} -fno-schedule-insns -fno-schedule-insns2 -Wno-format-truncation"
@@ -148,6 +145,12 @@ post_makeinstall_target() {
   safe_remove ${INSTALL}/usr/lib/systemd/systemd-update-done
   safe_remove ${INSTALL}/usr/lib/systemd/system/systemd-update-done.service
   safe_remove ${INSTALL}/usr/lib/systemd/system/*.target.wants/systemd-update-done.service
+  #
+  safe_remove ${INSTALL}/usr/lib/systemd/system/dev-hugepages.mount
+  safe_remove ${INSTALL}/usr/lib/systemd/system/*.target.wants/dev-hugepages.mount
+  #
+  safe_remove ${INSTALL}/usr/lib/systemd/system/systemd-journald-audit.socket
+  safe_remove ${INSTALL}/usr/lib/systemd/system/*.target.wants/systemd-journald-audit.socket
 
   # adjust systemd-hwdb-update (we have read-only /etc).
   sed '/^ConditionNeedsUpdate=.*$/d' -i ${INSTALL}/usr/lib/systemd/system/systemd-hwdb-update.service

@@ -41,7 +41,7 @@ PKG_CONFIGURE_OPTS_TARGET="-prefix /usr
                            -no-icu
                            -no-strip
                            -no-fontconfig
-                           -no-dbus
+                           -dbus
                            -no-opengl
                            -no-libudev
                            -no-libinput
