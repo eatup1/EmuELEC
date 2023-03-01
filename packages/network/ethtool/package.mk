@@ -9,7 +9,7 @@ PKG_DEPENDS_TARGET="toolchain libmnl"
 PKG_LONGDESC="Ethtool is used for querying settings of an ethernet device and changing them."
 
 case "$LINUX" in
-  rockchip-4.4|odroid-go-a-4.4|gameforce-4.4)
+  rockchip-4.4|odroid-go-a-4.4|rg351p-4.4|rg351v-4.4|gameforce-4.4)
     PKG_VERSION="6.0"
     PKG_SHA256="d5446c93de570ce68f3b1ea69dbfa12fcfd67fc19897f655d3f18231e2b818d6"
     PKG_URL="https://www.kernel.org/pub/software/network/ethtool/${PKG_NAME}-${PKG_VERSION}.tar.xz"
