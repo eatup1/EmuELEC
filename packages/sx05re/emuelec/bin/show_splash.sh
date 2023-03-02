@@ -105,7 +105,7 @@ fi
 
 # Odroid Go Advance still does not support splash screens
 SS_DEVICE=0
-if [[ "$EE_DEVICE" == "OdroidGoAdvance" ]] || [[ "$EE_DEVICE" == "RG351P" ]] [[ "$EE_DEVICE" == "RG351V" ]] || [[ "$EE_DEVICE" == "GameForce" ]]; then
+if [[ "$EE_DEVICE" == "OdroidGoAdvance" ]] || [[ "$EE_DEVICE" == "RG351P" ]] || [[ "$EE_DEVICE" == "RG351V" ]] || [[ "$EE_DEVICE" == "GameForce" ]]; then
   SS_DEVICE=1
   clear > /dev/console
   echo "Loading ..." > /dev/console
