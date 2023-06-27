@@ -2,7 +2,7 @@ diff --git a/Source/controls/devices/game_controller.cpp b/Source/controls/devic
 index 1faf94ba..61b69f10 100644
 --- a/Source/controls/devices/game_controller.cpp
 +++ b/Source/controls/devices/game_controller.cpp
-@@ -48,13 +48,13 @@ ControllerButton GameController::ToControllerButton(const SDL_Event &event)
+@@ -50,13 +50,13 @@ ControllerButton GameController::ToControllerButton(const SDL_Event &event)
  	case SDL_CONTROLLERBUTTONUP:
  		switch (event.cbutton.button) {
  		case SDL_CONTROLLER_BUTTON_A:
@@ -20,7 +20,7 @@ index 1faf94ba..61b69f10 100644
  		case SDL_CONTROLLER_BUTTON_LEFTSTICK:
  			return ControllerButton_BUTTON_LEFTSTICK;
  		case SDL_CONTROLLER_BUTTON_RIGHTSTICK:
-@@ -90,13 +90,13 @@ SDL_GameControllerButton GameController::ToSdlGameControllerButton(ControllerBut
+@@ -92,13 +92,13 @@ SDL_GameControllerButton GameController::ToSdlGameControllerButton(ControllerBut
  		UNIMPLEMENTED();
  	switch (button) {
  	case ControllerButton_BUTTON_A:

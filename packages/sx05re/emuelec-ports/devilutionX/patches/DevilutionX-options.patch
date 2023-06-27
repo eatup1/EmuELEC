@@ -2,7 +2,7 @@ diff --git a/Source/options.cpp b/Source/options.cpp
 index 9e03df04..119d789e 100644
 --- a/Source/options.cpp
 +++ b/Source/options.cpp
-@@ -1130,7 +1130,7 @@ void OptionEntryLanguageCode::LoadFromIni(string_view category)
+@@ -1206,7 +1206,7 @@ void OptionEntryLanguageCode::LoadFromIni(string_view category)
  	}
  
  	LogVerbose("No suitable translation found");
@@ -11,7 +11,7 @@ index 9e03df04..119d789e 100644
  }
  void OptionEntryLanguageCode::SaveToIni(string_view category) const
  {
-@@ -1155,7 +1155,8 @@ void OptionEntryLanguageCode::CheckLanguagesAreInitialized() const
+@@ -1231,7 +1231,8 @@ void OptionEntryLanguageCode::CheckLanguagesAreInitialized() const
  	languages.emplace_back("it", "Italiano");
  
  	if (HaveExtraFonts()) {
@@ -21,7 +21,7 @@ index 9e03df04..119d789e 100644
  		languages.emplace_back("ko", "한국어");
  	}
  
-@@ -1167,8 +1168,9 @@ void OptionEntryLanguageCode::CheckLanguagesAreInitialized() const
+@@ -1243,8 +1244,9 @@ void OptionEntryLanguageCode::CheckLanguagesAreInitialized() const
  	languages.emplace_back("uk", "Українська");
  
  	if (HaveExtraFonts()) {
