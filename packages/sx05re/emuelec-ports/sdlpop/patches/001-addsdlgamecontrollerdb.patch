@@ -1,6 +1,6 @@
 --- a/src/seg009.c
 +++ b/src/seg009.c
-@@ -860,6 +860,13 @@
+@@ -960,6 +960,13 @@
  			if (sdl_controller_ == NULL) {
  				is_joyst_mode = 0;
  			} else {
