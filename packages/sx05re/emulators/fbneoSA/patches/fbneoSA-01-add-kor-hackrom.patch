@@ -1,5 +1,5 @@
 diff --git a/src/burn/drv/capcom/d_cps1.cpp b/src/burn/drv/capcom/d_cps1.cpp
-index b37304115..03e6ae4b3 100644
+index 1bdda4ca0..082625b1e 100644
 --- a/src/burn/drv/capcom/d_cps1.cpp
 +++ b/src/burn/drv/capcom/d_cps1.cpp
 @@ -16521,6 +16521,31 @@ static const struct GameConfig ConfigTable[] =
@@ -2226,19 +2226,19 @@ index 9ce0e9b9f..4e04df306 100644
 +	&CpsRecalcPal, 0x1000, 384, 224, 4, 3
 +};
 diff --git a/src/burn/drv/irem/d_m92.cpp b/src/burn/drv/irem/d_m92.cpp
-index 0d79f3442..795c0a721 100644
+index 0d79f3442..58d90a10b 100644
 --- a/src/burn/drv/irem/d_m92.cpp
 +++ b/src/burn/drv/irem/d_m92.cpp
 @@ -4254,7 +4254,7 @@ struct BurnDriver BurnDrvSkingame2 = {
  
  
  // Ninja Baseball Batman (One Key Edition, Hack)
--// Modified by 哆啦A梦
+-// Modified by 哆啦A�?
 +// Modified by 哆啦A�?
  
  static struct BurnRomInfo nbbatmanoRomDesc[] = {
  	{ "a1_-h0o-c.ic34",		0x040000, 0xad7e9c69, 1 | BRF_PRG | BRF_ESS }, //  0 V33 Code
-@@ -4295,3 +4295,94 @@ struct BurnDriver BurnDrvNbbatmano = {
+@@ -4295,3 +4295,138 @@ struct BurnDriver BurnDrvNbbatmano = {
  	320, 240, 4, 3
  };
  
@@ -2246,6 +2246,50 @@ index 0d79f3442..795c0a721 100644
 +//============================================================
 +// Add Hack Roms (by DsNo)
 +//============================================================
++
++// Hook (Korean Translation)
++
++static struct BurnRomInfo hookkRomDesc[] = {
++	{ "hook_-h0-k.ic25",	0x040000, 0xfd07a242, 1 | BRF_PRG | BRF_ESS }, //  0 V33 Code
++	{ "hook_-l0-k.ic38",	0x040000, 0x95200fad, 1 | BRF_PRG | BRF_ESS }, //  1
++	{ "hook_-h1-.ic24",		0x020000, 0x264ba1f0, 1 | BRF_PRG | BRF_ESS }, //  2
++	{ "hook_-l1-.ic37",		0x020000, 0xf9913731, 1 | BRF_PRG | BRF_ESS }, //  3
++
++	{ "hook_-sh0-.ic27",	0x010000, 0x86a4e56e, 2 | BRF_PRG | BRF_ESS }, //  4 V30 Code
++	{ "hook_-sl0-.ic28",	0x010000, 0x10fd9676, 2 | BRF_PRG | BRF_ESS }, //  5
++
++	{ "hook_-c0-k.ic4",		0x040000, 0xeda80f88, 3 | BRF_GRA },           //  6 Background Tiles
++	{ "hook_-c1-k.ic3",		0x040000, 0xcd4896f8, 3 | BRF_GRA },           //  7
++	{ "hook_-c2-k.ic2",		0x040000, 0xe1dc2199, 3 | BRF_GRA },           //  8
++	{ "hook_-c3-k.ic1",		0x040000, 0x1ced76e5, 3 | BRF_GRA },           //  9
++
++	{ "hook_-000-.ic33",	0x100000, 0xccceac30, 4 | BRF_GRA },           // 10 Sprites
++	{ "hook_-010-.ic34",	0x100000, 0x8ac8da67, 4 | BRF_GRA },           // 11
++	{ "hook_-020-.ic35",	0x100000, 0x8847af9a, 4 | BRF_GRA },           // 12
++	{ "hook_-030-.ic36",	0x100000, 0x239e877e, 4 | BRF_GRA },           // 13
++
++	{ "hook_-da-.ic11",		0x080000, 0x88cd0212, 5 | BRF_SND },           // 14 Irem GA20 Samples
++
++	{ "m92_a-3m-.ic11",		0x000117, 0xfc718efe, 0 | BRF_OPT },           // 15 PLDs
++	{ "m92_a-7j-.ic41",		0x000117, 0x5730b25a, 0 | BRF_OPT },           // 16
++	{ "m92_a-9j-.ic51",		0x000117, 0x92d477cf, 0 | BRF_OPT },           // 17
++	{ "m92_d-3j-c.ic26",	0x000117, 0x9ec35216, 0 | BRF_OPT },           // 18
++	{ "m92_d-3p-.ic29",		0x000117, 0x3f336904, 0 | BRF_OPT },           // 19
++};
++
++STD_ROM_PICK(hookk)
++STD_ROM_FN(hookk)
++
++struct BurnDriver BurnDrvHookk = {
++	"hookk", "hook", NULL, NULL, "1992",
++	"Hook (Korean Translation)\0", NULL, "Irem", "Irem M92",
++	L"\uD6C4\uD06C (\uD55C\uAD6D\uC5B4 \uBC88\uC5ED)\0Hook (Korean Translation)\0", NULL, NULL, NULL,
++	BDF_GAME_WORKING | BDF_CLONE | BDF_HACK | BDF_HISCORE_SUPPORTED, 4, HARDWARE_IREM_M92, GBF_SCRFIGHT, 0,
++	NULL, hookkRomInfo, hookkRomName, NULL, NULL, NULL, NULL, p4CommonInputInfo, HookDIPInfo,
++	hookInit, DrvExit, DrvFrame, DrvReDraw, DrvScan, &bRecalcPalette, 0x800,
++	320, 240, 4, 3
++};
++
 +
 +// Undercover Cops (Korean Translation)
 +
@@ -2334,10 +2378,10 @@ index 0d79f3442..795c0a721 100644
 +	320, 240, 4, 3
 +};
 diff --git a/src/burn/drv/megadrive/d_megadrive.cpp b/src/burn/drv/megadrive/d_megadrive.cpp
-index 90db2c58b..1fa8e8d9d 100644
+index a2d8b8932..546f38e32 100644
 --- a/src/burn/drv/megadrive/d_megadrive.cpp
 +++ b/src/burn/drv/megadrive/d_megadrive.cpp
-@@ -55127,3 +55127,461 @@ struct BurnDriver BurnDrvmd_tkzs = {
+@@ -55180,3 +55180,461 @@ struct BurnDriver BurnDrvmd_tkzs = {
  	&bMegadriveRecalcPalette, 0x100, 320, 224, 4, 3
  };
  
@@ -2800,154 +2844,154 @@ index 90db2c58b..1fa8e8d9d 100644
 +	&bMegadriveRecalcPalette, 0x100, 320, 224, 4, 3
 +};
 diff --git a/src/burn/drv/neogeo/d_neogeo.cpp b/src/burn/drv/neogeo/d_neogeo.cpp
-index 1fc2e5e27..14ac7beb4 100644
+index 559c14ba6..0cf96e358 100644
 --- a/src/burn/drv/neogeo/d_neogeo.cpp
 +++ b/src/burn/drv/neogeo/d_neogeo.cpp
-@@ -21138,7 +21138,7 @@ struct BurnDriver BurnDrvkf2k3ps2sp = {
+@@ -21501,7 +21501,7 @@ struct BurnDriver BurnDrvkf2k3ps2sp = {
  
  
  // Metal Slug Unity(Added Timer Ver. 2021-02-05)
--// Modified by Alice愛麗絲, 合金弹头爱克斯, CXZInc
+-// Modified by Alice愛麗�?, 合金弹头爱克�?, CXZInc
 +// Modified by Alice愛麗�?, 合金弹头爱克�?, CXZInc
  
  static struct BurnRomInfo mslugunityRomDesc[] = {
  	{ "201-p1uni.p1",	0x200000, 0xa3186dfd, 1 | BRF_ESS | BRF_PRG }, //  0 68K code
-@@ -21160,7 +21160,7 @@ struct BurnDriver BurnDrvmslugunity = {
+@@ -21523,7 +21523,7 @@ struct BurnDriver BurnDrvmslugunity = {
  };
  
  
--// Metal Slug - Super Vehicle-001 (Modified by 合金弹头爱克斯, Hack)
+-// Metal Slug - Super Vehicle-001 (Modified by 合金弹头爱克�?, Hack)
 +// Metal Slug - Super Vehicle-001 (Modified by 合金弹头爱克�?, Hack)
  
  static struct BurnRomInfo mslugaksRomDesc[] = {
  	/* Multifunction - 20180430 */
-@@ -21237,7 +21237,7 @@ struct BurnDriver BurnDrvmslugaks = {
+@@ -21619,7 +21619,7 @@ struct BurnDriver BurnDrvmslugaks = {
  
  
  // Metal Slug 2 - Super Vehicle-001/II Unity (Added Timer Ver. 2021-01-22)
--// Modified by Alice愛麗絲, 合金弹头爱克斯, CXZInc
+-// Modified by Alice愛麗�?, 合金弹头爱克�?, CXZInc
 +// Modified by Alice愛麗�?, 合金弹头爱克�?, CXZInc
  
  static struct BurnRomInfo mslug2unityRomDesc[] = {
  	{ "241-p1uni.p1",	0x100000, 0x1562cf23, 1 | BRF_ESS | BRF_PRG }, //  0 68K code
-@@ -21261,7 +21261,7 @@ struct BurnDriver BurnDrvmslug2unity = {
+@@ -21643,7 +21643,7 @@ struct BurnDriver BurnDrvmslug2unity = {
  
  
- // Metal Slug 2 - Super Vehicle-001/II (Friendly Fire FC2, Hack)
--// Modified by CXZInc, Alice愛麗絲
+ // Metal Slug 2 - Friendly Fire FC2 (Hack)
+-// Modified by CXZInc, Alice愛麗�?
 +// Modified by CXZInc, Alice愛麗�?
  // 20210415
  
  static struct BurnRomInfo mslug2fmRomDesc[] = {
-@@ -21317,7 +21317,7 @@ struct BurnDriver BurnDrvmslug2dd = {
+@@ -21699,7 +21699,7 @@ struct BurnDriver BurnDrvmslug2dd = {
  };
  
  
--// Metal Slug 2 - Super Vehicle-001/II (Modified by 合金弹头爱克斯, Hack)
+-// Metal Slug 2 - Super Vehicle-001/II (Modified by 合金弹头爱克�?, Hack)
 +// Metal Slug 2 - Super Vehicle-001/II (Modified by 合金弹头爱克�?, Hack)
  
  static struct BurnRomInfo mslug2aksRomDesc[] = {
  	/* Multifunction - 20170509 */
-@@ -21448,7 +21448,7 @@ struct BurnDriver BurnDrvmslug2eg = {
+@@ -21857,7 +21857,7 @@ struct BurnDriver BurnDrvmslug2eg = {
  
  
  // Metal Slug X - Super Vehicle-001 Unity (Added Timer Ver. 2021-01-23)
--// Modified by Alice愛麗絲, 合金弹头爱克斯, CXZInc
+-// Modified by Alice愛麗�?, 合金弹头爱克�?, CXZInc
 +// Modified by Alice愛麗�?, 合金弹头爱克�?, CXZInc
  
  static struct BurnRomInfo mslugxunityRomDesc[] = {
  	{ "250-p1uni.p1",	0x100000, 0x36102d34, 1 | BRF_ESS | BRF_PRG }, //  0 68K code
-@@ -21574,7 +21574,7 @@ struct BurnDriver BurnDrvmslugx2r = {
+@@ -22051,7 +22051,7 @@ struct BurnDriver BurnDrvmslugx2r = {
  };
  
  
--// Metal Slug X - Super Vehicle-001 (Modified by 合金弹头爱克斯, Hack)
+-// Metal Slug X - Super Vehicle-001 (Modified by 合金弹头爱克�?, Hack)
 +// Metal Slug X - Super Vehicle-001 (Modified by 合金弹头爱克�?, Hack)
  
  static struct BurnRomInfo mslugxaksRomDesc[] = {
  	/* Legendary - 20230311*/
-@@ -21700,7 +21700,7 @@ struct BurnDriver BurnDrvmslugxaks = {
+@@ -22204,7 +22204,7 @@ struct BurnDriver BurnDrvmslugxaks = {
  
  
  // Metal Slug 3 Unity (Added Timer Ver. 2021-02-13)
--// Modified by Alice愛麗絲, 合金弹头爱克斯, CXZInc
+-// Modified by Alice愛麗�?, 合金弹头爱克�?, CXZInc
 +// Modified by Alice愛麗�?, 合金弹头爱克�?, CXZInc
  
  static struct BurnRomInfo mslug3unityRomDesc[] = {
  	/* The SMA for this release has a green colour marking; the older revision has a white colour marking */
-@@ -21757,7 +21757,7 @@ struct BurnDriver BurnDrvmslug3i = {
+@@ -22261,7 +22261,7 @@ struct BurnDriver BurnDrvmslug3i = {
  
  
  // Metal Slug 3 (1v2 Mode, Hack)
--// Modified by 合金弹头爱克斯
+-// Modified by 合金弹头爱克�?
 +// Modified by 合金弹头爱克�?
  // 20190511
  
  static struct BurnRomInfo mslug31v2RomDesc[] = {
-@@ -22101,7 +22101,7 @@ struct BurnDriver BurnDrvmslug3cb = {
+@@ -22658,7 +22658,7 @@ struct BurnDriver BurnDrvmslug3cb = {
  };
  
  
--// Metal Slug 3 (Modified by 合金弹头爱克斯, Hack)
+-// Metal Slug 3 (Modified by 合金弹头爱克�?, Hack)
 +// Metal Slug 3 (Modified by 合金弹头爱克�?, Hack)
  
  static struct BurnRomInfo mslug3aksRomDesc[] = {
- 	/* Legendary - 20230604 */
-@@ -22201,7 +22201,7 @@ struct BurnDriver BurnDrvmslug3aks = {
+ 	/* Legendary - 20230612 */
+@@ -22781,7 +22781,7 @@ struct BurnDriver BurnDrvmslug3aks = {
  
  
  // Metal Slug 4 Unity (Added Timer Ver. 2021-01-30)
--// Modified by Alice愛麗絲, 合金弹头爱克斯, CXZInc
+-// Modified by Alice愛麗�?, 合金弹头爱克�?, CXZInc
 +// Modified by Alice愛麗�?, 合金弹头爱克�?, CXZInc
  
  static struct BurnRomInfo mslug4unityRomDesc[] = {
  	{ "263-p1uni.p1",	0x100000, 0xef3501b6, 1 | BRF_ESS | BRF_PRG }, //  0 68K code
-@@ -22354,7 +22354,7 @@ static struct BurnRomInfo mslug4aRomDesc[] = {
+@@ -22953,7 +22953,7 @@ static struct BurnRomInfo mslug4aRomDesc[] = {
  
  	MSLUG4_DECRYPTION_COMPONENT
  
--	/* 20th Anniversary (Level patch by Alice愛麗絲) - 20220706 */
+-	/* 20th Anniversary (Level patch by Alice愛麗�?) - 20220706 */
 +	/* 20th Anniversary (Level patch by Alice愛麗�?) - 20220706 */
  	{ "263-p1a.ep1",	0x100000, 0xb342c468, 1 | BRF_ESS | BRF_PRG }, // 14 68K code diff patch
  	{ "263-p2a.ep2",	0x400000, 0x67a9c85c, 1 | BRF_ESS | BRF_PRG }, // 15
  
-@@ -22452,7 +22452,7 @@ struct BurnDriver BurnDrvmslug4dd = {
+@@ -23083,7 +23083,7 @@ struct BurnDriver BurnDrvmslug4dd = {
  };
  
  
--// Metal Slug 4 (Modified by 合金弹头爱克斯, Hack)
+-// Metal Slug 4 (Modified by 合金弹头爱克�?, Hack)
 +// Metal Slug 4 (Modified by 合金弹头爱克�?, Hack)
  
  static struct BurnRomInfo mslug4aksRomDesc[] = {
  	/* Multifunction - 20171225 */
-@@ -22551,7 +22551,7 @@ struct BurnDriver BurnDrvmslug4c = {
+@@ -23225,7 +23225,7 @@ struct BurnDriver BurnDrvmslug4c = {
  
  
  // Metal Slug 5 Unity (Added Timer Ver. 2021-04-23)
--// Modified by Alice愛麗絲, 合金弹头爱克斯, CXZInc
+-// Modified by Alice愛麗�?, 合金弹头爱克�?, CXZInc
 +// Modified by Alice愛麗�?, 合金弹头爱克�?, CXZInc
  
  static struct BurnRomInfo mslug5unityRomDesc[] = {
  	/* Encrypted */
-@@ -22595,7 +22595,7 @@ struct BurnDriver BurnDrvmslug5unity = {
+@@ -23269,7 +23269,7 @@ struct BurnDriver BurnDrvmslug5unity = {
  
  
  // Metal Slug 5 (Extend Ver. 2022, Hack)
--// Modified by WillNie & 下水道的美yin鱼 / LONGKUI23 / etc
+-// Modified by WillNie & 下水道的美yin�? / LONGKUI23 / etc
 +// Modified by WillNie & 下水道的美yin�? / LONGKUI23 / etc
  
  static struct BurnRomInfo mslug5exRomDesc[] = {
  	/* Extend v1.2 - 20221002 */
-@@ -22773,7 +22773,7 @@ struct BurnDriver BurnDrvmslug5cb = {
+@@ -23485,7 +23485,7 @@ struct BurnDriver BurnDrvmslug5cb = {
  };
  
  
--// Metal Slug 5 (Modified by 合金弹头爱克斯, Hack)
+-// Metal Slug 5 (Modified by 合金弹头爱克�?, Hack)
 +// Metal Slug 5 (Modified by 合金弹头爱克�?, Hack)
  
  static struct BurnRomInfo mslug5aksRomDesc[] = {
  	/* Stone Turtle - 20230518 */
-@@ -24687,3 +24687,2887 @@ struct BurnDriver BurnDrvmslug3x = {
+@@ -25525,3 +25525,2887 @@ struct BurnDriver BurnDrvmslug3x = {
  	mslug3xInit, NeoExit, NeoFrame, NeoRender, NeoScan, &NeoRecalcPalette,
  	0x1000, 304, 224, 4, 3
  };
@@ -5835,6 +5879,88 @@ index 1fc2e5e27..14ac7beb4 100644
 +	kof99ndInit, NeoExit, NeoFrame, NeoRender, NeoScan, &NeoRecalcPalette,
 +	0x1000, 304, 224, 4, 3
 +};
+diff --git a/src/burn/drv/pgm/d_pgm.cpp b/src/burn/drv/pgm/d_pgm.cpp
+index 3b1585638..ac7d49b1a 100644
+--- a/src/burn/drv/pgm/d_pgm.cpp
++++ b/src/burn/drv/pgm/d_pgm.cpp
+@@ -2164,7 +2164,7 @@ static struct BurnRomInfo olds100aRomDesc[] = {
+ 	{ "pgm_m0500.u1",	   			0x0200000, 0x37928cdd, 5 | BRF_SND },			// 18 Samples
+ 	
+ #if !defined (ROM_VERIFY)
+-	// ROM label SP 西遊�? DATA on sticker
++	// ROM label SP 西遊�? DATA on sticker
+ 	{ "sp_data.u6",	   				0x010000, 0xe7613dda, 9 | BRF_PRG | BRF_ESS },  // 15 Protection Rom
+ #else
+ 	{ "ram_dump",	   				0x040000, 0x280cfb4e, 0 | BRF_OPT },			// 16 Dump of RAM shared with protection device
+@@ -3063,8 +3063,8 @@ struct BurnDriver BurnDrvMartmast = {
+ 
+ /* IGS PCB-0293-01 MADE IN TAIWAN
+    IGS PCB-0292-00 MADE IN TAIWAN
+-   形意�? V102_16M on sticker IGS PCB-0301-00 MADE IN TAIWAN
+-   形意�? V104_32M on sticker IGS PCB N0-0268-2 MADE IN TAIWAN */
++   形意�? V102_16M on sticker IGS PCB-0301-00 MADE IN TAIWAN
++   形意�? V104_32M on sticker IGS PCB N0-0268-2 MADE IN TAIWAN */
+ 
+ static struct BurnRomInfo martmast104cRomDesc[] = {
+ 	{ "v104_32m.u9",   				0x0400000, 0xcfd9dff4, 1 | BRF_PRG | BRF_ESS }, //  0 68K Code
+@@ -5396,13 +5396,13 @@ static void kovytzysoundpatch()
+ 	ips_sound_patch_data [encrypted]
+ 
+ 	68krom[0x90faa] = 0x3857;  // 0x754e
+-	68krom[0x90fd2] = 0x1c5b;  // 0x754e 八阵�?
++	68krom[0x90fd2] = 0x1c5b;  // 0x754e 八阵�?
+ 	68krom[0xf6eea] = 0x1895;  // 0x714e
+ 	68krom[0xf6eec] = 0x100d;  // 0x714e
+ 	68krom[0xf6fb4] = 0x14ed;  // 0x714e
+ */
+ 	*((UINT16*)(PGM68KROM + 0x90faa)) = BURN_ENDIAN_SWAP_INT16(0x4e75);
+-//	*((UINT16*)(PGM68KROM + 0x90fd2)) = BURN_ENDIAN_SWAP_INT16(0x4e75);  // 八阵�?
++//	*((UINT16*)(PGM68KROM + 0x90fd2)) = BURN_ENDIAN_SWAP_INT16(0x4e75);  // 八阵�?
+ 	*((UINT16*)(PGM68KROM + 0xf6eea)) = BURN_ENDIAN_SWAP_INT16(0x4e71);
+ 	*((UINT16*)(PGM68KROM + 0xf6eec)) = BURN_ENDIAN_SWAP_INT16(0x4e71);
+ 	*((UINT16*)(PGM68KROM + 0xf6fb4)) = BURN_ENDIAN_SWAP_INT16(0x4e71);
+@@ -5418,10 +5418,10 @@ static INT32 kovytzyInit()
+ }
+ 
+ struct BurnDriver BurnDrvkovytzy = {
+-	"kovytzy", NULL, "pgm", NULL, "1999",
++	"kovytzy", "kovshp", "pgm", NULL, "1999",
+ 	"Knights of Valour: Yi Tong Zhong Yuan / Sangoku Senki: Yi Tong Zhong Yuan (V201, China)\0", "Imperfect Protection Emulation", "IGS", "PolyGameMaster",
+ 	L"Knights of Valour: Yi Tong Zhong Yuan\0\u4E09\u56FD\u6218\u7EAA\0\u4E00\u7EDF\u4E2D\u539F (V201, China)\0", NULL, NULL, NULL,
+-	BDF_GAME_WORKING, 4, HARDWARE_IGS_PGM | HARDWARE_IGS_USE_ARM_CPU, GBF_SCRFIGHT, 0,
++	BDF_GAME_WORKING | BDF_CLONE, 4, HARDWARE_IGS_PGM | HARDWARE_IGS_USE_ARM_CPU, GBF_SCRFIGHT, 0,
+ 	NULL, kovytzyRomInfo, kovytzyRomName, NULL, NULL, NULL, NULL, pgmInputInfo, kovassgDIPInfo,
+ 	kovytzyInit, pgmExit, pgmFrame, pgmDraw, pgmScan, &nPgmPalRecalc, 0x900,
+ 	448, 224, 4, 3
+@@ -5475,7 +5475,7 @@ struct BurnDriver BurnDrvoldsplus = {
+ 
+ /* IGS PCB-0490-00-G7 MADE IN TAIWAN
+    IGS PCB-0491-00-GZ-A MADE IN TAIWAN
+-   PINK LABEL: 西游释厄�? - 群魔乱舞
++   PINK LABEL: 西游释厄�? - 群魔乱舞
+    SCREEN VER PIC: V203 CHINA
+    ROM TYPES: U10  ST  M27C322
+    CREDITS TO: "GC8TECH.COM" */
+@@ -7852,8 +7852,8 @@ struct BurnDriver BurnDrvEspgalbl = {
+ 	224, 448, 3, 4
+ };
+ 
+-// 西游释厄�? - 新群魔乱�?(修改�?)
+-// Modified by: 萧鱼�?, �?只狼, wzc123
++// 西游释厄�? - 新群魔乱�?(修改�?)
++// Modified by: 萧鱼�?, �?只狼, wzc123
+ // More info at: https://www.ppxclub.com/forum.php?mod=viewthread&tid=718724
+ 
+ static struct BurnRomInfo oldsplusnrRomDesc[] = {
+@@ -8719,7 +8719,7 @@ struct BurnDriver BurnDrvMarmatsc = {
+ 
+ 
+ // Oriental Legend 2 (One Key Edition, Hack)
+-// Hacked by 哆啦A�? 2021/10/28
++// Hacked by 哆啦A�? 2021/10/28
+ // https://www.ppxclub.com/forum.php?mod=viewthread&tid=702576&extra=page%3D1
+ 
+ static struct BurnRomInfo oldsplusokRomDesc[] = {
 diff --git a/src/burn/drv/pre90s/d_blktiger.cpp b/src/burn/drv/pre90s/d_blktiger.cpp
 index ba5d22890..a779f74e1 100644
 --- a/src/burn/drv/pre90s/d_blktiger.cpp
@@ -5892,7 +6018,7 @@ index ba5d22890..a779f74e1 100644
 +	256, 224, 4, 3
 +};
 diff --git a/src/burn/drv/pre90s/d_ginganin.cpp b/src/burn/drv/pre90s/d_ginganin.cpp
-index 82ffa5f2a..49b29bcb9 100644
+index f7edce419..621d3f9ae 100644
 --- a/src/burn/drv/pre90s/d_ginganin.cpp
 +++ b/src/burn/drv/pre90s/d_ginganin.cpp
 @@ -717,3 +717,47 @@ struct BurnDriver BurnDrvGinganina = {
@@ -6079,3 +6205,16 @@ index d67118e7e..c8894e2f3 100644
 +	TengaiInit, DrvExit, DrvFrame, DrvDraw, DrvScan, &PsikyoRecalcPalette, 0x1000,
 +	320, 224, 4, 3
 +};
+diff --git a/src/burn/drv/toaplan/d_toaplan1.cpp b/src/burn/drv/toaplan/d_toaplan1.cpp
+index 338d1114c..0a00bb2f6 100644
+--- a/src/burn/drv/toaplan/d_toaplan1.cpp
++++ b/src/burn/drv/toaplan/d_toaplan1.cpp
+@@ -1050,7 +1050,7 @@ static struct BurnDIPInfo OutzoneDIPList[]=
+ 	{0x17, 0x01, 0x40, 0x00, "Off"			},
+ 	{0x17, 0x01, 0x40, 0x40, "On"			},
+ 
+-	{0   , 0xfe, 0   ,    8, "Region"		},
++	{0   , 0xfe, 0   ,    9, "Region"		},
+ 	{0x18, 0x01, 0x0f, 0x00, "Japan"		},
+ 	{0x18, 0x01, 0x0f, 0x01, "USA"			},
+ 	{0x18, 0x01, 0x0f, 0x02, "Europe"		},
