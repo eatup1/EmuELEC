@@ -19,7 +19,8 @@
 ################################################################################
 
 PKG_NAME="bsnes_hd"
-PKG_VERSION="04821703aefdc909a4fd66d168433fcac06c2ba7"
+PKG_VERSION="4f4e22e83a92e2e3999e5792f52085e1ecd662e2"
+PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="GPLv3"
 PKG_SITE="https://github.com/DerKoun/bsnes-hd"
