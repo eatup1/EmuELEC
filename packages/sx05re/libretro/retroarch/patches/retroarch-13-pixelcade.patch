@@ -1,6 +1,6 @@
 --- a/cheevos/cheevos.c
 +++ b/cheevos/cheevos.c
-@@ -329,6 +329,12 @@
+@@ -335,6 +335,12 @@
  
     CHEEVOS_LOG(RCHEEVOS_TAG "Awarding achievement %u: %s (%s)\n",
           cheevo->id, cheevo->title, cheevo->description);
@@ -12,4 +12,4 @@
 +    system(pixelcade);
  
     /* Show the on screen message. */
- #if defined(HAVE_GFX_WIDGETS)
+    if (settings->bools.cheevos_visibility_unlock)

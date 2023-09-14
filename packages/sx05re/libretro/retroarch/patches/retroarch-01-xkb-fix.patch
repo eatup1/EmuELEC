@@ -19,7 +19,7 @@ index bcdacb60a6..d2f00114bd 100644
  #endif
  #endif
  
-@@ -1422,7 +1422,7 @@
+@@ -4108,7 +4108,7 @@
     /* Force xkb_handling on Lakka */
     udev->xkb_handling = true;
  #else

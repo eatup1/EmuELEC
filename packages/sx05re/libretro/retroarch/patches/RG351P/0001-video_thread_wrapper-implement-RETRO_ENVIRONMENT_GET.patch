@@ -12,16 +12,16 @@ diff --git a/gfx/video_thread_wrapper.c b/gfx/video_thread_wrapper.c
 index 9052130198..36028a6ec4 100644
 --- a/gfx/video_thread_wrapper.c
 +++ b/gfx/video_thread_wrapper.c
-@@ -612,7 +612,7 @@
+@@ -626,7 +626,7 @@
        unsigned copy_stride = width *
           (thr->info.rgb32 ? sizeof(uint32_t) : sizeof(uint16_t));
  
 -      if (src)
 +      if (src && src != dst)
        {
-          unsigned h;
-          for (h = 0; h < height; h++, src += pitch, dst += copy_stride)
-@@ -1248,6 +1248,20 @@
+          int i; /* TODO/FIXME - increment counter never meaningfully used */
+          for (i = 0; i < (int)height; i++, src += pitch, dst += copy_stride)
+@@ -1256,6 +1256,20 @@
        return thr->poke->get_flags(thr->driver_data);
  
     return 0;
@@ -42,7 +42,7 @@ index 9052130198..36028a6ec4 100644
  }
  
  static const video_poke_interface_t thread_poke = {
-@@ -1270,7 +1284,7 @@
+@@ -1278,7 +1292,7 @@
     thread_show_mouse,
     thread_grab_mouse_toggle,
     thread_get_current_shader,

@@ -1,6 +1,6 @@
 --- a/frontend/drivers/platform_unix.c
 +++ b/frontend/drivers/platform_unix.c
-@@ -1331,12 +1331,17 @@
+@@ -1292,12 +1292,17 @@
        free(buffer);
     }
  
@@ -19,7 +19,7 @@
  }
  
  #endif
-@@ -2019,13 +2024,13 @@
+@@ -1982,13 +1987,13 @@
  
     android_app_destroy(android_app);
  #endif
