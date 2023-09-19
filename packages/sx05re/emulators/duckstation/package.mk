@@ -34,9 +34,6 @@ pre_configure_target() {
 	                         -DHAVE_EGL=ON \
 	                         ${EXTRA_OPTS}"
 
-	# nogui_frontend dep headers
-	cp -rf ${PKG_BUILD}/dep/vulkan/include/vulkan/ ${PKG_BUILD}/src/common/vulkan/vulkan/
-
 if [ "${DEVICE}" == "Amlogic-old" ]; then
 	cp -rf $(get_build_dir libevdev)/include/linux/linux/input-event-codes.h ${SYSROOT_PREFIX}/usr/include/linux/
 fi

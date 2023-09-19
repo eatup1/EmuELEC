@@ -2,18 +2,18 @@ diff --git a/src/common/file_system.cpp b/src/common/file_system.cpp
 index 6a24732..a287703 100644
 --- a/src/common/file_system.cpp
 +++ b/src/common/file_system.cpp
-@@ -1553,6 +1553,8 @@
+@@ -1881,6 +1881,8 @@
  
- std::string FileSystem::GetProgramPath()
+ std::string GetProgramPath()
  {
 +  return "/emuelec/configs/duckstation";
 +
    std::wstring buffer;
    buffer.resize(MAX_PATH);
  
-@@ -2041,6 +2043,8 @@
+@@ -2327,6 +2329,8 @@
  
- std::string FileSystem::GetProgramPath()
+ std::string GetProgramPath()
  {
 +  return "/emuelec/configs/duckstation";
 +

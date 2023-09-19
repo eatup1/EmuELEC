@@ -2,7 +2,7 @@ diff --git a/src/duckstation-qt/qthostinterface.cpp b/src/duckstation-qt/qthosti
 index 8052278..4f338d7 100644
 --- a/src/duckstation-qt/qthostinterface.cpp
 +++ b/src/duckstation-qt/qthostinterface.cpp
-@@ -137,7 +137,7 @@ void QtHostInterface::installTranslator()
+@@ -138,7 +138,7 @@ void QtHostInterface::installTranslator()
    const QString language(QString::fromStdString(GetStringSettingValue("Main", "Language", "en")));
  
    // install the base qt translation first
