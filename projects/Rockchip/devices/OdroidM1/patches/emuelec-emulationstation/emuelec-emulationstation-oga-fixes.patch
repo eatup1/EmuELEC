@@ -1,6 +1,6 @@
 --- a/es-app/src/FileData.cpp
 +++ b/es-app/src/FileData.cpp
-@@ -658,9 +658,6 @@
+@@ -669,9 +669,6 @@
  	VolumeControl::getInstance()->deinit();
  
  	bool hideWindow = Settings::getInstance()->getBool("HideWindow");
