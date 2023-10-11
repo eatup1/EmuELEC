@@ -2068,7 +2068,7 @@ index 3b1127470..9e77ce45a 100644
  
  
  // Ninja Baseball Batman (One Key Edition, Hack)
--// Modified by 哆啦A�?
+-// Modified by 哆啦A梦
 +// Modified by 哆啦A�?
  
  static struct BurnRomInfo nbbatmanoRomDesc[] = {
@@ -2704,7 +2704,7 @@ index 8f13647e6..5e1f7f232 100644
  
  
  // Metal Slug Unity(Added Timer Ver. 2021-02-05)
--// Modified by Alice愛麗�?, 合金弹头爱克�?, CXZInc
+-// Modified by Alice愛麗絲, 合金弹头爱克斯, CXZInc
 +// Modified by Alice愛麗�?, 合金弹头爱克�?, CXZInc
  
  static struct BurnRomInfo mslugunityRomDesc[] = {
@@ -2713,7 +2713,7 @@ index 8f13647e6..5e1f7f232 100644
  };
  
  
--// Metal Slug - Super Vehicle-001 (Modified by 合金弹头爱克�?, Hack)
+-// Metal Slug - Super Vehicle-001 (Modified by 合金弹头爱克斯, Hack)
 +// Metal Slug - Super Vehicle-001 (Modified by 合金弹头爱克�?, Hack)
  
  static struct BurnRomInfo mslugaksRomDesc[] = {
@@ -2722,7 +2722,7 @@ index 8f13647e6..5e1f7f232 100644
  
  
  // Metal Slug 2 - Super Vehicle-001/II Unity (Added Timer Ver. 2021-01-22)
--// Modified by Alice愛麗�?, 合金弹头爱克�?, CXZInc
+-// Modified by Alice愛麗絲, 合金弹头爱克斯, CXZInc
 +// Modified by Alice愛麗�?, 合金弹头爱克�?, CXZInc
  
  static struct BurnRomInfo mslug2unityRomDesc[] = {
@@ -2731,7 +2731,7 @@ index 8f13647e6..5e1f7f232 100644
  
  
  // Metal Slug 2 - Friendly Fire FC2 (Hack)
--// Modified by CXZInc, Alice愛麗�?
+-// Modified by CXZInc, Alice愛麗絲
 +// Modified by CXZInc, Alice愛麗�?
  // 20210415
  
@@ -2740,7 +2740,7 @@ index 8f13647e6..5e1f7f232 100644
  };
  
  
--// Metal Slug 2 - Super Vehicle-001/II (Modified by 合金弹头爱克�?, Hack)
+-// Metal Slug 2 - Super Vehicle-001/II (Modified by 合金弹头爱克斯, Hack)
 +// Metal Slug 2 - Super Vehicle-001/II (Modified by 合金弹头爱克�?, Hack)
  
  static struct BurnRomInfo mslug2aksRomDesc[] = {
@@ -2749,7 +2749,7 @@ index 8f13647e6..5e1f7f232 100644
  
  
  // Metal Slug X - Super Vehicle-001 Unity (Added Timer Ver. 2021-01-23)
--// Modified by Alice愛麗�?, 合金弹头爱克�?, CXZInc
+-// Modified by Alice愛麗絲, 合金弹头爱克斯, CXZInc
 +// Modified by Alice愛麗�?, 合金弹头爱克�?, CXZInc
  
  static struct BurnRomInfo mslugxunityRomDesc[] = {
@@ -2758,7 +2758,7 @@ index 8f13647e6..5e1f7f232 100644
  };
  
  
--// Metal Slug X - Super Vehicle-001 (Modified by 合金弹头爱克�?, Hack)
+-// Metal Slug X - Super Vehicle-001 (Modified by 合金弹头爱克斯, Hack)
 +// Metal Slug X - Super Vehicle-001 (Modified by 合金弹头爱克�?, Hack)
  
  static struct BurnRomInfo mslugxaksRomDesc[] = {
@@ -2767,7 +2767,7 @@ index 8f13647e6..5e1f7f232 100644
  
  
  // Metal Slug 3 Unity (Added Timer Ver. 2021-02-13)
--// Modified by Alice愛麗�?, 合金弹头爱克�?, CXZInc
+-// Modified by Alice愛麗絲, 合金弹头爱克斯, CXZInc
 +// Modified by Alice愛麗�?, 合金弹头爱克�?, CXZInc
  
  static struct BurnRomInfo mslug3unityRomDesc[] = {
@@ -2776,7 +2776,7 @@ index 8f13647e6..5e1f7f232 100644
  
  
  // Metal Slug 3 (1v2 Mode, Hack)
--// Modified by 合金弹头爱克�?
+-// Modified by 合金弹头爱克斯
 +// Modified by 合金弹头爱克�?
  // 20190511
  
@@ -2785,7 +2785,7 @@ index 8f13647e6..5e1f7f232 100644
  };
  
  
--// Metal Slug 3 (Modified by 合金弹头爱克�?, Hack)
+-// Metal Slug 3 (Modified by 合金弹头爱克斯, Hack)
 +// Metal Slug 3 (Modified by 合金弹头爱克�?, Hack)
  
  static struct BurnRomInfo mslug3aksRomDesc[] = {
@@ -2794,7 +2794,7 @@ index 8f13647e6..5e1f7f232 100644
  
  
  // Metal Slug 4 Unity (Added Timer Ver. 2021-01-30)
--// Modified by Alice愛麗�?, 合金弹头爱克�?, CXZInc
+-// Modified by Alice愛麗絲, 合金弹头爱克斯, CXZInc
 +// Modified by Alice愛麗�?, 合金弹头爱克�?, CXZInc
  
  static struct BurnRomInfo mslug4unityRomDesc[] = {
@@ -2803,7 +2803,7 @@ index 8f13647e6..5e1f7f232 100644
  
  	MSLUG4_DECRYPTION_COMPONENT
  
--	/* 20th Anniversary (Level patch by Alice愛麗�?) - 20220706 */
+-	/* 20th Anniversary (Level patch by Alice愛麗絲) - 20220706 */
 +	/* 20th Anniversary (Level patch by Alice愛麗�?) - 20220706 */
  	{ "263-p1a.ep1",	0x100000, 0xb342c468, 1 | BRF_ESS | BRF_PRG }, // 14 68K code diff patch
  	{ "263-p2a.ep2",	0x400000, 0x67a9c85c, 1 | BRF_ESS | BRF_PRG }, // 15
@@ -2812,7 +2812,7 @@ index 8f13647e6..5e1f7f232 100644
  };
  
  
--// Metal Slug 4 (Modified by 合金弹头爱克�?, Hack)
+-// Metal Slug 4 (Modified by 合金弹头爱克斯, Hack)
 +// Metal Slug 4 (Modified by 合金弹头爱克�?, Hack)
  
  static struct BurnRomInfo mslug4aksRomDesc[] = {
@@ -2821,7 +2821,7 @@ index 8f13647e6..5e1f7f232 100644
  
  
  // Metal Slug 5 Unity (Added Timer Ver. 2021-04-23)
--// Modified by Alice愛麗�?, 合金弹头爱克�?, CXZInc
+-// Modified by Alice愛麗絲, 合金弹头爱克斯, CXZInc
 +// Modified by Alice愛麗�?, 合金弹头爱克�?, CXZInc
  
  static struct BurnRomInfo mslug5unityRomDesc[] = {
@@ -2830,7 +2830,7 @@ index 8f13647e6..5e1f7f232 100644
  
  
  // Metal Slug 5 (Extend Ver. 2022, Hack)
--// Modified by WillNie & 下水道的美yin�? / LONGKUI23 / etc
+-// Modified by WillNie & 下水道的美yin鱼 / LONGKUI23 / etc
 +// Modified by WillNie & 下水道的美yin�? / LONGKUI23 / etc
  
  static struct BurnRomInfo mslug5exRomDesc[] = {
@@ -2839,7 +2839,7 @@ index 8f13647e6..5e1f7f232 100644
  };
  
  
--// Metal Slug 5 (Modified by 合金弹头爱克�?, Hack)
+-// Metal Slug 5 (Modified by 合金弹头爱克斯, Hack)
 +// Metal Slug 5 (Modified by 合金弹头爱克�?, Hack)
  
  static struct BurnRomInfo mslug5aksRomDesc[] = {
@@ -5740,7 +5740,7 @@ index 3b1585638..ac7d49b1a 100644
  	{ "pgm_m0500.u1",	   			0x0200000, 0x37928cdd, 5 | BRF_SND },			// 18 Samples
  	
  #if !defined (ROM_VERIFY)
--	// ROM label SP 西遊�? DATA on sticker
+-	// ROM label SP 西遊記 DATA on sticker
 +	// ROM label SP 西遊�? DATA on sticker
  	{ "sp_data.u6",	   				0x010000, 0xe7613dda, 9 | BRF_PRG | BRF_ESS },  // 15 Protection Rom
  #else
@@ -5749,8 +5749,8 @@ index 3b1585638..ac7d49b1a 100644
  
  /* IGS PCB-0293-01 MADE IN TAIWAN
     IGS PCB-0292-00 MADE IN TAIWAN
--   形意�? V102_16M on sticker IGS PCB-0301-00 MADE IN TAIWAN
--   形意�? V104_32M on sticker IGS PCB N0-0268-2 MADE IN TAIWAN */
+-   形意拳 V102_16M on sticker IGS PCB-0301-00 MADE IN TAIWAN
+-   形意拳 V104_32M on sticker IGS PCB N0-0268-2 MADE IN TAIWAN */
 +   形意�? V102_16M on sticker IGS PCB-0301-00 MADE IN TAIWAN
 +   形意�? V104_32M on sticker IGS PCB N0-0268-2 MADE IN TAIWAN */
  
@@ -5760,14 +5760,14 @@ index 3b1585638..ac7d49b1a 100644
  	ips_sound_patch_data [encrypted]
  
  	68krom[0x90faa] = 0x3857;  // 0x754e
--	68krom[0x90fd2] = 0x1c5b;  // 0x754e 八阵�?
+-	68krom[0x90fd2] = 0x1c5b;  // 0x754e 八阵图
 +	68krom[0x90fd2] = 0x1c5b;  // 0x754e 八阵�?
  	68krom[0xf6eea] = 0x1895;  // 0x714e
  	68krom[0xf6eec] = 0x100d;  // 0x714e
  	68krom[0xf6fb4] = 0x14ed;  // 0x714e
  */
  	*((UINT16*)(PGM68KROM + 0x90faa)) = BURN_ENDIAN_SWAP_INT16(0x4e75);
--//	*((UINT16*)(PGM68KROM + 0x90fd2)) = BURN_ENDIAN_SWAP_INT16(0x4e75);  // 八阵�?
+-//	*((UINT16*)(PGM68KROM + 0x90fd2)) = BURN_ENDIAN_SWAP_INT16(0x4e75);  // 八阵图
 +//	*((UINT16*)(PGM68KROM + 0x90fd2)) = BURN_ENDIAN_SWAP_INT16(0x4e75);  // 八阵�?
  	*((UINT16*)(PGM68KROM + 0xf6eea)) = BURN_ENDIAN_SWAP_INT16(0x4e71);
  	*((UINT16*)(PGM68KROM + 0xf6eec)) = BURN_ENDIAN_SWAP_INT16(0x4e71);
@@ -5789,7 +5789,7 @@ index 3b1585638..ac7d49b1a 100644
  
  /* IGS PCB-0490-00-G7 MADE IN TAIWAN
     IGS PCB-0491-00-GZ-A MADE IN TAIWAN
--   PINK LABEL: 西游释厄�? - 群魔乱舞
+-   PINK LABEL: 西游释厄传 - 群魔乱舞
 +   PINK LABEL: 西游释厄�? - 群魔乱舞
     SCREEN VER PIC: V203 CHINA
     ROM TYPES: U10  ST  M27C322
@@ -5798,8 +5798,8 @@ index 3b1585638..ac7d49b1a 100644
  	224, 448, 3, 4
  };
  
--// 西游释厄�? - 新群魔乱�?(修改�?)
--// Modified by: 萧鱼�?, �?只狼, wzc123
+-// 西游释厄传 - 新群魔乱舞(修改版)
+-// Modified by: 萧鱼儿, 一只狼, wzc123
 +// 西游释厄�? - 新群魔乱�?(修改�?)
 +// Modified by: 萧鱼�?, �?只狼, wzc123
  // More info at: https://www.ppxclub.com/forum.php?mod=viewthread&tid=718724
@@ -5809,7 +5809,7 @@ index 3b1585638..ac7d49b1a 100644
  
  
  // Oriental Legend 2 (One Key Edition, Hack)
--// Hacked by 哆啦A�? 2021/10/28
+-// Hacked by 哆啦A梦 2021/10/28
 +// Hacked by 哆啦A�? 2021/10/28
  // https://www.ppxclub.com/forum.php?mod=viewthread&tid=702576&extra=page%3D1
  

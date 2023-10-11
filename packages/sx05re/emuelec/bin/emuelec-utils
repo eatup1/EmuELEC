@@ -6,6 +6,11 @@
 # Source predefined functions and variables
 . /etc/profile
 
+function test() {
+    echo "success"
+    exit 1
+}
+
 function error() {
     if [ $(get_ee_setting system.language) == "ko_KR" ]; then
     text_viewer /emuelec/logs/emuelec.log -w -t "에러! ${2}" -f 24
