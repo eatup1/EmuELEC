@@ -145,7 +145,8 @@ Heart of Darkness:
     - ${PORT} --datapath=/storage/roms/ports/hode/ --savepath=/storage/roms/ports/hode/ >> $EE_LOG 2>&1
 
 Fallout:
-  description: Fallout A Post Nuclear Role Playing Game In a mid-22nd century post-apocalyptic and retro-futuristic world, decades after a global nuclear war between the United States and China, the Vault Dweller, inhabits the underground nuclear shelter Vault 13.
+  name: 폴아웃
+  description: 폴아웃 핵 이후의 롤플레잉 게임 22세기 중반 포스트 아포칼립스 와 복고풍 미래주의 세계, 미국 과 중국 사이의 글로벌 핵전쟁이 끝난 지 수십 년이 지난 지금, 볼트 드웰러(Vault Dweller)는 지하 핵 보호소인 볼트 13(Vault 13)에 거주하고 있습니다.
   rating: 0.9
   release_date: 19971007T000000
   developer: Interplay Productions
@@ -159,7 +160,8 @@ Fallout:
     - falloutce1.sh >> $EE_LOG 2>&1
 
 Fallout 2:
-  description: Fallout 2 is a sequel to Fallout, featuring similar graphics and game mechanics. The game story takes place in 2241, 80 years after the events of Fallout and 164 years after the atomic war which reduced the vast majority of the world to a nuclear wasteland. The player assumes the role of The Chosen One, the grandchild of the first game protagonist, and undertakes a quest to save their small village on the West Coast of the United States.
+  name: 폴아웃 2
+  description: 폴아웃 2는 폴아웃의 속편으로, 비슷한 그래픽과 게임 메커니즘이 특징입니다. 게임의 스토리는 Fallout 사건이 발생한 지 80년 후이자세계 대부분을 핵 황무지로 만든 핵전쟁이 발생한 지 164년 후인 2241년에 진행됩니다. 플레이어는 첫 번째 게임 주인공의 손자인 선택받은 자(The Chosen One)의 역할을 맡아 미국 서부 해안의 작은 마을을 구하기 위한 퀘스트를 수행하게 됩니다.
   rating: 0.9
   release_date: 19980930T000000
   developer: Black Isle Studios
