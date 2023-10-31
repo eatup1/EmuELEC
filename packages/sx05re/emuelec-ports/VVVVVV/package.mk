@@ -2,7 +2,7 @@
 # Copyright (C) 2020-present Shanti Gilbert (https://github.com/shantigilbert)
 
 PKG_NAME="VVVVVV"
-PKG_VERSION="b29f3e2fae63248f5d0f40af91cc0cb7594be8d7"
+PKG_VERSION="92f9940464ee71d042e8c674390893644d588977"
 PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="CUSTOM"
@@ -31,4 +31,5 @@ sed -i "s/fullscreen = false/fullscreen = true/" "${PKG_BUILD}/desktop_version/s
 makeinstall_target() {
   mkdir -p ${INSTALL}/usr/bin
   cp VVVVVV ${INSTALL}/usr/bin
+  cp $PKG_DIR/scripts/* $INSTALL/usr/bin
 }

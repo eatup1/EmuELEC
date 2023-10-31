@@ -290,9 +290,8 @@ VVVVVV:
   audio: "alsa"
   check_bios: VVVVVV
   commands:
-    - '# VVVVVV will complain about a missing gamecontrollerdb.txt unless we switch to this folder first'
-    - cd /storage/.config/SDL-GameControllerDB/
-    - ${PORT} >> $EE_LOG 2>&1
+    - /usr/bin/show_splash.sh gameloading "ports" "VVVVVV"
+    - run_vvvvvv.sh >> $EE_LOG 2>&1
 
 Duke Nukem:
   name: 듀크 뉴켐 3D
