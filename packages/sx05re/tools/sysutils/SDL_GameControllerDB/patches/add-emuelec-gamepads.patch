@@ -1,6 +1,6 @@
 --- a/gamecontrollerdb.txt
 +++ b/gamecontrollerdb.txt
-@@ -1,5 +1,23 @@
+@@ -1,5 +1,28 @@
  # Game Controller DB for SDL in 2.0.9 format
  # Source: https://github.com/gabomdq/SDL_GameControllerDB
 +
@@ -13,14 +13,19 @@
 +05000000c82d00000021000000010000,8BitDo SN30 Pro for Android,platform:Linux,x:b3,a:b0,b:b1,y:b4,back:b10,guide:b12,start:b11,dpleft:h0.8,dpdown:h0.4,dpright:h0.2,dpup:h0.1,leftshoulder:b6,lefttrigger:b8,rightshoulder:b7,righttrigger:b9,leftstick:b13,rightstick:b14,leftx:a0,lefty:a1,rightx:a2,righty:a5,
 +03000000c82d00000031000011010000,8BitDo 8BitDo Receiver,platform:Linux,x:b3,a:b0,b:b1,y:b4,back:b10,guide:b2,start:b11,dpleft:h0.8,dpdown:h0.4,dpright:h0.2,dpup:h0.1,leftshoulder:b6,lefttrigger:b8,rightshoulder:b7,righttrigger:b9,leftstick:b13,rightstick:b14,leftx:a0,lefty:a1,rightx:a2,righty:a3, 
 +03000000d11800000094000011010000,Google LLC Stadia Controller rev. A,platform:Linux,leftstick:b9,rightx:a2,leftshoulder:b4,start:b7,lefty:a1,dpup:h0.1,righty:a3,a:b1,b:b0,guide:b8,dpdown:h0.4,rightshoulder:b5,righttrigger:b13,rightstick:b10,dpright:h0.2,x:b3,back:b6,leftx:a0,y:b2,dpleft:h0.8,lefttrigger:b14,
++03000000790000001100000010010000,iNNEXT SNES Retro USB Controller,platform:Linux,leftshoulder:b4,start:b9,dpup:a1,a:b1,b:b2,guide:b8,dpdown:a1,rightshoulder:b5,dpright:a0,x:b0,back:b8,y:b3,dpleft:a0,
++03000000100800000100000010010000,PlayGame PS2-like Controller,platform:Linux,leftstick:b10,rightx:a3,leftshoulder:b4,start:b9,lefty:a1,dpup:h0.1,righty:a2,a:b1,b:b2,guide:b8,dpdown:h0.4,rightshoulder:b5,righttrigger:b7,rightstick:b11,dpright:h0.2,x:b0,back:b8,leftx:a0,y:b3,dpleft:h0.8,lefttrigger:b6,
++050000007e0500000920000001000000,8BitDo SN30 pro,platform:Linux,leftstick:b10,rightx:a2,leftshoulder:b4,start:b9,lefty:a1,dpup:h0.1,righty:a3,a:b1,b:b0,guide:b13,dpdown:h0.4,rightshoulder:b5,righttrigger:b7,rightstick:b11,dpright:h0.2,x:b3,back:b8,leftx:a0,y:b2,dpleft:h0.8,lefttrigger:b6,
++
 +03000000091200000031000011010000,OpenSimHardware OSH PB Controller,platform:Linux,x:b2,a:b0,b:b1,y:b3,guide:b7,back:b7,start:b6,dpleft:h0.8,dpdown:h0.4,dpright:h0.2,dpup:h0.1,leftshoulder:b4,lefttrigger:b10,rightshoulder:b5,righttrigger:b11,leftstick:b8,rightstick:b9,leftx:a0,lefty:a1,rightx:a2,righty:a3,
 +03000000d80400000200000000010000,SAULABI,platform:Linux,x:b3,a:b2,b:b1,y:b0,guide:b8,back:b8,start:b9,dpup:h0.1,dpright:h0.2,dpdown:h0.4,dpleft:h0.8,leftx:a0,lefty:a1,leftshoulder:b4,lefttrigger:b6,rightshoulder:b5,righttrigger:b7,
 +03000000790000001c18000011010000,PC Game Controller,platform:Linux,a:b1,b:b0,guide:b10,back:b10,dpdown:h0.4,dpleft:h0.8,dpright:h0.2,dpup:h0.1,leftshoulder:b6,leftstick:b13,lefttrigger:b8,leftx:a0,lefty:a1,rightshoulder:b7,rightstick:b14,righttrigger:b9,rightx:a2,righty:a3,start:b11,x:b4,y:b3,
 +03000000790000000600000010010000,DragonRise Inc.   Generic   USB  Joystick  ,platform:Linux,a:b4,b:b0,x:b2,y:b1,guide:b8,back:b8,start:b9,leftshoulder:b3,rightshoulder:b5,lefttrigger:b6,righttrigger:b7,leftstick:b10,rightstick:b11,dpup:h0.1,dpright:h0.2,dpdown:h0.4,dpleft:h0.8,leftx:a0,lefty:a1,rightx:a3,righty:a4,
 +03000000bc2000000055000010010000,Xiaoji Gamesir-G3w,platform:Linux,leftstick:b13,rightx:a2,leftshoulder:b6,start:b11,lefty:a1,dpup:h0.1,righty:a3,a:b1,b:b0,guide:b10,dpdown:h0.4,rightshoulder:b7,righttrigger:b9,rightstick:b14,dpright:h0.2,x:b4,back:b10,leftx:a0,y:b3,dpleft:h0.8,lefttrigger:b8,
-+03000000790000001100000010010000,iNNEXT SNES Retro USB Controller,platform:Linux,leftshoulder:b4,start:b9,dpup:a1,a:b1,b:b2,guide:b8,dpdown:a1,rightshoulder:b5,dpright:a0,x:b0,back:b8,y:b3,dpleft:a0,
-+03000000100800000100000010010000,PlayGame PS2-like Controller,platform:Linux,leftstick:b10,rightx:a3,leftshoulder:b4,start:b9,lefty:a1,dpup:h0.1,righty:a2,a:b1,b:b2,guide:b8,dpdown:h0.4,rightshoulder:b5,righttrigger:b7,rightstick:b11,dpright:h0.2,x:b0,back:b8,leftx:a0,y:b3,dpleft:h0.8,lefttrigger:b6,
-+050000007e0500000920000001000000,8BitDo SN30 pro,platform:Linux,leftstick:b10,rightx:a2,leftshoulder:b4,start:b9,lefty:a1,dpup:h0.1,righty:a3,a:b1,b:b0,guide:b13,dpdown:h0.4,rightshoulder:b5,righttrigger:b7,rightstick:b11,dpright:h0.2,x:b3,back:b8,leftx:a0,y:b2,dpleft:h0.8,lefttrigger:b6,
++030000005e0400008e02000020010000,8bitdo M30 (D-Pad to Analog default) X-input,a:b0,b:b1,back:b6,dpdown:+a1,dpleft:-a0,dpright:+a0,dpup:-a1,guide:b8,leftshoulder:b4,leftstick:b9,lefttrigger:b5,leftx:a0,lefty:a1,rightshoulder:a2,rightstick:b10,righttrigger:a5,rightx:a3,righty:a4,start:b7,x:b2,y:b3,platform:Linux,
++03000000c82d00000431000011010000,8bitdo M30 (D-Pad to Analog alt1) X-input,a:b0,b:b1,back:b10,dpdown:+a1,dpleft:-a0,dpright:+a0,dpup:-a1,guide:b2,leftshoulder:b8,leftstick:a2,lefttrigger:b6,leftx:a0,lefty:a1,rightshoulder:b9,rightstick:a5,righttrigger:b7,rightx:a3,righty:a4,start:b11,x:b3,y:b4,platform:Linux,
++030000004c050000c405000011810000,8bitdo M30 (D-Pad to Analog alt2) X-input,a:b0,b:b1,back:b8,dpdown:+a1,dpleft:-a0,dpright:+a0,dpup:-a1,guide:b10,leftshoulder:b6,leftstick:a2,lefttrigger:b4,leftx:a0,lefty:a1,rightshoulder:b7,rightstick:a5,righttrigger:b5,rightx:a3,righty:a4,start:b9,x:b3,y:b2,platform:Linux,
++030000004c050000da0c000011010000,8bitdo M30 (Not recommended Change Dpad mode) X-input,a:b2,b:b1,back:b8,dpdown:+a1,dpleft:-a0,dpright:+a0,dpup:-a1,guide:b8,leftshoulder:b4,leftstick:a2,lefttrigger:b6,leftx:a0,lefty:a1,rightshoulder:b5,rightstick:a5,righttrigger:b7,rightx:a3,righty:a4,start:b9,x:b3,y:b0,platform:Linux,
  
  # Windows
  03000000fa2d00000100000000000000,3DRUDDER,leftx:a0,lefty:a1,rightx:a5,righty:a2,platform:Windows,
