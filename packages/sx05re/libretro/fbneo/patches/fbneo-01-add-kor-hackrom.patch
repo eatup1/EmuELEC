@@ -1,8 +1,8 @@
 diff --git a/src/burn/drv/capcom/d_cps1.cpp b/src/burn/drv/capcom/d_cps1.cpp
-index c832c7f5f..f50dc7bab 100644
+index dba8c802e..564b1a189 100644
 --- a/src/burn/drv/capcom/d_cps1.cpp
 +++ b/src/burn/drv/capcom/d_cps1.cpp
-@@ -16614,6 +16614,28 @@ static const struct GameConfig ConfigTable[] =
+@@ -16621,6 +16621,28 @@ static const struct GameConfig ConfigTable[] =
  	{ "sfzech"        , CPS_B_21_DEF, mapper_SFZ63B, 0, NULL                },
  	{ "sfzhch"        , CPS_B_21_DEF, mapper_SFZ63B, 0, NULL                },
  
@@ -31,7 +31,16 @@ index c832c7f5f..f50dc7bab 100644
  	{ 0               , 0           , 0            , 0, 0                   }
  };
  
-@@ -26640,6 +26662,998 @@ struct BurnDriver BurnDrvCpsWofhs = {
+@@ -22102,7 +22124,7 @@ struct BurnDriver BurnDrvCpsFfightbl = {
+ 
+ struct BurnDriver BurnDrvCpsFfightbla = {
+ 	"ffightbla", "ffight", NULL, NULL, "1990",
+-	"Final Fight (bootleg set 2 (with 2xYM2203 + 2xMSM5205), World))\0", NULL, "bootleg", "CPS1",
++	"Final Fight (bootleg set 2 (with 2xYM2203 + 2xMSM5205), World)\0", NULL, "bootleg", "CPS1",
+ 	NULL, NULL, NULL, NULL,
+ 	BDF_GAME_WORKING | BDF_CLONE | BDF_BOOTLEG | BDF_HISCORE_SUPPORTED, 2, HARDWARE_CAPCOM_CPS1, GBF_SCRFIGHT, 0,
+ 	NULL, FfightblaRomInfo, FfightblaRomName, NULL, NULL, NULL, NULL, FfightInputInfo, FfightDIPInfo,
+@@ -26659,6 +26681,998 @@ struct BurnDriver BurnDrvCpsWofhs = {
  
  #include "d_kenseim.h"
  
@@ -1031,7 +1040,7 @@ index c832c7f5f..f50dc7bab 100644
  #undef CPS1_68K_PROGRAM_NO_BYTESWAP
  #undef CPS1_Z80_PROGRAM
 diff --git a/src/burn/drv/capcom/d_cps2.cpp b/src/burn/drv/capcom/d_cps2.cpp
-index cba1e108a..ded9a6f1c 100644
+index debf2e3e1..d21de05b1 100644
 --- a/src/burn/drv/capcom/d_cps2.cpp
 +++ b/src/burn/drv/capcom/d_cps2.cpp
 @@ -686,6 +686,34 @@ static struct BurnInputInfo MpangInputList[] = {
@@ -1069,7 +1078,16 @@ index cba1e108a..ded9a6f1c 100644
  static struct BurnInputInfo ProgearInputList[] = {
  	{"P1 Coin"          , BIT_DIGITAL  , CpsInp020+4, "p1 coin"   },
  	{"P1 Start"         , BIT_DIGITAL  , CpsInp020+0, "p1 start"  },
-@@ -14569,3 +14597,990 @@ struct BurnDriver BurnDrvCpsSfa2ultra = {
+@@ -13954,7 +13982,7 @@ struct BurnDriver BurnDrvCpsNwarrud = {
+ 
+ struct BurnDriver BurnDrvCpsProgearud = {
+ 	"progearud", "progear", NULL, NULL, "2001",
+-	"Progear(010117 USA Phoenix Edition)\0", NULL, "bootleg", "CPS2",
++	"Progear (010117 USA Phoenix Edition)\0", NULL, "bootleg", "CPS2",
+ 	NULL, NULL, NULL, NULL,
+ 	BDF_GAME_WORKING | BDF_CLONE | BDF_BOOTLEG | BDF_HISCORE_SUPPORTED, 2, HARDWARE_CAPCOM_CPS2 | HARDWARE_CAPCOM_CPS2_SIMM, GBF_HORSHOOT, 0,
+ 	NULL, ProgearudRomInfo, ProgearudRomName, NULL, NULL, NULL, NULL, ProgearInputInfo, NULL,
+@@ -14566,3 +14594,990 @@ struct BurnDriver BurnDrvCpsSfa2ultra = {
  	Sfa2Init, DrvExit, Cps2Frame, CpsRedraw, CpsAreaScan,
  	&CpsRecalcPal, 0x1000, 384, 224, 4, 3
  };
@@ -2060,8 +2078,56 @@ index cba1e108a..ded9a6f1c 100644
 +	XmcotaInit, DrvExit, Cps2Frame, CpsRedraw, CpsAreaScan,
 +	&CpsRecalcPal, 0x1000, 384, 224, 4, 3
 +};
+diff --git a/src/burn/drv/cave/d_cv1k.cpp b/src/burn/drv/cave/d_cv1k.cpp
+index ebd9fed11..9e358bbc7 100644
+--- a/src/burn/drv/cave/d_cv1k.cpp
++++ b/src/burn/drv/cave/d_cv1k.cpp
+@@ -1106,7 +1106,7 @@ STD_ROM_FN(deathsml)
+ struct BurnDriver BurnDrvDeathsml = {
+ 	"deathsml", NULL, NULL, NULL, "2007",
+ 	"Deathsmiles (2007/10/09 MASTER VER)\0", NULL, "Cave (AMI license)", "CA017",
+-	L"Deathsmiles\0\uc730\ub930\ub930\ua430\ueb30\uba30 (2007/10/09 MASTER VER)\0", NULL, NULL, NULL,
++	L"Deathsmiles\0\u30C7\u30B9\u30B9\u30DE\u30A4\u30EB\u30BA (2007/10/09 MASTER VER)\0", NULL, NULL, NULL,
+ 	BDF_GAME_WORKING | BDF_HISCORE_SUPPORTED, 2, HARDWARE_CAVE_CV1000, GBF_HORSHOOT, 0,
+ 	NULL, deathsmlRomInfo, deathsmlRomName, NULL, NULL, NULL, NULL, Cv1kInputInfo, Cv1kDIPInfo,
+ 	DrvInit, DrvExit, DrvFrame, DrvDraw, DrvScan, &DrvRecalc, 0x10000,
+@@ -1356,7 +1356,7 @@ STD_ROM_FN(dsmbl)
+ struct BurnDriver BurnDrvDsmbl = {
+ 	"dsmbl", NULL, NULL, NULL, "2008",
+ 	"Deathsmiles MegaBlack Label (2008/10/06 MEGABLACK LABEL VER)\0", NULL, "Cave (AMI license)", "CA017B",
+-	NULL, NULL, NULL, NULL,
++	L"Deathsmiles MegaBlack Label\0\u30C7\u30B9\u30B9\u30DE\u30A4\u30EB\u30BA \u30E1\u30AC\u30D6\u30E9\u30C3\u30AF\u30EC\u30FC\u30D9\u30EB (2008/10/06 MEGABLACK LABEL VER)\0", NULL, NULL, NULL,
+ 	BDF_GAME_WORKING | BDF_HISCORE_SUPPORTED, 2, HARDWARE_CAVE_CV1000, GBF_HORSHOOT, 0,
+ 	NULL, dsmblRomInfo, dsmblRomName, NULL, NULL, NULL, NULL, Cv1kInputInfo, Cv1kDIPInfo,
+ 	DrvInit, DrvExit, DrvFrame, DrvDraw, DrvScan, &DrvRecalc, 0x10000,
+diff --git a/src/burn/drv/cave/d_pwrinst2.cpp b/src/burn/drv/cave/d_pwrinst2.cpp
+index dc70da69d..3668b57a6 100644
+--- a/src/burn/drv/cave/d_pwrinst2.cpp
++++ b/src/burn/drv/cave/d_pwrinst2.cpp
+@@ -1202,7 +1202,7 @@ struct BurnDriver BurnDrvPwrinst2j = {
+ 
+ struct BurnDriver BurnDrvPwrinst2k = {
+ 	"pwrinst2k", "pwrinst2", NULL, NULL, "1994",
+-	"Power instinct 2 (Korea, ver. 94/04/08)\0", NULL, "Atlus", "Cave",
++	"Power Instinct 2 (Korea, ver. 94/04/08)\0", NULL, "Atlus", "Cave",
+ 	NULL, NULL, NULL, NULL,
+ 	BDF_GAME_WORKING | BDF_CLONE | BDF_16BIT_ONLY | BDF_HISCORE_SUPPORTED, 2, HARDWARE_CAVE_68K_Z80, GBF_VSFIGHT, FBF_PWRINST,
+ 	NULL, pwrinst2kRomInfo, pwrinst2kRomName, NULL, NULL, NULL, NULL, pwrinst2InputInfo, NULL,
+diff --git a/src/burn/drv/irem/d_m72.cpp b/src/burn/drv/irem/d_m72.cpp
+index e41a1e8ed..9ed50335e 100644
+--- a/src/burn/drv/irem/d_m72.cpp
++++ b/src/burn/drv/irem/d_m72.cpp
+@@ -3680,7 +3680,7 @@ static INT32 hharryInit()
+ 
+ struct BurnDriver BurnDrvHharry = {
+ 	"hharry", NULL, NULL, NULL, "1990",
+-	"Hammerin' Harry (World, M81 hardware))\0", NULL, "Irem", "Irem M82",
++	"Hammerin' Harry (World, M81 hardware)\0", NULL, "Irem", "Irem M82",
+ 	NULL, NULL, NULL, NULL,
+ 	BDF_GAME_WORKING | BDF_HISCORE_SUPPORTED, 2, HARDWARE_IREM_M72, GBF_SCRFIGHT | GBF_PLATFORM, 0,
+ 	NULL, hharryRomInfo, hharryRomName, NULL, NULL, NULL, NULL, CommonInputInfo, HharryDIPInfo,
 diff --git a/src/burn/drv/irem/d_m92.cpp b/src/burn/drv/irem/d_m92.cpp
-index 3b1127470..9e77ce45a 100644
+index 207e269c5..eaee463c2 100644
 --- a/src/burn/drv/irem/d_m92.cpp
 +++ b/src/burn/drv/irem/d_m92.cpp
 @@ -4262,7 +4262,7 @@ struct BurnDriver BurnDrvSkingame2 = {
@@ -2213,10 +2279,10 @@ index 3b1127470..9e77ce45a 100644
 +	320, 240, 4, 3
 +};
 diff --git a/src/burn/drv/megadrive/d_megadrive.cpp b/src/burn/drv/megadrive/d_megadrive.cpp
-index 83762f94b..81d4a6d2a 100644
+index 557ff5ea1..a596995a9 100644
 --- a/src/burn/drv/megadrive/d_megadrive.cpp
 +++ b/src/burn/drv/megadrive/d_megadrive.cpp
-@@ -19382,7 +19382,7 @@ struct BurnDriver BurnDrvmd_rockman = {
+@@ -19420,7 +19420,7 @@ struct BurnDriver BurnDrvmd_rockman = {
  	"md_rockman", "md_megaman", NULL, NULL, "1994",
  	"Rockman Mega World (Japan)\0", NULL, "Capcom", "Sega Megadrive",
  	NULL, NULL, NULL, NULL,
@@ -2225,7 +2291,7 @@ index 83762f94b..81d4a6d2a 100644
  	MegadriveGetZipName, md_rockmanRomInfo, md_rockmanRomName, NULL, NULL, NULL, NULL, MegadriveInputInfo, MegadriveDIPInfo,
  	MegadriveInit, MegadriveExit, MegadriveFrame, MegadriveDraw, MegadriveScan,
  	&bMegadriveRecalcPalette, 0x100, 320, 224, 4, 3
-@@ -19400,7 +19400,7 @@ struct BurnDriver BurnDrvmd_rockman1 = {
+@@ -19438,7 +19438,7 @@ struct BurnDriver BurnDrvmd_rockman1 = {
  	"md_rockman1", "md_megaman", NULL, NULL, "1994",
  	"Rockman Mega World (Japan, Alt)\0", NULL, "Capcom", "Sega Megadrive",
  	NULL, NULL, NULL, NULL,
@@ -2234,7 +2300,7 @@ index 83762f94b..81d4a6d2a 100644
  	MegadriveGetZipName, md_rockman1RomInfo, md_rockman1RomName, NULL, NULL, NULL, NULL, MegadriveInputInfo, MegadriveDIPInfo,
  	MegadriveInit, MegadriveExit, MegadriveFrame, MegadriveDraw, MegadriveScan,
  	&bMegadriveRecalcPalette, 0x100, 320, 224, 4, 3
-@@ -55191,3 +55191,461 @@ struct BurnDriver BurnDrvmd_tkzs = {
+@@ -55348,3 +55348,461 @@ struct BurnDriver BurnDrvmd_tkzs = {
  	&bMegadriveRecalcPalette, 0x100, 320, 224, 4, 3
  };
  
@@ -2697,10 +2763,19 @@ index 83762f94b..81d4a6d2a 100644
 +	&bMegadriveRecalcPalette, 0x100, 320, 224, 4, 3
 +};
 diff --git a/src/burn/drv/neogeo/d_neogeo.cpp b/src/burn/drv/neogeo/d_neogeo.cpp
-index 8f13647e6..5e1f7f232 100644
+index 129fd6a34..a95ee713a 100644
 --- a/src/burn/drv/neogeo/d_neogeo.cpp
 +++ b/src/burn/drv/neogeo/d_neogeo.cpp
-@@ -21531,7 +21531,7 @@ struct BurnDriver BurnDrvkf2k3ps2sp = {
+@@ -11404,7 +11404,7 @@ static INT32 samsh5spInit()
+ struct BurnDriver BurnDrvsamsh5sp = {
+ 	"samsh5sp", NULL, "neogeo", NULL, "2004",
+ 	"Samurai Shodown V Special / Samurai Spirits Zero Special (NGM-2720)\0", NULL, "Yuki Enterprise / SNK Playmore", "Neo Geo MVS",
+-	L"Samurai Shodown V Special\0\u30B5\u30E0\u30E9\u30A4\u30B9\u30D4\u30EA\u30C3\u30C4\u96F6 Special  (NGM-2720)\0", NULL, NULL, NULL,
++	L"Samurai Shodown V Special\0\u30B5\u30E0\u30E9\u30A4\u30B9\u30D4\u30EA\u30C3\u30C4\u96F6 Special (NGM-2720)\0", NULL, NULL, NULL,
+ 	BDF_GAME_WORKING, 2, HARDWARE_PREFIX_CARTRIDGE | HARDWARE_SNK_NEOGEO | HARDWARE_SNK_CMC50 | HARDWARE_SNK_ENCRYPTED_M1, GBF_VSFIGHT, FBF_SAMSHO,
+ 	NULL, samsh5spRomInfo, samsh5spRomName, NULL, NULL, NULL, NULL, neogeoInputInfo, neogeoDIPInfo,
+ 	samsh5spInit, NeoExit, NeoFrame, NeoRender, NeoScan, &NeoRecalcPalette,
+@@ -21535,7 +21535,7 @@ struct BurnDriver BurnDrvkf2k3ps2sp = {
  
  
  // Metal Slug Unity(Added Timer Ver. 2021-02-05)
@@ -2709,7 +2784,7 @@ index 8f13647e6..5e1f7f232 100644
  
  static struct BurnRomInfo mslugunityRomDesc[] = {
  	{ "201-p1uni.p1",	0x200000, 0xa3186dfd, 1 | BRF_ESS | BRF_PRG }, //  0 68K code
-@@ -21553,7 +21553,7 @@ struct BurnDriver BurnDrvmslugunity = {
+@@ -21557,7 +21557,7 @@ struct BurnDriver BurnDrvmslugunity = {
  };
  
  
@@ -2718,7 +2793,7 @@ index 8f13647e6..5e1f7f232 100644
  
  static struct BurnRomInfo mslugaksRomDesc[] = {
  	/* Multifunction - 20180430 */
-@@ -21649,7 +21649,7 @@ struct BurnDriver BurnDrvmslugaks = {
+@@ -21653,7 +21653,7 @@ struct BurnDriver BurnDrvmslugaks = {
  
  
  // Metal Slug 2 - Super Vehicle-001/II Unity (Added Timer Ver. 2021-01-22)
@@ -2727,7 +2802,7 @@ index 8f13647e6..5e1f7f232 100644
  
  static struct BurnRomInfo mslug2unityRomDesc[] = {
  	{ "241-p1uni.p1",	0x100000, 0x1562cf23, 1 | BRF_ESS | BRF_PRG }, //  0 68K code
-@@ -21673,7 +21673,7 @@ struct BurnDriver BurnDrvmslug2unity = {
+@@ -21677,7 +21677,7 @@ struct BurnDriver BurnDrvmslug2unity = {
  
  
  // Metal Slug 2 - Friendly Fire FC2 (Hack)
@@ -2736,7 +2811,7 @@ index 8f13647e6..5e1f7f232 100644
  // 20210415
  
  static struct BurnRomInfo mslug2fmRomDesc[] = {
-@@ -21729,7 +21729,7 @@ struct BurnDriver BurnDrvmslug2dd = {
+@@ -21733,7 +21733,7 @@ struct BurnDriver BurnDrvmslug2dd = {
  };
  
  
@@ -2745,7 +2820,7 @@ index 8f13647e6..5e1f7f232 100644
  
  static struct BurnRomInfo mslug2aksRomDesc[] = {
  	/* Multifunction - 20170509 */
-@@ -21887,7 +21887,7 @@ struct BurnDriver BurnDrvmslug2eg = {
+@@ -21891,7 +21891,7 @@ struct BurnDriver BurnDrvmslug2eg = {
  
  
  // Metal Slug X - Super Vehicle-001 Unity (Added Timer Ver. 2021-01-23)
@@ -2754,7 +2829,7 @@ index 8f13647e6..5e1f7f232 100644
  
  static struct BurnRomInfo mslugxunityRomDesc[] = {
  	{ "250-p1uni.p1",	0x100000, 0x36102d34, 1 | BRF_ESS | BRF_PRG }, //  0 68K code
-@@ -22081,7 +22081,7 @@ struct BurnDriver BurnDrvmslugx2r = {
+@@ -22085,7 +22085,7 @@ struct BurnDriver BurnDrvmslugx2r = {
  };
  
  
@@ -2763,7 +2838,7 @@ index 8f13647e6..5e1f7f232 100644
  
  static struct BurnRomInfo mslugxaksRomDesc[] = {
  	/* Legendary - 20230311*/
-@@ -22234,7 +22234,7 @@ struct BurnDriver BurnDrvmslugxaks = {
+@@ -22238,7 +22238,7 @@ struct BurnDriver BurnDrvmslugxaks = {
  
  
  // Metal Slug 3 Unity (Added Timer Ver. 2021-02-13)
@@ -2772,7 +2847,7 @@ index 8f13647e6..5e1f7f232 100644
  
  static struct BurnRomInfo mslug3unityRomDesc[] = {
  	/* The SMA for this release has a green colour marking; the older revision has a white colour marking */
-@@ -22291,7 +22291,7 @@ struct BurnDriver BurnDrvmslug3i = {
+@@ -22295,7 +22295,7 @@ struct BurnDriver BurnDrvmslug3i = {
  
  
  // Metal Slug 3 (1v2 Mode, Hack)
@@ -2781,7 +2856,7 @@ index 8f13647e6..5e1f7f232 100644
  // 20190511
  
  static struct BurnRomInfo mslug31v2RomDesc[] = {
-@@ -22688,7 +22688,7 @@ struct BurnDriver BurnDrvmslug3cb = {
+@@ -22692,7 +22692,7 @@ struct BurnDriver BurnDrvmslug3cb = {
  };
  
  
@@ -2790,7 +2865,7 @@ index 8f13647e6..5e1f7f232 100644
  
  static struct BurnRomInfo mslug3aksRomDesc[] = {
  	/* Legendary - 20230813 */
-@@ -22811,7 +22811,7 @@ struct BurnDriver BurnDrvmslug3aks = {
+@@ -22815,7 +22815,7 @@ struct BurnDriver BurnDrvmslug3aks = {
  
  
  // Metal Slug 4 Unity (Added Timer Ver. 2021-01-30)
@@ -2799,7 +2874,7 @@ index 8f13647e6..5e1f7f232 100644
  
  static struct BurnRomInfo mslug4unityRomDesc[] = {
  	{ "263-p1uni.p1",	0x100000, 0xef3501b6, 1 | BRF_ESS | BRF_PRG }, //  0 68K code
-@@ -22983,7 +22983,7 @@ static struct BurnRomInfo mslug4aRomDesc[] = {
+@@ -22987,7 +22987,7 @@ static struct BurnRomInfo mslug4aRomDesc[] = {
  
  	MSLUG4_DECRYPTION_COMPONENT
  
@@ -2808,7 +2883,7 @@ index 8f13647e6..5e1f7f232 100644
  	{ "263-p1a.ep1",	0x100000, 0xb342c468, 1 | BRF_ESS | BRF_PRG }, // 14 68K code diff patch
  	{ "263-p2a.ep2",	0x400000, 0x67a9c85c, 1 | BRF_ESS | BRF_PRG }, // 15
  
-@@ -23113,7 +23113,7 @@ struct BurnDriver BurnDrvmslug4dd = {
+@@ -23117,7 +23117,7 @@ struct BurnDriver BurnDrvmslug4dd = {
  };
  
  
@@ -2817,7 +2892,7 @@ index 8f13647e6..5e1f7f232 100644
  
  static struct BurnRomInfo mslug4aksRomDesc[] = {
  	/* Multifunction - 20171225 */
-@@ -23255,7 +23255,7 @@ struct BurnDriver BurnDrvmslug4c = {
+@@ -23259,7 +23259,7 @@ struct BurnDriver BurnDrvmslug4c = {
  
  
  // Metal Slug 5 Unity (Added Timer Ver. 2021-04-23)
@@ -2826,7 +2901,7 @@ index 8f13647e6..5e1f7f232 100644
  
  static struct BurnRomInfo mslug5unityRomDesc[] = {
  	/* Encrypted */
-@@ -23299,7 +23299,7 @@ struct BurnDriver BurnDrvmslug5unity = {
+@@ -23303,7 +23303,7 @@ struct BurnDriver BurnDrvmslug5unity = {
  
  
  // Metal Slug 5 (Extend Ver. 2022, Hack)
@@ -2835,7 +2910,7 @@ index 8f13647e6..5e1f7f232 100644
  
  static struct BurnRomInfo mslug5exRomDesc[] = {
  	/* Extend v1.2 - 20221002 */
-@@ -23515,7 +23515,7 @@ struct BurnDriver BurnDrvmslug5cb = {
+@@ -23519,7 +23519,7 @@ struct BurnDriver BurnDrvmslug5cb = {
  };
  
  
@@ -2844,7 +2919,7 @@ index 8f13647e6..5e1f7f232 100644
  
  static struct BurnRomInfo mslug5aksRomDesc[] = {
  	/* Stone Turtle - 20230518 */
-@@ -25584,3 +25584,2887 @@ struct BurnDriver BurnDrvmslug3x = {
+@@ -25588,3 +25588,2887 @@ struct BurnDriver BurnDrvmslug3x = {
  	mslug3xInit, NeoExit, NeoFrame, NeoRender, NeoScan, &NeoRecalcPalette,
  	0x1000, 304, 224, 4, 3
  };
@@ -5733,7 +5808,7 @@ index 8f13647e6..5e1f7f232 100644
 +	0x1000, 304, 224, 4, 3
 +};
 diff --git a/src/burn/drv/pgm/d_pgm.cpp b/src/burn/drv/pgm/d_pgm.cpp
-index 3b1585638..ac7d49b1a 100644
+index 6239d8f0a..b3f890773 100644
 --- a/src/burn/drv/pgm/d_pgm.cpp
 +++ b/src/burn/drv/pgm/d_pgm.cpp
 @@ -2164,7 +2164,7 @@ static struct BurnRomInfo olds100aRomDesc[] = {
@@ -5923,9 +5998,18 @@ index f7edce419..621d3f9ae 100644
 +	256, 224, 4, 3
 +};
 diff --git a/src/burn/drv/psikyo/d_psikyo.cpp b/src/burn/drv/psikyo/d_psikyo.cpp
-index d67118e7e..c8894e2f3 100644
+index af6a2cef3..bfd7f4199 100644
 --- a/src/burn/drv/psikyo/d_psikyo.cpp
 +++ b/src/burn/drv/psikyo/d_psikyo.cpp
+@@ -581,7 +581,7 @@ static struct BurnDIPInfo tengaiDIPList[] = {
+ 	{0x15,	0x00, 0xFF, 0xFF, NULL							},
+ 
+ 	// DIP 2
+-	{0,		0xFE, 0,	2, 	  "Screen Reverse"				},
++	{0,		0xFE, 0,	2, 	  "Screen reverse"				},
+ 	{0x16,	0x01, 0x01,	0x00, "Normal screen"				},
+ 	{0x16,	0x01, 0x01,	0x01, "Invert screen"				},
+ 
 @@ -685,6 +685,18 @@ static struct BurnDIPInfo tengaijRegionDIPList[] = {
  
  STDDIPINFOEXT(tengaij, tengai, tengaijRegion)
@@ -6058,8 +6142,21 @@ index d67118e7e..c8894e2f3 100644
 +	TengaiInit, DrvExit, DrvFrame, DrvDraw, DrvScan, &PsikyoRecalcPalette, 0x1000,
 +	320, 224, 4, 3
 +};
+diff --git a/src/burn/drv/sega/d_sys1.cpp b/src/burn/drv/sega/d_sys1.cpp
+index 8a58b3d2b..0e1a2d155 100644
+--- a/src/burn/drv/sega/d_sys1.cpp
++++ b/src/burn/drv/sega/d_sys1.cpp
+@@ -7844,7 +7844,7 @@ struct BurnDriver BurnDrvWbmlvcd = {
+ 	"wbmlvcd", "wbml", NULL, NULL, "2009",
+ 	"Wonder Boy - Monster Land (decrypted bootleg of English, Virtual Console release)\0", NULL, "bootleg (mpatou)", "System 2",
+ 	NULL, NULL, NULL, NULL,
+-	BDF_GAME_WORKING | BDF_CLONE | BDF_BOOTLEG , 2, HARDWARE_SEGA_SYSTEM1, GBF_PLATFORM, 0,
++	BDF_GAME_WORKING | BDF_CLONE | BDF_BOOTLEG, 2, HARDWARE_SEGA_SYSTEM1, GBF_PLATFORM, 0,
+ 	NULL, wbmlvcdRomInfo, wbmlvcdRomName, NULL, NULL, NULL, NULL, MyheroInputInfo, WbmlDIPInfo,
+ 	TokisensaInit, System1Exit, System1Frame, System2Render, System1Scan,
+ 	NULL, 0x800, 256, 224, 4, 3
 diff --git a/src/burn/drv/toaplan/d_toaplan1.cpp b/src/burn/drv/toaplan/d_toaplan1.cpp
-index 338d1114c..0a00bb2f6 100644
+index 07985e740..bc985a7a0 100644
 --- a/src/burn/drv/toaplan/d_toaplan1.cpp
 +++ b/src/burn/drv/toaplan/d_toaplan1.cpp
 @@ -1050,7 +1050,7 @@ static struct BurnDIPInfo OutzoneDIPList[]=
@@ -6071,3 +6168,65 @@ index 338d1114c..0a00bb2f6 100644
  	{0x18, 0x01, 0x0f, 0x00, "Japan"		},
  	{0x18, 0x01, 0x0f, 0x01, "USA"			},
  	{0x18, 0x01, 0x0f, 0x02, "Europe"		},
+diff --git a/src/burner/libretro/retro_input.cpp b/src/burner/libretro/retro_input.cpp
+index 65ebb4d25..3c48c60cb 100644
+--- a/src/burner/libretro/retro_input.cpp
++++ b/src/burner/libretro/retro_input.cpp
+@@ -1167,6 +1167,26 @@ static INT32 GameInpSpecialOne(struct GameInp* pgi, INT32 nPlayer, char* szb, ch
+ 		}
+ 	}
+ 
++	// VS Block Breaker
++	if ((parentrom && strcmp(parentrom, "vblokbrk") == 0) ||
++		(drvname && strcmp(drvname, "vblokbrk") == 0) ||
++		(parentrom && strcmp(parentrom, "puzzloop") == 0) ||
++		(drvname && strcmp(drvname, "puzzloop") == 0)
++	) {
++		if (strcmp("Paddle", description) == 0) {
++			GameInpAnalog2RetroInpAnalog(pgi, nPlayer, RETRO_DEVICE_ID_ANALOG_X, RETRO_DEVICE_INDEX_ANALOG_LEFT, description);
++		}
++	}
++
++	// Puzz Loop 2
++	if ((parentrom && strcmp(parentrom, "pzloop2") == 0) ||
++		(drvname && strcmp(drvname, "pzloop2") == 0)
++	) {
++		if (strcmp("Paddle", description) == 0) {
++			GameInpAnalog2RetroInpAnalog(pgi, nPlayer, RETRO_DEVICE_ID_ANALOG_X, RETRO_DEVICE_INDEX_ANALOG_LEFT, description);
++		}
++	}
++
+ 	// G-LOC Air Battle
+ 	// Galaxy Force 2
+ 	// Air Rescue
+@@ -1834,6 +1854,30 @@ static INT32 GameInpSpecialOne(struct GameInp* pgi, INT32 nPlayer, char* szb, ch
+ 		}
+ 	}
+ 
++	// Street Fighter Zero (CPS Changer, Japan 951020)
++	// Street Fighter Zero (CPS Changer, Korea 040820)
++	// Tenchi wo Kurau II - Sekiheki no Tatakai (CPS Changer, Japan 921031)
++	// Tenchi wo Kurau II - Sekiheki no Tatakai (CPS Changer, Korea 921031)
++	// Tenchi wo Kurau II - Sekiheki no Tatakai (CPS Changer, Japan 921031, Unlock Ura Mode)
++	// Tenchi wo Kurau II - Sekiheki no Tatakai (CPS Changer, Korea 921031, Unlock Ura Mode)
++	if ((parentrom && strcmp(parentrom, "sfzch") == 0) ||
++		(drvname && strcmp(drvname, "sfzch") == 0) ||
++		(parentrom && strcmp(parentrom, "sfzchk") == 0) ||
++		(drvname && strcmp(drvname, "sfzchk") == 0) ||
++		(parentrom && strcmp(parentrom, "wofch") == 0) ||
++		(drvname && strcmp(drvname, "wofch") == 0) ||
++		(parentrom && strcmp(parentrom, "wofchk") == 0) ||
++		(drvname && strcmp(drvname, "wofchk") == 0) ||
++		(parentrom && strcmp(parentrom, "wofchu") == 0) ||
++		(drvname && strcmp(drvname, "wofchu") == 0) ||
++		(parentrom && strcmp(parentrom, "wofchku") == 0) ||
++		(drvname && strcmp(drvname, "wofchku") == 0)
++	) {
++		if (strcmp("Pause", description) == 0) {
++			GameInpDigital2RetroInpKey(pgi, nPlayer, RETRO_DEVICE_ID_JOYPAD_SELECT, description);
++		}
++	}
++
+ 	// Caliber 50
+ 	// Time Soldiers
+ 	if ((parentrom && strcmp(parentrom, "calibr50") == 0) ||
