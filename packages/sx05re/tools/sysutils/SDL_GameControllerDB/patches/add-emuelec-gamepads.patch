@@ -1,6 +1,6 @@
 --- a/gamecontrollerdb.txt
 +++ b/gamecontrollerdb.txt
-@@ -1,5 +1,28 @@
+@@ -1,5 +1,29 @@
  # Game Controller DB for SDL in 2.0.9 format
  # Source: https://github.com/gabomdq/SDL_GameControllerDB
 +
@@ -26,6 +26,7 @@
 +03000000c82d00000431000011010000,8bitdo M30 (D-Pad to Analog alt1) X-input,a:b0,b:b1,back:b10,dpdown:+a1,dpleft:-a0,dpright:+a0,dpup:-a1,guide:b2,leftshoulder:b8,leftstick:a2,lefttrigger:b6,leftx:a0,lefty:a1,rightshoulder:b9,rightstick:a5,righttrigger:b7,rightx:a3,righty:a4,start:b11,x:b3,y:b4,platform:Linux,
 +030000004c050000c405000011810000,8bitdo M30 (D-Pad to Analog alt2) X-input,a:b0,b:b1,back:b8,dpdown:+a1,dpleft:-a0,dpright:+a0,dpup:-a1,guide:b10,leftshoulder:b6,leftstick:a2,lefttrigger:b4,leftx:a0,lefty:a1,rightshoulder:b7,rightstick:a5,righttrigger:b5,rightx:a3,righty:a4,start:b9,x:b3,y:b2,platform:Linux,
 +030000004c050000da0c000011010000,8bitdo M30 (Not recommended Change Dpad mode) X-input,a:b2,b:b1,back:b8,dpdown:+a1,dpleft:-a0,dpright:+a0,dpup:-a1,guide:b8,leftshoulder:b4,leftstick:a2,lefttrigger:b6,leftx:a0,lefty:a1,rightshoulder:b5,rightstick:a5,righttrigger:b7,rightx:a3,righty:a4,start:b9,x:b3,y:b0,platform:Linux,
++03000000a30c00002400000011010000,8bitdo M30 2.4G controller,a:b2,b:b1,back:b8,dpdown:+a1,dpleft:-a0,dpright:+a0,dpup:-a1,guide:b8,leftshoulder:b6,leftstick:a2,lefttrigger:b4,leftx:a0,lefty:a1,rightshoulder:b7,rightstick:a5,righttrigger:b5,rightx:a3,righty:a4,start:b9,x:b3,y:b0,platform:Linux,
  
  # Windows
  03000000fa2d00000100000000000000,3DRUDDER,leftx:a0,lefty:a1,rightx:a5,righty:a2,platform:Windows,
