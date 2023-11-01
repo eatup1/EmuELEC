@@ -2,7 +2,7 @@ diff --git a/configuration.c b/configuration.c
 index 6824bb2f3a..cf3d35187f 100644
 --- a/configuration.c
 +++ b/configuration.c
-@@ -1692,6 +1692,11 @@ static struct config_bool_setting *populate_settings_bool(
+@@ -1654,6 +1654,11 @@ static struct config_bool_setting *populate_settings_bool(
  {
     struct config_bool_setting  *tmp    = (struct config_bool_setting*)calloc(1, (*size + 1) * sizeof(struct config_bool_setting));
     unsigned count                      = 0;
@@ -18,7 +18,7 @@ diff --git a/configuration.h b/configuration.h
 index d758fe630e..aedf9f8f28 100644
 --- a/configuration.h
 +++ b/configuration.h
-@@ -561,6 +561,10 @@ typedef struct settings
+@@ -563,6 +563,10 @@ typedef struct settings
     {
        bool placeholder;
  

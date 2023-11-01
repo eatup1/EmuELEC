@@ -82,16 +82,15 @@
 
 --- a/gfx/drivers_context/drm_go2_ctx.c
 +++ b/gfx/drivers_context/drm_go2_ctx.c
-@@ -295,7 +295,8 @@
-    int src_w = drm->fb_width;
+@@ -329,6 +329,7 @@
     int src_h = drm->fb_height;
     int src_x = 0;
     int src_y = drm->ctx_h - drm->fb_height;
 +    settings_t *settings = config_get_ptr();
-
+ 
     if (out_w != src_w || out_h != src_h)
     {
-@@ -321,10 +322,25 @@
+@@ -343,10 +344,25 @@
     go2_context_swap_buffers(drm->context);
     surf     = go2_context_surface_lock(drm->context);
 +
