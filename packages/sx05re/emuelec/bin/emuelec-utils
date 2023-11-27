@@ -270,12 +270,11 @@ function resolutions() {
   fi
 
   if [ "$EE_DEVICE" == "OdroidGoAdvance" -o "$EE_DEVICE" == "RG351P" ]; then
-    RESOLUTIONS+="480x320p60hz"
+    RESOLUTIONS+=("480x320p60hz")
   fi
 
-  if [ "$EE_DEVICE" == "GameForce" -o "$EE_DEVICE" == "RG351V" ]; then
-    RESOLUTIONS+="640x480p60hz"
-  fi
+	[[ ! ${RESOLUTIONS[@]} == *"640x480p60hz"* ]] && RESOLUTIONS+=("640x480p60hz")
+	[[ ! ${RESOLUTIONS[@]} == *"480i60hz"* ]] && RESOLUTIONS+=("480i60hz")
 
 	local FILEPATH="/emuelec/configs/resolutions_amlogic.conf"
 	if [[ "$DEVICE" == "Rockchip" ]]; then

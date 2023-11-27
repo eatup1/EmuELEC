@@ -12,7 +12,7 @@ PKG_LONGDESC="https://github.com/finalburnneo/FBNeo/blob/master/src/license.txt"
 GET_HANDLER_SUPPORT="git"
 PKG_TOOLCHAIN="make"
 
-PKG_MAKE_OPTS_TARGET=" sdl2 RELEASEBUILD=1 FORCE_SYSTEM_LIBPNG=1"
+PKG_MAKE_OPTS_TARGET=" sdl2 RELEASEBUILD=1"
 
 pre_configure_target() {
 sed -i "s|\`sdl2-config|\`${SYSROOT_PREFIX}/usr/bin/sdl2-config|g" makefile.sdl2

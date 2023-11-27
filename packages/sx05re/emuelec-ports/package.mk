@@ -44,7 +44,9 @@ PKG_DEPENDS_TARGET+=" commander-genius \
                 shovelknight \
                 tmntsr \
                 falloutce1 \
-                falloutce2"
+                falloutce2 \
+                ccleste \
+                celeste"
 
 amlogicports=""
 hhports=" openjazz"
