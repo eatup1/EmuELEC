@@ -15,11 +15,7 @@ FLAGS=""
 mkdir -p "${CONFIGFOLDER}"
 cd "${CONFIGFOLDER}"
 
-if [ "$EE_DEVICE" == "Amlogic-ng" ]; then 
-    fbfix
-fi
-
-if [ ! -e "${CONFIGFOLDER}/DATA/HEROES2.AGG" ]; then
+if [ ! -e "${CONFIGFOLDER}/data/HEROES2.AGG" ]; then
     if [ $(get_ee_setting system.language) == "ko_KR" ]; then
         text_viewer -y -w -f 24 -t "데이터가 없습니다!" -m "${PORTNAME}를 처음 실행하거나 데이터 폴더가 없습니다.\n\n데모 데이터는 총 20MB이며 인터넷에 연결되어 있어야 합니다.\n\n\n데모를 다운로드하고 계속하시겠습니까?"
     else

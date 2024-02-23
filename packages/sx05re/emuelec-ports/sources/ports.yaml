@@ -154,6 +154,7 @@ Fallout:
 
   init_port: true
   port_exe: "fallout-ce"
+  vkb: "fallout"
   audio: "alsa"
   commands:
     - cd /storage/roms/ports/falloutce1
@@ -169,6 +170,7 @@ Fallout 2:
 
   init_port: true
   port_exe: "fallout2-ce"
+  vkb: "fallout"
   audio: "alsa"
   commands:
     - cd /storage/roms/ports/falloutce2
@@ -380,7 +382,6 @@ Sonic 1:
   audio: "alsa"
   check_bios: sonic1
   commands:
-    - /usr/bin/show_splash.sh gameloading "ports" "sonic1"
     - '[ ! -e "/storage/roms/ports/sonic1/settings.ini" ] && cp "/emuelec/configs/sonic/settings.ini" "/storage/roms/ports/sonic1/settings.ini"'
     - cd /storage/roms/ports/sonic1/
     - ${PORT} >> $EE_LOG 2>&1
@@ -398,7 +399,6 @@ Sonic 2:
   audio: "alsa"
   check_bios: sonic2
   commands:
-    - /usr/bin/show_splash.sh gameloading "ports" "sonic2"
     - '[ ! -e "/storage/roms/ports/sonic2/settings.ini" ] && cp "/emuelec/configs/sonic/settings.ini" "/storage/roms/ports/sonic2/settings.ini"'
     - cd /storage/roms/ports/sonic2/
     - ${PORT} >> $EE_LOG 2>&1
@@ -416,7 +416,6 @@ Sonic CD:
   audio: "alsa"
   check_bios: soniccd
   commands:
-    - /usr/bin/show_splash.sh gameloading "ports" "soniccd"
     - '[ ! -e "/storage/roms/ports/soniccd/settings.ini" ] && cp "/emuelec/configs/sonic/settings.ini" "/storage/roms/ports/soniccd/settings.ini"'
     - cd /storage/roms/ports/soniccd/
     - ${PORT} >> $EE_LOG 2>&1
@@ -434,7 +433,6 @@ Sonic Mania:
   audio: "alsa"
   check_bios: sonicmania
   commands:
-    - /usr/bin/show_splash.sh gameloading "ports" "sonicmania"
     - '[ ! -e "/storage/roms/ports/sonicmania/Settings.ini" ] && cp "/emuelec/configs/sonicmania/Settings.ini" "/storage/roms/ports/sonicmania/Settings.ini"'
     - '[ ! -e "/storage/roms/ports/sonicmania/Game.so" ] && cp "/usr/bin/sonic_mania/Game.so" "/storage/roms/ports/sonicmania/Game.so"'
     - cd /storage/roms/ports/sonicmania/
@@ -452,7 +450,6 @@ SuperTux:
   port_exe: "supertux2"
   audio: "alsa"
   commands:
-    - /usr/bin/show_splash.sh gameloading "ports" "supertux"
     - run_supertux.sh >> $EE_LOG 2>&1
 
 SuperTuxKart:
@@ -467,7 +464,6 @@ SuperTuxKart:
   port_exe: "supertuxkart"
   audio: "alsa"
   commands:
-    - /usr/bin/show_splash.sh gameloading "ports" "supertuxkart"
     - run_supertuxkart.sh >> $EE_LOG 2>&1
 
 Supermariowar:
@@ -482,7 +478,6 @@ Supermariowar:
   port_exe: "smw"
   audio: "alsa"
   commands:
-    - /usr/bin/show_splash.sh gameloading "ports" "supermariowar"
     - run_smw.sh >> $EE_LOG 2>&1
 
 Hurrican:
@@ -495,9 +490,9 @@ Hurrican:
 
   init_port: true
   port_exe: "hurrican"
+  vkb: "hurrican"
   audio: "alsa"
   commands:
-    - /usr/bin/show_splash.sh gameloading "ports" "hurrican"
     - hurrican.sh >> $EE_LOG 2>&1
 
 Cdogs-sdl:
@@ -512,7 +507,6 @@ Cdogs-sdl:
   port_exe: "cdogs-sdl"
   audio: "alsa"
   commands:
-    - /usr/bin/show_splash.sh gameloading "ports" "cdogs-sdl"
     - cdogs-sdl.sh >> $EE_LOG 2>&1
 
 Abuse:
@@ -525,10 +519,10 @@ Abuse:
 
   init_port: true
   port_exe: "abuse"
+  vkb: "abuse"
   audio: "alsa"
   commands:
-    - /usr/bin/show_splash.sh gameloading "ports" "abuse"
-    - abuse.sh >> $EE_LOG 2>&1
+    - abuse >> $EE_LOG 2>&1
 
 Sorr:
   name: 스트리츠 오브 레이지 리메이크
@@ -540,12 +534,11 @@ Sorr:
 
   init_port: true
   port_exe: "bgdi"
+  vkb: "sorr"
   audio: "alsa"
   commands:
-    - /usr/bin/show_splash.sh gameloading "ports" "sorr"
-    - '[[ "${EE_DEVICE}" != "Amlogic"* ]] && gptokeyb -c /emuelec/configs/gptokeyb/sorr.gptk &'
     - cd /storage/roms/ports/sorr
-    - '[[ ! -e "/storage/roms/ports/sorr/SorR.dat" ]] && exit 21'
+    - '[[ ! -e "/storage/roms/ports/sorr/SorR.dat" ]] && end_port && exit 21'
     - bgdi "/storage/roms/ports/sorr/SorR.dat" >> $EE_LOG 2>&1
 
 Heroes of Might and Magic II:
@@ -560,7 +553,6 @@ Heroes of Might and Magic II:
   port_exe: "fheroes2"
   audio: "alsa"
   commands:
-    - /usr/bin/show_splash.sh gameloading "ports" "fheroes2"
     - fheroes2.sh >> $EE_LOG 2>&1
 
 Blake Stone:
@@ -576,7 +568,6 @@ Blake Stone:
   audio: "alsa"
   check_bios: bstone_aog
   commands:
-    - /usr/bin/show_splash.sh gameloading "ports" "bstone"
     - bstone.sh >> $EE_LOG 2>&1
 
 Blake Stone Planet Strike:
@@ -592,7 +583,6 @@ Blake Stone Planet Strike:
   audio: "alsa"
   check_bios: bstone_ps
   commands:
-    - /usr/bin/show_splash.sh gameloading "ports" "bstone"
     - bstone.sh ps >> $EE_LOG 2>&1
 
 Shovel Knight:
@@ -607,7 +597,6 @@ Shovel Knight:
   port_exe: "ShovelKnight"
   audio: "alsa"
   commands:
-    - /usr/bin/show_splash.sh gameloading "ports" "shovelknight"
     - shovelknight.sh >> $EE_LOG 2>&1
 
 Half-Life:
@@ -622,7 +611,6 @@ Half-Life:
   port_exe: "xash3d"
   audio: "alsa"
   commands:
-    - /usr/bin/show_splash.sh gameloading "ports" "hl"
     - xash3d.sh >> $EE_LOG 2>&1
 
 TMNTSR:
@@ -637,7 +625,6 @@ TMNTSR:
   port_exe: "mono"
   audio: "alsa"
   commands:
-    - /usr/bin/show_splash.sh gameloading "ports" "tmntsr"
     - tmntsr.sh >> $EE_LOG 2>&1
 
 Celeste Classic:
@@ -651,7 +638,6 @@ Celeste Classic:
   port_exe: "ccleste"
   audio: "alsa"
   commands:
-    - /usr/bin/show_splash.sh gameloading "ports" "ccleste"
     - cd /emuelec/configs/ccleste
     - ${PORT} >> $EE_LOG 2>&1
 
@@ -666,5 +652,4 @@ Celeste:
   port_exe: "mono"
   audio: "alsa"
   commands:
-    - /usr/bin/show_splash.sh gameloading "ports" "celeste"
     - celeste.sh >> $EE_LOG 2>&1

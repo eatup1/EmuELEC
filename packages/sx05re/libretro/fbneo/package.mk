@@ -2,13 +2,13 @@
 # Copyright (C) 2019-present Shanti Gilbert (https://github.com/shantigilbert)
 
 PKG_NAME="fbneo"
-PKG_VERSION="4fee4364645f61b2d863e0800915be1af32c8201"
-PKG_SHA256="cd612f7e86ee72e34525d675dee7b94201af8c50e59f2737db67dcb033ce2a9b"
+PKG_VERSION="989ac83d591daa870581b2bd88ca96716bf2d98f"
+PKG_SHA256="06f8abe8c8221a3c105f7777f0422b8f60b949e0ddfc5470dfce8425fe93ad52"
 PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="Non-commercial"
 PKG_SITE="https://github.com/libretro/FBNeo"
-PKG_URL="$PKG_SITE/archive/$PKG_VERSION.tar.gz"
+PKG_URL="${PKG_SITE}/archive/${PKG_VERSION}.tar.gz"
 PKG_DEPENDS_TARGET="toolchain"
 PKG_SECTION="libretro"
 PKG_SHORTDESC="Port of Final Burn Neo to Libretro (v1.0.0.3)."
@@ -21,12 +21,12 @@ sed -i "s|LDFLAGS += -static-libgcc -static-libstdc++|LDFLAGS += -static-libgcc|
 
 PKG_MAKE_OPTS_TARGET=" -C ./src/burner/libretro USE_CYCLONE=0 profile=performance"
 
-if [[ "$TARGET_FPU" =~ "neon" ]]; then
+if [[ "${TARGET_FPU}" =~ "neon" ]]; then
 	PKG_MAKE_OPTS_TARGET+=" HAVE_NEON=1"
 fi
 
-if [ "$DEVICE" == "OdroidGoAdvance" -o "$DEVICE" == "RG351P" -o "$DEVICE" == "RG351V" ] || [ "$DEVICE" == "GameForce" ]; then
-	if [ "$ARCH" == "arm" ]; then
+if [ "${DEVICE}" == "OdroidGoAdvance" -o "${DEVICE}" == "RG351P" -o "${DEVICE}" == "RG351V" ] || [ "${DEVICE}" == "GameForce" ]; then
+	if [ "${ARCH}" == "arm" ]; then
 	PKG_MAKE_OPTS_TARGET+=" platform=classic_armv8_a35"
 	fi
 fi
@@ -34,6 +34,6 @@ perl ./src/dep/scripts/gamelist.pl -o ./src/dep/generated/driverlist.h ./src/bur
 }
 
 makeinstall_target() {
-  mkdir -p $INSTALL/usr/lib/libretro
-  cp $PKG_BUILD/src/burner/libretro/fbneo_libretro.so $INSTALL/usr/lib/libretro/
+  mkdir -p ${INSTALL}/usr/lib/libretro
+  cp ${PKG_BUILD}/src/burner/libretro/fbneo_libretro.so ${INSTALL}/usr/lib/libretro/
 }

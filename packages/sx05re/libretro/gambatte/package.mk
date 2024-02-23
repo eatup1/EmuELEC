@@ -19,13 +19,13 @@
 ################################################################################
 
 PKG_NAME="gambatte"
-PKG_VERSION="ee52f204d0a9aea5b0e81b2fde95c71fdd0cb3ce"
-PKG_SHA256="2caa7748d07fb57f641c53699ad2372d4c071f696407b09b3a38782901e235fe"
+PKG_VERSION="c9a07107f121498a158762116d47d7068a247d3c"
+PKG_SHA256="28167cc1c3a9a5f3c945fb277be93680663a2c7cb11b447d6edaf96b8ef54341"
 PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="GPLv2"
 PKG_SITE="https://github.com/libretro/gambatte-libretro"
-PKG_URL="$PKG_SITE/archive/$PKG_VERSION.tar.gz"
+PKG_URL="${PKG_SITE}/archive/${PKG_VERSION}.tar.gz"
 PKG_DEPENDS_TARGET="toolchain"
 PKG_PRIORITY="optional"
 PKG_SECTION="libretro"
@@ -41,6 +41,6 @@ make_target() {
 }
 
 makeinstall_target() {
-  mkdir -p $INSTALL/usr/lib/libretro
-  cp gambatte_libretro.so $INSTALL/usr/lib/libretro/
+  mkdir -p ${INSTALL}/usr/lib/libretro
+  cp gambatte_libretro.so ${INSTALL}/usr/lib/libretro/
 }

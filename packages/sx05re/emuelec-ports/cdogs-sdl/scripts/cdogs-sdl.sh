@@ -15,10 +15,6 @@ FLAGS=""
 mkdir -p "${CONFIGFOLDER}"
 cd "${CONFIGFOLDER}"
 
-if [ "$EE_DEVICE" == "Amlogic-ng" ]; then 
-    fbfix
-fi
-
 if [ ! -e "${CONFIGFOLDER}/data/ammo.json" ]; then
     if [ $(get_ee_setting system.language) == "ko_KR" ]; then
         text_viewer -y -w -f 24 -t "데이터 없음!" -m "${PORTNAME}을 처음 실행하거나 데이터 폴더가 존재하지 않습니다.\n\n데이터는 총 35MB이며 인터넷에 연결되어 있어야 합니다.\n\n\n다운로드하고 계속하시겠습니까?"

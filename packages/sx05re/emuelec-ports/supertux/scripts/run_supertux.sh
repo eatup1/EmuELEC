@@ -13,8 +13,9 @@ DATA="https://github.com/british-choi/supertux/archive/${VERSION}.zip"
 DATAFOLDER="/storage/roms/ports/supertux"
 CONFIGFOLDER="/emuelec/configs/supertux2"
 
-if [ "$EE_DEVICE" == "OdroidGoAdvance" ] || [ "$EE_DEVICE" == "RG351P" ] || [ "$EE_DEVICE" == "RG351V" ] || [ "$EE_DEVICE" == "GameForce" ]; then
-case $(oga_ver) in
+if [ "${EE_DEVICE}" == "OdroidGoAdvance" ] || [ "${EE_DEVICE}" == "RG351P" ] || [ "${EE_DEVICE}" == "RG351V" ] || [ "${EE_DEVICE}" == "GameForce" ]; then
+OGAVER=$(oga_ver)
+case "${OGAVER}" in
     "OGA" | "OGABE" | "RG351P")
         sed -i "s|(fullscreen_width .*|(fullscreen_width 480)|" ${CONFIGFOLDER}/config
         sed -i "s|(fullscreen_height .*|(fullscreen_height 320)|" ${CONFIGFOLDER}/config
@@ -41,10 +42,6 @@ fi
 
 mkdir -p "${DATAFOLDER}"
 cd "${DATAFOLDER}"
-
-if [ "$EE_DEVICE" == "Amlogic-ng" ]; then 
-fbfix
-fi
 
 if [ ! -e "${DATAFOLDER}/credits.stxt" ]; then
     if [ $(get_ee_setting system.language) == "ko_KR" ]; then

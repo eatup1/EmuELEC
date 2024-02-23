@@ -16,10 +16,6 @@ DATAFOLDER="/storage/roms/ports/supertuxkart"
 mkdir -p "${DATAFOLDER}"
 cd "${DATAFOLDER}"
 
-if [ "$EE_DEVICE" == "Amlogic-ng" ]; then 
-fbfix
-fi
-
 if [ ! -e "${DATAFOLDER}/data/stk_config.xml" ]; then
     if [ $(get_ee_setting system.language) == "ko_KR" ]; then
     text_viewer -y -w -f 24 -t "데이터가 없습니다!" -m "수퍼 턱스 카트를 처음 실행하거나 데이터 폴더가 없습니다.\n\n데이터는 약250MB이며 인터넷에 연결되어 있어야 합니다.\n\n다운로드하고 계속하시겠습니까?"
@@ -39,11 +35,12 @@ if [ ! -e "${DATAFOLDER}/data/stk_config.xml" ]; then
             rm "${VERSION}.zip"
             ee_console disable
             mkdir -p /storage/.config/supertuxkart/config-0.10
-            [[ ! -f "${DATAFOLDER}/supertuxkart.git" ]] && touch "${DATAFOLDER}/supertuxkart.git"
+            [[ ! -f "${DATAFOLDER}/data/supertuxkart.git" ]] && touch "${DATAFOLDER}/data/supertuxkart.git"
 
 cat > /storage/.config/supertuxkart/config-0.10/players.xml << EOF
 <?xml version="1.0"?>
 <players version="1" >
+    <current player="EmuELEC"/>
     <player name="EmuELEC" guest="false" use-frequency="0"
             icon-filename="1.png"
             unique-id="1" saved-session="false"

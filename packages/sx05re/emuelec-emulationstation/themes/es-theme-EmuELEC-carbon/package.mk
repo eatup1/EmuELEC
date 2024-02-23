@@ -8,7 +8,7 @@ PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="https://github.com/EmuELEC/es-theme-EmuELEC-carbon"
-PKG_URL="$PKG_SITE/archive/$PKG_VERSION.tar.gz"
+PKG_URL="${PKG_SITE}/archive/${PKG_VERSION}.tar.gz"
 PKG_DEPENDS_TARGET="toolchain"
 PKG_SECTION="emuelec"
 PKG_SHORTDESC="The EmulationStation theme Carbon Fabrice Caruso's fork with changes for EmuELEC by drixplm"
@@ -20,7 +20,7 @@ if [ ${DEVICE} = "Amlogic-ng" ] || [ ${DEVICE} = "Amlogic" ]; then
   PKG_PATCH_DIRS="Amlogic"
 fi
 
-if [ "$DEVICE" == "OdroidGoAdvance" -o "$DEVICE" == "RG351P" -o "$DEVICE" == "RG351V" ]; then
+if [ "${DEVICE}" == "OdroidGoAdvance" ] || [ "${DEVICE}" == "RG351P" ] || [ "${DEVICE}" == "RG351V" ]; then
   PKG_PATCH_DIRS="OdroidGoAdvance"
 fi
 
@@ -29,8 +29,8 @@ make_target() {
 }
 
 makeinstall_target() {
-  mkdir -p $INSTALL/usr/config/emulationstation/themes/es-theme-EmuELEC-carbon
-    cp -r * $INSTALL/usr/config/emulationstation/themes/es-theme-EmuELEC-carbon
+  mkdir -p ${INSTALL}/usr/config/emulationstation/themes/es-theme-EmuELEC-carbon
+    cp -r * ${INSTALL}/usr/config/emulationstation/themes/es-theme-EmuELEC-carbon
 
     # Change to korean font
     sed -i "s|Cabin-Bold.ttf|NanumGothicBold.ttf|" $INSTALL/usr/config/emulationstation/themes/es-theme-EmuELEC-carbon/theme.xml

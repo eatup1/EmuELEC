@@ -10,9 +10,18 @@
 		<!--image>./downloaded_images/Input Test.png</image-->
 	</game>
 	<game>
+		<path>./create_rom_dirs.sh</path>
+		<name>ROM 디렉토리 만들기</name>
+		<desc>es_systems.cfg를 기반으로 /storage/roms에 모든 디렉토리를 생성하는 작은 스크립트</desc>
+		<developer>shantigilbert</developer>
+		<publisher>Emuelec</publisher>
+		<genre>script</genre>
+		<image>./setup_images/create_dirs.png</image>
+	</game>
+	<game>
 		<path>./install_portmaster.sh</path>
-		<name>Install PortMaster</name>
-		<desc>Install latest PortMaster</desc>
+		<name>포트마스터 설치</name>
+		<desc>최신의 포트마스터를 설치합니다.</desc>
 		<developer>shantigilbert</developer>
 		<publisher>Emuelec</publisher>
 		<genre>script</genre>

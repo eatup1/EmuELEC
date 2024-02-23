@@ -2,7 +2,7 @@
 # Copyright (C) 2020-present Shanti Gilbert (https://github.com/shantigilbert)
 
 PKG_NAME="VVVVVV"
-PKG_VERSION="92f9940464ee71d042e8c674390893644d588977"
+PKG_VERSION="91e144736b875844ec72ab2499d5d0af4c00f7c4"
 PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="CUSTOM"
@@ -18,7 +18,7 @@ if [ "${DEVICE}" == "Amlogic-ogu" ]; then
 PKG_VERSION="67d350de05850067e7bc976a9a370dcff28df62b"
 fi
 
-if [ "${DEVICE}" == "OdroidGoAdvance" -o "$DEVICE" == "RG351P" -o "$DEVICE" == "RG351V" ] || [ "${DEVICE}" == "GameForce" ]; then
+if [ "${DEVICE}" == "OdroidGoAdvance" ] || [ "$DEVICE" == "RG351P" ] || [ "$DEVICE" == "RG351V" ] || [ "${DEVICE}" == "GameForce" ]; then
 PKG_PATCH_DIRS="OdroidGoAdvance"
 fi
 

@@ -8,7 +8,7 @@
 
 [[ ! -d "/emuelec/configs/solarus/saves/" ]] && mkdir -p "/emuelec/configs/solarus/saves/"
 
-if [ "$EE_DEVICE" == "OdroidGoAdvance" -o "$EE_DEVICE" == "RG351P" -o "$EE_DEVICE" == "RG351V" ] || [ "$EE_DEVICE" == "GameForce" ]; then 
+if [ "${EE_DEVICE}" == "OdroidGoAdvance" ] || [ "${EE_DEVICE}" == "RG351P" ] || [ "${EE_DEVICE}" == "RG351V" ] || [ "${EE_DEVICE}" == "GameForce" ]; then 
     gptokeyb -c /emuelec/configs/gptokeyb/solarus-run.gptk &
     SDL_GAMECONTROLLERCONFIG_FILE="" solarus-run -fullscreen=yes ${1}
     killall gptokeyb

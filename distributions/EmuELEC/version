@@ -2,7 +2,7 @@
   OS_MAJOR="4"
 
 # OS_MINOR: OS minor Version
-  OS_MINOR="6"
+  OS_MINOR="7"
 
 # OS_REGION: OS region Version
   OS_REGION="k"

@@ -2,8 +2,8 @@
 # Copyright (C) 2019-present Shanti Gilbert (https://github.com/shantigilbert)
 
 PKG_NAME="advancemame"
-PKG_VERSION="e91ec3c729656ca68af04dfa3062a065812c6eb3"
-PKG_SHA256="c6d8a950906bfd99b697ae2166fb1e99b12fb6721334bd1043a812a883b68b8e"
+PKG_VERSION="89699f86d658d78bc19083e8dd076e5c4bdfd317"
+PKG_SHA256="45a77fa33b84b00fae56587198afb9ee2d7a3bc86f48dd62bb6df5a1e30b3a28"
 PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="MAME"
@@ -25,8 +25,8 @@ sed -i "s|#include <slang.h>|#include <${SYSROOT_PREFIX}/usr/include/slang.h>|" 
 }
 
 pre_make_target() {
-VERSION="EmuELEC-v$(cat $ROOT/packages/sx05re/emuelec/config/EE_VERSION)-${PKG_VERSION:0:7}"
-echo $VERSION > ${PKG_BUILD}/.version
+VERSION="EmuELEC-v$(cat ${ROOT}/packages/sx05re/emuelec/config/EE_VERSION)-${PKG_VERSION:0:7}"
+echo ${VERSION} > ${PKG_BUILD}/.version
 }
 
 make_target() {
@@ -47,7 +47,7 @@ elif [ "${DEVICE}" == "RG351P" ]; then
    cp -r ${PKG_DIR}/config/advmame.rc_rg351p ${INSTALL}/usr/config/emuelec/configs/advmame/advmame.rc
 elif [ "${DEVICE}" == "RG351V" ]; then
    cp -r ${PKG_DIR}/config/advmame.rc_rg351v ${INSTALL}/usr/config/emuelec/configs/advmame/advmame.rc
-elif [ "$DEVICE" == "GameForce" ]; then
+elif [ "${DEVICE}" == "GameForce" ]; then
    cp -r ${PKG_DIR}/config/advmame.rc_gf ${INSTALL}/usr/config/emuelec/configs/advmame/advmame.rc
 else
    cp -r ${PKG_DIR}/config/advmame.rc ${INSTALL}/usr/config/emuelec/configs/advmame/advmame.rc

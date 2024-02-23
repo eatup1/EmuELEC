@@ -2,7 +2,7 @@ diff --git a/engine/Makefile b/engine/Makefile
 index da9bf1b5..46b0a85d 100644
 --- a/engine/Makefile
 +++ b/engine/Makefile
-@@ -140,6 +140,7 @@ BUILD_PTHREAD   = 1
+@@ -138,6 +138,7 @@ BUILD_PTHREAD   = 1
  BUILD_SDL_IO    = 1
  BUILD_VORBIS    = 1
  BUILD_WEBM      = 1
@@ -10,7 +10,7 @@ index da9bf1b5..46b0a85d 100644
  BUILDING        = 1
  INCLUDES        = $(SDKPATH)/usr/include \
                    $(SDKPATH)/usr/include/SDL2
-@@ -149,6 +150,52 @@ LIBRARIES       = $(SDKPATH)/usr/lib
+@@ -147,6 +148,52 @@ LIBRARIES       = $(SDKPATH)/usr/lib
  CFLAGS          += -Wno-error=format-overflow -Wno-error=implicit-function-declaration -Wno-error=unused-variable -Wno-error=unused-label -Wno-error=stringop-overflow
  endif
  
@@ -63,7 +63,7 @@ index da9bf1b5..46b0a85d 100644
  ifdef BUILD_DARWIN
  TARGET          = $(VERSION_NAME).elf
  TARGET_FINAL    = $(VERSION_NAME)
-@@ -241,7 +288,7 @@ ifdef BUILD_WIN
+@@ -239,7 +286,7 @@ ifdef BUILD_WIN
  STRIP 	        = $(WINDEV)/$(PREFIX)strip$(EXTENSION) $(TARGET) -o $(TARGET_FINAL)
  endif
  ifdef BUILD_LINUX
@@ -72,7 +72,7 @@ index da9bf1b5..46b0a85d 100644
  endif
  ifdef BUILD_DARWIN
  STRIP           = $(PREFIX)strip $(TARGET) -o $(TARGET_FINAL)
-@@ -586,6 +633,11 @@ CFLAGS 	       += -DWEBM
+@@ -593,6 +640,11 @@ CFLAGS 	       += -DWEBM
  endif
  
  
@@ -85,20 +85,16 @@ index da9bf1b5..46b0a85d 100644
  ASFLAGS         = $(CFLAGS)
  
 diff --git a/engine/sdl/control.c b/engine/sdl/control.c
-index 9118fb1c..108b278b 100644
+index 1a135de4..969783d7 100644
 --- a/engine/sdl/control.c
 +++ b/engine/sdl/control.c
-@@ -860,6 +860,13 @@ void control_rumble(int deviceID, int ratio, int msec)
+@@ -980,6 +980,9 @@ void control_rumble(int port, int ratio, int msec)
  {
-     if (msec > 0 && devices[deviceID].haptic)
-     {
+     #if SDL
+     if (joystick[port] != NULL && joystick_haptic[port] != NULL) {
 +        #ifdef RG351_RUMBLE
-+        if (strcmp(devices[deviceID].name, "OpenSimHardware OSH PB Controller") == false)
-+        {
-+            if (msec == 0) return;
-+            msec *= 10;
-+        }
++        msec *= 10;
 +        #endif
-         if (SDL_HapticRumblePlay(devices[deviceID].haptic, ratio, msec) != 0)
+         if(SDL_HapticRumblePlay(joystick_haptic[port], ratio, msec) != 0)
          {
-             printf("Warning: Unable to play rumble! %s\n", SDL_GetError());
+             //printf( "Warning: Unable to play rumble! %s\n", SDL_GetError() );

@@ -19,13 +19,13 @@
 ################################################################################
 
 PKG_NAME="craft"
-PKG_VERSION="fce88570e83003b24cce34085928c890adae141d"
-PKG_SHA256="b60f482e2d93fd10a14b3dec2b11246290d44113c7ac0bc7cc878e97593e6876"
+PKG_VERSION="34c1341caa094ff4fe4f06e8ceb6ec316062b1fa"
+PKG_SHA256="02e21345732e2e883921590e07329fac0eb68c2397abc8a58aaf64d427d4a4aa"
 PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="MIT"
 PKG_SITE="https://github.com/libretro/Craft"
-PKG_URL="$PKG_SITE/archive/$PKG_VERSION.tar.gz"
+PKG_URL="${PKG_SITE}/archive/${PKG_VERSION}.tar.gz"
 PKG_DEPENDS_TARGET="toolchain"
 PKG_PRIORITY="optional"
 PKG_SECTION="libretro"
@@ -37,11 +37,11 @@ PKG_TOOLCHAIN="make"
 PKG_AUTORECONF="no"
 
 pre_configure_target() {
-  cd $PKG_BUILD
+  cd ${PKG_BUILD}
 }
 
 make_target() {
-  if [ "$OPENGLES_SUPPORT" = yes ]; then
+  if [ "${OPENGLES_SUPPORT}" = yes ]; then
     make -f Makefile.libretro FORCE_GLES=1
   else
     make -f Makefile.libretro
@@ -49,6 +49,6 @@ make_target() {
 }
 
 makeinstall_target() {
-  mkdir -p $INSTALL/usr/lib/libretro
-  cp craft_libretro.so $INSTALL/usr/lib/libretro/
+  mkdir -p ${INSTALL}/usr/lib/libretro
+  cp craft_libretro.so ${INSTALL}/usr/lib/libretro/
 }

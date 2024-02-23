@@ -16,8 +16,6 @@ from dataclasses import dataclass
 import time
 import sys
 import os
-import re
-from threading import Thread
 from multiprocessing import Process
 
 DEBUG = False
@@ -114,20 +112,21 @@ class BluetoothCTL:
             if i.startswith("LegacyPairing:"):
                 dev.legacy_pairing = i.split(":")[1].strip() == "yes"
             if i.startswith("RSSI:"):
-                dev.rssi = int(i.split(":")[1].strip())
+# Following code tested on bluez 5.66, and should work with 5.72 too.				
+                dev.rssi = int(i.split(" ")[-1].replace("(","").replace(")","").strip())
         return dev
 
     @property
     def power(self) -> bool:
-        return "yes" in ShellIO.execute_lookup(["bluetoothctl", "show"], "Pairable")
+        return "yes" in ShellIO.execute_lookup(["bluetoothctl", "show"], "Pairable", debug=False)
 
     @property
     def discoverable(self) -> bool:
-        return "yes" in ShellIO.execute_lookup(["bluetoothctl", "show"], "Discoverable")
+        return "yes" in ShellIO.execute_lookup(["bluetoothctl", "show"], "Discoverable", debug=False)
 
     @property
     def pairable(self) -> bool:
-        return "yes" in ShellIO.execute_lookup(["bluetoothctl", "show"], "Pairable")
+        return "yes" in ShellIO.execute_lookup(["bluetoothctl", "show"], "Pairable", debug=False)
 
     @power.setter
     def power(self, value):
@@ -173,13 +172,17 @@ class BluetoothCTL:
                         or "DEL" in line.split()[0]
                     )
                 ):
-                    devs = [x for x in bt.devices() if x.mac == line.split()[2]]
+                    if DEBUG:
+                        print(bt.devices)
+                    devs = [x for x in bt.devices if x.mac == line.split()[2]]
                     if len(devs) > 0:
                         if "DEL" in line.split()[0]:
                             on_device_removed(devs[0])
                         elif "NEW" in line.split()[0] or (
                             "CHG" in line.split()[0] and "RSSI:" in line
                         ):
+                            if DEBUG:
+                                print(devs)
                             if not on_device_discovered(devs[0]):
                                 print("stopping thread")
                                 break
@@ -189,8 +192,14 @@ class BluetoothCTL:
 
     @property
     def scanning(self) -> bool:
-        return "yes" in ShellIO.execute_lookup(["bluetoothctl", "show"], "Discovering")
+        return "yes" in ShellIO.execute_lookup(["bluetoothctl", "show"], "Discovering", debug=False)
 
+    @property
+    def controllers(self) -> list[str]:
+        controllers = ShellIO.execute(["bluetoothctl", "list"], debug=False)
+        return [ctrl.split()[1] for ctrl in controllers]
+
+    @property
     def devices(self) -> list[BluetoothDevice]:
         devs = ShellIO.execute(["bluetoothctl", "devices"], debug=False)
         return [self._parse_device_info(dev.split()[1]) for dev in devs]
@@ -240,7 +249,13 @@ def is_bluetooth_running():
     return False
 
 def on_device_discovered(dev: BluetoothDevice) -> bool:
+    if DEBUG:
+        print(dev)
     if dev.blocked:
+        return True
+    
+
+    if (dev.trusted and dev.paired and not dev.connected and bt.connect(dev)):
         return True
 
     if (
@@ -262,7 +277,8 @@ def on_device_discovered(dev: BluetoothDevice) -> bool:
             print("forgot device {}".format(dev.name))
     elif (
         dev.connected and not dev.trusted
-        and "input-" in dev.icon
+#       and dev.rssi == 0
+#       and "input-" in dev.icon
     ):
         print(
             "trusting and pairing device {}, mac: {}, icon: {}, paired: {}".format(
@@ -272,7 +288,7 @@ def on_device_discovered(dev: BluetoothDevice) -> bool:
 
         if bt.trust(dev):
             bt.pair(dev)
-            print("successfully trusted {} now connect cable.".format(dev.name))
+            print("connect cable.")
 
     return True
 
@@ -283,19 +299,25 @@ def on_device_removed(dev: BluetoothDevice):
 
 SCAN_TIME = 60
 
-ELAPSED_TIME = 0
+# ELAPSED_TIME = 0
 UPDATE_INTERVAL = 1
 
+BEEN_IN_GAME = False
 BT_THREAD: Process = None
 
 if __name__ == "__main__":
-    if len(sys.argv) > 1:
-        LIFE_TIME = int(sys.argv[1])
+    if len(sys.argv) >= 2:
+        SCAN_TIME = int(sys.argv[1])
 
-    print("running scan on " + str(SCAN_TIME))
+    print("running scan for " + str(SCAN_TIME) + " seconds.")
     bt = BluetoothCTL()
 
     if is_bluetooth_running():
+        print("bluetooth is already running, exiting.")
+        exit()
+
+    if len(bt.controllers) == 0:
+        print("no controller found, exiting.")
         exit()
 
     bt.power = True
@@ -303,21 +325,32 @@ if __name__ == "__main__":
     bt.discoverable = True
     bt.pairable = True
 
+    start_time = time.perf_counter()
     while True:
-        if SCAN_TIME >= 0:
-            if ELAPSED_TIME > SCAN_TIME:
+        diff_time = time.perf_counter() - start_time
+#        if SCAN_TIME >= 0:
+#            if ELAPSED_TIME > SCAN_TIME:
+#        print(diff_time)
+        if SCAN_TIME != -1 and diff_time > SCAN_TIME:
                 exit()
 
-        devices_count = len([d for d in bt.devices() if d.connected])
-        if not bt.scanning and (not is_in_game() or devices_count == 0):
-            print("emustation is active now or no devices found, resuming scan")
+        if not BEEN_IN_GAME:
+            BEEN_IN_GAME = is_in_game()
+
+        connected_devs = [dev for dev in bt.devices if dev.connected]
+        if not bt.scanning and (
+            not BEEN_IN_GAME or len(connected_devs) == 0 or SCAN_TIME > 0
+        ):
+            print("resuming scan")
             BT_THREAD = Process(target=bt.scan_async, args=(SCAN_TIME,))
             BT_THREAD.start()
-        elif is_in_game() and bt.scanning and devices_count > 0:
-            print("emustation is inactive now and devices connected, stopping scan")
+        elif (
+            bt.scanning and BEEN_IN_GAME and (len(connected_devs) > 0 or SCAN_TIME < 0)
+        ):
+            print("stopping scan")
             if BT_THREAD is not None:
                 BT_THREAD.terminate()
             bt.scan_stop()
 
         time.sleep(UPDATE_INTERVAL)
-        ELAPSED_TIME += UPDATE_INTERVAL
+#        ELAPSED_TIME += UPDATE_INTERVAL

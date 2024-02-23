@@ -19,13 +19,13 @@
 ################################################################################
 
 PKG_NAME="genesis-plus-gx"
-PKG_VERSION="5af4f5ed34e5b9ea6d487d60d6bcb67364067f6f"
-PKG_SHA256="e1aa228b27157327bdee3b1435884ddb895b125731d74fa2e5472aa19d0a5e3f"
+PKG_VERSION="7aba063778534a78b080a737c0465667ebd66154"
+PKG_SHA256="7bea8d7fed1f7729e5867d17c695cbb4db20f3597d646e37eefd40bbb2ade870"
 PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="Non-commercial"
 PKG_SITE="https://github.com/libretro/Genesis-Plus-GX"
-PKG_URL="$PKG_SITE/archive/$PKG_VERSION.tar.gz"
+PKG_URL="${PKG_SITE}/archive/${PKG_VERSION}.tar.gz"
 PKG_DEPENDS_TARGET="toolchain"
 PKG_PRIORITY="optional"
 PKG_SECTION="libretro"
@@ -37,13 +37,13 @@ PKG_TOOLCHAIN="make"
 PKG_AUTORECONF="no"
 
 make_target() {
-  if [ "$ARCH" == "arm" ]; then
-    CFLAGS="$CFLAGS -DALIGN_LONG"
+  if [ "${ARCH}" == "arm" ]; then
+    CFLAGS="${CFLAGS} -DALIGN_LONG"
   fi
   make -f Makefile.libretro
 }
 
 makeinstall_target() {
-  mkdir -p $INSTALL/usr/lib/libretro
-  cp genesis_plus_gx_libretro.so $INSTALL/usr/lib/libretro/genesis_plus_gx_libretro.so
+  mkdir -p ${INSTALL}/usr/lib/libretro
+  cp genesis_plus_gx_libretro.so ${INSTALL}/usr/lib/libretro/genesis_plus_gx_libretro.so
 }

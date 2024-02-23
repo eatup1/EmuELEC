@@ -19,13 +19,13 @@
 ################################################################################
 
 PKG_NAME="vecx"
-PKG_VERSION="33a8a89e92dbcef047a12e2c02dd55878be02a8f"
-PKG_SHA256="0502910863f5574d9fdd5809091b96a2c7d6511b6add44bf8df7464a688dc77a"
+PKG_VERSION="a401c268e425dc8ae6a301e7fdb9a9e96f39b8ea"
+PKG_SHA256="348c335607af6bdbe12f72b4252110a8eac2a65e7f38fc8e746e697724ad1f4e"
 PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="GPLv2|LGPLv2.1"
 PKG_SITE="https://github.com/libretro/libretro-vecx"
-PKG_URL="$PKG_SITE/archive/$PKG_VERSION.tar.gz"
+PKG_URL="${PKG_SITE}/archive/$PKG_VERSION.tar.gz"
 PKG_DEPENDS_TARGET="toolchain SDL2 ${OPENGLES}"
 PKG_PRIORITY="optional"
 PKG_SECTION="libretro"
@@ -41,6 +41,6 @@ make_target() {
 }
 
 makeinstall_target() {
-  mkdir -p $INSTALL/usr/lib/libretro
-  cp vecx_libretro.so $INSTALL/usr/lib/libretro/vecx_libretro.so
+  mkdir -p ${INSTALL}/usr/lib/libretro
+  cp vecx_libretro.so ${INSTALL}/usr/lib/libretro/vecx_libretro.so
 }

@@ -2,7 +2,7 @@
 # Copyright (C) 2022-present Shanti Gilbert (https://github.com/shantigilbert)
 
 PKG_NAME="fbneoSA"
-PKG_VERSION="a5a7ef836bf0011caedb9bcd35dfed71723514a3"
+PKG_VERSION="773a8bde21d1f60fff3db246925d71ff7df85493"
 PKG_ARCH="aarch64"
 PKG_LICENSE="Custom"
 PKG_SITE="https://github.com/finalburnneo/FBNeo"
@@ -24,12 +24,8 @@ unset MAKELEVEL
 }
 
 makeinstall_target() {
-mkdir -p ${INSTALL}/usr/config/emuelec/configs/fbneo/config
 mkdir -p ${INSTALL}/usr/bin
 cp -rf ${PKG_BUILD}/fbneo ${INSTALL}/usr/bin
 cp -rf ${PKG_BUILD}/src/license.txt ${INSTALL}/usr/bin/fbneo_license.txt
 cp -rf ${PKG_DIR}/scripts/* ${INSTALL}/usr/bin
-cp -rf ${PKG_DIR}/config/fbneo.ini ${INSTALL}/usr/config/emuelec/configs/fbneo/config/fbneo.ini
-
-chmod +x $INSTALL/usr/bin/fbneo.sh
 }

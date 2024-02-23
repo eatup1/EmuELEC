@@ -19,13 +19,13 @@
 ################################################################################
 
 PKG_NAME="gearsystem"
-PKG_VERSION="ea3488de67cf0db5e0db79ba95ffa4c8d6d3687a"
+PKG_VERSION="4b446ade9f990a57ef591f159fab1c717be88b2d"
 PKG_SHA256=""
 PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="GPLv3"
 PKG_SITE="https://github.com/drhelius/Gearsystem"
-PKG_URL="$PKG_SITE.git"
+PKG_URL="${PKG_SITE}.git"
 PKG_DEPENDS_TARGET="toolchain"
 PKG_PRIORITY="optional"
 PKG_SECTION="libretro"
@@ -40,6 +40,6 @@ make_target() {
 
 
 makeinstall_target() {
-  mkdir -p $INSTALL/usr/lib/libretro
-  cp platforms/libretro/gearsystem_libretro.so $INSTALL/usr/lib/libretro/
+  mkdir -p ${INSTALL}/usr/lib/libretro
+  cp platforms/libretro/gearsystem_libretro.so ${INSTALL}/usr/lib/libretro/
 }

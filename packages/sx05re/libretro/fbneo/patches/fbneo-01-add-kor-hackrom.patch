@@ -1,8 +1,8 @@
 diff --git a/src/burn/drv/capcom/d_cps1.cpp b/src/burn/drv/capcom/d_cps1.cpp
-index dba8c802e..564b1a189 100644
+index cec69ea18..343a3a909 100644
 --- a/src/burn/drv/capcom/d_cps1.cpp
 +++ b/src/burn/drv/capcom/d_cps1.cpp
-@@ -16621,6 +16621,28 @@ static const struct GameConfig ConfigTable[] =
+@@ -16569,6 +16569,28 @@ static const struct GameConfig ConfigTable[] =
  	{ "sfzech"        , CPS_B_21_DEF, mapper_SFZ63B, 0, NULL                },
  	{ "sfzhch"        , CPS_B_21_DEF, mapper_SFZ63B, 0, NULL                },
  
@@ -31,7 +31,7 @@ index dba8c802e..564b1a189 100644
  	{ 0               , 0           , 0            , 0, 0                   }
  };
  
-@@ -22102,7 +22124,7 @@ struct BurnDriver BurnDrvCpsFfightbl = {
+@@ -22033,7 +22055,7 @@ struct BurnDriver BurnDrvCpsFfightbl = {
  
  struct BurnDriver BurnDrvCpsFfightbla = {
  	"ffightbla", "ffight", NULL, NULL, "1990",
@@ -40,7 +40,7 @@ index dba8c802e..564b1a189 100644
  	NULL, NULL, NULL, NULL,
  	BDF_GAME_WORKING | BDF_CLONE | BDF_BOOTLEG | BDF_HISCORE_SUPPORTED, 2, HARDWARE_CAPCOM_CPS1, GBF_SCRFIGHT, 0,
  	NULL, FfightblaRomInfo, FfightblaRomName, NULL, NULL, NULL, NULL, FfightInputInfo, FfightDIPInfo,
-@@ -26659,6 +26681,998 @@ struct BurnDriver BurnDrvCpsWofhs = {
+@@ -27716,6 +27738,998 @@ struct BurnDriver BurnDrvCpspunishdw = {
  
  #include "d_kenseim.h"
  
@@ -1036,14 +1036,14 @@ index dba8c802e..564b1a189 100644
 +	&CpsRecalcPal, 0x1000, 384, 224, 4, 3
 +};
 +
- #undef CPS1_68K_PROGRAM_BYTESWAP
- #undef CPS1_68K_PROGRAM_NO_BYTESWAP
- #undef CPS1_Z80_PROGRAM
+ #undef A_BOARD_PLDS
+ #undef A_BOARD_QSOUND_PLDS
+ 
 diff --git a/src/burn/drv/capcom/d_cps2.cpp b/src/burn/drv/capcom/d_cps2.cpp
-index debf2e3e1..d21de05b1 100644
+index 77129316a..630b55468 100644
 --- a/src/burn/drv/capcom/d_cps2.cpp
 +++ b/src/burn/drv/capcom/d_cps2.cpp
-@@ -686,6 +686,34 @@ static struct BurnInputInfo MpangInputList[] = {
+@@ -738,6 +738,34 @@ static struct BurnInputInfo MpangInputList[] = {
  
  STDINPUTINFO(Mpang)
  
@@ -1078,7 +1078,7 @@ index debf2e3e1..d21de05b1 100644
  static struct BurnInputInfo ProgearInputList[] = {
  	{"P1 Coin"          , BIT_DIGITAL  , CpsInp020+4, "p1 coin"   },
  	{"P1 Start"         , BIT_DIGITAL  , CpsInp020+0, "p1 start"  },
-@@ -13954,7 +13982,7 @@ struct BurnDriver BurnDrvCpsNwarrud = {
+@@ -14162,7 +14190,7 @@ struct BurnDriver BurnDrvCpsNwarrud = {
  
  struct BurnDriver BurnDrvCpsProgearud = {
  	"progearud", "progear", NULL, NULL, "2001",
@@ -1087,7 +1087,7 @@ index debf2e3e1..d21de05b1 100644
  	NULL, NULL, NULL, NULL,
  	BDF_GAME_WORKING | BDF_CLONE | BDF_BOOTLEG | BDF_HISCORE_SUPPORTED, 2, HARDWARE_CAPCOM_CPS2 | HARDWARE_CAPCOM_CPS2_SIMM, GBF_HORSHOOT, 0,
  	NULL, ProgearudRomInfo, ProgearudRomName, NULL, NULL, NULL, NULL, ProgearInputInfo, NULL,
-@@ -14566,3 +14594,990 @@ struct BurnDriver BurnDrvCpsSfa2ultra = {
+@@ -14805,3 +14833,1021 @@ struct BurnDriver BurnDrvCpsSfa2ultra = {
  	Sfa2Init, DrvExit, Cps2Frame, CpsRedraw, CpsAreaScan,
  	&CpsRecalcPal, 0x1000, 384, 224, 4, 3
  };
@@ -1997,6 +1997,37 @@ index debf2e3e1..d21de05b1 100644
 +	&CpsRecalcPal, 0x1000, 384, 224, 4, 3
 +};
 +
++static struct BurnRomInfo Spf2xkRomDesc[] = {
++	{ "pzfk.03a",      0x080000, 0x4c29e2a6, CPS2_PRG_68K | BRF_ESS | BRF_PRG },
++	{ "pzfk.04",       0x080000, 0xfaf9c818, CPS2_PRG_68K | BRF_ESS | BRF_PRG },
++
++	{ "pzfk.14m",      0x100000, 0xbb5da961, CPS2_GFX | BRF_GRA },
++	{ "pzfk.16m",      0x100000, 0x2eee8408, CPS2_GFX | BRF_GRA },
++	{ "pzfk.18m",      0x100000, 0x9e792b30, CPS2_GFX | BRF_GRA },
++	{ "pzfk.20m",      0x100000, 0x26605f63, CPS2_GFX | BRF_GRA },
++
++	{ "pzf.01",        0x020000, 0x600fb2a3, CPS2_PRG_Z80 | BRF_ESS | BRF_PRG },
++	{ "pzf.02",        0x020000, 0x496076e0, CPS2_PRG_Z80 | BRF_ESS | BRF_PRG },
++
++	{ "pzf.11m",       0x200000, 0x78442743, CPS2_QSND | BRF_SND },
++	{ "pzf.12m",       0x200000, 0x399d2c7b, CPS2_QSND | BRF_SND },
++
++	{ "spf2xj.key",    0x000014, 0xdc39fd34, CPS2_ENCRYPTION_KEY },
++};
++
++STD_ROM_PICK(Spf2xk)
++STD_ROM_FN(Spf2xk)
++
++struct BurnDriver BurnDrvCpsSpf2xk = {
++	"spf2xk", "spf2t", NULL, NULL, "2024",
++	"Super Puzzle Fighter II X (960531 Korean Translation)\0", NULL, "Capcom", "CPS2",
++	L"\uC288\uD37C \uD37C\uC990 \uD30C\uC774\uD130 II X (960531 \uD55C\uAD6D\uC5B4 \uBC88\uC5ED)\0Super Puzzle Fighter II X (960531 Korean Translation)\0", NULL, NULL, NULL,
++	BDF_GAME_WORKING | BDF_CLONE | BDF_HISCORE_SUPPORTED, 2, HARDWARE_CAPCOM_CPS2, GBF_PUZZLE, FBF_SF,
++	NULL, Spf2xkRomInfo, Spf2xkRomName, NULL, NULL, NULL, NULL, Spf2tInputInfo, NULL,
++	Cps2Init, DrvExit, Cps2Frame, CpsRedraw, CpsAreaScan,
++	&CpsRecalcPal, 0x1000, 384, 224, 4, 3
++};
++
 +static struct BurnRomInfo VampjhRomDesc[] = {
 +	{ "vamjh.03a",     0x080000, 0x55c1be82, CPS2_PRG_68K | BRF_ESS | BRF_PRG },
 +	{ "vamjh.04b",     0x080000, 0x9c12017e, CPS2_PRG_68K | BRF_ESS | BRF_PRG },
@@ -2101,33 +2132,20 @@ index ebd9fed11..9e358bbc7 100644
  	NULL, dsmblRomInfo, dsmblRomName, NULL, NULL, NULL, NULL, Cv1kInputInfo, Cv1kDIPInfo,
  	DrvInit, DrvExit, DrvFrame, DrvDraw, DrvScan, &DrvRecalc, 0x10000,
 diff --git a/src/burn/drv/cave/d_pwrinst2.cpp b/src/burn/drv/cave/d_pwrinst2.cpp
-index dc70da69d..3668b57a6 100644
+index a1248db80..453f544bd 100644
 --- a/src/burn/drv/cave/d_pwrinst2.cpp
 +++ b/src/burn/drv/cave/d_pwrinst2.cpp
-@@ -1202,7 +1202,7 @@ struct BurnDriver BurnDrvPwrinst2j = {
+@@ -1208,7 +1208,7 @@ struct BurnDriver BurnDrvPwrinst2j = {
  
  struct BurnDriver BurnDrvPwrinst2k = {
  	"pwrinst2k", "pwrinst2", NULL, NULL, "1994",
 -	"Power instinct 2 (Korea, ver. 94/04/08)\0", NULL, "Atlus", "Cave",
-+	"Power Instinct 2 (Korea, ver. 94/04/08)\0", NULL, "Atlus", "Cave",
++	"Power Instinct 2 (Korea, Ver. 94.04.08)\0", NULL, "Atlus", "Cave",
  	NULL, NULL, NULL, NULL,
  	BDF_GAME_WORKING | BDF_CLONE | BDF_16BIT_ONLY | BDF_HISCORE_SUPPORTED, 2, HARDWARE_CAVE_68K_Z80, GBF_VSFIGHT, FBF_PWRINST,
  	NULL, pwrinst2kRomInfo, pwrinst2kRomName, NULL, NULL, NULL, NULL, pwrinst2InputInfo, NULL,
-diff --git a/src/burn/drv/irem/d_m72.cpp b/src/burn/drv/irem/d_m72.cpp
-index e41a1e8ed..9ed50335e 100644
---- a/src/burn/drv/irem/d_m72.cpp
-+++ b/src/burn/drv/irem/d_m72.cpp
-@@ -3680,7 +3680,7 @@ static INT32 hharryInit()
- 
- struct BurnDriver BurnDrvHharry = {
- 	"hharry", NULL, NULL, NULL, "1990",
--	"Hammerin' Harry (World, M81 hardware))\0", NULL, "Irem", "Irem M82",
-+	"Hammerin' Harry (World, M81 hardware)\0", NULL, "Irem", "Irem M82",
- 	NULL, NULL, NULL, NULL,
- 	BDF_GAME_WORKING | BDF_HISCORE_SUPPORTED, 2, HARDWARE_IREM_M72, GBF_SCRFIGHT | GBF_PLATFORM, 0,
- 	NULL, hharryRomInfo, hharryRomName, NULL, NULL, NULL, NULL, CommonInputInfo, HharryDIPInfo,
 diff --git a/src/burn/drv/irem/d_m92.cpp b/src/burn/drv/irem/d_m92.cpp
-index 207e269c5..eaee463c2 100644
+index 40a43d9fb..36e9ea8d3 100644
 --- a/src/burn/drv/irem/d_m92.cpp
 +++ b/src/burn/drv/irem/d_m92.cpp
 @@ -4262,7 +4262,7 @@ struct BurnDriver BurnDrvSkingame2 = {
@@ -2279,10 +2297,10 @@ index 207e269c5..eaee463c2 100644
 +	320, 240, 4, 3
 +};
 diff --git a/src/burn/drv/megadrive/d_megadrive.cpp b/src/burn/drv/megadrive/d_megadrive.cpp
-index 557ff5ea1..a596995a9 100644
+index 652d15149..af2e17896 100644
 --- a/src/burn/drv/megadrive/d_megadrive.cpp
 +++ b/src/burn/drv/megadrive/d_megadrive.cpp
-@@ -19420,7 +19420,7 @@ struct BurnDriver BurnDrvmd_rockman = {
+@@ -19328,7 +19328,7 @@ struct BurnDriver BurnDrvmd_rockman = {
  	"md_rockman", "md_megaman", NULL, NULL, "1994",
  	"Rockman Mega World (Japan)\0", NULL, "Capcom", "Sega Megadrive",
  	NULL, NULL, NULL, NULL,
@@ -2291,7 +2309,7 @@ index 557ff5ea1..a596995a9 100644
  	MegadriveGetZipName, md_rockmanRomInfo, md_rockmanRomName, NULL, NULL, NULL, NULL, MegadriveInputInfo, MegadriveDIPInfo,
  	MegadriveInit, MegadriveExit, MegadriveFrame, MegadriveDraw, MegadriveScan,
  	&bMegadriveRecalcPalette, 0x100, 320, 224, 4, 3
-@@ -19438,7 +19438,7 @@ struct BurnDriver BurnDrvmd_rockman1 = {
+@@ -19346,7 +19346,7 @@ struct BurnDriver BurnDrvmd_rockman1 = {
  	"md_rockman1", "md_megaman", NULL, NULL, "1994",
  	"Rockman Mega World (Japan, Alt)\0", NULL, "Capcom", "Sega Megadrive",
  	NULL, NULL, NULL, NULL,
@@ -2300,7 +2318,7 @@ index 557ff5ea1..a596995a9 100644
  	MegadriveGetZipName, md_rockman1RomInfo, md_rockman1RomName, NULL, NULL, NULL, NULL, MegadriveInputInfo, MegadriveDIPInfo,
  	MegadriveInit, MegadriveExit, MegadriveFrame, MegadriveDraw, MegadriveScan,
  	&bMegadriveRecalcPalette, 0x100, 320, 224, 4, 3
-@@ -55348,3 +55348,461 @@ struct BurnDriver BurnDrvmd_tkzs = {
+@@ -55481,3 +55481,461 @@ struct BurnDriver BurnDrvmd_tkzs = {
  	&bMegadriveRecalcPalette, 0x100, 320, 224, 4, 3
  };
  
@@ -2763,10 +2781,10 @@ index 557ff5ea1..a596995a9 100644
 +	&bMegadriveRecalcPalette, 0x100, 320, 224, 4, 3
 +};
 diff --git a/src/burn/drv/neogeo/d_neogeo.cpp b/src/burn/drv/neogeo/d_neogeo.cpp
-index 129fd6a34..a95ee713a 100644
+index d8f9ed184..b2a4ef8c8 100644
 --- a/src/burn/drv/neogeo/d_neogeo.cpp
 +++ b/src/burn/drv/neogeo/d_neogeo.cpp
-@@ -11404,7 +11404,7 @@ static INT32 samsh5spInit()
+@@ -11147,7 +11147,7 @@ static INT32 samsh5spInit()
  struct BurnDriver BurnDrvsamsh5sp = {
  	"samsh5sp", NULL, "neogeo", NULL, "2004",
  	"Samurai Shodown V Special / Samurai Spirits Zero Special (NGM-2720)\0", NULL, "Yuki Enterprise / SNK Playmore", "Neo Geo MVS",
@@ -2775,25 +2793,43 @@ index 129fd6a34..a95ee713a 100644
  	BDF_GAME_WORKING, 2, HARDWARE_PREFIX_CARTRIDGE | HARDWARE_SNK_NEOGEO | HARDWARE_SNK_CMC50 | HARDWARE_SNK_ENCRYPTED_M1, GBF_VSFIGHT, FBF_SAMSHO,
  	NULL, samsh5spRomInfo, samsh5spRomName, NULL, NULL, NULL, NULL, neogeoInputInfo, neogeoDIPInfo,
  	samsh5spInit, NeoExit, NeoFrame, NeoRender, NeoScan, &NeoRecalcPalette,
-@@ -21535,7 +21535,7 @@ struct BurnDriver BurnDrvkf2k3ps2sp = {
+@@ -17705,7 +17705,7 @@ struct BurnDriver BurnDrvmagdrop3te = {
+ 	{ "201-v2.v2",		0x400000, 0x472cf9db, 5 | BRF_SND },
  
- 
- // Metal Slug Unity(Added Timer Ver. 2021-02-05)
+ // Metal Slug Unity (Added Timer Ver. 2021-02-05)
 -// Modified by Alice愛麗絲, 合金弹头爱克斯, CXZInc
 +// Modified by Alice愛麗�?, 合金弹头爱克�?, CXZInc
  
  static struct BurnRomInfo mslugunityRomDesc[] = {
  	{ "201-p1uni.p1",	0x200000, 0xa3186dfd, 1 | BRF_ESS | BRF_PRG }, //  0 68K code
-@@ -21557,7 +21557,7 @@ struct BurnDriver BurnDrvmslugunity = {
- };
+@@ -17728,7 +17728,7 @@ struct BurnDriver BurnDrvmslugunity = {
  
  
--// Metal Slug - Super Vehicle-001 (Modified by 合金弹头爱克斯, Hack)
-+// Metal Slug - Super Vehicle-001 (Modified by 合金弹头爱克�?, Hack)
+ // Metal Slug - Super Vehicle-001 (Multifunction, Hack)
+-// Modified by 合金弹头爱克斯
++// Modified by 合金弹头爱克�?
+ // GOTVG 20180430
  
- static struct BurnRomInfo mslugaksRomDesc[] = {
- 	/* Multifunction - 20180430 */
-@@ -21653,7 +21653,7 @@ struct BurnDriver BurnDrvmslugaks = {
+ static struct BurnRomInfo mslugdgRomDesc[] = {
+@@ -17753,7 +17753,7 @@ struct BurnDriver BurnDrvmslugdg = {
+ 
+ 
+ // Metal Slug - Super Vehicle-001 (1v2 Mode, Hack)
+-// Modified by 合金弹头爱克斯
++// Modified by 合金弹头爱克�?
+ // GOTVG 20230626
+ 
+ static struct BurnRomInfo mslug1v2RomDesc[] = {
+@@ -17778,7 +17778,7 @@ struct BurnDriver BurnDrvmslug1v2 = {
+ 
+ 
+ // Metal Slug - Super Vehicle-001 (Origins, Hack)
+-// Modified by 合金弹头爱克斯
++// Modified by 合金弹头爱克�?
+ // GOTVG 20231028
+ 
+ static struct BurnRomInfo mslugqyRomDesc[] = {
+@@ -17875,7 +17875,7 @@ struct BurnDriver BurnDrvmslugfc2 = {
  
  
  // Metal Slug 2 - Super Vehicle-001/II Unity (Added Timer Ver. 2021-01-22)
@@ -2801,45 +2837,126 @@ index 129fd6a34..a95ee713a 100644
 +// Modified by Alice愛麗�?, 合金弹头爱克�?, CXZInc
  
  static struct BurnRomInfo mslug2unityRomDesc[] = {
- 	{ "241-p1uni.p1",	0x100000, 0x1562cf23, 1 | BRF_ESS | BRF_PRG }, //  0 68K code
-@@ -21677,7 +21677,7 @@ struct BurnDriver BurnDrvmslug2unity = {
+ 	{ "241-p1uni.p1",	0x100000, 0x1562cf23, 1 | BRF_ESS | BRF_PRG },
+@@ -17899,7 +17899,7 @@ struct BurnDriver BurnDrvmslug2unity = {
  
  
- // Metal Slug 2 - Friendly Fire FC2 (Hack)
+ // Metal Slug 2 - Super Vehicle-001/II (Friendly Fire FC2, Hack)
 -// Modified by CXZInc, Alice愛麗絲
 +// Modified by CXZInc, Alice愛麗�?
  // 20210415
  
  static struct BurnRomInfo mslug2fmRomDesc[] = {
-@@ -21733,7 +21733,7 @@ struct BurnDriver BurnDrvmslug2dd = {
- };
+@@ -17957,7 +17957,7 @@ struct BurnDriver BurnDrvmslug2dd = {
  
  
--// Metal Slug 2 - Super Vehicle-001/II (Modified by 合金弹头爱克斯, Hack)
-+// Metal Slug 2 - Super Vehicle-001/II (Modified by 合金弹头爱克�?, Hack)
+ // Metal Slug 2 - Super Vehicle-001/II (Multifunction, Hack)
+-// Modified by 合金弹头爱克斯
++// Modified by 合金弹头爱克�?
+ // GOTVG 20170509
  
- static struct BurnRomInfo mslug2aksRomDesc[] = {
- 	/* Multifunction - 20170509 */
-@@ -21891,7 +21891,7 @@ struct BurnDriver BurnDrvmslug2eg = {
+ static struct BurnRomInfo mslug2dgRomDesc[] = {
+@@ -17983,7 +17983,7 @@ struct BurnDriver BurnDrvmslug2dg = {
  
+ 
+ // Metal Slug 2 - Super Vehicle-001/II (Survival, Hack)
+-// Modified by 合金弹头爱克斯
++// Modified by 合金弹头爱克�?
+ // GOTVG 20180731
+ 
+ static struct BurnRomInfo mslug2ctRomDesc[] = {
+@@ -18008,7 +18008,7 @@ struct BurnDriver BurnDrvmslug2ct = {
+ 
+ 
+ // Metal Slug 2 - Super Vehicle-001/II (Enemy Remix, Hack)
+-// Modified by 合金弹头爱克斯
++// Modified by 合金弹头爱克�?
+ // GOTVG 20140914
+ 
+ static struct BurnRomInfo mslug2rRomDesc[] = {
+@@ -18033,7 +18033,7 @@ struct BurnDriver BurnDrvmslug2r = {
+ 
+ 
+ // Metal Slug 2 - Super Vehicle-001/II (Weapon Storage, Hack)
+-// Modified by 合金弹头爱克斯
++// Modified by 合金弹头爱克�?
+ // GOTVG 20151111
+ 
+ static struct BurnRomInfo mslug2pRomDesc[] = {
+@@ -18058,7 +18058,7 @@ struct BurnDriver BurnDrvmslug2p = {
+ 
+ 
+ // Metal Slug 2 - Super Vehicle-001/II (1v2 Mode, Hack)
+-// Modified by 合金弹头爱克斯
++// Modified by 合金弹头爱克�?
+ // GOTVG 20190511
+ 
+ static struct BurnRomInfo ms21v2RomDesc[] = {
+@@ -18147,7 +18147,7 @@ struct BurnDriver BurnDrvmslug2eg = {
+ 	MSLUGX_SND
  
  // Metal Slug X - Super Vehicle-001 Unity (Added Timer Ver. 2021-01-23)
 -// Modified by Alice愛麗絲, 合金弹头爱克斯, CXZInc
 +// Modified by Alice愛麗�?, 合金弹头爱克�?, CXZInc
  
  static struct BurnRomInfo mslugxunityRomDesc[] = {
- 	{ "250-p1uni.p1",	0x100000, 0x36102d34, 1 | BRF_ESS | BRF_PRG }, //  0 68K code
-@@ -22085,7 +22085,7 @@ struct BurnDriver BurnDrvmslugx2r = {
- };
+ 	{ "250-p1uni.p1",	0x100000, 0x36102d34, 1 | BRF_ESS | BRF_PRG },
+@@ -18421,7 +18421,7 @@ struct BurnDriver BurnDrvmslugxsv = {
  
  
--// Metal Slug X - Super Vehicle-001 (Modified by 合金弹头爱克斯, Hack)
-+// Metal Slug X - Super Vehicle-001 (Modified by 合金弹头爱克�?, Hack)
+ // Metal Slug X - Super Vehicle-001 (Survival, Hack)
+-// Modified by 合金弹头爱克斯
++// Modified by 合金弹头爱克�?
+ // GOTVG 20230216
  
- static struct BurnRomInfo mslugxaksRomDesc[] = {
- 	/* Legendary - 20230311*/
-@@ -22238,7 +22238,7 @@ struct BurnDriver BurnDrvmslugxaks = {
+ static struct BurnRomInfo mslugxscRomDesc[] = {
+@@ -18455,7 +18455,7 @@ struct BurnDriver BurnDrvmslugxsc = {
  
+ 
+ // Metal Slug X - Super Vehicle-001 (Legend, Hack)
+-// Modified by 合金弹头爱克斯
++// Modified by 合金弹头爱克�?
+ // GOTVG 20231128
+ 
+ static struct BurnRomInfo mslugxcqRomDesc[] = {
+@@ -18489,7 +18489,7 @@ struct BurnDriver BurnDrvmslugxcq = {
+ 
+ 
+ // Metal Slug X - Super Vehicle-001 (Firepower Showdown, Hack)
+-// Modified by 合金弹头爱克斯
++// Modified by 合金弹头爱克�?
+ // GOTVG 20231122
+ 
+ static struct BurnRomInfo mslugxfsRomDesc[] = {
+@@ -18523,7 +18523,7 @@ struct BurnDriver BurnDrvmslugxfs = {
+ 
+ 
+ // Metal Slug X - Super Vehicle-001 (Multifunction, Hack)
+-// Modified by 合金弹头爱克斯
++// Modified by 合金弹头爱克�?
+ // GOTVG 20230626
+ 
+ static struct BurnRomInfo mslugxdgRomDesc[] = {
+@@ -18548,7 +18548,7 @@ struct BurnDriver BurnDrvmslugxdg = {
+ 
+ 
+ // Metal Slug X - Super Vehicle-001 (1v2 Mode, Hack)
+-// Modified by 合金弹头爱克斯
++// Modified by 合金弹头爱克�?
+ // GOTVG 20190511
+ 
+ static struct BurnRomInfo msx1v2RomDesc[] = {
+@@ -18607,7 +18607,7 @@ struct BurnDriver BurnDrvmslugxdd = {
+ 
+ 
+ // Metal Slug X - Super Vehicle-001 (Extreme Space, Hack)
+-// Modified by 合金弹头爱克斯
++// Modified by 合金弹头爱克�?
+ // GOTVG 20150421
+ 
+ static struct BurnRomInfo mslugxlbRomDesc[] = {
+@@ -18668,7 +18668,7 @@ struct BurnDriver BurnDrvmslugxlb = {
+ 	MSLUG3_SND
  
  // Metal Slug 3 Unity (Added Timer Ver. 2021-02-13)
 -// Modified by Alice愛麗絲, 合金弹头爱克斯, CXZInc
@@ -2847,7 +2964,7 @@ index 129fd6a34..a95ee713a 100644
  
  static struct BurnRomInfo mslug3unityRomDesc[] = {
  	/* The SMA for this release has a green colour marking; the older revision has a white colour marking */
-@@ -22295,7 +22295,7 @@ struct BurnDriver BurnDrvmslug3i = {
+@@ -18725,7 +18725,7 @@ struct BurnDriver BurnDrvmslug3i = {
  
  
  // Metal Slug 3 (1v2 Mode, Hack)
@@ -2855,45 +2972,81 @@ index 129fd6a34..a95ee713a 100644
 +// Modified by 合金弹头爱克�?
  // 20190511
  
- static struct BurnRomInfo mslug31v2RomDesc[] = {
-@@ -22692,7 +22692,7 @@ struct BurnDriver BurnDrvmslug3cb = {
- };
+ static struct BurnRomInfo ms31v2RomDesc[] = {
+@@ -19099,7 +19099,7 @@ struct BurnDriver BurnDrvmslug3gw = {
  
  
--// Metal Slug 3 (Modified by 合金弹头爱克斯, Hack)
-+// Metal Slug 3 (Modified by 合金弹头爱克�?, Hack)
+ // Metal Slug 3 (Legend, Hack)
+-// Modified by 合金弹头爱克斯
++// Modified by 合金弹头爱克�?
+ // GOTVG 20231203
  
- static struct BurnRomInfo mslug3aksRomDesc[] = {
- 	/* Legendary - 20230813 */
-@@ -22815,7 +22815,7 @@ struct BurnDriver BurnDrvmslug3aks = {
+ static struct BurnRomInfo mslug3cqRomDesc[] = {
+@@ -19134,7 +19134,7 @@ struct BurnDriver BurnDrvmslug3cq = {
  
+ 
+ // Metal Slug 3 (Firepower Showdown, Hack)
+-// Modified by 合金弹头爱克斯
++// Modified by 合金弹头爱克�?
+ // GOTVG 20231122
+ 
+ static struct BurnRomInfo mslug3fsRomDesc[] = {
+@@ -19169,7 +19169,7 @@ struct BurnDriver BurnDrvmslug3fs = {
+ 
+ 
+ // Metal Slug 3 (Survival, Hack)
+-// Modified by 合金弹头爱克斯
++// Modified by 合金弹头爱克�?
+ // GOTVG 20230301
+ 
+ static struct BurnRomInfo mslug3scRomDesc[] = {
+@@ -19204,7 +19204,7 @@ struct BurnDriver BurnDrvmslug3sc = {
+ 
+ 
+ // Metal Slug 3 (Vehicle Summon, Hack)
+-// Modified by 合金弹头爱克斯
++// Modified by 合金弹头爱克�?
+ // GOTVG 20170404
+ 
+ static struct BurnRomInfo mslug3zhRomDesc[] = {
+@@ -19229,7 +19229,7 @@ struct BurnDriver BurnDrvmslug3zh = {
+ 
+ 
+ // Metal Slug 3 (Multifunction, Hack)
+-// Modified by 合金弹头爱克斯
++// Modified by 合金弹头爱克�?
+ // GOTVG 20220823
+ 
+ static struct BurnRomInfo mslug3gRomDesc[] = {
+@@ -19284,7 +19284,7 @@ struct BurnDriver BurnDrvmslug3g = {
+ 	{ "263-v2.v2",    0x800000, 0x4ab2bf81, 5 | BRF_SND },
  
  // Metal Slug 4 Unity (Added Timer Ver. 2021-01-30)
 -// Modified by Alice愛麗絲, 合金弹头爱克斯, CXZInc
 +// Modified by Alice愛麗�?, 合金弹头爱克�?, CXZInc
  
  static struct BurnRomInfo mslug4unityRomDesc[] = {
- 	{ "263-p1uni.p1",	0x100000, 0xef3501b6, 1 | BRF_ESS | BRF_PRG }, //  0 68K code
-@@ -22987,7 +22987,7 @@ static struct BurnRomInfo mslug4aRomDesc[] = {
- 
- 	MSLUG4_DECRYPTION_COMPONENT
- 
--	/* 20th Anniversary (Level patch by Alice愛麗絲) - 20220706 */
-+	/* 20th Anniversary (Level patch by Alice愛麗�?) - 20220706 */
- 	{ "263-p1a.ep1",	0x100000, 0xb342c468, 1 | BRF_ESS | BRF_PRG }, // 14 68K code diff patch
- 	{ "263-p2a.ep2",	0x400000, 0x67a9c85c, 1 | BRF_ESS | BRF_PRG }, // 15
- 
-@@ -23117,7 +23117,7 @@ struct BurnDriver BurnDrvmslug4dd = {
- };
+ 	{ "263-p1uni.p1",	0x100000, 0xef3501b6, 1 | BRF_ESS | BRF_PRG },
+@@ -19579,7 +19579,7 @@ struct BurnDriver BurnDrvmslug4ki = {
  
  
--// Metal Slug 4 (Modified by 合金弹头爱克斯, Hack)
-+// Metal Slug 4 (Modified by 合金弹头爱克�?, Hack)
+ // Metal Slug 4 (Multifunction, Hack)
+-// Modified by 合金弹头爱克斯
++// Modified by 合金弹头爱克�?
+ // GOTVG 20171225
  
- static struct BurnRomInfo mslug4aksRomDesc[] = {
- 	/* Multifunction - 20171225 */
-@@ -23259,7 +23259,7 @@ struct BurnDriver BurnDrvmslug4c = {
+ static struct BurnRomInfo mslug4dgRomDesc[] = {
+@@ -19604,7 +19604,7 @@ struct BurnDriver BurnDrvmslug4dg = {
  
+ 
+ // Metal Slug 4 (1v2 Mode, Hack)
+-// Modified by 合金弹头爱克斯
++// Modified by 合金弹头爱克�?
+ // GOTVG 20190511
+ 
+ static struct BurnRomInfo ms41v2RomDesc[] = {
+@@ -19675,7 +19675,7 @@ struct BurnDriver BurnDrvmslug4c = {
+ 	{ "268-v2c.v2",    0x800000, 0xc40613ed, 5 | BRF_SND },
  
  // Metal Slug 5 Unity (Added Timer Ver. 2021-04-23)
 -// Modified by Alice愛麗絲, 合金弹头爱克斯, CXZInc
@@ -2901,25 +3054,61 @@ index 129fd6a34..a95ee713a 100644
  
  static struct BurnRomInfo mslug5unityRomDesc[] = {
  	/* Encrypted */
-@@ -23303,7 +23303,7 @@ struct BurnDriver BurnDrvmslug5unity = {
+@@ -19931,7 +19931,7 @@ struct BurnDriver BurnDrvmslug5f = {
  
  
- // Metal Slug 5 (Extend Ver. 2022, Hack)
--// Modified by WillNie & 下水道的美yin鱼 / LONGKUI23 / etc
-+// Modified by WillNie & 下水道的美yin�? / LONGKUI23 / etc
+ // Metal Slug 5 (Stone Turtle, Hack)
+-// Modified by 合金弹头爱克斯
++// Modified by 合金弹头爱克�?
+ // GOTVG 20230518
  
- static struct BurnRomInfo mslug5exRomDesc[] = {
- 	/* Extend v1.2 - 20221002 */
-@@ -23519,7 +23519,7 @@ struct BurnDriver BurnDrvmslug5cb = {
- };
+ static struct BurnRomInfo mslug5sgRomDesc[] = {
+@@ -19955,7 +19955,7 @@ struct BurnDriver BurnDrvmslug5sg = {
  
  
--// Metal Slug 5 (Modified by 合金弹头爱克斯, Hack)
-+// Metal Slug 5 (Modified by 合金弹头爱克�?, Hack)
+ // Metal Slug 5 (Survival, Hack)
+-// Modified by 合金弹头爱克斯
++// Modified by 合金弹头爱克�?
+ // GOTVG 20230612
  
- static struct BurnRomInfo mslug5aksRomDesc[] = {
- 	/* Stone Turtle - 20230518 */
-@@ -25588,3 +25588,2887 @@ struct BurnDriver BurnDrvmslug3x = {
+ static struct BurnRomInfo mslug5scRomDesc[] = {
+@@ -19989,7 +19989,7 @@ struct BurnDriver BurnDrvmslug5sc = {
+ 
+ 
+ // Metal Slug 5 (Boss Battles, Hack)
+-// Modified by 合金弹头爱克斯
++// Modified by 合金弹头爱克�?
+ // GOTVG 20230626
+ 
+ static struct BurnRomInfo mslug5bsRomDesc[] = {
+@@ -20013,7 +20013,7 @@ struct BurnDriver BurnDrvmslug5bs = {
+ 
+ 
+ // Metal Slug 5 (Vehicle Summon, Hack)
+-// Modified by 合金弹头爱克斯
++// Modified by 合金弹头爱克�?
+ // GOTVG 20180918
+ 
+ static struct BurnRomInfo mslug5zhRomDesc[] = {
+@@ -20037,7 +20037,7 @@ struct BurnDriver BurnDrvmslug5zh = {
+ 
+ 
+ // Metal Slug 5 (1v2 Mode, Hack)
+-// Modified by 合金弹头爱克斯
++// Modified by 合金弹头爱克�?
+ // GOTVG 20190511
+ 
+ static struct BurnRomInfo ms51v2RomDesc[] = {
+@@ -20061,7 +20061,7 @@ struct BurnDriver BurnDrvms51v2 = {
+ 
+ 
+ // Metal Slug 5 (Multifunction, Hack)
+-// Modified by 合金弹头爱克斯
++// Modified by 合金弹头爱克�?
+ // GOTVG 20170523
+ 
+ static struct BurnRomInfo mslug5dgRomDesc[] = {
+@@ -27312,3 +27312,2816 @@ struct BurnDriver BurnDrvmslug3x = {
  	mslug3xInit, NeoExit, NeoFrame, NeoRender, NeoScan, &NeoRecalcPalette,
  	0x1000, 304, 224, 4, 3
  };
@@ -4167,41 +4356,6 @@ index 129fd6a34..a95ee713a 100644
 +	L"\uB354 \uD0B9 \uC624\uBE0C \uD30C\uC774\uD130\uC988 '97 (\uD55C\uAD6D\uC5B4 \uBC88\uC5ED, \uD50C\uB808\uC774\uC2A4\uD14C\uC774\uC158 \uD575)\0The King of Fighters '97 (Korean Translation, PlayStation Hack)\0", NULL, NULL, NULL,
 +	BDF_GAME_WORKING | BDF_CLONE | BDF_HACK, 2, HARDWARE_PREFIX_CARTRIDGE | HARDWARE_SNK_NEOGEO, GBF_VSFIGHT, FBF_KOF,
 +	NULL, kof97pskRomInfo, kof97pskRomName, NULL, NULL, NULL, NULL, neogeoInputInfo, neogeoDIPInfo,
-+	NeoInit, NeoExit, NeoFrame, NeoRender, NeoScan, &NeoRecalcPalette,
-+	0x1000, 304, 224, 4, 3
-+};
-+
-+// The King of Fighters '97 Tu She Edition (v1.2, Hack)
-+
-+static struct BurnRomInfo kof97tsRomDesc[] = {
-+	{ "232-p1ts.p1",  0x100000, 0x9a56d828, 1 | BRF_ESS | BRF_PRG }, //  0 68K code
-+	{ "232-p2ts.p2",  0x400000, 0x6aacb6f3, 1 | BRF_ESS | BRF_PRG }, //  1 
-+
-+	{ "232-s1ts.s1",  0x020000, 0xa7d2ea6d, 2 | BRF_GRA },           //  2 Text layer tiles
-+
-+	{ "232-c1.c1",    0x800000, 0x5f8bf0a1, 3 | BRF_GRA },           //  3 Sprite data
-+	{ "232-c2.c2",    0x800000, 0xe4d45c81, 3 | BRF_GRA },           //  4 
-+	{ "232-c3.c3",    0x800000, 0x581d6618, 3 | BRF_GRA },           //  5 
-+	{ "232-c4.c4",    0x800000, 0x49bb1e68, 3 | BRF_GRA },           //  6 
-+	{ "232-c5ts.c5",  0x400000, 0x8174fdf5, 3 | BRF_GRA },           //  7 
-+	{ "232-c6ts.c6",  0x400000, 0x32d5aa6a, 3 | BRF_GRA },           //  8 
-+
-+	{ "232-m1.m1",    0x020000, 0x45348747, 4 | BRF_ESS | BRF_PRG }, //  9 Z80 code
-+
-+	{ "232-v1.v1",    0x400000, 0x22a2b5b5, 5 | BRF_SND },           // 10 Sound data
-+	{ "232-v2.v2",    0x400000, 0x2304e744, 5 | BRF_SND },           // 11 
-+	{ "232-v3.v3",    0x400000, 0x759eb954, 5 | BRF_SND },           // 12 
-+};
-+
-+STDROMPICKEXT(kof97ts, kof97ts, neogeo)
-+STD_ROM_FN(kof97ts)
-+
-+struct BurnDriver BurnDrvKof97ts = {
-+	"kof97ts", "kof97", "neogeo", NULL, "2019",
-+	"The King of Fighters '97 Tu She Edition (v1.2, Hack)\0", NULL, "SNK", "Neo Geo MVS",
-+	NULL, NULL, NULL, NULL,
-+	BDF_GAME_WORKING | BDF_CLONE | BDF_HACK, 2, HARDWARE_PREFIX_CARTRIDGE | HARDWARE_SNK_NEOGEO, GBF_VSFIGHT, FBF_KOF,
-+	NULL, kof97tsRomInfo, kof97tsRomName, NULL, NULL, NULL, NULL, neogeoInputInfo, neogeoDIPInfo,
 +	NeoInit, NeoExit, NeoFrame, NeoRender, NeoScan, &NeoRecalcPalette,
 +	0x1000, 304, 224, 4, 3
 +};
@@ -5557,42 +5711,6 @@ index 129fd6a34..a95ee713a 100644
 +	0x1000, 304, 224, 4, 3
 +};
 +
-+// Metal Slug 5 (Fully Decrypted)
-+
-+static struct BurnRomInfo mslug5ndRomDesc[] = {
-+	{ "268-p1d.p1",   0x100000, 0x92ad7047, 1 | BRF_ESS | BRF_PRG }, //  0 68K code
-+	{ "268-p2d.p2",   0x400000, 0x768ee64a, 1 | BRF_ESS | BRF_PRG }, //  1 
-+
-+	{ "268-c1d.c1",   0x800000, 0xe8239365, 3 | BRF_GRA },           //  2 Sprite data
-+	{ "268-c2d.c2",   0x800000, 0x89b21d4c, 3 | BRF_GRA },           //  3 
-+	{ "268-c3d.c3",   0x800000, 0x3cda13a0, 3 | BRF_GRA },           //  4 
-+	{ "268-c4d.c4",   0x800000, 0x9c00160d, 3 | BRF_GRA },           //  5 
-+	{ "268-c5d.c5",   0x800000, 0x38754256, 3 | BRF_GRA },           //  6 
-+	{ "268-c6d.c6",   0x800000, 0x59d33e9c, 3 | BRF_GRA },           //  7 
-+	{ "268-c7d.c7",   0x800000, 0xc9f8c357, 3 | BRF_GRA },           //  8 
-+	{ "268-c8d.c8",   0x800000, 0xfafc3eb9, 3 | BRF_GRA },           //  9 
-+
-+	{ "268-m1d.m1",   0x010000, 0x45a7b351, 4 | BRF_ESS | BRF_PRG }, // 10 Z80 code
-+
-+	{ "268-v1d.v1",   0x400000, 0xf61daa9e, 5 | BRF_SND },           // 11 Sound data
-+	{ "268-v2d.v2",   0x400000, 0xeeb7c926, 5 | BRF_SND },           // 12 
-+	{ "268-v3d.v3",   0x400000, 0x02fd519e, 5 | BRF_SND },           // 13 
-+	{ "268-v4d.v4",   0x400000, 0xd7c67794, 5 | BRF_SND },           // 14 
-+};
-+
-+STDROMPICKEXT(mslug5nd, mslug5nd, neogeo)
-+STD_ROM_FN(mslug5nd)
-+
-+struct BurnDriver BurnDrvmslug5nd = {
-+	"mslug5nd", "mslug5", "neogeo", NULL, "2003",
-+	"Metal Slug 5 (Fully Decrypted)\0", NULL, "SNK Playmore", "Neo Geo MVS",
-+	NULL, NULL, NULL, NULL,
-+	BDF_GAME_WORKING | BDF_CLONE | BDF_HACK, 2, HARDWARE_PREFIX_CARTRIDGE | HARDWARE_SNK_NEOGEO, GBF_PLATFORM, FBF_MSLUG,
-+	NULL, mslug5ndRomInfo, mslug5ndRomName, NULL, NULL, NULL, NULL, neogeoInputInfo, neogeoDIPInfo,
-+	kof99ndInit, NeoExit, NeoFrame, NeoRender, NeoScan, &NeoRecalcPalette,
-+	0x1000, 304, 224, 4, 3
-+};
-+
 +// SNK vs. Capcom - SVC Chaos (Fully Decrypted)
 +
 +static struct BurnRomInfo svcndRomDesc[] = {
@@ -5946,7 +6064,7 @@ index ba5d22890..a779f74e1 100644
 +	256, 224, 4, 3
 +};
 diff --git a/src/burn/drv/pre90s/d_ginganin.cpp b/src/burn/drv/pre90s/d_ginganin.cpp
-index f7edce419..621d3f9ae 100644
+index 5d4f13da2..63804cfed 100644
 --- a/src/burn/drv/pre90s/d_ginganin.cpp
 +++ b/src/burn/drv/pre90s/d_ginganin.cpp
 @@ -717,3 +717,47 @@ struct BurnDriver BurnDrvGinganina = {
@@ -5958,7 +6076,7 @@ index f7edce419..621d3f9ae 100644
 +// Add Hack Roms (by DsNo)
 +//============================================================
 +
-+// Ginga NinkyouDen (Korean Translation)
++// Ginga Ninkyouden (Korean Translation)
 +
 +static struct BurnRomInfo ginganinkRomDesc[] = {
 +	{ "gn_02.bin",	0x10000, 0x4a4e012f, 1 | BRF_PRG | BRF_ESS }, //  0 M68000 Code
@@ -5990,7 +6108,7 @@ index f7edce419..621d3f9ae 100644
 +
 +struct BurnDriver BurnDrvGinganink = {
 +	"ginganink", "ginganin", NULL, NULL, "1987",
-+	"Ginga NinkyouDen (Korean Translation)\0", NULL, "Jaleco", "Miscellaneous",
++	"Ginga Ninkyouden (Korean Translation)\0", NULL, "Jaleco", "Miscellaneous",
 +	L"\uC740\uD558\uC784\uD611\uC804 (\uD55C\uAD6D\uC5B4 \uBC88\uC5ED)\0Ginga NinkyouDen (Korean Translation)\0", NULL, NULL, NULL,
 +	BDF_GAME_WORKING | BDF_CLONE | BDF_HACK | BDF_HISCORE_SUPPORTED, 2, HARDWARE_MISC_PRE90S, GBF_PLATFORM, 0,
 +	NULL, ginganinkRomInfo, ginganinkRomName, NULL, NULL, NULL, NULL, GinganinInputInfo, GinganinDIPInfo,
@@ -6143,10 +6261,10 @@ index af6a2cef3..bfd7f4199 100644
 +	320, 224, 4, 3
 +};
 diff --git a/src/burn/drv/sega/d_sys1.cpp b/src/burn/drv/sega/d_sys1.cpp
-index 8a58b3d2b..0e1a2d155 100644
+index 294d4b2cc..fc7b7d604 100644
 --- a/src/burn/drv/sega/d_sys1.cpp
 +++ b/src/burn/drv/sega/d_sys1.cpp
-@@ -7844,7 +7844,7 @@ struct BurnDriver BurnDrvWbmlvcd = {
+@@ -7846,7 +7846,7 @@ struct BurnDriver BurnDrvWbmlvcd = {
  	"wbmlvcd", "wbml", NULL, NULL, "2009",
  	"Wonder Boy - Monster Land (decrypted bootleg of English, Virtual Console release)\0", NULL, "bootleg (mpatou)", "System 2",
  	NULL, NULL, NULL, NULL,
@@ -6169,37 +6287,10 @@ index 07985e740..bc985a7a0 100644
  	{0x18, 0x01, 0x0f, 0x01, "USA"			},
  	{0x18, 0x01, 0x0f, 0x02, "Europe"		},
 diff --git a/src/burner/libretro/retro_input.cpp b/src/burner/libretro/retro_input.cpp
-index 65ebb4d25..3c48c60cb 100644
+index b22a8b7b9..2537838f0 100644
 --- a/src/burner/libretro/retro_input.cpp
 +++ b/src/burner/libretro/retro_input.cpp
-@@ -1167,6 +1167,26 @@ static INT32 GameInpSpecialOne(struct GameInp* pgi, INT32 nPlayer, char* szb, ch
- 		}
- 	}
- 
-+	// VS Block Breaker
-+	if ((parentrom && strcmp(parentrom, "vblokbrk") == 0) ||
-+		(drvname && strcmp(drvname, "vblokbrk") == 0) ||
-+		(parentrom && strcmp(parentrom, "puzzloop") == 0) ||
-+		(drvname && strcmp(drvname, "puzzloop") == 0)
-+	) {
-+		if (strcmp("Paddle", description) == 0) {
-+			GameInpAnalog2RetroInpAnalog(pgi, nPlayer, RETRO_DEVICE_ID_ANALOG_X, RETRO_DEVICE_INDEX_ANALOG_LEFT, description);
-+		}
-+	}
-+
-+	// Puzz Loop 2
-+	if ((parentrom && strcmp(parentrom, "pzloop2") == 0) ||
-+		(drvname && strcmp(drvname, "pzloop2") == 0)
-+	) {
-+		if (strcmp("Paddle", description) == 0) {
-+			GameInpAnalog2RetroInpAnalog(pgi, nPlayer, RETRO_DEVICE_ID_ANALOG_X, RETRO_DEVICE_INDEX_ANALOG_LEFT, description);
-+		}
-+	}
-+
- 	// G-LOC Air Battle
- 	// Galaxy Force 2
- 	// Air Rescue
-@@ -1834,6 +1854,30 @@ static INT32 GameInpSpecialOne(struct GameInp* pgi, INT32 nPlayer, char* szb, ch
+@@ -1856,6 +1856,30 @@ static INT32 GameInpSpecialOne(struct GameInp* pgi, INT32 nPlayer, char* szb, ch
  		}
  	}
  
