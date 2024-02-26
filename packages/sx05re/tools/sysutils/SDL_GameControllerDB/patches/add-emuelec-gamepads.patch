@@ -1,11 +1,9 @@
-diff --git a/gamecontrollerdb.txt b/gamecontrollerdb.txt
-index 3601e2c..8dee50c 100644
 --- a/gamecontrollerdb.txt
 +++ b/gamecontrollerdb.txt
-@@ -1,5 +1,31 @@
+@@ -1,5 +1,25 @@
  # Game Controller DB for SDL in 2.0.9 format
  # Source: https://github.com/gabomdq/SDL_GameControllerDB
-+ 
++
 +# EmuELEC extra gamepads
 +030005ff6d0400001dc2000014400000,Logitech Gamepad F310,dpleft:h0.8,rightx:a3,dpright:h0.2,rightshoulder:b5,dpdown:h0.4,righty:a4,leftshoulder:b4,y:b2,x:b3,b:b0,a:b1,dpup:h0.1,back:b6,leftstick:b9,start:b7,lefty:a1,guide:b8,lefttrigger:a2,righttrigger:a5,rightstick:b10,leftx:a0,platform:Linux,
 +030000004c0500006802000011810000,Sony PLAYSTATION(R)3 Controller,platform:Linux,dpleft:b15,rightx:a3,dpright:b16,rightshoulder:b5,dpdown:b14,righty:a4,leftshoulder:b4,y:b3,x:b2,b:b0,a:b1,dpup:b13,back:b8,leftstick:b11,start:b9,lefty:a1,guide:b8,lefttrigger:a2,righttrigger:a5,rightstick:b12,leftx:a0,
@@ -25,12 +23,6 @@ index 3601e2c..8dee50c 100644
 +03000000790000001c18000011010000,PC Game Controller,platform:Linux,a:b1,b:b0,guide:b10,back:b10,dpdown:h0.4,dpleft:h0.8,dpright:h0.2,dpup:h0.1,leftshoulder:b6,leftstick:b13,lefttrigger:b8,leftx:a0,lefty:a1,rightshoulder:b7,rightstick:b14,righttrigger:b9,rightx:a2,righty:a3,start:b11,x:b4,y:b3,
 +03000000790000000600000010010000,DragonRise Inc.   Generic   USB  Joystick  ,platform:Linux,a:b4,b:b0,x:b2,y:b1,guide:b8,back:b8,start:b9,leftshoulder:b3,rightshoulder:b5,lefttrigger:b6,righttrigger:b7,leftstick:b10,rightstick:b11,dpup:h0.1,dpright:h0.2,dpdown:h0.4,dpleft:h0.8,leftx:a0,lefty:a1,rightx:a3,righty:a4,
 +03000000bc2000000055000010010000,Xiaoji Gamesir-G3w,platform:Linux,leftstick:b13,rightx:a2,leftshoulder:b6,start:b11,lefty:a1,dpup:h0.1,righty:a3,a:b1,b:b0,guide:b10,dpdown:h0.4,rightshoulder:b7,righttrigger:b9,rightstick:b14,dpright:h0.2,x:b4,back:b10,leftx:a0,y:b3,dpleft:h0.8,lefttrigger:b8,
-+030000005e0400008e02000020010000,8bitdo M30 (D-Pad to Analog default) X-input,a:b0,b:b1,back:b6,dpdown:+a1,dpleft:-a0,dpright:+a0,dpup:-a1,guide:b8,leftshoulder:b4,leftstick:b9,lefttrigger:b5,leftx:a0,lefty:a1,rightshoulder:a2,rightstick:b10,righttrigger:a5,rightx:a3,righty:a4,start:b7,x:b2,y:b3,platform:Linux,
-+03000000c82d00000431000011010000,8bitdo M30 (D-Pad to Analog alt1) X-input,a:b0,b:b1,back:b10,dpdown:+a1,dpleft:-a0,dpright:+a0,dpup:-a1,guide:b2,leftshoulder:b8,leftstick:a2,lefttrigger:b6,leftx:a0,lefty:a1,rightshoulder:b9,rightstick:a5,righttrigger:b7,rightx:a3,righty:a4,start:b11,x:b3,y:b4,platform:Linux,
-+030000004c050000c405000011810000,8bitdo M30 (D-Pad to Analog alt2) X-input,a:b0,b:b1,back:b8,dpdown:+a1,dpleft:-a0,dpright:+a0,dpup:-a1,guide:b10,leftshoulder:b6,leftstick:a2,lefttrigger:b4,leftx:a0,lefty:a1,rightshoulder:b7,rightstick:a5,righttrigger:b5,rightx:a3,righty:a4,start:b9,x:b3,y:b2,platform:Linux,
-+030000004c050000da0c000011010000,8bitdo M30 (Not recommended Change Dpad mode) X-input,a:b2,b:b1,back:b8,dpdown:+a1,dpleft:-a0,dpright:+a0,dpup:-a1,guide:b8,leftshoulder:b4,leftstick:a2,lefttrigger:b6,leftx:a0,lefty:a1,rightshoulder:b5,rightstick:a5,righttrigger:b7,rightx:a3,righty:a4,start:b9,x:b3,y:b0,platform:Linux,
-+03000000a30c00002400000011010000,8bitdo M30 2.4G controller,a:b2,b:b1,back:b8,dpdown:+a1,dpleft:-a0,dpright:+a0,dpup:-a1,guide:b8,leftshoulder:b6,leftstick:a2,lefttrigger:b4,leftx:a0,lefty:a1,rightshoulder:b7,rightstick:a5,righttrigger:b5,rightx:a3,righty:a4,start:b9,x:b3,y:b0,platform:Linux,
-+03000000c82d00000531000011010000,8bitdo M30 (With 8bitdo Receiver 2nd Gen),a:b0,b:b1,back:b10,dpdown:+a1,dpleft:-a0,dpright:+a0,dpup:-a1,guide:b12,leftshoulder:b8,leftstick:b15,lefttrigger:b6,leftx:a0,lefty:a1,rightshoulder:b9,rightstick:b15,righttrigger:b7,rightx:b15,righty:b15,start:b11,x:b3,y:b4,platform:Linux,
  
  # Windows
  03000000fa2d00000100000000000000,3DRUDDER,leftx:a0,lefty:a1,rightx:a5,righty:a2,platform:Windows,
