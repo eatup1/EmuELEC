@@ -2,12 +2,12 @@
 # Copyright (C) 2019-present Shanti Gilbert (https://github.com/shantigilbert)
 
 PKG_NAME="scummvmsa"
-PKG_VERSION="cc6441aba203787e4286f43f591587a8bbddd7b7"
-PKG_SHA256="2dbf98a3c9bcb04d835a35b543650692a5eeca2123dd15444eaf2f39f939cecc"
-PKG_GIT_CLONE_BRANCH="branch-2-8"
+PKG_VERSION="e2a1c59e20d915c272b9b249b47b71b04a3ad868"
+PKG_SHA256="37daec93b304f0ada4f1e72a703900dd3e38873f97931b0f0ec66771eafcfff3"
+PKG_GIT_CLONE_BRANCH="branch-2-8-0"
 PKG_REV="1"
 PKG_LICENSE="GPL2"
-PKG_SITE="https://github.com/scummvm/scummvm"
+PKG_SITE="https://github.com/british-choi/scummvm"
 PKG_URL="${PKG_SITE}/archive/${PKG_VERSION}.tar.gz"
 PKG_DEPENDS_TARGET="toolchain SDL2 SDL2_net freetype fluidsynth-git libmad"
 PKG_SHORTDESC="Script Creation Utility for Maniac Mansion Virtual Machine"
